@@ -1,11 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>add_task-join</title>
-</head>
-<body>
-    
-</body>
+    <link rel="stylesheet" href="css/add_Task.css" />
+  </head>
+  <body>
+    <h2>Add Task</h2>
+    <form class="formAddTasks" action="">
+      <div class="seperateSendButtons">
+        <div class="overInputFields">
+          <div class="fillOut">
+            <div class="overField">
+              <label for="name"
+                >Title<span style="color: #ff8190">*</span></label
+              >
+              <input
+                type="text"
+                id="title"
+                placeholder="Enter a Title"
+                required
+              />
+            </div>
+            <div class="overField">
+              <label for="description">Description</label>
+              <textarea
+                type="text"
+                name="description"
+                id="title"
+                placeholder="Enter a Description"
+              ></textarea>
+            </div>
+            <div class="overField">
+              <label for="name">Assigned to</label>
+              <input type="text" id="title" required />
+            </div>
+          </div>
+          <div class="line"></div>
+          <div class="fillOut">
+            <div class="overField">
+              <label for="date"
+                >Due date<span style="color: #ff8190">*</span></label
+              >
+              <input type="date" id="date" placeholder="tt/mm/jjjj" required />
+            </div>
+            <div class="overField">
+              <label for="prio">Prio</label>
+              <div class="overPrioButtons">
+                <button class="prioButtons urgentButton">
+                  Urgent<img src="assets/icons/up.svg" alt="" />
+                </button>
+                <button class="prioButtons mediumButton">
+                  Medium<img src="assets/icons/medium.svg" alt="" />
+                </button>
+                <button class="prioButtons lowButton">
+                  Low<img src="assets/icons/down.svg" alt="" />
+                </button>
+              </div>
+            </div>
+            <div class="overField">
+              <label for="category"
+                >Category<span style="color: #ff8190">*</span></label
+              >
+              <input type="text" id="category" required />
+            </div>
+            <div class="overField">
+              <label for="subtasks">Subtasks</label>
+              <input type="text" id="subtasks" required />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="overFormButtons">
+        <button class="formButtons clearButton">
+          Clear <img src="assets/icons/vector.svg" alt="" />
+        </button>
+        <button class="formButtons createButton">
+          Create Task <img src="assets/icons/check.svg" alt="" />
+        </button>
+      </div>
+    </form>
+  </body>
 </html>
