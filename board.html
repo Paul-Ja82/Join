@@ -1,11 +1,160 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>board-join</title>
+    <link rel="stylesheet" href="./css/board.css">
+    <title>Board - join</title>
 </head>
 <body>
-    
+    <div class="board_ctn">
+        <div class="board_header">
+            <div class="board_header_headline">
+                Board
+            </div>
+            <div class="board_header_find_and_add">
+                <div class="find_task_ctn">
+                    <input type="text" name="name_of_task" id="name_of_task_input" placeholder="Find Task">
+                    <div class="button_find_task">
+                        <img src="./assets/img/search.png" alt="Lupe">
+                    </div>
+                </div>
+                <div class="add_task_ctn">
+                    Add Task <img src="./assets/img/plus.png" alt="Plus">
+                </div>
+            </div>
+        </div>
+        <div class="board_task_area">
+            <div id="task_section_todo" class="task_section">
+                <div class="task_section_header">
+                    <span>To do</span>
+                    <div class="board_move_task_btn">+</div>
+                </div>
+                <div id="tasks_area_add_task" class="tasks_area">
+                    <div class="task_nothing_todo">No tasks To do</div>
+                    <div class="task_section_tasks_area">
+                      
+                    </div>
+                </div>
+            </div>
+            <div id="task_section_in_progress" class="task_section">
+                <div class="task_section_header">
+                    <span>In progress</span>
+                    <div class="board_move_task_btn">+</div>
+                </div>
+                <div id="tasks_area_in_progress" class="tasks_area">
+                    <div id="section_in_progress_nothing_todo" class="task_nothing_todo">No tasks To do</div>
+                    <div class="task_section_tasks_area">
+                        <div class="single_task_ctn">
+                            <div class="single_task_category">User Story</div>
+                            <div class="single_task_headline">Contact Form & Imprint</div>
+                            <div class="single_task_description">Create a contact form and imprint page...</div>
+                            <div class="single_task_progress_ctn">
+                                <div class="single_task_progress_bar_background">
+                                    <div class="single_task_progress_bar_process_line"></div>
+                                </div>
+                                <div class="subtasks">2/2 Subtasks</div>
+                            </div>
+                            <div class="single_tasks_contacts_and_priority">
+                                <div class="single_task_contacts_ctn">
+                                    <div class="single_task_single_contact">AS</div>
+                                    <div class="single_task_single_contact">DE</div>
+                                    <div class="single_task_single_contact">EF</div>
+                                </div>
+                                <div class="single_task_priority">
+                                    <img src="./assets/img/prio_high.png" alt="roter Pfeil nach oben">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="task_section_await_feedback" class="task_section">
+                <div class="task_section_header">
+                    <span>Await feedback</span>
+                    <div class="board_move_task_btn">+</div>
+                </div>
+                <div id="tasks_area_await_feedback" class="tasks_area">
+                    <div id="section_feedback_nothing_todo"  class="task_nothing_todo">No tasks To do</div>
+                    <div class="task_section_tasks_area">
+                        <div class="single_task_ctn">
+                            <div class="single_task_category">Technical Task</div>
+                            <div class="single_task_headline">HTML Base Template Creation</div>
+                            <div class="single_task_description">Create reusable HTML base templates...</div>
+                            <div class="single_task_progress_ctn">
+                                <div class="single_task_progress_bar_background">
+                                    <div class="single_task_progress_bar_process_line"></div>
+                                </div>
+                                <div class="subtasks">2/2 Subtasks</div>
+                            </div>
+                            <div class="single_tasks_contacts_and_priority">
+                                <div class="single_task_contacts_ctn">
+                                    <div class="single_task_single_contact">DE</div>
+                                    <div class="single_task_single_contact">BZ</div>
+                                    <div class="single_task_single_contact">AS</div>
+                                </div>
+                                <div class="single_task_priority">
+                                    <img src="./assets/img/prio_low.png" alt="grüner Pfeil nach unten">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single_task_ctn">
+                            <div class="single_task_category">User Stroy</div>
+                            <div class="single_task_headline">Daily Kochwelt Recipe</div>
+                            <div class="single_task_description">Implement daily recipe and portion calculator...</div>
+                            <div class="single_task_progress_ctn">
+                                <div class="single_task_progress_bar_background">
+                                    <div class="single_task_progress_bar_process_line"></div>
+                                </div>
+                                <div class="subtasks">2/2 Subtasks</div>
+                            </div>
+                            <div class="single_tasks_contacts_and_priority">
+                                <div class="single_task_contacts_ctn">
+                                    <div class="single_task_single_contact">EF</div>
+                                    <div class="single_task_single_contact">AS</div>
+                                    <div class="single_task_single_contact">TW</div>
+                                </div>
+                                <div class="single_task_priority">
+                                    <img src="./assets/img/prio_medium.png" alt="orangenes Gleich-Zeichen
+                                    ">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="task_section_done" class="task_section">
+                <div class="task_section_header">
+                    <span>Done</span>
+                    <div class="board_move_task_btn">+</div>
+                </div>
+                <div id="tasks_area_done" class="tasks_area">
+                    <div class="task_section_tasks_area">
+                        <div class="single_task_ctn">
+                            <div class="single_task_category">Technical Task</div>
+                            <div class="single_task_headline">CSS Architecture Planning</div>
+                            <div class="single_task_description">Define CSS naming conventions and structure...</div>
+                            <div class="single_task_progress_ctn">
+                                <div class="single_task_progress_bar_background">
+                                    <div class="single_task_progress_bar_process_line"></div>
+                                </div>
+                                <div class="subtasks">2/2 Subtasks</div>
+                            </div>
+                            <div class="single_tasks_contacts_and_priority">
+                                <div class="single_task_contacts_ctn">
+                                    <div class="single_task_single_contact">SM</div>
+                                    <div class="single_task_single_contact">BZ</div>
+                                </div>
+                                <div class="single_task_priority">
+                                    <img src="./assets/img/prio_low.png" alt="grüner Pfeil nach unten">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
+
