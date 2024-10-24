@@ -218,3 +218,15 @@ body {
         }
     }
   }
+
+  #tasks_area_await_feedback {
+    .single_task_progress_ctn {
+        display: none;
+    }
+  }
+
+  #task_section_done {
+    & .single_task_progress_bar_process_line {
+        width: 100%;
+    }
+  }
