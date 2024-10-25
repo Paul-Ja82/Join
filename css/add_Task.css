@@ -1,0 +1,148 @@
+* {
+  font-size: 24px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: #f6f7f8;
+}
+
+h2 {
+  font-size: 61px;
+  font-weight: 700;
+}
+
+.formAddTasks {
+  display: flex;
+  flex-direction: column;
+}
+
+.overInputFields {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 976px;
+  margin-bottom: 120px;
+}
+
+.fillOut {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 440px;
+}
+
+.line {
+  border: 1px solid #d1d1d1;
+  height: 455px;
+}
+
+.overField {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.overField label {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.overField input {
+  border-radius: 10px;
+  border: solid 1px #d1d1d1;
+  padding: 12px 21px;
+  margin-bottom: 24px;
+}
+
+.overField input::placeholder {
+  color: #d1d1d1;
+}
+
+.overField textarea {
+  border-radius: 10px;
+  border: solid 1px #d1d1d1;
+  height: 120px;
+  padding: 12px 21px;
+  margin-bottom: 24px;
+}
+
+.overField textarea::placeholder {
+  color: #d1d1d1;
+}
+
+.overFormButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 8px;
+  width: 976px;
+}
+
+.formButtons {
+  background-color: #f6f7f8;
+  border-radius: 10px;
+  font-size: 21px;
+  padding: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.clearButton {
+  border: 1px solid #2a3647;
+}
+
+.createButton {
+  background-color: #2a3647;
+  color: white;
+}
+
+.overPrioButtons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.prioButtons {
+  flex: 1;
+  border: unset;
+  background-color: white;
+  width: Fill (136px) px;
+  padding: 16px 10px 16px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.urgentButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0px 0px 4px 0px #0000001A;
+
+}
+
+.mediumButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  background-color: #ffa800;
+  color: white;
+  font-weight: 700;
+}
+
+.lowButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0px 0px 4px 0px #0000001A;
+
+}
+
+.required {
+  align-self: flex-end;
+}
