@@ -67,9 +67,15 @@ body {
         align-items: center;
         background-color: rgb(42, 54, 71);
         border-radius: 10px;
+        transition: all 0.1s ease-in-out;
         & span {
           font-size: 21px;
           font-weight: 700;
+        }
+        &:hover {
+          cursor: pointer;
+          background-color: rgba(41, 171, 226, 1);
+          box-shadow: 0px 5px 5px rgb(197, 201, 204);
         }
       }
     }
@@ -94,6 +100,9 @@ body {
         &::placeholder {
           color: lightgray;
           font-weight: 400;
+        }
+        &:hover {
+          cursor: pointer;
         }
       }
       & .button_find_task {
@@ -128,9 +137,18 @@ body {
           border: 2px solid rgba(42, 54, 71, 1);
           display: flex;
           align-items: center;
-          justify-content: center;
-          &:hover {
+          justify-content: center;  
+          transition: all 0.1s ease-in-out;
+          & svg path {
+            fill: rgba(42, 54, 71, 1);
           }
+          &:hover {
+            border: 2px solid rgba(41, 171, 226, 1);
+            cursor: pointer;
+          }
+          &:hover svg path {
+            stroke: rgba(41, 171, 226, 1);
+          }     
         }
       }
       & .tasks_area {
@@ -243,6 +261,9 @@ body {
               }
             }
           }
+          & :hover {
+            cursor: pointer;
+          }
         }
       }
     }
@@ -312,9 +333,9 @@ body {
                 }
             }
         }
+      }
     }
-}
-    }
+  }
   
 
   @media (max-width: 900px) {
