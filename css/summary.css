@@ -1,0 +1,335 @@
+body {
+    width: 1440px;
+    height: 1024px;
+    font-family: "Inter", sans-serif;
+    background-color: rgb(246,247,248,1);
+}
+
+.title-div {
+    margin-left: 328px;
+    margin-top: 206px;
+    width: 625px;
+    height: 73px;
+    display: flex;
+}
+
+.title {
+    margin: 0;
+    font-size: 61px;
+    font-weight: bolder;
+    width:264px;
+}
+
+.title:hover {
+    text-decoration: underline 3px rgb(41,171,226);
+    
+}
+
+.divider {
+    width: 4px;
+    margin-left: 28px;
+    background-color: rgb(41,171,226);
+}
+
+.sub-title {
+    font-weight: normal;
+    font-size: 27px;
+    margin-left: 6%;
+    width: 301px;
+    height: 32px;
+}
+
+.sub-title:hover {
+    text-decoration: underline 3px rgb(41,171,226);
+    
+}
+
+.main-div {
+    display: flex;
+    margin-top: 80px;
+}
+
+.tasks-div {
+    width: 560px;
+    height: 562px;
+    margin-left: 328px;
+    display: flex;
+    flex-direction: column;
+}
+
+.to-do-indicator-div {
+    width: 560px;
+    height: 168px;
+    display: flex;
+}
+
+.to-do-div {
+    width: 264px;
+    height: 168px;
+    background-color: rgba(255,255,255);
+    box-shadow: 0px 0px 4px 0px  rgba(0, 0, 0, 0.1);  
+    border-radius: 30px;
+    margin-right: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.to-do {
+    width: 142px;
+    height: 101px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pencil-button {
+    width: 69px;
+    height: 69px;
+    border: none;
+    border-radius: 50%;
+    background-image: url(../assets/img/pencil-button.png);
+    background-position: center;
+    background-size: cover;
+    margin-right: 10px;
+}
+
+.to-do-amount {
+    width: 63px;
+    height: 101px;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    text-align:end;
+}
+
+.to-do-amount-undertitle {
+    margin-left: 5px;
+}
+
+span {
+    font-size:64px;
+    font-weight: bold;
+    margin: 0;
+}
+
+h3 {
+    font-size: 20px;
+    margin: 0;
+    font-weight: 400;
+}
+
+.done-div {
+    width: 264px;
+    height: 168px;
+    background-color: rgba(255,255,255);
+    box-shadow: 0px 0px 4px 0px  rgba(0, 0, 0, 0.1); 
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.done {
+    width: 142px;
+    height: 101px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.check-button {
+    width: 69px;
+    height: 69px;
+    border: none;
+    border-radius: 50%;
+    background-image: url(../assets/img/check-button.png);
+    background-position: center;
+    background-size: cover;
+    margin-right: 10px;
+}
+
+.check-amount {
+    width: 50px;
+    height: 101px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.to-do-urgency-div {
+    width: 560px;
+    height: 168px;
+    margin-bottom: 29px;
+    margin-top: 29px;
+    background-color: rgba(255,255,255);
+    box-shadow: 0px 0px 4px 0px  rgba(0, 0, 0, 0.1); 
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.urgency-div {
+    width: 263px;
+    height: 168px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.urgency {
+    width: 130px;
+    height: 96px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.urgency-button {
+    width: 69px;
+    height: 69px;
+    border: none;
+    border-radius: 50%;
+    background-image: url(../assets/img/Urgency-button.png);
+    background-position: center;
+    background-size: cover;
+}
+
+.urgency-divider {
+    width: 2px;
+    height: 102.02px;
+    background-color: rgb(209, 209, 209);
+}
+
+.urgency-amount {
+    width: 63px;
+    height: 101px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.deadline-div {
+    width: 296px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.deadline {
+    height: 57px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 13px;
+}
+
+h4 {
+    font-size: 21px;
+    font-weight: 700;
+    margin: 0;
+}
+
+small {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.tasks-counter-div {
+    width: 560px;
+    height: 168px;
+    display: flex;
+    gap: 28px;
+}
+
+.t-in-board-div {
+    width: 168px;
+    height: 168px;
+    background-color: rgba(255,255,255);
+    box-shadow: 0px 0px 4px 0px  rgba(0, 0, 0, 0.1); 
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.t-in-board {
+    width: 83px;
+    height: 125px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.t-in-progress-div {
+    width: 168px;
+    height: 168px;
+    background-color: rgba(255,255,255);
+    box-shadow: 0px 0px 4px 0px  rgba(0, 0, 0, 0.1); 
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.t-in-progress {
+    width: 83px;
+    height: 125px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.awaiting-feedback-div {
+    width: 168px;
+    height: 168px;
+    background-color: rgba(255,255,255);
+    box-shadow: 0px 0px 4px 0px  rgba(0, 0, 0, 0.1); 
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.awaiting-feedback {
+    width: 83px;
+    height: 125px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.greetings-div {
+    width: 550px;
+    height: 562px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.greetings-frame {
+    width: 385px;
+    height: 136px;
+}
+
+.greting {
+    font-size: 47px;
+    font-weight: 500;
+}
+
+.greeted-name {
+    font-size: 64px;
+    font-weight: 700px;
+    color: rgba(41, 171, 226, 1);
+}

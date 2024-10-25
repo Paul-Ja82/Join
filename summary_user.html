@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SummaryUser-Join</title>
+    <link rel="stylesheet" href="css/summary.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="title-div">
+        <h1 class="title">Join 360</h1>
+        <div class="divider"></div>
+        <h2 class="sub-title">Key Metrics at a Glance</h2>
+    </div>
+    <div class="main-div">
+    <div class="tasks-div">
+        <div class="to-do-indicator-div">
+            <div class="to-do-div">
+               <div class="to-do">
+                <button class="pencil-button" id="pencilButton"></button>
+                    <div class="to-do-amount">
+                        <span class="to-do-amount-variable" id="toDoAmountVariable">1</span>
+                        <h3 class="to-do-amount-undertitle">To-do</h3>
+                    </div>
+              </div>
+            </div>  
+            <div class="done-div">
+                <div class="done">
+                <button class="check-button" id="checkButton"></button>
+                    <div class="check-amount">
+                        <span class="check-amount-variable" id="toDoAmountVariable">1</span>
+                        <h3 class="check-amount-undertitle">Done</h3>
+                   </div>
+                </div>
+            </div>
+        </div>
+        <div class="to-do-urgency-div">
+            <div class="urgency-div">
+                <div class="urgency">
+                <button class="urgency-button" id="urgencyButton"></button>
+                    <div class="urgency-amount">
+                        <span class="urgency-amount-variable" id="urgencyAmountVariable">1</span>
+                        <small class="urgency-amount-undertitle">Urgent</small>
+                    </div>
+                </div>
+            </div>  
+            <div class="urgency-divider"></div>
+            <div class="deadline-div">
+                <div class="deadline">
+                    <h4 class="deadline-date">November 20, 2024</h4>
+                    <small class="deadline-undertitle">Upcoming Deadline</small>
+                </div>
+            </div>
+        </div>
+        <div class="tasks-counter-div">
+            <div class="t-in-board-div">
+                <div class="t-in-board">
+                <span class="t-in-board-amount" id="taskBoardAmount">5</span>
+                <h3 class="t-in-board-undertitle">Tasks in Board</h3>
+            </div>
+        </div>
+            <div class="t-in-progress-div" >
+                <div class="t-in-progress" >
+                <span class="t-in-progress-amount" id="taskProgressAmount">2</span>
+                <h3 class="t-in-progress-undertitle">Tasks in Progress</h3>
+            </div>
+        </div>
+            <div class="awaiting-feedback-div">
+                <div class="awaiting-feedback">
+                <span class="feedback-amount" id="awaitingFeedbackAmount">2</span>
+                <h3 class="feedback-undertitle">Awaiting Feedback</h3>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="greetings-div">
+    <div class="greetings-frame">
+        <div class="greting" id="greetingSummaryUser">Good morning,</div>
+        <span class="greeted-name" id="greetedName">Sofia Müller</span>
+    </div>
+</div>
+</div>
+</body>
+</html>
