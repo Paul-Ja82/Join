@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="./assets/fonts/fonts.css">
     <title>Board - join</title>
 </head>
-<body>
+<body onload="getIdAndData(pathData='')">
     <div id="dummy_header"></div>
     <div id="dummy_menu"></div>
     <div class="board_ctn">
         <div class="board_header">
             <div class="board_header_headline_add">
-                <div class="board_header_headline">Board</div>
+                <div onclick="collectData()" class="board_header_headline">Board</div>
                 <div onclick="openAddTaskForm()" class="add_task_ctn">
                     <span>Add Task</span>
                     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -66,7 +66,7 @@
                 <div id="tasks_area_in_progress" class="tasks_area">
                     <div id="section_in_progress_nothing_todo" class="task_nothing_todo">No tasks To do</div>
                     <div ondrop="moveTo('in_progress_tasks')" ondragover="allowDrop(event)" class="task_section_tasks_area" id="in_progress_tasks">
-                        <div draggable="true" ondragstart="startDragging(0)" onclick="openTaskOverlay(event)" id="single_task_ctn1" class="single_task_ctn">
+                        <!-- <div draggable="true" ondragstart="startDragging(0)" onclick="openTaskOverlay(event)" id="single_task_ctn1" class="single_task_ctn">
                             <div class="single_task_category">User Story</div>
                             <div class="single_task_headline">Contact Form & Imprint</div>
                             <div class="single_task_description">Create a contact form and imprint page...</div>
@@ -86,7 +86,7 @@
                                     <img src="./assets/img/prio_high.png" alt="roter Pfeil nach oben">
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -103,7 +103,7 @@
                 <div id="tasks_area_await_feedback" class="tasks_area">
                     <div id="section_feedback_nothing_todo"  class="task_nothing_todo">No tasks To do</div>
                     <div ondrop="moveTo('await_feedback_tasks')" ondragover="allowDrop(event)"class="task_section_tasks_area" id="await_feedback_tasks">
-                        <div draggable="true" ondragstart="startDragging(1)" onclick="openTaskOverlay(event)" id="single_task_ctn2" class="single_task_board single_task_ctn">
+                        <!-- <div draggable="true" ondragstart="startDragging(1)" onclick="openTaskOverlay(event)" id="single_task_ctn2" class="single_task_board single_task_ctn">
                             <div class="single_task_category">Technical Task</div>
                             <div class="single_task_headline">HTML Base Template Creation</div>
                             <div class="single_task_description">Create reusable HTML base templates...</div>
@@ -123,8 +123,8 @@
                                     <img src="./assets/img/prio_low.png" alt="grüner Pfeil nach unten">
                                 </div>
                             </div>
-                        </div>
-                        <div draggable="true" ondragstart="startDragging(2)" onclick="openTaskOverlay(event)" id="single_task_ctn3" class="single_task_ctn">
+                        </div> -->
+                        <!-- <div draggable="true" ondragstart="startDragging(2)" onclick="openTaskOverlay(event)" id="single_task_ctn3" class="single_task_ctn">
                             <div class="single_task_category">User Stroy</div>
                             <div class="single_task_headline">Daily Kochwelt Recipe</div>
                             <div class="single_task_description">Implement daily recipe and portion calculator...</div>
@@ -144,7 +144,7 @@
                                     <img src="./assets/img/prio_medium.png" alt="orangenes Gleich-Zeichen">
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -155,7 +155,7 @@
                 <div id="tasks_area_done" class="tasks_area">
                     <div id="section_done_nothing_done" class="task_nothing_todo">No tasks Done</div>
                     <div ondrop="moveTo('done_tasks')" ondragover="allowDrop(event)" class="task_section_tasks_area" id="done_tasks">
-                        <div draggable="true" ondragstart="startDragging(3)" onclick="openTaskOverlay(event)" id="single_task_ctn4" class="single_task_ctn">
+                        <!-- <div draggable="true" ondragstart="startDragging(3)" onclick="openTaskOverlay(event)" id="single_task_ctn4" class="single_task_ctn">
                             <div class="single_task_category">Technical Task</div>
                             <div class="single_task_headline">CSS Architecture Planning</div>
                             <div class="single_task_description">Define CSS naming conventions and structure...</div>
@@ -174,7 +174,7 @@
                                     <img src="./assets/img/prio_low.png" alt="grüner Pfeil nach unten">
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -225,12 +225,19 @@
                     <input type="checkbox" name="subtask_done" id="subtask1">
                     <label for="subtask1">
                         <div class="subtask_checkbox">
-                            <svg id="checkbox_border" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M17 8V14C17 15.6569 15.6569 17 14 17H4C2.34315 17 1 15.6569 1 14V4C1 2.34315 2.34315 1 4 1H12" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                            <svg id="checkbox_checkmark" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1 9L5 13L13 1.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
+                            <div class="checkbox_empty">
+                                <svg id="checkbox_empty" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="1.38818" y="1" width="16" height="16" rx="3" stroke="#2A3647" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <div class="checkbox_checked">
+                                <svg id="checkbox_border" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M17 8V14C17 15.6569 15.6569 17 14 17H4C2.34315 17 1 15.6569 1 14V4C1 2.34315 2.34315 1 4 1H12" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                                <svg id="checkbox_checkmark" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 9L5 13L13 1.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
                         </div> 
                         <span>Implement Recipe Recommendation</span>
                     </label>
@@ -240,12 +247,19 @@
                     <input type="checkbox" name="subtask_done" id="subtask2">
                     <label for="subtask2"> 
                         <div class="subtask_checkbox">
-                            <svg id="checkbox_border" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M17 8V14C17 15.6569 15.6569 17 14 17H4C2.34315 17 1 15.6569 1 14V4C1 2.34315 2.34315 1 4 1H12" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                            <svg id="checkbox_checkmark" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1 9L5 13L13 1.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
+                            <div class="checkbox_empty">
+                                <svg id="checkbox_empty" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="1.38818" y="1" width="16" height="16" rx="3" stroke="#2A3647" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <div class="checkbox_checked">
+                                <svg id="checkbox_border" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M17 8V14C17 15.6569 15.6569 17 14 17H4C2.34315 17 1 15.6569 1 14V4C1 2.34315 2.34315 1 4 1H12" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                                <svg id="checkbox_checkmark" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 9L5 13L13 1.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
                         </div> 
                         <span>Start Page Layout</span>
                     </label>
