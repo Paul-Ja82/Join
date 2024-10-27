@@ -90,7 +90,7 @@ body {
 .button {
     padding: 1em 1.5em;
     border-radius: 0.5em;
-    transition: var(--transition-all-default);
+    transition: var(--transition-default);
     font-size: var(--fs-400);
 }
 
@@ -125,7 +125,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 0.6em;
-    transition: var(--transition-all-default);
+    transition: var(--transition-default);
 }
 
 .button-wIcon img {
