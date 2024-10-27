@@ -30,6 +30,16 @@
     --clr-input-invalid: red;
 }
 
+/*#####################*/
+/*## MISC PROPERTIES ##*/
+/*#####################*/
+
+:root {
+    --border-radius-circular: 10000px;
+    --transition-default: all 125ms ease;
+    --shadow-button: 0px 4px 4px 0px #00000040;
+    --shadow-top-inset: inset 0px 6px 5px -6px #888;
+}
 
 /*################*/
 /*## TYPOGRAPHY ##*/
@@ -49,4 +59,142 @@ body {
 
 .h-pointer:hover {
     cursor: pointer;
+}
+
+.flex-row {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+/*##################*/
+/*## PERSON ICONS ##*/
+/*##################*/
+
+.person-icon {
+    border-radius: var(--border-radius-circular);
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.person-icon img {
+    height: 1em;
+}
+
+/*#############*/
+/*## BUTTONS ##*/
+/*#############*/
+
+.button {
+    padding: 1em 1.5em;
+    border-radius: 0.5em;
+    transition: var(--transition-all-default);
+    font-size: var(--fs-400);
+}
+
+.button:hover {
+    box-shadow: var(--shadow-button);
+    transform: translate(-2px, -2px);
+    cursor: pointer;
+}
+
+.button:active {
+    box-shadow: var(--shadow-button);
+    transform: translate(-1px, -1px);
+    transition: none;
+}
+
+.button:disabled {
+    transform: unset;
+    filter: grayscale(50%) opacity(50%); 
+}
+
+.button:hover:disabled {
+    box-shadow: none;
+    transform: none;
+    cursor: unset;
+}
+
+/* button with icon */
+.button-wIcon {
+    padding: 0.75em 1em;
+    border-radius: 0.625em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6em;
+    transition: var(--transition-all-default);
+}
+
+.button-wIcon img {
+    height: 1.3em;
+}
+
+
+.button-wIcon .icon-hover {
+    display: none;
+}
+
+.button-wIcon:hover img:not(:last-child) {
+    display: none;
+}
+
+.button-wIcon:hover .icon-hover {
+    display: unset;
+}
+
+.button-wIcon:hover {
+    box-shadow: var(--shadow-button);
+    transform: translate(-2px, -2px);
+    cursor: pointer;
+}
+
+.button-wIcon:active {
+    box-shadow: var(--shadow-button);
+    transform: translate(-1px, -1px);
+    transition: none;
+}
+
+.button-wIcon:disabled {
+    transform: unset;
+    filter: grayscale(50%) opacity(50%);
+}
+
+/*button primary*/
+.button-prim {
+    background-color: var(--clr-button-prim-bg);
+    color: white;
+}
+
+.button-prim:hover {
+    background-color: var(--clr-button-prim-hover);
+    color: white;
+}
+
+.button-prim:active {
+    background-color: var(--clr-button-prim-active);
+    color: white;
+    transition: none;
+}
+
+.button-prim:hover:disabled {
+    background-color: var(--clr-button-prim-bg);
+}
+
+/* button secondary */
+.button-sec {
+    color: var(--clr-blue-200);
+    outline: 1px solid var(--clr-blue-200);
+}
+
+.button-sec:hover {
+    color: var(--clr-blue-600);
+    outline: 2px solid var(--clr-blue-600);
+}
+
+.button-sec:active {
+    color: var(--clr-blue-100);
+    outline: 2px solid var(--clr-blue-100);
 }
