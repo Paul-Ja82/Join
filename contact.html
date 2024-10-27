@@ -16,14 +16,14 @@
 </head>
 
 <body class="ff-inter" onload="initContact()">
-    <!-- HADER  -->
-    <header id="headerContainer" class="flex-row" data-include="">
+    <!-- HEADER  -->
+    <header id="headerContainer" class="flex-row">
         HEADER
     </header>
 
     <!-- MENU -->
     <div id="menuContainer" data-include="./assets/templates/menu_template.html">
-        MENU
+
     </div>
 
     <!-- CONTENT -->
@@ -33,11 +33,11 @@
             <div id="newContactButtonContainer">
                 <div id="newContactButton" class="button-wIcon button-prim" onclick="addContactButtonHandler()">
                     <span id="newContactButtonText" class="icon-button-text">Add new contact</span>
-                    <img class="icon-button-icon" src="/img/icon-addContact.svg" alt="icon">
+                    <img class="icon-button-icon" src="./assets/icons/icon-addContact.svg" alt="icon">
                 </div>
                 <div id="contactInfoButtonMobile" class="button-wIcon button-prim d-none"
                     onclick="openDialog('dialogDetailMenu')">
-                    <img class="icon-button-icon" src="/img/icon-more-vertical.svg" alt="icon">
+                    <img class="icon-button-icon" src="./assets/icons/icon-more-vertical.svg" alt="icon">
                 </div>
             </div>
             <div id="contactListContainer">
@@ -66,11 +66,11 @@
                 <p id="coninfoName">debug: should be set</p>
                 <div id="coninfoButtonContainer">
                     <div id="conInfoButtonEdit" class="coninfo-button flex-row h-pointer" onclick="editContactButtonHandler()">
-                        <img class="coninfo-button-icon" src="/img/icon-pencil.svg" alt="icon-pencil">
+                        <img class="coninfo-button-icon" src="./assets/icons/icon-pencil.svg" alt="icon-pencil">
                         <p class="coninfo-button-text">Edit</p>
                     </div>
                     <div class="coninfo-button flex-row h-pointer" onclick="deleteButtonHandler()">
-                        <img class="coninfo-button-icon" src="/img/icon-trash.svg" alt="icon-trash">
+                        <img class="coninfo-button-icon" src="./assets/icons/icon-trash.svg" alt="icon-trash">
                         <p class="coninfo-button-text">Delete</p>
                     </div>
                 </div>
@@ -84,14 +84,14 @@
     <div id="dialogBg" class="dialog-bg d-none">
         <!-- contact dialog  -->
         <div id="dialogContact" class="dialog">
-            <img id="cdCloseIcon" class="h-pointer" src="/img/icon-close-white.svg" alt="icon-close" onclick="closeDialog()">
+            <img id="cdCloseIcon" class="h-pointer" src="./assets/icons/icon-close-white.svg" alt="icon-close" onclick="closeDialog()">
             <div id="CDheaderContainer" class="bg-menu">
                 <h2 id="CDheadline">Add Contact</h2>
                 <p id="CDtagline">Tasks are better with a team</p>
             </div>
             <div id="cdPersonIcon" class="person-icon">
                 <p id="cdMonogram">xx</p>
-                <img id="cdPersonIconAdd" src="/img/icon-person-white.svg" alt="">
+                <img id="cdPersonIconAdd" src="./assets/icons/icon-person-white.svg" alt="">
             </div>
             <div id="CDcontentContainer" class="bg-white">
                 <!-- contact form -->
@@ -102,7 +102,7 @@
                             <input id="nameInputElem" class="textinput" placeholder="Name"
                                 data-validationmessageid="nameVmsg" required>
                             <div class="input-icon-wrapper">
-                                <img class="input-icon" src="/img/icon-person.svg" alt="icon-person">
+                                <img class="input-icon" src="./assets/icons/icon-person.svg" alt="icon-person">
                             </div>
                         </div>
                         <p id="nameVmsg" class="validation-message v-hidden">Please enter a name</p>
@@ -113,7 +113,7 @@
                             <input id="emailInputElem" class="textinput" type="email" placeholder="Email"
                                 data-validationmessageid="emailVmsg" required>
                             <div class="input-icon-wrapper">
-                                <img class="input-icon" src="/img/icon-mail.svg" alt="mail-person">
+                                <img class="input-icon" src="./assets/icons/icon-mail.svg" alt="mail-person">
                             </div>
                         </div>
                         <p id="emailVmsg" class="validation-message v-hidden">Please enter an email address</p>
@@ -124,7 +124,7 @@
                             <input id="phoneInputElem" class="textinput" placeholder="Phone"
                                 data-validationmessageid="phoneVmsg">
                             <div class="input-icon-wrapper">
-                                <img class="input-icon" src="/img/icon-phone.svg" alt="mail-person">
+                                <img class="input-icon" src="./assets/icons/icon-phone.svg" alt="mail-person">
                             </div>
                         </div>
                         <p id="phoneVmsg" class="validation-message v-hidden">debug: should not display</p>
@@ -132,12 +132,12 @@
                     <!-- buttons -->
                     <button id="cdCancelButton" class="button-wIcon button-sec d-none" type="button" onclick="closeDialog()">
                         <span class="icon-button-text">Cancel</span>
-                        <img class="icon-button-icon" src="/img/icon-close.svg" alt="icon">
+                        <img class="icon-button-icon" src="./assets/icons/icon-close.svg" alt="icon">
                     </button>
                     <button id="cdDeleteButton" class="button button-sec d-none" type="button" onclick="deleteButtonHandler()">Delete</button>
                     <button id="CDsubmitButton" class="button-wIcon button-prim" type="submit" disabled>
                         <span id="CDsubmitButtonText" class="icon-button-text">debug: text should be set</span>
-                        <img class="icon-button-icon" src="/img/icon-check.svg" alt="icon">
+                        <img class="icon-button-icon" src="./assets/icons/icon-check.svg" alt="icon">
                     </button>
 
                 </form>
@@ -147,11 +147,11 @@
         <!-- detail context menu  -->
         <div id="dialogDetailMenu" class="dialog flex-col">
             <div class="detail-menu-item flex-row h-pointer" onclick="editContactButtonHandler()">
-                <img class="datail-menu-icon" src="/img/icon-pencil.svg" alt="icon-pencil">
+                <img class="datail-menu-icon" src="./assets/icons/icon-pencil.svg" alt="icon-pencil">
                 <p class="detail-menu-text">Edit</p>
             </div>
             <div class="detail-menu-item flex-row h-pointer" onclick="deleteButtonHandler()">
-                <img class="datail-menu-icon" src="/img/icon-trash.svg" alt="icon-trash">
+                <img class="datail-menu-icon" src="./assets/icons/icon-trash.svg" alt="icon-trash">
                 <p class="detail-menu-text">Delete</p>
             </div>
         </div>
