@@ -1,0 +1,60 @@
+/*
+TODO
+-) slide in
+*/
+
+:root {
+    --clr-dialog-bg: rgba(0, 0, 0, 0.5);
+    --toast-anim-duration: 0.25s;
+}
+
+/*#############*/
+/*## DIALOGS ##*/
+/*#############*/
+
+.dialog-bg {
+    position: fixed;
+    height: 100vh;
+    height: 100dvh;
+    width: 100vw;
+    width: 100dvw;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background-color: var(--clr-dialog-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*############*/
+/*## TOASTS ##*/
+/*############*/
+
+.toast {
+    position: fixed;
+    bottom: 0;
+    transform: translateY(200%);
+    background-color: var(--clr-menu-bg);
+    color: white;
+    border-radius: var(--space-300);
+    transition: 
+        bottom 0s,
+        transform 0s;
+}
+
+.show-toast {
+    bottom: 25vh;
+    transform: translateY(0);
+    transition:
+        bottom  var(--toast-anim-duration) ease-out,
+        transform var(--toast-anim-duration) ease-out;
+}
+
+/*###########*/
+/*## DEBUG ##*/
+/*###########*/
+
+.dialog {
+    border: 2px solid purple;
+}

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts - Join</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/dialogs-toasts.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/menu.css">
+    <link rel="stylesheet" href="./css/contact.css">
+    <!-- scripts -->
+    <script src="./js/ui.js"></script>
+    <script src="./js/dialogs-toasts.js"></script>
+    <script src="./js/forms.js"></script>
+    <script src="./js/contact.js"></script>
+</head>
+
+<body class="ff-inter" onload="initContact()">
+    <!-- HEADER  -->
+    <header id="headerContainer" class="flex-row">
+        HEADER
+    </header>
+
+    <!-- MENU -->
+    <div id="menuContainer" data-include="./assets/templates/menu_template.html">
+
+    </div>
+
+    <!-- CONTENT -->
+    <main id="contentContainer" class="bg-main shadow-t-i">
+        <!-- list container  -->
+        <div id="listContainer">
+            <div id="newContactButtonContainer">
+                <div id="newContactButton" class="button-wIcon button-prim" onclick="addContactButtonHandler()">
+                    <span id="newContactButtonText" class="icon-button-text">Add new contact</span>
+                    <img class="icon-button-icon" src="./assets/icons/icon-addContact.svg" alt="icon">
+                </div>
+                <div id="contactInfoButtonMobile" class="button-wIcon button-prim d-none"
+                    onclick="openDialog('dialogDetailMenu')">
+                    <img class="icon-button-icon" src="./assets/icons/icon-more-vertical.svg" alt="icon">
+                </div>
+            </div>
+            <div id="contactListContainer">
+                <!-- list items  -->
+                <div id="testListItem" class="conlist-item flex-row h-pointer">
+                    <div id="testPersonIcon" class="person-icon conlist-person-icon">
+                        <p>AM</p>
+                    </div>
+                    <div class="conlist-name-wrapper">
+                        <p class="conlist-name">Anton Mayer</p>
+                        <p class="conlist-email">antom@gmail.com</p>
+                    </div>
+                </div>
+                <div id="listItem1" class="conlist-item flex-row h-pointer">
+                    <div class="person-icon conlist-person-icon" style="background-color: pink">
+                        <p>TP</p>
+                    </div>
+                    <div class="conlist-name-wrapper">
+                        <p class="conlist-name">Test Contact 1</p>
+                        <p class="conlist-email">testContact1@irgendwas.test</p>
+                    </div>
+                </div>
+                <div id="testListItem" class="conlist-item flex-row h-pointer">
+                    <div id="testPersonIcon" class="person-icon conlist-person-icon">
+                        <p>AM</p>
+                    </div>
+                    <div class="conlist-name-wrapper">
+                        <p class="conlist-name">Anton Mayer</p>
+                        <p class="conlist-email">antom@gmail.com</p>
+                    </div>
+                </div>
+                <div id="listItem1" class="conlist-item flex-row h-pointer">
+                    <div class="person-icon conlist-person-icon" style="background-color: pink">
+                        <p>TP</p>
+                    </div>
+                    <div class="conlist-name-wrapper">
+                        <p class="conlist-name">Test Contact 1</p>
+                        <p class="conlist-email">testContact1@irgendwas.test</p>
+                    </div>
+                </div>
+                <div id="testListItem" class="conlist-item flex-row h-pointer">
+                    <div id="testPersonIcon" class="person-icon conlist-person-icon">
+                        <p>AM</p>
+                    </div>
+                    <div class="conlist-name-wrapper">
+                        <p class="conlist-name">Anton Mayer</p>
+                        <p class="conlist-email">antom@gmail.com</p>
+                    </div>
+                </div>
+                <div id="listItem1" class="conlist-item flex-row h-pointer">
+                    <div class="person-icon conlist-person-icon" style="background-color: pink">
+                        <p>TP</p>
+                    </div>
+                    <div class="conlist-name-wrapper">
+                        <p class="conlist-name">Test Contact 1</p>
+                        <p class="conlist-email">testContact1@irgendwas.test</p>
+                    </div>
+                </div>
+                <div id="testListItem" class="conlist-item flex-row h-pointer">
+                    <div id="testPersonIcon" class="person-icon conlist-person-icon">
+                        <p>AM</p>
+                    </div>
+                    <div class="conlist-name-wrapper">
+                        <p class="conlist-name">Anton Mayer</p>
+                        <p class="conlist-email">antom@gmail.com</p>
+                    </div>
+                </div>
+                <div id="listItem1" class="conlist-item flex-row h-pointer">
+                    <div class="person-icon conlist-person-icon" style="background-color: pink">
+                        <p>TP</p>
+                    </div>
+                    <div class="conlist-name-wrapper">
+                        <p class="conlist-name">Test Contact 1</p>
+                        <p class="conlist-email">testContact1@irgendwas.test</p>
+                    </div>
+                </div>
+                <div id="testListItem" class="conlist-item flex-row h-pointer">
+                    <div id="testPersonIcon" class="person-icon conlist-person-icon">
+                        <p>AM</p>
+                    </div>
+                    <div class="conlist-name-wrapper">
+                        <p class="conlist-name">Anton Mayer</p>
+                        <p class="conlist-email">antom@gmail.com</p>
+                    </div>
+                </div>
+                <div id="listItem1" class="conlist-item flex-row h-pointer">
+                    <div class="person-icon conlist-person-icon" style="background-color: pink">
+                        <p>TP</p>
+                    </div>
+                    <div class="conlist-name-wrapper">
+                        <p class="conlist-name">Test Contact 1</p>
+                        <p class="conlist-email">testContact1@irgendwas.test</p>
+                    </div>
+                </div>
+                <div id="testListItem" class="conlist-item flex-row h-pointer">
+                    <div id="testPersonIcon" class="person-icon conlist-person-icon">
+                        <p>AM</p>
+                    </div>
+                    <div class="conlist-name-wrapper">
+                        <p class="conlist-name">Anton Mayer</p>
+                        <p class="conlist-email">antom@gmail.com</p>
+                    </div>
+                </div>
+                <div id="listItem1" class="conlist-item flex-row h-pointer">
+                    <div class="person-icon conlist-person-icon" style="background-color: pink">
+                        <p>TP</p>
+                    </div>
+                    <div class="conlist-name-wrapper">
+                        <p class="conlist-name">Test Contact 1</p>
+                        <p class="conlist-email">testContact1@irgendwas.test</p>
+                    </div>
+                </div>
+                <div id="testListItem" class="conlist-item flex-row h-pointer">
+                    <div id="testPersonIcon" class="person-icon conlist-person-icon">
+                        <p>AM</p>
+                    </div>
+                    <div class="conlist-name-wrapper">
+                        <p class="conlist-name">Anton Mayer</p>
+                        <p class="conlist-email">antom@gmail.com</p>
+                    </div>
+                </div>
+                <div id="listItem1" class="conlist-item flex-row h-pointer">
+                    <div class="person-icon conlist-person-icon" style="background-color: pink">
+                        <p>TP</p>
+                    </div>
+                    <div class="conlist-name-wrapper">
+                        <p class="conlist-name">Test Contact 1</p>
+                        <p class="conlist-email">testContact1@irgendwas.test</p>
+                    </div>
+                </div>
+                <div id="testListItem" class="conlist-item flex-row h-pointer">
+                    <div id="testPersonIcon" class="person-icon conlist-person-icon">
+                        <p>AM</p>
+                    </div>
+                    <div class="conlist-name-wrapper">
+                        <p class="conlist-name">Anton Mayer</p>
+                        <p class="conlist-email">antom@gmail.com</p>
+                    </div>
+                </div>
+                <div id="listItem1" class="conlist-item flex-row h-pointer">
+                    <div class="person-icon conlist-person-icon" style="background-color: pink">
+                        <p>TP</p>
+                    </div>
+                    <div class="conlist-name-wrapper">
+                        <p class="conlist-name">Test Contact 1</p>
+                        <p class="conlist-email">testContact1@irgendwas.test</p>
+                    </div>
+                </div>
+                <div id="testListItem" class="conlist-item flex-row h-pointer">
+                    <div id="testPersonIcon" class="person-icon conlist-person-icon">
+                        <p>AM</p>
+                    </div>
+                    <div class="conlist-name-wrapper">
+                        <p class="conlist-name">Anton Mayer</p>
+                        <p class="conlist-email">antom@gmail.com</p>
+                    </div>
+                </div>
+                <div id="listItem1" class="conlist-item flex-row h-pointer">
+                    <div class="person-icon conlist-person-icon" style="background-color: pink">
+                        <p>TP</p>
+                    </div>
+                    <div class="conlist-name-wrapper">
+                        <p class="conlist-name">Test Contact 1</p>
+                        <p class="conlist-email">testContact1@irgendwas.test</p>
+                    </div>
+                </div>
+                <div id="testListItem" class="conlist-item flex-row h-pointer">
+                    <div id="testPersonIcon" class="person-icon conlist-person-icon">
+                        <p>AM</p>
+                    </div>
+                    <div class="conlist-name-wrapper">
+                        <p class="conlist-name">Anton Mayer</p>
+                        <p class="conlist-email">antom@gmail.com</p>
+                    </div>
+                </div>
+                <div id="listItem1" class="conlist-item flex-row h-pointer">
+                    <div class="person-icon conlist-person-icon" style="background-color: pink">
+                        <p>TP</p>
+                    </div>
+                    <div class="conlist-name-wrapper">
+                        <p class="conlist-name">Test Contact 1</p>
+                        <p class="conlist-email">testContact1@irgendwas.test</p>
+                    </div>
+                </div>
+                <div id="testListItem" class="conlist-item flex-row h-pointer">
+                    <div id="testPersonIcon" class="person-icon conlist-person-icon">
+                        <p>AM</p>
+                    </div>
+                    <div class="conlist-name-wrapper">
+                        <p class="conlist-name">Anton Mayer</p>
+                        <p class="conlist-email">antom@gmail.com</p>
+                    </div>
+                </div>
+                <div id="listItem1" class="conlist-item flex-row h-pointer">
+                    <div class="person-icon conlist-person-icon" style="background-color: pink">
+                        <p>TP</p>
+                    </div>
+                    <div class="conlist-name-wrapper">
+                        <p class="conlist-name">Test Contact 1</p>
+                        <p class="conlist-email">testContact1@irgendwas.test</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- detail container  -->
+        <div id="detailContainer" class="d-none">
+            <h1>Contacts</h1>
+            <button id="closeDetailButton" class="h-pointer" onclick="closeDetailButtonHandler()">x</button>
+            <!-- info container -->
+            <div id="infoContainer">
+                <div id="coninfoPersonIcon" class="person-icon">
+                    <p id="coninfoMonogram">xx</p>
+                </div>
+                <p id="coninfoName">debug: should be set</p>
+                <div id="coninfoButtonContainer">
+                    <div id="conInfoButtonEdit" class="coninfo-button flex-row h-pointer" onclick="editContactButtonHandler()">
+                        <img class="coninfo-button-icon" src="./assets/icons/icon-pencil.svg" alt="icon-pencil">
+                        <p class="coninfo-button-text">Edit</p>
+                    </div>
+                    <div class="coninfo-button flex-row h-pointer" onclick="deleteButtonHandler()">
+                        <img class="coninfo-button-icon" src="./assets/icons/icon-trash.svg" alt="icon-trash">
+                        <p class="coninfo-button-text">Delete</p>
+                    </div>
+                </div>
+                <p id="coninfoEmail">debug: should be set</p>
+                <p id="coninfoPhone">debug: should be set</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- DIALOGS  -->
+    <div id="dialogBg" class="dialog-bg d-none">
+        <!-- contact dialog  -->
+        <div id="dialogContact" class="dialog">
+            <img id="cdCloseIcon" class="h-pointer" src="./assets/icons/icon-close-white.svg" alt="icon-close" onclick="closeDialog()">
+            <div id="CDheaderContainer" class="bg-menu">
+                <h2 id="CDheadline">Add Contact</h2>
+                <p id="CDtagline">Tasks are better with a team</p>
+            </div>
+            <div id="cdPersonIcon" class="person-icon">
+                <p id="cdMonogram">xx</p>
+                <img id="cdPersonIconAdd" src="./assets/icons/icon-person-white.svg" alt="">
+            </div>
+            <div id="CDcontentContainer" class="bg-white">
+                <!-- contact form -->
+                <form id="contactForm" novalidate>
+                    <!-- name input  -->
+                    <div class="input-wrapper">
+                        <div class="input-elem-wrapper">
+                            <input id="nameInputElem" class="textinput" placeholder="Name"
+                                data-validationmessageid="nameVmsg" required>
+                            <div class="input-icon-wrapper">
+                                <img class="input-icon" src="./assets/icons/icon-person.svg" alt="icon-person">
+                            </div>
+                        </div>
+                        <p id="nameVmsg" class="validation-message v-hidden">Please enter a name</p>
+                    </div>
+                    <!-- email input  -->
+                    <div class="input-wrapper">
+                        <div class="input-elem-wrapper">
+                            <input id="emailInputElem" class="textinput" type="email" placeholder="Email"
+                                data-validationmessageid="emailVmsg" required>
+                            <div class="input-icon-wrapper">
+                                <img class="input-icon" src="./assets/icons/icon-mail.svg" alt="mail-person">
+                            </div>
+                        </div>
+                        <p id="emailVmsg" class="validation-message v-hidden">Please enter an email address</p>
+                    </div>
+                    <!-- phone input  -->
+                    <div class="input-wrapper">
+                        <div class="input-elem-wrapper">
+                            <input id="phoneInputElem" class="textinput" placeholder="Phone"
+                                data-validationmessageid="phoneVmsg">
+                            <div class="input-icon-wrapper">
+                                <img class="input-icon" src="./assets/icons/icon-phone.svg" alt="mail-person">
+                            </div>
+                        </div>
+                        <p id="phoneVmsg" class="validation-message v-hidden">debug: should not display</p>
+                    </div>
+                    <!-- buttons -->
+                    <button id="cdCancelButton" class="button-wIcon button-sec d-none" type="button" onclick="closeDialog()">
+                        <span class="icon-button-text">Cancel</span>
+                        <img class="icon-button-icon" src="./assets/icons/icon-close.svg" alt="icon">
+                    </button>
+                    <button id="cdDeleteButton" class="button button-sec d-none" type="button" onclick="deleteButtonHandler()">Delete</button>
+                    <button id="CDsubmitButton" class="button-wIcon button-prim" type="submit" disabled>
+                        <span id="CDsubmitButtonText" class="icon-button-text">debug: text should be set</span>
+                        <img class="icon-button-icon" src="./assets/icons/icon-check.svg" alt="icon">
+                    </button>
+
+                </form>
+            </div>
+        </div>
+
+        <!-- detail context menu  -->
+        <div id="dialogDetailMenu" class="dialog flex-col">
+            <div class="detail-menu-item flex-row h-pointer" onclick="editContactButtonHandler()">
+                <img class="datail-menu-icon" src="./assets/icons/icon-pencil.svg" alt="icon-pencil">
+                <p class="detail-menu-text">Edit</p>
+            </div>
+            <div class="detail-menu-item flex-row h-pointer" onclick="deleteButtonHandler()">
+                <img class="datail-menu-icon" src="./assets/icons/icon-trash.svg" alt="icon-trash">
+                <p class="detail-menu-text">Delete</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOASTS  -->
+    <div id="toastBg" class="dialog-bg d-none">
+        <div id="newContactToast" class="toast p-400" data-duration="1000">
+            <p>Contact successfully created</p>
+        </div>
+        <div id="deleteContactToast" class="toast p-400" data-duration="1000">
+            <p>Contact successfully deleted</p>
+        </div>
+        <div id="editContactToast" class="toast p-400" data-duration="1000">
+            <p>Contact successfully saved</p>
+        </div>
+    </div>
+
+</body>
+
+</html>
