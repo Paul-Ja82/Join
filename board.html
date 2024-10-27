@@ -14,7 +14,7 @@
         <div class="board_header">
             <div class="board_header_headline_add">
                 <div class="board_header_headline">Board</div>
-                <div class="add_task_ctn">
+                <div onclick="openAddTaskForm()" class="add_task_ctn">
                     <span>Add Task</span>
                     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <mask id="mask0_242426_5553" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="32">
@@ -48,7 +48,7 @@
                 </div>
                 <div id="tasks_area_add_task" class="tasks_area">
                     <div class="task_nothing_todo">No tasks To do</div>
-                    <div class="task_section_tasks_area">
+                    <div ondrop="moveTo('to_do_tasks')" ondragover="allowDrop(event)" class="task_section_tasks_area" id="to_do_tasks">
                       
                     </div>
                 </div>
@@ -65,8 +65,8 @@
                 </div>
                 <div id="tasks_area_in_progress" class="tasks_area">
                     <div id="section_in_progress_nothing_todo" class="task_nothing_todo">No tasks To do</div>
-                    <div class="task_section_tasks_area">
-                        <div onclick="openTaskOverlay(event)" id="single_task_ctn1" class="single_task_ctn">
+                    <div ondrop="moveTo('in_progress_tasks')" ondragover="allowDrop(event)" class="task_section_tasks_area" id="in_progress_tasks">
+                        <div draggable="true" ondragstart="startDragging(0)" onclick="openTaskOverlay(event)" id="single_task_ctn1" class="single_task_ctn">
                             <div class="single_task_category">User Story</div>
                             <div class="single_task_headline">Contact Form & Imprint</div>
                             <div class="single_task_description">Create a contact form and imprint page...</div>
@@ -102,8 +102,8 @@
                 </div>
                 <div id="tasks_area_await_feedback" class="tasks_area">
                     <div id="section_feedback_nothing_todo"  class="task_nothing_todo">No tasks To do</div>
-                    <div class="task_section_tasks_area">
-                        <div onclick="openTaskOverlay(event)" id="single_task_ctn2" class="single_task_board single_task_ctn">
+                    <div ondrop="moveTo('await_feedback_tasks')" ondragover="allowDrop(event)"class="task_section_tasks_area" id="await_feedback_tasks">
+                        <div draggable="true" ondragstart="startDragging(1)" onclick="openTaskOverlay(event)" id="single_task_ctn2" class="single_task_board single_task_ctn">
                             <div class="single_task_category">Technical Task</div>
                             <div class="single_task_headline">HTML Base Template Creation</div>
                             <div class="single_task_description">Create reusable HTML base templates...</div>
@@ -124,7 +124,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div onclick="openTaskOverlay(event)" id="single_task_ctn3" class="single_task_ctn">
+                        <div draggable="true" ondragstart="startDragging(2)" onclick="openTaskOverlay(event)" id="single_task_ctn3" class="single_task_ctn">
                             <div class="single_task_category">User Stroy</div>
                             <div class="single_task_headline">Daily Kochwelt Recipe</div>
                             <div class="single_task_description">Implement daily recipe and portion calculator...</div>
@@ -154,8 +154,8 @@
                 </div>
                 <div id="tasks_area_done" class="tasks_area">
                     <div id="section_done_nothing_done" class="task_nothing_todo">No tasks Done</div>
-                    <div class="task_section_tasks_area">
-                        <div onclick="openTaskOverlay(event)" id="single_task_ctn4" class="single_task_ctn">
+                    <div ondrop="moveTo('done_tasks')" ondragover="allowDrop(event)" class="task_section_tasks_area" id="done_tasks">
+                        <div draggable="true" ondragstart="startDragging(3)" onclick="openTaskOverlay(event)" id="single_task_ctn4" class="single_task_ctn">
                             <div class="single_task_category">Technical Task</div>
                             <div class="single_task_headline">CSS Architecture Planning</div>
                             <div class="single_task_description">Define CSS naming conventions and structure...</div>
@@ -273,4 +273,3 @@
     <script src="./js/board.js"></script>
 </body>
 </html>
-
