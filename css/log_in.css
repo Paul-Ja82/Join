@@ -1,0 +1,271 @@
+body {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    max-width: 1900;
+    overflow: auto;
+    font-family: "Inter", sans-serif;
+    background-color: rgb(246,247,248,1);
+}
+
+::-webkit-scrollbar {
+    background-color: rgb(246,247,248,1);
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(42, 54, 71, 1);  
+    border: none;
+}
+
+header {
+    margin-left: 70px;
+    margin-right: 110px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo-header {
+     width: 100px;
+     height: 122px;
+     margin-top: 80px;
+}
+
+.logo-img {
+    width: 100px;
+    height: 122px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.sign-up-div {
+    width: 279px;
+    height: 49px;
+    margin-top: 67px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h3 {
+    font-size: 20px;
+    margin: 0;
+    font-weight: 400;
+}
+
+.sign-up-button {
+    width: 91px;
+    height: 49px;
+    border: none;
+    background-image: url(../assets/img/signUpButton.png);
+    cursor: pointer;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.log-in-div {
+    width: 652px;
+    height: 493px;
+    margin-top: 60px;
+    background-color: rgba(255,255,255);
+    box-shadow: 0px 0px 4px 0px  rgba(0, 0, 0, 0.1);  
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.log-in-header {
+    font-size: 61px;
+    font-weight: 700px;
+    margin-bottom: 15px;
+}
+
+.divider {
+    width: 150px;
+    height: 3px;
+    background-color: rgba(41, 171, 226, 1);
+}
+
+.input-main-div {
+    width: 422px;
+    height: 196px;
+    margin-top: 30px;
+}
+
+.log-input {
+    border: none;
+    height: 24px;
+    width: 380px;
+    margin-left: 20px;
+    padding-top: 6px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+
+::placeholder {
+    color: rgb(209, 209, 209);
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.email-input-div {
+    width: 422px;
+    height: 48px;
+    margin-bottom: 30px;
+    border: solid 1px rgb(209, 209, 209);  
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.mail-Img {
+    width: 24px;
+    position: absolute;
+    right: 20px;
+    top: 11.640px;
+}
+
+.password-input-div {
+    width: 422px;
+    height: 48px;
+    margin-bottom: 30px;
+    border: solid 1px rgb(209, 209, 209);  
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.password-Img {
+    width: 24px;
+    position: absolute;
+    right: 20px;
+    top: 11.640px;
+}
+
+.remember-box-div {
+    width: 231px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    gap: 8px;
+}
+
+.r-box-input {
+    margin-left: 40px;
+    appearance: none;
+    -webkit-appearance: none; 
+    width: 16px;
+    height: 16px;
+    box-shadow: 0px 0px 0px 2px rgba(42, 54, 71, 0.9);
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    background-color: white;
+    cursor: pointer;
+}
+
+.r-box-input:checked::after {
+    content: "";
+    display: block;
+    width: 4px;
+    height: 8px;
+    border: solid black;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 2px;
+    left: 5px;
+}
+.r-box-label {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 1);
+}
+
+.log-in-buttons-div {
+    width: 322px;
+    height: 48px;
+    margin-top: 30px;
+    margin-left: 50px;
+    display: flex;
+    gap: 35px;
+    cursor: pointer;
+    
+}
+
+.log-in-button {
+    width: 110px;
+    height: 48px;
+    color: rgba(255,255,255,1);
+    background-color: rgba(42, 54, 71, 1);
+    border-radius: 8px;
+    font-size: 21px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.guest-log-in-button {
+    width: 177px;
+    height: 48px;
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(42, 54, 71, 1);
+    border-radius: 8px;
+    font-size: 21px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 1px rgb(68, 88, 101);
+    border-top: solid 2px rgb(130, 152, 166); 
+    border-bottom: solid 2px rgb(130, 154, 168);
+}
+
+footer {
+    width: 246px;
+    height: 35px;
+    margin-top: 185px;
+    margin-bottom: 85px;
+    gap: 8px;
+}
+
+.footer-element-left {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(168, 168, 168);
+    cursor: pointer;
+}
+
+.footer-element-right {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(168, 168, 168);
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.footer-element-right:hover {
+    text-decoration: underline 2px;
+    text-underline-offset: 3px;
+}
+
+.footer-element-left:hover {
+    text-decoration: underline 2px;
+    text-underline-offset: 3px;
+}
+
+
