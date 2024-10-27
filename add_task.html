@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>add_task-join</title>
     <link rel="stylesheet" href="css/add_Task.css" />
+    <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="">
+    <div id="dummy_header"></div>
+    <div id="dummy_menu"></div>
     <h2>Add Task</h2>
     <form class="formAddTasks" action="">
       <div class="seperateSendButtons">
@@ -19,6 +22,7 @@
               <input
                 type="text"
                 id="title"
+                class="fieldInput"
                 placeholder="Enter a Title"
                 required
               />
@@ -28,13 +32,13 @@
               <textarea
                 type="text"
                 name="description"
-                id="title"
+                id="description"
                 placeholder="Enter a Description"
               ></textarea>
             </div>
             <div class="overField">
               <label for="name">Assigned to</label>
-              <input type="text" id="title" required />
+              <input type="text" id="AssignedTo" class="fieldInput" required />
             </div>
           </div>
           <div class="line"></div>
@@ -43,18 +47,18 @@
               <label for="date"
                 >Due date<span style="color: #ff8190">*</span></label
               >
-              <input type="date" id="date" placeholder="tt/mm/jjjj" required />
+              <input type="date" id="date" class="fieldInput" placeholder="tt/mm/jjjj" required />
             </div>
             <div class="overField">
               <label for="prio">Prio</label>
               <div class="overPrioButtons">
-                <button class="prioButtons urgentButton">
+                <button class="prioButtons urgentButton" type="button">
                   Urgent<img src="assets/icons/up.svg" alt="" />
                 </button>
-                <button class="prioButtons mediumButton">
+                <button class="prioButtons mediumButton" type="button">
                   Medium<img src="assets/icons/medium.svg" alt="" />
                 </button>
-                <button class="prioButtons lowButton">
+                <button class="prioButtons lowButton" type="button">
                   Low<img src="assets/icons/down.svg" alt="" />
                 </button>
               </div>
@@ -63,23 +67,27 @@
               <label for="category"
                 >Category<span style="color: #ff8190">*</span></label
               >
-              <input type="text" id="category" required />
+              <input type="text" id="category" class="fieldInput" required />
             </div>
             <div class="overField">
               <label for="subtasks">Subtasks</label>
-              <input type="text" id="subtasks" required />
+              <div class="overAddSubtasks">
+              <input type="text" id="subtasks" class="fieldInputSubtasks" onkeydown="changeSymbols()" required /><div id="symbolsSubtasks" class="changeSymboles">+</div></div>
             </div>
           </div>
         </div>
         <div class="overFormButtons">
-          <div class="required"><span style="color: #ff8190">*</span>This field is required</div>
+          <div class="required">
+            <span style="color: #ff8190">*</span>This field is required
+          </div>
           <div class="setButtons">
-          <button class="formButtons clearButton">
-            Clear <img src="assets/icons/vector.svg" alt="" />
-          </button>
-          <button class="formButtons createButton">
-            Create Task <img src="assets/icons/check.svg" alt="" />
-          </button></div>
+            <button class="formButtons clearButton" type="button">
+              Clear <img src="assets/icons/vector.svg" alt="" />
+            </button>
+            <button class="formButtons createButton" type="submit" onclick="saveData()">
+              Create Task <img src="assets/icons/check.svg" alt="" />
+            </button>
+          </div>
         </div>
       </div>
     </form>
