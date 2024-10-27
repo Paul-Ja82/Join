@@ -30,7 +30,7 @@
     min-height: 4.3em;
     justify-content: end;
     padding: 0.5em;
-    border-radius: var(--border-radius-default);
+    border-radius: 0.5em;
 }
 
 .menu-nav-item:active {

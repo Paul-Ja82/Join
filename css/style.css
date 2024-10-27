@@ -1,7 +1,52 @@
+
+
+
+/*############*/
+/*## COLORS ##*/
+/*############*/
+
+:root {
+    --clr-blue-100: #091931;
+    --clr-blue-200: #2A3647;
+    --clr-blue-300: #2A3D59;
+    --clr-blue-400: #0038FF;
+    --clr-blue-500: #4589FF;
+    --clr-blue-600: #29ABE2;
+
+    --clr-gray-400: #A8A8A8;
+    --clr-gray-500: #D1D1D1;
+    --clr-gray-600: #F4F4F4;
+
+    --clr-bg-main: var(--clr-gray-600);
+    --clr-turquoise: var(--clr-blue-600);
+    --clr-menu-bg: var(--clr-blue-200);
+    --clr-menu-selected: var(--clr-blue-100);
+    --clr-menu-hover: var(--clr-blue-100);
+    --clr-legal-links: var(--clr-gray-400);
+    --clr-legal-links-hover: var(--clr-turquoise);
+    --clr-button-prim-bg: var(--clr-blue-200);
+    --clr-button-prim-hover: var(--clr-turquoise);
+    --clr-button-prim-active: var(--clr-blue-100);
+    --clr-input-invalid: red;
+}
+
+
+/*################*/
+/*## TYPOGRAPHY ##*/
+/*################*/
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
 /*#####################*/
 /*## UTILITY CLASSES ##*/
 /*#####################*/
 
 .d-none {
     display: none !important; 
+}
+
+.h-pointer:hover {
+    cursor: pointer;
 }
