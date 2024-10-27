@@ -1,0 +1,265 @@
+body {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    overflow: auto;
+    font-family: "Inter", sans-serif;
+    background-color: rgb(246,247,248,1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+::-webkit-scrollbar {
+    background-color: rgb(246,247,248,1);
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(42, 54, 71, 1);  
+    border: none;
+}
+
+.logo-header {
+     width: 100px;
+     height: 122px;
+     position: absolute;
+     left: 70px;
+     top: 80px;
+}
+
+.logo-img {
+    width: 100px;
+    height: 122px;
+    object-fit: cover;
+    object-position: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sign-up-div {
+    width: 598px;
+    height: 630px;
+    margin-top: 150px;
+    background-color: rgba(255,255,255);
+    box-shadow: 0px 0px 4px 0px  rgba(0, 0, 0, 0.1);  
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    position: relative;
+}
+
+.arrow-Img {
+    width: 21.33px;
+    height: 20.74px;
+    position: absolute;
+    top: 70px;
+    left: 50px;
+    border: none;
+    background-image: url(../assets/img/arrowLeft.png);
+    cursor: pointer;
+}
+
+h1 {
+    margin: 0;
+}
+
+.sign-up-header {
+    font-size: 61px;
+    font-weight: 700px;
+    margin-top: 40px;
+    margin-bottom: 15px;
+}
+
+.divider {
+    width: 150px;
+    height: 3px;
+    background-color: rgba(41, 171, 226, 1);
+}
+
+.log-input {
+    border: none;
+    height: 24px;
+    width: 380px;
+    margin-left: 20px;
+    padding-top: 6px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+
+::placeholder {
+    color: rgb(209, 209, 209);
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.name-input-div {
+    width: 422px;
+    height: 48px;
+    margin-bottom: 25px;
+    border: solid 1px rgb(209, 209, 209);  
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-top: 30px;
+}
+
+.name-Img {
+    width: 24px;
+    position: absolute;
+    right: 20px;
+    top: 11.640px;
+}
+
+.email-input-div {
+    width: 422px;
+    height: 48px;
+    margin-bottom: 25px;
+    border: solid 1px rgb(209, 209, 209);  
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.mail-Img {
+    width: 24px;
+    position: absolute;
+    right: 20px;
+    top: 11.640px;
+}
+
+.password-input-div {
+    width: 422px;
+    height: 48px;
+    margin-bottom: 25px;
+    border: solid 1px rgb(209, 209, 209);  
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.confirm-pw-input-div {
+    width: 422px;
+    height: 48px;
+    margin-bottom: 35px;
+    border: solid 1px rgb(209, 209, 209);  
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.password-Img {
+    width: 24px;
+    position: absolute;
+    right: 20px;
+    top: 11.640px;
+}
+
+.accept-priv-box-div {
+    width: 422px;
+    height: 24px;
+    margin-left: 90px;
+    gap: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.acc-pry-box-input {
+    margin-left: 40px;
+    appearance: none;
+    -webkit-appearance: none; 
+    width: 16px;
+    height: 16px;
+    box-shadow: 0px 0px 0px 2px rgba(42, 54, 71, 0.9);
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    background-color: white;
+    cursor: pointer;
+}
+
+.acc-pry-box-input:checked::after {
+    content: "";
+    display: block;
+    width: 4px;
+    height: 8px;
+    border: solid black;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 2px;
+    left: 5px;
+}
+
+.acc-priv-box-label {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(168,168,168,1);
+}
+
+a {
+    color: rgba(41, 171, 226, 1);
+    cursor: pointer;
+}
+
+a:hover {
+    text-decoration: underline rgba(41, 171, 226, 1);
+    text-decoration: underline 2px;
+    text-underline-offset: 4px;
+}
+
+.sign-up-final-button {
+    width: 126px;
+    height: 55px;
+    margin-top: 30px;
+    border: none;
+    background-image: url(../assets/img/signUpFinalButton.png);
+    cursor: pointer;
+}
+
+footer {
+    width: 246px;
+    height: 35px;
+    margin-top: 185px;
+    margin-bottom: 85px;
+    gap: 8px;
+}
+
+.footer-element-left {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(168, 168, 168);
+    cursor: pointer;
+}
+
+.footer-element-right {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(168, 168, 168);
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.footer-element-right:hover {
+    text-decoration: underline 2px;
+    text-underline-offset: 3px;
+}
+
+.footer-element-left:hover {
+    text-decoration: underline 2px;
+    text-underline-offset: 3px;
+}
