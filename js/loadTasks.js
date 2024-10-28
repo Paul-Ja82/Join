@@ -30,7 +30,6 @@ async function collectData() {
         "title" : "TestUser",
         "task_ID" : `task${id}`,
         "currentStatus" : "inProgress",
-
         "single_ID" : id,
     }
     id = Number(id) + 1

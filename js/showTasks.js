@@ -42,7 +42,7 @@ function fillTaskSections(section, tasks) {
         let width = calcProcessBarWidth(checkedSubtasks, subtasksLength);
         createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, width, checkedSubtasks, subtasksLength)
     }
-    checkTaskCategoryColor()
+    checkTaskCategoryColor("single_task_category")
     showSubtaskCtn()
     nothingTodoOrDone()
 }
@@ -101,21 +101,21 @@ function calcProcessBarWidth(checkedSubtasks, subtasksLength) {
 
 function createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, width, checkedSubtasks, subtasksLength) {
     document.getElementById(section).innerHTML += `
-    <div draggable="true" ondragstart="startDragging(${id})" onclick="openTaskOverlay(event)" id="single_task_ctn${id}" class="single_task_ctn">
+    <div draggable="true" ondragstart="startDragging(${tasks[i].single_ID})" onclick="checkTask(event)" id="single_task_ctn${tasks[i].single_ID}" class="single_task_ctn">
       <div class="single_task_category">${tasks[i].category}</div>
       <div class="single_task_headline">${tasks[i].title}</div>
       <div class="single_task_description">${tasks[i].description}</div>
       <div id="single_task_progress_ctn${tasks[i].single_ID}" class="single_task_progress_ctn">
           <div class="single_task_progress_bar_background">
-              <div style="width: ${width};" id="processLineTask${id}" class="single_task_progress_bar_process_line"></div>
+              <div style="width: ${width};" id="processLineTask${tasks[i].single_ID}" class="single_task_progress_bar_process_line"></div>
           </div>
           <div class="subtasks">${checkedSubtasks}/${subtasksLength} Subtasks</div>
       </div>
       <div class="single_tasks_contacts_and_priority">
-          <div id="single_task_contacts_ctn${id}" class="single_task_contacts_ctn">
+          <div id="single_task_contacts_ctn${tasks[i].single_ID}" class="single_task_contacts_ctn">
               ${assignedTocontacts}
           </div>
-          <div id="single_task_priority${id}" class="single_task_priority">
+          <div id="single_task_priority${tasks[i].single_ID}" class="single_task_priority">
             ${priorityImg}
           </div>
       </div>
@@ -123,8 +123,8 @@ function createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, widt
   `
 }
 
-function checkTaskCategoryColor() {
-    let taskTypes = document.getElementsByClassName("single_task_category");
+function checkTaskCategoryColor(classname) {
+    let taskTypes = document.getElementsByClassName(classname);
     Array.from(taskTypes).forEach(taskType => {
         if(taskType.textContent == "User Story") {
             taskType.classList.add("user_story") 
