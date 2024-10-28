@@ -27,7 +27,7 @@ async function loadUsers() {
 /*#############*/
 
 function signup() {
-    loadInputValuesSingUp();
+    loadInputValuesSignUp();
     checkNameInput();
     checkEmailInput();
     checkEmailAvailable();
@@ -54,13 +54,8 @@ function isUserExisting() {
 */
 
 function loadInputValuesSignUp() {   
-    console.log('loadInputValuesSignup()'); ///DEBUG
     nameInput= document.getElementById('nameInput').value;
-    // emailInput= document.getElementById('emailInput').value;
-    let emailInputElem= document.getElementById('emailInput');
-    console.log(emailInputElem); ///DEBUG
-    emailInput= emailInputElem.value;
-    console.log(emailInput); ///DEBUG
+    emailInput= document.getElementById('emailInput').value;
     passwordInput= document.getElementById('passwordInput').value;
     passwordConfirmInput= document.getElementById('confirmPasswordInput').value;
 }
@@ -95,7 +90,6 @@ function checkEmailInput() {
 
 function checkEmailAvailable() {
     let user= getUserByEmail(emailInput);
-    console.log(user); ///DEBUG
     if (!user) emailAvailableFlag= true;
     else {
         emailAvailableFlag= false;
@@ -122,7 +116,7 @@ function tuEsSignup() {
 
 function logFlags() {
     console.log(nameInputFlag); ///DEBUG
-    console.log(Flag); ///DEBUG
+    console.log(emailInputFlag); ///DEBUG
     console.log(emailAvailableFlag); ///DEBUG    
     console.log(passwordConfirmFlag); ///DEBUG
 }
