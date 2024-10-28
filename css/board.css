@@ -37,6 +37,18 @@ body {
   z-index: 12;
 }
 
+.user_story {
+  background-color: rgba(0,56,255,1);
+}
+
+.technical_task {
+  background-color: rgba(31,215,193,1);
+}
+
+.progress_d_none {
+  display: none;
+}
+
 .single_task_ctn {
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
@@ -49,7 +61,7 @@ body {
     padding: 4px 16px;
     font-size: 16px;
     color: white;
-    background-color: rgba(31, 215, 193, 1);
+    /* background-color: rgba(31, 215, 193, 1); */
     margin-bottom: 20px;
   }
   & .single_task_headline {
@@ -63,6 +75,14 @@ body {
     font-weight: 400;
     color: rgba(168, 168, 168, 1);
     margin-bottom: 20px;
+    width: 100%;                   /* Passt die Breite an den Container an */
+    max-width: 218px;              /* Maximale Breite für den Text */
+    height: 40px;                  /* Begrenzte Höhe für zwei Zeilen */
+    overflow: hidden;              /* Versteckt überlaufenden Text */
+    display: -webkit-box;          /* Ermöglicht Box-Modell für Zeilen-Clamping */
+    -webkit-line-clamp: 2;         /* Begrenze auf zwei Zeilen */
+    -webkit-box-orient: vertical;  /* Richtet die Box vertikal aus */
+    text-overflow: ellipsis;  
   }
   & .single_task_progress_ctn {
     display: flex;
@@ -317,7 +337,7 @@ body {
         padding: 4px 16px;
         font-size: 16px;
         color: white;
-        background-color: rgba(31, 215, 193, 1);
+        /* background-color: rgba(31, 215, 193, 1); */
         margin-bottom: 20px;
       }
       & .close_task_overlay {
@@ -342,7 +362,7 @@ body {
       color: rgba(42, 54, 71, 1);
       margin-bottom: 8px;
     }
-    & .single_task_description {
+    & .overlay_single_task_description {
       font-size: 16px;
       font-weight: 400;
       color: black;
