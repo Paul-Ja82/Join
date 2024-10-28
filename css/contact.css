@@ -68,6 +68,12 @@
     color: var(--clr-conlist-email);
 }
 
+.conlist-heading {
+    padding: 1em 1.5em;
+    border-bottom: 1px solid var(--clr-gray-500);
+}
+
+
 /*DEBUG*/
 #testPersonIcon {
     background-color: orange;
