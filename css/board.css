@@ -45,16 +45,13 @@ body {
   background-color: rgba(31,215,193,1);
 }
 
-.progress_d_none {
-  display: none;
-}
-
 .single_task_ctn {
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
   border-radius: 24px;
   padding: 16px;
   margin-bottom: 20px;
+  height: fit-content;
   & .single_task_category {
     width: fit-content;
     border-radius: 10px;

@@ -1,7 +1,12 @@
 function openTaskOverlay(e) {
     document.getElementById(`task_overlay_ctn`).style.right = "0";
     document.body.style.overflow = "hidden"; 
+    console.log(e.target);  
 }
+
+
+
+
 
 function closeTaskOverlay(e) {
     if (e.target.id === "task_overlay_ctn" || e.target.id === "close_task_overlay" || e.target.id === "close_task_overlay_svg") {

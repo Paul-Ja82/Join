@@ -2,10 +2,6 @@ const firebase_URL = 'https://join-7ae0e-default-rtdb.europe-west1.firebasedatab
 let allTasks = [];
 let allKeys = [];
 let id;
-let tasksTodo = [];
-let tasksInProgress = [];
-let tasksAwaitFeedback = [];
-let tasksDone = [];
 
 let assignedToContacts = [
     // {"contact_ID" : "contact0", "firstName" : "Lisa", "lastName" : "Mayer"},
@@ -34,7 +30,7 @@ async function collectData() {
         "title" : "TestUser",
         "task_ID" : `task${id}`,
         "currentStatus" : "inProgress",
-        
+
         "single_ID" : id,
     }
     id = Number(id) + 1

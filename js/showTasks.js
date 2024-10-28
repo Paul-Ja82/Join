@@ -1,3 +1,8 @@
+let tasksTodo = [];
+let tasksInProgress = [];
+let tasksAwaitFeedback = [];
+let tasksDone = [];
+
 function checkTaskSections() {
     tasksTodo = [];
     tasksInProgress = [];
@@ -35,24 +40,47 @@ function fillTaskSections(section, tasks) {
         let checkedSubtasks = checkCheckedSubtasks(tasks, i);
         let subtasksLength = checkSubtaskLength(tasks, i)
         let width = calcProcessBarWidth(checkedSubtasks, subtasksLength);
-       console.log(subtasksLength);
-       
         createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, width, checkedSubtasks, subtasksLength)
-      
     }
     checkTaskCategoryColor()
     showSubtaskCtn()
+    nothingTodoOrDone()
 }
-//geht noch nicht
-function showSubtaskCtn() {
-    let subtascsCtn = document.getElementsByClassName("single_task_progress_ctn");
-    console.log(subtascsCtn)
-    Array.from(subtascsCtn).forEach(ctn => {
-        if(ctn.textContent == "0/0 Subtasks") {
-            console.log(ctn);
-            ctn.classList.add("progress_d_none") 
+
+function checkAssignedTo(tasks, i) {
+    let contactsIconsTemplate = "";
+    for (let j = 0; j < tasks[i].assigned_to.length; j++) {
+        let charOneFirstName = tasks[i].assigned_to[j].firstName.charAt(0)
+        let charOneLastName = tasks[i].assigned_to[j].lastName.charAt(0)
+        contactsIconsTemplate += `
+         <div class="single_task_single_contact" id="${tasks[i].assigned_to[j].contact_ID}">${charOneFirstName}${charOneLastName}</div>
+        `
+    }
+    return contactsIconsTemplate
+}
+
+function checkPriorityImg(tasks, i) {
+    if (tasks[i].priority === "high") {
+        return ` <img src="./assets/img/prio_high.png" alt="roter Pfeil nach oben">`
+    }
+    if (tasks[i].priority === "medium") {
+       return ` <img src="./assets/img/prio_medium.png" alt="orangenes Gleichzeichen">`
+    }
+    if (tasks[i].priority === "low") {
+         return ` <img src="./assets/img/prio_low.png" alt="grüner Pfeil nach unten">`
+    }
+}
+
+function checkCheckedSubtasks(tasks, i) {
+    let checkedSubtasksNo = 0;
+    if(tasks[i].subtasks) {
+        for (let j = 0; j < tasks[i].subtasks.length; j++) {
+            if (tasks[i].subtasks[j].checked === true) {
+                checkedSubtasksNo++;
+            }
         }
-    });
+    }
+    return  checkedSubtasksNo
 }
 
 function checkSubtaskLength(tasks, i) {
@@ -62,6 +90,14 @@ function checkSubtaskLength(tasks, i) {
         return 0
     }
 }
+
+function calcProcessBarWidth(checkedSubtasks, subtasksLength) {
+    let processBarWidth = checkedSubtasks/subtasksLength*100 + "%";
+    if (processBarWidth == "NaN%") {
+        processBarWidth = "0%"
+    }
+    return processBarWidth
+} 
 
 function createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, width, checkedSubtasks, subtasksLength) {
     document.getElementById(section).innerHTML += `
@@ -85,51 +121,6 @@ function createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, widt
       </div>
   </div>
   `
-
-}
-
-function calcProcessBarWidth(checkedSubtasks, subtasksLength) {
-    let processBarWidth = checkedSubtasks/subtasksLength*100 + "%";
-    if (processBarWidth == "NaN%") {
-        processBarWidth = "0%"
-    }
-    return processBarWidth
-} 
-
-function checkCheckedSubtasks(tasks, i) {
-    let checkedSubtasksNo = 0;
-    if(tasks[i].subtasks) {
-        for (let j = 0; j < tasks[i].subtasks.length; j++) {
-            if (tasks[i].subtasks[j].checked === true) {
-                checkedSubtasksNo++;
-            }
-        }
-    }
-    return  checkedSubtasksNo
-}
-
-function checkPriorityImg(tasks, i) {
-    if (tasks[i].priority === "high") {
-        return ` <img src="./assets/img/prio_high.png" alt="roter Pfeil nach oben">`
-    }
-    if (tasks[i].priority === "medium") {
-       return ` <img src="./assets/img/prio_medium.png" alt="orangenes Gleichzeichen">`
-    }
-    if (tasks[i].priority === "low") {
-         return ` <img src="./assets/img/prio_low.png" alt="grüner Pfeil nach unten">`
-    }
-}
-
-function checkAssignedTo(tasks, i) {
-    let contactsIconsTemplate = "";
-    for (let j = 0; j < tasks[i].assigned_to.length; j++) {
-        let charOneFirstName = tasks[i].assigned_to[j].firstName.charAt(0)
-        let charOneLastName = tasks[i].assigned_to[j].lastName.charAt(0)
-        contactsIconsTemplate += `
-         <div class="single_task_single_contact" id="${tasks[i].assigned_to[j].contact_ID}">${charOneFirstName}${charOneLastName}</div>
-        `
-    }
-    return contactsIconsTemplate
 }
 
 function checkTaskCategoryColor() {
@@ -142,3 +133,26 @@ function checkTaskCategoryColor() {
         }
     });
 }
+
+function showSubtaskCtn() {
+    let subtascsCtn = document.getElementsByClassName("single_task_progress_ctn");
+    // console.log(subtascsCtn)
+    Array.from(subtascsCtn).forEach(ctn => {
+        if(ctn.innerText == "0/0 Subtasks") {
+            // console.log(ctn);
+            ctn.style.display = "none" 
+        }
+    });
+}
+
+function nothingTodoOrDone() {
+    if (document.getElementById("to_do_tasks").innerHTML == "") {
+        document.getElementById("to_do_tasks_nothing").style.display = "flex"
+    } else if (document.getElementById("in_progress_tasks").innerHTML == "") {
+        document.getElementById("in_progress_tasks_nothing").style.display = "flex"
+    } else if (document.getElementById("await_feedback_tasks").innerHTML == "") {
+        document.getElementById("await_feedback_tasks_nothing").style.display = "flex"
+    } else if (document.getElementById("done_tasks").innerHTML == "") {
+        document.getElementById("done_tasks_nothing").style.display = "flex"
+    }
+} 
