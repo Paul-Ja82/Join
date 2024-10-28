@@ -56,15 +56,32 @@ main {
     position: relative;
 }
 
-.arrow-Img {
-    width: 21.33px;
-    height: 20.74px;
+.arrow-div {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: rgba(255,255,255);
     position: absolute;
     top: 70px;
     left: 50px;
     border: none;
-    background-image: url(../assets/img/arrowLeft.png);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrow-Img {
+    width: 21.33px;
+    height: 20.74px;
+    background-image: url(../assets/img/arrowLeft.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
     cursor: pointer;
+}
+
+.arrow-div:hover {
+    background-color: rgb(238, 238, 238, 1);
+    transform: scale(1.03);
 }
 
 h1 {
@@ -227,8 +244,26 @@ a:hover {
     height: 55px;
     margin-top: 30px;
     border: none;
-    background-image: url(../assets/img/signUpFinalButton.png);
+    color: rgba(255,255,255,1);
+    background-color: rgba(42, 54, 71, 1);
+    border-radius: 8px;
+    font-size: 21px;
+    font-weight: 700;
+    text-decoration:none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
+}
+
+.sign-up-final-button:hover {
+    background-color: rgba(41, 171, 226, 1);
+    box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.sign-up-final-button:active {
+    background-color:  rgba(9, 25, 49,1);
+    box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
 footer {
