@@ -5,38 +5,40 @@
 // Firebase-URL von Reini
 const BASE_URL = "https://join-43c13-default-rtdb.europe-west1.firebasedatabase.app/";
 
-const USERS_PATH= 'users/';
-const NEXT_ID_PATH= 'nextId/';
+const USERS_PATH = 'users/';
+const NEXT_ID_PATH = 'nextId/';
 
 
 /*#####################*/
 /*## GET / SAVE DATA ##*/
 /*#####################*/
 
-async function saveData(path, data) {  
+async function saveData(path, data, method = 'PUT') {
+    console.log('saveData()', method); ///DEBUG
     return fetch(BASE_URL + path + '.json', {
-        method: 'PUT',
-        header: {
+        'method': method,
+        'header': {
             'Content-Type': "application/json",
         },
-        body: JSON.stringify(data)
+        'body': JSON.stringify(data)
     })
-        .then((res) => res.json); 
+        .then((res) => res.json);
 }
 
 // params: {key: value, key: value, ...}
-async function getData(path, params={}) {  
-    let pathMod= BASE_URL + path + '.json?';
+async function getData(path, params = {}) {
+    let pathMod = BASE_URL + path + '.json?';
     for (let key in params) {
-        pathMod+= key + '=\"' + params[key] + '\"&';
+        pathMod += key + '=\"' + params[key] + '\"&';
     }
     return await fetch(pathMod)
         .then((res) => res.json())
         .catch(() => console.log('fehler beim Daten holen'));
 }
 
+
 async function getId() {
-    let nextId= await getData(NEXT_ID_PATH);
+    let nextId = await getData(NEXT_ID_PATH);
     nextId++;
     saveData(NEXT_ID_PATH, nextId);
     return nextId;
@@ -55,11 +57,17 @@ async function deleteData(path) {
 /*## DEBUG ##*/
 /*###########*/
 
+const TEST_PATH = 'test/';
+
 async function tuEsDatabase() {
-    console.log(await getId());    
+    saveData(USERS_PATH, someTestUser, 'PATCH');
 }
 
-let testUsers= {
+async function saveTestUsers() {
+    await saveData(USERS_PATH, testUsers);
+}
+
+/* let testUsers= {
     1: {
         name: 'Fritz Test',
         email: 'fritzTest@join.test',
@@ -75,4 +83,38 @@ let testUsers= {
         email: 'hansTest@join.test',
         pw: '1'
     },
-};
+}; */
+
+let testUsers = [
+    {
+        id: 0,
+        name: 'Fritz Test',
+        email: 'fritzTest@join.test',
+        pw: '1'
+    },
+    {
+        id: 1,
+        name: 'Sepp Test',
+        email: 'seppTest@join.test',
+        pw: '1'
+    },
+    {
+        id: 2,
+        name: 'Hans Test',
+        email: 'hansTest@join.test',
+        pw: '1'
+    },
+    {
+        id: 13,
+        name: 'SomeTestUser Test',
+        email: 'stu@join.test',
+        pw: '1'
+    }
+];
+
+let someTestUser = {
+    id: 13,
+    name: 'SomeTestUser Test',
+    email: 'stu@join.test',
+    pw: '1'
+}
