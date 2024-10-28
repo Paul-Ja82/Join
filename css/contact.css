@@ -98,7 +98,12 @@
     }
 
     #contactListContainer {
-        padding: 0;
+        padding: 1em;
+        padding-top: 0;
+    }
+
+    .conlist-item {
+        padding: 1em 1.5em;
     }
 
     .conlist-item:hover {
