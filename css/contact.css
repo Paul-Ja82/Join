@@ -24,11 +24,12 @@
 /*##################*/
 
 #listContainer {
-    padding: 1.5em;
     background-color: white;
 }
 
 #newContactButtonContainer {
+    background-color: white;
+    padding-bottom: 0;
     position: fixed;
     bottom: 5em;
     right: 1em;
@@ -50,8 +51,12 @@
     padding: 0 1.5em;
 }
 
+#contactListContainer {
+    padding: 1.5em;
+}
+
 .conlist-item {
-    padding: 0.5em 1em;
+    padding: 1.3em 1.8em;
     border-radius: 0.5em;
 }
 
@@ -70,11 +75,17 @@
 }
 
 @media (768px < width) {
+    #listContainer {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        overflow-y: auto;
+    }
+
     #newContactButtonContainer {
         display: block;
         position: sticky;
         top: 0;
-        padding: 0.5em;
+        padding: 1.5em;
     }
 
     #newContactButton {
@@ -86,10 +97,8 @@
         display: unset;
     }
 
-    #listContainer {
-        grid-column: 1 / 2;
-        grid-row: 1 / 2;
-        overflow-y: auto;
+    #contactListContainer {
+        padding: 0;
     }
 
     .conlist-item:hover {
