@@ -1,4 +1,3 @@
-
 let currentDraggedElement;
 
 function startDragging(id) {

@@ -1,3 +1,5 @@
+let currentTaskInOverlay; 
+
 function openTaskOverlay(e) {
     document.getElementById(`task_overlay_ctn`).style.right = "0";
     document.body.style.overflow = "hidden"; 
@@ -14,7 +16,6 @@ function checkTask(e) {
 
 function fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, subTasks) {
     document.getElementById(`task_overlay_ctn`).innerHTML = "";
-
     document.getElementById(`task_overlay_ctn`).innerHTML = `
        <div class="task_overlay_card_ctn single_task_ctn">
             <div class="overlay_task_header">
@@ -74,27 +75,24 @@ function fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, s
 
 function checkAssignedToOverlay(allTasks, keyToOpen) {
     let contactsTemplate = "";
-        for (let j = 0; j < allTasks[keyToOpen].assigned_to.length; j++) {
-            let firstName = allTasks[keyToOpen].assigned_to[j].firstName
-            let lastName = allTasks[keyToOpen].assigned_to[j].lastName
-            let charOneFirstName = firstName.charAt(0);
-            let charOneLastName = lastName.charAt(0);
-            contactsTemplate += `
-               <div class="single_task_single_contact">
-                    <div class="task_contact_name_icon">${charOneFirstName}${charOneLastName}</div>
-                    <div class="task_contact_name">${firstName} ${lastName} (You??)</div>
-                </div>
-            `
-        }
-        return contactsTemplate
+    for (let j = 0; j < allTasks[keyToOpen].assigned_to.length; j++) {
+        let firstName = allTasks[keyToOpen].assigned_to[j].firstName
+        let lastName = allTasks[keyToOpen].assigned_to[j].lastName
+        let charOneFirstName = firstName.charAt(0);
+        let charOneLastName = lastName.charAt(0);
+        contactsTemplate += `
+            <div class="single_task_single_contact">
+                <div class="task_contact_name_icon">${charOneFirstName}${charOneLastName}</div>
+                <div class="task_contact_name">${firstName} ${lastName} (You??)</div>
+            </div>
+        `
+    }
+    return contactsTemplate
 }   
    
-
 function checkSubtasksOverlay(allTasks, keyToOpen) {
-    let subtasks = allTasks[keyToOpen].subtasks
-    // console.log(subtasks, typeof subtasks);
+    let subtasks = allTasks[keyToOpen].subtasks;
     let subtaskTemplate = "";
-   
     if (typeof subtasks === 'undefined') {
        subtaskTemplate = `keine Subtasks vorhanden`
     } else {
@@ -125,7 +123,6 @@ function checkSubtasksOverlay(allTasks, keyToOpen) {
             `
         }
     }
-   
     return subtaskTemplate
 }
 
@@ -147,7 +144,6 @@ async function changeSubtaskStatus(allTasks, e, labelID) {
     let keyAndIndex = labelID.split('_')
     let thisSubtaskIndex = keyAndIndex[0];
     let thisTaskKey = keyAndIndex.slice(1).join('_');
-    let checkboxSubtaskHTML = "";
     if (allTasks[thisTaskKey].subtasks[thisSubtaskIndex].checked == true) {
         allTasks[thisTaskKey].subtasks[thisSubtaskIndex].checked = false
     } else {
@@ -157,8 +153,6 @@ async function changeSubtaskStatus(allTasks, e, labelID) {
     await putNewCheckedStatus(pathToStatus, allTasks[thisTaskKey].subtasks[thisSubtaskIndex].checked);
     getIdAndData(pathData='')
 }
-
-let currentTaskInOverlay; 
 
 function checkIndexOfAllTasks(clickedSingleID, allTasks, allKeys) {
     let indexToOpen;
@@ -174,9 +168,7 @@ function checkIndexOfAllTasks(clickedSingleID, allTasks, allKeys) {
     let priorityImg = checkPriorityImg(allTasks, keyToOpen);
     let subTasks = checkSubtasksOverlay(allTasks, keyToOpen);
     fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, subTasks)
-    currentTaskInOverlay = allTasks[keyToOpen];
-    // console.log(currentTaskInOverlay);
-    return currentTaskInOverlay
+    return currentTaskInOverlay = allTasks[keyToOpen];
 }
 
 function closeTaskOverlay(e) {
