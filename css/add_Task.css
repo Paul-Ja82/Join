@@ -14,6 +14,13 @@ h2 {
   font-weight: 700;
 }
 
+ul {
+  margin: 0;
+}
+
+input::placeholder {
+  color: #d1d1d1; /* Setze hier deine benutzerdefinierte Farbe */
+}
 .formAddTasks {
   display: flex;
   flex-direction: column;
@@ -28,10 +35,10 @@ h2 {
 }
 
 .fillOut {
+  width: 440px;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  width: 440px;
 }
 
 .line {
@@ -52,30 +59,21 @@ h2 {
 }
 
 .overAddSubtasks {
+  position: relative;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  border-radius: 10px;
-  border: solid 1px #d1d1d1;
-  padding: 12px 21px;
-  margin-bottom: 24px;
-  background-color: white;
+  align-items: center;
 }
-
-.fieldInputSubtasks {
-  border: unset;
-}
-
 
 .fieldInput {
+  background-color: white;
   border-radius: 10px;
   border: solid 1px #d1d1d1;
   padding: 12px 21px;
-  margin-bottom: 24px;
+  width: 100%;
 }
 
-.fieldInput::placeholder {
-  color: #d1d1d1;
+.marginBottom {
+  margin-bottom: 24px;
 }
 
 .overField textarea {
@@ -90,6 +88,41 @@ h2 {
   color: #d1d1d1;
 }
 
+.overInputAssignedTo {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.overaddAssignedTo {
+  position: relative;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.listContacts {
+  background-color: white;
+  border-radius: 10px;
+  list-style-type: none;
+  padding: 0;
+}
+
+.listContacts li {
+  display: flex;
+  justify-content: space-between;
+  padding: 7px 16px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.listContacts li:hover {
+  background-color: ;
+}
+
+.contactPerson {
+}
+
 .overFormButtons {
   display: flex;
   flex-direction: row;
@@ -99,12 +132,21 @@ h2 {
 }
 
 .formButtons {
-  background-color: #f6f7f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
   border-radius: 10px;
   font-size: 21px;
   padding: 16px;
   border: none;
   cursor: pointer;
+}
+
+.setButtons {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
 }
 
 .clearButton {
@@ -127,44 +169,118 @@ h2 {
   flex: 1;
   border: unset;
   background-color: white;
-  width: Fill (136px) px;
-  padding: 16px 10px 16px 10px;
+  width: 136px;
+  padding: 16px 10px;
   border-radius: 10px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0px 0px 4px 0px #0000001a;
+}
+
+.prioButtons:hover {
+  box-shadow: 0px 4px 4px 0px #00000040;
 }
 
 .urgentButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0px 0px 4px 0px #0000001a;
+  font-weight: 700;
+  color: white;
+  background-color: #ff3d00;
 }
 
 .mediumButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  background-color: #ffa800;
-  color: white;
   font-weight: 700;
+  color: white;
+  background-color: #ffa800;
 }
 
 .lowButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0px 0px 4px 0px #0000001a;
+  font-weight: 700;
+  color: white;
+  background-color: #7ae229;
 }
 
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  background-image: url("/assets/icons/arrowDropdown.svg");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 10px) center;
+  border: 1px solid #dfdfdf;
+  border-radius: 2px;
+  margin-right: 2rem;
+  padding: 1rem;
+  padding-right: 2rem;
+}
 .changeSymboles {
-  
+  display: flex;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.centerSymbol {
+  display: flex;
+}
+
+.centerSymbol img {
+  margin-right: 4px;
+}
+
+.centerSymbol:first-child {
+  border-right: 1px solid #a8a8a8;
+}
+
+.showEntrySubtask {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.edit {
+  display: none;
+  flex-direction: row;
+}
+
+.changeTextSubtasks {
+  margin-left: -40px;
+  list-style-type: none;
+}
+
+.changingTextInputField {
+  position: relative;
+  border: unset;
+  border-bottom: 1px solid #9747ff;
+}
+
+.overChangingSubtask {
+  display: flex;
+}
+
+.overAllChange {
+  display: flex;
+  right: 10px;
+  cursor: pointer;
+  background-color: white;
+  border-bottom: 1px solid #9747ff;
+}
+
+.fullWidth {
+  width: 100%;
 }
 
 .required {
   align-self: flex-end;
+}
+
+.showEntrySubtask:hover .edit {
+  display: flex;
 }
 
 @media only screen and (max-width: 1010px) {
@@ -205,11 +321,6 @@ h2 {
 
   .overPrioButtons {
     width: 396px;
-  }
-
-  .setButtons {
-    display: flex;
-    gap: 32px;
   }
 
   .overField label {

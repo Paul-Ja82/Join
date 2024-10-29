@@ -22,7 +22,7 @@
               <input
                 type="text"
                 id="title"
-                class="fieldInput"
+                class="fieldInput marginBottom"
                 placeholder="Enter a Title"
                 required
               />
@@ -37,8 +37,22 @@
               ></textarea>
             </div>
             <div class="overField">
-              <label for="name">Assigned to</label>
-              <input type="text" id="AssignedTo" class="fieldInput" required />
+              <label for="assignedTo">Assigned to</label>
+              <div class="overaddAssignedTo">
+                <div class="overInputAssignedTo">
+                <input
+                  class="fieldInput inputAssignedTo"
+                  type="text"
+                  onclick="renderContactList()"
+                  placeholder="Assigned To"
+                />
+                <div class="changeSymboles">
+                  <img src="assets/icons/arrowDropdown.svg" alt="" />
+                </div>
+              </div>
+                <ul id="insertContactList" class="listContacts">
+                <ul>
+              </div>
             </div>
           </div>
           <div class="line"></div>
@@ -47,19 +61,48 @@
               <label for="date"
                 >Due date<span style="color: #ff8190">*</span></label
               >
-              <input type="date" id="date" class="fieldInput" placeholder="tt/mm/jjjj" required />
+              <input
+                type="date"
+                id="date"
+                class="fieldInput marginBottom"
+                placeholder="dd/mm/yyyy"
+                required
+              />
             </div>
             <div class="overField">
               <label for="prio">Prio</label>
               <div class="overPrioButtons">
-                <button class="prioButtons urgentButton" type="button">
-                  Urgent<img src="assets/icons/up.svg" alt="" />
+                <button
+                  id="urgentButton"
+                  class="prioButtons"
+                  onclick="selectPrio(`urgent`)"
+                  type="button"
+                >
+                  Urgent<img
+                    id="urgentButtonImg"
+                    src="assets/icons/urgent.svg"
+                    alt=""
+                  />
                 </button>
-                <button class="prioButtons mediumButton" type="button">
-                  Medium<img src="assets/icons/medium.svg" alt="" />
+                <button
+                  id="mediumButton"
+                  class="prioButtons"
+                  onclick="selectPrio(`medium`)"
+                  type="button"
+                >
+                  Medium<img
+                    id="mediumButtonImg"
+                    src="assets/icons/medium.svg"
+                    alt=""
+                  />
                 </button>
-                <button class="prioButtons lowButton" type="button">
-                  Low<img src="assets/icons/down.svg" alt="" />
+                <button
+                  id="lowButton"
+                  class="prioButtons"
+                  onclick="selectPrio(`low`)"
+                  type="button"
+                >
+                  Low<img id="lowButtonImg" src="assets/icons/low.svg" alt="" />
                 </button>
               </div>
             </div>
@@ -67,12 +110,34 @@
               <label for="category"
                 >Category<span style="color: #ff8190">*</span></label
               >
-              <input type="text" id="category" class="fieldInput" required />
+              <select
+                name="category"
+                id="category"
+                class="fieldInput marginBottom"
+                aria-placeholder="Test"
+                required
+              >
+                <option value="" selected disabled>Select task category</option>
+                <option value="Technical Task">Technical Task</option>
+                <option value="User Story">User Story</option>
+              </select>
             </div>
             <div class="overField">
               <label for="subtasks">Subtasks</label>
               <div class="overAddSubtasks">
-              <input type="text" id="subtasks" class="fieldInputSubtasks" onkeydown="changeSymbols()" required /><div id="symbolsSubtasks" class="changeSymboles">+</div></div>
+                <input
+                  type="text"
+                  id="subtasks"
+                  class="fieldInput"
+                  oninput="changeSymbols()"
+                  placeholder="Add new Subtask"
+                  required
+                />
+                <div id="symbolsSubtasks" class="changeSymboles">
+                  <img src="assets/icons/plus.svg" alt="" />
+                </div>
+              </div>
+              <ul id="showSubtasks"></ul>
             </div>
           </div>
         </div>
@@ -82,10 +147,14 @@
           </div>
           <div class="setButtons">
             <button class="formButtons clearButton" type="button">
-              Clear <img src="assets/icons/vector.svg" alt="" />
+              Clear <img src="assets/icons/close.svg" alt="" />
             </button>
-            <button class="formButtons createButton" type="submit" onclick="saveData()">
-              Create Task <img src="assets/icons/check.svg" alt="" />
+            <button
+              class="formButtons createButton"
+              type="submit"
+              onclick="saveData()"
+            >
+              Create Task <img src="assets/icons/checkWhite.svg" alt="" />
             </button>
           </div>
         </div>
