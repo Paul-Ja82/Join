@@ -383,7 +383,7 @@ body {
         align-items: center;
         & img {
           width: 18px;
-          height: 8px;
+          height: 12px;
         }
       }
     }
