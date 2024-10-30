@@ -1,12 +1,5 @@
 /*overlay lasst sich auf x-Button nciht zuverlässig schließen*/
 
-/* Scrollbar des gesamten Dokuments */
-body {
-  /* overflow: auto; */
-  /* overflow-y: scroll; */
-}
-
-/* Scrollbar-Stil */
 ::-webkit-scrollbar {
   width: 8px; /* Breite der Scrollbar */
   height: 8px;
@@ -35,7 +28,6 @@ html {
 }
 
 body {
-  /* background-color: rgb(190, 146, 95); */
   background-color: var(--background-gray);
   margin: 0 auto;
   width: 100%;
@@ -45,7 +37,6 @@ body {
   position: relative;
   min-width: 320px;
   font-family: 'Inter';
-  /* border: 1px solid rgb(75, 11, 75); */
 }
 
 #dummy_header {
@@ -92,7 +83,6 @@ body {
     padding: 4px 16px;
     font-size: 16px;
     color: white;
-    /* background-color: rgba(31, 215, 193, 1); */
     margin-bottom: 20px;
   }
   & .single_task_headline {
@@ -112,6 +102,7 @@ body {
     overflow: hidden;              /* Versteckt überlaufenden Text */
     display: -webkit-box;          /* Ermöglicht Box-Modell für Zeilen-Clamping */
     -webkit-line-clamp: 2;         /* Begrenze auf zwei Zeilen */
+    line-clamp: 2;
     -webkit-box-orient: vertical;  /* Richtet die Box vertikal aus */
     text-overflow: ellipsis;  
   }
@@ -126,7 +117,6 @@ body {
       height: 8px;
       border-radius: 16px;
       & .single_task_progress_bar_process_line {
-        /* width: 50%; */
         height: 8px;
         border-radius: 16px;
         background-color: rgb(69, 137, 255);
@@ -173,13 +163,10 @@ body {
 }
 
 .board_ctn {
-  /* background-color: darkseagreen; */
-  /* border: 1px solid green; */
   margin-left: calc(232px + 2.5%);
   margin-right: 2.5%;
   margin-top: 96px;
   max-height: calc(1024px - 122px);
-  /* border: 1px solid; */
   padding-top: 25px;
   & .board_header {
     position: relative;
@@ -189,7 +176,6 @@ body {
       justify-content: space-between;
       align-items: center;
       & .board_header_headline {
-        /* font-size: 73px; */
         font-size: 68px;
         font-weight: 700;
       }
@@ -259,13 +245,11 @@ body {
     width: 100%;
     height: calc(100% - 130px);
     max-height: 778px;
-    /* border: 1px solid orange; */
     padding-bottom: 10px;
     & .task_section {
       width: 252px;
       padding-right: 10px;
       max-height: 776px;
-      /* border: 1px solid red; */
       & .task_section_header {
         width: 252px;
         font-size: 20px;
@@ -298,9 +282,7 @@ body {
       }
       & .tasks_area {
         height: calc(100% - 50px);
-        /* border: 1px solid firebrick; */
         overflow: auto;
-        /* overflow-y: scroll; */
         padding-bottom: 24px;
         padding-right: 4px;
         & .task_nothing_todo {
@@ -328,7 +310,6 @@ body {
         }
         & .task_section_tasks_area {
           display: block;
-          /* border: 1px solid violet; */
           height: fit-content;
           max-height: 100%;
           & .single_task_board {
@@ -342,12 +323,6 @@ body {
     }
   }
 }
-
-/* #tasks_area_await_feedback {
-  .single_task_progress_ctn {
-    display: none;
-  }
-} */
 
 #task_section_done {
   & .single_task_progress_bar_process_line {
@@ -450,7 +425,6 @@ body {
       margin-bottom: 24px;
       max-height: 150px;
       overflow: auto;
-      /* overflow-y: scroll; */
       & .single_task_line_header {
         width: 120px;
         margin-bottom: 18px;
@@ -482,7 +456,6 @@ body {
       margin-bottom: 24px;
       max-height: 150px;
       overflow: auto;
-      /* overflow-y: scroll; */
       & .single_task_line_header {
         width: 120px;
         margin-bottom: 18px;
@@ -586,11 +559,9 @@ body {
     & .board_task_area {
       flex-direction: column;
       max-height: 778px;
-      /* overflow-y: scroll; */
       overflow: auto;
       & .task_section {
         width: 100%;
-        /* border: 1px solid rebeccapurple; */
         padding-right: 0px;
         & .task_section_header {
           width: 100%;
@@ -598,7 +569,6 @@ body {
         }
         & .tasks_area {
           overflow-y: unset;
-          /* overflow-x: scroll; */
           overflow: auto;
           padding-bottom: 0;
           & .task_nothing_todo {
@@ -610,9 +580,6 @@ body {
             gap: 18px;
           }
         }
-      }
-      & #task_section_done {
-        /* padding-bottom: 20px; */
       }
     }
   }
@@ -646,13 +613,6 @@ body {
     }
     & .board_task_area {
       max-height: 755px;
-      & .task_section {
-        & .tasks_area {
-          & .task_section_tasks_area {
-            /* display: flex; */
-          }
-        }
-      }
     }
   }
   .task_overlay_ctn {
@@ -682,7 +642,6 @@ body {
     min-width: 288px;
     max-height: 1024px;
     padding-top: 15px;
-    /* padding-bottom: 80px; */
     & .board_header {
       width: 100%;
       min-width: 288px;
@@ -696,9 +655,6 @@ body {
       }
     }
     & .board_task_area {
-      /* width: 100%;
-      flex-direction: column;
-      max-width: 552px; */
       & .task_section {
         width: 100%;
         & .task_section_header {
