@@ -1,28 +1,17 @@
-/*
-When used in a Multi-Page-App:
-On initialization:
--) setFaviconDarkBgURL(url)
-
-On initialization of any Page (not index-page):
--) setIndexpage(url)
-
-On initialization of the index-page:
--) setStartpage(url)
-*/
 
 const LOGGEDIN_SESSIONSTORAGE_KEY= 'loggedIn';
 const REMEMBERME_LOCALSTORAGE_KEY= 'rememberMe';
 
-let indexPageURL;
-let startPageURL;
-let faviconDarkBgURL;
+const INDEXPAGE_URL= './sign_up.html'
+const STARTPAGE_URL= './summary_user.html';
+const FAVICON_DARK_BG_URL= './assets/img/logo-darkBG.svg'
 
 /*##########*/
 /*## INIT ##*/
 /*##########*/
 
 function initMPA() {
-    if (isDarkMode()) setFavicon(faviconDarkBgURL);
+    if (isDarkMode()) setFavicon(FAVICON_DARK_BG_URL);
     if (isIndexPage()) initIndexMPA();
     else initPageMPA();
 }
@@ -32,8 +21,7 @@ function initIndexMPA() {
     let loggedIn= getLoggedIn();
     let rememberMe= getRememberMe();
     if (loggedIn || rememberMe) {
-        if (startPageURL) loadPage(startPageURL);
-        else console.error('keine Startpage-URL deniniert');
+        loadPage(STARTPAGE_URL);
     }
 }
 
@@ -41,13 +29,17 @@ function initPageMPA() {
     let rememberMe= getRememberMe();
     let loggedIn= getLoggedIn();
     if (rememberMe) setLoggedIn(rememberMe);
-    if (!loggedIn) loadPage(indexPageURL);
+    if (!loggedIn) loadPage(INDEXPAGE_URL);
 }
 
 function isIndexPage() {
-    let url= window.location.href;
-    let filename= url.substring(url.lastIndexOf('/')+1); 
-    return filename=='index.html' ? true : false;
+    let currentURL= window.location.href;
+    let currentFilename= getFilenameFromURL(currentURL); 
+    let indexFilename= getFilenameFromURL(INDEXPAGE_URL);
+    console.log(currentFilename); ///DEBUG
+    console.log(indexFilename); ///DEBUG
+    console.log(currentFilename == indexFilename); ///DEBUG
+    return currentFilename == indexFilename;
 }
 
 /*##################*/
@@ -63,7 +55,7 @@ function loginMPA(loggedInItem, rememberMeItem) {
 function logoutMPA() {
     clearLoggedIn();
     clearRememberMe();
-    loadPage(indexPageURL);
+    loadPage(STARTPAGE_URL);
 }
 
 function setLoggedIn(item) {
@@ -122,10 +114,6 @@ function isDarkMode() {
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
 }
 
-function setFaviconDarkBgURL(url) {
-    faviconDarkBgURL= url;
-}
-
 /*################*/
 /*## NAVIGATION ##*/
 /*################*/
@@ -133,14 +121,6 @@ function setFaviconDarkBgURL(url) {
 function loadPage(url) {
     console.log('loadPage(url)', url); ///DEBUG
     window.location.href = url;
-}
-
-function setStartPage(url) {
-    startPageURL= url;
-}
-
-function setIndexPage(url) {
-    indexPageURL= url;
 }
 
 /*##########*/
@@ -163,5 +143,12 @@ function parseJSONmpa(item) {
         else throw err;
     }
     return parsedItem;
+}
+
+function getFilenameFromURL(url) {
+    // return (url.match(/^\w+:(\/+([^\/#?\s]+)){2,}/) || [])[2] || '';
+    // return (url.match(/^\w+:(\/+([^\/#?\s]+)){2,}(#|\?|$)/)||[])[2]||'';
+    let splitSlash= url.split('/');
+    return splitSlash.pop().split('?')[0];
 }
 

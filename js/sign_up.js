@@ -16,6 +16,7 @@ let passwordConfirmFlag= false;
 
 function initSignup() {
     loadUsers();
+    initMPA();
 }
 
 async function loadUsers() {
@@ -64,6 +65,13 @@ function getUserByEmail(email) {
     return users.find((userI)=> userI.email == email);
 }
 
+function addUser() {
+    let id= getId();
+    let user= {
+        
+    };
+}
+
 /*################*/
 /*## VALIDATION ##*/
 /*################*/
@@ -110,8 +118,8 @@ function checkPasswordConfirm() {
 /*###########*/
 
 function tuEsSignup() {
-    loadInputValuesSignUp();
-    checkEmailAvailable();
+    let url= './sign_up.html?irgendwas=irgendwas'
+    getFilenameFromURL(url);
 }
 
 function logFlags() {
