@@ -28,7 +28,7 @@ async function collectData() {
         "priority" : "low",
         "subtasks" : subtaskCollection,
         "title" : "TestUser",
-        "task_ID" : `task${id}`,
+        // "task_ID" : `task${id}`,
         "currentStatus" : "inProgress",
         "single_ID" : id,
     }
@@ -88,7 +88,7 @@ async function putNewCheckedStatus(path="", data={}) {
 function keyForAllTasks() {
     allKeys = [];
     allKeys = Object.keys(allTasks)
-    // console.log(allKeys)
+    console.log(allKeys)
 }
 
 // async function deleteID(path="") {
