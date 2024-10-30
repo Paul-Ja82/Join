@@ -2,7 +2,8 @@
 const LOGGEDIN_SESSIONSTORAGE_KEY= 'loggedIn';
 const REMEMBERME_LOCALSTORAGE_KEY= 'rememberMe';
 
-const INDEXPAGE_URL= './sign_up.html';
+// const INDEXPAGE_URL= './sign_up.html';
+const INDEXPAGE_URL= './log_in.html';
 const STARTPAGE_URL= './summary_user.html';
 const FAVICON_DARK_BG_URL= './assets/img/logo-darkBG.svg'
 
@@ -45,13 +46,13 @@ function isIndexPage() {
 function loginMPA(loggedInItem, rememberMeItem) {
     setLoggedIn(loggedInItem);
     if(rememberMeItem) setRememberMe(rememberMeItem);
-    loadPage(startPageURL);
+    loadPage(STARTPAGE_URL);
 }
 
 function logoutMPA() {
     clearLoggedIn();
     clearRememberMe();
-    loadPage(STARTPAGE_URL);
+    loadPage(INDEXPAGE_URL);
 }
 
 function setLoggedIn(item) {
