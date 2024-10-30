@@ -1,14 +1,16 @@
-let users;
+let users= [];
 
 let nameInput;
 let emailInput;
 let passwordInput;
 let passwordConfirmInput;
+let privacyInput;
 
 let nameInputFlag= false;
 let emailInputFlag= false;
 let emailAvailableFlag= false;
 let passwordConfirmFlag= false;
+let privacyFlag= false;
 
 /*##########*/
 /*## INIT ##*/
@@ -20,7 +22,10 @@ function initSignup() {
 }
 
 async function loadUsers() {
-    users= await getData(USERS_PATH);
+    let usersObj= await getData(USERS_PATH);
+    for (let keyI in usersObj) {
+        if(usersObj[keyI]) users.push(usersObj[keyI]);
+    }
 }
 
 /*#############*/
@@ -28,14 +33,17 @@ async function loadUsers() {
 /*#############*/
 
 function signup() {
+    resetFlags();
     loadInputValuesSignUp();
     checkNameInput();
     checkEmailInput();
     checkEmailAvailable();
     checkPasswordConfirm();
-    let flags= nameInputFlag && emailInputFlag && emailAvailableFlag && passwordConfirmFlag;
+    checkPrivacy();
+    let flags= nameInputFlag && emailInputFlag && emailAvailableFlag && passwordConfirmFlag && privacyFlag;
     if (flags) {
-        console.log('signup kann stattfinden'); ///DEBUG
+        addUser();
+        // loadPage('./log_in.html'); //TODO wird in Zukunft Index-Page sein? 
     } else {
         console.warn('Kein Signup möglich'); ///DEBUG
         logFlags(); ///DEBUG
@@ -59,17 +67,34 @@ function loadInputValuesSignUp() {
     emailInput= document.getElementById('emailInput').value;
     passwordInput= document.getElementById('passwordInput').value;
     passwordConfirmInput= document.getElementById('confirmPasswordInput').value;
+    privacyInput= document.getElementById('rememberCheckbox').checked;
 }
 
 function getUserByEmail(email) {
     return users.find((userI)=> userI.email == email);
 }
 
-function addUser() {
-    let id= getId();
+async function addUser() {
+    let newId= await getId();
+    let path= USERS_PATH + newId;
     let user= {
-        
+        id: newId,
+        name: nameInput,
+        email: emailInput,
+        pw: passwordInput
     };
+    saveData(path, user);
+    users.push(user);
+    //TODO Show Toast
+    console.log('addUser(): User wird angelegt.', user); ///DEBUG
+}
+
+function resetFlags() {
+    nameInputFlag= false;
+    emailInputFlag= false;
+    emailAvailableFlag= false;
+    passwordConfirmFlag= false;
+    privacyFlag= false;
 }
 
 /*################*/
@@ -113,13 +138,19 @@ function checkPasswordConfirm() {
     }
 }
 
+function checkPrivacy() {
+    privacyFlag= privacyInput;
+    if (!privacyFlag) console.log('Please accept the Privacy Policy'); ///DEBUG
+}
+
 /*###########*/
 /*## DEBUG ##*/
 /*###########*/
 
 function tuEsSignup() {
-    let url= './sign_up.html?irgendwas=irgendwas'
-    getFilenameFromURL(url);
+    let privacyInputElem= document.getElementById('rememberCheckbox');
+    console.log(privacyInputElem.checked);
+    
 }
 
 function logFlags() {
@@ -127,6 +158,7 @@ function logFlags() {
     console.log('emailInputFlag: ' + emailInputFlag); ///DEBUG
     console.log('emailAvailableFlag: ' + emailAvailableFlag); ///DEBUG    
     console.log('passwordConfirmFlag: ' + passwordConfirmFlag); ///DEBUG
+    console.log('privacyFlag: ' + privacyFlag); ///DEBUG
 }
 
 function logVars() {

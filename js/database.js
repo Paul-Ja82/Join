@@ -14,7 +14,6 @@ const NEXT_ID_PATH = 'nextId/';
 /*#####################*/
 
 async function saveData(path, data, method = 'PUT') {
-    console.log('saveData()', method); ///DEBUG
     return fetch(BASE_URL + path + '.json', {
         'method': method,
         'header': {

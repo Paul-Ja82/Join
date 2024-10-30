@@ -2,7 +2,7 @@
 const LOGGEDIN_SESSIONSTORAGE_KEY= 'loggedIn';
 const REMEMBERME_LOCALSTORAGE_KEY= 'rememberMe';
 
-const INDEXPAGE_URL= './sign_up.html'
+const INDEXPAGE_URL= './sign_up.html';
 const STARTPAGE_URL= './summary_user.html';
 const FAVICON_DARK_BG_URL= './assets/img/logo-darkBG.svg'
 
@@ -17,7 +17,6 @@ function initMPA() {
 }
 
 function initIndexMPA() {
-    console.log('initIndexMPA()'); ///DEBUG
     let loggedIn= getLoggedIn();
     let rememberMe= getRememberMe();
     if (loggedIn || rememberMe) {
@@ -36,9 +35,6 @@ function isIndexPage() {
     let currentURL= window.location.href;
     let currentFilename= getFilenameFromURL(currentURL); 
     let indexFilename= getFilenameFromURL(INDEXPAGE_URL);
-    console.log(currentFilename); ///DEBUG
-    console.log(indexFilename); ///DEBUG
-    console.log(currentFilename == indexFilename); ///DEBUG
     return currentFilename == indexFilename;
 }
 
@@ -119,7 +115,6 @@ function isDarkMode() {
 /*################*/
 
 function loadPage(url) {
-    console.log('loadPage(url)', url); ///DEBUG
     window.location.href = url;
 }
 
