@@ -16,6 +16,8 @@ let contacts = [
   "Isabel Koch",
   "Jonas Lehmann",
 ];
+let isListOpen = false;
+const avatarColors = ["#3498db", "#e74c3c", "#f39c12", "#2ecc71", "#9b59b6"];
 
 async function loadData(path = "") {
   let response = await fetch(BASE_URL + path + ".json");
@@ -36,44 +38,134 @@ async function postData(path = "", data = {}) {
 }
 
 async function saveData() {
-  /*let dueDate = document.getElementById("date").value;
-  let priority =
-    document.querySelector(".prioButtons.active")?.innerText || "Medium";
-  let category = document.getElementById("category").value;
-  let subtasks = document.getElementById("subtasks").value;*/
 
   let taskData = {
     title: document.getElementById("title").value,
     description: document.getElementById("description").value,
-    assignedTo: document.getElementById("assignedTo").value,
-    priority: selectedPrio == null ? medium : selectedPrio,
+    AssignedTo: selectedContacts,
+    dueDate: document.getElementById("date").value,
+    priority: selectedPrio == null ? "medium" : selectedPrio,
+    category: document.getElementById("category").value,
+    subtasks: subtasks,
   };
 
   console.log(taskData);
-  postData((path = "/tasks"), (data = taskData));
+  await postData((path = "/tasks"), (data = taskData));
+  location.reload();
 }
 
-function renderContactList() {
+function renderContactList(filteredContacts = contacts) {
+  const contactList = document.getElementById("insertContactList");
+  contactList.innerHTML = ""; 
+
+  filteredContacts.forEach((contact, index) => {
+    const isSelected = selectedContacts.includes(contact);
+    contactList.innerHTML += `
+      <li onclick="changeCheckbox(${index})">
+          <div class="contactPerson">${contact}</div>
+          <input type="checkbox" value="${contact}" class="contactList-checkbox" 
+            id="checkbox${index}" onchange="renderAddedPersons()" 
+            onclick="event.stopPropagation()" 
+            ${isSelected ? "checked" : ""}>
+      </li>`;
+  });
+  showPersons();
+}
+
+function filterContacts() {
+  const input = document.getElementById("inputAssignedTo").value.toLowerCase();
+  const filteredContacts = contacts.filter((contact) =>
+    contact.toLowerCase().includes(input)
+  );
+  renderContactList(filteredContacts);
+}
+
+function closeContactList() {
   document.getElementById("insertContactList").innerHTML = "";
-  for (let index = 0; index < contacts.length; index++) {
-    document.getElementById("insertContactList").innerHTML += `<li>
-    <div class="contactPerson">${contacts[index]}</div><input type="checkbox" value="${contacts[index]}" class="contactList-checkbox" onchange="renderAddedPersons()"> 
-</li>`;
-  }
+}
+
+function changeCheckbox(index) {
+  const checkbox = document.getElementById(`checkbox${index}`);
+  checkbox.checked = !checkbox.checked;
+  renderAddedPersons();
 }
 
 function renderAddedPersons() {
   selectedContacts = [];
-  const checkboxes = document.querySelectorAll('.contactList-checkbox');
-  checkboxes.forEach(checkbox => {
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  checkboxes.forEach((checkbox) => {
     if (checkbox.checked) {
-        selectedContacts.push(checkbox.value); 
+      selectedContacts.push(checkbox.value);
     }
-});
-
-console.log(selectedContacts);
+  });
+  console.log("Ausgewählte Kontakte:", selectedContacts);
 }
 
+
+document.addEventListener("DOMContentLoaded", () => {
+  const inputField = document.getElementById("inputAssignedTo");
+
+  inputField.addEventListener("click", () => {
+    if (isListOpen) {
+      closeContactList();
+    } else {
+      renderContactList();
+    }
+    isListOpen = !isListOpen;
+  });
+});
+
+function showPersons() {
+  const avatarContainer = document.getElementById("showPersons");
+  avatarContainer.innerHTML = ""; 
+
+  selectedContacts.forEach((contact, index) => {
+    const initials = getInitials(contact); 
+    const bgColor = avatarColors[index % avatarColors.length]; 
+    const svgAvatar = createAvatarSVG(initials, bgColor); 
+    avatarContainer.appendChild(svgAvatar);
+  });
+}
+
+function getInitials(name) {
+  const nameParts = name.split(" ");
+  const firstNameInitial = nameParts[0][0].toUpperCase();
+  const lastNameInitial = nameParts[1][0].toUpperCase();
+  return firstNameInitial + lastNameInitial;
+}
+
+function createAvatarSVG(initials, bgColor) {
+  const svgNS = "http://www.w3.org/2000/svg";
+  
+  const svg = document.createElementNS(svgNS, "svg");
+  svg.setAttribute("width", "42");
+  svg.setAttribute("height", "42");
+  svg.setAttribute("viewBox", "0 0 44 44"); 
+  svg.setAttribute("class", "contact-avatar-svg");
+
+  const circle = document.createElementNS(svgNS, "circle");
+  circle.setAttribute("cx", "22"); 
+  circle.setAttribute("cy", "22");
+  circle.setAttribute("r", "20"); 
+  circle.setAttribute("fill", bgColor); 
+  circle.setAttribute("stroke", "#fff"); 
+  circle.setAttribute("stroke-width", "2"); 
+
+  const text = document.createElementNS(svgNS, "text");
+  text.setAttribute("x", "50%");
+  text.setAttribute("y", "50%");
+  text.setAttribute("dy", ".35em"); 
+  text.setAttribute("text-anchor", "middle");
+  text.setAttribute("font-size", "12");
+  text.setAttribute("fill", "#fff");
+  text.setAttribute("font-family", "Arial, sans-serif");
+  text.textContent = initials;
+
+  svg.appendChild(circle);
+  svg.appendChild(text);
+
+  return svg;
+}
 
 function saveSubtasks(index) {
   let textSubtask = document.getElementById("subtasks").value;
@@ -127,16 +219,6 @@ function renderSubtasks() {
     </li>`;
   }
 }
-
-/*function showEdit(index) {
-  let element = document.getElementById(`edit${index}`);
-  element.style.display = "flex";
-}
-
-function showNoEdit(index) {
-  let element = document.getElementById(`edit${index}`);
-  element.style.display = "none";
-}*/
 
 function changeText(index) {
   let changeText = subtasks[index];
@@ -205,3 +287,26 @@ function urgentPrio(priority) {
   document.getElementById(button).classList.add(`${priority}Button`);
   document.getElementById(`${button}Img`).src = "assets/icons/upWhite.svg";
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("formAddTasks").addEventListener("submit", (event) => {
+    event.preventDefault(); 
+
+    
+    if (validateForm()) {
+    saveData();
+    } else {
+      alert("Bitte fülle alle erforderlichen Felder aus.");
+    }
+  });
+});
+
+function validateForm() {
+  const title = document.getElementById("title").value;
+  const date = document.getElementById("date").value;
+  const category = document.getElementById("category").value;
+  
+  
+  return title && date && category;
+}
+

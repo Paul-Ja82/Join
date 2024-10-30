@@ -18,6 +18,10 @@ ul {
   margin: 0;
 }
 
+input {
+  cursor: pointer;
+}
+
 input::placeholder {
   color: #d1d1d1; /* Setze hier deine benutzerdefinierte Farbe */
 }
@@ -114,13 +118,27 @@ input::placeholder {
   padding: 7px 16px;
   border-radius: 10px;
   background-color: white;
+  cursor: pointer;
 }
 
 .listContacts li:hover {
-  background-color: ;
+  background-color: #2A3647;
+  color: white;
 }
 
-.contactPerson {
+.listContacts li:active {
+  background-color: #091931;
+  color: white;
+}
+
+.showPersons {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+svg text {
+  font-size: 12px !important; 
 }
 
 .overFormButtons {

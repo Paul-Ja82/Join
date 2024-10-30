@@ -11,7 +11,7 @@
     <div id="dummy_header"></div>
     <div id="dummy_menu"></div>
     <h2>Add Task</h2>
-    <form class="formAddTasks" action="">
+    <form id="formAddTasks" class="formAddTasks" action="">
       <div class="seperateSendButtons">
         <div class="overInputFields">
           <div class="fillOut">
@@ -40,19 +40,21 @@
               <label for="assignedTo">Assigned to</label>
               <div class="overaddAssignedTo">
                 <div class="overInputAssignedTo">
-                <input
-                  class="fieldInput inputAssignedTo"
-                  type="text"
-                  onclick="renderContactList()"
-                  placeholder="Assigned To"
-                />
-                <div class="changeSymboles">
-                  <img src="assets/icons/arrowDropdown.svg" alt="" />
+                  <input
+                    id="inputAssignedTo"
+                    class="fieldInput inputAssignedTo"
+                    type="text"
+                    onclick="renderContactList()"
+                    oninput="filterContacts()"
+                    placeholder="Assigned To"
+                  />
+                  <div class="changeSymboles">
+                    <img src="assets/icons/arrowDropdown.svg" alt="" />
+                  </div>
                 </div>
+                <ul id="insertContactList" class="listContacts"></ul>
               </div>
-                <ul id="insertContactList" class="listContacts">
-                <ul>
-              </div>
+              <div id="showPersons" class="showPersons"></div>
             </div>
           </div>
           <div class="line"></div>
@@ -131,7 +133,6 @@
                   class="fieldInput"
                   oninput="changeSymbols()"
                   placeholder="Add new Subtask"
-                  required
                 />
                 <div id="symbolsSubtasks" class="changeSymboles">
                   <img src="assets/icons/plus.svg" alt="" />
@@ -152,7 +153,6 @@
             <button
               class="formButtons createButton"
               type="submit"
-              onclick="saveData()"
             >
               Create Task <img src="assets/icons/checkWhite.svg" alt="" />
             </button>
