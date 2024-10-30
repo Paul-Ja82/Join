@@ -57,3 +57,4 @@ function clearInput() {
   document.getElementById("subtasks").value = "";
   document.getElementById("symbolsSubtasks").innerHTML = "+";
 }
+

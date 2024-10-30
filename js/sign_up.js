@@ -115,15 +115,15 @@ function tuEsSignup() {
 }
 
 function logFlags() {
-    console.log(nameInputFlag); ///DEBUG
-    console.log(emailInputFlag); ///DEBUG
-    console.log(emailAvailableFlag); ///DEBUG    
-    console.log(passwordConfirmFlag); ///DEBUG
+    console.log('nameInputFlag: ' + nameInputFlag); ///DEBUG
+    console.log('emailInputFlag: ' + emailInputFlag); ///DEBUG
+    console.log('emailAvailableFlag: ' + emailAvailableFlag); ///DEBUG    
+    console.log('passwordConfirmFlag: ' + passwordConfirmFlag); ///DEBUG
 }
 
 function logVars() {
-    console.log(nameInput); ///DEBUG
-    console.log(emailInput); ///DEBUG
-    console.log(passwordInput); ///DEBUG    
-    console.log(passwordConfirmInput); ///DEBUG
+    console.log('nameInput: ' + nameInput); ///DEBUG
+    console.log('emailInput: ' + emailInput); ///DEBUG
+    console.log('passwordInput: ' + passwordInput); ///DEBUG    
+    console.log('paswwordConfirmInput: ' + passwordConfirmInput); ///DEBUG
 }
