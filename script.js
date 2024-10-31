@@ -47,6 +47,8 @@ async function saveData() {
     priority: selectedPrio == null ? "medium" : selectedPrio,
     category: document.getElementById("category").value,
     subtasks: subtasks,
+    currentStatus: "todo"
+    
   };
 
   console.log(taskData);
@@ -171,9 +173,8 @@ function saveSubtasks(index) {
   let textSubtask = document.getElementById("subtasks").value;
   subtasks.push(textSubtask);
   document.getElementById("subtasks").value = "";
-  document.getElementById("symbolsSubtasks").innerHTML = "+";
+  document.getElementById("symbolsSubtasks").innerHTML = "+";// Hier Image noch einfügen
   renderSubtasks();
-  console.log(subtasks);
 }
 
 function saveEditSubtask(index) {
