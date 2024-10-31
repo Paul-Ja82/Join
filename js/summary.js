@@ -1,3 +1,7 @@
+function initSummary() {
+    initMPA();
+}
+
 const spans = document.getElementsByTagName("span");
     for (let i = 0; i < spans.length; i++) {
         spans[i].textContent = spans[i].textContent.slice(0, 6);
