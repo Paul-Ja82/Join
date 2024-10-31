@@ -32,7 +32,7 @@ body {
   margin: 0 auto;
   width: 100%;
   max-width: 1440px;
-  height: 100%;
+  height: 100vh;
   max-height: 1024px;
   position: relative;
   min-width: 320px;
@@ -54,8 +54,8 @@ body {
 #dummy_menu {
   position: fixed;
   width: 232px;
-  height: 100%;
-  max-height: 1024px;
+  height: 100vh;
+  /* max-height: 1024px; */
   background-color: rgba(63, 63, 151, 0.5);
   z-index: 12;
   left: calc(50vw - 726px);
@@ -166,7 +166,7 @@ body {
   margin-left: calc(232px + 2.5%);
   margin-right: 2.5%;
   margin-top: 96px;
-  max-height: calc(1024px - 122px);
+  height: calc(100vh - 122px);
   padding-top: 25px;
   & .board_header {
     position: relative;
@@ -243,13 +243,11 @@ body {
     gap: 12px;
     flex-wrap: nowrap;
     width: 100%;
-    height: calc(100% - 130px);
-    max-height: 778px;
+    height: 100%;
     padding-bottom: 10px;
     & .task_section {
       width: 252px;
-      padding-right: 10px;
-      max-height: 776px;
+      padding: 0 10px 10px 0;
       & .task_section_header {
         width: 252px;
         font-size: 20px;
@@ -283,7 +281,7 @@ body {
       & .tasks_area {
         height: calc(100% - 50px);
         overflow: auto;
-        padding-bottom: 24px;
+        /* padding-bottom: 24px; */
         padding-right: 4px;
         & .task_nothing_todo {
           width: 99%;
@@ -311,7 +309,7 @@ body {
         & .task_section_tasks_area {
           display: block;
           height: fit-content;
-          max-height: 100%;
+          /* max-height: 100%; */
           & .single_task_board {
             width: 220px;
           }
