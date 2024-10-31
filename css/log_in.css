@@ -361,7 +361,7 @@ footer {
 +                    mobile
 */
 
-main {
+.mainmobile {
     display: flex;
     flex-direction: column;
     justify-content: center;
