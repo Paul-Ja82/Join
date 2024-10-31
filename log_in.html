@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log in Join </title>
     <link rel="stylesheet" href="css/log_in.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+        <script src="./js/database.js"></script>
+        <script src="./js/multi-page-app.js"></script>
+        <script src="./js/sign_up.js"></script>
 </head>
-<body>
+
+<body onload="initLogin()">
     <header>
         <div class="logo-header">
-            <img src="assets/img/join-logoBig.png" class="logo-img"> 
+            <img src="assets/img/join-logoBig.png" class="logo-img">
         </div>
         <form class="sign-up-div">
             <h3>Not a Join User?</h3>
-            <button class="sign-up-button" id="signUpButton"></button> 
+            <button class="sign-up-button" id="signUpButton"></button>
         </form>
     </header>
     <main>
@@ -24,31 +31,32 @@
             <h1 class="log-in-header">Log in</h1>
             <div class="divider"></div>
             <div class="input-main-div">
-            <form class="email-input-div">
-                <input type="text"  class="log-input" id="emailInput" placeholder="Email">
-                <img class="mail-Img" src="assets/img/mail.png">
-            </form>
-            <form class="password-input-div">
-                <input type="password" class="log-input" id="passwordInput" placeholder="Password">
-                <img class="password-Img" src="assets/img/lock.png">
-            </form>
-            <div class="remember-box-div" id="rememberBox">
-                <input type="checkbox" class="r-box-input" id="rememberCheckbox">
-                <label for="rememberCheckbox" class="r-box-label">Remember me</label>
+                <form class="email-input-div">
+                    <input type="text" class="log-input" id="emailInput" placeholder="Email">
+                    <img class="mail-Img" src="assets/img/mail.png">
+                </form>
+                <form class="password-input-div">
+                    <input type="password" class="log-input" id="passwordInput" placeholder="Password">
+                    <img class="password-Img" src="assets/img/lock.png">
+                </form>
+                <div class="remember-box-div" id="rememberBox">
+                    <input type="checkbox" class="r-box-input" id="rememberCheckbox">
+                    <label for="rememberCheckbox" class="r-box-label">Remember me</label>
+                </div>
+                <div class="log-in-buttons-div">
+                    <button class="log-in-button" onclick="login()">Log in</button>
+                    <button class="guest-log-in-button">Guest Log in</button>
+                </div>
             </div>
-            <div class="log-in-buttons-div">
-                <button class="log-in-button">Log in</button>
-                <button class="guest-log-in-button">Guest Log in</button>
-            </div>
-        </div>
-    
+
         </div>
         <footer>
             <a class="footer-element-left">Privacy Policy</a>
             <a class="footer-element-right">Legal notice</a>
         </footer>
-        
+
     </main>
-    
+
 </body>
+
 </html>

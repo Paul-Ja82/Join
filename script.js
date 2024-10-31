@@ -1,5 +1,4 @@
-const BASE_URL =
-  "https://join-8e7b1-default-rtdb.europe-west1.firebasedatabase.app/";
+// const BASE_URL= "https://join-8e7b1-default-rtdb.europe-west1.firebasedatabase.app/";
 let subtasks = [];
 
 async function loadData(path = "") {
@@ -21,12 +20,12 @@ async function postData(path = "", data = {}) {
   console.log(responseToJson); // Optional: Ausgabe zur Überprüfung
 }
 
-async function saveData() {
-  /*let dueDate = document.getElementById("date").value;
-  let priority =
-    document.querySelector(".prioButtons.active")?.innerText || "Medium";
-  let category = document.getElementById("category").value;
-  let subtasks = document.getElementById("subtasks").value;*/
+/* async function saveData() {
+  // let dueDate = document.getElementById("date").value;
+  // let priority =
+  //   document.querySelector(".prioButtons.active")?.innerText || "Medium";
+  // let category = document.getElementById("category").value;
+  // let subtasks = document.getElementById("subtasks").value;
 
   let taskData = {
     title: document.getElementById("title").value,
@@ -36,7 +35,7 @@ async function saveData() {
 
   console.log(taskData);
   postData((path = "/tasks"), (data = taskData)); // Daten werden an Firebase gesendet
-}
+} */
 
 function saveSubtasks(params) {
   let textSubtask = document.getElementById("subtasks").value;
@@ -57,3 +56,50 @@ function clearInput() {
   document.getElementById("subtasks").value = "";
   document.getElementById("symbolsSubtasks").innerHTML = "+";
 }
+
+/*##########*/
+/*## INIT ##*/
+/*##########*/
+
+let currentUser;
+
+async function initJoin() {
+  initMPA();
+  await loadCurrentUser();
+  loadContacts();
+}
+
+async function loadContacts() {
+  contacts= [];
+  let path= CONTACTS_PATH + currentUser.id + '/';
+  let contactsObj= await getData(path);
+  for (let contactObjKey in contactsObj) {
+    contacts.push(contactsObj[contactObjKey]);
+  }
+}
+
+async function loadCurrentUser() {
+  let userId= getLoggedIn();
+  let path= (USERS_PATH) + userId;
+  currentUser= await getData(path);
+}
+
+/*##############*/
+/*## CONTACTS ##*/
+/*##############*/
+
+let contacts= [];
+
+
+function getContactById(id) {
+  return contacts.find(contactI => contactI.id == id);
+}
+
+function getContactByEmail(email) {
+  return contacts.find(contactI => contactI.email == email);
+}
+
+function getPersonIcon(id) {
+
+}
+

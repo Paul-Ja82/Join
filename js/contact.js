@@ -1,3 +1,9 @@
+let nameInput;
+let emailInput;
+let phoneInput;
+
+let emailAvailableContactFlag= false;
+
 let mediaDesktop = window.matchMedia('(768px < width)');
 mediaDesktop.addEventListener('change', mediaChangeHandler);
 
@@ -7,6 +13,7 @@ mediaDesktop.addEventListener('change', mediaChangeHandler);
 
 function initContact() {
     console.log('intitContact()'); ///DEBUG
+    initJoin();
     initForms();
     include();
     mediaChangeHandler();
@@ -53,6 +60,51 @@ function setInfo() {
 /*## ADD CONTACT ##*/
 /*#################*/
 
+function createContactHandler() {
+    loadInputValuesAddContact();
+    checkEmailAvailableContact();
+    if (emailAvailableContactFlag) {
+        addContact();
+        // Toast anzeigen
+        // Dialog schließen
+    } else {
+        console.warn('Contact mit dieser mail existiert bereits');
+    }
+}
+
+function loadInputValuesAddContact() {
+    nameInput = document.getElementById('nameInputElem').value;
+    emailInput= document.getElementById('emailInputElem').value;
+    phoneInput= document.getElementById('phoneInputElem').value;
+}
+
+function checkEmailAvailableContact() {
+    let contact= contacts.find(contactI => contactI.email == emailInput);
+    if (contact) emailAvailableContactFlag= false;
+    else return emailAvailableContactFlag= true;
+}
+
+async function addContact() {
+    let newId = await getId();
+    let path = CONTACTS_PATH + currentUser.id + '/' + newId;
+    let colorHex= getRandomColorHex();
+    let newContact = {
+        id: newId,
+        name: nameInput,
+        email: emailInput,
+        phone: phoneInput,
+        color: colorHex
+    };
+    saveData(path, newContact);
+    contacts.push(newContact);
+    //TODO Show Toast
+    console.log('addContact(): Contact wird angelegt.', newContact); ///DEBUG
+}
+
+/*########################*/
+/*## ADD CONTACT DIALOG ##*/
+/*########################*/
+
 function addContactButtonHandler() {
     clearAddContactForm();
     setContactDialogAdd();
@@ -89,7 +141,7 @@ function setFormAdd() {
     setButtonsAdd();
     // addValidation('contactForm', validateContactExisting, 'emailVmsg', 'You already added a contact with this email');
     // removeSubmitHandler('contactForm', submitHandlerEdit);
-    addSubmitHandler('contactForm', submitHandlerAdd);
+    addSubmitHandler('contactForm', createContactHandler);
 }
 
 function setButtonsAdd() {
@@ -97,10 +149,6 @@ function setButtonsAdd() {
     submitButtonText.innerHTML= 'Create contact';
     hideElem('cdDeleteButton');
     showElem('cdCancelButton');
-}
-
-function submitHandlerAdd() {
-    console.log('submitHandlerAdd()'); ///DEBUG
 }
 
 /*###########*/
@@ -113,4 +161,22 @@ function mediaChangeHandler() {
         // hideContactInfoButtonMobile();
     }
     else hideElem('detailContainer');
+}
+
+
+
+
+
+/*###########*/
+/*## DEBUG ##*/
+/*###########*/
+
+function tuEsContact() {
+
+}
+
+function logVarsContact() {
+    console.log(nameInput); ///DEBUG
+    console.log(emailInput); ///DEBUG
+    console.log(phoneInput); ///DEBUG
 }
