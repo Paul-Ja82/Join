@@ -63,13 +63,19 @@ function clearInput() {
 
 let currentUser;
 
-function initJoin() {
+async function initJoin() {
   initMPA();
-  loadCurrentUser();
+  await loadCurrentUser();
+  loadContacts();
 }
 
-function loadContacts() {
-
+async function loadContacts() {
+  contacts= [];
+  let path= CONTACTS_PATH + currentUser.id + '/';
+  let contactsObj= await getData(path);
+  for (let contactObjKey in contactsObj) {
+    contacts.push(contactsObj[contactObjKey]);
+  }
 }
 
 async function loadCurrentUser() {
@@ -86,7 +92,7 @@ let contacts= [];
 
 
 function getContactById(id) {
-
+  return contacts.find(contactI => contactI.id == id);
 }
 
 function getPersonIcon(id) {
