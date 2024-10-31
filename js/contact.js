@@ -62,9 +62,14 @@ function setInfo() {
 
 function createContactHandler() {
     loadInputValuesAddContact();
-    logVarsContact();
-    // checkEmailAvailableContact();
-    addContact();
+    checkEmailAvailableContact();
+    if (emailAvailableContactFlag) {
+        addContact();
+        // Toast anzeigen
+        // Dialog schließen
+    } else {
+        console.warn('Contact mit dieser mail existiert bereits');
+    }
 }
 
 function loadInputValuesAddContact() {
@@ -74,7 +79,9 @@ function loadInputValuesAddContact() {
 }
 
 function checkEmailAvailableContact() {
-
+    let contact= contacts.find(contactI => contactI.email == emailInput);
+    if (contact) emailAvailableContactFlag= false;
+    else return emailAvailableContactFlag= true;
 }
 
 async function addContact() {

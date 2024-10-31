@@ -95,6 +95,10 @@ function getContactById(id) {
   return contacts.find(contactI => contactI.id == id);
 }
 
+function getContactByEmail(email) {
+  return contacts.find(contactI => contactI.email == email);
+}
+
 function getPersonIcon(id) {
 
 }
