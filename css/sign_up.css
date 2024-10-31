@@ -231,6 +231,10 @@ a:hover {
     cursor: pointer;
 }
 
+#signUpFinalButton:disabled {
+    background-image: unset;
+}
+
 footer {
     width: 246px;
     height: 35px;

@@ -1,0 +1,8 @@
+
+/*##########*/
+/*## INIT ##*/
+/*##########*/
+
+function initSummary() {
+    initMPA();
+}
