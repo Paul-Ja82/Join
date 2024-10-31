@@ -51,7 +51,9 @@ function fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, s
             </div>
             <div class="single_task_subtasks_ctn">
                 <div class="single_task_line_header">Subtasks</div>
-                ${subTasks}
+                    <div class="single_task_subtask_collection">
+                        ${subTasks}
+                    </div>
             </div>
             <div class="single_task_delete_or_edit_ctn">
                 <div class="delete_or_edit_buttons">

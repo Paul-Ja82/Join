@@ -4,28 +4,28 @@ let allKeys = [];
 let id;
 
 let assignedToContacts = [
-    // {"contact_ID" : "contact0", "firstName" : "Lisa", "lastName" : "Mayer"},
-    // {"contact_ID" : "contact1", "firstName" : "Peter", "lastName" : "Müller"},
-    // {"contact_ID" : "contact2", "firstName" : "Helga", "lastName" : "Huber"},
+    {"contact_ID" : "contact0", "firstName" : "Lisa", "lastName" : "Mayer"},
+    {"contact_ID" : "contact1", "firstName" : "Peter", "lastName" : "Müller"},
+    {"contact_ID" : "contact2", "firstName" : "Helga", "lastName" : "Huber"},
     {"contact_ID" : "contact3", "firstName" : "Hans", "lastName" : "Krause"},
-    // {"contact_ID" : "contact4", "firstName" : "Ina", "lastName" : "Schmidt"},
+    {"contact_ID" : "contact4", "firstName" : "Ina", "lastName" : "Schmidt"},
 ]
 
 let subtaskCollection = [
-    // {"title" : "erster Schritt", "checked" : false},
-    // {"title" : "zweiter Schritt", "checked" : true},
+    {"title" : "erster Schritt", "checked" : false},
+    {"title" : "zweiter Schritt", "checked" : true},
     // {"title" : "dies", "checked" : false},
-    // {"title" : "das", "checked" : false},
-    // {"title" : "jenes", "checked" : true},
+    {"title" : "das", "checked" : false},
+    {"title" : "jenes", "checked" : true},
 ]
 
 async function collectData() {
     let taskData = {
         "assigned_to" : assignedToContacts,
         "category" : 'Technical Task',
-        "description" : "Testen der Erweiterung durch Dritte veranlassen",
+        "description" : "Einbinden der Zahlungsarten Paypal und Kreditkarte",
         "due_date" : "2024-11-20",
-        "priority" : "low",
+        "priority" : "medium",
         "subtasks" : subtaskCollection,
         "title" : "TestUser",
         // "task_ID" : `task${id}`,
