@@ -1,10 +1,20 @@
 body {
     width: 100%;
-    height: 100vh;
     margin: 0;
     max-width: 1440px;
+    overflow: auto;
     font-family: "Inter", sans-serif;
     background-color: rgb(246,247,248,1);
+}
+
+::-webkit-scrollbar {
+    background-color: rgb(246,247,248,1);
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(42, 54, 71, 1);  
+    border: none;
 }
 
 a {
@@ -23,13 +33,13 @@ a {
     position: absolute;
     top: 0px;
     width: 232px;
-    height: 1120px;
+    height: 1024px;
     background-color: rgba(63, 63, 151, 0.5);
 }
 
 .title-div {
     margin-left: 328px;
-    margin-top: 186px;
+    margin-top: 200px;
     width: 625px;
     height: 73px;
     display: flex;
@@ -58,7 +68,8 @@ a {
 
 .main-div {
     display: flex;
-    margin-top: 80px;
+    justify-content: space-between;
+    margin-top: 50px;
 }
 
 .tasks-div {
@@ -78,7 +89,7 @@ a {
 .to-do-div {
     width: 264px;
     height: 168px;
-    margin-right: 32px;
+    margin-right: 30px;
     box-shadow: 0px 0px 4px 0px  rgba(0, 0, 0, 0.1); 
     border-radius: 30px;
     background-color: rgba(255,255,255);
@@ -86,6 +97,7 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 16px;
     cursor: pointer;
 }
 
@@ -96,11 +108,15 @@ a {
     transform: scale(1.06);
 }
 
-.to-do-div:hover .pencil-img {
-    background-image: url(../assets/img/pencil-button-white.png);
+.to-do-div:hover .pencil-div-blue{
+    display: none;
 }
 
-.to-do-div:hover .to-do-amount {
+.to-do-div:hover .pencil-div-white{
+    display: block;
+}
+
+.to-do-div:hover .amount {
     color: rgba(255,255,255,1);
 }
 
@@ -110,42 +126,102 @@ a {
     background-color: rgba(255,255,255);
 }
 
-.to-do-div:active .pencil-img {
-    background-image: url(../assets/img/pencil-button.png);
+.to-do-div:active .pencil-div-blue{
+    display: block;
 }
 
-.to-do-div:active .to-do-amount {
+.to-do-div:active .pencil-div-white{
+    display: none;
+}
+
+.to-do-div:active .amount {
     color: rgba(0, 0, 0, 1);
 }
 
-.to-do {
-    width: 142px;
-    height: 101px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.no-gap {
+    gap: 0;
 }
 
-.pencil-img {
+.to-do {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.pencil-div-blue {
+    width: 69px;
+    height: 69px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(42, 54, 71, 1);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: block;
+}
+
+.pencil-white {
+    position: absolute;
+    top:18px;
+    left: 19px;
+}
+
+.pencil-div-white {
     width: 60px;
     height: 60px;
     border: none;
     border-radius: 50%;
-    background-image: url(../assets/img/pencil-button.png);
-    background-position: center;
-    background-size: contain;
-    margin-right: 10px;
+    background-color: rgba(255,255,255,1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    display: none;
+}
+
+.pencil-blue {
+    position: absolute;
+    top:13px;
+    left: 13px;
 }
 
 .to-do-amount {
-    width: 63px;
     height: 101px;
-    color: rgba(0, 0, 0, 1);
     display: flex;
     flex-direction: column;
     align-items:center;
     justify-content: center;
     text-align:end;
+}
+
+.amount {
+    height: 77px;
+    font-size: 64px;
+    color: rgba(0, 0, 0, 1);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 140px; 
+    transition: font-size 0.3s ease;
+}
+
+.amount-with-three{
+    padding-left:18px;
+    padding-right:5px;   
+    box-sizing: border-box;
+}
+
+.amount.enable-hover:hover {
+    font-size: 32px;
+    max-width: none;
+    margin-right: 8px;
+    margin-top: 31px;
+}
+
+.amount.enable-hover:hover::after {
+    display: inline;
 }
 
 .to-do-amount-undertitle {
@@ -174,6 +250,7 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 16px;
     cursor: pointer;
 }
 
@@ -184,11 +261,15 @@ h3 {
     transform: scale(1.06);
 }
 
-.done-div:hover .check-img{
-    background-image: url(../assets/img/check-button-white.png);
+.done-div:hover .vector-div-blue{
+    display: none;
 }
 
-.done-div:hover .check-amount {
+.done-div:hover .vector-div-white{
+    display: block;
+}
+
+.done-div:hover .amount {
     color: rgba(255,255,255,1);
 }
 
@@ -199,37 +280,68 @@ h3 {
     color: rgba(42, 54, 71, 1);
 }
 
-.done-div:active .check-img {
-    background-image: url(../assets/img/check-button.png);
+.done-div:active .vector-div-blue{
+    display: block;
 }
 
-.done-div:active .check-amount {
+.done-div:active .vector-div-white{
+    display: none;
+}
+
+.done-div:active .amount {
     color: rgba(0, 0, 0, 1);
 }
 
 .done {
-    width: 142px;
-    height: 101px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    gap: 16px;
 }
 
-.check-img{
+.vector-div-blue {
+    width: 69px;
+    height: 69px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(42, 54, 71, 1);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vector-white {
+    width: 37px;
+    height: 30px;
+    position: absolute;
+    top:19px;
+    left: 16px;
+}
+
+.vector-div-white {
     width: 60px;
     height: 60px;
     border: none;
     border-radius: 50%;
-    background-image: url(../assets/img/check-button.png);
-    background-position: center;
-    background-size: cover;
-    margin-right: 10px;
+    background-color: rgba(255,255,255,1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    display: none;
+}
+
+.vector-blue {
+    width: 37px;
+    height: 30px;
+    position: absolute;
+    top:15px;
+    left: 12px;
 }
 
 .check-amount {
-    width: 50px;
     height: 101px;
-    color: rgba(0, 0, 0, 1);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -240,7 +352,7 @@ h3 {
 .to-do-urgency-div {
     width: 560px;
     height: 168px;
-    margin-bottom: 29px;
+    margin-bottom: 30px;
     margin-top: 30px;
     border-radius: 30px;
     box-shadow: 0px 0px 4px 0px  rgba(0, 0, 0, 0.1);
@@ -258,7 +370,7 @@ h3 {
     transform: scale(1.06);
 }
 
-.to-do-urgency-div:hover .urgency-amount {
+.to-do-urgency-div:hover .amount {
     color: rgba(255,255,255,1);
 }
 
@@ -269,7 +381,7 @@ h3 {
     color: rgba(42, 54, 71, 1);
 }
 
-.to-do-urgency-div:active .urgency-amount {
+.to-do-urgency-div:active .amount {
     color: rgba(0, 0, 0, 1);
 }
 
@@ -282,17 +394,16 @@ h3 {
 }
 
 .urgency {
-    width: 130px;
     height: 96px;
+    gap: 16px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    border: none;
 }
 
 .urgency-img-div {
-    width: 60px;
-    height: 60px;
+    width: 69px;
+    height: 69px;
     border: none;
     border-radius: 50%;
     background-color:rgb(255, 61, 0, 1);
@@ -301,21 +412,19 @@ h3 {
     justify-content: center;
 }
 
-.urgency-divider {
-    width: 2px;
-    height: 102.02px;
-    background-color: rgb(209, 209, 209);
-}
-
 .urgency-amount {
-    width: 63px;
     height: 101px;
-    color: rgba(0, 0, 0, 1);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
+}
+
+.urgency-divider {
+    width: 2px;
+    height: 102.02px;
+    background-color: rgb(209, 209, 209);
 }
 
 .deadline-div {
@@ -364,6 +473,10 @@ small {
     cursor: pointer;
 }
 
+.t-in-board-undertitle {
+    text-align: center;
+}
+
 .t-in-board-div:hover {
     box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.25);
     background-color: rgba(42, 54, 71, 1);
@@ -371,7 +484,7 @@ small {
     transform: scale(1.06);
 }
 
-.t-in-board-div:hover .t-in-board-amount {
+.t-in-board-div:hover .amount {
     color: rgba(255,255,255,1);
 }
 
@@ -382,12 +495,11 @@ small {
     color: rgba(42, 54, 71, 1);
 }
 
-.t-in-board-div:active .t-in-board-amount {
+.t-in-board-div:active .amount {
     color: rgba(0, 0, 0, 1);
 }
 
 .t-in-board {
-    width: 83px;
     height: 125px;
     display: flex;
     flex-direction: column;
@@ -420,7 +532,7 @@ small {
     transform: scale(1.06);
 }
 
-.t-in-progress-div:hover .t-in-progress-amount {
+.t-in-progress-div:hover .amount {
     color: rgba(255,255,255,1);
 }
 
@@ -431,7 +543,7 @@ small {
     color: rgba(42, 54, 71, 1);
 }
 
-.t-in-progress-div:active .t-in-progress-amount {
+.t-in-progress-div:active .amount {
     color: rgba(0, 0, 0, 1);
 }
 
@@ -443,10 +555,6 @@ small {
     align-items: center;
     justify-content: center;
     text-align: center;
-}
-
-.t-in-progress-amount {
-    color: rgba(0, 0, 0, 1);
 }
 
 .awaiting-feedback-div {
@@ -469,7 +577,7 @@ small {
     transform: scale(1.06);
 }
 
-.awaiting-feedback-div:hover .feedback-amount {
+.awaiting-feedback-div:hover .amount {
     color: rgba(255,255,255,1);
 }
 
@@ -480,7 +588,7 @@ small {
     color: rgba(42, 54, 71, 1);
 }
 
-.awaiting-feedback-div:active .feedback-amount {
+.awaiting-feedback-div:active .amount {
     color: rgba(0, 0, 0, 1);
 }
 
@@ -500,15 +608,9 @@ small {
 
 .greetings-div {
     width: 550px;
-    height: 562px;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.greetings-frame {
-    width: 385px;
-    height: 136px;
 }
 
 .greting {
@@ -518,7 +620,7 @@ small {
 
 .greeted-name {
     font-size: 64px;
-    font-weight: 700px;
+    font-weight: 700;
     color: rgba(41, 171, 226, 1);
 }
 

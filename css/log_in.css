@@ -1,11 +1,15 @@
 body {
     width: 100%;
-    height: 100vh;
     margin: 0;
-    max-width: 1900;
+    max-width: 1440px;
     overflow: auto;
     font-family: "Inter", sans-serif;
     background-color: rgb(246,247,248,1);
+}
+
+.main-frame-div {
+    position: relative;
+
 }
 
 ::-webkit-scrollbar {
@@ -18,33 +22,60 @@ body {
     border: none;
 }
 
-header {
-    margin-left: 70px;
-    margin-right: 110px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.logo-header {
-     width: 100px;
-     height: 122px;
-     margin-top: 80px;
-}
-
-.logo-img {
-    width: 100px;
-    height: 122px;
+.j-logo-img {
+    width: 274px;
+    height: 334.07px;
     object-fit: cover;
     object-position: center;
 }
 
+.start-position {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.animate-logo {
+    position: fixed;
+    top: 35%;
+    left: 31%;
+    animation: logoShrink 0.7s ease forwards;
+    animation-delay: 0.2s; 
+}
+
+@keyframes logoShrink {
+    0% {
+        width: 274px;
+        height: 334.07px;
+        transform: translate(-35%, -35%) scale(1);
+    }
+    100% {
+        width: 100.03px;
+        height: 121.97px;
+        transform: translate(0, 0) scale(1);
+        top: 80px;
+        left: 77px;
+    }
+}
+
 .sign-up-div {
-    width: 279px;
+    width: 100%;
     height: 49px;
-    margin-top: 67px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.sign-up-under-div {
+    margin-left: 1039px;
+    margin-top: 67px;
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
 }
 
 h3 {
@@ -94,19 +125,22 @@ main {
 .log-in-div {
     width: 652px;
     height: 493px;
-    margin-top: 60px;
-    background-color: rgba(255,255,255);
-    box-shadow: 0px 0px 4px 0px  rgba(0, 0, 0, 0.1);  
+    margin-top: 140px;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
     border-radius: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
 }
 
 .log-in-header {
     font-size: 61px;
     font-weight: 700px;
-    margin-bottom: 15px;
+    margin-bottom: 14px;
 }
 
 .divider {
@@ -118,7 +152,7 @@ main {
 .input-main-div {
     width: 422px;
     height: 196px;
-    margin-top: 30px;
+    margin-top: 32px;
 }
 
 .log-input {
@@ -140,7 +174,7 @@ main {
 }
 
 .email-input-div {
-    width: 422px;
+    width: 100%;
     height: 48px;
     margin-bottom: 30px;
     border: solid 1px rgb(209, 209, 209);  
@@ -158,7 +192,7 @@ main {
 }
 
 .password-input-div {
-    width: 422px;
+    width: 100%;
     height: 48px;
     margin-bottom: 30px;
     border: solid 1px rgb(209, 209, 209);  
@@ -291,7 +325,7 @@ footer {
     width: 246px;
     height: 35px;
     margin-top: 185px;
-    margin-bottom: 85px;
+    margin-left: 597px;
     gap: 8px;
 }
 
@@ -317,5 +351,97 @@ footer {
 .footer-element-left:hover {
     color: rgba(41, 171, 226, 1);
 }
+
+/* 
++
++
++
++
++
++                    mobile
+*/
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-up-divmobile {
+    width: 100%;
+    height: 49px;
+    display: flex;                    /*gleich*/
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sign-up-under-divmobile {
+    margin-left: 70px;
+    margin-top: 52px;
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    
+    /*visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;  ewtl */
+}
+
+/*
++++++++++++log-in++++++
+*/
+
+.log-in-divmobile {
+    width: 396px;
+    height: 515px;
+    margin-top: 205.5px;
+}
+
+.log-in-headermobile {
+    font-size: 47px;
+    font-weight: 700px;
+    margin-bottom: 14px;
+}
+
+.dividermobile {
+    width: 88px;
+    height: 3px;
+    background-color: rgba(41, 171, 226, 1);
+}
+
+.input-main-divmobile {
+    width: 364px;
+    height: 152px;
+    margin-top: 32px;
+}
+
+.log-inputmobile {
+    width: 364px;
+    height: 48px;
+    margin-left: 20px;
+    padding-top: 6px;
+}
+
+.log-in-buttons-divmobile {
+    width: 180px;
+    height: 123px;
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
+}
+
+.log-in-button {
+    width: 180px;
+    height: 51px;
+    font-size: 16px;
+}
+
+.guest-log-in-buttonmopbile {
+    width: 180px;
+    height: 51px;
+    font-size: 16px;
+}
+
 
 
