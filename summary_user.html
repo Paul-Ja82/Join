@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SummaryUser-Join</title>
     <link rel="stylesheet" href="css/summary.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <script src="./js/database.js"></script>
+    <script src="./js/multi-page-app.js"></script>
+    <script src="./js/summary.js"></script>
 </head>
-<body onload="checkAmountWidth()">
+
+<body onload="initSummary()"; onload="checkAmountWidth()">
     <header class="dummy_header" id="dummyHeader"></header>
     <div class="dummy_menu" id="dummyHeader"></div>
     <div class="title-div">
@@ -65,12 +72,12 @@
                         <small class="urgency-amount-undertitle">Urgent</small>
                     </div>
                 </div>
-            </div>  
-            <div class="urgency-divider"></div>
-            <div class="deadline-div">
-                <div class="deadline">
-                    <h4 class="deadline-date">November 20, 2024</h4>
-                    <small class="deadline-undertitle">Upcoming Deadline</small>
+                <div class="urgency-divider"></div>
+                <div class="deadline-div">
+                    <div class="deadline">
+                        <h4 class="deadline-date">November 20, 2024</h4>
+                        <small class="deadline-undertitle">Upcoming Deadline</small>
+                    </div>
                 </div>
             </div>
         </div>
@@ -107,8 +114,6 @@
         <div class="greting" id="greetingSummaryUser">Good morning,</div>
         <div class="greeted-name" id="greetedName">Sofia Müller</div>
     </div>
-</div>
-</div>
 </body>
 <script src="js/summary.js"></script>
 </html>
