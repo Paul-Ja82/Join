@@ -80,11 +80,13 @@ function checkEmailAvailableContact() {
 async function addContact() {
     let newId = await getId();
     let path = CONTACTS_PATH + currentUser.id + '/' + newId;
+    let colorHex= getRandomColorHex();
     let newContact = {
         id: newId,
         name: nameInput,
         email: emailInput,
-        phone: phoneInput
+        phone: phoneInput,
+        color: colorHex
     };
     saveData(path, newContact);
     contacts.push(newContact);
