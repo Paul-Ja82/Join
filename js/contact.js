@@ -13,6 +13,7 @@ mediaDesktop.addEventListener('change', mediaChangeHandler);
 
 function initContact() {
     console.log('intitContact()'); ///DEBUG
+    initJoin();
     initForms();
     include();
     mediaChangeHandler();
@@ -71,7 +72,7 @@ function loadInputValuesAddContact() {
 }
 
 function checkEmailAvailableContact() {
-    
+
 }
 
 /*########################*/

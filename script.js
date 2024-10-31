@@ -1,5 +1,4 @@
-const BASE_URL =
-  "https://join-8e7b1-default-rtdb.europe-west1.firebasedatabase.app/";
+// const BASE_URL= "https://join-8e7b1-default-rtdb.europe-west1.firebasedatabase.app/";
 let subtasks = [];
 
 async function loadData(path = "") {
@@ -65,15 +64,18 @@ function clearInput() {
 let currentUser;
 
 function initJoin() {
-
+  initMPA();
+  loadCurrentUser();
 }
 
 function loadContacts() {
 
 }
 
-function loadCurrentUser() {
-  
+async function loadCurrentUser() {
+  let userId= getLoggedIn();
+  let path= (USERS_PATH) + userId;
+  currentUser= await getData(path);
 }
 
 /*##############*/
