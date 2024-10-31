@@ -94,7 +94,7 @@ function checkValidUser() {
 /*#############*/
 
 function signup() {
-    resetFlags();
+    resetFlagsSignUp();
     loadInputValuesSignUp();
     checkNameInput();
     checkEmailInput();
