@@ -1,6 +1,8 @@
+
 const BASE_URL =
   "https://join-8e7b1-default-rtdb.europe-west1.firebasedatabase.app/";
 const priorityClasses = ["low", "medium", "urgent"];
+
 let subtasks = [];
 let selectedPrio = "";
 let selectedContacts = [];
@@ -39,6 +41,7 @@ async function postData(path = "", data = {}) {
 
 async function saveData() {
 
+
   let taskData = {
     title: document.getElementById("title").value,
     description: document.getElementById("description").value,
@@ -52,6 +55,7 @@ async function saveData() {
   };
 
   console.log(taskData);
+
   await postData((path = "/tasks"), (data = taskData));
   location.reload();
 }
@@ -85,6 +89,7 @@ function filterContacts() {
 function closeContactList() {
   document.getElementById("insertContactList").innerHTML = "";
 }
+
 
 function changeCheckbox(index) {
   const checkbox = document.getElementById(`checkbox${index}`);
@@ -309,5 +314,50 @@ function validateForm() {
   
   
   return title && date && category;
+=======
+/*##########*/
+/*## INIT ##*/
+/*##########*/
+
+let currentUser;
+
+async function initJoin() {
+  initMPA();
+  await loadCurrentUser();
+  loadContacts();
+}
+
+async function loadContacts() {
+  contacts= [];
+  let path= CONTACTS_PATH + currentUser.id + '/';
+  let contactsObj= await getData(path);
+  for (let contactObjKey in contactsObj) {
+    contacts.push(contactsObj[contactObjKey]);
+  }
+}
+
+async function loadCurrentUser() {
+  let userId= getLoggedIn();
+  let path= (USERS_PATH) + userId;
+  currentUser= await getData(path);
+}
+
+/*##############*/
+/*## CONTACTS ##*/
+/*##############*/
+
+let contacts= [];
+
+
+function getContactById(id) {
+  return contacts.find(contactI => contactI.id == id);
+}
+
+function getContactByEmail(email) {
+  return contacts.find(contactI => contactI.email == email);
+}
+
+function getPersonIcon(id) {
+
 }
 
