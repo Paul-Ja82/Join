@@ -58,3 +58,35 @@ function clearInput() {
   document.getElementById("symbolsSubtasks").innerHTML = "+";
 }
 
+/*##########*/
+/*## INIT ##*/
+/*##########*/
+
+let currentUser;
+
+function initJoin() {
+
+}
+
+function loadContacts() {
+
+}
+
+function loadCurrentUser() {
+  
+}
+
+/*##############*/
+/*## CONTACTS ##*/
+/*##############*/
+
+let contacts= [];
+
+
+function getContactById(id) {
+
+}
+
+function getPersonIcon(id) {
+
+}

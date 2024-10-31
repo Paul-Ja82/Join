@@ -1,3 +1,9 @@
+let nameInput;
+let emailInput;
+let phoneInput;
+
+let emailAvailableContactFlag= false;
+
 let mediaDesktop = window.matchMedia('(768px < width)');
 mediaDesktop.addEventListener('change', mediaChangeHandler);
 
@@ -53,6 +59,25 @@ function setInfo() {
 /*## ADD CONTACT ##*/
 /*#################*/
 
+function addContact() {
+    loadInputValuesAddContact();
+    logVarsContact();
+}
+
+function loadInputValuesAddContact() {
+    nameInput = document.getElementById('nameInputElem').value;
+    emailInput= document.getElementById('emailInputElem').value;
+    phoneInput= document.getElementById('phoneInputElem').value;
+}
+
+function checkEmailAvailableContact() {
+    
+}
+
+/*########################*/
+/*## ADD CONTACT DIALOG ##*/
+/*########################*/
+
 function addContactButtonHandler() {
     clearAddContactForm();
     setContactDialogAdd();
@@ -100,7 +125,7 @@ function setButtonsAdd() {
 }
 
 function submitHandlerAdd() {
-    console.log('submitHandlerAdd()'); ///DEBUG
+    addContact();
 }
 
 /*###########*/
@@ -113,4 +138,22 @@ function mediaChangeHandler() {
         // hideContactInfoButtonMobile();
     }
     else hideElem('detailContainer');
+}
+
+
+
+
+
+/*###########*/
+/*## DEBUG ##*/
+/*###########*/
+
+function tuEsContact() {
+
+}
+
+function logVarsContact() {
+    console.log(nameInput); ///DEBUG
+    console.log(emailInput); ///DEBUG
+    console.log(phoneInput); ///DEBUG
 }
