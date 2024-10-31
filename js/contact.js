@@ -60,9 +60,11 @@ function setInfo() {
 /*## ADD CONTACT ##*/
 /*#################*/
 
-function addContact() {
+function createContactHandler() {
     loadInputValuesAddContact();
     logVarsContact();
+    // checkEmailAvailableContact();
+    addContact();
 }
 
 function loadInputValuesAddContact() {
@@ -73,6 +75,21 @@ function loadInputValuesAddContact() {
 
 function checkEmailAvailableContact() {
 
+}
+
+async function addContact() {
+    let newId = await getId();
+    let path = CONTACTS_PATH + currentUser.id + '/' + newId;
+    let newContact = {
+        id: newId,
+        name: nameInput,
+        email: emailInput,
+        phone: phoneInput
+    };
+    saveData(path, newContact);
+    contacts.push(newContact);
+    //TODO Show Toast
+    console.log('addContact(): Contact wird angelegt.', newContact); ///DEBUG
 }
 
 /*########################*/
@@ -115,7 +132,7 @@ function setFormAdd() {
     setButtonsAdd();
     // addValidation('contactForm', validateContactExisting, 'emailVmsg', 'You already added a contact with this email');
     // removeSubmitHandler('contactForm', submitHandlerEdit);
-    addSubmitHandler('contactForm', submitHandlerAdd);
+    addSubmitHandler('contactForm', createContactHandler);
 }
 
 function setButtonsAdd() {
@@ -123,10 +140,6 @@ function setButtonsAdd() {
     submitButtonText.innerHTML= 'Create contact';
     hideElem('cdDeleteButton');
     showElem('cdCancelButton');
-}
-
-function submitHandlerAdd() {
-    addContact();
 }
 
 /*###########*/

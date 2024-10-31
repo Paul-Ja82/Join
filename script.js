@@ -20,12 +20,12 @@ async function postData(path = "", data = {}) {
   console.log(responseToJson); // Optional: Ausgabe zur Überprüfung
 }
 
-async function saveData() {
-  /*let dueDate = document.getElementById("date").value;
-  let priority =
-    document.querySelector(".prioButtons.active")?.innerText || "Medium";
-  let category = document.getElementById("category").value;
-  let subtasks = document.getElementById("subtasks").value;*/
+/* async function saveData() {
+  // let dueDate = document.getElementById("date").value;
+  // let priority =
+  //   document.querySelector(".prioButtons.active")?.innerText || "Medium";
+  // let category = document.getElementById("category").value;
+  // let subtasks = document.getElementById("subtasks").value;
 
   let taskData = {
     title: document.getElementById("title").value,
@@ -35,7 +35,7 @@ async function saveData() {
 
   console.log(taskData);
   postData((path = "/tasks"), (data = taskData)); // Daten werden an Firebase gesendet
-}
+} */
 
 function saveSubtasks(params) {
   let textSubtask = document.getElementById("subtasks").value;
