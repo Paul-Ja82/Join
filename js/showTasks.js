@@ -16,6 +16,9 @@ function checkTaskSections() {
 }
 
 function pushTasksToArray() {
+    console.log(allTasks);
+    console.log(allKeys);
+    
     for (let i = 0; i < allKeys.length; i++) {
         if (allTasks[`${allKeys[i]}`].currentStatus === "todo") {
             tasksTodo.push(allTasks[`${allKeys[i]}`])
@@ -33,6 +36,8 @@ function pushTasksToArray() {
 }
 
 function fillTaskSections(section, tasks) {
+    console.log(tasks);
+    
     document.getElementById(section).innerHTML = "";
     for (let i = 0; i < tasks.length; i++) {
         let assignedTocontacts = checkAssignedTo(tasks, i);
@@ -42,6 +47,10 @@ function fillTaskSections(section, tasks) {
         let width = calcProcessBarWidth(checkedSubtasks, subtasksLength);
         createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, width, checkedSubtasks, subtasksLength)
     }
+    // let moveToShadow = document.createElement("div")
+    // moveToShadow.className = "move_to_shadow";
+    // moveToShadow.id = `shadow_move_to_${section}`;
+    // document.getElementById(section).appendChild(moveToShadow)
     checkTaskCategoryColor("single_task_category")
     showSubtaskCtn()
     nothingTodoOrDone()
@@ -169,6 +178,10 @@ function showSubtaskCtn() {
 }
 
 function nothingTodoOrDone() {
+      document.getElementById("to_do_tasks_nothing").style.display = "none";
+      document.getElementById("in_progress_tasks_nothing").style.display = "none";
+      document.getElementById("await_feedback_tasks_nothing").style.display = "none";
+      document.getElementById("done_tasks_nothing").style.display = "none";
     if (document.getElementById("to_do_tasks").innerHTML == "") {
         document.getElementById("to_do_tasks_nothing").style.display = "flex"
     } else if (document.getElementById("in_progress_tasks").innerHTML == "") {

@@ -73,6 +73,18 @@ async function putID(path="", data={}) {
     let responseToJson = await response.json();
 }
 
+async function putNewCategory(path="", data={}) {
+    let response = await fetch(firebase_URL + path + ".json", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
+    });
+    let responseToJson = await response.json();
+    // console.log(responseToJson);
+}
+
 async function putNewCheckedStatus(path="", data={}) {
     let response = await fetch(firebase_URL + path + ".json", {
         method: "PUT",

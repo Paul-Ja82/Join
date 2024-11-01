@@ -47,11 +47,16 @@
                         </svg>
                     </div>
                 </div>
-                <div id="tasks_area_add_task" class="tasks_area">
+                <div id="tasks_area_add_task" class="tasks_area" >
                     <div id="to_do_tasks_nothing" class="task_nothing_todo">No tasks To do</div>
-                    <div ondrop="moveTo('to_do_tasks')" ondragover="allowDrop(event)" class="task_section_tasks_area" id="to_do_tasks">
-                      
+                    <div 
+                        ondrop="moveTo('todo')" 
+                        ondragenter="showShadow('shadow_move_to_to_do_tasks')" 
+                        ondragover="allowDrop(event)" 
+                        ondragleave="removeShadow('shadow_move_to_to_do_tasks')" 
+                        class="task_section_tasks_area" id="to_do_tasks">
                     </div>
+                    <!-- <div id="shadow_move_to_todo" class="move_to_shadow"></div> -->
                 </div>
             </div>
             <div id="task_section_in_progress" class="task_section">
@@ -64,9 +69,14 @@
                         </svg>
                     </div>
                 </div>
-                <div id="tasks_area_in_progress" class="tasks_area">
+                <div id="tasks_area_in_progress" class="tasks_area" >
                     <div id="in_progress_tasks_nothing" class="task_nothing_todo">No tasks To do</div>
-                    <div ondrop="moveTo('in_progress_tasks')" ondragover="allowDrop(event)" class="task_section_tasks_area" id="in_progress_tasks">
+                    <div 
+                        ondrop="moveTo('inProgress')" 
+                        ondragenter="showShadow('shadow_move_to_in_progress_tasks')" 
+                        ondragleave="removeShadow('shadow_move_to_in_progress_tasks')" 
+                        ondragover="allowDrop(event)" 
+                        class="task_section_tasks_area" id="in_progress_tasks">
                         <!-- <div draggable="true" ondragstart="startDragging(0)" onclick="openTaskOverlay(event)" id="single_task_ctn1" class="single_task_ctn">
                             <div class="single_task_category">User Story</div>
                             <div class="single_task_headline">Contact Form & Imprint</div>
@@ -89,9 +99,10 @@
                             </div>
                         </div> -->
                     </div>
+                    <!-- <div id="shadow_move_to_in_progress" class="move_to_shadow"></div> -->
                 </div>
             </div>
-            <div id="task_section_await_feedback" class="task_section">
+            <div id="task_section_await_feedback" class="task_section" >
                 <div class="task_section_header">
                     <span>Await feedback</span>
                     <div class="board_move_task_btn">
@@ -103,7 +114,12 @@
                 </div>
                 <div id="tasks_area_await_feedback" class="tasks_area">
                     <div id="await_feedback_tasks_nothing"  class="task_nothing_todo">No tasks To do</div>
-                    <div ondrop="moveTo('await_feedback_tasks')" ondragover="allowDrop(event)"class="task_section_tasks_area" id="await_feedback_tasks">
+                    <div 
+                        ondrop="moveTo('awaitFeedback')" 
+                        ondragover="allowDrop(event)" 
+                        ondragenter="showShadow('shadow_move_to_await_feedback_tasks')" 
+                        ondragleave="removeShadow('shadow_move_to_await_feedback_tasks')"
+                        class="task_section_tasks_area" id="await_feedback_tasks">
                         <!-- <div draggable="true" ondragstart="startDragging(1)" onclick="openTaskOverlay(event)" id="single_task_ctn2" class="single_task_board single_task_ctn">
                             <div class="single_task_category">Technical Task</div>
                             <div class="single_task_headline">HTML Base Template Creation</div>
@@ -147,15 +163,21 @@
                             </div>
                         </div> -->
                     </div>
+                    <!-- <div id="shadow_move_to_await_feedback" class="move_to_shadow"></div> -->
                 </div>
             </div>
             <div id="task_section_done" class="task_section">
                 <div class="task_section_header">
                     <span>Done</span>
                 </div>
-                <div id="tasks_area_done" class="tasks_area">
+                <div id="tasks_area_done" class="tasks_area" >
                     <div id="done_tasks_nothing" class="task_nothing_todo">No tasks Done</div>
-                    <div ondrop="moveTo('done_tasks')" ondragover="allowDrop(event)" class="task_section_tasks_area" id="done_tasks">
+                    <div 
+                        ondrop="moveTo('done')" 
+                        ondragenter="showShadow('shadow_move_to_done_tasks')" 
+                        ondragover="allowDrop(event)" 
+                        ondragleave="removeShadow('shadow_move_to_done_tasks')" 
+                        class="task_section_tasks_area" id="done_tasks">
                         <!-- <div draggable="true" ondragstart="startDragging(3)" onclick="openTaskOverlay(event)" id="single_task_ctn4" class="single_task_ctn">
                             <div class="single_task_category">Technical Task</div>
                             <div class="single_task_headline">CSS Architecture Planning</div>
@@ -177,6 +199,7 @@
                             </div>
                         </div> -->
                     </div>
+                    <!-- <div id="shadow_move_to_done" class="move_to_shadow"></div> -->
                 </div>
             </div>
         </div>
