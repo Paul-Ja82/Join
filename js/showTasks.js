@@ -16,8 +16,8 @@ function checkTaskSections() {
 }
 
 function pushTasksToArray() {
-    console.log(allTasks);
-    console.log(allKeys);
+    // console.log(allTasks);
+    // console.log(allKeys);
     
     for (let i = 0; i < allKeys.length; i++) {
         if (allTasks[`${allKeys[i]}`].currentStatus === "todo") {
@@ -36,7 +36,7 @@ function pushTasksToArray() {
 }
 
 function fillTaskSections(section, tasks) {
-    console.log(tasks);
+    // console.log(tasks);
     
     document.getElementById(section).innerHTML = "";
     for (let i = 0; i < tasks.length; i++) {
@@ -47,10 +47,10 @@ function fillTaskSections(section, tasks) {
         let width = calcProcessBarWidth(checkedSubtasks, subtasksLength);
         createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, width, checkedSubtasks, subtasksLength)
     }
-    // let moveToShadow = document.createElement("div")
-    // moveToShadow.className = "move_to_shadow";
-    // moveToShadow.id = `shadow_move_to_${section}`;
-    // document.getElementById(section).appendChild(moveToShadow)
+    let moveToShadow = document.createElement("div")
+    moveToShadow.className = "move_to_shadow";
+    moveToShadow.id = `shadow_move_to_${section}`;
+    document.getElementById(section).appendChild(moveToShadow)
     checkTaskCategoryColor("single_task_category")
     showSubtaskCtn()
     nothingTodoOrDone()
@@ -133,7 +133,14 @@ function calcProcessBarWidth(checkedSubtasks, subtasksLength) {
 
 function createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, width, checkedSubtasks, subtasksLength) {
     document.getElementById(section).innerHTML += `
-    <div draggable="true" ondragstart="startDragging(${tasks[i].single_ID})" onclick="checkTask(event)" id="single_task_ctn${tasks[i].single_ID}" class="single_task_ctn">
+    <div draggable="true" 
+        ondrag="whileDragging(event)"
+        ondragstart="startDragging(${tasks[i].single_ID}, event, ${section})" 
+        onmousedown="onMouseDown(${tasks[i].single_ID}, event)"
+        onmousemove="onMouseMove(event)" 
+        onclick="checkTask(event)" 
+        onmouseup="endDragging(event)" 
+    id="single_task_ctn${tasks[i].single_ID}" class="single_task_ctn">
       <div class="single_task_category">${tasks[i].category}</div>
       <div class="single_task_headline">${tasks[i].title}</div>
       <div class="single_task_description">${tasks[i].description}</div>
