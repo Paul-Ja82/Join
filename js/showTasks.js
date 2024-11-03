@@ -42,14 +42,19 @@ function fillTaskSections(section, tasks) {
         let width = calcProcessBarWidth(checkedSubtasks, subtasksLength);
         createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, width, checkedSubtasks, subtasksLength)
     }
+    let moveToShadow = document.createElement("div")
+    moveToShadow.className = "move_to_shadow";
+    moveToShadow.id = `shadow_move_to_${section}`;
+    nothingTodoOrDone(tasks, section)
+    document.getElementById(section).appendChild(moveToShadow)
     checkTaskCategoryColor("single_task_category")
     showSubtaskCtn()
-    nothingTodoOrDone()
 }
 
 function checkAssignedTo(tasks, i) {
     let contactsIconsTemplate = "";
     for (let j = 0; j < tasks[i].assigned_to.length; j++) {
+        
         let charOneFirstName = tasks[i].assigned_to[j].firstName.charAt(0)
         let charOneLastName = tasks[i].assigned_to[j].lastName.charAt(0)
         contactsIconsTemplate += `
@@ -124,24 +129,40 @@ function calcProcessBarWidth(checkedSubtasks, subtasksLength) {
 
 function createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, width, checkedSubtasks, subtasksLength) {
     document.getElementById(section).innerHTML += `
-    <div draggable="true" ondragstart="startDragging(${tasks[i].single_ID})" onclick="checkTask(event)" id="single_task_ctn${tasks[i].single_ID}" class="single_task_ctn">
-      <div class="single_task_category">${tasks[i].category}</div>
-      <div class="single_task_headline">${tasks[i].title}</div>
-      <div class="single_task_description">${tasks[i].description}</div>
-      <div id="single_task_progress_ctn${tasks[i].single_ID}" class="single_task_progress_ctn">
-          <div class="single_task_progress_bar_background">
-              <div style="width: ${width};" id="processLineTask${tasks[i].single_ID}" class="single_task_progress_bar_process_line"></div>
-          </div>
-          <div class="subtasks">${checkedSubtasks}/${subtasksLength} Subtasks</div>
-      </div>
-      <div class="single_tasks_contacts_and_priority">
-          <div id="single_task_contacts_ctn${tasks[i].single_ID}" class="single_task_contacts_ctn">
-              ${assignedTocontacts}
-          </div>
-          <div id="single_task_priority${tasks[i].single_ID}" class="single_task_priority">
+    <div draggable="true" 
+        onmousedown="cloneElement(${tasks[i].single_ID}, event)"
+        ondragstart="startDragging(event)" 
+        ondrag="whileDragging(event)"
+        onclick="checkTask(event)"  
+    id="single_task_ctn${tasks[i].single_ID}" class="single_task_ctn">
+        <div class="single_task_category">${tasks[i].category}</div>
+        <div class="single_task_headline">${tasks[i].title}</div>
+        <div class="single_task_description">${tasks[i].description}</div>
+        <div id="single_task_progress_ctn${tasks[i].single_ID}" class="single_task_progress_ctn">
+            <div class="single_task_progress_bar_background">
+                <div style="width: ${width};" id="processLineTask${tasks[i].single_ID}" class="single_task_progress_bar_process_line"></div>
+            </div>
+            <div class="subtasks">${checkedSubtasks}/${subtasksLength} Subtasks</div>
+        </div>
+        <div class="single_tasks_contacts_and_priority">
+            <div id="single_task_contacts_ctn${tasks[i].single_ID}" class="single_task_contacts_ctn">
+                ${assignedTocontacts}
+            </div>
+            <div id="single_task_priority${tasks[i].single_ID}" class="single_task_priority">
             ${priorityImg}
-          </div>
-      </div>
+            </div>
+        </div>
+        <div class="move_to_section_button_and_menu">
+            <div onclick="openMenuMovingTask(${tasks[i].category})" class="move_to_section_button">
+                <img src="./assets/img/icons8-move-50.png" alt="Pfeil in alle Richtungen">
+            </div>
+            <div id="move_to_s_from_${tasks[i].category}" class="move_to_section_menu">
+                <div class="link_section">To Do</div>
+                <div class="link_section">In Progress</div>
+                <div class="link_section">Await Feedback</div>
+                <div class="link_section">Done</div>
+            </div>
+        </div>
   </div>
   `
 }
@@ -159,23 +180,17 @@ function checkTaskCategoryColor(classname) {
 
 function showSubtaskCtn() {
     let subtascsCtn = document.getElementsByClassName("single_task_progress_ctn");
-    // console.log(subtascsCtn)
     Array.from(subtascsCtn).forEach(ctn => {
         if(ctn.innerText == "0/0 Subtasks") {
-            // console.log(ctn);
             ctn.style.display = "none" 
         }
     });
 }
 
-function nothingTodoOrDone() {
-    if (document.getElementById("to_do_tasks").innerHTML == "") {
-        document.getElementById("to_do_tasks_nothing").style.display = "flex"
-    } else if (document.getElementById("in_progress_tasks").innerHTML == "") {
-        document.getElementById("in_progress_tasks_nothing").style.display = "flex"
-    } else if (document.getElementById("await_feedback_tasks").innerHTML == "") {
-        document.getElementById("await_feedback_tasks_nothing").style.display = "flex"
-    } else if (document.getElementById("done_tasks").innerHTML == "") {
-        document.getElementById("done_tasks_nothing").style.display = "flex"
+function nothingTodoOrDone(tasks, section) {
+    if (tasks.length == 0) {
+        document.getElementById(`${section}_nothing`).style.display = "flex";
+    } else {
+        document.getElementById(`${section}_nothing`).style.display = "none";
     }
-} 
+}
