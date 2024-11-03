@@ -141,3 +141,7 @@ function checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys) {
     }
     return keytoChangeCategory
 }
+
+function openMenuMovingTask(e, thisCategory) {
+    document.getElementById(`${thisCategory}`).style.display = "flex"
+}

@@ -54,6 +54,7 @@ function fillTaskSections(section, tasks) {
 function checkAssignedTo(tasks, i) {
     let contactsIconsTemplate = "";
     for (let j = 0; j < tasks[i].assigned_to.length; j++) {
+        
         let charOneFirstName = tasks[i].assigned_to[j].firstName.charAt(0)
         let charOneLastName = tasks[i].assigned_to[j].lastName.charAt(0)
         contactsIconsTemplate += `
@@ -134,23 +135,34 @@ function createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, widt
         ondrag="whileDragging(event)"
         onclick="checkTask(event)"  
     id="single_task_ctn${tasks[i].single_ID}" class="single_task_ctn">
-      <div class="single_task_category">${tasks[i].category}</div>
-      <div class="single_task_headline">${tasks[i].title}</div>
-      <div class="single_task_description">${tasks[i].description}</div>
-      <div id="single_task_progress_ctn${tasks[i].single_ID}" class="single_task_progress_ctn">
-          <div class="single_task_progress_bar_background">
-              <div style="width: ${width};" id="processLineTask${tasks[i].single_ID}" class="single_task_progress_bar_process_line"></div>
-          </div>
-          <div class="subtasks">${checkedSubtasks}/${subtasksLength} Subtasks</div>
-      </div>
-      <div class="single_tasks_contacts_and_priority">
-          <div id="single_task_contacts_ctn${tasks[i].single_ID}" class="single_task_contacts_ctn">
-              ${assignedTocontacts}
-          </div>
-          <div id="single_task_priority${tasks[i].single_ID}" class="single_task_priority">
+        <div class="single_task_category">${tasks[i].category}</div>
+        <div class="single_task_headline">${tasks[i].title}</div>
+        <div class="single_task_description">${tasks[i].description}</div>
+        <div id="single_task_progress_ctn${tasks[i].single_ID}" class="single_task_progress_ctn">
+            <div class="single_task_progress_bar_background">
+                <div style="width: ${width};" id="processLineTask${tasks[i].single_ID}" class="single_task_progress_bar_process_line"></div>
+            </div>
+            <div class="subtasks">${checkedSubtasks}/${subtasksLength} Subtasks</div>
+        </div>
+        <div class="single_tasks_contacts_and_priority">
+            <div id="single_task_contacts_ctn${tasks[i].single_ID}" class="single_task_contacts_ctn">
+                ${assignedTocontacts}
+            </div>
+            <div id="single_task_priority${tasks[i].single_ID}" class="single_task_priority">
             ${priorityImg}
-          </div>
-      </div>
+            </div>
+        </div>
+        <div class="move_to_section_button_and_menu">
+            <div onclick="openMenuMovingTask(${tasks[i].category})" class="move_to_section_button">
+                <img src="./assets/img/icons8-move-50.png" alt="Pfeil in alle Richtungen">
+            </div>
+            <div id="move_to_s_from_${tasks[i].category}" class="move_to_section_menu">
+                <div class="link_section">To Do</div>
+                <div class="link_section">In Progress</div>
+                <div class="link_section">Await Feedback</div>
+                <div class="link_section">Done</div>
+            </div>
+        </div>
   </div>
   `
 }
