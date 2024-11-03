@@ -21,6 +21,26 @@ let subtaskCollection = [
 
 async function collectData() {
     let taskData = {
+        "assigned_to" : selectedContacts,
+        "category" : document.getElementById("categoryToSelect").value,
+        "description" : document.getElementById("description").value,
+        "due_date" : document.getElementById("date").value,
+        "priority" : selectedPrio == null ? "medium" : selectedPrio,
+        "subtasks" : subtasks,
+        "title" : document.getElementById("title").value,
+        "currentStatus" : "todo",
+        "single_ID" : id,
+    }
+    id = Number(id) + 1
+    await putID(path="id", id)
+    await postData(path="tasks", taskData)
+    await getIdAndData(pathData='')
+    return id
+}
+
+/* Copie!
+async function collectData(savedTaskData) {
+    let taskData = {
         "assigned_to" : assignedToContacts,
         "category" : 'Technical Task',
         "description" : "Testen der Erweiterung durch Dritte veranlassen",
@@ -37,7 +57,7 @@ async function collectData() {
     await postData(path="tasks", taskData)
     await getIdAndData(pathData='')
     return id
-}
+}*/
 
 async function getIdAndData(pathData='') {
     let responseData = await fetch(firebase_URL + pathData + ".json");
@@ -45,8 +65,8 @@ async function getIdAndData(pathData='') {
     console.log(responseDataToJson);
     allTasks = responseDataToJson.tasks
     id = responseDataToJson.id;
-    keyForAllTasks()
-    checkTaskSections()
+    keyForAllTasks();
+    checkTaskSections();
     return id
 }
 
