@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./assets/fonts/fonts.css">
     <title>Board - join</title>
 </head>
-<body ondragend="checkDraggableArea(event)" onload="getIdAndData(pathData='', 'board')" class="no_drop_area">
+<body ondragend="checkDraggableArea(event)" onload="getIdAndData(pathData='')" class="no_drop_area">
     <div id="dummy_header"></div>
     <div id="dummy_menu"></div>
     <div class="board_ctn">
@@ -40,7 +40,7 @@
             <div id="task_section_todo" class="task_section">
                 <div class="task_section_header">
                     <span>To do</span>
-                    <div class="board_move_task_btn">
+                    <div onclick="openAddTaskForm()" class="board_move_task_btn">
                         <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M5.6665 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
                             <path d="M9.6665 5.57544L1.6665 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
@@ -63,7 +63,7 @@
             <div id="task_section_in_progress" class="task_section">
                 <div class="task_section_header">
                     <span>In progress</span>
-                    <div class="board_move_task_btn">
+                    <div onclick="openAddTaskForm()" class="board_move_task_btn">
                         <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M5.6665 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
                             <path d="M9.6665 5.57544L1.6665 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
@@ -107,7 +107,7 @@
             <div id="task_section_await_feedback" class="task_section" >
                 <div class="task_section_header">
                     <span>Await feedback</span>
-                    <div class="board_move_task_btn">
+                    <div onclick="openAddTaskForm()" class="board_move_task_btn">
                         <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M5.6665 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
                             <path d="M9.6665 5.57544L1.6665 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>

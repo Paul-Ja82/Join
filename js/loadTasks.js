@@ -59,19 +59,26 @@ async function collectData(savedTaskData) {
     return id
 }*/
 
-async function getIdAndData(pathData='', boardOrAddTask) {
+async function getIdAndDataForAddTask(pathData='') {   //Daten holen ohne weitere Aktivitäten im Board
+    
     let responseData = await fetch(firebase_URL + pathData + ".json");
     let responseDataToJson = await responseData.json();
     console.log(responseDataToJson);
     allTasks = responseDataToJson.tasks
     id = responseDataToJson.id;
-    if (boardOrAddTask == 'board') {
-        keyForAllTasks();
-        checkTaskSections();
-        return id
-    } else {
-        return id
-    }
+    return id
+}
+
+async function getIdAndData(pathData='') {
+    
+    let responseData = await fetch(firebase_URL + pathData + ".json");
+    let responseDataToJson = await responseData.json();
+    console.log(responseDataToJson);
+    allTasks = responseDataToJson.tasks
+    id = responseDataToJson.id;
+    keyForAllTasks();
+    checkTaskSections();
+    return id
 }
 
 async function postData(path="", data={}) {
