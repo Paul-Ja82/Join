@@ -47,13 +47,15 @@ function fillTaskSections(section, tasks) {
         let width = calcProcessBarWidth(checkedSubtasks, subtasksLength);
         createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, width, checkedSubtasks, subtasksLength)
     }
+    
     let moveToShadow = document.createElement("div")
     moveToShadow.className = "move_to_shadow";
     moveToShadow.id = `shadow_move_to_${section}`;
+    nothingTodoOrDone()
     document.getElementById(section).appendChild(moveToShadow)
     checkTaskCategoryColor("single_task_category")
     showSubtaskCtn()
-    nothingTodoOrDone()
+    
 }
 
 function checkAssignedTo(tasks, i) {
@@ -134,12 +136,11 @@ function calcProcessBarWidth(checkedSubtasks, subtasksLength) {
 function createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, width, checkedSubtasks, subtasksLength) {
     document.getElementById(section).innerHTML += `
     <div draggable="true" 
+        onmousedown="cloneElement(${tasks[i].single_ID}, event)"
+        ondragstart="startDragging(event)" 
         ondrag="whileDragging(event)"
-        ondragstart="startDragging(${tasks[i].single_ID}, event, ${section})" 
-        onmousedown="onMouseDown(${tasks[i].single_ID}, event)"
-        onmousemove="onMouseMove(event)" 
         onclick="checkTask(event)" 
-        onmouseup="endDragging(event)" 
+        
     id="single_task_ctn${tasks[i].single_ID}" class="single_task_ctn">
       <div class="single_task_category">${tasks[i].category}</div>
       <div class="single_task_headline">${tasks[i].title}</div>
@@ -185,17 +186,17 @@ function showSubtaskCtn() {
 }
 
 function nothingTodoOrDone() {
-      document.getElementById("to_do_tasks_nothing").style.display = "none";
-      document.getElementById("in_progress_tasks_nothing").style.display = "none";
-      document.getElementById("await_feedback_tasks_nothing").style.display = "none";
-      document.getElementById("done_tasks_nothing").style.display = "none";
-    if (document.getElementById("to_do_tasks").innerHTML == "") {
+    document.getElementById("to_do_tasks_nothing").style.display = "none";
+    document.getElementById("in_progress_tasks_nothing").style.display = "none";
+    document.getElementById("await_feedback_tasks_nothing").style.display = "none";
+    document.getElementById("done_tasks_nothing").style.display = "none";
+    if (document.getElementById("to_do_tasks").innerHTML == "" || document.getElementById("to_do_tasks").innerHTML == '<div class="move_to_shadow" id="shadow_move_to_to_do_tasks"></div>') {
         document.getElementById("to_do_tasks_nothing").style.display = "flex"
-    } else if (document.getElementById("in_progress_tasks").innerHTML == "") {
+    } else if (document.getElementById("in_progress_tasks").innerHTML == "" || document.getElementById("in_progress_tasks").innerHTML == '<div class="move_to_shadow" id="shadow_move_to_in_progress_tasks"></div>') {
         document.getElementById("in_progress_tasks_nothing").style.display = "flex"
-    } else if (document.getElementById("await_feedback_tasks").innerHTML == "") {
+    } else if (document.getElementById("await_feedback_tasks").innerHTML == "" || document.getElementById("await_feedback_tasks").innerHTML == '<div class="move_to_shadow" id="shadow_move_to_await_feedback_tasks"></div>') {
         document.getElementById("await_feedback_tasks_nothing").style.display = "flex"
-    } else if (document.getElementById("done_tasks").innerHTML == "") {
+    } else if (document.getElementById("done_tasks").innerHTML == "" || document.getElementById("done_tasks").innerHTML == '<div class="move_to_shadow" id="shadow_move_to_to_do_tasks"></div>') {
         document.getElementById("done_tasks_nothing").style.display = "flex"
     }
-} 
+}
