@@ -236,21 +236,23 @@ svg text {
   position: relative;
 }
 
-input[type="date"] {
+.dateInput {
   color: #d1d1d1;
+}
+
+.dateInput.filled {
+  color: black;
 }
 
 .dateIcon {
   display: flex;
   position: absolute;
-  right: 18px;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-  display: none;
+  background-color: white;
+  padding: 8px 5px 10px 20px;
 }
 
 .overFormButtons {
@@ -379,6 +381,8 @@ select:focus {
 
 .changeSymboles {
   display: flex;
+  gap: 4px;
+  align-items: center;
   position: absolute;
   right: 10px;
   top: 50%;
@@ -389,7 +393,7 @@ select:focus {
 .arrowCategory {
   display: flex;
   position: absolute;
-  top: 50px;
+  top: 45px;
   right: 10px;
   cursor: pointer;
 }
@@ -399,12 +403,28 @@ select:focus {
   border-radius: 50%;
 }
 
-.centerSymbol {
+.editTaskImg {
+  padding-right: 10px;
   display: flex;
+  gap: 4px;
+  align-items: center;
 }
 
-.centerSymbol img {
-  margin-right: 4px;
+.borderEditIcons {
+  border-right: solid 1px #a8a8a8;
+  height: 20px;
+}
+
+.editIcons {
+  vertical-align: middle;
+  height: 24px;
+  width: 24px;
+}
+
+.centerSymbol {
+  display: flex;
+  height: 24px;
+  width: 24px;
 }
 
 .centerSymbol img:hover {
@@ -412,20 +432,42 @@ select:focus {
   border-radius: 50%;
 }
 
+.basket {
+  padding-right: 10px;
+}
+
+/*
+
 .centerSymbol:first-child {
   border-right: 1px solid #a8a8a8;
+}*/
+
+.overallListItem {
+  align-items: center;
+  vertical-align: middle;
 }
 
 .showEntrySubtask {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-size: 16px;
   cursor: pointer;
+  margin-left: -40px;
+  padding: 4px 0 4px 40px;
+  list-style-type: none;
+  border-radius: 10px;
+}
+
+.showEntrySubtask:hover {
+  background-color: #eeeeee;
 }
 
 .edit {
   display: none;
   flex-direction: row;
+  gap: 4px;
+  padding-right: 10px;
 }
 
 .changeTextSubtasks {
@@ -436,11 +478,12 @@ select:focus {
 .changingTextInputField {
   position: relative;
   border: unset;
-  border-bottom: 1px solid #9747ff;
+
 }
 
 .overChangingSubtask {
   display: flex;
+  border-bottom: 1px solid #9747ff;
 }
 
 .overAllChange {
@@ -448,15 +491,19 @@ select:focus {
   right: 10px;
   cursor: pointer;
   background-color: white;
-  border-bottom: 1px solid #9747ff;
 }
 
 .fullWidth {
   width: 100%;
 }
 
+.fullWidth:focus {
+  border: none;
+}
+
 .required {
   align-self: flex-end;
+
 }
 
 .showEntrySubtask:hover .edit {

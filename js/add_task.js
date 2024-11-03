@@ -42,7 +42,7 @@ async function postData(path = "", data = {}) {
   let responseToJson = await response.json();
   console.log(responseToJson);
 }
-
+/*
 async function saveData() {
   let taskData = {
     title: document.getElementById("title").value,
@@ -57,7 +57,7 @@ async function saveData() {
 
   await postData((path = "/tasks"), (data = taskData));
   location.reload();
-}
+}*/
 
 function renderContactList(filteredContacts = contacts) {
   const contactList = document.getElementById("insertContactList");
@@ -193,6 +193,15 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+function checkDateInput() {
+  let valueDate = document.getElementById("date");
+  if (valueDate.value === "") {
+    valueDate.classList.add("dateInput");
+  } else {
+    valueDate.classList.remove("dateInput");
+  }
+}
+
 function showProfilPicture(contact, index) {
   let linkProfil = document.getElementById(`profilPerson${index}`);
   linkProfil.innerHTML = "";
@@ -256,10 +265,22 @@ function createAvatarSVG(initials, bgColor) {
 
 function saveSubtasks(index) {
   let textSubtask = document.getElementById("subtasks").value;
-  subtasks.push(textSubtask);
+  pushTextSubtask(textSubtask);
+  //subtasks.push(textSubtask);
   document.getElementById("subtasks").value = "";
-  document.getElementById("symbolsSubtasks").innerHTML = "+"; // Hier Image noch einfügen
+  document.getElementById(
+    "symbolsSubtasks"
+  ).innerHTML = `<img src="assets/icons/plus.svg" alt="" />`; // Hier Image noch einfügen
   renderSubtasks();
+}
+
+function pushTextSubtask(textSubtask) {
+  const newSubtask = {
+    subtask: textSubtask,
+    checked: false
+  };
+  
+  subtasks.push(newSubtask);
 }
 
 function saveEditSubtask(index) {
@@ -274,7 +295,7 @@ function changeSymbols() {
   document.getElementById("symbolsSubtasks").innerHTML = "";
   document.getElementById(
     "symbolsSubtasks"
-  ).innerHTML = `<div class="centerSymbol" onclick="clearInput()"><img src="assets/icons/close.svg"></div><div class="centerSymbol" onclick="saveSubtasks()"><img src="assets/icons/check.svg"></div>`;
+  ).innerHTML = `<div class="centerSymbol" onclick="clearInput()"><img src="assets/icons/close.svg"></div><div class="borderEditIcons"></div><div class="centerSymbol" onclick="saveSubtasks()"><img src="assets/icons/check.svg"></div>`;
   if (checkInput.length <= 0) {
     document.getElementById(
       "symbolsSubtasks"
@@ -294,12 +315,12 @@ function renderSubtasks() {
   for (let index = 0; index < subtasks.length; index++) {
     document.getElementById(
       "showSubtasks"
-    ).innerHTML += `<li id="subtask${index}">
+    ).innerHTML += `<li id="subtask${index}" class="overallListItem">
     <div class="showEntrySubtask" onclick="changeText(${index})">
-    <div class="subtaskText">${subtasks[index]}</div>
+    <div class="subtaskText">${subtasks[index].subtask}</div>
     <div id="edit${index}" class="edit">
-      <div class="centerSymbol editTask"><img src="assets/icons/pencil.svg"></div>
-      <div class="centerSymbol basket" onclick="deleteSubtask(${index})"><img src="assets/icons/basket.svg"></div>
+      <div class="centerSymbol editTask"><img src="assets/icons/pencil.svg"></div><div class="borderEditIcons"></div>
+      <div class="centerSymbol basket" onclick="deleteSubtask(${index})"><img src="assets/icons/basketIcon.svg"></div>
     </div>
     </div>
     </li>`;
@@ -313,7 +334,7 @@ function changeText(index) {
 
   document.getElementById(
     `subtask${index}`
-  ).innerHTML = `<div class="overChangingSubtask"><input id="inputField${index}" class="changingTextInputField" value="${changeText}"><div class="overAllChange editTaskImg"><div class="centerSymbol" onclick="deleteSubtask(${index})" ><img src="assets/icons/basket.svg"></div><div class="centerSymbol" onclick="saveEditSubtask(${index})"><img src="assets/icons/check.svg"></div></div>`;
+  ).innerHTML = `<div class="overChangingSubtask"><input id="inputField${index}" class="changingTextInputField" value="${changeText}"><div class="overAllChange editTaskImg"><div class="centerSymbol" onclick="deleteSubtask(${index})" ><img class="editIcons" src="assets/icons/basketIcon.svg"></div><div class="borderEditIcons"></div><div class="centerSymbol" onclick="saveEditSubtask(${index})"><img class="editIcons" src="assets/icons/check.svg"></div></div>`;
 
   let inputField = document.getElementById(`inputField${index}`);
 
@@ -405,7 +426,8 @@ async function submitForm() {
   }
 
   if (category.length === 0) {
-    document.getElementById("categoryToSelect").style.border = "1px solid #FF8190";
+    document.getElementById("categoryToSelect").style.border =
+      "1px solid #FF8190";
     document.getElementById("errorCategory").style.display = "block";
     hasError = true;
   } else {
@@ -414,7 +436,8 @@ async function submitForm() {
   }
 
   if (!hasError) {
-    await saveData();
+    await collectData(); //senden an loadTasks.js zum hochladen ins Firebase
+    reloadPage();
   }
 }
 

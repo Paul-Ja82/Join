@@ -6,6 +6,8 @@
     <title>add_task-join</title>
     <link rel="stylesheet" href="/css/add_Task.css" />
     <script src="js/add_task.js"></script>
+    <script src="js/loadTasks.js"></script>
+    <script src="js/showTasks.js"></script>
   </head>
   <body onload="init()">
     <div id="dummy_header"></div>
@@ -74,13 +76,14 @@
                   src="assets/icons/calendarIcon.svg"
                   alt="Date Icon"
                   class="dateIcon"
-                  onclick="document.getElementById('date').focus()"
+                  onclick="document.getElementById('date').click()"
                 />
                 <input
                   type="date"
                   id="date"
-                  class="fieldInput"
+                  class="fieldInput dateInput"
                   placeholder="dd/mm/yyyy"
+                  onchange="checkDateInput()"
                 />
               </div>
               <div id="errorDate" class="errorMessage">
@@ -93,7 +96,7 @@
                 <button
                   id="urgentButton"
                   class="prioButtons"
-                  onclick="selectPrio(urgent)"
+                  onclick="selectPrio(`urgent`)"
                   type="button"
                 >
                   Urgent<img
@@ -105,7 +108,7 @@
                 <button
                   id="mediumButton"
                   class="prioButtons"
-                  onclick="selectPrio(medium)"
+                  onclick="selectPrio(`medium`)"
                   type="button"
                 >
                   Medium<img
@@ -117,7 +120,7 @@
                 <button
                   id="lowButton"
                   class="prioButtons"
-                  onclick="selectPrio(low)"
+                  onclick="selectPrio(`low`)"
                   type="button"
                 >
                   Low<img id="lowButtonImg" src="assets/icons/low.svg" alt="" />
