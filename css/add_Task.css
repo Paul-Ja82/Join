@@ -6,7 +6,6 @@
 
 body {
   background-color: #f6f7f8;
-  max-width: 1440px;
 }
 
 h2 {
@@ -20,11 +19,22 @@ ul {
 
 input {
   cursor: pointer;
+  outline: none;
 }
 
 input::placeholder {
-  color: #d1d1d1; /* Setze hier deine benutzerdefinierte Farbe */
+  color: #d1d1d1;
 }
+
+input:focus {
+  border: 1px solid #29abe2;
+}
+
+.changeSymboles img:hover {
+  background-color: #eeeeee;
+  border-radius: 50%;
+}
+
 .formAddTasks {
   display: flex;
   flex-direction: column;
@@ -52,6 +62,7 @@ input::placeholder {
 
 .overField {
   display: flex;
+  position: relative;
   flex-direction: column;
   gap: 8px;
 }
@@ -74,10 +85,11 @@ input::placeholder {
   border: solid 1px #d1d1d1;
   padding: 12px 21px;
   width: 100%;
+  cursor: pointer;
 }
 
-.marginBottom {
-  margin-bottom: 24px;
+.marginTop {
+  margin-top: 24px;
 }
 
 .overField textarea {
@@ -86,6 +98,32 @@ input::placeholder {
   height: 120px;
   padding: 12px 21px;
   margin-bottom: 24px;
+  outline: none;
+  resize: none;
+}
+
+.overField textarea::-webkit-scrollbar {
+  width: 8px;
+  border-radius: 8px;
+}
+
+.overField textarea::-webkit-scrollbar-track {
+  background: #a8a8a8;
+  width: 8px;
+  border-radius: 8px;
+}
+
+.overField textarea::-webkit-scrollbar-thumb {
+  background: #817979;
+  border-radius: 8px;
+}
+
+.overField textarea::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+textarea:focus {
+  border: 1px solid #29abe2;
 }
 
 .overField textarea::placeholder {
@@ -110,25 +148,77 @@ input::placeholder {
   border-radius: 10px;
   list-style-type: none;
   padding: 0;
+  overflow: auto;
+}
+
+.listContacts::-webkit-scrollbar {
+  width: 8px;
+  border-radius: 8px;
+}
+
+/* Track */
+.listContacts::-webkit-scrollbar-track {
+  background: #a8a8a8;
+  width: 8px;
+  border-radius: 8px;
+}
+
+/* Handle */
+.listContacts::-webkit-scrollbar-thumb {
+  background: #817979;
+  border-radius: 8px;
+}
+
+/* Handle on hover */
+.listContacts::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .listContacts li {
   display: flex;
   justify-content: space-between;
   padding: 7px 16px;
+  margin-bottom: 2px;
   border-radius: 10px;
-  background-color: white;
   cursor: pointer;
-}
-
-.listContacts li:hover {
-  background-color: #2A3647;
-  color: white;
 }
 
 .listContacts li:active {
   background-color: #091931;
   color: white;
+}
+
+.contactListCheckbox {
+  display: none;
+}
+
+.backgroundContact {
+  background-color: #2a3647;
+  color: white;
+}
+
+.backgroundContact:hover {
+  background-color: #091931 !important;
+  color: white !important;
+}
+.backgroundContact:active {
+  background-color: #091931;
+}
+
+.backgroundOnHover:hover {
+  background-color: #eeeeee;
+  color: black;
+}
+
+.profilePerson {
+  display: flex;
+  align-items: center;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .showPersons {
@@ -138,7 +228,29 @@ input::placeholder {
 }
 
 svg text {
-  font-size: 12px !important; 
+  font-size: 12px !important;
+}
+
+.dateWrapper {
+  display: flex;
+  position: relative;
+}
+
+input[type="date"] {
+  color: #d1d1d1;
+}
+
+.dateIcon {
+  display: flex;
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
 }
 
 .overFormButtons {
@@ -147,6 +259,7 @@ svg text {
   justify-content: space-between;
   gap: 8px;
   width: 976px;
+  height: 60px;
 }
 
 .formButtons {
@@ -171,9 +284,35 @@ svg text {
   border: 1px solid #2a3647;
 }
 
+.clearButton:hover {
+  border: 2px solid #29abe2;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  color: #29abe2;
+}
+.clearButton:active {
+  border: 1px solid #091931;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  color: #091931;
+}
+
+.clearButton:hover img {
+  fill: yellow;
+}
+
 .createButton {
+  border: none;
   background-color: #2a3647;
   color: white;
+}
+
+.createButton:hover {
+  background-color: #29abe2;
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.createButton:active {
+  background-color: #091931;
+  box-shadow: 0px 4px 4px 0px #00000040;
 }
 
 .overPrioButtons {
@@ -221,10 +360,9 @@ svg text {
 }
 
 select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
+  appearance: none;
   background: transparent;
-  background-image: url("/assets/icons/arrowDropdown.svg");
+  background-image: none;
   background-repeat: no-repeat;
   background-position: calc(100% - 10px) center;
   border: 1px solid #dfdfdf;
@@ -232,7 +370,13 @@ select {
   margin-right: 2rem;
   padding: 1rem;
   padding-right: 2rem;
+  outline: none;
 }
+
+select:focus {
+  border: 1px solid #29abe2;
+}
+
 .changeSymboles {
   display: flex;
   position: absolute;
@@ -242,12 +386,30 @@ select {
   cursor: pointer;
 }
 
+.arrowCategory {
+  display: flex;
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.arrowCategory:hover {
+  background-color: #eeeeee;
+  border-radius: 50%;
+}
+
 .centerSymbol {
   display: flex;
 }
 
 .centerSymbol img {
   margin-right: 4px;
+}
+
+.centerSymbol img:hover {
+  background-color: #eeeeee;
+  border-radius: 50%;
 }
 
 .centerSymbol:first-child {
@@ -301,6 +463,14 @@ select {
   display: flex;
 }
 
+.errorMessage {
+  position: absolute;
+  top: 90px;
+  color: #ff8190;
+  font-size: 16px;
+  display: none;
+}
+
 @media only screen and (max-width: 1010px) {
   h2 {
     font-size: 47px;
@@ -310,14 +480,16 @@ select {
     flex-direction: column;
     justify-content: center;
     width: 100%;
+    margin: 0;
   }
 
   .overField {
+    display: flex;
     justify-content: center;
   }
 
-  .overField input {
-    width: 396px;
+  .fillOut {
+    width: auto;
   }
 
   .line {
@@ -325,20 +497,31 @@ select {
   }
 
   .overFormButtons {
-    justify-content: flex-end;
-    width: 396px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 100px;
   }
 
   .required {
-    display: none;
+    align-self: flex-start;
+    font-size: 16px;
   }
 
-  .overField textarea {
-    width: 396px;
+  .fieldInput {
+    font-size: 16px;
   }
 
-  .overPrioButtons {
-    width: 396px;
+  option {
+    font-size: 16px;
+  }
+
+  .showEntrySubtask {
+    font-size: 16px;
+  }
+  .subtaskText {
+    font-size: 16px;
   }
 
   .overField label {
@@ -358,10 +541,24 @@ select {
   }
 
   .setButtons {
+    background-color: #f6f7f8;
     font-size: 21px;
+    gap: 32px;
+    justify-content: flex-end;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    padding: 15px;
   }
 
-  .overAddSubtasks {
-    width: 396px;
+  .profile {
+    font-size: 16px;
+  }
+
+  .contactPerson {
+    font-size: 16px;
+  }
+  .seperateSendButtons {
+    margin-bottom: 100px;
   }
 }
