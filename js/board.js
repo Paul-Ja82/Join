@@ -1,12 +1,16 @@
 let currentDraggedElementID;
 let currentDraggedElement;
 let clonedElementForMoving;
+let dragAndDropSections = [
+    'to_do_tasks',
+    'in_progress_tasks',
+    'await_feedback_tasks',
+    'done_tasks'
+]
 
 function cloneElement(id, e) {
     currentDraggedElementID = `single_task_ctn${id}`;
-    console.log(currentDraggedElementID);
-    console.log(e);
-    
+    // console.log(currentDraggedElementID);
     currentDraggedElement = document.getElementById(currentDraggedElementID);
     clonedElementForMoving = currentDraggedElement.cloneNode(true);
     clonedElementForMoving.id = 'clonedElement';
@@ -14,7 +18,7 @@ function cloneElement(id, e) {
 
 function whileDragging(e) {
     // console.log(e);
-    clonedElementForMoving.style.left = `${e.pageX - 430}px`;
+    clonedElementForMoving.style.left = `${e.pageX - 50}px`;
     clonedElementForMoving.style.top = `${e.pageY}px`
 }
 
@@ -31,7 +35,7 @@ function startDragging(e) {
 
 function styleClonedElement(rect,e) {
     clonedElementForMoving.style.height = `${rect.height}px`
-    clonedElementForMoving.style.left = `${e.pageX - 430}px`;
+    clonedElementForMoving.style.left = `${e.pageX - 50}px`;
     clonedElementForMoving.style.top = `${e.pageY}px`
     clonedElementForMoving.style.width = `${rect.width}px`
     clonedElementForMoving.style.right = `${rect.right}px`
@@ -41,40 +45,26 @@ function styleClonedElement(rect,e) {
 
 function endDragging() {
     if (clonedElementForMoving) {
-        currentDraggedElement.style.opacity = "1"; // Originalelement wieder sichtbar machen
-        clonedElementForMoving.remove(); // Entferne das geklonte Element
-        clonedElementForMoving = null; // Setze die Variable zurück
-        // Entferne die Event-Listener, um das Dragging zu beenden
-        // document.removeEventListener('mousemove', onMouseMove);
+        currentDraggedElement.style.opacity = "1";
+        clonedElementForMoving.remove();
+        clonedElementForMoving = null;
         document.removeEventListener('mouseup', endDragging);
     }
 }
 
-let dragAndDropSections = [
-    'to_do_tasks',
-    'in_progress_tasks',
-    'await_feedback_tasks',
-    'done_tasks'
-]
-
 function checkDraggableArea(e) {
-    console.log(e);
     let cursorX = e.clientX;
     let cursorY = e.clientY;
     let idFromSectionToDrop = checkIdFromSectionToDrop(cursorX, cursorY); 
-    let newSection = checkNewSection(idFromSectionToDrop);
-    console.log(newSection);
-    
+    let newSection = checkNewSection(idFromSectionToDrop);    
     if (newSection == 'noDropArea') {
         endDragging()
         removeShadow(id)
         return  
     } else {
-        console.log(newSection);
         moveTo(newSection)
         endDragging()
     }
-    // nothingTodoOrDone()
 }
 
 function checkNewSection(idFromSectionToDrop) {
@@ -95,22 +85,18 @@ function checkNewSection(idFromSectionToDrop) {
 function checkIdFromSectionToDrop(cursorX, cursorY) {
     let idFromSectionToDrop = 'noDropArea';
     for (let i = 0; i < dragAndDropSections.length; i++) {
-        console.log(document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect());
+        // console.log(document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect());
         let sectionLeft = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().left;
         let sectionRight = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().right;
         let sectionTop = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().top;
         let sectionBottom = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().bottom;
-        console.log('x: ', cursorX, 'l: ', sectionLeft, 'r: ', sectionRight, 'y: ', cursorY, 't: ', sectionTop, 'b: ', sectionBottom);
+        // console.log('x: ', cursorX, 'l: ', sectionLeft, 'r: ', sectionRight, 'y: ', cursorY, 't: ', sectionTop, 'b: ', sectionBottom);
         if ((cursorX > sectionLeft && cursorX < sectionRight) && (cursorY > sectionTop && cursorY < sectionBottom)) {
             idFromSectionToDrop = dragAndDropSections[i]
         }
     }
-    console.log(idFromSectionToDrop);
     return idFromSectionToDrop
 }
-
-
-
 
 function allowDrop(e) {
     e.preventDefault();
@@ -125,7 +111,6 @@ function showShadow(id) {
 }
 
 function removeShadow(id) {
-    // document.getElementById(id).style.display = "none";
     document.getElementById('shadow_move_to_to_do_tasks').style.display = "none";
     document.getElementById('shadow_move_to_in_progress_tasks').style.display = "none";
     document.getElementById('shadow_move_to_await_feedback_tasks').style.display = "none";
@@ -133,28 +118,13 @@ function removeShadow(id) {
 }
 
 async function moveTo(newSection) {
-    console.log("Dropping into category:", newSection);
-    console.log("Current dragged element:", currentDraggedElementID)
+    // console.log("Dropping into category:", newSection);
+    // console.log("Current dragged element:", currentDraggedElementID)
     let keyForPath = checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys)
     let path = `tasks/${keyForPath}/currentStatus`;
-    // document.body.removeChild(clonedElementForMoving);
     await putNewCategory(path, newSection);
     await getIdAndData(pathData='')
 }
-
-// function checkCategory(category) {
-//     console.log(category.id);
-//     if (category.id.includes("todo")) {
-//         category = 'todo'
-//     } else if (category.id.includes("progress")) {
-//         category = 'inProgress'
-//     } else if (category.id.includes("feedback")) {
-//         category = 'awaitFeedback'
-//     } else if (category.id.includes("done")) {
-//          category = 'done'
-//     }
-//     return category
-// }
 
 function openAddTaskForm() {
     window.location.href = "/add_task.html"

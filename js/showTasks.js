@@ -16,9 +16,6 @@ function checkTaskSections() {
 }
 
 function pushTasksToArray() {
-    // console.log(allTasks);
-    // console.log(allKeys);
-    
     for (let i = 0; i < allKeys.length; i++) {
         if (allTasks[`${allKeys[i]}`].currentStatus === "todo") {
             tasksTodo.push(allTasks[`${allKeys[i]}`])
@@ -135,8 +132,7 @@ function createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, widt
         onmousedown="cloneElement(${tasks[i].single_ID}, event)"
         ondragstart="startDragging(event)" 
         ondrag="whileDragging(event)"
-        onclick="checkTask(event)" 
-        
+        onclick="checkTask(event)"  
     id="single_task_ctn${tasks[i].single_ID}" class="single_task_ctn">
       <div class="single_task_category">${tasks[i].category}</div>
       <div class="single_task_headline">${tasks[i].title}</div>
@@ -172,10 +168,8 @@ function checkTaskCategoryColor(classname) {
 
 function showSubtaskCtn() {
     let subtascsCtn = document.getElementsByClassName("single_task_progress_ctn");
-    // console.log(subtascsCtn)
     Array.from(subtascsCtn).forEach(ctn => {
         if(ctn.innerText == "0/0 Subtasks") {
-            // console.log(ctn);
             ctn.style.display = "none" 
         }
     });
