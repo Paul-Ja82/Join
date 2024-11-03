@@ -1,10 +1,24 @@
 body {
     width: 100%;
-    height: 100vh;
     margin: 0;
     max-width: 1440px;
+    overflow: auto;
     font-family: "Inter", sans-serif;
     background-color: rgb(246,247,248,1);
+}
+
+::-webkit-scrollbar {
+    background-color: rgb(246,247,248,1);
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(42, 54, 71, 1);  
+    border: none;
+}
+
+a {
+    text-decoration: none;
 }
 
 .dummy_header {
@@ -19,13 +33,13 @@ body {
     position: absolute;
     top: 0px;
     width: 232px;
-    height: 1120px;
+    height: 1024px;
     background-color: rgba(63, 63, 151, 0.5);
 }
 
 .title-div {
     margin-left: 328px;
-    margin-top: 186px;
+    margin-top: 200px;
     width: 625px;
     height: 73px;
     display: flex;
@@ -38,13 +52,8 @@ body {
     width:264px;
 }
 
-.title:hover {
-    text-decoration: underline 3px rgb(41,171,226);
-    
-}
-
 .divider {
-    width: 4px;
+    width: 3px;
     margin-left: 28px;
     background-color: rgb(41,171,226);
 }
@@ -57,14 +66,10 @@ body {
     height: 32px;
 }
 
-.sub-title:hover {
-    text-decoration: underline 3px rgb(41,171,226);
-    
-}
-
 .main-div {
     display: flex;
-    margin-top: 80px;
+    justify-content: space-between;
+    margin-top: 50px;
 }
 
 .tasks-div {
@@ -84,42 +89,139 @@ body {
 .to-do-div {
     width: 264px;
     height: 168px;
-    background-color: rgba(255,255,255);
-    box-shadow: 0px 0px 4px 0px  rgba(0, 0, 0, 0.1);  
+    margin-right: 30px;
+    box-shadow: 0px 0px 4px 0px  rgba(0, 0, 0, 0.1); 
     border-radius: 30px;
-    margin-right: 32px;
+    background-color: rgba(255,255,255);
+    color: rgba(42, 54, 71, 1);
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 16px;
+    cursor: pointer;
+}
+
+.to-do-div:hover {
+    color: rgba(255,255,255,1);
+    box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background-color: rgba(42, 54, 71, 1);
+    transform: scale(1.06);
+}
+
+.to-do-div:hover .pencil-div-blue{
+    display: none;
+}
+
+.to-do-div:hover .pencil-div-white{
+    display: block;
+}
+
+.to-do-div:hover .amount {
+    color: rgba(255,255,255,1);
+}
+
+.to-do-div:active {
+    transform: none;
+    box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background-color: rgba(255,255,255);
+}
+
+.to-do-div:active .pencil-div-blue{
+    display: block;
+}
+
+.to-do-div:active .pencil-div-white{
+    display: none;
+}
+
+.to-do-div:active .amount {
+    color: rgba(0, 0, 0, 1);
+}
+
+.no-gap {
+    gap: 0;
 }
 
 .to-do {
-    width: 142px;
-    height: 101px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    gap: 16px;
 }
 
-.pencil-button {
+.pencil-div-blue {
     width: 69px;
     height: 69px;
     border: none;
     border-radius: 50%;
-    background-image: url(../assets/img/pencil-button.png);
-    background-position: center;
-    background-size: cover;
-    margin-right: 10px;
+    background-color: rgba(42, 54, 71, 1);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: block;
+}
+
+.pencil-white {
+    position: absolute;
+    top:18px;
+    left: 19px;
+}
+
+.pencil-div-white {
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    display: none;
+}
+
+.pencil-blue {
+    position: absolute;
+    top:13px;
+    left: 13px;
 }
 
 .to-do-amount {
-    width: 63px;
     height: 101px;
     display: flex;
     flex-direction: column;
     align-items:center;
     justify-content: center;
     text-align:end;
+}
+
+.amount {
+    height: 77px;
+    font-size: 64px;
+    color: rgba(0, 0, 0, 1);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 140px; 
+    transition: font-size 0.3s ease;
+}
+
+.amount-with-three{
+    padding-left:18px;
+    padding-right:5px;   
+    box-sizing: border-box;
+}
+
+.amount.enable-hover:hover {
+    font-size: 32px;
+    max-width: none;
+    margin-right: 8px;
+    margin-top: 31px;
+}
+
+.amount.enable-hover:hover::after {
+    display: inline;
 }
 
 .to-do-amount-undertitle {
@@ -142,34 +244,103 @@ h3 {
     width: 264px;
     height: 168px;
     background-color: rgba(255,255,255);
+    color: rgba(42, 54, 71, 1);
     box-shadow: 0px 0px 4px 0px  rgba(0, 0, 0, 0.1); 
     border-radius: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 16px;
+    cursor: pointer;
+}
+
+.done-div:hover {
+    box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background-color: rgba(42, 54, 71, 1);
+    color: rgba(255,255,255,1);
+    transform: scale(1.06);
+}
+
+.done-div:hover .vector-div-blue{
+    display: none;
+}
+
+.done-div:hover .vector-div-white{
+    display: block;
+}
+
+.done-div:hover .amount {
+    color: rgba(255,255,255,1);
+}
+
+.done-div:active {
+    transform: none;
+    box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background-color: rgba(255,255,255);
+    color: rgba(42, 54, 71, 1);
+}
+
+.done-div:active .vector-div-blue{
+    display: block;
+}
+
+.done-div:active .vector-div-white{
+    display: none;
+}
+
+.done-div:active .amount {
+    color: rgba(0, 0, 0, 1);
 }
 
 .done {
-    width: 142px;
-    height: 101px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    gap: 16px;
 }
 
-.check-button {
+.vector-div-blue {
     width: 69px;
     height: 69px;
     border: none;
     border-radius: 50%;
-    background-image: url(../assets/img/check-button.png);
-    background-position: center;
-    background-size: cover;
-    margin-right: 10px;
+    background-color: rgba(42, 54, 71, 1);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vector-white {
+    width: 37px;
+    height: 30px;
+    position: absolute;
+    top:19px;
+    left: 16px;
+}
+
+.vector-div-white {
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    display: none;
+}
+
+.vector-blue {
+    width: 37px;
+    height: 30px;
+    position: absolute;
+    top:15px;
+    left: 12px;
 }
 
 .check-amount {
-    width: 50px;
     height: 101px;
     display: flex;
     flex-direction: column;
@@ -181,13 +352,37 @@ h3 {
 .to-do-urgency-div {
     width: 560px;
     height: 168px;
-    margin-bottom: 29px;
-    margin-top: 29px;
-    background-color: rgba(255,255,255);
-    box-shadow: 0px 0px 4px 0px  rgba(0, 0, 0, 0.1); 
+    margin-bottom: 30px;
+    margin-top: 30px;
     border-radius: 30px;
+    box-shadow: 0px 0px 4px 0px  rgba(0, 0, 0, 0.1);
+    background-color: rgba(255,255,255);
+    color: rgba(42, 54, 71, 1);
     display: flex;
     align-items: center;
+    cursor: pointer;
+}
+
+.to-do-urgency-div:hover {
+    box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background-color: rgba(42, 54, 71, 1);
+    color: rgba(255,255,255,1);
+    transform: scale(1.06);
+}
+
+.to-do-urgency-div:hover .amount {
+    color: rgba(255,255,255,1);
+}
+
+.to-do-urgency-div:active {
+    transform: none;
+    box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background-color: rgba(255,255,255);
+    color: rgba(42, 54, 71, 1);
+}
+
+.to-do-urgency-div:active .amount {
+    color: rgba(0, 0, 0, 1);
 }
 
 .urgency-div {
@@ -199,37 +394,37 @@ h3 {
 }
 
 .urgency {
-    width: 130px;
     height: 96px;
+    gap: 16px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
-.urgency-button {
+.urgency-img-div {
     width: 69px;
     height: 69px;
     border: none;
     border-radius: 50%;
-    background-image: url(../assets/img/Urgency-button.png);
-    background-position: center;
-    background-size: cover;
-}
-
-.urgency-divider {
-    width: 2px;
-    height: 102.02px;
-    background-color: rgb(209, 209, 209);
+    background-color:rgb(255, 61, 0, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .urgency-amount {
-    width: 63px;
     height: 101px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
+}
+
+.urgency-divider {
+    width: 2px;
+    height: 102.02px;
+    background-color: rgb(209, 209, 209);
 }
 
 .deadline-div {
@@ -261,8 +456,8 @@ small {
 .tasks-counter-div {
     width: 560px;
     height: 168px;
-    display: flex;
     gap: 28px;
+    display: flex;
 }
 
 .t-in-board-div {
@@ -271,13 +466,40 @@ small {
     background-color: rgba(255,255,255);
     box-shadow: 0px 0px 4px 0px  rgba(0, 0, 0, 0.1); 
     border-radius: 30px;
+    color: rgba(42, 54, 71, 1);
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+}
+
+.t-in-board-undertitle {
+    text-align: center;
+}
+
+.t-in-board-div:hover {
+    box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background-color: rgba(42, 54, 71, 1);
+    color: rgba(255,255,255,1);
+    transform: scale(1.06);
+}
+
+.t-in-board-div:hover .amount {
+    color: rgba(255,255,255,1);
+}
+
+.t-in-board-div:active {
+    transform: none;
+    box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background-color: rgba(255,255,255);
+    color: rgba(42, 54, 71, 1);
+}
+
+.t-in-board-div:active .amount {
+    color: rgba(0, 0, 0, 1);
 }
 
 .t-in-board {
-    width: 83px;
     height: 125px;
     display: flex;
     flex-direction: column;
@@ -286,15 +508,43 @@ small {
     text-align: center;
 }
 
+.t-in-board-amount {
+    color: rgba(0, 0, 0, 1);
+}
+
 .t-in-progress-div {
     width: 168px;
     height: 168px;
     background-color: rgba(255,255,255);
     box-shadow: 0px 0px 4px 0px  rgba(0, 0, 0, 0.1); 
+    color: rgba(42, 54, 71, 1);
     border-radius: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+}
+
+.t-in-progress-div:hover {
+    box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background-color: rgba(42, 54, 71, 1);
+    color: rgba(255,255,255,1);
+    transform: scale(1.06);
+}
+
+.t-in-progress-div:hover .amount {
+    color: rgba(255,255,255,1);
+}
+
+.t-in-progress-div:active {
+    transform: none;
+    box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background-color: rgba(255,255,255);
+    color: rgba(42, 54, 71, 1);
+}
+
+.t-in-progress-div:active .amount {
+    color: rgba(0, 0, 0, 1);
 }
 
 .t-in-progress {
@@ -313,9 +563,33 @@ small {
     background-color: rgba(255,255,255);
     box-shadow: 0px 0px 4px 0px  rgba(0, 0, 0, 0.1); 
     border-radius: 30px;
+    color: rgba(42, 54, 71, 1);
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+}
+
+.awaiting-feedback-div:hover {
+    box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background-color: rgba(42, 54, 71, 1);
+    color: rgba(255,255,255,1);
+    transform: scale(1.06);
+}
+
+.awaiting-feedback-div:hover .amount {
+    color: rgba(255,255,255,1);
+}
+
+.awaiting-feedback-div:active {
+    transform: none;
+    box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background-color: rgba(255,255,255);
+    color: rgba(42, 54, 71, 1);
+}
+
+.awaiting-feedback-div:active .amount {
+    color: rgba(0, 0, 0, 1);
 }
 
 .awaiting-feedback {
@@ -328,17 +602,15 @@ small {
     text-align: center;
 }
 
+.feedback-amount {
+    color: rgba(0, 0, 0, 1);
+}
+
 .greetings-div {
     width: 550px;
-    height: 562px;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.greetings-frame {
-    width: 385px;
-    height: 136px;
 }
 
 .greting {
@@ -348,7 +620,7 @@ small {
 
 .greeted-name {
     font-size: 64px;
-    font-weight: 700px;
+    font-weight: 700;
     color: rgba(41, 171, 226, 1);
 }
 

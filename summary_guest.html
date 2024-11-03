@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SummaryGuest-Join</title>
+    <title>Summary-Guest-Join</title>
     <link rel="stylesheet" href="css/summary.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
-<body>
+<body onload="checkAmountWidth()">
+    <header class="dummy_header" id="dummyHeader"></header>
+    <div class="dummy_menu" id="dummyHeader"></div>
     <div class="title-div">
         <h1 class="title">Join 360</h1>
         <div class="divider"></div>
@@ -18,31 +20,48 @@
     <div class="main-div">
     <div class="tasks-div">
         <div class="to-do-indicator-div">
+        <a href="./board.html">
             <div class="to-do-div">
-               <div class="to-do">
-                <button class="pencil-button" id="pencilButton"></button>
+               <section class="to-do">
+                <div class="pencil-div-blue">
+                    <img class="pencil-white" src="assets/img/pencil-white.svg">
+                </div>
+                <div class="pencil-div-white">
+                        <img class="pencil-blue" src="assets/img/pencil-blue.svg">
+                </div>
                     <div class="to-do-amount">
-                        <span class="to-do-amount-variable" id="toDoAmountVariable">1</span>
+                    <span class="amount" id="toDoAmountVariable">1</span>
                         <h3 class="to-do-amount-undertitle">To-do</h3>
                     </div>
-              </div>
-            </div>  
+                </section>
+            </div> 
+            </a> 
+            <a href="./board.html">
             <div class="done-div">
-                <div class="done">
-                <button class="check-button" id="checkButton"></button>
+                <section class="done">
+                    <div class="vector-div-blue">
+                        <img class="vector-white" src="assets/img/v-white.svg">
+                    </div>
+                    <div class="vector-div-white">
+                            <img class="vector-blue" src="assets/img/v-blue.svg">
+                    </div>
                     <div class="check-amount">
-                        <span class="check-amount-variable" id="toDoAmountVariable">1</span>
+                        <span class="amount" id="toDoAmountVariable">1</span>
                         <h3 class="check-amount-undertitle">Done</h3>
                    </div>
-                </div>
+                </section>
             </div>
+        </a> 
         </div>
+        <a href="./board.html">
         <div class="to-do-urgency-div">
             <div class="urgency-div">
                 <div class="urgency">
-                <button class="urgency-button" id="urgencyButton"></button>
+                <div class="urgency-img-div">
+                <img class="urgency-img" src="assets/img/citroenWhite.svg">
+                </div>
                     <div class="urgency-amount">
-                        <span class="urgency-amount-variable" id="urgencyAmountVariable">1</span>
+                        <span class="amount" id="urgencyAmountVariable">1</span>
                         <small class="urgency-amount-undertitle">Urgent</small>
                     </div>
                 </div>
@@ -55,32 +74,40 @@
                 </div>
             </div>
         </div>
+    </a> 
+    <a href="./board.html">
         <div class="tasks-counter-div">
             <div class="t-in-board-div">
                 <div class="t-in-board">
-                <span class="t-in-board-amount" id="taskBoardAmount">5</span>
-                <h3 class="t-in-board-undertitle">Tasks in Board</h3>
+                <span class="amount" id="taskBoardAmount">55555555</span>
+                <h3 class="t-in-board-undertitle">Tasks in<br>Board</h3>
             </div>
         </div>
+    </a> 
+    <a href="./board.html">
             <div class="t-in-progress-div" >
                 <div class="t-in-progress" >
-                <span class="t-in-progress-amount" id="taskProgressAmount">2</span>
+                <span class="amount" id="taskProgressAmount">2</span>
                 <h3 class="t-in-progress-undertitle">Tasks in Progress</h3>
             </div>
         </div>
+    </a> 
+    <a href="./board.html">
             <div class="awaiting-feedback-div">
                 <div class="awaiting-feedback">
-                <span class="feedback-amount" id="awaitingFeedbackAmount">2</span>
+                <span class="amount" id="awaitingFeedbackAmount">2</span>
                 <h3 class="feedback-undertitle">Awaiting Feedback</h3>
             </div>
         </div>
+    </a> 
         </div>
     </div>
     <div class="greetings-div">
     <div class="greetings-frame">
-        <div class="greting" id="greetingSummaryUser">Good morning</div>
+        <div class="greting" id="greetingSummaryUser">Good morning,</div>
     </div>
 </div>
 </div>
 </body>
+<script src="summary.js"></script>
 </html>

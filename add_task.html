@@ -4,19 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>add_task-join</title>
-    <link rel="stylesheet" href="css/add_Task.css" />
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="/css/add_Task.css" />
+    <script src="js/add_task.js"></script>
+    <script src="js/loadTasks.js"></script>
+    <script src="js/showTasks.js"></script>
   </head>
-  <body onload="">
+  <body onload="init()">
     <div id="dummy_header"></div>
     <div id="dummy_menu"></div>
     <h2>Add Task</h2>
-    <form class="formAddTasks" action="">
+    <form id="formAddTasks" class="formAddTasks">
       <div class="seperateSendButtons">
         <div class="overInputFields">
           <div class="fillOut">
             <div class="overField">
-              <label for="name"
+              <label for="title"
                 >Title<span style="color: #ff8190">*</span></label
               >
               <input
@@ -24,10 +26,12 @@
                 id="title"
                 class="fieldInput"
                 placeholder="Enter a Title"
-                required
               />
+              <div id="errorTitle" class="errorMessage">
+                This field is required.
+              </div>
             </div>
-            <div class="overField">
+            <div class="overField marginTop">
               <label for="description">Description</label>
               <textarea
                 type="text"
@@ -37,8 +41,28 @@
               ></textarea>
             </div>
             <div class="overField">
-              <label for="name">Assigned to</label>
-              <input type="text" id="AssignedTo" class="fieldInput" required />
+              <label for="assignedTo">Assigned to</label>
+              <div class="overaddAssignedTo">
+                <div class="overInputAssignedTo">
+                  <input
+                    id="inputAssignedTo"
+                    class="fieldInput inputAssignedTo"
+                    type="text"
+                    onclick="renderContactList()"
+                    oninput="filterContacts()"
+                    placeholder="Assigned To"
+                  />
+                  <div class="changeSymboles">
+                    <img
+                      id="arrowDropdown"
+                      src="assets/icons/arrowDropdown.svg"
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <ul id="insertContactList" class="listContacts"></ul>
+              </div>
+              <div id="showPersons" class="showPersons"></div>
             </div>
           </div>
           <div class="line"></div>
@@ -47,19 +71,59 @@
               <label for="date"
                 >Due date<span style="color: #ff8190">*</span></label
               >
-              <input type="date" id="date" class="fieldInput" placeholder="tt/mm/jjjj" required />
+              <div class="dateWrapper">
+                <img
+                  src="assets/icons/calendarIcon.svg"
+                  alt="Date Icon"
+                  class="dateIcon"
+                  onclick="document.getElementById('date').click()"
+                />
+                <input
+                  type="date"
+                  id="date"
+                  class="fieldInput dateInput"
+                  placeholder="dd/mm/yyyy"
+                  onchange="checkDateInput()"
+                />
+              </div>
+              <div id="errorDate" class="errorMessage">
+                This field is required.
+              </div>
             </div>
-            <div class="overField">
+            <div class="overField marginTop">
               <label for="prio">Prio</label>
               <div class="overPrioButtons">
-                <button class="prioButtons urgentButton" type="button">
-                  Urgent<img src="assets/icons/up.svg" alt="" />
+                <button
+                  id="urgentButton"
+                  class="prioButtons"
+                  onclick="selectPrio(`urgent`)"
+                  type="button"
+                >
+                  Urgent<img
+                    id="urgentButtonImg"
+                    src="assets/icons/urgent.svg"
+                    alt=""
+                  />
                 </button>
-                <button class="prioButtons mediumButton" type="button">
-                  Medium<img src="assets/icons/medium.svg" alt="" />
+                <button
+                  id="mediumButton"
+                  class="prioButtons"
+                  onclick="selectPrio(`medium`)"
+                  type="button"
+                >
+                  Medium<img
+                    id="mediumButtonImg"
+                    src="assets/icons/medium.svg"
+                    alt=""
+                  />
                 </button>
-                <button class="prioButtons lowButton" type="button">
-                  Low<img src="assets/icons/down.svg" alt="" />
+                <button
+                  id="lowButton"
+                  class="prioButtons"
+                  onclick="selectPrio(`low`)"
+                  type="button"
+                >
+                  Low<img id="lowButtonImg" src="assets/icons/low.svg" alt="" />
                 </button>
               </div>
             </div>
@@ -67,12 +131,43 @@
               <label for="category"
                 >Category<span style="color: #ff8190">*</span></label
               >
-              <input type="text" id="category" class="fieldInput" required />
+              <div class="arrowCategory">
+                <img
+                  id="categoryDropdown"
+                  src="assets/icons/arrowDropdown.svg"
+                  alt=""
+                />
+              </div>
+              <select
+                name="category"
+                id="categoryToSelect"
+                class="selectCat fieldInput"
+                onclick="changeArrow()"
+                aria-placeholder="Test"
+              >
+                <option value="" selected>Select task category</option>
+                <option value="Technical Task">Technical Task</option>
+                <option value="User Story">User Story</option>
+              </select>
+              <div id="errorCategory" class="errorMessage">
+                This field is required.
+              </div>
             </div>
-            <div class="overField">
+            <div class="overField marginTop">
               <label for="subtasks">Subtasks</label>
               <div class="overAddSubtasks">
-              <input type="text" id="subtasks" class="fieldInputSubtasks" onkeydown="changeSymbols()" required /><div id="symbolsSubtasks" class="changeSymboles">+</div></div>
+                <input
+                  type="text"
+                  id="subtasks"
+                  class="fieldInput"
+                  oninput="changeSymbols()"
+                  placeholder="Add new Subtask"
+                />
+                <div id="symbolsSubtasks" class="changeSymboles">
+                  <img src="assets/icons/plus.svg" alt="" />
+                </div>
+              </div>
+              <ul id="showSubtasks"></ul>
             </div>
           </div>
         </div>
@@ -81,11 +176,21 @@
             <span style="color: #ff8190">*</span>This field is required
           </div>
           <div class="setButtons">
-            <button class="formButtons clearButton" type="button">
-              Clear <img src="assets/icons/vector.svg" alt="" />
+            <button
+              class="formButtons clearButton"
+              type="button"
+              onclick="reloadPage()"
+              onmouseover="changeImage(this, true)"
+              onmouseout="changeImage(this, false)"
+            >
+              Clear <img src="assets/icons/close.svg" alt="" />
             </button>
-            <button class="formButtons createButton" type="submit" onclick="saveData()">
-              Create Task <img src="assets/icons/check.svg" alt="" />
+            <button
+              class="formButtons createButton"
+              type="button"
+              onclick="submitForm()"
+            >
+              Create Task <img src="assets/icons/checkWhite.svg" alt="" />
             </button>
           </div>
         </div>

@@ -15,48 +15,48 @@
         <script src="./js/multi-page-app.js"></script>
         <script src="./js/sign_up.js"></script>
 </head>
-
-<body onload="initLogin()">
-    <header>
-        <div class="logo-header">
-            <img src="assets/img/join-logoBig.png" class="logo-img">
-        </div>
-        <form class="sign-up-div">
-            <h3>Not a Join User?</h3>
-            <button class="sign-up-button" id="signUpButton"></button>
-        </form>
-    </header>
+<body onload="animateLogo(); showDivsDelayed(); initLogin();">
+  <div class="main-frame-div">
+    <div class="j-logo-div">
+      <img src="assets/img/j-logo-bigger.png" class="j-logo-img">
+    </div>
+    <div class="sign-up-div">
+      <div class="sign-up-under-div">
+        <h3>Not a Join User?</h3>
+        <a class="sign-up-button" href="./sign_up.html">Sign up</a>
+      </div>
+    </div>
     <main>
         <div class="log-in-div">
             <h1 class="log-in-header">Log in</h1>
             <div class="divider"></div>
             <div class="input-main-div">
-                <form class="email-input-div">
-                    <input type="text" class="log-input" id="emailInput" placeholder="Email">
-                    <img class="mail-Img" src="assets/img/mail.png">
-                </form>
-                <form class="password-input-div">
-                    <input type="password" class="log-input" id="passwordInput" placeholder="Password">
-                    <img class="password-Img" src="assets/img/lock.png">
-                </form>
-                <div class="remember-box-div" id="rememberBox">
-                    <input type="checkbox" class="r-box-input" id="rememberCheckbox">
-                    <label for="rememberCheckbox" class="r-box-label">Remember me</label>
-                </div>
-                <div class="log-in-buttons-div">
-                    <button class="log-in-button" onclick="login()">Log in</button>
-                    <button class="guest-log-in-button">Guest Log in</button>
-                </div>
+            <form class="email-input-div">
+                <input type="text"  class="log-input" id="emailInput" placeholder="Email">
+                <img class="mail-Img" src="assets/img/mail.png">
+            </form>
+            <form class="password-input-div">
+                <input type="password" class="log-input" id="passwordInput" placeholder="Password">
+                <img class="password-Img" src="assets/img/lock.png">
+            </form>
+            <div class="remember-box-div" id="rememberBox">
+                <input type="checkbox" class="r-box-input" id="rememberCheckbox">
+                <label for="rememberCheckbox" class="r-box-label">Remember me</label>
             </div>
-
+            <div class="log-in-buttons-div">
+                <button class="log-in-button" onclick="login()">Log in</button>
+                <button class="guest-log-in-button">Guest Log in</button>
+            </div>
+        </div>
+    
         </div>
         <footer>
             <a class="footer-element-left">Privacy Policy</a>
             <a class="footer-element-right">Legal notice</a>
         </footer>
-
+        
     </main>
-
+    
 </body>
-
+<script src="js/scriptLogIn.js"></script>
 </html>
