@@ -137,39 +137,35 @@ async function moveTo(newSection) {
     console.log("Current dragged element:", currentDraggedElementID)
     let keyForPath = checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys)
     let path = `tasks/${keyForPath}/currentStatus`;
-    document.body.removeChild(clonedElementForMoving);
+    // document.body.removeChild(clonedElementForMoving);
     await putNewCategory(path, newSection);
     await getIdAndData(pathData='')
 }
 
-function checkCategory(category) {
-    console.log(category.id);
-    if (category.id.includes("todo")) {
-        category = 'todo'
-    } else if (category.id.includes("progress")) {
-        category = 'inProgress'
-    } else if (category.id.includes("feedback")) {
-        category = 'awaitFeedback'
-    } else if (category.id.includes("done")) {
-         category = 'done'
-    }
-    return category
-}
+// function checkCategory(category) {
+//     console.log(category.id);
+//     if (category.id.includes("todo")) {
+//         category = 'todo'
+//     } else if (category.id.includes("progress")) {
+//         category = 'inProgress'
+//     } else if (category.id.includes("feedback")) {
+//         category = 'awaitFeedback'
+//     } else if (category.id.includes("done")) {
+//          category = 'done'
+//     }
+//     return category
+// }
 
 function openAddTaskForm() {
     window.location.href = "/add_task.html"
 }
 
 function checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys) {
-    debugger;
     let id = currentDraggedElementID.slice(15);
-    // console.log("id", id);
-    // console.log(allKeys);
     let keytoChangeCategory;
-    
     for (let i = 0; i < allKeys.length; i++) {
         if (allTasks[`${allKeys[i]}`].single_ID == id) {
-            console.log(i, allKeys[i])
+            // console.log(i, allKeys[i])
             keytoChangeCategory = allKeys[i]
         }
     }

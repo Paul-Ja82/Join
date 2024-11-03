@@ -36,8 +36,6 @@ function pushTasksToArray() {
 }
 
 function fillTaskSections(section, tasks) {
-    // console.log(tasks);
-    
     document.getElementById(section).innerHTML = "";
     for (let i = 0; i < tasks.length; i++) {
         let assignedTocontacts = checkAssignedTo(tasks, i);
@@ -47,15 +45,13 @@ function fillTaskSections(section, tasks) {
         let width = calcProcessBarWidth(checkedSubtasks, subtasksLength);
         createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, width, checkedSubtasks, subtasksLength)
     }
-    
     let moveToShadow = document.createElement("div")
     moveToShadow.className = "move_to_shadow";
     moveToShadow.id = `shadow_move_to_${section}`;
-    nothingTodoOrDone()
+    nothingTodoOrDone(tasks, section)
     document.getElementById(section).appendChild(moveToShadow)
     checkTaskCategoryColor("single_task_category")
     showSubtaskCtn()
-    
 }
 
 function checkAssignedTo(tasks, i) {
@@ -185,18 +181,10 @@ function showSubtaskCtn() {
     });
 }
 
-function nothingTodoOrDone() {
-    document.getElementById("to_do_tasks_nothing").style.display = "none";
-    document.getElementById("in_progress_tasks_nothing").style.display = "none";
-    document.getElementById("await_feedback_tasks_nothing").style.display = "none";
-    document.getElementById("done_tasks_nothing").style.display = "none";
-    if (document.getElementById("to_do_tasks").innerHTML == "" || document.getElementById("to_do_tasks").innerHTML == '<div class="move_to_shadow" id="shadow_move_to_to_do_tasks"></div>') {
-        document.getElementById("to_do_tasks_nothing").style.display = "flex"
-    } else if (document.getElementById("in_progress_tasks").innerHTML == "" || document.getElementById("in_progress_tasks").innerHTML == '<div class="move_to_shadow" id="shadow_move_to_in_progress_tasks"></div>') {
-        document.getElementById("in_progress_tasks_nothing").style.display = "flex"
-    } else if (document.getElementById("await_feedback_tasks").innerHTML == "" || document.getElementById("await_feedback_tasks").innerHTML == '<div class="move_to_shadow" id="shadow_move_to_await_feedback_tasks"></div>') {
-        document.getElementById("await_feedback_tasks_nothing").style.display = "flex"
-    } else if (document.getElementById("done_tasks").innerHTML == "" || document.getElementById("done_tasks").innerHTML == '<div class="move_to_shadow" id="shadow_move_to_to_do_tasks"></div>') {
-        document.getElementById("done_tasks_nothing").style.display = "flex"
+function nothingTodoOrDone(tasks, section) {
+    if (tasks.length == 0) {
+        document.getElementById(`${section}_nothing`).style.display = "flex";
+    } else {
+        document.getElementById(`${section}_nothing`).style.display = "none";
     }
 }
