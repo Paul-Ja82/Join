@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>add_task-join</title>
     <link rel="stylesheet" href="/css/add_Task.css" />
+    <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">
     <script src="js/add_task.js"></script>
     <script src="js/loadTasks.js"></script>
     <script src="js/showTasks.js"></script>
   </head>
-  <body onload="init()">
+  <body onload="init(); getIdAndData(pathData='', 'addTask')">
     <div id="dummy_header"></div>
     <div id="dummy_menu"></div>
     <h2>Add Task</h2>
@@ -48,7 +49,7 @@
                     id="inputAssignedTo"
                     class="fieldInput inputAssignedTo"
                     type="text"
-                    onclick="renderContactList()"
+                    onclick="renderContactList(); toggleContactList()"
                     oninput="filterContacts()"
                     placeholder="Assigned To"
                   />
