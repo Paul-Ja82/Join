@@ -5,56 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign up Join </title>
     <link rel="stylesheet" href="css/sign_up.css">
-    <script src="./js/database.js"></script>
-    <script src="./script.js"></script>
+    <!--<<script src="./js/database.js"></script>
+    script src="./script.js"></script>
     <script src="./js/multi-page-app.js"></script>
     <script src="./js/ui.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <script src="./js/database.js"></script>
-    <script src="./js/multi-page-app.js"></script>
-    <script src="./js/sign_up.js"></script>
+    <script src="./js/multi-page-app.js"></script>-->
+    <script src="js/sign_up.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
-<body onload="initSignup()">
-    <div class="logo-header">
-        <img src="assets/img/join-logoBig.png" class="logo-img"> 
+<body >  <!--onload="initSignup()"-->
+  <div class="main-frame-div">
+    <div class="logo-header-div">
+        <img src="assets/img/join-logoBig.png" class="j-logo-img">
     </div>
-    <main>
-    <div class="sign-up-div">
-        <div class="sign-up-header-div">
+<div class="under-frame-div">
+    <form class="sign-up-div">
             <div class="arrow-div">
-            <a class="arrow-Img" href="./log_in.html"></a>
-        </div>
+                <a href="./log_in.html" class="arrow-Img-a">
+                    <img class="arrow-Img" src="assets/icons/arrow-left-p.png">
+                </a>
+            </div>
             <h1 class="sign-up-header">Sign up</h1>
-        </div>
         <div class="divider"></div>
-        <form class="name-input-div">
+        <div class="name-input-div">
             <input type="text"  class="log-input" id="nameInput" placeholder="Name">
             <img class="name-Img" src="assets/img/person.png">
-        </form>
-        <form class="email-input-div">
+        </div>
+        <div class="email-input-div">
             <input type="text"  class="log-input" id="emailInput" placeholder="Email" required>
             <img class="mail-Img" src="assets/img/mail.png">
-        </form>
-        <form class="password-input-div">
-            <input type="password" class="log-input" id="passwordInput" placeholder="Password">
+        </div>
+        <div class="password-input-div">
+            <input type="password" class="log-input-pass" id="passwordInput" placeholder="Password">
             <img class="password-Img" src="assets/img/lock.png">
-        </form>
-        <form class="confirm-pw-input-div">
-            <input type="password" class="log-input" id="confirmPasswordInput" placeholder="Confirm Password">
+        </div>
+        <div class="confirm-pw-input-div">
+            <input type="password" class="log-input-pass" id="confirmPasswordInput" placeholder="Confirm Password">
             <img class="password-Img" src="assets/img/lock.png">
-        </form>
+        </div>
         <div class="accept-priv-box-div" id="accPrivacyBox">
-            <input type="checkbox" class="acc-pry-box-input" id="rememberCheckbox">
-            <label for="accPrivacybox" class="acc-priv-box-label">I accept the <a>Privacy policy</a></label>
+            <input type="checkbox" class="accept-box-input" id="rememberCheckbox">
+            <div class="acc-priv-box-label">I accept the <a class="privacy-policy">Privacy policy</a></div>
         </div>
             <button class="sign-up-final-button" id="signUpFinalButton" onclick="signup()">Sign up</button>
-    </div> 
+    </form>
+
         <footer>
             <a class="footer-element-left">Privacy Policy</a>
             <a class="footer-element-right">Legal notice</a>
         </footer>
-    </main>
+    </div> 
+</div>
 </body>
 </html>

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 function initSummary() {
     initMPA();
 }
@@ -54,13 +53,3 @@ function checkAmountWidth() {
     applyHoverClass();
     window.addEventListener("resize", applyHoverClass);
 }
-=======
-
-/*##########*/
-/*## INIT ##*/
-/*##########*/
-
-function initSummary() {
-    initMPA();
-}
->>>>>>> f2bee9b49810ae3f915a158cd1d6e0ab005917d5
