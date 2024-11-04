@@ -129,6 +129,11 @@
     top: 0;
 }
 
+#detailHeadline {
+    font-size: 2em;
+    font-weight: bold;
+}
+
 #coninfoPersonIcon {
     height: 5em;
     border: 2px solid white;
