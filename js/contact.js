@@ -33,8 +33,9 @@ function addListItemClickHandlers() {
 
 function listItemClickHandler() {
     console.log('listItemClickHandler()'); ///DEBUG
-    hideInfo();
-    showInfo();
+
+    showElem('detailContainer');
+    showContactInfoButtonMobile();
 }
 
 /*##################*/
@@ -42,6 +43,7 @@ function listItemClickHandler() {
 /*##################*/
 
 function showInfo() {
+    console.log('showInfo()'); ///DEBUG
     setInfo();
     let infoContainer= document.getElementById('infoContainer');
     infoContainer.classList.add('show-info');
@@ -54,6 +56,25 @@ function hideInfo() {
 
 function setInfo() {
     console.log('setInfo()'); ///DEBUG
+}
+
+/*####################*/
+/*## CONTACT DETAIL ##*/
+/*####################*/
+
+function closeDetailButtonHandler() {
+    hideElem('detailContainer');
+    hideContactInfoButtonMobile();
+}
+
+function showContactInfoButtonMobile() {
+    hideElem('newContactButton');
+    showElem('contactInfoButtonMobile');
+}
+
+function hideContactInfoButtonMobile() {
+    hideElem('contactInfoButtonMobile');
+    showElem('newContactButton');
 }
 
 /*#################*/
