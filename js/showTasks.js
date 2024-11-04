@@ -52,6 +52,8 @@ function fillTaskSections(section, tasks) {
 }
 
 function checkAssignedTo(tasks, i) {
+    // console.log(tasks[i]);
+    
     let contactsIconsTemplate = "";
     for (let j = 0; j < tasks[i].assigned_to.length; j++) {
 

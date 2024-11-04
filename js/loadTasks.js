@@ -76,9 +76,10 @@ async function getIdAndData(pathData='') {
     console.log(responseDataToJson);
     allTasks = responseDataToJson.tasks
     id = responseDataToJson.id;
-    keyForAllTasks();
-    checkTaskSections();
-    return id
+        keyForAllTasks();
+        checkTaskSections();
+        return id
+    
 }
 
 async function postData(path="", data={}) {

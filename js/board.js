@@ -57,6 +57,8 @@ function checkDraggableArea(e) {
     let cursorY = e.clientY;
     let idFromSectionToDrop = checkIdFromSectionToDrop(cursorX, cursorY); 
     let newSection = checkNewSection(idFromSectionToDrop);    
+    console.log(newSection);
+    
     if (newSection == 'noDropArea') {
         endDragging()
         removeShadow(id)
@@ -64,6 +66,7 @@ function checkDraggableArea(e) {
     } else {
         moveTo(newSection)
         endDragging()
+        getIdAndData(pathData='')
     }
 }
 
@@ -121,7 +124,12 @@ async function moveTo(newSection) {
     // console.log("Dropping into category:", newSection);
     // console.log("Current dragged element:", currentDraggedElementID)
     let keyForPath = checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys)
+    console.log(keyForPath);
+    
     let path = `tasks/${keyForPath}/currentStatus`;
+    console.log(path);
+    console.log(newSection);
+    
     await putNewCategory(path, newSection);
     await getIdAndData(pathData='')
 }
