@@ -240,6 +240,79 @@ function setButtonsAdd() {
 /*## EDIT CONTACT ##*/
 /*##################*/
 
+
+function editContactButtonHandler() {
+    setContactDialogEdit();
+    closeDialog();
+    resetVsmgs('contactForm');
+    setTimeout(() => { openDialog('dialogContact') }, 100);
+}
+
+function setContactDialogEdit() {
+    let headline= document.getElementById('CDheadline');
+    headline.innerHTML= 'Edit contact';
+    hideElem('CDtagline');
+    setPersonIconEdit();
+    setFormEdit();
+}
+
+function setPersonIconEdit() {
+    let contact= getContactById(shownContactInfoId);
+    let personIcon= document.getElementById('cdPersonIcon');
+    let personIconColor= isColorLight(contact.color) ? 'black' : 'white';
+    let monogram= document.getElementById('cdMonogram');
+    personIcon.style.backgroundColor= contact.color;
+    personIcon.style.color= personIconColor;
+    monogram.innerHTML= getMonogram(contact.name);
+    showElem('cdMonogram');
+    hideElem('cdPersonIconAdd');
+}
+
+function setInputsEdit() {
+    let contact= getContactById(shownContactInfoId);
+    let inputName= document.getElementById('nameInputElem');
+    let inputEmail= document.getElementById('emailInputElem');
+    let inputPhone= document.getElementById('phoneInputElem');
+    inputName.value= contact.name;
+    inputEmail.value= contact.email;
+    inputEmail.disabled= true;
+    inputPhone.value= contact.phone;
+}
+
+function setButtonsEdit() {
+    let submitButtonText= document.getElementById('CDsubmitButtonText');
+    submitButtonText.innerHTML= 'Save';
+    showElem('cdDeleteButton');
+    hideElem('cdCancelButton');
+}
+
+function setFormEdit() {
+    setInputsEdit();
+    setButtonsEdit();
+    // removeValidation('contactForm', validateContactExisting);
+    removeSubmitHandler('contactForm', addContact);
+    removeSubmitHandler('contactForm', submitHandlerEdit);
+    addSubmitHandler('contactForm', submitHandlerEdit);
+}
+
+function submitHandlerEdit() {
+    loadInputValuesAddContact();
+    editContact().then(generateContactList);
+    showToast('editContactToast', afterToastHandlerEditContact);
+}
+
+async function editContact() {
+    let path= CONTACTS_PATH + currentUser.id + '/' + shownContactInfoId;
+    let contact= getContactById(shownContactInfoId);
+    contact.name= nameInput;
+    contact.phone= phoneInput;
+    saveData(path, contact);
+}
+
+/*####################*/
+/*## DELETE CONTACT ##*/
+/*####################*/
+
 function deleteButtonHandler() {
     deleteContact(shownContactInfoId)
         .then(()=> {
@@ -265,6 +338,10 @@ async function afterToastHandlerDeleteContact() {
     addListItemClickHandlers();
     closeDialog();
     mediaDesktop.matches ? hideInfo() : closeDetailButtonHandler();
+}
+
+async function afterToastHandlerEditContact() {
+    afterToastHandlerDeleteContact();
 }
 
 /*###########*/
