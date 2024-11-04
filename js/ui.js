@@ -54,3 +54,18 @@ function isColorLight(colorHex) {
     return luminance >= 128;
 }
 
+/*##########*/
+/*## MISC ##*/
+/*##########*/
+
+function getMonogram(name) {
+    //the first letters of the two first words
+    let regex = /^(\w)\w*\b(\s+(\w)\w*\b)?/
+    let match = name.match(regex);
+    let letter1 = match[1];
+    let letter2 = match[3];
+    let monogram = '';
+    if (letter1) monogram += letter1;
+    if (letter2) monogram += letter2;
+    return monogram;
+}
