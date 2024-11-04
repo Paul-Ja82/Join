@@ -48,7 +48,7 @@
                     id="inputAssignedTo"
                     class="fieldInput inputAssignedTo"
                     type="text"
-                    onclick="renderContactList()"
+                    onclick="renderContactList(); toggleContactList()"
                     oninput="filterContacts()"
                     placeholder="Assigned To"
                   />
@@ -57,6 +57,7 @@
                       id="arrowDropdown"
                       src="assets/icons/arrowDropdown.svg"
                       alt=""
+                      onclick="toggleContactList()"
                     />
                   </div>
                 </div>
@@ -176,22 +177,24 @@
             <span style="color: #ff8190">*</span>This field is required
           </div>
           <div class="setButtons">
-            <button
-              class="formButtons clearButton"
-              type="button"
-              onclick="reloadPage()"
-              onmouseover="changeImage(this, true)"
-              onmouseout="changeImage(this, false)"
-            >
-              Clear <img src="assets/icons/close.svg" alt="" />
-            </button>
-            <button
-              class="formButtons createButton"
-              type="button"
-              onclick="submitForm()"
-            >
-              Create Task <img src="assets/icons/checkWhite.svg" alt="" />
-            </button>
+            <div class="overFormButtons">
+              <button
+                class="formButtons clearButton"
+                type="button"
+                onclick="reloadPage()"
+                onmouseover="changeImage(this, true)"
+                onmouseout="changeImage(this, false)"
+              >
+                Clear <img src="assets/icons/close.svg" alt="" />
+              </button>
+              <button
+                class="formButtons createButton"
+                type="button"
+                onclick="submitForm()"
+              >
+                Create Task <img src="assets/icons/checkWhite.svg" alt="" />
+              </button>
+            </div>
           </div>
         </div>
       </div>

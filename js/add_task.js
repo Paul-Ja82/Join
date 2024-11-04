@@ -17,6 +17,7 @@ let contacts = [
   "Jonas Lehmann",
 ];
 let isListOpen = false;
+
 const avatarColors = ["#3498db", "#e74c3c", "#f39c12", "#2ecc71", "#9b59b6"];
 
 function init() {
@@ -180,6 +181,7 @@ function resetArrow() {
     .addEventListener("click", changeArrow);
 }
 
+/*
 document.addEventListener("DOMContentLoaded", () => {
   const inputField = document.getElementById("inputAssignedTo");
 
@@ -191,7 +193,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     isListOpen = !isListOpen;
   });
-});
+});*/
+
+function toggleContactList() {
+  const inputField = document.getElementById("inputAssignedTo");
+
+  if (isListOpen) {
+    closeContactList();
+  } else {
+    renderContactList();
+  }
+  isListOpen = !isListOpen;
+}
+
 
 function checkDateInput() {
   let valueDate = document.getElementById("date");
