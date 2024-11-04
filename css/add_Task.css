@@ -144,11 +144,15 @@ textarea:focus {
 }
 
 .listContacts {
+  position: absolute;
+  width: 100%;
   background-color: white;
   border-radius: 10px;
+  box-shadow: 0px 0px 14px 3px #0000000a;
   list-style-type: none;
   padding: 0;
   overflow: auto;
+  cursor: pointer;
 }
 
 .listContacts::-webkit-scrollbar {
@@ -276,7 +280,7 @@ svg text {
   cursor: pointer;
 }
 
-.setButtons {
+.overFormButtons {
   display: flex;
   flex-direction: row;
   gap: 16px;
@@ -478,7 +482,6 @@ select:focus {
 .changingTextInputField {
   position: relative;
   border: unset;
-
 }
 
 .overChangingSubtask {
@@ -503,7 +506,6 @@ select:focus {
 
 .required {
   align-self: flex-end;
-
 }
 
 .showEntrySubtask:hover .edit {
@@ -587,7 +589,7 @@ select:focus {
     font-size: 16px;
   }
 
-  .setButtons {
+  .overFormButtons {
     background-color: #f6f7f8;
     font-size: 21px;
     gap: 32px;
@@ -598,6 +600,8 @@ select:focus {
     padding: 15px;
   }
 
+
+  
   .profile {
     font-size: 16px;
   }
