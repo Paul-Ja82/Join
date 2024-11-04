@@ -9,6 +9,10 @@ function checkTaskSections() {
     tasksAwaitFeedback = [];
     tasksDone = [];
     pushTasksToArray()
+    // console.log(tasksTodo);
+    // console.log(tasksInProgress);
+    // console.log(tasksAwaitFeedback);
+    // console.log(tasksDone);
     fillTaskSections("to_do_tasks", tasksTodo)
     fillTaskSections("in_progress_tasks", tasksInProgress)
     fillTaskSections("await_feedback_tasks", tasksAwaitFeedback)
@@ -30,9 +34,15 @@ function pushTasksToArray() {
             tasksDone.push(allTasks[`${allKeys[i]}`])
         }
     }
+    // console.log(tasksTodo);
+    // console.log(tasksInProgress);
+    // console.log(tasksAwaitFeedback);
+    // console.log(tasksDone);
+    
 }
 
 function fillTaskSections(section, tasks) {
+    
     document.getElementById(section).innerHTML = "";
     for (let i = 0; i < tasks.length; i++) {
         let assignedTocontacts = checkAssignedTo(tasks, i);
