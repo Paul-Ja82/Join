@@ -13,12 +13,14 @@ mediaDesktop.addEventListener('change', mediaChangeHandler);
 /*## INIT ##*/
 /*##########*/
 
-function initContact() {
+async function initContact() {
     console.log('intitContact()'); ///DEBUG
-    initJoin();
+    await initJoin();
     initForms();
     include();
     mediaChangeHandler();
+    console.log(contacts); ///DEBUG
+    generateContactList();
     addListItemClickHandlers();
 }
 
@@ -27,6 +29,36 @@ function addListItemClickHandlers() {
     for (itemI of listItems) {
         itemI.addEventListener('click', listItemClickHandler);
     }
+}
+
+/*###########################*/
+/*## GENERATE CONTACT LIST ##*/
+/*###########################*/
+
+function generateContactList() {
+    let contactListContainer= document.getElementById('contactListContainer');
+    let content= '';
+    for (let contactI of contacts) {
+        content += contactToListItemHTML(contactI, 'conlistItem' + contactI.id);
+    }
+    contactListContainer.innerHTML= content;
+}
+
+// contact: {email, name, phone, color}
+function contactToListItemHTML(contact, elemId) {
+    let personIconColor= isColorLight(contact.color) ? 'black' : 'white';
+    let contactMonogram= getMonogram(contact.name);
+    return `
+        <div id="${elemId}" class="conlist-item flex-row h-pointer" data-contactid="${contact.id}">
+            <div class="person-icon conlist-person-icon" style="background-color:${contact.color};color:${personIconColor}">
+                <p>${contactMonogram}</p>
+            </div>
+            <div class="conlist-name-wrapper">
+                <p class="conlist-name">${contact.name}</p>
+                <p class="conlist-email">${contact.email}</p>
+            </div>
+        </div> 
+    `;
 }
 
 /*##################*/
