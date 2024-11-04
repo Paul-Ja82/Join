@@ -2,7 +2,7 @@ let nameInput;
 let emailInput;
 let phoneInput;
 
-let emailAvailableContactFlag= false;
+let emailAvailableContactFlag = false;
 
 let mediaDesktop = window.matchMedia('(768px < width)');
 mediaDesktop.addEventListener('change', mediaChangeHandler);
@@ -21,7 +21,7 @@ function initContact() {
 }
 
 function addListItemClickHandlers() {
-    let listItems= document.querySelectorAll('.conlist-item'); 
+    let listItems = document.querySelectorAll('.conlist-item');
     for (itemI of listItems) {
         itemI.addEventListener('click', listItemClickHandler);
     }
@@ -31,32 +31,63 @@ function addListItemClickHandlers() {
 /*## CONTACT LIST ##*/
 /*##################*/
 
-function listItemClickHandler() {
+function listItemClickHandler(event) {
     console.log('listItemClickHandler()'); ///DEBUG
-
-    showElem('detailContainer');
-    showContactInfoButtonMobile();
+    if (mediaDesktop.matches) displayInfoDesktop(event);
+    else displayInfoMobile(event);
 }
 
 /*##################*/
 /*## INFO SECTION ##*/
 /*##################*/
 
-function showInfo() {
+function showInfo(contactId) {
     console.log('showInfo()'); ///DEBUG
-    setInfo();
-    let infoContainer= document.getElementById('infoContainer');
+    setInfo(contactId);
+    let infoContainer = document.getElementById('infoContainer');
     infoContainer.classList.add('show-info');
 }
 
 function hideInfo() {
-    let infoContainer= document.getElementById('infoContainer');
+    let infoContainer = document.getElementById('infoContainer');
     infoContainer.classList.remove('show-info');
 }
 
-function setInfo() {
+function setInfo(contactId) {
     console.log('setInfo()'); ///DEBUG
+    let contact = getContactById(contactId);
+    console.log(contact); ///DEBUG
+    let personIconFontColor = isColorLight(contact.color) ? 'black' : 'white';
+    let personIconStyle = `background-color:${contact.color};color:${personIconFontColor}`;
+    document.getElementById('coninfoPersonIcon').style = personIconStyle;
+    document.getElementById('coninfoMonogram').innerHTML = getMonogram(contact.name);
+    document.getElementById('coninfoName').innerHTML = contact.name;
+    document.getElementById('coninfoEmail').innerHTML = contact.email;
+    document.getElementById('coninfoPhone').innerHTML = contact.phone;
 }
+
+function displayInfoMobile(event) {
+    console.log('displayInfoMobile(event)'); ///DEBUG
+    let contactId = event.currentTarget.dataset.contactid;
+    setInfo(contactId);
+    showElem('detailContainer');
+    showContactInfoButtonMobile();
+}
+
+/*
+function displayInfoDesktop(event) {
+    let itemId= event.currentTarget.id
+    let text= event.currentTarget.dataset.email;
+    if (isMarked(itemId, itemMarkClass)) {
+        demmarkElem(itemId, itemMarkClass);
+        hideInfo();
+    } else {
+        demarkAllElems(itemMarkClass);
+        markElem(itemId, itemMarkClass);
+        showInfo(text);
+    }
+}
+*/
 
 /*####################*/
 /*## CONTACT DETAIL ##*/
@@ -95,20 +126,20 @@ function createContactHandler() {
 
 function loadInputValuesAddContact() {
     nameInput = document.getElementById('nameInputElem').value;
-    emailInput= document.getElementById('emailInputElem').value;
-    phoneInput= document.getElementById('phoneInputElem').value;
+    emailInput = document.getElementById('emailInputElem').value;
+    phoneInput = document.getElementById('phoneInputElem').value;
 }
 
 function checkEmailAvailableContact() {
-    let contact= contacts.find(contactI => contactI.email == emailInput);
-    if (contact) emailAvailableContactFlag= false;
-    else return emailAvailableContactFlag= true;
+    let contact = contacts.find(contactI => contactI.email == emailInput);
+    if (contact) emailAvailableContactFlag = false;
+    else return emailAvailableContactFlag = true;
 }
 
 async function addContact() {
     let newId = await getId();
     let path = CONTACTS_PATH + currentUser.id + '/' + newId;
-    let colorHex= getRandomColorHex();
+    let colorHex = getRandomColorHex();
     let newContact = {
         id: newId,
         name: nameInput,
@@ -134,25 +165,25 @@ function addContactButtonHandler() {
 }
 
 function clearAddContactForm() {
-    let nameInputElem= document.getElementById('nameInputElem');
-    let emailInputElem= document.getElementById('emailInputElem');
-    let phoneInputElem= document.getElementById('phoneInputElem');
-    nameInputElem.value= '';
-    emailInputElem.value= '';
-    phoneInputElem.value= '';
+    let nameInputElem = document.getElementById('nameInputElem');
+    let emailInputElem = document.getElementById('emailInputElem');
+    let phoneInputElem = document.getElementById('phoneInputElem');
+    nameInputElem.value = '';
+    emailInputElem.value = '';
+    phoneInputElem.value = '';
 }
 
 function setContactDialogAdd() {
-    let headline= document.getElementById('CDheadline');
-    headline.innerHTML= 'Add contact';
+    let headline = document.getElementById('CDheadline');
+    headline.innerHTML = 'Add contact';
     showElem('CDtagline');
     cdSetPersonIconAdd();
     setFormAdd();
 }
 
 function cdSetPersonIconAdd() {
-    let personIcon= document.getElementById('cdPersonIcon');
-    personIcon.style.backgroundColor= '#D1D1D1';
+    let personIcon = document.getElementById('cdPersonIcon');
+    personIcon.style.backgroundColor = '#D1D1D1';
     hideElem('cdMonogram');
     showElem('cdPersonIconAdd');
 }
@@ -166,8 +197,8 @@ function setFormAdd() {
 }
 
 function setButtonsAdd() {
-    let submitButtonText= document.getElementById('CDsubmitButtonText');
-    submitButtonText.innerHTML= 'Create contact';
+    let submitButtonText = document.getElementById('CDsubmitButtonText');
+    submitButtonText.innerHTML = 'Create contact';
     hideElem('cdDeleteButton');
     showElem('cdCancelButton');
 }
