@@ -44,14 +44,14 @@ async function getId() {
     return nextId;
 }
 
-/*
 async function deleteData(path) {
+    console.log('deleteData(path)'); ///DEBUG
+    console.log(path); ///DEBUG
     return fetch(BASE_URL + path + '.json', {
         method: 'DELETE'
     })
-        .catch(() => console.log('fehler beim löschen'))
+        .catch(() => console.warn('fehler beim löschen'))
 }
-*/
 
 /*###########*/
 /*## DEBUG ##*/
