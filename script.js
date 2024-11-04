@@ -66,7 +66,7 @@ let currentUser;
 async function initJoin() {
   initMPA();
   await loadCurrentUser();
-  loadContacts();
+  await loadContacts();
 }
 
 async function loadContacts() {
