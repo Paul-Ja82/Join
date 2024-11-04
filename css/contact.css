@@ -73,13 +73,6 @@
     border-bottom: 1px solid var(--clr-gray-500);
 }
 
-
-/*DEBUG*/
-#testPersonIcon {
-    background-color: orange;
-    color: white;
-}
-
 @media (768px < width) {
     #listContainer {
         grid-column: 1 / 2;
@@ -114,6 +107,7 @@
 
     .conlist-item:hover {
         background: var(--clr-conlist-item-bg-hover);
+        color: black;
     }
 
     .conlist-item-marked {
