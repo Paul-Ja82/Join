@@ -54,6 +54,42 @@ function isColorLight(colorHex) {
     return luminance >= 128;
 }
 
+/*###################*/
+/*## MARK ELEMENTS ##*/
+/*###################*/
+
+function markElem(elemId, className, functions) {
+    let elem= document.getElementById(elemId);
+    elem.classList.add(className);
+    if (functions) {
+        for (let functionI of functions) {
+            functionI();
+        }
+    }
+}
+
+function demmarkElem(elemId, className, functions) {
+    let elem= document.getElementById(elemId);
+    elem.classList.remove(className);
+    if (functions) {
+        for (let functionI of functions) {
+            functionI();
+        }
+    }
+}
+
+function demarkAllElems(className) {
+    let elems= document.querySelectorAll(`.${className}`);
+    for (let elemI of elems) {
+        demmarkElem(elemI.id, className);
+    }
+}
+
+function isMarked(elemId, className) {
+    let elem= document.getElementById(elemId);
+    return elem.classList.contains(className);
+}
+
 /*##########*/
 /*## MISC ##*/
 /*##########*/

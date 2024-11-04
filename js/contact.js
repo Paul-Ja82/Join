@@ -1,3 +1,5 @@
+let itemMarkClass= 'conlist-item-marked';
+
 let nameInput;
 let emailInput;
 let phoneInput;
@@ -74,20 +76,19 @@ function displayInfoMobile(event) {
     showContactInfoButtonMobile();
 }
 
-/*
 function displayInfoDesktop(event) {
-    let itemId= event.currentTarget.id
-    let text= event.currentTarget.dataset.email;
+    let itemId= event.currentTarget.id;
+    let contactId= event.currentTarget.dataset.contactid;
     if (isMarked(itemId, itemMarkClass)) {
         demmarkElem(itemId, itemMarkClass);
         hideInfo();
     } else {
         demarkAllElems(itemMarkClass);
         markElem(itemId, itemMarkClass);
-        showInfo(text);
+        showInfo(contactId);
     }
 }
-*/
+
 
 /*####################*/
 /*## CONTACT DETAIL ##*/
