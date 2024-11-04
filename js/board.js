@@ -24,8 +24,8 @@ function whileDragging(e) {
 
 function startDragging(e) {
     let rect = currentDraggedElement.getBoundingClientRect();
-    console.log(rect);
-    console.log(e);
+    // console.log(rect);
+    // console.log(e);
     styleClonedElement(rect, event)
     currentDraggedElement.classList.add("hide_original_task");
     document.body.appendChild(clonedElementForMoving);
