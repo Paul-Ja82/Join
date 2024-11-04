@@ -61,20 +61,20 @@ async function saveData() {
 }*/
 
 function renderContactList(filteredContacts = contacts) {
+  document.getElementById("setBackground").classList.add("whiteBG");
   const contactList = document.getElementById("insertContactList");
   contactList.style.height = "250px";
-  contactList.innerHTML = ""; // Reset the list
+
+  contactList.innerHTML = "";
   document.getElementById("arrowDropdown").src =
     "/assets/icons/arrowUpDropdown.svg";
 
-  // Überprüfe, ob die gefilterten Kontakte leer sind
   if (filteredContacts.length === 0) {
     contactList.innerHTML =
       "<li class='emptyListMessage'>Ganz schön leer hier! :(</li>";
-    return; // Beende die Funktion, da keine Kontakte gerendert werden müssen
+    return;
   }
 
-  // Render die Kontakte, wenn die Liste nicht leer ist
   filteredContacts.forEach((contact, index) => {
     const isSelected = selectedContacts.includes(contact);
     contactList.innerHTML += `
@@ -125,6 +125,7 @@ function closeContactList() {
   contactList.style.height = 0;
   document.getElementById("arrowDropdown").src =
     "/assets/icons/arrowDropdown.svg";
+  document.getElementById("setBackground").classList.remove("whiteBG");
 }
 
 function changeCheckbox(index) {
@@ -153,7 +154,7 @@ function renderAddedPersons() {
   });
   console.log("Ausgewählte Kontakte:", selectedContacts);
   showPersons();
-  return selectedContacts
+  return selectedContacts;
 }
 
 function changeArrow() {
@@ -277,9 +278,9 @@ function saveSubtasks(index) {
 function pushTextSubtask(textSubtask) {
   const newSubtask = {
     subtask: textSubtask,
-    checked: false
+    checked: false,
   };
-  
+
   subtasks.push(newSubtask);
 }
 
@@ -400,6 +401,21 @@ function changeImage(button, isHover) {
   img.src = isHover ? "assets/icons/vectorBlue.svg" : "assets/icons/close.svg";
 }
 
+showDropdown = function (element) {
+  var event = new MouseEvent("mousedown", {
+    bubbles: true,
+    cancelable: true,
+    view: window,
+  });
+  element.dispatchEvent(event);
+};
+
+// This isn't magic.
+window.runThis = function () {
+  var dropdown = document.getElementById("categoryToSelect");
+  showDropdown(dropdown);
+};
+
 async function submitForm() {
   let hasError = false;
 
@@ -436,9 +452,8 @@ async function submitForm() {
   }
 
   if (!hasError) {
-   
     await collectData(); //senden an loadTasks.js zum hochladen ins Firebase
-    window.location.href = './board.html';
+    window.location.href = "./board.html";
     // reloadPage();
   }
 }

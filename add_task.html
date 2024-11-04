@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>add_task-join</title>
     <link rel="stylesheet" href="/css/add_Task.css" />
-    <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">
     <script src="js/add_task.js"></script>
     <script src="js/loadTasks.js"></script>
     <script src="js/showTasks.js"></script>
   </head>
-  <body onload="init(); getIdAndDataForAddTask(pathData='')">
+  <body onload="init()">
     <div id="dummy_header"></div>
     <div id="dummy_menu"></div>
     <h2>Add Task</h2>
@@ -42,8 +41,8 @@
               ></textarea>
             </div>
             <div class="overField">
-              <label for="assignedTo">Assigned to</label>
-              <div class="overaddAssignedTo">
+              <label for="inputAssignedTo">Assigned to</label>
+              <div id="setBackground" class="overaddAssignedTo">
                 <div class="overInputAssignedTo">
                   <input
                     id="inputAssignedTo"
@@ -74,26 +73,29 @@
                 >Due date<span style="color: #ff8190">*</span></label
               >
               <div class="dateWrapper">
-                <img
-                  src="assets/icons/calendarIcon.svg"
-                  alt="Date Icon"
-                  class="dateIcon"
-                  onclick="document.getElementById('date').click()"
-                />
                 <input
                   type="date"
                   id="date"
                   class="fieldInput dateInput"
-                  placeholder="dd/mm/yyyy"
                   onchange="checkDateInput()"
                 />
+                <div
+                  class="dateIcon"
+                  onclick="document.getElementById('date').showPicker();"
+                >
+                  <img
+                    src="/assets/icons/calendarIcon.svg"
+                    alt="Calendar Icon"
+                  />
+                </div>
               </div>
               <div id="errorDate" class="errorMessage">
                 This field is required.
               </div>
             </div>
+
             <div class="overField marginTop">
-              <label for="prio">Prio</label>
+              <label>Prio</label>
               <div class="overPrioButtons">
                 <button
                   id="urgentButton"
@@ -130,18 +132,20 @@
               </div>
             </div>
             <div class="overField">
-              <label for="category"
+              <label for="categorySelection"
                 >Category<span style="color: #ff8190">*</span></label
               >
               <div class="arrowCategory">
                 <img
                   id="categoryDropdown"
+                  class="categoryDropdown"
                   src="assets/icons/arrowDropdown.svg"
                   alt=""
+                  onclick="runThis()"
                 />
               </div>
               <select
-                name="category"
+                name="categorySelection"
                 id="categoryToSelect"
                 class="selectCat fieldInput"
                 onclick="changeArrow()"
@@ -174,11 +178,11 @@
           </div>
         </div>
         <div class="overFormButtons">
-          <div class="required">
+          <div class="requiredInformation">
             <span style="color: #ff8190">*</span>This field is required
           </div>
           <div class="setButtons">
-            <div class="overFormButtons">
+            <div class="overSendButtons">
               <button
                 class="formButtons clearButton"
                 type="button"
@@ -200,5 +204,9 @@
         </div>
       </div>
     </form>
+<input type="date">
+
+
+
   </body>
 </html>

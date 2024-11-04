@@ -30,6 +30,10 @@ input:focus {
   border: 1px solid #29abe2;
 }
 
+.whiteBG {
+  background-color: white;
+}
+
 .changeSymboles img:hover {
   background-color: #eeeeee;
   border-radius: 50%;
@@ -139,15 +143,14 @@ textarea:focus {
 .overaddAssignedTo {
   position: relative;
   align-items: center;
-  background-color: white;
-  border-radius: 10px;
+  border-radius: 10px 10px 0 0;
 }
 
 .listContacts {
   position: absolute;
   width: 100%;
   background-color: white;
-  border-radius: 10px;
+  border-radius: 0 0 10px 10px;
   box-shadow: 0px 0px 14px 3px #0000000a;
   list-style-type: none;
   padding: 0;
@@ -236,32 +239,41 @@ svg text {
 }
 
 .dateWrapper {
-  display: flex;
   position: relative;
+  display: inline-block;
 }
 
-.dateInput {
-  color: #d1d1d1;
+.dateWrapper input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  -webkit-appearance: none; /* Standard-Design unterdrücken */
+  -moz-appearance: none; /* Standard-Design unterdrücken */
+  appearance: none; /* Standard-Design unterdrücken */
+
+  background-color: white; /* Hintergrundfarbe für das Input-Feld */
+  padding-right: 40px; /* Platz für das Icon */
+  cursor: pointer; /* Zeiger-Cursor für das Input-Feld */
 }
 
-.dateInput.filled {
-  color: black;
+/* Standard-Icons ausblenden */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+input[type="date"]::-moz-calendar-picker-indicator {
+  display: none;
 }
 
 .dateIcon {
-  display: flex;
   position: absolute;
-  right: 10px;
+  right: 10px; /* Position des Icons */
   top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  background-color: white;
-  padding: 8px 5px 10px 20px;
+  transform: translateY(-50%); /* Vertikale Zentrierung */
+  cursor: pointer; /* Zeiger-Cursor für das Icon */
 }
 
 .overFormButtons {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   gap: 8px;
   width: 976px;
@@ -278,12 +290,6 @@ svg text {
   padding: 16px;
   border: none;
   cursor: pointer;
-}
-
-.overFormButtons {
-  display: flex;
-  flex-direction: row;
-  gap: 16px;
 }
 
 .clearButton {
@@ -366,17 +372,16 @@ svg text {
 }
 
 select {
+  width: 100%;
+  padding: 10px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
-  background: transparent;
-  background-image: none;
-  background-repeat: no-repeat;
-  background-position: calc(100% - 10px) center;
-  border: 1px solid #dfdfdf;
-  border-radius: 2px;
-  margin-right: 2rem;
-  padding: 1rem;
-  padding-right: 2rem;
-  outline: none;
+  background-size: 20px;
+  background-color: white;
+  border-radius: 5px;
+  padding-right: 40px;
+  cursor: pointer;
 }
 
 select:focus {
@@ -504,12 +509,18 @@ select:focus {
   border: none;
 }
 
-.required {
+.requiredInformation {
   align-self: flex-end;
 }
 
 .showEntrySubtask:hover .edit {
   display: flex;
+}
+
+.overSendButtons {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
 }
 
 .errorMessage {
@@ -589,7 +600,8 @@ select:focus {
     font-size: 16px;
   }
 
-  .overFormButtons {
+  .overSendButtons {
+    display: flex;
     background-color: #f6f7f8;
     font-size: 21px;
     gap: 32px;
@@ -598,10 +610,9 @@ select:focus {
     bottom: 0;
     width: 100vw;
     padding: 15px;
+    gap: 8px;
   }
 
-
-  
   .profile {
     font-size: 16px;
   }
