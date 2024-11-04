@@ -65,6 +65,7 @@ let currentUser;
 
 async function initJoin() {
   initMPA();
+  initDialog();
   await loadCurrentUser();
   await loadContacts();
 }
@@ -97,9 +98,5 @@ function getContactById(id) {
 
 function getContactByEmail(email) {
   return contacts.find(contactI => contactI.email == email);
-}
-
-function getPersonIcon(id) {
-
 }
 

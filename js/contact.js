@@ -1,4 +1,5 @@
 let itemMarkClass= 'conlist-item-marked';
+let shownContactInfoId;
 
 let nameInput;
 let emailInput;
@@ -14,12 +15,10 @@ mediaDesktop.addEventListener('change', mediaChangeHandler);
 /*##########*/
 
 async function initContact() {
-    console.log('intitContact()'); ///DEBUG
     await initJoin();
     initForms();
     include();
     mediaChangeHandler();
-    console.log(contacts); ///DEBUG
     generateContactList();
     addListItemClickHandlers();
 }
@@ -67,6 +66,7 @@ function contactToListItemHTML(contact, elemId) {
 
 function listItemClickHandler(event) {
     console.log('listItemClickHandler()'); ///DEBUG
+    shownContactInfoId= event.currentTarget.dataset.contactid;
     if (mediaDesktop.matches) displayInfoDesktop(event);
     else displayInfoMobile(event);
 }
@@ -76,7 +76,6 @@ function listItemClickHandler(event) {
 /*##################*/
 
 function showInfo(contactId) {
-    console.log('showInfo()'); ///DEBUG
     setInfo(contactId);
     let infoContainer = document.getElementById('infoContainer');
     infoContainer.classList.add('show-info');
@@ -88,9 +87,7 @@ function hideInfo() {
 }
 
 function setInfo(contactId) {
-    console.log('setInfo()'); ///DEBUG
     let contact = getContactById(contactId);
-    console.log(contact); ///DEBUG
     let personIconFontColor = isColorLight(contact.color) ? 'black' : 'white';
     let personIconStyle = `background-color:${contact.color};color:${personIconFontColor}`;
     document.getElementById('coninfoPersonIcon').style = personIconStyle;
@@ -101,7 +98,6 @@ function setInfo(contactId) {
 }
 
 function displayInfoMobile(event) {
-    console.log('displayInfoMobile(event)'); ///DEBUG
     let contactId = event.currentTarget.dataset.contactid;
     setInfo(contactId);
     showElem('detailContainer');
@@ -149,9 +145,8 @@ function createContactHandler() {
     loadInputValuesAddContact();
     checkEmailAvailableContact();
     if (emailAvailableContactFlag) {
-        addContact();
-        // Toast anzeigen
-        // Dialog schließen
+        addContact().then(generateContactList);
+        showToast('newContactToast', afterToastHandlerCreateContact);
     } else {
         console.warn('Contact mit dieser mail existiert bereits');
     }
@@ -184,6 +179,11 @@ async function addContact() {
     contacts.push(newContact);
     //TODO Show Toast
     console.log('addContact(): Contact wird angelegt.', newContact); ///DEBUG
+}
+
+function afterToastHandlerCreateContact() {
+    addListItemClickHandlers();
+    closeDialog();
 }
 
 /*########################*/
@@ -225,7 +225,7 @@ function setFormAdd() {
     // setInputsAdd();
     setButtonsAdd();
     // addValidation('contactForm', validateContactExisting, 'emailVmsg', 'You already added a contact with this email');
-    // removeSubmitHandler('contactForm', submitHandlerEdit);
+    removeSubmitHandler('contactForm', createContactHandler);
     addSubmitHandler('contactForm', createContactHandler);
 }
 
@@ -234,6 +234,37 @@ function setButtonsAdd() {
     submitButtonText.innerHTML = 'Create contact';
     hideElem('cdDeleteButton');
     showElem('cdCancelButton');
+}
+
+/*##################*/
+/*## EDIT CONTACT ##*/
+/*##################*/
+
+function deleteButtonHandler() {
+    deleteContact(shownContactInfoId)
+        .then(()=> {
+            showToast('deleteContactToast', afterToastHandlerDeleteContact);
+        });
+}
+
+async function deleteContact(contactId) {
+    // let userEamil= encodeURIComponentJOIN(getLoggedIn());
+    // let contactEmail= encodeURIComponentJOIN(shownContactInfoEmail);
+    // let contactPath= `${CONTACTS_PATH}${userEamil}/${contactEmail}`;
+    // await deleteData(contactPath);
+    let contactPath= CONTACTS_PATH + currentUser.id + '/' + contactId;
+    // let contact= getContactById(contactId);
+    // let contactIndex= contacts.indexOf(contact);
+    // contacts.splice(contactIndex, 1);
+    deleteData(contactPath);
+}
+
+async function afterToastHandlerDeleteContact() {
+    await loadContacts();
+    generateContactList();
+    addListItemClickHandlers();
+    closeDialog();
+    mediaDesktop.matches ? hideInfo() : closeDetailButtonHandler();
 }
 
 /*###########*/
@@ -257,7 +288,7 @@ function mediaChangeHandler() {
 /*###########*/
 
 function tuEsContact() {
-
+    console.log(submitHandlers['contactForm'].includes(createContactHandler)); ///DEBUG
 }
 
 function logVarsContact() {
