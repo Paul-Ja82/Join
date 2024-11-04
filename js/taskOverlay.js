@@ -81,16 +81,18 @@ function fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, s
 }
 
 function checkAssignedToOverlay(allTasks, keyToOpen) {
+    console.log(allTasks[keyToOpen], allTasks, keyToOpen);
+    
     let contactsTemplate = "";
     for (let j = 0; j < allTasks[keyToOpen].assigned_to.length; j++) {
-        let firstName = allTasks[keyToOpen].assigned_to[j].firstName
-        let lastName = allTasks[keyToOpen].assigned_to[j].lastName
+        let fullName = allTasks[keyToOpen].assigned_to[j];
+        let [firstName, lastName] = fullName.split(" ");
         let charOneFirstName = firstName.charAt(0);
         let charOneLastName = lastName.charAt(0);
         contactsTemplate += `
             <div class="single_task_single_contact">
                 <div class="task_contact_name_icon">${charOneFirstName}${charOneLastName}</div>
-                <div class="task_contact_name">${firstName} ${lastName} (You??)</div>
+                <div class="task_contact_name">${fullName} (You??)</div>
             </div>
         `
     }
