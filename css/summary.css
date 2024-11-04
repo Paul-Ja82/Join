@@ -1,10 +1,11 @@
 body {
     width: 100%;
     margin: 0;
-    max-width: 1440px;
     overflow: auto;
     font-family: "Inter", sans-serif;
     background-color: rgb(246,247,248,1);
+    display: flex;
+    justify-content: center;
 }
 
 ::-webkit-scrollbar {
@@ -21,25 +22,40 @@ a {
     text-decoration: none;
 }
 
+.main-frame-div {
+    width: 100%;
+    max-width: 1440px;
+    display: flex;
+}
+
+.dummy_menu {
+    width: 16.12%;
+    height: 1024px;
+    background-color: rgba(63, 63, 151, 0.5);
+}
+
+.under-frame-div {
+    width: 83.88%;      
+    display: flex;
+    flex-direction: column;
+}
+
+.header-and-title-div {
+    width: 100%;
+    height: 330px;
+    display: flex;
+    flex-direction: column;
+    background-color: antiquewhite;
+}
+
 .dummy_header {
-    position: absolute;
-    top: 0px;
     width: 100%;
     height: 96px;
     background-color: darkblue;
 }
 
-.dummy_menu {
-    position: absolute;
-    top: 0px;
-    width: 232px;
-    height: 1024px;
-    background-color: rgba(63, 63, 151, 0.5);
-}
-
 .title-div {
     margin-left: 328px;
-    margin-top: 200px;
     width: 625px;
     height: 73px;
     display: flex;
@@ -70,14 +86,15 @@ a {
     display: flex;
     justify-content: space-between;
     margin-top: 50px;
+    background-color: aquamarine;
 }
 
 .tasks-div {
     width: 560px;
     height: 562px;
-    margin-left: 328px;
     display: flex;
     flex-direction: column;
+    background-color: blueviolet;
 }
 
 .to-do-indicator-div {
@@ -386,7 +403,7 @@ h3 {
 }
 
 .urgency-div {
-    width: 263px;
+    width: 560px;
     height: 168px;
     display: flex;
     justify-content: center;
@@ -394,10 +411,11 @@ h3 {
 }
 
 .urgency {
+    width: 253px;
     height: 96px;
     gap: 16px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -458,6 +476,7 @@ small {
     height: 168px;
     gap: 28px;
     display: flex;
+    background-color: brown;
 }
 
 .t-in-board-div {

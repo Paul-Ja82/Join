@@ -1,4 +1,4 @@
-let users = [];
+/*let users = [];
 
 let nameInput;
 let emailInput;
@@ -16,23 +16,23 @@ let emailInputLogin;
 let passwordInputLogin;
 
 let emailInputLoginFlag = false;
-let validUserFlag = false;
+let validUserFlag = false;*/
 
 /*##########*/
 /*## INIT ##*/
 /*##########*/
 
-function initSignup() {
+/*function initSignup() {
     loadUsers();
     initMPA();
 }
-
-function initLogin() {
+*/
+/*function initLogin() {
     loadUsers();
     initMPA();
-}
+}*/
 
-async function loadUsers() {
+/*async function loadUsers() {
     let usersObj = await getData(USERS_PATH);
     for (let keyI in usersObj) {
         if (usersObj[keyI]) users.push(usersObj[keyI]);
@@ -43,7 +43,7 @@ async function loadUsers() {
 /*## LOGIN ##*/
 /*###########*/
 
-function login() {
+/*function login() {
     resetFlagsLogin();
     loadInputValuesLogin();
     checkEmailInputLogin();
@@ -93,7 +93,7 @@ function checkValidUser() {
 /*## SIGN UP ##*/
 /*#############*/
 
-function signup() {
+/*function signup() {
     resetFlagsSignUp();
     loadInputValuesSignUp();
     checkNameInput();
@@ -123,7 +123,7 @@ function isUserExisting() {
 }
 */
 
-function loadInputValuesSignUp() {
+/*function loadInputValuesSignUp() {
     nameInput = document.getElementById('nameInput').value;
     emailInput = document.getElementById('emailInput').value;
     passwordInput = document.getElementById('passwordInput').value;
@@ -167,7 +167,7 @@ function resetFlagsLogin() {
 /*## VALIDATION ##*/
 /*################*/
 
-function checkNameInput() {
+/*function checkNameInput() {
     if (nameInput) {
         nameInputFlag = true;
     } else {
@@ -177,7 +177,7 @@ function checkNameInput() {
     }
 }
 
-function checkEmailInput() {
+/*function checkEmailInput() {
     if (emailInput) {
         emailInputFlag = true;
     } else {
@@ -213,7 +213,7 @@ function checkPrivacy() {
 /*## DEBUG ##*/
 /*###########*/
 
-function tuEsSignup() {
+/*function tuEsSignup() {
     let privacyInputElem = document.getElementById('rememberCheckbox');
     console.log(privacyInputElem.checked);
 
@@ -243,4 +243,4 @@ function logVarsLogin() {
     console.log('emailInputLoginFlag: ' + emailInputLogin); ///DEBUG    
     console.log('passwordInputLogin: ' + passwordInputLogin); ///DEBUG    
 
-}
+}*/

@@ -54,11 +54,16 @@ function fillTaskSections(section, tasks) {
 function checkAssignedTo(tasks, i) {
     let contactsIconsTemplate = "";
     for (let j = 0; j < tasks[i].assigned_to.length; j++) {
+
+        let fullName = tasks[i].assigned_to[j];
+        // console.log(fullName);
+
+        let [firstName, lastName] = fullName.split(" ");
         
-        let charOneFirstName = tasks[i].assigned_to[j].firstName.charAt(0)
-        let charOneLastName = tasks[i].assigned_to[j].lastName.charAt(0)
+        let charOneFirstName = firstName.charAt(0)
+        let charOneLastName = lastName.charAt(0)
         contactsIconsTemplate += `
-         <div class="single_task_single_contact" id="${tasks[i].assigned_to[j].contact_ID}">${charOneFirstName}${charOneLastName}</div>
+         <div class="single_task_single_contact" id="">${charOneFirstName}${charOneLastName}</div>
         `
     }
     return contactsIconsTemplate

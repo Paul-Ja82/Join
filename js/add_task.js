@@ -153,6 +153,7 @@ function renderAddedPersons() {
   });
   console.log("Ausgewählte Kontakte:", selectedContacts);
   showPersons();
+  return selectedContacts
 }
 
 function changeArrow() {
@@ -181,20 +182,6 @@ function resetArrow() {
     .addEventListener("click", changeArrow);
 }
 
-/*
-document.addEventListener("DOMContentLoaded", () => {
-  const inputField = document.getElementById("inputAssignedTo");
-
-  inputField.addEventListener("click", () => {
-    if (isListOpen) {
-      closeContactList();
-    } else {
-      renderContactList();
-    }
-    isListOpen = !isListOpen;
-  });
-});*/
-
 function toggleContactList() {
   const inputField = document.getElementById("inputAssignedTo");
 
@@ -205,7 +192,6 @@ function toggleContactList() {
   }
   isListOpen = !isListOpen;
 }
-
 
 function checkDateInput() {
   let valueDate = document.getElementById("date");
@@ -450,8 +436,10 @@ async function submitForm() {
   }
 
   if (!hasError) {
+   
     await collectData(); //senden an loadTasks.js zum hochladen ins Firebase
-    reloadPage();
+    window.location.href = './board.html';
+    // reloadPage();
   }
 }
 
