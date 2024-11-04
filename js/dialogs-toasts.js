@@ -62,16 +62,6 @@ function hideToast(toastElem) {
 /*** Misc ***/
 /************/
 
-/*
-function getToastDuration(elemId) {
-    let transitionDurationString= getCSSvarValue('--toast-anim-duration');
-    let transitionDuration= getMsValue(transitionDurationString);
-    let stayDurationString= document.getElementById(elemId).dataset.duration;
-    let stayDuration= Number(stayDurationString);
-    return transitionDuration + stayDuration;
-}
-*/
-
 function getCSSvarValue(key) {
     let rootElem= document.querySelector(':root');
     let rootElemStyle= window.getComputedStyle(rootElem); 
@@ -90,7 +80,7 @@ function getMsValue(text) {
 /*## DIALOGS ##*/
 /*#############*/
 
-document.addEventListener('DOMContentLoaded', initDialog);
+// document.addEventListener('DOMContentLoaded', initDialog);
 
 /*** Init ***/
 /************/
