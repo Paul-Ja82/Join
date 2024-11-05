@@ -7,6 +7,7 @@ let dragAndDropSections = [
     'await_feedback_tasks',
     'done_tasks'
 ]
+let sectionToSaveTask;
 
 function cloneElement(id, e) {
     currentDraggedElementID = `single_task_ctn${id}`;
@@ -134,8 +135,12 @@ async function moveTo(newSection) {
     await getIdAndData(pathData='')
 }
 
-function openAddTaskForm() {
+function openAddTaskForm(section) {
+    sectionToSaveTask = section;
+    console.log(section);
+    
     window.location.href = "/add_task.html"
+    return sectionToSaveTask
 }
 
 function checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys) {
@@ -155,29 +160,25 @@ function openCloseMenuMovingTask(e, single_ID, currentStatus) {
     single_ID = single_ID
     currentStatus = currentStatus
     let menuForMoving = document.getElementById(`move_task_menu_${single_ID}`)
-    // menuForMoving.classList.toggle("visible");
+    menuForMoving.classList.toggle("visible");
 
-    // Überprüfe, ob das Menü sichtbar ist oder nicht
-    if (menuForMoving.classList.contains('visible')) {
-        // Wenn es sichtbar ist, entferne die Klasse und setze Breite und Opazität zurück
-        menuForMoving.classList.remove('visible');
-        menuForMoving.style.width = '0'; // Breite zurücksetzen
-        menuForMoving.style.opacity = '0'; // Unsichtbar machen
-    } else {
-        // Wenn es nicht sichtbar ist, füge die Klasse hinzu
-        menuForMoving.classList.add('visible');
-        menuForMoving.style.width = 'max-content'; // Breite auf den Inhalt setzen
-        menuForMoving.style.opacity = '1'; // Sichtbar machen
-    }
+    // if (menuForMoving.classList.contains('visible')) {
+    //     menuForMoving.classList.remove('visible');
+    //     menuForMoving.style.width = '0'; // Breite zurücksetzen
+    //     menuForMoving.style.opacity = '0'; // Unsichtbar machen
+    // } else {
+    //     menuForMoving.classList.add('visible');
+    //     menuForMoving.style.width = 'max-content'; // Breite auf den Inhalt setzen
+    //     menuForMoving.style.opacity = '1'; // Sichtbar machen
+    // }
 
     enableCurrentSection(currentStatus, single_ID)
 }
 
 function enableCurrentSection(currentStatus, single_ID) {
-    console.log(currentStatus);
+    // console.log(currentStatus);
     let moveToID = `move_${single_ID}_to_${currentStatus}`
-    console.log(moveToID);
-    
+    // console.log(moveToID);
     document.getElementById(`move_${single_ID}_to_todo`).style.color = "black";
     document.getElementById(`move_${single_ID}_to_inProgress`).style.color = "black";
     document.getElementById(`move_${single_ID}_to_awaitFeedback`).style.color = "black";
