@@ -221,7 +221,7 @@ body {
     & .move_to_section_menu {
       background-color: rgb(255, 255, 255);
       box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
-      display: flex;
+      /* display: flex; */
       flex-direction: column;
       justify-content: end;
       text-align: right;
@@ -230,6 +230,8 @@ body {
       margin: 5px 5px 0 15px;
       position: absolute;
       right: -100%;
+      width: 210px;
+      /* right: 0; */
       display: none;
      
       & .link_section {

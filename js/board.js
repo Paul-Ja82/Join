@@ -150,6 +150,18 @@ function checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys) {
     return keytoChangeCategory
 }
 
-function openMenuMovingTask(e, thisCategory) {
-    document.getElementById(`${thisCategory}`).style.display = "flex"
+function openCloseMenuMovingTask(e, thisStatus) {
+    console.log(thisStatus);
+    
+    e.stopPropagation()
+
+    if (document.getElementById(`menu_move_from_${thisStatus}`).style.display == "none") {
+        document.getElementById(`menu_move_from_${thisStatus}`).style.display = "flex";
+        document.getElementById(`menu_move_from_${thisStatus}`).style.right = "0px";
+    } 
+    if ( document.getElementById(`menu_move_from_${thisStatus}`).style.display == "flex") {
+        document.getElementById(`menu_move_from_${thisStatus}`).style.display = "none";
+        document.getElementById(`menu_move_from_${thisStatus}`).style.right = "-100%";
+    }
+ 
 }

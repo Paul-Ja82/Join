@@ -20,6 +20,8 @@ let subtaskCollection = [
 ]
 
 async function collectData() {
+    console.log(selectedContacts);
+    
     let taskData = {
         "assigned_to" : selectedContacts,
         "category" : document.getElementById("categoryToSelect").value,
@@ -152,31 +154,18 @@ function keyForAllTasks() {
     // console.log(allKeys)
 }
 
-// async function deleteID(path="") {
-//     let response = await fetch(firebase_URL + path + ".json", {
-//         method: "Delete",
-//         headers: {
-//             "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify()
-//     });
-//     let responseToJson = await response.json();
-//     // console.log(response);
-//     // console.log(responseToJson);
-// }
-
-// async function deleteData() {
-//     console.log(idToWork);
-//     let keyToDelete = findKey()
-//     let keyToDeletePath = `transactions/${keyToDelete}`
-//     // console.log(keyToDelete);
-//     // console.log(keyToDeletePath);
-//     await deleteID(path=keyToDeletePath)
-//     await getIdAndData(pathData='')
-//     closeMenuMore(idToWork)
-//     fillMonthHTML()
-   
-// }
+async function deleteTaskID(path="") {
+    let response = await fetch(firebase_URL + path + ".json", {
+        method: "Delete",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify()
+    });
+    let responseToJson = await response.json();
+    // console.log(response);
+    // console.log(responseToJson);
+}
 
 // function findKey() {
 //     let keyToWork;
