@@ -9,6 +9,10 @@ function checkTaskSections() {
     tasksAwaitFeedback = [];
     tasksDone = [];
     pushTasksToArray()
+    // console.log(tasksTodo);
+    // console.log(tasksInProgress);
+    // console.log(tasksAwaitFeedback);
+    // console.log(tasksDone);
     fillTaskSections("to_do_tasks", tasksTodo)
     fillTaskSections("in_progress_tasks", tasksInProgress)
     fillTaskSections("await_feedback_tasks", tasksAwaitFeedback)
@@ -30,9 +34,15 @@ function pushTasksToArray() {
             tasksDone.push(allTasks[`${allKeys[i]}`])
         }
     }
+    // console.log(tasksTodo);
+    // console.log(tasksInProgress);
+    // console.log(tasksAwaitFeedback);
+    // console.log(tasksDone);
+    
 }
 
 function fillTaskSections(section, tasks) {
+    
     document.getElementById(section).innerHTML = "";
     for (let i = 0; i < tasks.length; i++) {
         let assignedTocontacts = checkAssignedTo(tasks, i);
@@ -160,10 +170,10 @@ function createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, widt
             </div>
         </div>
         <div class="move_to_section_button_and_menu">
-            <div onclick="openMenuMovingTask(${tasks[i].category})" class="move_to_section_button">
-                <img src="./assets/img/icons8-move-50.png" alt="Pfeil in alle Richtungen">
+            <div onclick="openCloseMenuMovingTask(event, '${tasks[i].currentStatus}')" onclick="openCloseMenuMovingTask(event, '${tasks[i].currentStatus}')" class="move_to_section_button">
+                <img onclick="openCloseMenuMovingTask(event, '${tasks[i].currentStatus}')" src="./assets/img/icons8-move-50.png" alt="Pfeil in alle Richtungen">
             </div>
-            <div id="move_to_s_from_${tasks[i].category}" class="move_to_section_menu">
+            <div id="menu_move_from_${tasks[i].currentStatus}" class="move_to_section_menu">
                 <div class="link_section">To Do</div>
                 <div class="link_section">In Progress</div>
                 <div class="link_section">Await Feedback</div>

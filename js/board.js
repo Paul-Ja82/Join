@@ -52,12 +52,12 @@ function endDragging() {
     }
 }
 
-function checkDraggableArea(e) {
+async function checkDraggableArea(e) {
     let cursorX = e.clientX;
     let cursorY = e.clientY;
     let idFromSectionToDrop = checkIdFromSectionToDrop(cursorX, cursorY); 
     let newSection = checkNewSection(idFromSectionToDrop);    
-    console.log(newSection);
+    // console.log(newSection);
     
     if (newSection == 'noDropArea') {
         endDragging()
@@ -66,7 +66,7 @@ function checkDraggableArea(e) {
     } else {
         moveTo(newSection)
         endDragging()
-        getIdAndData(pathData='')
+        // await getIdAndData(pathData='')
     }
 }
 
@@ -124,11 +124,11 @@ async function moveTo(newSection) {
     // console.log("Dropping into category:", newSection);
     // console.log("Current dragged element:", currentDraggedElementID)
     let keyForPath = checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys)
-    console.log(keyForPath);
+    // console.log(keyForPath);
     
     let path = `tasks/${keyForPath}/currentStatus`;
-    console.log(path);
-    console.log(newSection);
+    // console.log(path);
+    // console.log(newSection);
     
     await putNewCategory(path, newSection);
     await getIdAndData(pathData='')
@@ -150,6 +150,18 @@ function checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys) {
     return keytoChangeCategory
 }
 
-function openMenuMovingTask(e, thisCategory) {
-    document.getElementById(`${thisCategory}`).style.display = "flex"
+function openCloseMenuMovingTask(e, thisStatus) {
+    console.log(thisStatus);
+    
+    e.stopPropagation()
+
+    if (document.getElementById(`menu_move_from_${thisStatus}`).style.display == "none") {
+        document.getElementById(`menu_move_from_${thisStatus}`).style.display = "flex";
+        document.getElementById(`menu_move_from_${thisStatus}`).style.right = "0px";
+    } 
+    if ( document.getElementById(`menu_move_from_${thisStatus}`).style.display == "flex") {
+        document.getElementById(`menu_move_from_${thisStatus}`).style.display = "none";
+        document.getElementById(`menu_move_from_${thisStatus}`).style.right = "-100%";
+    }
+ 
 }

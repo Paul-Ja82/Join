@@ -20,6 +20,8 @@ let subtaskCollection = [
 ]
 
 async function collectData() {
+    console.log(selectedContacts);
+    
     let taskData = {
         "assigned_to" : selectedContacts,
         "category" : document.getElementById("categoryToSelect").value,
@@ -35,6 +37,25 @@ async function collectData() {
     await putID(path="id", id)
     await postData(path="tasks", taskData)
     await getIdAndData(pathData='')
+    return id
+}
+
+async function collectDataFromAddTask() {
+    let taskData = {
+        "assigned_to" : selectedContacts,
+        "category" : document.getElementById("categoryToSelect").value,
+        "description" : document.getElementById("description").value,
+        "due_date" : document.getElementById("date").value,
+        "priority" : selectedPrio == null ? "medium" : selectedPrio,
+        "subtasks" : subtasks,
+        "title" : document.getElementById("title").value,
+        "currentStatus" : "todo",
+        "single_ID" : id,
+    }
+    id = Number(id) + 1
+    await putID(path="id", id)
+    await postData(path="tasks", taskData)
+    await getIdAndDataForAddTask(pathData='')
     return id
 }
 
@@ -70,16 +91,14 @@ async function getIdAndDataForAddTask(pathData='') {   //Daten holen ohne weiter
 }
 
 async function getIdAndData(pathData='') {
-    
     let responseData = await fetch(firebase_URL + pathData + ".json");
     let responseDataToJson = await responseData.json();
     console.log(responseDataToJson);
     allTasks = responseDataToJson.tasks
     id = responseDataToJson.id;
-        keyForAllTasks();
-        checkTaskSections();
-        return id
-    
+    keyForAllTasks();
+    checkTaskSections();
+    return id
 }
 
 async function postData(path="", data={}) {
@@ -132,34 +151,21 @@ async function putNewCheckedStatus(path="", data={}) {
 function keyForAllTasks() {
     allKeys = [];
     allKeys = Object.keys(allTasks)
-    console.log(allKeys)
+    // console.log(allKeys)
 }
 
-// async function deleteID(path="") {
-//     let response = await fetch(firebase_URL + path + ".json", {
-//         method: "Delete",
-//         headers: {
-//             "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify()
-//     });
-//     let responseToJson = await response.json();
-//     // console.log(response);
-//     // console.log(responseToJson);
-// }
-
-// async function deleteData() {
-//     console.log(idToWork);
-//     let keyToDelete = findKey()
-//     let keyToDeletePath = `transactions/${keyToDelete}`
-//     // console.log(keyToDelete);
-//     // console.log(keyToDeletePath);
-//     await deleteID(path=keyToDeletePath)
-//     await getIdAndData(pathData='')
-//     closeMenuMore(idToWork)
-//     fillMonthHTML()
-   
-// }
+async function deleteTaskID(path="") {
+    let response = await fetch(firebase_URL + path + ".json", {
+        method: "Delete",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify()
+    });
+    let responseToJson = await response.json();
+    // console.log(response);
+    // console.log(responseToJson);
+}
 
 // function findKey() {
 //     let keyToWork;
