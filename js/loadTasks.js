@@ -124,7 +124,7 @@ async function putID(path="", data={}) {
     let responseToJson = await response.json();
 }
 
-async function putNewCategory(path="", data={}) {
+async function putNewSection(path="", data={}) {
     let response = await fetch(firebase_URL + path + ".json", {
         method: "PUT",
         headers: {
