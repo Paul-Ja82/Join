@@ -48,7 +48,7 @@
                     id="inputAssignedTo"
                     class="fieldInput inputAssignedTo"
                     type="text"
-                    onclick="renderContactList(); toggleContactList()"
+                    onclick="toggleContactList()"
                     oninput="filterContacts()"
                     placeholder="Assigned To"
                   />
@@ -132,7 +132,7 @@
               </div>
             </div>
             <div class="overField">
-              <label for="categorySelection"
+              <label for="showSelectedCategory"
                 >Category<span style="color: #ff8190">*</span></label
               >
               <div class="arrowCategory">
@@ -141,20 +141,28 @@
                   class="categoryDropdown"
                   src="assets/icons/arrowDropdown.svg"
                   alt=""
-                  onclick="runThis()"
                 />
               </div>
-              <select
-                name="categorySelection"
-                id="categoryToSelect"
-                class="selectCat fieldInput"
-                onclick="changeArrow()"
-                aria-placeholder="Test"
-              >
-                <option value="" selected>Select task category</option>
-                <option value="Technical Task">Technical Task</option>
-                <option value="User Story">User Story</option>
-              </select>
+
+              <div id="costumSelect" class="costumSelect">
+                <input
+                  type="text"
+                  id="showSelectedCategory"
+                  class="fieldInput"
+                  readonly
+                  placeholder="Select a option"
+                  onclick="showMeCategorys()"
+                />
+                <div id="showCategorys" class="showCategorys d-none">
+                  <div class="categoryItem" onclick="putInput(`Technik Task`)">
+                    Technical Task
+                  </div>
+                  <div class="categoryItem" onclick="putInput(`User Story`)">
+                    User Story
+                  </div>
+                </div>
+              </div>
+
               <div id="errorCategory" class="errorMessage">
                 This field is required.
               </div>
@@ -187,10 +195,9 @@
                 class="formButtons clearButton"
                 type="button"
                 onclick="reloadPage()"
-                onmouseover="changeImage(this, true)"
-                onmouseout="changeImage(this, false)"
+            
               >
-                Clear <img src="assets/icons/close.svg" alt="" />
+                Clear <div class="iconX"></div>
               </button>
               <button
                 class="formButtons createButton"
@@ -204,9 +211,5 @@
         </div>
       </div>
     </form>
-<input type="date">
-
-
-
   </body>
 </html>

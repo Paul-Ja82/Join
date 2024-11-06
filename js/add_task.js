@@ -22,7 +22,7 @@ const avatarColors = ["#3498db", "#e74c3c", "#f39c12", "#2ecc71", "#9b59b6"];
 
 function init() {
   const contactList = document.getElementById("insertContactList");
-  contactList.style.height = 0;
+  contactList.classList.add("d-none");
   selectPrio("medium");
 }
 
@@ -63,7 +63,7 @@ async function saveData() {
 function renderContactList(filteredContacts = contacts) {
   document.getElementById("setBackground").classList.add("whiteBG");
   const contactList = document.getElementById("insertContactList");
-  contactList.style.height = "250px";
+  contactList.classList.remove("d-none");
 
   contactList.innerHTML = "";
   document.getElementById("arrowDropdown").src =
@@ -122,7 +122,7 @@ function filterContacts() {
 function closeContactList() {
   const contactList = document.getElementById("insertContactList");
   contactList.innerHTML = "";
-  contactList.style.height = 0;
+  contactList.classList.add("d-none");
   document.getElementById("arrowDropdown").src =
     "/assets/icons/arrowDropdown.svg";
   document.getElementById("setBackground").classList.remove("whiteBG");
@@ -161,7 +161,6 @@ function changeArrow() {
   const categoryDropdownIcon = document.getElementById("categoryDropdown");
   categoryDropdownIcon.src = "assets/icons/arrowUpDropdown.svg";
 
-  // Setze den Event Listener für den Dropdown auf "resetArrow"
   document
     .getElementById("categoryToSelect")
     .removeEventListener("click", changeArrow);
@@ -174,7 +173,6 @@ function resetArrow() {
   const categoryDropdownIcon = document.getElementById("categoryDropdown");
   categoryDropdownIcon.src = "assets/icons/arrowDropdown.svg";
 
-  // Setze den Event Listener wieder auf "changeArrow"
   document
     .getElementById("categoryToSelect")
     .removeEventListener("click", resetArrow);
@@ -267,11 +265,10 @@ function createAvatarSVG(initials, bgColor) {
 function saveSubtasks(index) {
   let textSubtask = document.getElementById("subtasks").value;
   pushTextSubtask(textSubtask);
-  //subtasks.push(textSubtask);
   document.getElementById("subtasks").value = "";
   document.getElementById(
     "symbolsSubtasks"
-  ).innerHTML = `<img src="assets/icons/plus.svg" alt="" />`; // Hier Image noch einfügen
+  ).innerHTML = `<img src="assets/icons/plus.svg" alt="" />`;
   renderSubtasks();
 }
 
@@ -396,32 +393,55 @@ function urgentPrio(priority) {
   document.getElementById(`${button}Img`).src = "assets/icons/upWhite.svg";
 }
 
-function changeImage(button, isHover) {
-  const img = button.querySelector("img");
-  img.src = isHover ? "assets/icons/vectorBlue.svg" : "assets/icons/close.svg";
+function closeDropdown() {
+  document.getElementById("showSelectedCategory").onclick = showMeCategorys;
+  document.getElementById("showCategorys").classList.add("d-none");
+  document.getElementById("costumSelect").classList.remove("whiteBG");
+  document.getElementById("categoryDropdown").src =
+    "assets/icons/arrowDropdown.svg";
 }
 
-showDropdown = function (element) {
-  var event = new MouseEvent("mousedown", {
-    bubbles: true,
-    cancelable: true,
-    view: window,
-  });
-  element.dispatchEvent(event);
-};
+document.addEventListener("click", function (event) {
+  const dropdown = document.getElementById("showSelectedCategory");
+  const selectBox = document.getElementById("showCategorys");
 
-// This isn't magic.
-window.runThis = function () {
-  var dropdown = document.getElementById("categoryToSelect");
-  showDropdown(dropdown);
-};
+  if (!dropdown.contains(event.target) && !selectBox.contains(event.target)) {
+    closeDropdown();
+  }
+});
+
+document.addEventListener("click", function (event) {
+  const inputAssignedTo = document.getElementById("inputAssignedTo");
+  const contactList = document.getElementById("insertContactList");
+
+  if (
+    !inputAssignedTo.contains(event.target) &&
+    !contactList.contains(event.target)
+  ) {
+    closeContactList();
+  }
+});
+
+function putInput(value) {
+  document.getElementById("showSelectedCategory").value = value;
+  closeDropdown();
+}
+
+function showMeCategorys() {
+  putInput(``);
+  document.getElementById("showSelectedCategory").onclick = closeDropdown;
+  document.getElementById("showCategorys").classList.toggle("d-none");
+  document.getElementById("costumSelect").classList.toggle("whiteBG");
+  document.getElementById("categoryDropdown").src =
+    "assets/icons/arrowUpDropdown.svg";
+}
 
 async function submitForm() {
   let hasError = false;
 
   const title = document.getElementById("title").value.trim();
   const dueDate = document.getElementById("date").value;
-  const category = document.getElementById("categoryToSelect").value;
+  const category = document.getElementById("showSelectedCategory").value;
 
   if (title.length === 0) {
     document.getElementById("title").style.border = "1px solid #FF8190";
@@ -442,19 +462,18 @@ async function submitForm() {
   }
 
   if (category.length === 0) {
-    document.getElementById("categoryToSelect").style.border =
+    document.getElementById("showSelectedCategory").style.border =
       "1px solid #FF8190";
     document.getElementById("errorCategory").style.display = "block";
     hasError = true;
   } else {
-    document.getElementById("categoryToSelect").style.border = "none";
+    document.getElementById("showSelectedCategory").style.border = "none";
     document.getElementById("errorCategory").style.display = "none";
   }
 
   if (!hasError) {
-    await collectData(); //senden an loadTasks.js zum hochladen ins Firebase
+    await collectData(); 
     window.location.href = "./board.html";
-    // reloadPage();
   }
 }
 
