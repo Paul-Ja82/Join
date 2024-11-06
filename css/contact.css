@@ -9,7 +9,9 @@
 /*############*/
 
 body {
+    background-color: var(--clr-bg-main);
     font-size: clamp(1rem, 0.679rem + 1.709vw, 1.5rem);
+
 }
 
 #contentContainer {
@@ -28,11 +30,12 @@ body {
 /*##################*/
 
 #listContainer {
+    min-height: 100%;
     background-color: white;
 }
 
 #newContactButtonContainer {
-    background-color: white;
+    background-color: var(--clr-bg-main);
     padding-bottom: 0;
     position: fixed;
     bottom: 5em;
@@ -127,7 +130,7 @@ body {
 /*####################*/
 
 #detailContainer {
-    background-color: lightblue; /*DEBUG*/
+    background-color: var(--clr-bg-main);
     position: absolute;
     min-height: 100%;
     min-width: 100%;
@@ -141,8 +144,12 @@ body {
 }
 
 #detailHeadline {
-    font-size: 2em;
+    font-size: 2.8em;
     font-weight: bold;
+}
+
+#InfoTagline {
+    font-size: 1.2em;
 }
 
 #coninfoPersonIcon {
@@ -161,11 +168,6 @@ body {
     gap: 1em;
 }
 
-#coninfoName {
-    font-size: 1.4em;
-    font-weight: bold;
-}
-
 #coninfoButtonContainer {
     display: none;
 }
@@ -180,15 +182,16 @@ body {
     font-size: 1.2em;
 }
 
-#InfoTagline {
-    font-size: 1.2em;
+#coninfoName {
+    font-size: 1.4em;
+    font-weight: bold;
 }
 
-#detailHeadline {
-    font-size: 2.8em;
+#coninfoEmail {
+    text-decoration: none;
 }
 
-#coninfoEmailHeading {
+.coninfoHeadingH3 {
     font-weight: bold;
 }
 
