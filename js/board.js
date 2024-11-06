@@ -161,16 +161,11 @@ function openCloseMenuMovingTask(e, single_ID, currentStatus) {
     currentStatus = currentStatus
     let menuForMoving = document.getElementById(`move_task_menu_${single_ID}`)
     menuForMoving.classList.toggle("visible");
-
-    // if (menuForMoving.classList.contains('visible')) {
-    //     menuForMoving.classList.remove('visible');
-    //     menuForMoving.style.width = '0'; // Breite zurücksetzen
-    //     menuForMoving.style.opacity = '0'; // Unsichtbar machen
-    // } else {
-    //     menuForMoving.classList.add('visible');
-    //     menuForMoving.style.width = 'max-content'; // Breite auf den Inhalt setzen
-    //     menuForMoving.style.opacity = '1'; // Sichtbar machen
-    // }
+    if(menuForMoving.classList.contains('visible')) {
+        document.getElementById(`single_task_ctn${single_ID}`).style.filter = "grayscale(0.75)";
+    } else {
+        document.getElementById(`single_task_ctn${single_ID}`).style.filter = "grayscale(0)";
+    }
 
     enableCurrentSection(currentStatus, single_ID)
 }
