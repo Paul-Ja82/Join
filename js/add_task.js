@@ -436,8 +436,9 @@ async function submitForm() {
   }
 
   if (!hasError) {
-   
-    await collectDataFromAddTask(); //senden an loadTasks.js zum hochladen ins Firebase
+    console.log(sectionToSaveTask);
+    
+    await collectDataFromAddTask('todo'); //senden an loadTasks.js zum hochladen ins Firebase
     // window.location.href = './board.html';
     // reloadPage();
   }

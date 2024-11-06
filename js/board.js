@@ -7,6 +7,7 @@ let dragAndDropSections = [
     'await_feedback_tasks',
     'done_tasks'
 ]
+let sectionToSaveTask;
 
 function cloneElement(id, e) {
     currentDraggedElementID = `single_task_ctn${id}`;
@@ -130,12 +131,16 @@ async function moveTo(newSection) {
     // console.log(path);
     // console.log(newSection);
     
-    await putNewCategory(path, newSection);
+    await putNewSection(path, newSection);
     await getIdAndData(pathData='')
 }
 
-function openAddTaskForm() {
+function openAddTaskForm(section) {
+    sectionToSaveTask = section;
+    console.log(section);
+    
     window.location.href = "/add_task.html"
+    return sectionToSaveTask
 }
 
 function checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys) {
@@ -150,18 +155,51 @@ function checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys) {
     return keytoChangeCategory
 }
 
-function openCloseMenuMovingTask(e, thisStatus) {
-    console.log(thisStatus);
-    
+function openCloseMenuMovingTask(e, single_ID, currentStatus) {
     e.stopPropagation()
+    single_ID = single_ID
+    currentStatus = currentStatus
+    let menuForMoving = document.getElementById(`move_task_menu_${single_ID}`)
+    menuForMoving.classList.toggle("visible");
 
-    if (document.getElementById(`menu_move_from_${thisStatus}`).style.display == "none") {
-        document.getElementById(`menu_move_from_${thisStatus}`).style.display = "flex";
-        document.getElementById(`menu_move_from_${thisStatus}`).style.right = "0px";
-    } 
-    if ( document.getElementById(`menu_move_from_${thisStatus}`).style.display == "flex") {
-        document.getElementById(`menu_move_from_${thisStatus}`).style.display = "none";
-        document.getElementById(`menu_move_from_${thisStatus}`).style.right = "-100%";
+    // if (menuForMoving.classList.contains('visible')) {
+    //     menuForMoving.classList.remove('visible');
+    //     menuForMoving.style.width = '0'; // Breite zurücksetzen
+    //     menuForMoving.style.opacity = '0'; // Unsichtbar machen
+    // } else {
+    //     menuForMoving.classList.add('visible');
+    //     menuForMoving.style.width = 'max-content'; // Breite auf den Inhalt setzen
+    //     menuForMoving.style.opacity = '1'; // Sichtbar machen
+    // }
+
+    enableCurrentSection(currentStatus, single_ID)
+}
+
+function enableCurrentSection(currentStatus, single_ID) {
+    // console.log(currentStatus);
+    let moveToID = `move_${single_ID}_to_${currentStatus}`
+    // console.log(moveToID);
+    document.getElementById(`move_${single_ID}_to_todo`).style.color = "black";
+    document.getElementById(`move_${single_ID}_to_inProgress`).style.color = "black";
+    document.getElementById(`move_${single_ID}_to_awaitFeedback`).style.color = "black";
+    document.getElementById(`move_${single_ID}_to_done`).style.color = "black";
+    document.getElementById(`${moveToID}`).style.color = "lightgray";
+}
+
+function checkKeyToMove(allTasks, allKeys, id) {
+    let keytoChangeSection;
+    for (let i = 0; i < allKeys.length; i++) {
+        if (allTasks[`${allKeys[i]}`].single_ID == id) {
+            console.log(i, allKeys[i])
+            keytoChangeSection = allKeys[i]
+        }
     }
- 
+    return keytoChangeSection
+}
+
+async function moveTaskWithMenu(id, toSection) {
+    let keytoChangeSection = checkKeyToMove(allTasks, allKeys, id)
+    let path = `tasks/${keytoChangeSection}/currentStatus`;
+    await putNewSection(path, toSection)
+    await getIdAndData(pathData='')
 }

@@ -19,9 +19,7 @@ let subtaskCollection = [
     {"title" : "jenes", "checked" : true},
 ]
 
-async function collectData() {
-    console.log(selectedContacts);
-    
+async function collectData(currentStatus) {
     let taskData = {
         "assigned_to" : selectedContacts,
         "category" : document.getElementById("categoryToSelect").value,
@@ -30,7 +28,7 @@ async function collectData() {
         "priority" : selectedPrio == null ? "medium" : selectedPrio,
         "subtasks" : subtasks,
         "title" : document.getElementById("title").value,
-        "currentStatus" : "todo",
+        "currentStatus" : currentStatus,
         "single_ID" : id,
     }
     id = Number(id) + 1
@@ -40,7 +38,7 @@ async function collectData() {
     return id
 }
 
-async function collectDataFromAddTask() {
+async function collectDataFromAddTask(currentStatus) {
     let taskData = {
         "assigned_to" : selectedContacts,
         "category" : document.getElementById("categoryToSelect").value,
@@ -49,7 +47,7 @@ async function collectDataFromAddTask() {
         "priority" : selectedPrio == null ? "medium" : selectedPrio,
         "subtasks" : subtasks,
         "title" : document.getElementById("title").value,
-        "currentStatus" : "todo",
+        "currentStatus" : currentStatus,
         "single_ID" : id,
     }
     id = Number(id) + 1
@@ -124,7 +122,7 @@ async function putID(path="", data={}) {
     let responseToJson = await response.json();
 }
 
-async function putNewCategory(path="", data={}) {
+async function putNewSection(path="", data={}) {
     let response = await fetch(firebase_URL + path + ".json", {
         method: "PUT",
         headers: {
