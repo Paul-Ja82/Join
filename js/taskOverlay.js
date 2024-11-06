@@ -81,7 +81,7 @@ function fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, s
 }
 
 function checkAssignedToOverlay(allTasks, keyToOpen) {
-    console.log(allTasks[keyToOpen], allTasks, keyToOpen);
+    // console.log(allTasks[keyToOpen], allTasks, keyToOpen);
     
     let contactsTemplate = "";
     for (let j = 0; j < allTasks[keyToOpen].assigned_to.length; j++) {
@@ -181,10 +181,8 @@ function checkIndexOfAllTasks(clickedSingleID, allTasks, allKeys) {
 }
 
 function closeTaskOverlay(e) {
-    if (e.target.id === "task_overlay_ctn" || e.target.id === "close_task_overlay" || e.target.id === "close_task_overlay_svg") {
-        document.getElementById(`task_overlay_ctn`).style.right = "-100%";
-        document.getElementById(`task_overlay_ctn`).style.display = "none";
-    }
+    document.getElementById(`task_overlay_ctn`).style.right = "-100%";
+    document.getElementById(`task_overlay_ctn`).style.display = "none";
     document.body.style.overflow = "";
 }
 
