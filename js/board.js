@@ -7,6 +7,7 @@ let dragAndDropSections = [
     'await_feedback_tasks',
     'done_tasks'
 ]
+let sectionToSaveTask;
 
 function cloneElement(id, e) {
     currentDraggedElementID = `single_task_ctn${id}`;
@@ -24,8 +25,8 @@ function whileDragging(e) {
 
 function startDragging(e) {
     let rect = currentDraggedElement.getBoundingClientRect();
-    console.log(rect);
-    console.log(e);
+    // console.log(rect);
+    // console.log(e);
     styleClonedElement(rect, event)
     currentDraggedElement.classList.add("hide_original_task");
     document.body.appendChild(clonedElementForMoving);
@@ -52,11 +53,13 @@ function endDragging() {
     }
 }
 
-function checkDraggableArea(e) {
+async function checkDraggableArea(e) {
     let cursorX = e.clientX;
     let cursorY = e.clientY;
     let idFromSectionToDrop = checkIdFromSectionToDrop(cursorX, cursorY); 
     let newSection = checkNewSection(idFromSectionToDrop);    
+    // console.log(newSection);
+    
     if (newSection == 'noDropArea') {
         endDragging()
         removeShadow(id)
@@ -64,6 +67,7 @@ function checkDraggableArea(e) {
     } else {
         moveTo(newSection)
         endDragging()
+        // await getIdAndData(pathData='')
     }
 }
 
@@ -121,13 +125,22 @@ async function moveTo(newSection) {
     // console.log("Dropping into category:", newSection);
     // console.log("Current dragged element:", currentDraggedElementID)
     let keyForPath = checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys)
+    // console.log(keyForPath);
+    
     let path = `tasks/${keyForPath}/currentStatus`;
-    await putNewCategory(path, newSection);
+    // console.log(path);
+    // console.log(newSection);
+    
+    await putNewSection(path, newSection);
     await getIdAndData(pathData='')
 }
 
-function openAddTaskForm() {
+function openAddTaskForm(section) {
+    sectionToSaveTask = section;
+    console.log(section);
+    
     window.location.href = "/add_task.html"
+    return sectionToSaveTask
 }
 
 function checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys) {
@@ -142,6 +155,51 @@ function checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys) {
     return keytoChangeCategory
 }
 
-function openMenuMovingTask(e, thisCategory) {
-    document.getElementById(`${thisCategory}`).style.display = "flex"
+function openCloseMenuMovingTask(e, single_ID, currentStatus) {
+    e.stopPropagation()
+    single_ID = single_ID
+    currentStatus = currentStatus
+    let menuForMoving = document.getElementById(`move_task_menu_${single_ID}`)
+    menuForMoving.classList.toggle("visible");
+
+    // if (menuForMoving.classList.contains('visible')) {
+    //     menuForMoving.classList.remove('visible');
+    //     menuForMoving.style.width = '0'; // Breite zurücksetzen
+    //     menuForMoving.style.opacity = '0'; // Unsichtbar machen
+    // } else {
+    //     menuForMoving.classList.add('visible');
+    //     menuForMoving.style.width = 'max-content'; // Breite auf den Inhalt setzen
+    //     menuForMoving.style.opacity = '1'; // Sichtbar machen
+    // }
+
+    enableCurrentSection(currentStatus, single_ID)
+}
+
+function enableCurrentSection(currentStatus, single_ID) {
+    // console.log(currentStatus);
+    let moveToID = `move_${single_ID}_to_${currentStatus}`
+    // console.log(moveToID);
+    document.getElementById(`move_${single_ID}_to_todo`).style.color = "black";
+    document.getElementById(`move_${single_ID}_to_inProgress`).style.color = "black";
+    document.getElementById(`move_${single_ID}_to_awaitFeedback`).style.color = "black";
+    document.getElementById(`move_${single_ID}_to_done`).style.color = "black";
+    document.getElementById(`${moveToID}`).style.color = "lightgray";
+}
+
+function checkKeyToMove(allTasks, allKeys, id) {
+    let keytoChangeSection;
+    for (let i = 0; i < allKeys.length; i++) {
+        if (allTasks[`${allKeys[i]}`].single_ID == id) {
+            console.log(i, allKeys[i])
+            keytoChangeSection = allKeys[i]
+        }
+    }
+    return keytoChangeSection
+}
+
+async function moveTaskWithMenu(id, toSection) {
+    let keytoChangeSection = checkKeyToMove(allTasks, allKeys, id)
+    let path = `tasks/${keytoChangeSection}/currentStatus`;
+    await putNewSection(path, toSection)
+    await getIdAndData(pathData='')
 }
