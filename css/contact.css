@@ -170,6 +170,28 @@ body {
     display: none;
 }
 
+#closeDetailButton {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+}
+
+#coninfoHeading {
+    font-size: 1.2em;
+}
+
+#InfoTagline {
+    font-size: 1.2em;
+}
+
+#detailHeadline {
+    font-size: 2.8em;
+}
+
+#coninfoEmailHeading {
+    font-weight: bold;
+}
+
 @media (768px < width) {
     #detailContainer {
         grid-column: 2 / 3;
