@@ -56,7 +56,6 @@ input:focus {
   width: 440px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
 }
 
 .line {
@@ -74,7 +73,6 @@ input:focus {
 .overField label {
   font-size: 24px;
   font-weight: 400;
-  line-height: 24px;
 }
 
 .overAddSubtasks {
@@ -108,7 +106,7 @@ input:focus {
 
 .overField textarea::-webkit-resizer {
   width: 20px;
-  height: 19px; 
+  height: 19px;
   background-image: url("/assets/icons/textareaResizer.svg");
   background-size: contain;
   background-repeat: no-repeat;
@@ -173,20 +171,17 @@ textarea:focus {
   border-radius: 8px;
 }
 
-/* Track */
 .listContacts::-webkit-scrollbar-track {
   background: #a8a8a8;
   width: 8px;
   border-radius: 8px;
 }
 
-/* Handle */
 .listContacts::-webkit-scrollbar-thumb {
   background: #817979;
   border-radius: 8px;
 }
 
-/* Handle on hover */
 .listContacts::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
@@ -275,9 +270,9 @@ input[type="date"]::-moz-calendar-picker-indicator {
 
 .dateIcon {
   position: absolute;
-  right: 12px; 
+  right: 12px;
   top: 50%;
-  transform: translateY(-50%); 
+  transform: translateY(-50%);
   cursor: pointer;
 }
 
@@ -331,7 +326,7 @@ input[type="date"]::-moz-calendar-picker-indicator {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  width: 24px; 
+  width: 24px;
   height: 24px;
   border: none;
   cursor: pointer;
@@ -427,7 +422,6 @@ input[type="date"]::-moz-calendar-picker-indicator {
   border-radius: 10px;
 }
 
-/* Vielleicht löschen */
 .changeSymboles {
   display: flex;
   gap: 4px;
@@ -570,6 +564,16 @@ input[type="date"]::-moz-calendar-picker-indicator {
 }
 
 @media only screen and (max-width: 1010px) {
+  .overheader{
+    padding: 40px 0 0 0 ;
+    background-color: #f6f7f8;
+    position: sticky;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 999;
+  }
+  
   h2 {
     font-size: 47px;
   }
@@ -600,6 +604,7 @@ input[type="date"]::-moz-calendar-picker-indicator {
     justify-content: flex-start;
     width: 100%;
     gap: 100px;
+    margin-top: 15px;
   }
 
   .formButtons {
@@ -625,9 +630,15 @@ input[type="date"]::-moz-calendar-picker-indicator {
 
   .showEntrySubtask {
     font-size: 16px;
+    padding: 12px 4px 12px 40px;
   }
   .subtaskText {
     font-size: 16px;
+  }
+
+  .overChangingSubtask {
+    padding: 16px 0 16px 4px;
+    background: white;
   }
 
   .overField label {
@@ -679,6 +690,7 @@ input[type="date"]::-moz-calendar-picker-indicator {
   .requiredInformation {
     align-self: flex-start;
     font-size: 21px;
+    padding-bottom: 200px;
   }
 
   .clearButton {
@@ -695,5 +707,9 @@ input[type="date"]::-moz-calendar-picker-indicator {
     border: 1px solid #091931;
     box-shadow: 0px 4px 4px 0px #00000040;
     color: #091931;
+  }
+
+  .errorMessage {
+    top: 82px;
   }
 }

@@ -157,30 +157,6 @@ function renderAddedPersons() {
   return selectedContacts;
 }
 
-function changeArrow() {
-  const categoryDropdownIcon = document.getElementById("categoryDropdown");
-  categoryDropdownIcon.src = "assets/icons/arrowUpDropdown.svg";
-
-  document
-    .getElementById("categoryToSelect")
-    .removeEventListener("click", changeArrow);
-  document
-    .getElementById("categoryToSelect")
-    .addEventListener("click", resetArrow);
-}
-
-function resetArrow() {
-  const categoryDropdownIcon = document.getElementById("categoryDropdown");
-  categoryDropdownIcon.src = "assets/icons/arrowDropdown.svg";
-
-  document
-    .getElementById("categoryToSelect")
-    .removeEventListener("click", resetArrow);
-  document
-    .getElementById("categoryToSelect")
-    .addEventListener("click", changeArrow);
-}
-
 function toggleContactList() {
   const inputField = document.getElementById("inputAssignedTo");
 
@@ -272,6 +248,17 @@ function saveSubtasks(index) {
   renderSubtasks();
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+  let getInputfieldSubtask = document.getElementById("subtasks");
+
+  getInputfieldSubtask.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      document.getElementById("subtaskSaver").click();
+    }
+  });
+});
+
 function pushTextSubtask(textSubtask) {
   const newSubtask = {
     subtask: textSubtask,
@@ -283,7 +270,7 @@ function pushTextSubtask(textSubtask) {
 
 function saveEditSubtask(index) {
   let changedSubtask = document.getElementById(`inputField${index}`).value;
-  subtasks[index] = changedSubtask;
+  subtasks[index].subtask = changedSubtask;
   renderSubtasks();
 }
 
@@ -293,7 +280,7 @@ function changeSymbols() {
   document.getElementById("symbolsSubtasks").innerHTML = "";
   document.getElementById(
     "symbolsSubtasks"
-  ).innerHTML = `<div class="centerSymbol" onclick="clearInput()"><img src="assets/icons/close.svg"></div><div class="borderEditIcons"></div><div class="centerSymbol" onclick="saveSubtasks()"><img src="assets/icons/check.svg"></div>`;
+  ).innerHTML = `<div class="centerSymbol" onclick="clearInput()"><img src="assets/icons/close.svg"></div><div class="borderEditIcons"></div><div id="subtaskSaver" class="centerSymbol" onclick="saveSubtasks()"><img src="assets/icons/check.svg"></div>`;
   if (checkInput.length <= 0) {
     document.getElementById(
       "symbolsSubtasks"
@@ -313,7 +300,8 @@ function renderSubtasks() {
   for (let index = 0; index < subtasks.length; index++) {
     document.getElementById(
       "showSubtasks"
-    ).innerHTML += `<li id="subtask${index}" class="overallListItem">
+    ).innerHTML += `<li id="subtask${index}" class="
+    ">
     <div class="showEntrySubtask" onclick="changeText(${index})">
     <div class="subtaskText">${subtasks[index].subtask}</div>
     <div id="edit${index}" class="edit">
@@ -326,7 +314,7 @@ function renderSubtasks() {
 }
 
 function changeText(index) {
-  let changeText = subtasks[index];
+  let changeText = subtasks[index].subtask;
 
   renderSubtasks();
 
@@ -395,6 +383,7 @@ function urgentPrio(priority) {
 
 function closeDropdown() {
   document.getElementById("showSelectedCategory").onclick = showMeCategorys;
+  document.getElementById("categoryDropdown").onclick = showMeCategorys;
   document.getElementById("showCategorys").classList.add("d-none");
   document.getElementById("costumSelect").classList.remove("whiteBG");
   document.getElementById("categoryDropdown").src =
@@ -402,10 +391,11 @@ function closeDropdown() {
 }
 
 document.addEventListener("click", function (event) {
+  const catImage = document.getElementById("categoryDropdown");
   const dropdown = document.getElementById("showSelectedCategory");
   const selectBox = document.getElementById("showCategorys");
 
-  if (!dropdown.contains(event.target) && !selectBox.contains(event.target)) {
+  if (!dropdown.contains(event.target) && !selectBox.contains(event.target) && !catImage.contains(event.target)) {
     closeDropdown();
   }
 });
@@ -413,10 +403,12 @@ document.addEventListener("click", function (event) {
 document.addEventListener("click", function (event) {
   const inputAssignedTo = document.getElementById("inputAssignedTo");
   const contactList = document.getElementById("insertContactList");
+  const arrowDrop = document.getElementById("arrowDropdown");
+
 
   if (
     !inputAssignedTo.contains(event.target) &&
-    !contactList.contains(event.target)
+    !contactList.contains(event.target) && !arrowDrop.contains(event.target)
   ) {
     closeContactList();
   }
@@ -430,8 +422,9 @@ function putInput(value) {
 function showMeCategorys() {
   putInput(``);
   document.getElementById("showSelectedCategory").onclick = closeDropdown;
-  document.getElementById("showCategorys").classList.toggle("d-none");
-  document.getElementById("costumSelect").classList.toggle("whiteBG");
+  document.getElementById("showCategorys").classList.remove("d-none");
+  document.getElementById("costumSelect").classList.add("whiteBG");
+  document.getElementById("categoryDropdown").onclick = closeDropdown;
   document.getElementById("categoryDropdown").src =
     "assets/icons/arrowUpDropdown.svg";
 }

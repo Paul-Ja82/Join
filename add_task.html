@@ -10,9 +10,7 @@
     <script src="js/showTasks.js"></script>
   </head>
   <body onload="init()">
-    <div id="dummy_header"></div>
-    <div id="dummy_menu"></div>
-    <h2>Add Task</h2>
+    <div class="overheader"><h2>Add Task</h2></div>
     <form id="formAddTasks" class="formAddTasks">
       <div class="seperateSendButtons">
         <div class="overInputFields">
@@ -140,7 +138,7 @@
                   id="categoryDropdown"
                   class="categoryDropdown"
                   src="assets/icons/arrowDropdown.svg"
-                  alt=""
+                  onclick="showMeCategorys()"
                 />
               </div>
 
@@ -195,9 +193,9 @@
                 class="formButtons clearButton"
                 type="button"
                 onclick="reloadPage()"
-            
               >
-                Clear <div class="iconX"></div>
+                Clear
+                <div class="iconX"></div>
               </button>
               <button
                 class="formButtons createButton"
