@@ -91,7 +91,6 @@ async function loadCurrentUser() {
 
 let contacts= [];
 
-
 function getContactById(id) {
   return contacts.find(contactI => contactI.id == id);
 }

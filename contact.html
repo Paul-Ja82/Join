@@ -56,14 +56,17 @@
         </div>
         <!-- detail container  -->
         <div id="detailContainer" class="d-none">
-            <h1>Contacts</h1>
+            <h1 id="detailHeadline">Contacts</h1>
+            <p id="InfoTagline">Better with a team</p>
             <button id="closeDetailButton" class="h-pointer" onclick="closeDetailButtonHandler()">x</button>
             <!-- info container -->
             <div id="infoContainer">
-                <div id="coninfoPersonIcon" class="person-icon">
-                    <p id="coninfoMonogram">xx</p>
+                <div id="coninfoNameWrapper">
+                    <div id="coninfoPersonIcon" class="person-icon">
+                        <p id="coninfoMonogram">xx</p>
+                    </div>
+                    <p id="coninfoName">debug: should be set</p>
                 </div>
-                <p id="coninfoName">debug: should be set</p>
                 <div id="coninfoButtonContainer">
                     <div id="conInfoButtonEdit" class="coninfo-button flex-row h-pointer" onclick="editContactButtonHandler()">
                         <img class="coninfo-button-icon" src="./assets/icons/icon-pencil.svg" alt="icon-pencil">
