@@ -11,12 +11,15 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #4a90e2, #357ABD); /* Farbverlauf für die Scroll-Leiste */
+  background-color: #2a4872;
+  background: linear-gradient(180deg, #315e9e, #2a3647); /* Farbverlauf für die Scroll-Leiste */
   border-radius: 10px;
 }
 
+
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #357ABD, #2a67a2); /* Hover-Effekt */
+  background: linear-gradient(180deg, #3971c0, #293d58); /* Hover-Effekt */
+  cursor: pointer;
 }
 
 #name_of_task_input::placeholder {
@@ -31,7 +34,7 @@ html {
 }
 
 body {
-  background-color: var(--background-gray);
+  /* background-color: var(--background-gray); */
   margin: 0 auto;
   width: 100%;
   max-width: 1440px;
@@ -109,10 +112,12 @@ body {
     margin-bottom: 20px;
   }
   & .single_task_headline {
-    font-size: 16px;
+    /* font-size: clamp(1rem, 0.786rem + 1.071vw, 1.75rem); */
     font-weight: 700;
     color: rgba(42, 54, 71, 1);
     margin-bottom: 8px;
+    /* border: 1px solid red;
+    max-height: 50px; */
   }
   & .single_task_description {
     font-size: 16px;
@@ -475,6 +480,7 @@ body {
     padding: 36px;
     max-height: 90%;
     margin: 5% auto;
+    scale: 0.9;
     & .single_task_header_category_and_close {
       display: flex;
       justify-content: space-between;
@@ -504,39 +510,37 @@ body {
       }
     }
     & .single_task_headline {
-      font-size: clamp(20px, 1.3rem + 0.9vw, 70px);
       font-weight: 700;
       color: rgba(42, 54, 71, 1);
       margin-bottom: 12px;
-      /* height: 100px; */
-      max-height: 100px;
-      /* border: 1px solid blue; */
-      overflow: auto;
+      max-height: 70px;
+      font-size: clamp(1.25rem, 0.893rem + 0.952vw, 1.75rem);
+      /* border: 1px solid red; */
     }
     & .overlay_task_main {
       max-height: 500px;
       overflow: auto;
       padding-right: 20px;
       & .overlay_single_task_description {
-        font-size: 16px;
+        font-size: clamp(0.75rem, 0.571rem + 0.476vw, 1rem);
         font-weight: 400;
         color: black;
         margin-bottom: 20px;
-        /* height: 70px; */
-        max-height: 70px;
-        /* border: 1px solid blue; */
+        height: fit-content;
+        max-height: 90px;
         overflow: auto;
+        /* border: 1px solid blue; */
       }
       & .single_task_due_date_ctn {
         display: flex;
-        margin-bottom: 16px;
+        margin-bottom: 12px;
         & .single_task_line_header {
           width: 120px;
         }
       }
       & .single_task_pritoity_ctn {
         display: flex;
-        margin-bottom: 16px;
+        margin-bottom: 12px;
         & .single_task_line_header {
           width: 120px;
           display: flex;
@@ -564,10 +568,9 @@ body {
         margin-bottom: 24px;
         display: flex;
         flex-direction: column;
-        gap: 21px;
+        gap: 11px;
         padding-left: 12px;
-        overflow: auto;
-        max-height: 142px;
+        font-size: clamp(0.75rem, 0.571rem + 0.476vw, 1rem);
         & .single_task_single_contact {
           display: flex;
           align-items: center;
@@ -585,17 +588,17 @@ body {
         }
       }
       & .single_task_subtasks_ctn {
-        margin-bottom: 24px;
-        max-height: 170px;
+        margin-bottom: 15px;
         & .single_task_line_header {
           width: 120px;
           margin-bottom: 18px;
         }
         & .single_task_subtask_collection {
-          max-height: 142px;
+          max-height: 105px;
           overflow: auto;
           .single_task_subtask {
             position: relative;
+            margin-bottom: 5px;
             input[type="checkbox"] {
               display: none;
               &:checked + label #checkbox_checkmark {
@@ -605,7 +608,6 @@ body {
             label {
               display: flex;
               position: relative;
-              margin-bottom: 12px;
               width: fit-content;
               transition: all 0.2s ease-in-out;
               padding: 5px 18px;

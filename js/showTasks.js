@@ -182,7 +182,7 @@ function createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, widt
             ${priorityImg}
             </div>
         </div>
-        <div class="move_to_section_button_and_menu">
+        <div id="move_to_section_button_and_menu" class="move_to_section_button_and_menu">
             <div onclick="openCloseMenuMovingTask(event, '${tasks[i].single_ID}', '${tasks[i].currentStatus}')" class="move_to_section_button">
                 <img onclick="openCloseMenuMovingTask(event, '${tasks[i].single_ID}', '${tasks[i].currentStatus}')" src="./assets/img/icons8-move-50.png" alt="Pfeil in alle Richtungen">
             </div>
