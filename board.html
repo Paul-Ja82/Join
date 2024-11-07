@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="./assets/fonts/fonts.css">
     <title>Board - join</title>
 </head>
-<body ondragend="checkDraggableArea(event)" onload="getIdAndData(pathData='')" class="no_drop_area">
+<body id="board_body" 
+    onload="getIdAndData(pathData='')"
+    onmouseup="endDragging()"
+    ondragend="checkDraggableArea(event)"  
+    class="no_drop_area">
     <div id="dummy_header"></div>
     <div id="dummy_menu"></div>
     <div class="board_ctn">
@@ -318,5 +322,6 @@
     <script src="./js/board.js"></script>
     <script src="./js/taskOverlay.js"></script>
     <script src="./js/filterTasks.js"></script>
+    <script src="./js/cloneElement.js"></script>
 </body>
 </html>

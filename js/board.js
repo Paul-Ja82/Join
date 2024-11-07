@@ -1,3 +1,7 @@
+let flyingElement = document.createElement("div")
+flyingElement.classList.add('flying_element_ctn');
+flyingElement.id = 'flying_element_ctn';
+let elementIsFlying = false; 
 let currentDraggedElementID;
 let currentDraggedElement;
 let clonedElementForMoving;
@@ -11,46 +15,52 @@ let sectionToSaveTask;
 
 function cloneElement(id, e) {
     currentDraggedElementID = `single_task_ctn${id}`;
-    // console.log(currentDraggedElementID);
     currentDraggedElement = document.getElementById(currentDraggedElementID);
     clonedElementForMoving = currentDraggedElement.cloneNode(true);
     clonedElementForMoving.id = 'clonedElement';
-}
-
-function whileDragging(e) {
-    // console.log(e);
-    clonedElementForMoving.style.left = `${e.pageX - 50}px`;
-    clonedElementForMoving.style.top = `${e.pageY}px`
+    document.getElementById('board_body').appendChild(flyingElement)
+    elementIsFlying = true;
+    return elementIsFlying
 }
 
 function startDragging(e) {
     let rect = currentDraggedElement.getBoundingClientRect();
-    // console.log(rect);
-    // console.log(e);
     styleClonedElement(rect, event)
     currentDraggedElement.classList.add("hide_original_task");
-    document.body.appendChild(clonedElementForMoving);
-    clonedElementForMoving.classList.add("show_cloned_task")
-    e.dataTransfer.setDragImage(new Image(), 0, 0); // Offset für das Drag-Bild
+    flyingElement.appendChild(clonedElementForMoving);
+    flyingElement.style.position = "absolute";
+    clonedElementForMoving.style.position = 'absolute';
+    e.dataTransfer.setDragImage(new Image(), 0, 0);
 }
 
 function styleClonedElement(rect,e) {
-    clonedElementForMoving.style.height = `${rect.height}px`
-    clonedElementForMoving.style.left = `${e.pageX - 50}px`;
-    clonedElementForMoving.style.top = `${e.pageY}px`
-    clonedElementForMoving.style.width = `${rect.width}px`
-    clonedElementForMoving.style.right = `${rect.right}px`
-    clonedElementForMoving.style.position = 'absolute';
-    clonedElementForMoving.style.zIndex = 100;
+    clonedElementForMoving.style.left = `0px`;
+    clonedElementForMoving.style.top = `0px`;
+    clonedElementForMoving.style.right = `0px`;
+    clonedElementForMoving.style.bottom = `0px`;
+    clonedElementForMoving.style.height = `${rect.height}px`;
+    clonedElementForMoving.style.width = `${rect.width}px`;
+}
+
+function whileDragging(e) {
+    let width = window.innerWidth;
+    let xStart;
+    if (width >= 1440) {
+         xStart = width / 2 - 720 
+    } else {
+        xStart = 0;
+    }
+    flyingElement.style.left = e.pageX - xStart + 'px';
+    flyingElement.style.top = e.pageY + 'px';
 }
 
 function endDragging() {
-    if (clonedElementForMoving) {
-        currentDraggedElement.style.opacity = "1";
+    if (elementIsFlying == true) {
+        flyingElement.removeChild(clonedElementForMoving)
         clonedElementForMoving.remove();
-        clonedElementForMoving = null;
-        document.removeEventListener('mouseup', endDragging);
+        document.getElementById('board_body').removeChild(flyingElement)
     }
+    return elementIsFlying = false
 }
 
 async function checkDraggableArea(e) {
@@ -58,8 +68,6 @@ async function checkDraggableArea(e) {
     let cursorY = e.clientY;
     let idFromSectionToDrop = checkIdFromSectionToDrop(cursorX, cursorY); 
     let newSection = checkNewSection(idFromSectionToDrop);    
-    // console.log(newSection);
-    
     if (newSection == 'noDropArea') {
         endDragging()
         removeShadow(id)
@@ -67,7 +75,6 @@ async function checkDraggableArea(e) {
     } else {
         moveTo(newSection)
         endDragging()
-        // await getIdAndData(pathData='')
     }
 }
 
@@ -89,12 +96,10 @@ function checkNewSection(idFromSectionToDrop) {
 function checkIdFromSectionToDrop(cursorX, cursorY) {
     let idFromSectionToDrop = 'noDropArea';
     for (let i = 0; i < dragAndDropSections.length; i++) {
-        // console.log(document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect());
         let sectionLeft = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().left;
         let sectionRight = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().right;
         let sectionTop = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().top;
         let sectionBottom = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().bottom;
-        // console.log('x: ', cursorX, 'l: ', sectionLeft, 'r: ', sectionRight, 'y: ', cursorY, 't: ', sectionTop, 'b: ', sectionBottom);
         if ((cursorX > sectionLeft && cursorX < sectionRight) && (cursorY > sectionTop && cursorY < sectionBottom)) {
             idFromSectionToDrop = dragAndDropSections[i]
         }
@@ -122,15 +127,8 @@ function removeShadow(id) {
 }
 
 async function moveTo(newSection) {
-    // console.log("Dropping into category:", newSection);
-    // console.log("Current dragged element:", currentDraggedElementID)
     let keyForPath = checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys)
-    // console.log(keyForPath);
-    
     let path = `tasks/${keyForPath}/currentStatus`;
-    // console.log(path);
-    // console.log(newSection);
-    
     await putNewSection(path, newSection);
     await getIdAndData(pathData='')
 }
@@ -138,7 +136,6 @@ async function moveTo(newSection) {
 function openAddTaskForm(section) {
     sectionToSaveTask = section;
     console.log(section);
-    
     window.location.href = "/add_task.html"
     return sectionToSaveTask
 }
@@ -171,9 +168,7 @@ function openCloseMenuMovingTask(e, single_ID, currentStatus) {
 }
 
 function enableCurrentSection(currentStatus, single_ID) {
-    // console.log(currentStatus);
     let moveToID = `move_${single_ID}_to_${currentStatus}`
-    // console.log(moveToID);
     document.getElementById(`move_${single_ID}_to_todo`).style.color = "black";
     document.getElementById(`move_${single_ID}_to_inProgress`).style.color = "black";
     document.getElementById(`move_${single_ID}_to_awaitFeedback`).style.color = "black";

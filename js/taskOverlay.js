@@ -81,7 +81,7 @@ function fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, s
 }
 
 function checkAssignedToOverlay(allTasks, keyToOpen) {
-    // console.log(allTasks[keyToOpen], allTasks, keyToOpen);
+    console.log(allTasks[keyToOpen], allTasks, keyToOpen);
     
     let contactsTemplate = "";
     for (let j = 0; j < allTasks[keyToOpen].assigned_to.length; j++) {
@@ -102,6 +102,8 @@ function checkAssignedToOverlay(allTasks, keyToOpen) {
 function checkSubtasksOverlay(allTasks, keyToOpen) {
     let subtasks = allTasks[keyToOpen].subtasks;
     let subtaskTemplate = "";
+    // console.log(subtasks, typeof subtasks);
+    
     if (typeof subtasks === 'undefined') {
        subtaskTemplate = `keine Subtasks vorhanden`
     } else {
