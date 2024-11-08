@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
-<body >  <!--onload="initSignup()"-->
+<body>  <!--onload="initSignup()"-->
   <div class="main-frame-div">
     <div class="logo-header-div">
         <img src="assets/img/join-logoBig.png" class="j-logo-img">
@@ -39,12 +39,16 @@
             <img class="mail-Img" src="assets/img/mail.png">
         </div>
         <div class="password-input-div">
-            <input type="password" class="log-input-pass" id="passwordInput" placeholder="Password">
+            <input type="password" class="log-input-pass" id="passwordInput" placeholder="Password" oninput="maskPassword(); togglePasswordImg()">
             <img class="password-Img" src="assets/img/lock.png">
+            <img onclick="openEyePassword()" class="password-Img-eye-of" src="assets/img/password-eye-of.svg">
+            <img onclick="closeEyePassword()" class="password-Img-eye-on" src="assets/img/password-eye-on.svg">
         </div>
         <div class="confirm-pw-input-div">
-            <input type="password" class="log-input-pass" id="confirmPasswordInput" placeholder="Confirm Password">
+            <input type="password" class="log-input-pass" id="confirmPasswordInput" placeholder="Confirm Password" oninput="maskPassword(); togglePasswordImg()">
             <img class="password-Img" src="assets/img/lock.png">
+            <img onclick="openEyePassword()" class="password-Img-eye-of" src="assets/img/password-eye-of.svg">
+            <img onclick="closeEyePassword()" class="password-Img-eye-on" src="assets/img/password-eye-on.svg">
         </div>
         <div class="accept-priv-box-div" id="accPrivacyBox">
             <input type="checkbox" class="accept-box-input" id="rememberCheckbox">
@@ -52,12 +56,12 @@
         </div>
             <button class="sign-up-final-button" id="signUpFinalButton" onclick="signup()">Sign up</button>
     </form>
-
+</div> 
         <footer>
             <a class="footer-element-left">Privacy Policy</a>
             <a class="footer-element-right">Legal notice</a>
         </footer>
-    </div> 
+    
 </div>
 </body>
 </html>
