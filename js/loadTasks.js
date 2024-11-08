@@ -111,7 +111,7 @@ async function putNewCheckedStatus(path="", data={}) {
 function keyForAllTasks() {
     allKeys = [];
     allKeys = Object.keys(allTasks)
-    console.log(allKeys)
+    // console.log(allKeys)
 }
 
 async function deleteTaskID(path="") {

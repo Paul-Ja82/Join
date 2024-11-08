@@ -105,15 +105,19 @@ function checkIdFromSectionToDrop(cursorX, cursorY) {
         let sectionRight = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().right;
         let sectionTop = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().top;
         let sectionBottom = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().bottom;
-        if (width >= 1440) {
+        // if (width >= 1440) {
             if ((cursorX > sectionLeft && cursorX < sectionRight) && (cursorY > sectionTop && cursorY < sectionBottom)) {
-                idFromSectionToDrop = dragAndDropSections[i]
+                idFromSectionToDrop = dragAndDropSections[i];
+                console.log(idFromSectionToDrop);
+                break
             } 
-        } else if (width < 1440) {
-            if  ((cursorX > sectionTop && cursorX < sectionBottom) && (cursorY > sectionLeft && cursorY < sectionRight)) {
-                idFromSectionToDrop = dragAndDropSections[i]
-            } 
-        }
+        // } else if (width < 1440) {
+        //     if  ((cursorX > sectionTop && cursorX < sectionBottom) && (cursorY > sectionLeft && cursorY < sectionRight)) {
+        //         idFromSectionToDrop = dragAndDropSections[i]
+        //         console.log(idFromSectionToDrop);
+        //         break
+        //     } 
+        // }
     }
     return idFromSectionToDrop
 }
