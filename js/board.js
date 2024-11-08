@@ -1,6 +1,6 @@
+const inputField = document.getElementById('name_of_task_input');
+const targetElement = document.getElementById('find_task_ctn');
 let flyingElement = document.createElement("div")
-flyingElement.classList.add('flying_element_ctn');
-flyingElement.id = 'flying_element_ctn';
 let elementIsFlying = false; 
 let currentDraggedElementID;
 let currentDraggedElement;
@@ -12,6 +12,17 @@ let dragAndDropSections = [
     'done_tasks'
 ]
 let sectionToSaveTask;
+
+function preparingElements() {
+    flyingElement.classList.add('flying_element_ctn');
+    flyingElement.id = 'flying_element_ctn';
+    inputField.addEventListener('focus', () => {
+        targetElement.style.border = '1px solid #29ABE2';
+    });
+    inputField.addEventListener('blur', () => {
+        targetElement.style.border = '1px solid #a8a8a8';
+    });
+}
 
 function cloneElement(id, e) {
     currentDraggedElementID = `single_task_ctn${id}`;
@@ -79,8 +90,7 @@ async function checkDraggableArea(e) {
 }
 
 function checkNewSection(idFromSectionToDrop) {
-    console.log(idFromSectionToDrop);
-    
+    // console.log(idFromSectionToDrop);
     if (idFromSectionToDrop == 'to_do_tasks') {
         newSection = 'todo';
     } else if (idFromSectionToDrop == 'in_progress_tasks') {
@@ -91,33 +101,22 @@ function checkNewSection(idFromSectionToDrop) {
         newSection = 'done'
     } else {
         newSection = 'noDropArea'
-    }
-    console.log(newSection);
-    
+    }    
     return newSection
 }
 
 function checkIdFromSectionToDrop(cursorX, cursorY) {
     let idFromSectionToDrop = 'noDropArea';
-    let width = window.innerWidth;   
     for (let i = 0; i < dragAndDropSections.length; i++) {
         let sectionLeft = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().left;
         let sectionRight = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().right;
         let sectionTop = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().top;
         let sectionBottom = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().bottom;
-        // if (width >= 1440) {
-            if ((cursorX > sectionLeft && cursorX < sectionRight) && (cursorY > sectionTop && cursorY < sectionBottom)) {
-                idFromSectionToDrop = dragAndDropSections[i];
-                console.log(idFromSectionToDrop);
-                break
-            } 
-        // } else if (width < 1440) {
-        //     if  ((cursorX > sectionTop && cursorX < sectionBottom) && (cursorY > sectionLeft && cursorY < sectionRight)) {
-        //         idFromSectionToDrop = dragAndDropSections[i]
-        //         console.log(idFromSectionToDrop);
-        //         break
-        //     } 
-        // }
+        if ((cursorX > sectionLeft && cursorX < sectionRight) && (cursorY > sectionTop && cursorY < sectionBottom)) {
+            idFromSectionToDrop = dragAndDropSections[i];
+            // console.log(idFromSectionToDrop);
+            break
+        } 
     }
     return idFromSectionToDrop
 }
@@ -142,11 +141,11 @@ function removeShadow(id) {
 }
 
 async function moveTo(newSection) {
-    console.log(newSection);
+    // console.log(newSection);
     let keyForPath = checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys)
-    console.log(keyForPath);
+    // console.log(keyForPath);
     let path = `tasks/${keyForPath}/currentStatus`;
-    console.log(path);
+    // console.log(path);
     await putNewSection(path, newSection);
     await getIdAndData(pathData='')
 }
@@ -182,7 +181,6 @@ function openCloseMenuMovingTask(e, single_ID, currentStatus) {
     } else {
         document.getElementById(`single_task_ctn${single_ID}`).style.filter = "grayscale(0)";
     }
-
     enableCurrentSection(currentStatus, single_ID)
 }
 

@@ -330,21 +330,16 @@ body {
         &:active {
           background-color: transparent;
         }
-    
       }
       &:hover {
         cursor: pointer;
       }
-    
       & .button_find_task {
         height: 32px;
         width: 48px;
         display: flex;
         justify-content: right;
         align-items: center;
-      }
-      &:active {
-        border: 1px solid #29ABE2;
       }
     }
   }
