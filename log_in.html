@@ -43,20 +43,23 @@
             <div class="divider"></div>
             <div class="input-main-div">
             <div class="email-input-div">
-                <input type="text"  class="log-input" id="emailInput" placeholder="Email">
+                <input type="text"  class="log-input" id="emailInput" placeholder="Email" onclick="removeInputError()">
                 <img class="mail-Img" src="assets/img/mail.png">
             </div>
             <div class="password-input-div">
-                <input type="password" class="log-input" id="passwordInput" placeholder="Password">
-                <img class="password-Img" src="assets/img/lock.png">
-            </div>
+              <input type="text" class="log-input" id="passwordInput" placeholder="Password" oninput="maskPassword(); togglePasswordImg()" onclick="removeInputError()">
+              <img class="password-Img" src="assets/img/lock.png">
+              <img onclick="openEyePassword()" class="password-Img-eye-of" src="assets/img/password-eye-of.svg">
+              <img onclick="closeEyePassword()" class="password-Img-eye-on" src="assets/img/password-eye-on.svg">
+          </div>
+          <p class="error-input-message">Check your email and password.Please</p>
             <div class="remember-box-div" id="rememberBox">
                 <input type="checkbox" class="r-box-input" id="rememberCheckbox">
                 <label class="r-box-label">Remember me</label>
             </div>
             <div class="log-in-buttons-div">
-                <button class="log-in-button" onclick="login()">Log in</button>
-                <button class="guest-log-in-button">Guest Log in</button>
+                <a  class="log-in-button"  onclick="checkEmailAndPassword()">Log in</a>       <!--login(); -->
+                <a  class="guest-log-in-button" href="./summary_guest.html">Guest Log in</a>
             </div>
     </form>
   </div>
