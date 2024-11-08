@@ -68,6 +68,69 @@ body {
   top: 0;
 }
 
+body {
+    overflow-x: hidden;
+}
+
+.showButton {
+    display: flex;
+    justify-content: center;
+}
+
+.background {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.1);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 999;
+  transform: translateX(100vw);
+  transition: all 225ms ease-in-out;
+}
+
+.dialogBox {
+  align-self: center;
+  background-color: white;
+  padding: 40px;
+  border-radius: 20px;
+  width: 1200px
+}
+
+.designFormAddTask{
+  padding: 0;
+  margin: 0;
+}
+
+.overFormCloseImg img {
+  position: absolute;
+  cursor: pointer;
+}
+
+.overFormCloseImg img:hover {
+  background-color: #eeeeee;
+  border-radius: 50%;
+}
+
+.overheader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 30px 0;
+}
+
+.centerForm {
+  align-items: center;
+}
+
+.showIt {
+    transform: translateX(0);
+}
+
 .user_story {
   background-color: rgba(0,56,255,1);
 }
