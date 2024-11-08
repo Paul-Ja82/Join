@@ -45,9 +45,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const dummyDatabase = [
     {
-        "name": "Paul Dietrich",
-        "email": "user@example.com",
-        "password": "password123"
+        "name": "Max Mustermann",
+        "email": "user2@example2.com",
+        "password": "password321"
     }
 ];
 
