@@ -33,9 +33,8 @@ function pushTasksToArray() {
 }
 
 function pushFilteredTasksToArray() {
-    console.log(filteredTasks);
-    console.log(filteredKeys);
-    
+    // console.log(filteredTasks);
+    // console.log(filteredKeys);
     for (let i = 0; i < filteredKeys.length; i++) {
         console.log(filteredTasks[i]);
         
@@ -55,7 +54,6 @@ function pushFilteredTasksToArray() {
 }
 
 function fillTaskSections(section, tasks) {
-    
     document.getElementById(section).innerHTML = "";
     for (let i = 0; i < tasks.length; i++) {
         let assignedTocontacts = checkAssignedTo(tasks, i);
@@ -75,16 +73,10 @@ function fillTaskSections(section, tasks) {
 }
 
 function checkAssignedTo(tasks, i) {
-    // console.log(tasks[i]);
-    
     let contactsIconsTemplate = "";
     for (let j = 0; j < tasks[i].assigned_to.length; j++) {
-
         let fullName = tasks[i].assigned_to[j];
-        // console.log(fullName);
-
         let [firstName, lastName] = fullName.split(" ");
-        
         let charOneFirstName = firstName.charAt(0)
         let charOneLastName = lastName.charAt(0)
         contactsIconsTemplate += `

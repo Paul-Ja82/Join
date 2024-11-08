@@ -95,17 +95,38 @@ function checkNewSection(idFromSectionToDrop) {
 
 function checkIdFromSectionToDrop(cursorX, cursorY) {
     let idFromSectionToDrop = 'noDropArea';
+    let width = window.innerWidth;
+    let xStart;
+   
     for (let i = 0; i < dragAndDropSections.length; i++) {
         let sectionLeft = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().left;
         let sectionRight = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().right;
         let sectionTop = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().top;
         let sectionBottom = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().bottom;
-        if ((cursorX > sectionLeft && cursorX < sectionRight) && (cursorY > sectionTop && cursorY < sectionBottom)) {
+        if (width >= 1440) {
+            if ((cursorX > sectionLeft && cursorX < sectionRight) && (cursorY > sectionTop && cursorY < sectionBottom)) {
+                idFromSectionToDrop = dragAndDropSections[i]
+            } 
+        } else if ((cursorX > sectionTop && cursorX < sectionBottom) && (cursorY > sectionLeft && cursorY < sectionRight)) {
             idFromSectionToDrop = dragAndDropSections[i]
-        }
+        } 
     }
     return idFromSectionToDrop
 }
+
+// function checkIdFromSectionToDrop(cursorX, cursorY) {
+//     let idFromSectionToDrop = 'noDropArea';
+//     for (let i = 0; i < dragAndDropSections.length; i++) {
+//         let sectionLeft = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().left;
+//         let sectionRight = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().right;
+//         let sectionTop = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().top;
+//         let sectionBottom = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().bottom;
+//         if ((cursorX > sectionLeft && cursorX < sectionRight) && (cursorY > sectionTop && cursorY < sectionBottom)) {
+//             idFromSectionToDrop = dragAndDropSections[i]
+//         }
+//     }
+//     return idFromSectionToDrop
+// }
 
 function allowDrop(e) {
     e.preventDefault();
