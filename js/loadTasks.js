@@ -41,7 +41,7 @@ async function collectData(currentStatus) {
 async function collectDataFromAddTask(currentStatus) {
     let taskData = {
         "assigned_to" : selectedContacts,
-        "category" : document.getElementById("categoryToSelect").value,
+        "category" : document.getElementById("showSelectedCategory").value,
         "description" : document.getElementById("description").value,
         "due_date" : document.getElementById("date").value,
         "priority" : selectedPrio == null ? "medium" : selectedPrio,

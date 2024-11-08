@@ -9,6 +9,15 @@ let dragAndDropSections = [
 ]
 let sectionToSaveTask;
 
+function showDialog() {
+    document.getElementById("backgroundId").classList.add("showIt");
+}
+
+function closeDialog() {
+    document.getElementById("backgroundId").classList.remove("showIt");
+}
+
+
 function cloneElement(id, e) {
     currentDraggedElementID = `single_task_ctn${id}`;
     // console.log(currentDraggedElementID);
