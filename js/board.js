@@ -109,9 +109,11 @@ function checkIdFromSectionToDrop(cursorX, cursorY) {
             if ((cursorX > sectionLeft && cursorX < sectionRight) && (cursorY > sectionTop && cursorY < sectionBottom)) {
                 idFromSectionToDrop = dragAndDropSections[i]
             } 
-        } else if ((cursorX > sectionTop && cursorX < sectionBottom) && (cursorY > sectionLeft && cursorY < sectionRight)) {
-            idFromSectionToDrop = dragAndDropSections[i]
-        } 
+        } else if (width < 1440) {
+            if  ((cursorX > sectionTop && cursorX < sectionBottom) && (cursorY > sectionLeft && cursorY < sectionRight)) {
+                idFromSectionToDrop = dragAndDropSections[i]
+            } 
+        }
     }
     return idFromSectionToDrop
 }
