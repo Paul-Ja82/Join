@@ -79,6 +79,8 @@ async function checkDraggableArea(e) {
 }
 
 function checkNewSection(idFromSectionToDrop) {
+    console.log(idFromSectionToDrop);
+    
     if (idFromSectionToDrop == 'to_do_tasks') {
         newSection = 'todo';
     } else if (idFromSectionToDrop == 'in_progress_tasks') {
@@ -90,14 +92,14 @@ function checkNewSection(idFromSectionToDrop) {
     } else {
         newSection = 'noDropArea'
     }
+    console.log(newSection);
+    
     return newSection
 }
 
 function checkIdFromSectionToDrop(cursorX, cursorY) {
     let idFromSectionToDrop = 'noDropArea';
-    let width = window.innerWidth;
-    let xStart;
-   
+    let width = window.innerWidth;   
     for (let i = 0; i < dragAndDropSections.length; i++) {
         let sectionLeft = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().left;
         let sectionRight = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().right;
@@ -113,20 +115,6 @@ function checkIdFromSectionToDrop(cursorX, cursorY) {
     }
     return idFromSectionToDrop
 }
-
-// function checkIdFromSectionToDrop(cursorX, cursorY) {
-//     let idFromSectionToDrop = 'noDropArea';
-//     for (let i = 0; i < dragAndDropSections.length; i++) {
-//         let sectionLeft = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().left;
-//         let sectionRight = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().right;
-//         let sectionTop = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().top;
-//         let sectionBottom = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().bottom;
-//         if ((cursorX > sectionLeft && cursorX < sectionRight) && (cursorY > sectionTop && cursorY < sectionBottom)) {
-//             idFromSectionToDrop = dragAndDropSections[i]
-//         }
-//     }
-//     return idFromSectionToDrop
-// }
 
 function allowDrop(e) {
     e.preventDefault();
@@ -148,8 +136,11 @@ function removeShadow(id) {
 }
 
 async function moveTo(newSection) {
+    console.log(newSection);
     let keyForPath = checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys)
+    console.log(keyForPath);
     let path = `tasks/${keyForPath}/currentStatus`;
+    console.log(path);
     await putNewSection(path, newSection);
     await getIdAndData(pathData='')
 }
@@ -165,9 +156,10 @@ function checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys) {
     let id = currentDraggedElementID.slice(15);
     let keytoChangeCategory;
     for (let i = 0; i < allKeys.length; i++) {
-        if (allTasks[`${allKeys[i]}`].single_ID == id) {
+        if (allTasks[`${allKeys[i]}`].single_ID == Number(id)) {
             // console.log(i, allKeys[i])
             keytoChangeCategory = allKeys[i]
+            break
         }
     }
     return keytoChangeCategory
