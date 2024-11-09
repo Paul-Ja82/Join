@@ -301,6 +301,9 @@ input {
 
 #cdPersonIcon {
     height: 4em;
+    margin: 0 auto;
+    transform: translateY(-50%);
+    border:  2px solid white;
 }
 
 #CDcontentContainer {
