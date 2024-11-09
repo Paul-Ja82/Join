@@ -58,7 +58,8 @@
         <div id="detailContainer" class="d-none">
             <h1 id="detailHeadline">Contacts</h1>
             <p id="InfoTagline">Better with a team</p>
-            <button id="closeDetailButton" class="h-pointer" onclick="closeDetailButtonHandler()">x</button>
+            <!-- <button id="closeDetailButton" class="h-pointer" onclick="closeDetailButtonHandler()">x</button> -->
+            <img id="closeDetailButton" src="./assets/img/arrowLeft.svg" alt="close-icon" class="h-pointer" onclick="closeDetailButtonHandler()">
             <!-- info container -->
             <div id="infoContainer">
                 <div id="coninfoNameWrapper">
@@ -77,7 +78,10 @@
                         <p class="coninfo-button-text">Delete</p>
                     </div>
                 </div>
-                <p id="coninfoEmail">debug: should be set</p>
+                <h2 id="coninfoHeading">Contact Information</h2>
+                <h3 id="coninfoEmailHeading" class="coninfoHeadingH3">Email</h3>
+                <a id="coninfoEmail" href="mailto:testen@test.test">debug: should be set</a>
+                <h3 id="coninfoPhoneHeading" class="coninfoHeadingH3">Phone</h3>
                 <p id="coninfoPhone">debug: should be set</p>
             </div>
         </div>

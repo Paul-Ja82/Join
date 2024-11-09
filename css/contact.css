@@ -9,7 +9,9 @@
 /*############*/
 
 body {
+    background-color: var(--clr-bg-main);
     font-size: clamp(1rem, 0.679rem + 1.709vw, 1.5rem);
+
 }
 
 #contentContainer {
@@ -28,11 +30,12 @@ body {
 /*##################*/
 
 #listContainer {
+    min-height: 100%;
     background-color: white;
 }
 
 #newContactButtonContainer {
-    background-color: white;
+    background-color: var(--clr-bg-main);
     padding-bottom: 0;
     position: fixed;
     bottom: 5em;
@@ -127,26 +130,69 @@ body {
 /*####################*/
 
 #detailContainer {
-    background-color: lightblue; /*DEBUG*/
+    background-color: var(--clr-bg-main);
     position: absolute;
     min-height: 100%;
     min-width: 100%;
     top: 0;
 }
 
+#closeDetailButton {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+}
+
 #detailHeadline {
-    font-size: 2em;
+    font-size: 2.8em;
     font-weight: bold;
 }
 
+#InfoTagline {
+    font-size: 1.2em;
+}
+
 #coninfoPersonIcon {
-    height: 5em;
+    height: 3.9em;
     border: 2px solid white;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.51);
 }
 
+#coninfoMonogram {
+    font-size: 1.4em;
+}
+
+#coninfoNameWrapper {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
 #coninfoButtonContainer {
     display: none;
+}
+
+#closeDetailButton {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+}
+
+#coninfoHeading {
+    font-size: 1.2em;
+}
+
+#coninfoName {
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+#coninfoEmail {
+    text-decoration: none;
+}
+
+.coninfoHeadingH3 {
+    font-weight: bold;
 }
 
 @media (768px < width) {
@@ -235,12 +281,6 @@ input {
 
 .list-item {
     padding: 0.5em 1em;
-}
-
-#closeDetailButton {
-    padding: 0.5em;
-    margin: 0.5em;
-    border: 1px solid red;
 }
 
 @media (768px < width) { 
