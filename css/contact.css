@@ -142,12 +142,13 @@ body {
     min-height: 100%;
     min-width: 100%;
     top: 0;
+    padding: 2em 1em;
 }
 
 #closeDetailButton {
     position: absolute;
     right: 1em;
-    top: 1em;
+    top: 2em;
 }
 
 #detailHeadline {
@@ -155,8 +156,22 @@ body {
     font-weight: bold;
 }
 
-#InfoTagline {
+#infoTagLine {
+    position: relative;
+    margin-top: 0.5em;
     font-size: 1.2em;
+}
+
+#cdDivider {
+    height: 3px;
+    width: 5em;
+    margin-top: 1.2em;
+    background-color: var(--clr-turquoise);
+    border-radius: var(--border-radius-circular);
+}
+
+#infoContainer {
+    margin-top: 3em;
 }
 
 #coninfoPersonIcon {
@@ -175,6 +190,14 @@ body {
     gap: 1em;
 }
 
+div#coninfoPersonIcon {
+    height: 4.8em;
+}
+
+p#coninfoName {
+    font-size: 2em;
+}
+
 #coninfoButtonContainer {
     display: none;
 }
@@ -182,7 +205,7 @@ body {
 #closeDetailButton {
     position: absolute;
     right: 1em;
-    top: 1em;
+    top: 2em;
 }
 
 #coninfoHeading {
@@ -272,6 +295,13 @@ input {
     background-color: cyan;
 }
 
+/*##########*/
+/*## MISC ##*/
+/*##########*/
+
+.mt {
+    margin-top: 1em;
+}
 
 
 
