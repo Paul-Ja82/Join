@@ -285,7 +285,6 @@ a {
     color: rgba(0, 0, 0, 1);
     overflow: hidden;
     white-space: nowrap;
-    text-overflow: ellipsis;
     max-width: 140px; 
     transition: font-size 0.3s ease;
 }
@@ -687,6 +686,7 @@ small {
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 #greetingSummary.greeting {
@@ -720,8 +720,7 @@ small {
     .dummy_menu {
         width: 100%;
         height: 80px;
-        position: absolute;
-        top: clamp(53.5rem, 50.925rem + 12.877vw, 59.375rem);
+        margin-top: 185px;
         background-color: rgba(63, 63, 151, 0.5);
     }
 
@@ -744,6 +743,7 @@ small {
         width: 100%;
         height: 82px;
         margin: 0px;
+        top: 0px;
     }
 
     .title-div {
@@ -983,3 +983,19 @@ small {
     }
 
 }
+
+@media(min-height:1020px) {
+
+    body {
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+        overflow: auto;
+        font-family: "Inter", sans-serif;
+        background-color: rgb(246,247,248,1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+

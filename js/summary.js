@@ -43,33 +43,23 @@ document.addEventListener("DOMContentLoaded", function () {
     setGreeting();
 });
 
-const dummyDatabase = [
-    {
-        "name": "Max Mustermann",
-        "email": "user2@example2.com",
-        "password": "password321"
-    }
-];
 
-localStorage.setItem('dummyDatabase', JSON.stringify(dummyDatabase));
-console.log(localStorage.getItem('dummyDatabase'));
-
-function setGreetedName() {
-    const storedDatabase = JSON.parse(localStorage.getItem('dummyDatabase'));
+function setGreetedName() { 
+    const storedName = localStorage.getItem('loggedInUserName');
     let greetednameText = "";
 
-    if (storedDatabase && Array.isArray(storedDatabase) && storedDatabase.length > 0) {
-        const name = storedDatabase[0].name;
-        console.log('Abgerufener Name:', name); 
+    if (storedName) {
+        console.log('Retrieved Name:', storedName); 
 
         const greetedNameElements = document.querySelectorAll('#greetedName');
         for (let i = 0; i < greetedNameElements.length; i++) {
-            greetedNameElements[i].textContent = name;
+            greetedNameElements[i].textContent = storedName;
         }
     } else {
-        console.error('No data found in Local Storage or data is invalid.');
+        console.error('No name found in Local Storage.');
     }
 }
+
 
 
 

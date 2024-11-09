@@ -125,7 +125,7 @@ const dummyDatabase = [
         "password": "password123"
     },
     {
-        "name": "Max Mustermann",
+        "name": "Maximilian Mustermann",
         "email": "user2@example2.com",
         "password": "password321"
     }
@@ -139,10 +139,12 @@ function checkEmailAndPassword() {
 
     const actualPasswordValue = passwordInput.dataset.actualValue || '';
     let userExists = false;
+    let loggedInUser = null;
 
     for (let i = 0; i < dummyDatabase.length; i++) {
         if (dummyDatabase[i].email === emailInput.value && dummyDatabase[i].password === actualPasswordValue) {
             userExists = true;
+            loggedInUser = dummyDatabase[i];
             break;
         }
     }
@@ -155,16 +157,25 @@ function checkEmailAndPassword() {
             errorMessage.style.opacity = '1'; 
         }
     } else {
+
+        if (loggedInUser && loggedInUser.name) {
+            localStorage.setItem('loggedInUserName', loggedInUser.name);
+        }
+
+        emailInput.value = '';
+        passwordInput.value = '';
+
         emailInput.classList.remove('input-error');
         passwordInput.classList.remove('input-error');
 
         if (errorMessage) {
             errorMessage.style.opacity = '0'; 
         }
-        // hier email und username in localstorage packen
+
         window.location.href = "./summary_user.html";
     }
 }
+
 
 
 
@@ -181,19 +192,19 @@ function removeInputError() {
     }
 }
 
-function toggleAutocomplete() {
+/*function toggleAutocomplete() {
     const rememberMeCheckbox = document.getElementById('rememberCheckbox');
     const emailInput = document.getElementById('emailInput');
     const passwordInput = document.getElementById('passwordInput');
 
     if (rememberMeCheckbox.checked) {
-        emailInput.setAttribute('autocomplete', 'on');
+        emailInput.setAttribute('autocomplete', 'on');             ### ?? für den moment in html auf off 
         passwordInput.setAttribute('autocomplete', 'on');
     } else {
         emailInput.setAttribute('autocomplete', 'off');
         passwordInput.setAttribute('autocomplete', 'off');
     }
-}
+}*/ 
 
 
 
