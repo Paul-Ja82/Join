@@ -43,7 +43,7 @@ function generateContactList() {
         let contactLetter= getFirstLetter(contactI.name).toUpperCase();
         if (contactLetter > currentLetter) {
             currentLetter= contactLetter.toUpperCase();
-            content += `<h3>${currentLetter}</h3>`;
+            content += `<h3 class="conlist-heading">${currentLetter}</h3>`;
         }
         content += contactToListItemHTML(contactI, 'conlistItem' + contactI.id);
     }

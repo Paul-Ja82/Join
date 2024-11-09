@@ -63,22 +63,29 @@ body {
     padding: 1.5em;
 }
 
+.conlist-heading {
+    padding: 1em 1.5em;
+    border-bottom: 1px solid var(--clr-gray-500);
+}
+
 .conlist-item {
     padding: 1.3em 1.8em;
     border-radius: 0.5em;
+    gap: 2em;
 }
 
 .conlist-person-icon {
-    height: 2em;
+    font-size: 0.8em;
+    height: 3em;
+}
+
+.conlist-name {
+    font-size: 1.2em;
 }
 
 .conlist-email {
     color: var(--clr-conlist-email);
-}
-
-.conlist-heading {
-    padding: 1em 1.5em;
-    border-bottom: 1px solid var(--clr-gray-500);
+    margin-top: 0.3em;
 }
 
 @media (768px < width) {
