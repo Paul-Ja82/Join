@@ -11,14 +11,20 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #4a90e2, #357ABD); /* Farbverlauf für die Scroll-Leiste */
+  background-color: #2a4872;
+  background: linear-gradient(180deg, #315e9e, #2a3647); /* Farbverlauf für die Scroll-Leiste */
   border-radius: 10px;
 }
 
+
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #357ABD, #2a67a2); /* Hover-Effekt */
+  background: linear-gradient(180deg, #3971c0, #293d58); /* Hover-Effekt */
+  cursor: pointer;
 }
 
+#name_of_task_input::placeholder {
+  color: var(--placeholder-color, lightgray); 
+}
 
 html {
   margin: 0;
@@ -28,7 +34,7 @@ html {
 }
 
 body {
-  background-color: var(--background-gray);
+  /* background-color: var(--background-gray); */
   margin: 0 auto;
   width: 100%;
   max-width: 1440px;
@@ -37,6 +43,7 @@ body {
   position: relative;
   min-width: 320px;
   font-family: 'Inter';
+  overflow: hidden;
 }
 
 #dummy_header {
@@ -59,6 +66,69 @@ body {
   z-index: 12;
   left: calc(50vw - 726px);
   top: 0;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.showButton {
+    display: flex;
+    justify-content: center;
+}
+
+.background {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.1);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 999;
+  transform: translateX(100vw);
+  transition: all 225ms ease-in-out;
+}
+
+.dialogBox {
+  align-self: center;
+  background-color: white;
+  padding: 40px;
+  border-radius: 20px;
+  width: 1200px
+}
+
+.designFormAddTask{
+  padding: 0;
+  margin: 0;
+}
+
+.overFormCloseImg img {
+  position: absolute;
+  cursor: pointer;
+}
+
+.overFormCloseImg img:hover {
+  background-color: #eeeeee;
+  border-radius: 50%;
+}
+
+.overheader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 30px 0;
+}
+
+.centerForm {
+  align-items: center;
+}
+
+.showIt {
+    transform: translateX(0);
 }
 
 .user_story {
@@ -89,7 +159,6 @@ body {
   }
 }
 
-
 .single_task_ctn {
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
@@ -107,10 +176,12 @@ body {
     margin-bottom: 20px;
   }
   & .single_task_headline {
-    font-size: 16px;
+    /* font-size: clamp(1rem, 0.786rem + 1.071vw, 1.75rem); */
     font-weight: 700;
     color: rgba(42, 54, 71, 1);
     margin-bottom: 8px;
+    /* border: 1px solid red;
+    max-height: 50px; */
   }
   & .single_task_description {
     font-size: 16px;
@@ -221,7 +292,6 @@ body {
     & .move_to_section_menu {
       background-color: rgb(255, 255, 255);
       box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
-      display: flex;
       flex-direction: column;
       justify-content: end;
       text-align: right;
@@ -229,16 +299,28 @@ body {
       border-top-left-radius: 10px;
       margin: 5px 5px 0 15px;
       position: absolute;
-      right: -100%;
-      display: none;
-     
+      width: 0px;
+      overflow: hidden;
+      top: 39px;
+      right: 0;
+      display: flex;
+      opacity: 0;
       & .link_section {
-        padding: 7px;
+        padding: 8px 8px 8px 14px;
         &:hover {
           color: blueviolet;
         }
       }
     }
+    & .move_to_section_menu.visible {
+      transition: all 0.2s ease-in-out;
+      width: max-content;
+      max-width: 200px;
+      opacity: 1;
+      
+    } 
+  
+   
   }
 }
 
@@ -257,7 +339,7 @@ body {
       justify-content: space-between;
       align-items: center;
       & .board_header_headline {
-        font-size: 68px;
+        font-size: clamp(2.5rem, 1.25rem + 3.333vw, 4.25rem);
         font-weight: 700;
       }
       & .add_task_ctn {
@@ -270,6 +352,9 @@ body {
         background-color: rgb(42, 54, 71);
         border-radius: 10px;
         transition: all 0.1s ease-in-out;
+        position: absolute;
+        top: 20px;
+        right: 0;
         & span {
           font-size: 21px;
           font-weight: 700;
@@ -292,30 +377,39 @@ body {
       border: 1px solid #a8a8a8;
       border-radius: 10px;
       padding: 8px 16px;
+    
       & #name_of_task_input {
         border: none;
         border-right: 1px solid #d1d1d1;
         outline: none;
         padding: 2px;
-        font-size: 20px;
+        font-size: clamp(1rem, 0.821rem + 0.476vw, 1.25rem);
         width: 232px;
         &::placeholder {
-          color: lightgray;
+          /* color: #8d1414; */
           font-weight: 400;
         }
         &:hover {
           cursor: pointer;
         }
+        &:active {
+          background-color: transparent;
+        }
+    
       }
       &:hover {
         cursor: pointer;
       }
+    
       & .button_find_task {
         height: 32px;
         width: 48px;
         display: flex;
         justify-content: right;
         align-items: center;
+      }
+      &:active {
+        border: 1px solid #29ABE2;
       }
     }
   }
@@ -453,6 +547,7 @@ body {
     padding: 36px;
     max-height: 90%;
     margin: 5% auto;
+    scale: 0.9;
     & .single_task_header_category_and_close {
       display: flex;
       justify-content: space-between;
@@ -482,39 +577,37 @@ body {
       }
     }
     & .single_task_headline {
-      font-size: clamp(20px, 1.3rem + 0.9vw, 70px);
       font-weight: 700;
       color: rgba(42, 54, 71, 1);
       margin-bottom: 12px;
-      /* height: 100px; */
-      max-height: 100px;
-      /* border: 1px solid blue; */
-      overflow: auto;
+      max-height: 70px;
+      font-size: clamp(1.25rem, 0.893rem + 0.952vw, 1.75rem);
+      /* border: 1px solid red; */
     }
     & .overlay_task_main {
       max-height: 500px;
       overflow: auto;
       padding-right: 20px;
       & .overlay_single_task_description {
-        font-size: 16px;
+        font-size: clamp(0.75rem, 0.571rem + 0.476vw, 1rem);
         font-weight: 400;
         color: black;
         margin-bottom: 20px;
-        /* height: 70px; */
-        max-height: 70px;
-        /* border: 1px solid blue; */
+        height: fit-content;
+        max-height: 90px;
         overflow: auto;
+        /* border: 1px solid blue; */
       }
       & .single_task_due_date_ctn {
         display: flex;
-        margin-bottom: 16px;
+        margin-bottom: 12px;
         & .single_task_line_header {
           width: 120px;
         }
       }
       & .single_task_pritoity_ctn {
         display: flex;
-        margin-bottom: 16px;
+        margin-bottom: 12px;
         & .single_task_line_header {
           width: 120px;
           display: flex;
@@ -542,10 +635,9 @@ body {
         margin-bottom: 24px;
         display: flex;
         flex-direction: column;
-        gap: 21px;
+        gap: 11px;
         padding-left: 12px;
-        overflow: auto;
-        max-height: 142px;
+        font-size: clamp(0.75rem, 0.571rem + 0.476vw, 1rem);
         & .single_task_single_contact {
           display: flex;
           align-items: center;
@@ -563,17 +655,17 @@ body {
         }
       }
       & .single_task_subtasks_ctn {
-        margin-bottom: 24px;
-        max-height: 170px;
+        margin-bottom: 15px;
         & .single_task_line_header {
           width: 120px;
           margin-bottom: 18px;
         }
         & .single_task_subtask_collection {
-          max-height: 142px;
+          max-height: 105px;
           overflow: auto;
           .single_task_subtask {
             position: relative;
+            margin-bottom: 5px;
             input[type="checkbox"] {
               display: none;
               &:checked + label #checkbox_checkmark {
@@ -583,7 +675,6 @@ body {
             label {
               display: flex;
               position: relative;
-              margin-bottom: 12px;
               width: fit-content;
               transition: all 0.2s ease-in-out;
               padding: 5px 18px;
@@ -713,11 +804,10 @@ body {
         width: 552px;
         margin-bottom: 10px;
         margin-top: 90px;
-        & .board_header_headline {
-          font-size: 47px;
-        }
         & .add_task_ctn {
+          position: unset;
           width: 48px;
+          margin-top: 0px;
           & span {
             display: none;
           }
@@ -765,6 +855,10 @@ body {
       & .board_header_headline_add {
         width: 100%;
         max-width: 552px;
+        & .add_task_ctn {
+          width: 40px;
+          height: 40px;
+        }
       }
       & .find_task_ctn {
         width: calc(100% - 32px);

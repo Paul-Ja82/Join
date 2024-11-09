@@ -32,7 +32,30 @@ function pushTasksToArray() {
     }
 }
 
+function pushFilteredTasksToArray() {
+    console.log(filteredTasks);
+    console.log(filteredKeys);
+    
+    for (let i = 0; i < filteredKeys.length; i++) {
+        console.log(filteredTasks[i]);
+        
+        if (filteredTasks[i].currentStatus === "todo") {
+            filteredTasksTodo.push(filteredTasks[i])
+        } 
+        if (filteredTasks[i].currentStatus === "inProgress") {
+            filteredTasksInProgress.push(filteredTasks[i])
+        }
+        if (filteredTasks[i].currentStatus === "awaitFeedback") {
+            filteredTasksAwaitFeedback.push(filteredTasks[i])
+        }
+        if (filteredTasks[i].currentStatus === "done") {
+            filteredTasksDone.push(filteredTasks[i])
+        }
+    }
+}
+
 function fillTaskSections(section, tasks) {
+    
     document.getElementById(section).innerHTML = "";
     for (let i = 0; i < tasks.length; i++) {
         let assignedTocontacts = checkAssignedTo(tasks, i);
@@ -52,6 +75,8 @@ function fillTaskSections(section, tasks) {
 }
 
 function checkAssignedTo(tasks, i) {
+    // console.log(tasks[i]);
+    
     let contactsIconsTemplate = "";
     for (let j = 0; j < tasks[i].assigned_to.length; j++) {
 
@@ -70,7 +95,7 @@ function checkAssignedTo(tasks, i) {
 }
 
 function checkPriorityImg(tasks, i) {
-    if (tasks[i].priority === "high") {
+    if (tasks[i].priority === "urgent" || tasks[i].priority === "high") {
         return `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_75609_16176)">
                 <path d="M16 14.7548C16.1994 14.7544 16.3937 14.8163 16.5543 14.9314L24.1228 20.3653C24.2212 20.4361 24.3044 20.525 24.3675 20.627C24.4307 20.7291 24.4725 20.8422 24.4907 20.9599C24.5273 21.1977 24.4654 21.4399 24.3184 21.6333C24.1714 21.8266 23.9514 21.9553 23.7068 21.9909C23.4623 22.0266 23.2131 21.9664 23.0143 21.8234L16 16.7925L8.98577 21.8234C8.8873 21.8942 8.77545 21.9454 8.65662 21.9742C8.53779 22.0029 8.4143 22.0086 8.2932 21.9909C8.1721 21.9733 8.05577 21.9326 7.95084 21.8712C7.84592 21.8099 7.75445 21.729 7.68166 21.6333C7.60888 21.5375 7.5562 21.4288 7.52664 21.3132C7.49708 21.1977 7.49122 21.0776 7.50938 20.9599C7.52754 20.8422 7.56938 20.7291 7.63251 20.627C7.69563 20.525 7.77881 20.4361 7.87728 20.3653L15.4458 14.9314C15.6063 14.8163 15.8006 14.7544 16 14.7548Z" fill="#FF3D00"/>
@@ -157,15 +182,15 @@ function createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, widt
             ${priorityImg}
             </div>
         </div>
-        <div class="move_to_section_button_and_menu">
-            <div onclick="openMenuMovingTask(${tasks[i].category})" class="move_to_section_button">
-                <img src="./assets/img/icons8-move-50.png" alt="Pfeil in alle Richtungen">
+        <div id="move_to_section_button_and_menu" class="move_to_section_button_and_menu">
+            <div onclick="openCloseMenuMovingTask(event, '${tasks[i].single_ID}', '${tasks[i].currentStatus}')" class="move_to_section_button">
+                <img onclick="openCloseMenuMovingTask(event, '${tasks[i].single_ID}', '${tasks[i].currentStatus}')" src="./assets/img/icons8-move-50.png" alt="Pfeil in alle Richtungen">
             </div>
-            <div id="move_to_s_from_${tasks[i].category}" class="move_to_section_menu">
-                <div class="link_section">To Do</div>
-                <div class="link_section">In Progress</div>
-                <div class="link_section">Await Feedback</div>
-                <div class="link_section">Done</div>
+            <div id="move_task_menu_${tasks[i].single_ID}" class="move_to_section_menu">
+                <div id="move_${tasks[i].single_ID}_to_todo" onclick="event.stopPropagation(); moveTaskWithMenu('${tasks[i].single_ID}', 'todo')" class="link_section">To Do</div>
+                <div id="move_${tasks[i].single_ID}_to_inProgress" onclick="event.stopPropagation(); moveTaskWithMenu('${tasks[i].single_ID}', 'inProgress')" class="link_section">In Progress</div>
+                <div id="move_${tasks[i].single_ID}_to_awaitFeedback" onclick="event.stopPropagation(); moveTaskWithMenu('${tasks[i].single_ID}', 'awaitFeedback')" class="link_section">Await Feedback</div>
+                <div id="move_${tasks[i].single_ID}_to_done" onclick="event.stopPropagation(); moveTaskWithMenu('${tasks[i].single_ID}', 'done')" class="link_section">Done</div>
             </div>
         </div>
   </div>

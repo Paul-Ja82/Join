@@ -22,7 +22,7 @@ const avatarColors = ["#3498db", "#e74c3c", "#f39c12", "#2ecc71", "#9b59b6"];
 
 function init() {
   const contactList = document.getElementById("insertContactList");
-  contactList.style.height = 0;
+  contactList.classList.add("d-none");
   selectPrio("medium");
 }
 
@@ -61,20 +61,20 @@ async function saveData() {
 }*/
 
 function renderContactList(filteredContacts = contacts) {
+  document.getElementById("setBackground").classList.add("whiteBG");
   const contactList = document.getElementById("insertContactList");
-  contactList.style.height = "250px";
-  contactList.innerHTML = ""; // Reset the list
+  contactList.classList.remove("d-none");
+
+  contactList.innerHTML = "";
   document.getElementById("arrowDropdown").src =
     "/assets/icons/arrowUpDropdown.svg";
 
-  // Überprüfe, ob die gefilterten Kontakte leer sind
   if (filteredContacts.length === 0) {
     contactList.innerHTML =
       "<li class='emptyListMessage'>Ganz schön leer hier! :(</li>";
-    return; // Beende die Funktion, da keine Kontakte gerendert werden müssen
+    return;
   }
 
-  // Render die Kontakte, wenn die Liste nicht leer ist
   filteredContacts.forEach((contact, index) => {
     const isSelected = selectedContacts.includes(contact);
     contactList.innerHTML += `
@@ -122,9 +122,10 @@ function filterContacts() {
 function closeContactList() {
   const contactList = document.getElementById("insertContactList");
   contactList.innerHTML = "";
-  contactList.style.height = 0;
+  contactList.classList.add("d-none");
   document.getElementById("arrowDropdown").src =
     "/assets/icons/arrowDropdown.svg";
+  document.getElementById("setBackground").classList.remove("whiteBG");
 }
 
 function changeCheckbox(index) {
@@ -153,33 +154,7 @@ function renderAddedPersons() {
   });
   console.log("Ausgewählte Kontakte:", selectedContacts);
   showPersons();
-  return selectedContacts
-}
-
-function changeArrow() {
-  const categoryDropdownIcon = document.getElementById("categoryDropdown");
-  categoryDropdownIcon.src = "assets/icons/arrowUpDropdown.svg";
-
-  // Setze den Event Listener für den Dropdown auf "resetArrow"
-  document
-    .getElementById("categoryToSelect")
-    .removeEventListener("click", changeArrow);
-  document
-    .getElementById("categoryToSelect")
-    .addEventListener("click", resetArrow);
-}
-
-function resetArrow() {
-  const categoryDropdownIcon = document.getElementById("categoryDropdown");
-  categoryDropdownIcon.src = "assets/icons/arrowDropdown.svg";
-
-  // Setze den Event Listener wieder auf "changeArrow"
-  document
-    .getElementById("categoryToSelect")
-    .removeEventListener("click", resetArrow);
-  document
-    .getElementById("categoryToSelect")
-    .addEventListener("click", changeArrow);
+  return selectedContacts;
 }
 
 function toggleContactList() {
@@ -266,26 +241,36 @@ function createAvatarSVG(initials, bgColor) {
 function saveSubtasks(index) {
   let textSubtask = document.getElementById("subtasks").value;
   pushTextSubtask(textSubtask);
-  //subtasks.push(textSubtask);
   document.getElementById("subtasks").value = "";
   document.getElementById(
     "symbolsSubtasks"
-  ).innerHTML = `<img src="assets/icons/plus.svg" alt="" />`; // Hier Image noch einfügen
+  ).innerHTML = `<img src="assets/icons/plus.svg" alt="" />`;
   renderSubtasks();
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+  let getInputfieldSubtask = document.getElementById("subtasks");
+
+  getInputfieldSubtask.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      document.getElementById("subtaskSaver").click();
+    }
+  });
+});
 
 function pushTextSubtask(textSubtask) {
   const newSubtask = {
     subtask: textSubtask,
-    checked: false
+    checked: false,
   };
-  
+
   subtasks.push(newSubtask);
 }
 
 function saveEditSubtask(index) {
   let changedSubtask = document.getElementById(`inputField${index}`).value;
-  subtasks[index] = changedSubtask;
+  subtasks[index].subtask = changedSubtask;
   renderSubtasks();
 }
 
@@ -295,7 +280,7 @@ function changeSymbols() {
   document.getElementById("symbolsSubtasks").innerHTML = "";
   document.getElementById(
     "symbolsSubtasks"
-  ).innerHTML = `<div class="centerSymbol" onclick="clearInput()"><img src="assets/icons/close.svg"></div><div class="borderEditIcons"></div><div class="centerSymbol" onclick="saveSubtasks()"><img src="assets/icons/check.svg"></div>`;
+  ).innerHTML = `<div class="centerSymbol" onclick="clearInput()"><img src="assets/icons/close.svg"></div><div class="borderEditIcons"></div><div id="subtaskSaver" class="centerSymbol" onclick="saveSubtasks()"><img src="assets/icons/check.svg"></div>`;
   if (checkInput.length <= 0) {
     document.getElementById(
       "symbolsSubtasks"
@@ -315,7 +300,8 @@ function renderSubtasks() {
   for (let index = 0; index < subtasks.length; index++) {
     document.getElementById(
       "showSubtasks"
-    ).innerHTML += `<li id="subtask${index}" class="overallListItem">
+    ).innerHTML += `<li id="subtask${index}" class="
+    ">
     <div class="showEntrySubtask" onclick="changeText(${index})">
     <div class="subtaskText">${subtasks[index].subtask}</div>
     <div id="edit${index}" class="edit">
@@ -328,7 +314,7 @@ function renderSubtasks() {
 }
 
 function changeText(index) {
-  let changeText = subtasks[index];
+  let changeText = subtasks[index].subtask;
 
   renderSubtasks();
 
@@ -395,9 +381,52 @@ function urgentPrio(priority) {
   document.getElementById(`${button}Img`).src = "assets/icons/upWhite.svg";
 }
 
-function changeImage(button, isHover) {
-  const img = button.querySelector("img");
-  img.src = isHover ? "assets/icons/vectorBlue.svg" : "assets/icons/close.svg";
+function closeDropdown() {
+  document.getElementById("showSelectedCategory").onclick = showMeCategorys;
+  document.getElementById("categoryDropdown").onclick = showMeCategorys;
+  document.getElementById("showCategorys").classList.add("d-none");
+  document.getElementById("costumSelect").classList.remove("whiteBG");
+  document.getElementById("categoryDropdown").src =
+    "assets/icons/arrowDropdown.svg";
+}
+
+document.addEventListener("click", function (event) {
+  const catImage = document.getElementById("categoryDropdown");
+  const dropdown = document.getElementById("showSelectedCategory");
+  const selectBox = document.getElementById("showCategorys");
+
+  if (!dropdown.contains(event.target) && !selectBox.contains(event.target) && !catImage.contains(event.target)) {
+    closeDropdown();
+  }
+});
+
+document.addEventListener("click", function (event) {
+  const inputAssignedTo = document.getElementById("inputAssignedTo");
+  const contactList = document.getElementById("insertContactList");
+  const arrowDrop = document.getElementById("arrowDropdown");
+
+
+  if (
+    !inputAssignedTo.contains(event.target) &&
+    !contactList.contains(event.target) && !arrowDrop.contains(event.target)
+  ) {
+    closeContactList();
+  }
+});
+
+function putInput(value) {
+  document.getElementById("showSelectedCategory").value = value;
+  closeDropdown();
+}
+
+function showMeCategorys() {
+  putInput(``);
+  document.getElementById("showSelectedCategory").onclick = closeDropdown;
+  document.getElementById("showCategorys").classList.remove("d-none");
+  document.getElementById("costumSelect").classList.add("whiteBG");
+  document.getElementById("categoryDropdown").onclick = closeDropdown;
+  document.getElementById("categoryDropdown").src =
+    "assets/icons/arrowUpDropdown.svg";
 }
 
 async function submitForm() {
@@ -405,7 +434,7 @@ async function submitForm() {
 
   const title = document.getElementById("title").value.trim();
   const dueDate = document.getElementById("date").value;
-  const category = document.getElementById("categoryToSelect").value;
+  const category = document.getElementById("showSelectedCategory").value;
 
   if (title.length === 0) {
     document.getElementById("title").style.border = "1px solid #FF8190";
@@ -426,20 +455,22 @@ async function submitForm() {
   }
 
   if (category.length === 0) {
-    document.getElementById("categoryToSelect").style.border =
+    document.getElementById("showSelectedCategory").style.border =
       "1px solid #FF8190";
     document.getElementById("errorCategory").style.display = "block";
     hasError = true;
   } else {
-    document.getElementById("categoryToSelect").style.border = "none";
+    document.getElementById("showSelectedCategory").style.border = "none";
     document.getElementById("errorCategory").style.display = "none";
   }
 
   if (!hasError) {
-   
-    await collectData(); //senden an loadTasks.js zum hochladen ins Firebase
-    window.location.href = './board.html';
-    // reloadPage();
+    
+    await collectDataFromAddTask('todo'); //senden an loadTasks.js zum hochladen ins Firebase
+    doc
+    
+
+
   }
 }
 
