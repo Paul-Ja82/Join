@@ -198,3 +198,46 @@ body {
     color: var(--clr-blue-100);
     outline: 2px solid var(--clr-blue-100);
 }
+
+/*################*/
+/*## TEXTINPUTS ##*/
+/*################*/
+
+.input-elem-wrapper {
+    position: relative;
+}
+
+.textinput {
+    width: 100%;
+    border: 1px solid var(--clr-gray-500);
+    border-radius: var(--border-radius-default);
+    font-size: var(--fs-400);
+    padding: 0.75em 1.3em;
+}
+
+.textinput::placeholder {
+    color: var(--clr-gray-500);
+}
+
+.input-icon-wrapper {
+    height: 100%;
+    position: absolute;
+    right: 1.3em;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.input-icon {
+    height: 1.5em;
+}
+
+.validate-input:invalid {
+    border: 1px solid red;
+}
+
+.validation-message {
+    font-size: var(--fs-300);
+    color: red;
+}
