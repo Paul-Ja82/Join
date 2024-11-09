@@ -99,3 +99,16 @@ function getContactByEmail(email) {
   return contacts.find(contactI => contactI.email == email);
 }
 
+/*##########*/
+/*## MISC ##*/
+/*##########*/
+
+function getFirstLetter(text) {
+  return text.charAt(0);
+}
+
+function getNextASCIIchar(text) {
+  let char= getFirstLetter(text).toUpperCase();
+  console.log(char); ///DEBUG
+  return String.fromCharCode(char.charCodeAt(0) + 1).toUpperCase();
+}

@@ -365,7 +365,8 @@ function mediaChangeHandler() {
 /*###########*/
 
 function tuEsContact() {
-    console.log(submitHandlers['contactForm'].includes(createContactHandler)); ///DEBUG
+    let x= 'z';
+    console.log(getNextASCIIchar(x)); ///DEBUG
 }
 
 function logVarsContact() {
