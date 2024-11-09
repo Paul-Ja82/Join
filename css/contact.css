@@ -283,16 +283,12 @@ p#coninfoName {
     right: 1em;
 }
 
-input {
-    border: 1px solid red;
-    padding: 1em;
-}
-
 #CDheaderContainer {
     flex: 0 0 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 1em;
     background-color: var(--clr-menu-bg);
     border-top-left-radius: 1.5em;
     border-top-right-radius: 1.5em;
@@ -306,8 +302,31 @@ input {
     border:  2px solid white;
 }
 
+#CDheadline {
+    font-size: 2.3em;
+    font-weight: bold;
+}
+
+#cdHeaderDivider {
+    height: 3px;
+    background-color: var(--clr-turquoise);
+    width: 4.5em;
+    border-radius: var(--border-radius-circular);
+    margin-top: 0.8em;
+}
+
 #CDcontentContainer {
     flex: 0 0 50%;
+}
+
+input {
+    border: 1px solid red;
+    padding: 1em;
+}
+
+.cdButtonContainer {
+    display: flex;
+    justify-content: space-around;
 }
 
 #cdCancelButton {

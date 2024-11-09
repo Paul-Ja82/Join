@@ -141,15 +141,17 @@
                         <p id="phoneVmsg" class="validation-message v-hidden">debug: should not display</p>
                     </div>
                     <!-- buttons -->
-                    <button id="cdCancelButton" class="button-wIcon button-sec d-none" type="button" onclick="closeDialog()">
-                        <span class="icon-button-text">Cancel</span>
-                        <img class="icon-button-icon" src="./assets/icons/icon-close.svg" alt="icon">
-                    </button>
-                    <button id="cdDeleteButton" class="button button-sec d-none" type="button" onclick="deleteButtonHandler()">Delete</button>
-                    <button id="CDsubmitButton" class="button-wIcon button-prim" type="submit" disabled>
-                        <span id="CDsubmitButtonText" class="icon-button-text">debug: text should be set</span>
-                        <img class="icon-button-icon" src="./assets/icons/icon-check.svg" alt="icon">
-                    </button>
+                    <div class="cdButtonContainer">
+                        <button id="cdCancelButton" class="button-wIcon button-sec d-none" type="button" onclick="closeDialog()">
+                            <span class="icon-button-text">Cancel</span>
+                            <img class="icon-button-icon" src="./assets/icons/icon-close.svg" alt="icon">
+                        </button>
+                        <button id="cdDeleteButton" class="button button-sec d-none" type="button" onclick="deleteButtonHandler()">Delete</button>
+                        <button id="CDsubmitButton" class="button-wIcon button-prim" type="submit" disabled>
+                            <span id="CDsubmitButtonText" class="icon-button-text">debug: text should be set</span>
+                            <img class="icon-button-icon" src="./assets/icons/icon-check.svg" alt="icon">
+                        </button>
+                    </div>
 
                 </form>
             </div>
