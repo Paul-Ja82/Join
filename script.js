@@ -77,6 +77,7 @@ async function loadContacts() {
   for (let contactObjKey in contactsObj) {
     contacts.push(contactsObj[contactObjKey]);
   }
+  sortContactsByName();
 }
 
 async function loadCurrentUser() {
@@ -97,6 +98,10 @@ function getContactById(id) {
 
 function getContactByEmail(email) {
   return contacts.find(contactI => contactI.email == email);
+}
+
+function sortContactsByName() {
+  contacts.sort((contactI, contactJ) => contactI.name.localeCompare(contactJ.name));
 }
 
 /*##########*/
