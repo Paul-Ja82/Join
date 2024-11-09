@@ -251,6 +251,11 @@ p#coninfoName {
 
     #coninfoButtonContainer {
         display: flex;
+        gap: 1.5em;
+    }
+
+    .coninfo-button {
+        gap: 0.4em;
     }
 
     
