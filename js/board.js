@@ -1,3 +1,7 @@
+const inputField = document.getElementById('name_of_task_input');
+const targetElement = document.getElementById('find_task_ctn');
+let flyingElement = document.createElement("div")
+let elementIsFlying = false; 
 let currentDraggedElementID;
 let currentDraggedElement;
 let clonedElementForMoving;
@@ -32,111 +36,115 @@ function closeDialog() {
   document.getElementById("backgroundId").classList.remove("showIt");
 }
 
-function cloneElement(id, e) {
-  currentDraggedElementID = `single_task_ctn${id}`;
-  // console.log(currentDraggedElementID);
-  currentDraggedElement = document.getElementById(currentDraggedElementID);
-  clonedElementForMoving = currentDraggedElement.cloneNode(true);
-  clonedElementForMoving.id = "clonedElement";
+function preparingElements() {
+    flyingElement.classList.add('flying_element_ctn');
+    flyingElement.id = 'flying_element_ctn';
+    inputField.addEventListener('focus', () => {
+        targetElement.style.border = '1px solid #29ABE2';
+    });
+    inputField.addEventListener('blur', () => {
+        targetElement.style.border = '1px solid #a8a8a8';
+    });
 }
 
-function whileDragging(e) {
-  // console.log(e);
-  clonedElementForMoving.style.left = `${e.pageX - 50}px`;
-  clonedElementForMoving.style.top = `${e.pageY}px`;
+function cloneElement(id, e) {
+    currentDraggedElementID = `single_task_ctn${id}`;
+    currentDraggedElement = document.getElementById(currentDraggedElementID);
+    clonedElementForMoving = currentDraggedElement.cloneNode(true);
+    clonedElementForMoving.id = 'clonedElement';
+    document.getElementById('board_body').appendChild(flyingElement)
+    elementIsFlying = true;
+    return elementIsFlying
 }
 
 function startDragging(e) {
-  let rect = currentDraggedElement.getBoundingClientRect();
-  // console.log(rect);
-  // console.log(e);
-  styleClonedElement(rect, event);
-  currentDraggedElement.classList.add("hide_original_task");
-  document.body.appendChild(clonedElementForMoving);
-  clonedElementForMoving.classList.add("show_cloned_task");
-  e.dataTransfer.setDragImage(new Image(), 0, 0); // Offset für das Drag-Bild
+    let rect = currentDraggedElement.getBoundingClientRect();
+    styleClonedElement(rect, event)
+    currentDraggedElement.classList.add("hide_original_task");
+    flyingElement.appendChild(clonedElementForMoving);
+    flyingElement.style.position = "absolute";
+    clonedElementForMoving.style.position = 'absolute';
+    e.dataTransfer.setDragImage(new Image(), 0, 0);
 }
 
-function styleClonedElement(rect, e) {
-  clonedElementForMoving.style.height = `${rect.height}px`;
-  clonedElementForMoving.style.left = `${e.pageX - 50}px`;
-  clonedElementForMoving.style.top = `${e.pageY}px`;
-  clonedElementForMoving.style.width = `${rect.width}px`;
-  clonedElementForMoving.style.right = `${rect.right}px`;
-  clonedElementForMoving.style.position = "absolute";
-  clonedElementForMoving.style.zIndex = 100;
+function styleClonedElement(rect,e) {
+    clonedElementForMoving.style.left = `0px`;
+    clonedElementForMoving.style.top = `0px`;
+    clonedElementForMoving.style.right = `0px`;
+    clonedElementForMoving.style.bottom = `0px`;
+    clonedElementForMoving.style.height = `${rect.height}px`;
+    clonedElementForMoving.style.width = `${rect.width}px`;
+}
+
+function whileDragging(e) {
+    let width = window.innerWidth;
+    let xStart;
+    if (width >= 1440) {
+         xStart = width / 2 - 720 
+    } else {
+        xStart = 0;
+    }
+    flyingElement.style.left = e.pageX - xStart + 'px';
+    flyingElement.style.top = e.pageY + 'px';
 }
 
 function endDragging() {
-  if (clonedElementForMoving) {
-    currentDraggedElement.style.opacity = "1";
-    clonedElementForMoving.remove();
-    clonedElementForMoving = null;
-    document.removeEventListener("mouseup", endDragging);
-  }
+    if (elementIsFlying == true) {
+        flyingElement.removeChild(clonedElementForMoving)
+        clonedElementForMoving.remove();
+        document.getElementById('board_body').removeChild(flyingElement)
+    }
+    return elementIsFlying = false
 }
 
 async function checkDraggableArea(e) {
-  let cursorX = e.clientX;
-  let cursorY = e.clientY;
-  let idFromSectionToDrop = checkIdFromSectionToDrop(cursorX, cursorY);
-  let newSection = checkNewSection(idFromSectionToDrop);
-  // console.log(newSection);
-
-  if (newSection == "noDropArea") {
-    endDragging();
-    removeShadow(id);
-    return;
-  } else {
-    moveTo(newSection);
-    endDragging();
-    // await getIdAndData(pathData='')
-  }
+    let cursorX = e.clientX;
+    let cursorY = e.clientY;
+    let idFromSectionToDrop = checkIdFromSectionToDrop(cursorX, cursorY); 
+    let newSection = checkNewSection(idFromSectionToDrop);    
+    if (newSection == 'noDropArea') {
+        endDragging()
+        removeShadow(id)
+        return  
+    } else {
+        moveTo(newSection)
+        endDragging()
+    }
 }
 
 function checkNewSection(idFromSectionToDrop) {
-  if (idFromSectionToDrop == "to_do_tasks") {
-    newSection = "todo";
-  } else if (idFromSectionToDrop == "in_progress_tasks") {
-    newSection = "inProgress";
-  } else if (idFromSectionToDrop == "await_feedback_tasks") {
-    newSection = "awaitFeedback";
-  } else if (idFromSectionToDrop == "done_tasks") {
-    newSection = "done";
-  } else {
-    newSection = "noDropArea";
-  }
-  return newSection;
+    // console.log(idFromSectionToDrop);
+    if (idFromSectionToDrop == 'to_do_tasks') {
+        newSection = 'todo';
+    } else if (idFromSectionToDrop == 'in_progress_tasks') {
+        newSection = 'inProgress';
+    } else if (idFromSectionToDrop == 'await_feedback_tasks') {
+        newSection = 'awaitFeedback'
+    } else if (idFromSectionToDrop == 'done_tasks') {
+        newSection = 'done'
+    } else {
+        newSection = 'noDropArea'
+    }    
+    return newSection
 }
 
 function checkIdFromSectionToDrop(cursorX, cursorY) {
-  let idFromSectionToDrop = "noDropArea";
-  for (let i = 0; i < dragAndDropSections.length; i++) {
-    // console.log(document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect());
-    let sectionLeft = document
-      .getElementById(`${dragAndDropSections[i]}`)
-      .getBoundingClientRect().left;
-    let sectionRight = document
-      .getElementById(`${dragAndDropSections[i]}`)
-      .getBoundingClientRect().right;
-    let sectionTop = document
-      .getElementById(`${dragAndDropSections[i]}`)
-      .getBoundingClientRect().top;
-    let sectionBottom = document
-      .getElementById(`${dragAndDropSections[i]}`)
-      .getBoundingClientRect().bottom;
-    // console.log('x: ', cursorX, 'l: ', sectionLeft, 'r: ', sectionRight, 'y: ', cursorY, 't: ', sectionTop, 'b: ', sectionBottom);
-    if (
-      cursorX > sectionLeft &&
-      cursorX < sectionRight &&
-      cursorY > sectionTop &&
-      cursorY < sectionBottom
-    ) {
-      idFromSectionToDrop = dragAndDropSections[i];
+    let idFromSectionToDrop = 'noDropArea';
+    for (let i = 0; i < dragAndDropSections.length; i++) {
+        let sectionLeft = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().left;
+        let sectionRight = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().right;
+        let sectionTop = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().top;
+        let sectionBottom = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().bottom;
+        if ((cursorX > sectionLeft && cursorX < sectionRight) && (cursorY > sectionTop && cursorY < sectionBottom)) {
+            idFromSectionToDrop = dragAndDropSections[i];
+            // console.log(idFromSectionToDrop);
+            break
+        } 
     }
+    return idFromSectionToDrop;
   }
-  return idFromSectionToDrop;
-}
+ 
+
 
 function allowDrop(e) {
   e.preventDefault();
@@ -162,21 +170,13 @@ function removeShadow(id) {
 }
 
 async function moveTo(newSection) {
-  // console.log("Dropping into category:", newSection);
-  // console.log("Current dragged element:", currentDraggedElementID)
-  let keyForPath = checkIndexOfTaskToMove(
-    currentDraggedElementID,
-    allTasks,
-    allKeys
-  );
-  // console.log(keyForPath);
-
-  let path = `tasks/${keyForPath}/currentStatus`;
-  // console.log(path);
-  // console.log(newSection);
-
-  await putNewSection(path, newSection);
-  await getIdAndData((pathData = ""));
+    // console.log(newSection);
+    let keyForPath = checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys)
+    // console.log(keyForPath);
+    let path = `tasks/${keyForPath}/currentStatus`;
+    // console.log(path);
+    await putNewSection(path, newSection);
+    await getIdAndData(pathData='')
 }
 
 function openAddTaskForm(section) {
@@ -188,45 +188,39 @@ function openAddTaskForm(section) {
 }
 
 function checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys) {
-  let id = currentDraggedElementID.slice(15);
-  let keytoChangeCategory;
-  for (let i = 0; i < allKeys.length; i++) {
-    if (allTasks[`${allKeys[i]}`].single_ID == id) {
-      // console.log(i, allKeys[i])
-      keytoChangeCategory = allKeys[i];
+    let id = currentDraggedElementID.slice(15);
+    let keytoChangeCategory;
+    for (let i = 0; i < allKeys.length; i++) {
+        if (allTasks[`${allKeys[i]}`].single_ID == Number(id)) {
+            // console.log(i, allKeys[i])
+            keytoChangeCategory = allKeys[i]
+            break
+        }
     }
-  }
-  return keytoChangeCategory;
+    return keytoChangeCategory
 }
 
 function openCloseMenuMovingTask(e, single_ID, currentStatus) {
-  e.stopPropagation();
-  single_ID = single_ID;
-  currentStatus = currentStatus;
-  let menuForMoving = document.getElementById(`move_task_menu_${single_ID}`);
-  menuForMoving.classList.toggle("visible");
-  if (menuForMoving.classList.contains("visible")) {
-    document.getElementById(`single_task_ctn${single_ID}`).style.filter =
-      "grayscale(0.75)";
-  } else {
-    document.getElementById(`single_task_ctn${single_ID}`).style.filter =
-      "grayscale(0)";
-  }
-
-  enableCurrentSection(currentStatus, single_ID);
+    e.stopPropagation()
+    single_ID = single_ID
+    currentStatus = currentStatus
+    let menuForMoving = document.getElementById(`move_task_menu_${single_ID}`)
+    menuForMoving.classList.toggle("visible");
+    if(menuForMoving.classList.contains('visible')) {
+        document.getElementById(`single_task_ctn${single_ID}`).style.filter = "grayscale(0.75)";
+    } else {
+        document.getElementById(`single_task_ctn${single_ID}`).style.filter = "grayscale(0)";
+    }
+    enableCurrentSection(currentStatus, single_ID)
 }
 
 function enableCurrentSection(currentStatus, single_ID) {
-  // console.log(currentStatus);
-  let moveToID = `move_${single_ID}_to_${currentStatus}`;
-  // console.log(moveToID);
-  document.getElementById(`move_${single_ID}_to_todo`).style.color = "black";
-  document.getElementById(`move_${single_ID}_to_inProgress`).style.color =
-    "black";
-  document.getElementById(`move_${single_ID}_to_awaitFeedback`).style.color =
-    "black";
-  document.getElementById(`move_${single_ID}_to_done`).style.color = "black";
-  document.getElementById(`${moveToID}`).style.color = "lightgray";
+    let moveToID = `move_${single_ID}_to_${currentStatus}`
+    document.getElementById(`move_${single_ID}_to_todo`).style.color = "black";
+    document.getElementById(`move_${single_ID}_to_inProgress`).style.color = "black";
+    document.getElementById(`move_${single_ID}_to_awaitFeedback`).style.color = "black";
+    document.getElementById(`move_${single_ID}_to_done`).style.color = "black";
+    document.getElementById(`${moveToID}`).style.color = "lightgray";
 }
 
 function checkKeyToMove(allTasks, allKeys, id) {

@@ -12,12 +12,11 @@
     <link rel="stylesheet" href="./assets/fonts/fonts.css" />
     <link rel="stylesheet" href="css/add_Task.css" />
     <title>Board - join</title>
-  </head>
-  <body
-    ondragend="checkDraggableArea(event)"
-    onload="init()"
-    class="no_drop_area"
-  >
+</head>
+<body ondragend="checkDraggableArea(event)" 
+onload="getIdAndData(pathData=''); init(); preparingElements()" 
+onmouseup="endDragging()"
+ondragend="checkDraggableArea(event)"  class="no_drop_area">
     <div id="dummy_header"></div>
     <div id="dummy_menu"></div>
     <div id="insertAddedToTaskConfirmation"></div>
@@ -114,57 +113,34 @@
             </div>
             <div
               ondrop="
-                        // checkDraggableArea(event); 
+                        checkDraggableArea(event); 
                         removeShadow('shadow_move_to_to_do_tasks')"
-              ondragover="allowDrop(event); showShadow('shadow_move_to_to_do_tasks')"
-              class="task_section_tasks_area"
-              id="to_do_tasks"
-            ></div>
-            <!-- <div id="shadow_move_to_todo" class="move_to_shadow"></div> -->
-          </div>
-        </div>
-        <div id="task_section_in_progress" class="task_section">
-          <div class="task_section_header">
-            <span>In progress</span>
-            <div
-              onclick="showDialog('inProgress')"
-              class="board_move_task_btn"
-            >
-              <svg
-                width="11"
-                height="11"
-                viewBox="0 0 11 11"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M5.6665 1.5V9.5"
-                  stroke="#2A3647"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M9.6665 5.57544L1.6665 5.57544"
-                  stroke="#2A3647"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
-              </svg>
+                        ondragover="allowDrop(event); showShadow('shadow_move_to_to_do_tasks')" 
+                      
+                        class="task_section_tasks_area" id="to_do_tasks">
+                    </div>
+                    <!-- <div id="shadow_move_to_todo" class="move_to_shadow"></div> -->
+                </div>
             </div>
-          </div>
-          <div id="tasks_area_in_progress" class="tasks_area">
-            <div id="in_progress_tasks_nothing" class="task_nothing_todo">
-              No tasks To do
-            </div>
-            <div
-              ondrop="
-                        // checkDraggableArea(event); 
-                        removeShadow('shadow_move_to_in_progress_tasks')"
-              ondragover="allowDrop(event); showShadow('shadow_move_to_in_progress_tasks')"
-              class="task_section_tasks_area"
-              id="in_progress_tasks"
-            >
-              <!-- <div draggable="true" ondragstart="startDragging(0)" onclick="openTaskOverlay(event)" id="single_task_ctn1" class="single_task_ctn">
+            <div id="task_section_in_progress" class="task_section">
+                <div class="task_section_header">
+                    <span>In progress</span>
+                    <div onclick="showDialog('inProgress')" class="board_move_task_btn">
+                        <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.6665 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M9.6665 5.57544L1.6665 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div id="tasks_area_in_progress" class="tasks_area" >
+                    <div id="in_progress_tasks_nothing" class="task_nothing_todo">No tasks To do</div>
+                    <div 
+                        ondrop="
+                        checkDraggableArea(event); 
+                        removeShadow('shadow_move_to_in_progress_tasks')" 
+                        ondragover="allowDrop(event); showShadow('shadow_move_to_in_progress_tasks')" 
+                        class="task_section_tasks_area" id="in_progress_tasks">
+                        <!-- <div draggable="true" ondragstart="startDragging(0)" onclick="openTaskOverlay(event)" id="single_task_ctn1" class="single_task_ctn">
                             <div class="single_task_category">User Story</div>
                             <div class="single_task_headline">Contact Form & Imprint</div>
                             <div class="single_task_description">Create a contact form and imprint page...</div>
@@ -185,52 +161,29 @@
                                 </div>
                             </div>
                         </div> -->
+                    </div>
+                    <!-- <div id="shadow_move_to_in_progress" class="move_to_shadow"></div> -->
+                </div>
             </div>
-            <!-- <div id="shadow_move_to_in_progress" class="move_to_shadow"></div> -->
-          </div>
-        </div>
-        <div id="task_section_await_feedback" class="task_section">
-          <div class="task_section_header">
-            <span>Await feedback</span>
-            <div
-              onclick="showDialog('awaitFeedback')"
-              class="board_move_task_btn"
-            >
-              <svg
-                width="11"
-                height="11"
-                viewBox="0 0 11 11"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M5.6665 1.5V9.5"
-                  stroke="#2A3647"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M9.6665 5.57544L1.6665 5.57544"
-                  stroke="#2A3647"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
-              </svg>
-            </div>
-          </div>
-          <div id="tasks_area_await_feedback" class="tasks_area">
-            <div id="await_feedback_tasks_nothing" class="task_nothing_todo">
-              No tasks To do
-            </div>
-            <div
-              ondrop="
-                        // checkDraggableArea(event)
-                        removeShadow('shadow_move_to_await_feedback_tasks')"
-              ondragover="allowDrop(event); showShadow('shadow_move_to_await_feedback_tasks')"
-              class="task_section_tasks_area"
-              id="await_feedback_tasks"
-            >
-              <!-- <div draggable="true" ondragstart="startDragging(1)" onclick="openTaskOverlay(event)" id="single_task_ctn2" class="single_task_board single_task_ctn">
+            <div id="task_section_await_feedback" class="task_section" >
+                <div class="task_section_header">
+                    <span>Await feedback</span>
+                    <div onclick="showDialog('awaitFeedback')" class="board_move_task_btn">
+                        <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.6665 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M9.6665 5.57544L1.6665 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div id="tasks_area_await_feedback" class="tasks_area">
+                    <div id="await_feedback_tasks_nothing"  class="task_nothing_todo">No tasks To do</div>
+                    <div 
+                        ondrop="
+                        checkDraggableArea(event)
+                        removeShadow('shadow_move_to_await_feedback_tasks')" 
+                        ondragover="allowDrop(event); showShadow('shadow_move_to_await_feedback_tasks')" 
+                        class="task_section_tasks_area" id="await_feedback_tasks">
+                        <!-- <div draggable="true" ondragstart="startDragging(1)" onclick="openTaskOverlay(event)" id="single_task_ctn2" class="single_task_board single_task_ctn">
                             <div class="single_task_category">Technical Task</div>
                             <div class="single_task_headline">HTML Base Template Creation</div>
                             <div class="single_task_description">Create reusable HTML base templates...</div>
@@ -272,27 +225,23 @@
                                 </div>
                             </div>
                         </div> -->
+                    </div>
+                    <!-- <div id="shadow_move_to_await_feedback" class="move_to_shadow"></div> -->
+                </div>
             </div>
-            <!-- <div id="shadow_move_to_await_feedback" class="move_to_shadow"></div> -->
-          </div>
-        </div>
-        <div id="task_section_done" class="task_section">
-          <div class="task_section_header">
-            <span>Done</span>
-          </div>
-          <div id="tasks_area_done" class="tasks_area">
-            <div id="done_tasks_nothing" class="task_nothing_todo">
-              No tasks Done
-            </div>
-            <div
-              ondrop="
-                        // checkDraggableArea(event)
-                        removeShadow('shadow_move_to_done_tasks')"
-              ondragover="allowDrop(event); showShadow('shadow_move_to_done_tasks')"
-              class="task_section_tasks_area"
-              id="done_tasks"
-            >
-              <!-- <div draggable="true" ondragstart="startDragging(3)" onclick="openTaskOverlay(event)" id="single_task_ctn4" class="single_task_ctn">
+            <div id="task_section_done" class="task_section">
+                <div class="task_section_header">
+                    <span>Done</span>
+                </div>
+                <div id="tasks_area_done" class="tasks_area" >
+                    <div id="done_tasks_nothing" class="task_nothing_todo">No tasks Done</div>
+                    <div 
+                        ondrop="
+                        checkDraggableArea(event)
+                        removeShadow('shadow_move_to_done_tasks')" 
+                        ondragover="allowDrop(event); showShadow('shadow_move_to_done_tasks')" 
+                        class="task_section_tasks_area" id="done_tasks">
+                        <!-- <div draggable="true" ondragstart="startDragging(3)" onclick="openTaskOverlay(event)" id="single_task_ctn4" class="single_task_ctn">
                             <div class="single_task_category">Technical Task</div>
                             <div class="single_task_headline">CSS Architecture Planning</div>
                             <div class="single_task_description">Define CSS naming conventions and structure...</div>
@@ -429,6 +378,7 @@
             </div>            
         </div> -->
     </div>
+    <script src="./js/contact.js"></script>
     <script src="./js/add_task.js"></script>
     <script src="./js/loadTasks.js"></script>
     <script src="./js/showTasks.js"></script>

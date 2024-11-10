@@ -30,14 +30,18 @@ function filterTasks(allTasks, allKeys, filter) {
     filteredTasksInProgress = [];
     filteredTasksAwaitFeedback = [];
     filteredTasksDone = [];
-   
 }
 
 function checkFilteredTaskLength(filteredTasks) {
     if (filteredTasks.length == 0) {
         document.getElementById("name_of_task_input").value = "";
         document.getElementById("name_of_task_input").placeholder = "Kein Ergebnis gefunden";
+        targetElement.style.boxShadow = '0 0 3px #8d1414 inset';
         document.getElementById("name_of_task_input").style.setProperty("--placeholder-color", "#8d1414");
+        setTimeout(() => {
+            targetElement.style.boxShadow = 'none';
+            getFilter()
+        }, 2000)
     } else {
         document.getElementById("name_of_task_input").placeholder = "Find Task";
         document.getElementById("name_of_task_input").style.setProperty("--placeholder-color", "lightgray");

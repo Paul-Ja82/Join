@@ -20,7 +20,6 @@ function fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, s
     document.getElementById(`task_overlay_ctn`).innerHTML = `
        <div class="task_overlay_card_ctn single_task_ctn">
             <div class="overlay_task_header">
-               
                     <div class="single_task_header_category_and_close">
                         <div class="single_task_category_overlay">Technical Task</div>
                         <diy onclick="closeTaskOverlay(event)" id="close_task_overlay" class="close_task_overlay">
@@ -81,8 +80,7 @@ function fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, s
 }
 
 function checkAssignedToOverlay(allTasks, keyToOpen) {
-    // console.log(allTasks[keyToOpen], allTasks, keyToOpen);
-    
+    console.log(allTasks[keyToOpen], allTasks, keyToOpen);
     let contactsTemplate = "";
     for (let j = 0; j < allTasks[keyToOpen].assigned_to.length; j++) {
         let fullName = allTasks[keyToOpen].assigned_to[j];
@@ -102,6 +100,7 @@ function checkAssignedToOverlay(allTasks, keyToOpen) {
 function checkSubtasksOverlay(allTasks, keyToOpen) {
     let subtasks = allTasks[keyToOpen].subtasks;
     let subtaskTemplate = "";
+    // console.log(subtasks, typeof subtasks);
     if (typeof subtasks === 'undefined') {
        subtaskTemplate = `keine Subtasks vorhanden`
     } else {
@@ -164,12 +163,12 @@ async function changeSubtaskStatus(allTasks, e, labelID) {
 }
 
 function checkIndexOfAllTasks(clickedSingleID, allTasks, allKeys) {
-    let indexToOpen;
+    // let indexToOpen;
     let keyToOpen;
     for (let i = 0; i < allKeys.length; i++) {
         let key = allKeys[i]
         if (allTasks[key].single_ID == clickedSingleID) {
-            indexToOpen = i
+            // indexToOpen = i
             keyToOpen = allKeys[i]
         }
     }

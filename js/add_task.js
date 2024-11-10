@@ -506,8 +506,9 @@ async function submitForm(selectedProcessCategory) {
   }
 
   if (!hasError) {
-    await collectDataFromAddTask(selectedProcessCategory);
-    console.log(selectedProcessCategory); //senden an loadTasks.js zum hochladen ins Firebase
+    console.log(sectionToSaveTask);
+    
+    await collectDataFromAddTask(selectedProcessCategory, selectedContacts); //senden an loadTasks.js zum hochladen ins Firebase
     document.getElementById(
       "insertAddedToTaskConfirmation"
     ).innerHTML = `<div class="backgroundInformationForm"><div id="addConfirmation" class="addedToBoard">
@@ -518,4 +519,8 @@ async function submitForm(selectedProcessCategory) {
       window.open("board.html", "_self");
     }, 2000);
   }
+}
+
+function reloadPage() {
+  location.reload();
 }

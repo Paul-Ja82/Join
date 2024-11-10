@@ -3,23 +3,7 @@ let allTasks = [];
 let allKeys = [];
 let id;
 
-let assignedToContacts = [
-    {"contact_ID" : "contact0", "firstName" : "Lisa", "lastName" : "Mayer"},
-    {"contact_ID" : "contact1", "firstName" : "Peter", "lastName" : "Müller"},
-    {"contact_ID" : "contact2", "firstName" : "Helga", "lastName" : "Huber"},
-    {"contact_ID" : "contact3", "firstName" : "Hans", "lastName" : "Krause"},
-    {"contact_ID" : "contact4", "firstName" : "Ina", "lastName" : "Schmidt"},
-]
-
-let subtaskCollection = [
-    {"title" : "erster Schritt", "checked" : false},
-    {"title" : "zweiter Schritt", "checked" : true},
-    // {"title" : "dies", "checked" : false},
-    {"title" : "das", "checked" : false},
-    {"title" : "jenes", "checked" : true},
-]
-
-async function collectData(currentStatus) {
+async function collectData(currentStatus, selectedContacts) {
     let taskData = {
         "assigned_to" : selectedContacts,
         "category" : document.getElementById("categoryToSelect").value,
@@ -38,7 +22,15 @@ async function collectData(currentStatus) {
     return id
 }
 
-async function collectDataFromAddTask(currentStatus) {
+async function collectDataFromAddTask(currentStatus, selectedContacts) {
+    console.log(selectedContacts);
+
+    if(selectedContacts.length == 0) {
+        selectedContacts = 'nobody'
+    }
+    console.log(selectedContacts);
+    
+    
     let taskData = {
         "assigned_to" : selectedContacts,
         "category" : document.getElementById("showSelectedCategory").value,
@@ -57,29 +49,7 @@ async function collectDataFromAddTask(currentStatus) {
     return id
 }
 
-/* Copie!
-async function collectData(savedTaskData) {
-    let taskData = {
-        "assigned_to" : assignedToContacts,
-        "category" : 'Technical Task',
-        "description" : "Einbinden der Zahlungsarten Paypal und Kreditkarte",
-        "due_date" : "2024-11-20",
-        "priority" : "medium",
-        "subtasks" : subtaskCollection,
-        "title" : "TestUser",
-        // "task_ID" : `task${id}`,
-        "currentStatus" : "inProgress",
-        "single_ID" : id,
-    }
-    id = Number(id) + 1
-    await putID(path="id", id)
-    await postData(path="tasks", taskData)
-    await getIdAndData(pathData='')
-    return id
-}*/
-
 async function getIdAndDataForAddTask(pathData='') {   //Daten holen ohne weitere Aktivitäten im Board
-    
     let responseData = await fetch(firebase_URL + pathData + ".json");
     let responseDataToJson = await responseData.json();
     console.log(responseDataToJson);
@@ -149,7 +119,7 @@ async function putNewCheckedStatus(path="", data={}) {
 function keyForAllTasks() {
     allKeys = [];
     allKeys = Object.keys(allTasks)
-    // console.log(allKeys)
+    console.log(allKeys)
 }
 
 async function deleteTaskID(path="") {
