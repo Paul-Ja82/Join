@@ -20,10 +20,11 @@ let isListOpen = false;
 
 const avatarColors = ["#3498db", "#e74c3c", "#f39c12", "#2ecc71", "#9b59b6"];
 
-function init() {
+async function init() {
   const contactList = document.getElementById("insertContactList");
   contactList.classList.add("d-none");
   selectPrio("medium");
+  await getIdAndDataForAddTask((pathData = ""));
 }
 
 async function loadData(path = "") {
@@ -95,6 +96,31 @@ function renderContactList(filteredContacts = contacts) {
         "assets/icons/checkboxChecked.svg";
     }
   });
+
+  document.addEventListener("click", function (event) {
+    const inputAssignedTo = document.getElementById("inputAssignedTo");
+    const contactList = document.getElementById("insertContactList");
+    const arrowDrop = document.getElementById("arrowDropdown");
+  
+    if (
+      !inputAssignedTo.contains(event.target) &&
+      !contactList.contains(event.target) &&
+      !arrowDrop.contains(event.target)
+    ) {
+      closeContactList();
+    }
+  });
+
+
+
+
+
+
+
+
+
+
+
 
   showPersons();
   colorSelectedContacts();
@@ -175,7 +201,17 @@ function checkDateInput() {
   } else {
     valueDate.classList.remove("dateInput");
   }
+
+  const dateInput = document.getElementById('date');
+  if (dateInput.value) {
+    // Wenn ein Datum ausgewählt ist, setze die Klasse 'filled', damit die Farbe schwarz wird
+    dateInput.classList.add('filled');
+  } else {
+    // Wenn das Datum leer ist, setze die Farbe zurück auf grau
+    dateInput.classList.remove('filled');
+  }
 }
+
 
 function showProfilPicture(contact, index) {
   let linkProfil = document.getElementById(`profilPerson${index}`);
@@ -247,17 +283,17 @@ function saveSubtasks(index) {
   ).innerHTML = `<img src="assets/icons/plus.svg" alt="" />`;
   renderSubtasks();
 }
-
-document.addEventListener("DOMContentLoaded", function() {
+/*
+document.addEventListener("DOMContentLoaded", function () {
   let getInputfieldSubtask = document.getElementById("subtasks");
 
-  getInputfieldSubtask.addEventListener("keydown", function(event) {
+  getInputfieldSubtask.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
       event.preventDefault();
       document.getElementById("subtaskSaver").click();
     }
   });
-});
+});*/
 
 function pushTextSubtask(textSubtask) {
   const newSubtask = {
@@ -281,11 +317,25 @@ function changeSymbols() {
   document.getElementById(
     "symbolsSubtasks"
   ).innerHTML = `<div class="centerSymbol" onclick="clearInput()"><img src="assets/icons/close.svg"></div><div class="borderEditIcons"></div><div id="subtaskSaver" class="centerSymbol" onclick="saveSubtasks()"><img src="assets/icons/check.svg"></div>`;
+
   if (checkInput.length <= 0) {
     document.getElementById(
       "symbolsSubtasks"
     ).innerHTML = `<img src="assets/icons/plus.svg" alt="">`;
   }
+
+  let getInputfieldSubtask = document.getElementById("subtasks");
+
+  getInputfieldSubtask.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+
+      let subtaskSaver = document.getElementById("subtaskSaver");
+      if (subtaskSaver) {
+        subtaskSaver.click();
+      }
+    }
+  });
 }
 
 function clearInput() {
@@ -390,30 +440,6 @@ function closeDropdown() {
     "assets/icons/arrowDropdown.svg";
 }
 
-document.addEventListener("click", function (event) {
-  const catImage = document.getElementById("categoryDropdown");
-  const dropdown = document.getElementById("showSelectedCategory");
-  const selectBox = document.getElementById("showCategorys");
-
-  if (!dropdown.contains(event.target) && !selectBox.contains(event.target) && !catImage.contains(event.target)) {
-    closeDropdown();
-  }
-});
-
-document.addEventListener("click", function (event) {
-  const inputAssignedTo = document.getElementById("inputAssignedTo");
-  const contactList = document.getElementById("insertContactList");
-  const arrowDrop = document.getElementById("arrowDropdown");
-
-
-  if (
-    !inputAssignedTo.contains(event.target) &&
-    !contactList.contains(event.target) && !arrowDrop.contains(event.target)
-  ) {
-    closeContactList();
-  }
-});
-
 function putInput(value) {
   document.getElementById("showSelectedCategory").value = value;
   closeDropdown();
@@ -427,9 +453,24 @@ function showMeCategorys() {
   document.getElementById("categoryDropdown").onclick = closeDropdown;
   document.getElementById("categoryDropdown").src =
     "assets/icons/arrowUpDropdown.svg";
+
+    document.addEventListener("click", function (event) {
+      const catImage = document.getElementById("categoryDropdown");
+      const dropdown = document.getElementById("showSelectedCategory");
+      const selectBox = document.getElementById("showCategorys");
+    
+      if (
+        !dropdown.contains(event.target) &&
+        !selectBox.contains(event.target) &&
+        !catImage.contains(event.target)
+      ) {
+        closeDropdown();
+      }
+    });
+
 }
 
-async function submitForm() {
+async function submitForm(selectedProcessCategory) {
   let hasError = false;
 
   const title = document.getElementById("title").value.trim();
@@ -465,15 +506,16 @@ async function submitForm() {
   }
 
   if (!hasError) {
-    
-    await collectDataFromAddTask('todo'); //senden an loadTasks.js zum hochladen ins Firebase
-    doc
-    
-
-
+    await collectDataFromAddTask(selectedProcessCategory);
+    console.log(selectedProcessCategory); //senden an loadTasks.js zum hochladen ins Firebase
+    document.getElementById(
+      "insertAddedToTaskConfirmation"
+    ).innerHTML = `<div class="backgroundInformationForm"><div id="addConfirmation" class="addedToBoard">
+<div class="taskAddedInformation">Task added To board</div>
+<img src="assets/icons/boardIcon.svg" alt="" />
+</div></div>`;
+    setTimeout(() => {
+      window.open("board.html", "_self");
+    }, 2000);
   }
-}
-
-function reloadPage() {
-  location.reload();
 }
