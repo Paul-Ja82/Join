@@ -385,7 +385,7 @@ function renderFormAddTask(selectedProcessCategory) {
                   onclick="showMeCategorys()"
                 />
                 <div id="showCategorys" class="showCategorys d-none">
-                  <div class="categoryItem" onclick="putInput('Technik Task')">
+                  <div class="categoryItem" onclick="putInput('Technical Task')">
                     Technical Task
                   </div>
                   <div class="categoryItem" onclick="putInput('User Story')">

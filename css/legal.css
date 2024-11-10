@@ -1,0 +1,15 @@
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    padding: 0;
+    margin: 0;
+    font-family: 'Inter';
+}
+
+h2 {
+    font-size: 61px;
+}
+
+h3 {
+    font-size: 32px;
+}

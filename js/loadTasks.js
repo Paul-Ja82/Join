@@ -40,6 +40,8 @@ async function collectDataFromAddTask(currentStatus, selectedContacts) {
         "currentStatus" : currentStatus,
         "single_ID" : id,
     }
+
+    console.log(taskData);
     id = Number(id) + 1
     await putID(path="id", id)
     await postData(path="tasks", taskData)
@@ -76,7 +78,6 @@ async function postData(path="", data={}) {
         body: JSON.stringify(data)
     });
     let responseToJson = await response.json();
-    // console.log(responseToJson); 
 }
 
 async function putID(path="", data={}) {
