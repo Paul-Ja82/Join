@@ -274,8 +274,9 @@ function createAvatarSVG(initials, bgColor) {
   return svg;
 }
 
-function saveSubtasks(index) {
+function saveSubtasks() {
   let textSubtask = document.getElementById("subtasks").value;
+  console.log(textSubtask);
   pushTextSubtask(textSubtask);
   document.getElementById("subtasks").value = "";
   document.getElementById(
@@ -297,16 +298,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function pushTextSubtask(textSubtask) {
   const newSubtask = {
-    subtask: textSubtask,
+    title: textSubtask,
     checked: false,
   };
 
   subtasks.push(newSubtask);
+console.log(newSubtask);
+console.log(subtasks);
+
 }
 
 function saveEditSubtask(index) {
   let changedSubtask = document.getElementById(`inputField${index}`).value;
-  subtasks[index].subtask = changedSubtask;
+  subtasks[index].title = changedSubtask;
   renderSubtasks();
 }
 
@@ -353,7 +357,7 @@ function renderSubtasks() {
     ).innerHTML += `<li id="subtask${index}" class="
     ">
     <div class="showEntrySubtask" onclick="changeText(${index})">
-    <div class="subtaskText">${subtasks[index].subtask}</div>
+    <div class="subtaskText">${subtasks[index].title}</div>
     <div id="edit${index}" class="edit">
       <div class="centerSymbol editTask"><img src="assets/icons/pencil.svg"></div><div class="borderEditIcons"></div>
       <div class="centerSymbol basket" onclick="deleteSubtask(${index})"><img src="assets/icons/basketIcon.svg"></div>
@@ -364,7 +368,7 @@ function renderSubtasks() {
 }
 
 function changeText(index) {
-  let changeText = subtasks[index].subtask;
+  let changeText = subtasks[index].title;
 
   renderSubtasks();
 
