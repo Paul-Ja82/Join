@@ -6,12 +6,35 @@ let currentDraggedElementID;
 let currentDraggedElement;
 let clonedElementForMoving;
 let dragAndDropSections = [
-    'to_do_tasks',
-    'in_progress_tasks',
-    'await_feedback_tasks',
-    'done_tasks'
-]
+  "to_do_tasks",
+  "in_progress_tasks",
+  "await_feedback_tasks",
+  "done_tasks",
+];
 let sectionToSaveTask;
+
+function init(params) {
+  getIdAndData((pathData = ""));
+}
+
+async function showDialog(selectedProcessCategory) {
+  if (window.innerWidth < 400) {
+    window.open("add_task.html", "_self");
+  } else {
+    document.getElementById("backgroundId").classList.add("showIt");
+    document.getElementById("dialogBox").innerHTML = renderFormAddTask(
+      selectedProcessCategory
+    );
+    selectPrio("medium");
+    await getIdAndDataForAddTask((pathData = ""));
+    const contactList = document.getElementById("insertContactList");
+    contactList.classList.add("d-none");
+  }
+}
+
+function closeDialog() {
+  document.getElementById("backgroundId").classList.remove("showIt");
+}
 
 function preparingElements() {
     flyingElement.classList.add('flying_element_ctn');
@@ -118,26 +141,32 @@ function checkIdFromSectionToDrop(cursorX, cursorY) {
             break
         } 
     }
-    return idFromSectionToDrop
-}
+    return idFromSectionToDrop;
+  }
+ 
+
 
 function allowDrop(e) {
-    e.preventDefault();
+  e.preventDefault();
 }
 
 function showShadow(id) {
-    document.getElementById('shadow_move_to_to_do_tasks').style.display = "none";
-    document.getElementById('shadow_move_to_in_progress_tasks').style.display = "none";
-    document.getElementById('shadow_move_to_await_feedback_tasks').style.display = "none";
-    document.getElementById('shadow_move_to_done_tasks').style.display = "none";
-    document.getElementById(id).style.display = "flex";
+  document.getElementById("shadow_move_to_to_do_tasks").style.display = "none";
+  document.getElementById("shadow_move_to_in_progress_tasks").style.display =
+    "none";
+  document.getElementById("shadow_move_to_await_feedback_tasks").style.display =
+    "none";
+  document.getElementById("shadow_move_to_done_tasks").style.display = "none";
+  document.getElementById(id).style.display = "flex";
 }
 
 function removeShadow(id) {
-    document.getElementById('shadow_move_to_to_do_tasks').style.display = "none";
-    document.getElementById('shadow_move_to_in_progress_tasks').style.display = "none";
-    document.getElementById('shadow_move_to_await_feedback_tasks').style.display = "none";
-    document.getElementById('shadow_move_to_done_tasks').style.display = "none";
+  document.getElementById("shadow_move_to_to_do_tasks").style.display = "none";
+  document.getElementById("shadow_move_to_in_progress_tasks").style.display =
+    "none";
+  document.getElementById("shadow_move_to_await_feedback_tasks").style.display =
+    "none";
+  document.getElementById("shadow_move_to_done_tasks").style.display = "none";
 }
 
 async function moveTo(newSection) {
@@ -151,10 +180,11 @@ async function moveTo(newSection) {
 }
 
 function openAddTaskForm(section) {
-    sectionToSaveTask = section;
-    console.log(section);
-    window.location.href = "/add_task.html"
-    return sectionToSaveTask
+  sectionToSaveTask = section;
+  console.log(section);
+
+  window.location.href = "/add_task.html";
+  return sectionToSaveTask;
 }
 
 function checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys) {
@@ -194,19 +224,222 @@ function enableCurrentSection(currentStatus, single_ID) {
 }
 
 function checkKeyToMove(allTasks, allKeys, id) {
-    let keytoChangeSection;
-    for (let i = 0; i < allKeys.length; i++) {
-        if (allTasks[`${allKeys[i]}`].single_ID == id) {
-            console.log(i, allKeys[i])
-            keytoChangeSection = allKeys[i]
-        }
+  let keytoChangeSection;
+  for (let i = 0; i < allKeys.length; i++) {
+    if (allTasks[`${allKeys[i]}`].single_ID == id) {
+      console.log(i, allKeys[i]);
+      keytoChangeSection = allKeys[i];
     }
-    return keytoChangeSection
+  }
+  return keytoChangeSection;
 }
 
 async function moveTaskWithMenu(id, toSection) {
-    let keytoChangeSection = checkKeyToMove(allTasks, allKeys, id)
-    let path = `tasks/${keytoChangeSection}/currentStatus`;
-    await putNewSection(path, toSection)
-    await getIdAndData(pathData='')
+  let keytoChangeSection = checkKeyToMove(allTasks, allKeys, id);
+  let path = `tasks/${keytoChangeSection}/currentStatus`;
+  await putNewSection(path, toSection);
+  await getIdAndData((pathData = ""));
+}
+
+function renderFormAddTask(selectedProcessCategory) {
+  console.log(selectedProcessCategory);
+  return `
+  <form id="formAddTasks" class="formAddTasks">
+      <div class="seperateSendButtons"><div class="titleSectionAddTask"><h2 class="titleAddTask">Add Task</h2><div class="iconImage"><img onclick="closeDialog()" src="assets/icons/close.svg"></div></div>
+        <div class="overInputFields">
+          <div class="fillOut">
+            <div class="overField">
+              <label for="title"
+                >Title<span style="color: #ff8190">*</span></label
+              >
+              <input
+                type="text"
+                id="title"
+                class="fieldInput"
+                placeholder="Enter a Title"
+              />
+              <div id="errorTitle" class="errorMessage">
+                This field is required.
+              </div>
+            </div>
+            <div class="overField marginTop">
+              <label for="description">Description</label>
+              <textarea
+                type="text"
+                name="description"
+                id="description"
+                placeholder="Enter a Description"
+              ></textarea>
+            </div>
+            <div class="overField">
+              <label for="inputAssignedTo">Assigned to</label>
+              <div id="setBackground" class="overaddAssignedTo">
+                <div class="overInputAssignedTo">
+                  <input
+                    id="inputAssignedTo"
+                    class="fieldInput inputAssignedTo"
+                    type="text"
+                    onclick="toggleContactList()"
+                    oninput="filterContacts()"
+                    placeholder="Assigned To"
+                  />
+                  <div class="changeSymboles">
+                    <img
+                      id="arrowDropdown"
+                      src="assets/icons/arrowDropdown.svg"
+                      alt=""
+                      onclick="toggleContactList()"
+                    />
+                  </div>
+                </div>
+                <ul id="insertContactList" class="listContacts"></ul>
+              </div>
+              <div id="showPersons" class="showPersons"></div>
+            </div>
+          </div>
+          <div class="line"></div>
+          <div class="fillOut">
+            <div class="overField">
+              <label for="date"
+                >Due date<span style="color: #ff8190">*</span></label
+              >
+              <div class="dateWrapper">
+                <input
+                  type="date"
+                  id="date"
+                  class="fieldInput dateInput"
+                  onchange="checkDateInput()"
+                />
+                <div
+                  class="dateIcon"
+                  onclick="document.getElementById('date').showPicker();"
+                >
+                  <img
+                    src="/assets/icons/calendarIcon.svg"
+                    alt="Calendar Icon"
+                  />
+                </div>
+              </div>
+              <div id="errorDate" class="errorMessage">
+                This field is required.
+              </div>
+            </div>
+
+            <div class="overField marginTop">
+              <label>Prio</label>
+              <div class="overPrioButtons">
+                <button
+                  id="urgentButton"
+                  class="prioButtons"
+                  onclick="selectPrio('urgent')"
+                  type="button"
+                >
+                  Urgent<img
+                    id="urgentButtonImg"
+                    src="assets/icons/urgent.svg"
+                    alt=""
+                  />
+                </button>
+                <button
+                  id="mediumButton"
+                  class="prioButtons"
+                  onclick="selectPrio('medium')"
+                  type="button"
+                >
+                  Medium<img
+                    id="mediumButtonImg"
+                    src="assets/icons/medium.svg"
+                    alt=""
+                  />
+                </button>
+                <button
+                  id="lowButton"
+                  class="prioButtons"
+                  onclick="selectPrio('low')"
+                  type="button"
+                >
+                  Low<img id="lowButtonImg" src="assets/icons/low.svg" alt="" />
+                </button>
+              </div>
+            </div>
+            <div class="overField">
+              <label for="showSelectedCategory"
+                >Category<span style="color: #ff8190">*</span></label
+              >
+              <div class="arrowCategory">
+                <img
+                  id="categoryDropdown"
+                  class="categoryDropdown"
+                  src="assets/icons/arrowDropdown.svg"
+                  onclick="showMeCategorys()"
+                />
+              </div>
+
+              <div id="costumSelect" class="costumSelect">
+                <input
+                  type="text"
+                  id="showSelectedCategory"
+                  class="fieldInput"
+                  readonly
+                  placeholder="Select a option"
+                  onclick="showMeCategorys()"
+                />
+                <div id="showCategorys" class="showCategorys d-none">
+                  <div class="categoryItem" onclick="putInput('Technik Task')">
+                    Technical Task
+                  </div>
+                  <div class="categoryItem" onclick="putInput('User Story')">
+                    User Story
+                  </div>
+                </div>
+              </div>
+
+              <div id="errorCategory" class="errorMessage">
+                This field is required.
+              </div>
+            </div>
+            <div class="overField marginTop">
+              <label for="subtasks">Subtasks</label>
+              <div class="overAddSubtasks">
+                <input
+                  type="text"
+                  id="subtasks"
+                  class="fieldInput"
+                  oninput="changeSymbols()"
+                  placeholder="Add new Subtask"
+                />
+                <div id="symbolsSubtasks" class="changeSymboles">
+                  <img src="assets/icons/plus.svg" alt="" />
+                </div>
+              </div>
+              <ul id="showSubtasks"></ul>
+            </div>
+          </div>
+        </div>
+        <div class="overFormButtons">
+          <div class="requiredInformation">
+            <span style="color: #ff8190">*</span>This field is required
+          </div>
+          <div class="setButtons">
+            <div class="overSendButtons">
+              <button
+                class="formButtons clearButton"
+                type="button"
+                onclick="reloadPage()"
+              >
+                Clear
+                <div class="iconX"></div>
+              </button>
+              <button
+                class="formButtons createButton"
+                type="button"
+                onclick="submitForm('${selectedProcessCategory}')"
+              >
+                Create Task <img src="assets/icons/checkWhite.svg" alt="" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>`;
 }

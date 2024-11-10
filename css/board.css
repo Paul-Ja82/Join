@@ -10,10 +10,13 @@
 
 ::-webkit-scrollbar-thumb {
   background-color: #2a4872;
-  background: linear-gradient(180deg, #315e9e, #2a3647); /* Farbverlauf für die Scroll-Leiste */
+  background: linear-gradient(
+    180deg,
+    #315e9e,
+    #2a3647
+  ); /* Farbverlauf für die Scroll-Leiste */
   border-radius: 10px;
 }
-
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #3971c0, #293d58); /* Hover-Effekt */
@@ -21,7 +24,7 @@
 }
 
 #name_of_task_input::placeholder {
-  color: var(--placeholder-color, lightgray); 
+  color: var(--placeholder-color, lightgray);
 }
 
 html {
@@ -40,7 +43,7 @@ body {
   max-height: 1024px;
   position: relative;
   min-width: 320px;
-  font-family: 'Inter';
+  font-family: "Inter";
   overflow: hidden;
 }
 
@@ -66,12 +69,124 @@ body {
   top: 0;
 }
 
+/* Start */
+
+/* Nachher löschen */
+body {
+  overflow-x: hidden;
+}
+
+.showButton {
+  display: flex;
+  justify-content: center;
+}
+
+.background {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.1);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 900;
+  transform: translateX(200vw);
+  transition: all 225ms ease-in-out;
+}
+
+.dialogBox {
+  align-self: center;
+  background-color: white;
+  padding: 40px;
+  border-radius: 20px;
+  width: 1200px;
+}
+
+.designFormAddTask {
+  padding: 0;
+  margin: 0;
+}
+
+.titleSectionAddTask {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+}
+
+.iconImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  right: -20px;
+  cursor: pointer;
+}
+
+.iconImage img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+  
+}
+
+.iconImage:hover {
+  background-color: #d1d1d1;
+  border-radius: 50%;
+}
+
+.overFormCloseImg img {
+  position: absolute;
+  cursor: pointer;
+}
+
+.overFormCloseImg img:hover {
+  background-color: #eeeeee;
+  border-radius: 50%;
+}
+
+.overheader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.iconImage {
+  display: flex-end;
+}
+
+.titleAddTask {
+  padding: 0;
+  margin: 0;
+}
+.centerForm {
+  align-items: center;
+}
+
+.showIt {
+  transform: translateX(0);
+}
+
+.seperateSendButtons {
+  align-self: center;
+}
+
+/* Ende */
+
 .user_story {
-  background-color: rgba(0,56,255,1);
+  background-color: rgba(0, 56, 255, 1);
 }
 
 .technical_task {
-  background-color: rgba(31,215,193,1);
+  background-color: rgba(31, 215, 193, 1);
 }
 
 .hide_original_task {
@@ -123,15 +238,15 @@ body {
     font-weight: 400;
     color: rgba(168, 168, 168, 1);
     margin-bottom: 20px;
-    width: 100%;                   /* Passt die Breite an den Container an */
-    max-width: 218px;              /* Maximale Breite für den Text */
-    height: 40px;                  /* Begrenzte Höhe für zwei Zeilen */
-    overflow: hidden;              /* Versteckt überlaufenden Text */
-    display: -webkit-box;          /* Ermöglicht Box-Modell für Zeilen-Clamping */
-    -webkit-line-clamp: 2;         /* Begrenze auf zwei Zeilen */
+    width: 100%; /* Passt die Breite an den Container an */
+    max-width: 218px; /* Maximale Breite für den Text */
+    height: 40px; /* Begrenzte Höhe für zwei Zeilen */
+    overflow: hidden; /* Versteckt überlaufenden Text */
+    display: -webkit-box; /* Ermöglicht Box-Modell für Zeilen-Clamping */
+    -webkit-line-clamp: 2; /* Begrenze auf zwei Zeilen */
     line-clamp: 2;
-    -webkit-box-orient: vertical;  /* Richtet die Box vertikal aus */
-    text-overflow: ellipsis;  
+    -webkit-box-orient: vertical; /* Richtet die Box vertikal aus */
+    text-overflow: ellipsis;
   }
   & .single_task_progress_ctn {
     display: flex;
@@ -252,10 +367,7 @@ body {
       width: max-content;
       max-width: 200px;
       opacity: 1;
-      
-    } 
-  
-   
+    }
   }
 }
 
@@ -312,7 +424,7 @@ body {
       border: 1px solid #a8a8a8;
       border-radius: 10px;
       padding: 8px 16px;
-    
+
       & #name_of_task_input {
         border: none;
         border-right: 1px solid #d1d1d1;
@@ -334,12 +446,16 @@ body {
       &:hover {
         cursor: pointer;
       }
+
       & .button_find_task {
         height: 32px;
         width: 48px;
         display: flex;
         justify-content: right;
         align-items: center;
+      }
+      &:active {
+        border: 1px solid #29abe2;
       }
     }
   }
@@ -491,7 +607,7 @@ body {
         color: white;
       }
       & .close_task_overlay {
-        color: rgba(42,54,71,1);
+        color: rgba(42, 54, 71, 1);
         width: 24px;
         height: 24px;
         padding: 5px;
@@ -682,7 +798,7 @@ body {
   }
 }
 
-@media(max-width: 1440px) {
+@media (max-width: 1440px) {
   #dummy_menu {
     position: fixed;
     left: 0px;
@@ -827,7 +943,7 @@ body {
         margin-bottom: 12px;
       }
       & .overlay_single_task_description {
-          margin-bottom: 12px;
+        margin-bottom: 12px;
       }
       & .single_task_pritoity_ctn {
         margin-bottom: 12px;

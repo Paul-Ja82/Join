@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
   font-size: 24px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter';
 }
 
 body {
@@ -15,19 +15,6 @@ h2 {
 
 ul {
   margin: 0;
-}
-
-input {
-  cursor: pointer;
-  outline: none;
-}
-
-input::placeholder {
-  color: #d1d1d1;
-}
-
-input:focus {
-  border: 1px solid #29abe2;
 }
 
 .whiteBG {
@@ -88,6 +75,15 @@ input:focus {
   padding: 12px 21px;
   width: 100%;
   cursor: pointer;
+}
+
+.fieldInput::placeholder {
+  color: #d1d1d1;
+}
+
+.fieldInput:focus {
+  border: 1px solid #29abe2;
+  outline: none;
 }
 
 .marginTop {
@@ -266,6 +262,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 input[type="date"]::-moz-calendar-picker-indicator {
   display: none;
+}
+
+input[type="date"].filled {
+  color: black;
 }
 
 .dateIcon {
@@ -563,9 +563,40 @@ input[type="date"]::-moz-calendar-picker-indicator {
   display: none;
 }
 
+.addedToBoard {
+  background: #2a3647;
+  color: white;
+  display: flex;
+  gap: 32px;
+  flex-direction: row;
+  font-size: 20px;
+  border-radius: 20px;
+  width: 326px;
+  height: 74px;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.backgroundInformationForm {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  align-items: center;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 999;
+
+  transition: all 225ms ease-in-out;
+}
+
 @media only screen and (max-width: 1010px) {
-  .overheader{
-    padding: 40px 0 0 0 ;
+  .overheader {
+    padding: 40px 0 0 0;
     background-color: #f6f7f8;
     position: sticky;
     top: 0;
@@ -573,7 +604,7 @@ input[type="date"]::-moz-calendar-picker-indicator {
     left: 0;
     z-index: 999;
   }
-  
+
   h2 {
     font-size: 47px;
   }

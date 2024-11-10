@@ -1,113 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Summary-Guest-Join</title>
+    <title>SummaryUser-Join</title>
     <link rel="stylesheet" href="css/summary.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <!--<script src="./js/database.js"></script>
+    <script src="./js/multi-page-app.js"></script>
+    <script src="./js/summary.js"></script>-->
 </head>
-<body onload="checkAmountWidth()">
-    <header class="dummy_header" id="dummyHeader"></header>
-    <div class="dummy_menu" id="dummyHeader"></div>
-    <div class="title-div">
-        <h1 class="title">Join 360</h1>
-        <div class="divider"></div>
-        <h2 class="sub-title">Key Metrics at a Glance</h2>
+
+<body onload="toggleGreetingsDisplay(); setGreeting()"> <!--"initSummary()"-->
+    <div class="main-frame-div">
+        <div class="dummy_menu" id="dummyHeader"></div>
+        <div class="under-frame-div">
+            <header class="dummy_header" id="dummyHeader"></header>
+            <div class="greetings-frame-responsive">
+                <div class="greetings-div-responsive">
+                    <div class="greeting-responsive" id="greetingSummary">Good morning</div>
+                </div>
+            </div>
+            <div class="title-and-main-display-resposive">
+                <div class="title-frame-div">
+                    <div class="title-div">
+                        <div class="title-under-div">
+                            <span class="title">Join</span><span class="title-360">360</span>
+                        </div>
+                        <div class="divider-subtitle-div">
+                            <div class="divider"></div>
+                            <h2 class="sub-title">Key Metrics at a Glance</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-div">
+                    <div class="tasks-div">
+                        <div class="to-do-indicator-div">
+                            <a href="./board.html">
+                                <div class="to-do-div">
+                                    <section class="to-do">
+                                        <div class="pencil-div-blue-frame">
+                                            <div class="pencil-div-blue">
+                                                <img class="pencil-white" src="assets/img/pencil-white.svg">
+                                                <img class="pencil-white-resp" src="assets/img/pencil-white-resp.svg">
+                                            </div>
+                                        </div>
+                                        <div class="pencil-div-white-frame">
+                                            <div class="pencil-div-white">
+                                                <img class="pencil-blue" src="assets/img/pencil-blue.svg">
+                                                <img class="pencil-blue-resp" src="assets/img/pencil-blue-resp.svg">
+                                            </div>
+                                        </div>
+                                        <div class="to-do-amount">
+                                            <span class="amount" id="toDoAmountVariable">1</span>
+                                            <h3 class="to-do-amount-undertitle">To-do</h3>
+                                        </div>
+                                    </section>
+                                </div>
+                            </a>
+                            <a href="./board.html">
+                                <div class="done-div">
+                                    <section class="done">
+                                        <div class="vector-div-blue-frame">
+                                            <div class="vector-div-blue">
+                                                <img class="vector-white" src="assets/img/v-white.svg">
+                                            </div>
+                                        </div>
+                                        <div class="vector-div-white-frame">
+                                            <div class="vector-div-white">
+                                                <img class="vector-blue" src="assets/img/v-blue.svg">
+                                            </div>
+                                        </div>
+                                        <div class="check-amount">
+                                            <span class="amount" id="toDoAmountVariable">1</span>
+                                            <h3 class="check-amount-undertitle">Done</h3>
+                                        </div>
+                                    </section>
+                                </div>
+                            </a>
+                        </div>
+                        <a href="./board.html">
+                            <div class="to-do-urgency-div">
+                                <div class="urgency-div">
+                                    <div class="urgency">
+                                        <div class="urgency-img-div">
+                                            <img class="urgency-img" src="assets/img/citroenWhite.svg">
+                                        </div>
+                                        <div class="urgency-amount">
+                                            <span class="amount" id="urgencyAmountVariable">1</span>
+                                            <small class="urgency-amount-undertitle">Urgent</small>
+                                        </div>
+                                    </div>
+                                    <div class="urgency-divider"></div>
+                                    <div class="deadline-div">
+                                        <div class="deadline">
+                                            <h4 class="deadline-date">November 20, 2024</h4>
+                                            <small class="deadline-undertitle">Upcoming Deadline</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="./board.html">
+                            <div class="tasks-counter-div">
+                                <div class="t-in-board-div">
+                                    <div class="t-in-board">
+                                        <span class="amount" id="taskBoardAmount">5</span>
+                                        <h3 class="t-in-board-undertitle">Tasks in<br>Board</h3>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="./board.html">
+                                <div class="t-in-progress-div">
+                                    <div class="t-in-progress">
+                                        <span class="amount" id="taskProgressAmount">55555555555</span>
+                                        <h3 class="t-in-progress-undertitle">Tasks in<br> Progress</h3>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="./board.html">
+                                <div class="awaiting-feedback-div">
+                                    <div class="awaiting-feedback">
+                                        <span class="amount" id="awaitingFeedbackAmount">2</span>
+                                        <h3 class="feedback-undertitle">Awaiting<br>Feedback</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="greetings-div">
+                        <div class="greetings-frame">
+                            <div class="greeting" id="greetingSummary">Good morning</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="main-div">
-    <div class="tasks-div">
-        <div class="to-do-indicator-div">
-        <a href="./board.html">
-            <div class="to-do-div">
-               <section class="to-do">
-                <div class="pencil-div-blue">
-                    <img class="pencil-white" src="assets/img/pencil-white.svg">
-                </div>
-                <div class="pencil-div-white">
-                        <img class="pencil-blue" src="assets/img/pencil-blue.svg">
-                </div>
-                    <div class="to-do-amount">
-                    <span class="amount" id="toDoAmountVariable">1</span>
-                        <h3 class="to-do-amount-undertitle">To-do</h3>
-                    </div>
-                </section>
-            </div> 
-            </a> 
-            <a href="./board.html">
-            <div class="done-div">
-                <section class="done">
-                    <div class="vector-div-blue">
-                        <img class="vector-white" src="assets/img/v-white.svg">
-                    </div>
-                    <div class="vector-div-white">
-                            <img class="vector-blue" src="assets/img/v-blue.svg">
-                    </div>
-                    <div class="check-amount">
-                        <span class="amount" id="toDoAmountVariable">1</span>
-                        <h3 class="check-amount-undertitle">Done</h3>
-                   </div>
-                </section>
-            </div>
-        </a> 
-        </div>
-        <a href="./board.html">
-        <div class="to-do-urgency-div">
-            <div class="urgency-div">
-                <div class="urgency">
-                <div class="urgency-img-div">
-                <img class="urgency-img" src="assets/img/citroenWhite.svg">
-                </div>
-                    <div class="urgency-amount">
-                        <span class="amount" id="urgencyAmountVariable">1</span>
-                        <small class="urgency-amount-undertitle">Urgent</small>
-                    </div>
-                </div>
-            </div>  
-            <div class="urgency-divider"></div>
-            <div class="deadline-div">
-                <div class="deadline">
-                    <h4 class="deadline-date">November 20, 2024</h4>
-                    <small class="deadline-undertitle">Upcoming Deadline</small>
-                </div>
-            </div>
-        </div>
-    </a> 
-    <a href="./board.html">
-        <div class="tasks-counter-div">
-            <div class="t-in-board-div">
-                <div class="t-in-board">
-                <span class="amount" id="taskBoardAmount">55555555</span>
-                <h3 class="t-in-board-undertitle">Tasks in<br>Board</h3>
-            </div>
-        </div>
-    </a> 
-    <a href="./board.html">
-            <div class="t-in-progress-div" >
-                <div class="t-in-progress" >
-                <span class="amount" id="taskProgressAmount">2</span>
-                <h3 class="t-in-progress-undertitle">Tasks in Progress</h3>
-            </div>
-        </div>
-    </a> 
-    <a href="./board.html">
-            <div class="awaiting-feedback-div">
-                <div class="awaiting-feedback">
-                <span class="amount" id="awaitingFeedbackAmount">2</span>
-                <h3 class="feedback-undertitle">Awaiting Feedback</h3>
-            </div>
-        </div>
-    </a> 
-        </div>
-    </div>
-    <div class="greetings-div">
-    <div class="greetings-frame">
-        <div class="greting" id="greetingSummaryUser">Good morning,</div>
-    </div>
-</div>
-</div>
 </body>
 <script src="js/summary.js"></script>
+
 </html>

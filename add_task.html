@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>add_task-join</title>
     <link rel="stylesheet" href="/css/add_Task.css" />
-    <script src="js/add_task.js"></script>
-    <script src="js/loadTasks.js"></script>
-    <script src="js/showTasks.js"></script>
-    <script src="js/board.js"></script>
+    <link rel="stylesheet" href="assets/fonts/fonts.css" />
   </head>
   <body onload="init(); getIdAndDataForAddTask(pathData='')">
     <div class="overheader"><h2>Add Task</h2></div>
@@ -153,7 +150,10 @@
                   onclick="showMeCategorys()"
                 />
                 <div id="showCategorys" class="showCategorys d-none">
-                  <div class="categoryItem" onclick="putInput(`Technik Task`)">
+                  <div
+                    class="categoryItem"
+                    onclick="putInput(`Technical Task`)"
+                  >
                     Technical Task
                   </div>
                   <div class="categoryItem" onclick="putInput(`User Story`)">
@@ -201,7 +201,7 @@
               <button
                 class="formButtons createButton"
                 type="button"
-                onclick="submitForm()"
+                onclick="submitForm('todo')"
               >
                 Create Task <img src="assets/icons/checkWhite.svg" alt="" />
               </button>
@@ -210,5 +210,9 @@
         </div>
       </div>
     </form>
+    <script src="js/add_task.js"></script>
+    <script src="js/loadTasks.js"></script>
+    <script src="js/showTasks.js"></script>
+    <script src="js/board.js"></script>
   </body>
 </html>
