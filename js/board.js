@@ -244,6 +244,7 @@ async function moveTaskWithMenu(id, toSection) {
 function renderFormAddTask(selectedProcessCategory) {
   console.log(selectedProcessCategory);
   return `
+  <div class="overAllFormAddTask">
   <form id="formAddTasks" class="formAddTasks">
       <div class="seperateSendButtons"><div class="titleSectionAddTask"><h2 class="titleAddTask">Add Task</h2><div class="iconImage"><img onclick="closeDialog()" src="assets/icons/close.svg"></div></div>
         <div class="overInputFields">
@@ -441,5 +442,6 @@ function renderFormAddTask(selectedProcessCategory) {
           </div>
         </div>
       </div>
-    </form>`;
+    </form>
+    </div>`;
 }

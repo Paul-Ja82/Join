@@ -1,14 +1,14 @@
-* {
+.overAllFormAddTask * {
   box-sizing: border-box;
   font-size: 24px;
-  font-family: 'Inter';
+  font-family: "Inter";
 }
 
-body {
+.designForBody {
   background-color: #f6f7f8;
 }
 
-h2 {
+.titleAddTask {
   font-size: 61px;
   font-weight: 700;
 }
