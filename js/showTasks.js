@@ -19,6 +19,7 @@ function pushTasksToArray() {
     for (let i = 0; i < allKeys.length; i++) {
         if (allTasks[`${allKeys[i]}`].currentStatus === "todo") {
             tasksTodo.push(allTasks[`${allKeys[i]}`])
+            console.log(allKeys[i])
         } 
         if (allTasks[`${allKeys[i]}`].currentStatus === "inProgress") {
             tasksInProgress.push(allTasks[`${allKeys[i]}`])
@@ -33,8 +34,8 @@ function pushTasksToArray() {
 }
 
 function pushFilteredTasksToArray() {
-    // console.log(filteredTasks);
-    // console.log(filteredKeys);
+    console.log(filteredTasks);
+    console.log(filteredKeys);
     for (let i = 0; i < filteredKeys.length; i++) {
         // console.log(filteredTasks[i]);
         if (filteredTasks[i].currentStatus === "todo") {
