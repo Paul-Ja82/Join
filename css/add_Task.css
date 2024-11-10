@@ -1,752 +1,746 @@
-#insertAddedToTaskConfirmation,
-#backgroundID, 
-#dialogBox {
-  * {
-    box-sizing: border-box;
-    font-size: 24px;
-    font-family: 'Inter';
-  }
-  
-  body {
+.overAllFormAddTask * {
+  box-sizing: border-box;
+  font-size: 24px;
+  font-family: "Inter";
+}
+
+.designForBody {
+  background-color: #f6f7f8;
+}
+
+.titleAddTask {
+  font-size: 61px;
+  font-weight: 700;
+}
+
+ul {
+  margin: 0;
+}
+
+.whiteBG {
+  background-color: white;
+}
+
+.changeSymboles img:hover {
+  background-color: #eeeeee;
+  border-radius: 50%;
+}
+
+.formAddTasks {
+  display: flex;
+  flex-direction: column;
+}
+
+.overInputFields {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 976px;
+  margin-bottom: 120px;
+}
+
+.fillOut {
+  width: 440px;
+  display: flex;
+  flex-direction: column;
+}
+
+.line {
+  border: 1px solid #d1d1d1;
+  height: 455px;
+}
+
+.overField {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.overField label {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.overAddSubtasks {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.fieldInput {
+  background-color: white;
+  border-radius: 10px;
+  border: solid 1px #d1d1d1;
+  padding: 12px 21px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.fieldInput::placeholder {
+  color: #d1d1d1;
+}
+
+.fieldInput:focus {
+  border: 1px solid #29abe2;
+  outline: none;
+}
+
+.marginTop {
+  margin-top: 24px;
+}
+
+.overField textarea {
+  border-radius: 10px;
+  border: solid 1px #d1d1d1;
+  width: 100%;
+  padding: 12px 21px;
+  margin-bottom: 24px;
+  outline: none;
+  resize: vertical;
+}
+
+.overField textarea::-webkit-resizer {
+  width: 20px;
+  height: 19px;
+  background-image: url("/assets/icons/textareaResizer.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: translate(-20px, -19px);
+}
+
+.overField textarea::-webkit-scrollbar {
+  width: 8px;
+  border-radius: 8px;
+}
+
+.overField textarea::-webkit-scrollbar-track {
+  background: #a8a8a8;
+  width: 8px;
+  border-radius: 8px;
+}
+
+.overField textarea::-webkit-scrollbar-thumb {
+  background: #817979;
+  border-radius: 8px;
+}
+
+.overField textarea::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+textarea:focus {
+  border: 1px solid #29abe2;
+}
+
+.overField textarea::placeholder {
+  color: #d1d1d1;
+}
+
+.overInputAssignedTo {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.overaddAssignedTo {
+  position: relative;
+  align-items: center;
+  border-radius: 10px 10px 0 0;
+}
+
+.listContacts {
+  position: absolute;
+  width: 100%;
+  height: 250px;
+  background-color: white;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0px 5px 14px -5px rgba(0, 0, 0, 0.1);
+  list-style-type: none;
+  padding: 0;
+  overflow: auto;
+  cursor: pointer;
+}
+
+.listContacts::-webkit-scrollbar {
+  width: 8px;
+  border-radius: 8px;
+}
+
+.listContacts::-webkit-scrollbar-track {
+  background: #a8a8a8;
+  width: 8px;
+  border-radius: 8px;
+}
+
+.listContacts::-webkit-scrollbar-thumb {
+  background: #817979;
+  border-radius: 8px;
+}
+
+.listContacts::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.listContacts li {
+  display: flex;
+  justify-content: space-between;
+  padding: 7px 16px;
+  margin-bottom: 1px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.listContacts li:active {
+  background-color: #091931;
+  color: white;
+}
+
+.contactListCheckbox {
+  display: none;
+}
+
+.backgroundContact {
+  background-color: #2a3647;
+  color: white;
+}
+
+.backgroundContact:hover {
+  background-color: #091931 !important;
+  color: white !important;
+}
+.backgroundContact:active {
+  background-color: #091931;
+}
+
+.backgroundOnHover:hover {
+  background-color: #eeeeee;
+  color: black;
+}
+
+.profilePerson {
+  display: flex;
+  align-items: center;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.showPersons {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+svg text {
+  font-size: 12px;
+}
+
+.dateWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.dateWrapper input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: #d1d1d1;
+  background-color: white;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+input[type="date"]::-moz-calendar-picker-indicator {
+  display: none;
+}
+
+input[type="date"].filled {
+  color: black;
+}
+
+.dateIcon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.overFormButtons {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  width: 976px;
+  height: 60px;
+}
+
+.formButtons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border-radius: 10px;
+  font-size: 21px;
+  padding: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.clearButton {
+  border: 2px solid #2a3647;
+  color: #2a3647;
+}
+
+.clearButton:hover {
+  border: 2px solid #29abe2;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  color: #29abe2;
+}
+
+.clearButton:hover .iconX {
+  background-image: url("/assets/icons/vectorBlue.svg");
+}
+
+.clearButton:active .iconX {
+  background-image: url("/assets/icons/close.svg");
+}
+
+.clearButton:active {
+  border: 2px solid #091931;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  color: #091931;
+}
+
+.iconX {
+  background-image: url("/assets/icons/close.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  cursor: pointer;
+}
+
+.createButton {
+  border: none;
+  background-color: #2a3647;
+  color: white;
+}
+
+.createButton:hover {
+  background-color: #29abe2;
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.createButton:active {
+  background-color: #091931;
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.overPrioButtons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.prioButtons {
+  flex: 1;
+  border: unset;
+  background-color: white;
+  width: 136px;
+  padding: 16px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0px 0px 4px 0px #0000001a;
+}
+
+.prioButtons:hover {
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.urgentButton {
+  font-weight: 700;
+  color: white;
+  background-color: #ff3d00;
+}
+
+.mediumButton {
+  font-weight: 700;
+  color: white;
+  background-color: #ffa800;
+}
+
+.lowButton {
+  font-weight: 700;
+  color: white;
+  background-color: #7ae229;
+}
+
+.categoryDropdown {
+  z-index: 4;
+}
+
+.showCategorys {
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0px 5px 14px -5px rgba(0, 0, 0, 0.1);
+  padding: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.costumSelect {
+  border-radius: 10px 10px 0 0;
+  z-index: 3;
+}
+
+.categoryItem {
+  font-size: 20px;
+  padding: 12px 16px;
+}
+
+.categoryItem:hover {
+  background-color: #d1d1d1;
+  border-radius: 10px;
+}
+
+.changeSymboles {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.arrowCategory {
+  display: flex;
+  position: absolute;
+  top: 47px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.arrowCategory img:hover {
+  background-color: #eeeeee;
+  border-radius: 50%;
+}
+
+.editTaskImg {
+  padding-right: 10px;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.borderEditIcons {
+  border-right: solid 1px #a8a8a8;
+  height: 20px;
+}
+
+.editIcons {
+  vertical-align: middle;
+  height: 24px;
+  width: 24px;
+}
+
+.centerSymbol {
+  display: flex;
+  height: 24px;
+  width: 24px;
+}
+
+.centerSymbol img:hover {
+  background-color: #eeeeee;
+  border-radius: 50%;
+}
+
+.basket {
+  padding-right: 10px;
+}
+
+.d-none {
+  display: none;
+}
+
+.overallListItem {
+  align-items: center;
+  vertical-align: middle;
+}
+
+.showEntrySubtask {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: -40px;
+  padding: 4px 0 4px 40px;
+  list-style-type: none;
+  border-radius: 10px;
+}
+
+.showEntrySubtask:hover {
+  background-color: #eeeeee;
+}
+
+.edit {
+  display: none;
+  flex-direction: row;
+  gap: 4px;
+  padding-right: 10px;
+}
+
+.changeTextSubtasks {
+  margin-left: -40px;
+  list-style-type: none;
+}
+
+.changingTextInputField {
+  position: relative;
+  border: unset;
+}
+
+.overChangingSubtask {
+  display: flex;
+  border-bottom: 1px solid #9747ff;
+}
+
+.overAllChange {
+  display: flex;
+  right: 10px;
+  cursor: pointer;
+  background-color: white;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.fullWidth:focus {
+  border: none;
+}
+
+.requiredInformation {
+  align-self: flex-end;
+}
+
+.showEntrySubtask:hover .edit {
+  display: flex;
+}
+
+.overSendButtons {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.errorMessage {
+  position: absolute;
+  top: 90px;
+  color: #ff8190;
+  font-size: 16px;
+  display: none;
+}
+
+.addedToBoard {
+  background: #2a3647;
+  color: white;
+  display: flex;
+  gap: 32px;
+  flex-direction: row;
+  font-size: 20px;
+  border-radius: 20px;
+  width: 326px;
+  height: 74px;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.backgroundInformationForm {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  align-items: center;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 999;
+
+  transition: all 225ms ease-in-out;
+}
+
+@media only screen and (max-width: 1010px) {
+  .overheader {
+    padding: 40px 0 0 0;
     background-color: #f6f7f8;
+    position: sticky;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 999;
   }
-  
+
   h2 {
-    font-size: 61px;
-    font-weight: 700;
+    font-size: 47px;
   }
-  
-  ul {
+
+  .overInputFields {
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
     margin: 0;
   }
-  
-  .whiteBG {
-    background-color: white;
-  }
-  
-  .changeSymboles img:hover {
-    background-color: #eeeeee;
-    border-radius: 50%;
-  }
-  
-  .formAddTasks {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .overInputFields {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 976px;
-    margin-bottom: 120px;
-  }
-  
-  .fillOut {
-    width: 440px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .line {
-    border: 1px solid #d1d1d1;
-    height: 455px;
-  }
-  
+
   .overField {
     display: flex;
-    position: relative;
-    flex-direction: column;
-    gap: 8px;
+    justify-content: center;
   }
-  
-  .overField label {
-    font-size: 24px;
-    font-weight: 400;
+
+  .fillOut {
+    width: auto;
   }
-  
-  .overAddSubtasks {
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
-  
-  .fieldInput {
-    background-color: white;
-    border-radius: 10px;
-    border: solid 1px #d1d1d1;
-    padding: 12px 21px;
-    width: 100%;
-    cursor: pointer;
-  }
-  
-  .fieldInput::placeholder {
-    color: #d1d1d1;
-  }
-  
-  .fieldInput:focus {
-    border: 1px solid #29abe2;
-    outline: none;
-  }
-  
-  .marginTop {
-    margin-top: 24px;
-  }
-  
-  .overField textarea {
-    border-radius: 10px;
-    border: solid 1px #d1d1d1;
-    width: 100%;
-    padding: 12px 21px;
-    margin-bottom: 24px;
-    outline: none;
-    resize: vertical;
-  }
-  
-  .overField textarea::-webkit-resizer {
-    width: 20px;
-    height: 19px;
-    background-image: url("/assets/icons/textareaResizer.svg");
-    background-size: contain;
-    background-repeat: no-repeat;
-    transform: translate(-20px, -19px);
-  }
-  
-  .overField textarea::-webkit-scrollbar {
-    width: 8px;
-    border-radius: 8px;
-  }
-  
-  .overField textarea::-webkit-scrollbar-track {
-    background: #a8a8a8;
-    width: 8px;
-    border-radius: 8px;
-  }
-  
-  .overField textarea::-webkit-scrollbar-thumb {
-    background: #817979;
-    border-radius: 8px;
-  }
-  
-  .overField textarea::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
-  
-  textarea:focus {
-    border: 1px solid #29abe2;
-  }
-  
-  .overField textarea::placeholder {
-    color: #d1d1d1;
-  }
-  
-  .overInputAssignedTo {
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
-  
-  .overaddAssignedTo {
-    position: relative;
-    align-items: center;
-    border-radius: 10px 10px 0 0;
-  }
-  
-  .listContacts {
-    position: absolute;
-    width: 100%;
-    height: 250px;
-    background-color: white;
-    border-radius: 0 0 10px 10px;
-    box-shadow: 0px 5px 14px -5px rgba(0, 0, 0, 0.1);
-    list-style-type: none;
-    padding: 0;
-    overflow: auto;
-    cursor: pointer;
-  }
-  
-  .listContacts::-webkit-scrollbar {
-    width: 8px;
-    border-radius: 8px;
-  }
-  
-  .listContacts::-webkit-scrollbar-track {
-    background: #a8a8a8;
-    width: 8px;
-    border-radius: 8px;
-  }
-  
-  .listContacts::-webkit-scrollbar-thumb {
-    background: #817979;
-    border-radius: 8px;
-  }
-  
-  .listContacts::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
-  
-  .listContacts li {
-    display: flex;
-    justify-content: space-between;
-    padding: 7px 16px;
-    margin-bottom: 1px;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-  
-  .listContacts li:active {
-    background-color: #091931;
-    color: white;
-  }
-  
-  .contactListCheckbox {
+
+  .line {
     display: none;
   }
-  
-  .backgroundContact {
-    background-color: #2a3647;
-    color: white;
-  }
-  
-  .backgroundContact:hover {
-    background-color: #091931 !important;
-    color: white !important;
-  }
-  .backgroundContact:active {
-    background-color: #091931;
-  }
-  
-  .backgroundOnHover:hover {
-    background-color: #eeeeee;
-    color: black;
-  }
-  
-  .profilePerson {
-    display: flex;
-    align-items: center;
-  }
-  
-  .profile {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  
-  .showPersons {
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-  }
-  
-  svg text {
-    font-size: 12px;
-  }
-  
-  .dateWrapper {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dateWrapper input[type="date"] {
-    width: 100%;
-    padding: 10px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    color: #d1d1d1;
-    background-color: white;
-    padding-right: 40px;
-    cursor: pointer;
-  }
-  
-  input[type="date"]::-webkit-calendar-picker-indicator {
-    display: none;
-  }
-  
-  input[type="date"]::-moz-calendar-picker-indicator {
-    display: none;
-  }
-  
-  input[type="date"].filled {
-    color: black;
-  }
-  
-  .dateIcon {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-  }
-  
+
   .overFormButtons {
     display: flex;
-    justify-content: space-between;
-    gap: 8px;
-    width: 976px;
-    height: 60px;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 100px;
+    margin-top: 15px;
   }
-  
+
   .formButtons {
+    padding: 18px 10px;
+  }
+
+  .required {
+    align-self: flex-start;
+    font-size: 16px;
+  }
+
+  .fieldInput {
+    font-size: 16px;
+  }
+
+  .listContacts {
+    position: relative;
+  }
+
+  option {
+    font-size: 16px;
+  }
+
+  .showEntrySubtask {
+    font-size: 16px;
+    padding: 12px 4px 12px 40px;
+  }
+  .subtaskText {
+    font-size: 16px;
+  }
+
+  .overChangingSubtask {
+    padding: 16px 0 16px 4px;
+    background: white;
+  }
+
+  .overField label {
+    font-size: 16px;
+  }
+
+  .overField input {
+    font-size: 16px;
+  }
+
+  .overField textarea {
+    font-size: 16px;
+  }
+
+  .prioButtons {
+    font-size: 16px;
+  }
+
+  .overSendButtons {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 4px;
-    border-radius: 10px;
+    justify-content: flex-end;
+    position: fixed;
+    background-color: #f6f7f8;
+    bottom: 0;
     font-size: 21px;
-    padding: 16px;
-    border: none;
-    cursor: pointer;
+    right: 0;
+    left: 0;
+    width: 100vw;
+    gap: 8px;
+    z-index: 999;
+    padding-bottom: 10px;
   }
-  
+
+  .createButton {
+    margin-right: 25px;
+  }
+
+  .profile {
+    font-size: 16px;
+  }
+
+  .contactPerson {
+    font-size: 16px;
+  }
+  .seperateSendButtons {
+    margin-bottom: 100px;
+  }
+
+  .requiredInformation {
+    align-self: flex-start;
+    font-size: 21px;
+    padding-bottom: 200px;
+  }
+
   .clearButton {
-    border: 2px solid #2a3647;
-    color: #2a3647;
+    border: 1px solid #2a3647;
   }
-  
+
   .clearButton:hover {
-    border: 2px solid #29abe2;
+    border: 1px solid #29abe2;
     box-shadow: 0px 4px 4px 0px #00000040;
     color: #29abe2;
   }
-  
-  .clearButton:hover .iconX {
-    background-image: url("/assets/icons/vectorBlue.svg");
-  }
-  
-  .clearButton:active .iconX {
-    background-image: url("/assets/icons/close.svg");
-  }
-  
+
   .clearButton:active {
-    border: 2px solid #091931;
+    border: 1px solid #091931;
     box-shadow: 0px 4px 4px 0px #00000040;
     color: #091931;
   }
-  
-  .iconX {
-    background-image: url("/assets/icons/close.svg");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 24px;
-    height: 24px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .createButton {
-    border: none;
-    background-color: #2a3647;
-    color: white;
-  }
-  
-  .createButton:hover {
-    background-color: #29abe2;
-    box-shadow: 0px 4px 4px 0px #00000040;
-  }
-  
-  .createButton:active {
-    background-color: #091931;
-    box-shadow: 0px 4px 4px 0px #00000040;
-  }
-  
-  .overPrioButtons {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 24px;
-    width: 100%;
-  }
-  
-  .prioButtons {
-    flex: 1;
-    border: unset;
-    background-color: white;
-    width: 136px;
-    padding: 16px 10px;
-    border-radius: 10px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0px 0px 4px 0px #0000001a;
-  }
-  
-  .prioButtons:hover {
-    box-shadow: 0px 4px 4px 0px #00000040;
-  }
-  
-  .urgentButton {
-    font-weight: 700;
-    color: white;
-    background-color: #ff3d00;
-  }
-  
-  .mediumButton {
-    font-weight: 700;
-    color: white;
-    background-color: #ffa800;
-  }
-  
-  .lowButton {
-    font-weight: 700;
-    color: white;
-    background-color: #7ae229;
-  }
-  
-  .categoryDropdown {
-    z-index: 4;
-  }
-  
-  .showCategorys {
-    position: absolute;
-    width: 100%;
-    background-color: white;
-    border-radius: 0 0 10px 10px;
-    box-shadow: 0px 5px 14px -5px rgba(0, 0, 0, 0.1);
-    padding: 0;
-    cursor: pointer;
-    z-index: 1;
-  }
-  
-  .costumSelect {
-    border-radius: 10px 10px 0 0;
-    z-index: 3;
-  }
-  
-  .categoryItem {
-    font-size: 20px;
-    padding: 12px 16px;
-  }
-  
-  .categoryItem:hover {
-    background-color: #d1d1d1;
-    border-radius: 10px;
-  }
-  
-  .changeSymboles {
-    display: flex;
-    gap: 4px;
-    align-items: center;
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-  }
-  
-  .arrowCategory {
-    display: flex;
-    position: absolute;
-    top: 47px;
-    right: 10px;
-    cursor: pointer;
-  }
-  
-  .arrowCategory img:hover {
-    background-color: #eeeeee;
-    border-radius: 50%;
-  }
-  
-  .editTaskImg {
-    padding-right: 10px;
-    display: flex;
-    gap: 4px;
-    align-items: center;
-  }
-  
-  .borderEditIcons {
-    border-right: solid 1px #a8a8a8;
-    height: 20px;
-  }
-  
-  .editIcons {
-    vertical-align: middle;
-    height: 24px;
-    width: 24px;
-  }
-  
-  .centerSymbol {
-    display: flex;
-    height: 24px;
-    width: 24px;
-  }
-  
-  .centerSymbol img:hover {
-    background-color: #eeeeee;
-    border-radius: 50%;
-  }
-  
-  .basket {
-    padding-right: 10px;
-  }
-  
-  .d-none {
-    display: none;
-  }
-  
-  .overallListItem {
-    align-items: center;
-    vertical-align: middle;
-  }
-  
-  .showEntrySubtask {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 16px;
-    cursor: pointer;
-    margin-left: -40px;
-    padding: 4px 0 4px 40px;
-    list-style-type: none;
-    border-radius: 10px;
-  }
-  
-  .showEntrySubtask:hover {
-    background-color: #eeeeee;
-  }
-  
-  .edit {
-    display: none;
-    flex-direction: row;
-    gap: 4px;
-    padding-right: 10px;
-  }
-  
-  .changeTextSubtasks {
-    margin-left: -40px;
-    list-style-type: none;
-  }
-  
-  .changingTextInputField {
-    position: relative;
-    border: unset;
-  }
-  
-  .overChangingSubtask {
-    display: flex;
-    border-bottom: 1px solid #9747ff;
-  }
-  
-  .overAllChange {
-    display: flex;
-    right: 10px;
-    cursor: pointer;
-    background-color: white;
-  }
-  
-  .fullWidth {
-    width: 100%;
-  }
-  
-  .fullWidth:focus {
-    border: none;
-  }
-  
-  .requiredInformation {
-    align-self: flex-end;
-  }
-  
-  .showEntrySubtask:hover .edit {
-    display: flex;
-  }
-  
-  .overSendButtons {
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-  }
-  
-  .errorMessage {
-    position: absolute;
-    top: 90px;
-    color: #ff8190;
-    font-size: 16px;
-    display: none;
-  }
-  
-  .addedToBoard {
-    background: #2a3647;
-    color: white;
-    display: flex;
-    gap: 32px;
-    flex-direction: row;
-    font-size: 20px;
-    border-radius: 20px;
-    width: 326px;
-    height: 74px;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
-  }
-  
-  .backgroundInformationForm {
-    display: flex;
-    justify-content: center;
-    position: fixed;
-    align-items: center;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
-    z-index: 999;
-  
-    transition: all 225ms ease-in-out;
-  }
-  
-  @media only screen and (max-width: 1010px) {
-    .overheader {
-      padding: 40px 0 0 0;
-      background-color: #f6f7f8;
-      position: sticky;
-      top: 0;
-      right: 0;
-      left: 0;
-      z-index: 999;
-    }
-  
-    h2 {
-      font-size: 47px;
-    }
-  
-    .overInputFields {
-      flex-direction: column;
-      justify-content: center;
-      width: 100%;
-      margin: 0;
-    }
-  
-    .overField {
-      display: flex;
-      justify-content: center;
-    }
-  
-    .fillOut {
-      width: auto;
-    }
-  
-    .line {
-      display: none;
-    }
-  
-    .overFormButtons {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      width: 100%;
-      gap: 100px;
-      margin-top: 15px;
-    }
-  
-    .formButtons {
-      padding: 18px 10px;
-    }
-  
-    .required {
-      align-self: flex-start;
-      font-size: 16px;
-    }
-  
-    .fieldInput {
-      font-size: 16px;
-    }
-  
-    .listContacts {
-      position: relative;
-    }
-  
-    option {
-      font-size: 16px;
-    }
-  
-    .showEntrySubtask {
-      font-size: 16px;
-      padding: 12px 4px 12px 40px;
-    }
-    .subtaskText {
-      font-size: 16px;
-    }
-  
-    .overChangingSubtask {
-      padding: 16px 0 16px 4px;
-      background: white;
-    }
-  
-    .overField label {
-      font-size: 16px;
-    }
-  
-    .overField input {
-      font-size: 16px;
-    }
-  
-    .overField textarea {
-      font-size: 16px;
-    }
-  
-    .prioButtons {
-      font-size: 16px;
-    }
-  
-    .overSendButtons {
-      display: flex;
-      justify-content: flex-end;
-      position: fixed;
-      background-color: #f6f7f8;
-      bottom: 0;
-      font-size: 21px;
-      right: 0;
-      left: 0;
-      width: 100vw;
-      gap: 8px;
-      z-index: 999;
-      padding-bottom: 10px;
-    }
-  
-    .createButton {
-      margin-right: 25px;
-    }
-  
-    .profile {
-      font-size: 16px;
-    }
-  
-    .contactPerson {
-      font-size: 16px;
-    }
-    .seperateSendButtons {
-      margin-bottom: 100px;
-    }
-  
-    .requiredInformation {
-      align-self: flex-start;
-      font-size: 21px;
-      padding-bottom: 200px;
-    }
-  
-    .clearButton {
-      border: 1px solid #2a3647;
-    }
-  
-    .clearButton:hover {
-      border: 1px solid #29abe2;
-      box-shadow: 0px 4px 4px 0px #00000040;
-      color: #29abe2;
-    }
-  
-    .clearButton:active {
-      border: 1px solid #091931;
-      box-shadow: 0px 4px 4px 0px #00000040;
-      color: #091931;
-    }
-  
-    .errorMessage {
-      top: 82px;
-    }
-  }
-  
-}
 
+  .errorMessage {
+    top: 82px;
+  }
+}

@@ -20,7 +20,7 @@ let isListOpen = false;
 
 const avatarColors = ["#3498db", "#e74c3c", "#f39c12", "#2ecc71", "#9b59b6"];
 
-async function init() {
+async function initAddTasks() {
   const contactList = document.getElementById("insertContactList");
   contactList.classList.add("d-none");
   selectPrio("medium");
