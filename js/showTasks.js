@@ -37,7 +37,6 @@ function pushFilteredTasksToArray() {
     // console.log(filteredKeys);
     for (let i = 0; i < filteredKeys.length; i++) {
         // console.log(filteredTasks[i]);
-        
         if (filteredTasks[i].currentStatus === "todo") {
             filteredTasksTodo.push(filteredTasks[i])
         } 
@@ -73,8 +72,7 @@ function fillTaskSections(section, tasks) {
 }
 
 function checkAssignedTo(tasks, i) {
-    console.log(selectedContacts);
-    
+    // console.log(selectedContacts);
     let contactsIconsTemplate = "";
     if (selectedContacts.length > 0) {
         for (let j = 0; j < tasks[i].assigned_to.length; j++) {
@@ -136,7 +134,7 @@ function checkCheckedSubtasks(tasks, i) {
             }
         }
     }
-    return  checkedSubtasksNo
+    return checkedSubtasksNo
 }
 
 function checkSubtaskLength(tasks, i) {
@@ -158,10 +156,11 @@ function calcProcessBarWidth(checkedSubtasks, subtasksLength) {
 function createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, width, checkedSubtasks, subtasksLength) {
     document.getElementById(section).innerHTML += `
     <div draggable="true" 
-        onmousedown="cloneElement(${tasks[i].single_ID}, event)"
-        ondragstart="startDragging(event)" 
-        ondrag="whileDragging(event)"
-        onclick="checkTask(event)"  
+    onmousedown="cloneElement(${tasks[i].single_ID}, event)"
+    ondragstart="startDragging(event)" 
+    ondrag="whileDragging(event)"
+    ondragend="endDragging()"
+    onclick="checkTask(event)"  
     id="single_task_ctn${tasks[i].single_ID}" class="single_task_ctn">
         <div class="single_task_category">${tasks[i].category}</div>
         <div class="single_task_headline">${tasks[i].title}</div>
