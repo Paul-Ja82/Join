@@ -7,6 +7,7 @@ function openTaskOverlay(e) {
 }
 
 function checkTask(e) {
+    e.stopPropagation()
     let container = e.target.closest('[id^="single_task_ctn"]');
     if (container) {
         let clickedSingleID = container.id.slice(15);
@@ -28,7 +29,6 @@ function fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, s
                             </svg>    
                         </diy>
                     </div>
-                
                 <div class="single_task_headline">${allTasks[keyToOpen].title}</div>
             </div>
              <div class="overlay_task_main"> 
@@ -52,9 +52,9 @@ function fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, s
                 </div>
                 <div class="single_task_subtasks_ctn">
                     <div class="single_task_line_header">Subtasks</div>
-                        <div class="single_task_subtask_collection">
-                            ${subTasks}
-                        </div>
+                    <div class="single_task_subtask_collection">
+                        ${subTasks}
+                    </div>
                 </div>
                 <div class="single_task_delete_or_edit_ctn">
                     <div class="delete_or_edit_buttons">
@@ -64,7 +64,7 @@ function fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, s
                             </svg>
                             <span>Delete</span>
                         </div>
-                        <div onclick="deleteTask(event, ${keyToOpen})" id="id="btnDel${keyToOpen}"" class="delete_or_edit_button">
+                        <div onclick="" id="id="btnDel${keyToOpen}" class="delete_or_edit_button">
                             <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M2 17H3.4L12.025 8.375L10.625 6.975L2 15.6V17ZM16.3 6.925L12.05 2.725L13.45 1.325C13.8333 0.941667 14.3042 0.75 14.8625 0.75C15.4208 0.75 15.8917 0.941667 16.275 1.325L17.675 2.725C18.0583 3.10833 18.2583 3.57083 18.275 4.1125C18.2917 4.65417 18.1083 5.11667 17.725 5.5L16.3 6.925ZM14.85 8.4L4.25 19H0V14.75L10.6 4.15L14.85 8.4Z" fill="#2A3647"/>
                             </svg>
@@ -73,26 +73,29 @@ function fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, s
                     </div>
                 </div>            
              </div>
-           
         </div>
     `
     checkTaskCategoryColor("single_task_category_overlay")
 }
 
 function checkAssignedToOverlay(allTasks, keyToOpen) {
-    console.log(allTasks[keyToOpen], allTasks, keyToOpen);
+    console.log(allTasks[keyToOpen]);
     let contactsTemplate = "";
-    for (let j = 0; j < allTasks[keyToOpen].assigned_to.length; j++) {
-        let fullName = allTasks[keyToOpen].assigned_to[j];
-        let [firstName, lastName] = fullName.split(" ");
-        let charOneFirstName = firstName.charAt(0);
-        let charOneLastName = lastName.charAt(0);
-        contactsTemplate += `
-            <div class="single_task_single_contact">
-                <div class="task_contact_name_icon">${charOneFirstName}${charOneLastName}</div>
-                <div class="task_contact_name">${fullName} (You??)</div>
-            </div>
-        `
+    if (allTasks[keyToOpen].assigned_to == 'nobody') {
+        contactsTemplate = "";
+    } else {
+        for (let j = 0; j < allTasks[keyToOpen].assigned_to.length; j++) {
+            let fullName = allTasks[keyToOpen].assigned_to[j];
+            let [firstName, lastName] = fullName.split(" ");
+            let charOneFirstName = firstName.charAt(0);
+            let charOneLastName = lastName.charAt(0);
+            contactsTemplate += `
+                <div class="single_task_single_contact">
+                    <div class="task_contact_name_icon">${charOneFirstName}${charOneLastName}</div>
+                    <div class="task_contact_name">${fullName} (You??)</div>
+                </div>
+            `
+        }
     }
     return contactsTemplate
 }   
@@ -163,12 +166,10 @@ async function changeSubtaskStatus(allTasks, e, labelID) {
 }
 
 function checkIndexOfAllTasks(clickedSingleID, allTasks, allKeys) {
-    // let indexToOpen;
     let keyToOpen;
     for (let i = 0; i < allKeys.length; i++) {
         let key = allKeys[i]
         if (allTasks[key].single_ID == clickedSingleID) {
-            // indexToOpen = i
             keyToOpen = allKeys[i]
         }
     }
