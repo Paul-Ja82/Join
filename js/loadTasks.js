@@ -3,7 +3,7 @@ let allTasks = [];
 let allKeys = [];
 let id;
 
-async function collectData(currentStatus) {
+async function collectData(currentStatus, selectedContacts) {
     let taskData = {
         "assigned_to" : selectedContacts,
         "category" : document.getElementById("categoryToSelect").value,
@@ -22,7 +22,15 @@ async function collectData(currentStatus) {
     return id
 }
 
-async function collectDataFromAddTask(currentStatus) {
+async function collectDataFromAddTask(currentStatus, selectedContacts) {
+    console.log(selectedContacts);
+
+    if(selectedContacts.length == 0) {
+        selectedContacts = 'nobody'
+    }
+    console.log(selectedContacts);
+    
+    
     let taskData = {
         "assigned_to" : selectedContacts,
         "category" : document.getElementById("showSelectedCategory").value,
@@ -111,7 +119,7 @@ async function putNewCheckedStatus(path="", data={}) {
 function keyForAllTasks() {
     allKeys = [];
     allKeys = Object.keys(allTasks)
-    // console.log(allKeys)
+    console.log(allKeys)
 }
 
 async function deleteTaskID(path="") {

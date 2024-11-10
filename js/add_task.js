@@ -465,10 +465,10 @@ async function submitForm() {
   }
 
   if (!hasError) {
-    console.log(sectionToSaveTask);
+    // console.log(sectionToSaveTask);
     
-    await collectDataFromAddTask('todo'); //senden an loadTasks.js zum hochladen ins Firebase
-    // window.location.href = './board.html';
+    await collectDataFromAddTask('todo', selectedContacts); //senden an loadTasks.js zum hochladen ins Firebase
+    window.location.href = './board.html';
     // reloadPage();
   }
 }
