@@ -37,7 +37,14 @@ function addListItemClickHandlers() {
 function generateContactList() {
     let contactListContainer= document.getElementById('contactListContainer');
     let content= '';
+    let currentLetter= '@';
+    sortContactsByName();
     for (let contactI of contacts) {
+        let contactLetter= getFirstLetter(contactI.name).toUpperCase();
+        if (contactLetter > currentLetter) {
+            currentLetter= contactLetter.toUpperCase();
+            content += `<h3 class="conlist-heading">${currentLetter}</h3>`;
+        }
         content += contactToListItemHTML(contactI, 'conlistItem' + contactI.id);
     }
     contactListContainer.innerHTML= content;
@@ -59,6 +66,8 @@ function contactToListItemHTML(contact, elemId) {
         </div> 
     `;
 }
+
+
 
 /*##################*/
 /*## CONTACT LIST ##*/
@@ -365,7 +374,8 @@ function mediaChangeHandler() {
 /*###########*/
 
 function tuEsContact() {
-    console.log(submitHandlers['contactForm'].includes(createContactHandler)); ///DEBUG
+    let x= 'z';
+    console.log(getNextASCIIchar(x)); ///DEBUG
 }
 
 function logVarsContact() {

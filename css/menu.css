@@ -12,7 +12,7 @@
 }
 
 #menuContainer {
-    font-size: 0.9rem;
+    /* font-size: 1.8em; */
     background-color: var(--clr-menu-bg);
     color: var(--clr-gray-500);
 }
@@ -41,6 +41,10 @@
 .menu-nav-item-marked {
     background-color: var(--clr-menu-hover);
     color: white;
+}
+
+img.menu-nav-icon {
+    height: 1.8em;
 }
 
 
