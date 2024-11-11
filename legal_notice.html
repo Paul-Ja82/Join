@@ -6,15 +6,54 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/legal.css" />
     <link rel="stylesheet" href="./assets/fonts/fonts.css" />
+    <style>
+      * {
+        font-size: 16px;
+      }
+
+      body {
+        max-width: 1014px;
+      }
+      .titleSelection {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .getBack img {
+        height: 32px;
+        width: 32px;
+        align-self: center;
+        cursor: pointer;
+      }
+
+      .joinName {
+        color: #29abe2;
+      }
+
+      article {
+        margin-bottom: 24px;
+      }
+
+      .imprintTitle {
+        margin-bottom: 16px;
+      }
+
+      .DeveloperAkademieName {
+        color: #29abe2;
+      }
+    </style>
   </head>
   <body>
     <div class="titleSelection">
       <h2>Legal Notice</h2>
-      <div class="getBack">Zurück</div>
+      <div class="getBack">
+        <img src="assets/icons/ArrowToLeft.svg" alt="" />
+      </div>
     </div>
     <main>
       <article>
-        <h3>Imprint</h3>
+        <h3 class="imprintTitle">Imprint</h3>
         <ul>
           <li>[Student Names List]</li>
           <li>Address of the JOIN operator - e.g. one of the students]</li>
@@ -28,23 +67,24 @@
       <article>
         <h4>Acceptance of terms</h4>
         <p>
-          By accessing and using Join (Product), you acknowledge and agree to
-          the following terms and conditions, and any policies, guidelines, or
-          amendments thereto that may be presented to you from time to time. We,
-          the listed students, may update or change the terms and conditions
-          from time to time without notice.
+          By accessing and using <span class="joinName">Join</span> (Product),
+          you acknowledge and agree to the following terms and conditions, and
+          any policies, guidelines, or amendments thereto that may be presented
+          to you from time to time. We, the listed students, may update or
+          change the terms and conditions from time to time without notice.
         </p>
       </article>
       <article>
         <h4>Scope and ownership of the product</h4>
         <p>
-          Join has been developed as part of a student group project in a web
-          development bootcamp at the Developer Akademie GmbH. It has an
-          educational purpose and is not intended for extensive personal &
-          business usage. As such, we cannot guarantee consistent availability,
-          reliability, accuracy, or any other aspect of quality regarding this
-          Product. <br />
-          The design of Join is owned by the Developer Akademie GmbH.
+          <span class="joinName">Join</span> has been developed as part of a
+          student group project in a web development bootcamp at the Developer
+          Akademie GmbH. It has an educational purpose and is not intended for
+          extensive personal & business usage. As such, we cannot guarantee
+          consistent availability, reliability, accuracy, or any other aspect of
+          quality regarding this Product. <br />
+          The design of <span class="joinName">Join</span> is owned by the
+          <span class="DeveloperAkademieName">Developer Akademie GmbH</span>.
           Unauthorized use, reproduction, modification, distribution, or
           replication of the design is strictly prohibited.
         </p>
@@ -52,36 +92,38 @@
       <article>
         <h4>Proprietary rights</h4>
         <p>
-          Aside from the design owned by Developer Akademie GmbH, we, the listed
-          students, retain all proprietary rights in Join, including any
-          associated copyrighted material, trademarks, and other proprietary
-          information.
+          Aside from the design owned by
+          <span class="DeveloperAkademieName">Developer Akademie GmbH</span>,
+          we, the listed students, retain all proprietary rights in
+          <span class="joinName">Join</span>, including any associated
+          copyrighted material, trademarks, and other proprietary information.
         </p>
       </article>
       <article>
         <h4>Use of the product</h4>
         <p>
-          Join is intended to be used for lawful purposes only, in accordance
-          with all applicable laws and regulations. Any use of Join for illegal
-          activities, or to harass, harm, threaten, or intimidate another
-          person, is strictly prohibited. You are solely responsible for your
-          interactions with other users of Join.
+          <span class="joinName">Join</span> is intended to be used for lawful
+          purposes only, in accordance with all applicable laws and regulations.
+          Any use of <span class="joinName">Join</span> for illegal activities,
+          or to harass, harm, threaten, or intimidate another person, is
+          strictly prohibited. You are solely responsible for your interactions
+          with other users of <span class="joinName">Join</span>.
         </p>
       </article>
       <article>
         <h4>Disclaimer of warranties and limitation of liability</h4>
         <p>
-          Disclaimer of warranties and limitation of liability Join is provided
-          "as is" without warranty of any kind, whether express or implied,
-          including but not limited to the implied warranties of
-          merchantability, fitness for a particular purpose, and
-          non-infringement. In no event will we, the listed students, or the
-          Developer Akademie, be liable for any direct, indirect, incidental,
-          special, consequential or exemplary damages, including but not limited
-          to, damages for loss of profits, goodwill, use, data, or other
-          intangible losses, even if we have been advised of the possibility of
-          such damages, arising out of or in connection with the use or
-          performance of Join.
+          Disclaimer of warranties and limitation of liability
+          <span class="joinName">Join</span> is provided "as is" without
+          warranty of any kind, whether express or implied, including but not
+          limited to the implied warranties of merchantability, fitness for a
+          particular purpose, and non-infringement. In no event will we, the
+          listed students, or the Developer Akademie, be liable for any direct,
+          indirect, incidental, special, consequential or exemplary damages,
+          including but not limited to, damages for loss of profits, goodwill,
+          use, data, or other intangible losses, even if we have been advised of
+          the possibility of such damages, arising out of or in connection with
+          the use or performance of <span class="joinName">Join</span>.
         </p>
       </article>
       <article>
@@ -91,9 +133,10 @@
           students, the Developer Akademie, and our affiliates, partners,
           officers, directors, agents, and employees, from and against any
           claim, demand, loss, damage, cost, or liability (including reasonable
-          legal fees) arising out of or relating to your use of Join and/or your
-          breach of this Legal Notice. For any questions or notices, please
-          contact us at [Contact Email]. Date: July 26, 2023
+          legal fees) arising out of or relating to your use of
+          <span class="joinName">Join</span> and/or your breach of this Legal
+          Notice. For any questions or notices, please contact us at [Contact
+          Email]. Date: July 26, 2023
         </p>
       </article>
     </main>
