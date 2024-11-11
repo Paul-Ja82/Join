@@ -1,15 +1,19 @@
 * {
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-    padding: 0;
-    margin: 0;
-    font-family: 'Inter';
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  padding: 0;
+  margin: 0;
+  font-family: "Inter";
 }
 
 h2 {
-    font-size: 61px;
+  font-size: 61px;
 }
 
 h3 {
-    font-size: 32px;
+  font-size: 32px;
+}
+
+h4 {
+  font-size: 16px;
 }
