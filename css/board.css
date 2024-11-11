@@ -275,8 +275,10 @@ body {
     & .single_task_contacts_ctn {
       display: flex;
       position: relative;
-      height: 32px;
-      width: 200px;
+      height: 44px;
+      width: 170px;
+      margin-right: 10px;
+      overflow: auto;
       & .single_task_single_contact {
         position: absolute;
         display: flex;
