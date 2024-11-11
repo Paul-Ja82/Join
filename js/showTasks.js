@@ -19,7 +19,7 @@ function pushTasksToArray() {
     for (let i = 0; i < allKeys.length; i++) {
         if (allTasks[`${allKeys[i]}`].currentStatus === "todo") {
             tasksTodo.push(allTasks[`${allKeys[i]}`])
-            console.log(allKeys[i])
+            // console.log(allKeys[i])
         } 
         if (allTasks[`${allKeys[i]}`].currentStatus === "inProgress") {
             tasksInProgress.push(allTasks[`${allKeys[i]}`])
@@ -56,7 +56,7 @@ function pushFilteredTasksToArray() {
 function fillTaskSections(section, tasks) {
     document.getElementById(section).innerHTML = "";
     for (let i = 0; i < tasks.length; i++) {
-        let assignedTocontacts = checkAssignedTo(tasks, i);
+        let assignedTocontacts = checkAssignedTo(tasks, i, selectedContacts);
         let priorityImg = checkPriorityImg(tasks, i);
         let checkedSubtasks = checkCheckedSubtasks(tasks, i);
         let subtasksLength = checkSubtaskLength(tasks, i)
@@ -72,8 +72,8 @@ function fillTaskSections(section, tasks) {
     showSubtaskCtn()
 }
 
-function checkAssignedTo(tasks, i) {
-    // console.log(selectedContacts);
+function checkAssignedTo(tasks, i, selectedContacts) {
+    console.log(selectedContacts);
     let contactsIconsTemplate = "";
     if (selectedContacts.length > 0) {
         for (let j = 0; j < tasks[i].assigned_to.length; j++) {

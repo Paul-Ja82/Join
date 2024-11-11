@@ -17,12 +17,14 @@ function checkTask(e) {
 }
 
 function fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, subTasks) {
+    console.log(assignedToContacts);
+    
     document.getElementById(`task_overlay_ctn`).innerHTML = "";
     document.getElementById(`task_overlay_ctn`).innerHTML = `
        <div class="task_overlay_card_ctn single_task_ctn">
             <div class="overlay_task_header">
                     <div class="single_task_header_category_and_close">
-                        <div class="single_task_category_overlay">Technical Task</div>
+                        <div class="single_task_category_overlay">${allTasks[keyToOpen].category}</div>
                         <diy onclick="closeTaskOverlay(event)" id="close_task_overlay" class="close_task_overlay">
                             <svg id="close_task_overlay_svg" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6.99999 8.40005L2.09999 13.3C1.91665 13.4834 1.68332 13.575 1.39999 13.575C1.11665 13.575 0.883321 13.4834 0.699988 13.3C0.516654 13.1167 0.424988 12.8834 0.424988 12.6C0.424988 12.3167 0.516654 12.0834 0.699988 11.9L5.59999 7.00005L0.699988 2.10005C0.516654 1.91672 0.424988 1.68338 0.424988 1.40005C0.424988 1.11672 0.516654 0.883382 0.699988 0.700049C0.883321 0.516715 1.11665 0.425049 1.39999 0.425049C1.68332 0.425049 1.91665 0.516715 2.09999 0.700049L6.99999 5.60005L11.9 0.700049C12.0833 0.516715 12.3167 0.425049 12.6 0.425049C12.8833 0.425049 13.1167 0.516715 13.3 0.700049C13.4833 0.883382 13.575 1.11672 13.575 1.40005C13.575 1.68338 13.4833 1.91672 13.3 2.10005L8.39999 7.00005L13.3 11.9C13.4833 12.0834 13.575 12.3167 13.575 12.6C13.575 12.8834 13.4833 13.1167 13.3 13.3C13.1167 13.4834 12.8833 13.575 12.6 13.575C12.3167 13.575 12.0833 13.4834 11.9 13.3L6.99999 8.40005Z" fill="#2A3647"/>
@@ -46,7 +48,7 @@ function fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, s
                 </div>
                 <div class="single_task_assigned_to_ctn">
                     <div class="single_task_line_header">Assigned To:</div>
-                    <div class="single_task_contacts_ctn">
+                    <div id="single_task_contacts_ctn${allTasks[keyToOpen].single_ID}" class="single_task_contacts_ctn">
                     ${assignedToContacts}
                     </div>
                 </div>
@@ -174,6 +176,8 @@ function checkIndexOfAllTasks(clickedSingleID, allTasks, allKeys) {
         }
     }
     let assignedToContacts = checkAssignedToOverlay(allTasks, keyToOpen);
+    console.log(assignedToContacts);
+    
     let priorityImg = checkPriorityImg(allTasks, keyToOpen);
     let subTasks = checkSubtasksOverlay(allTasks, keyToOpen);
     fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, subTasks)
