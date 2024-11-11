@@ -1,3 +1,14 @@
+// let users=[];
+
+/*##########*/
+/*## INIT ##*/
+/*##########*/
+
+function initLogin() {
+    loadUsers();
+    initMPA();
+}
+
 function animateLogo() {
     const logo = document.querySelector(".j-logo-img");
     logo.classList.add("start-position");
