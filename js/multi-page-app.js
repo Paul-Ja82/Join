@@ -3,7 +3,8 @@ const LOGGEDIN_SESSIONSTORAGE_KEY= 'loggedIn';
 const REMEMBERME_LOCALSTORAGE_KEY= 'rememberMe';
 
 // const INDEXPAGE_URL= './sign_up.html';
-const INDEXPAGE_URL= './log_in.html';
+// const INDEXPAGE_URL= './log_in.html';
+const INDEXPAGE_URLS= ['./log_in.html', './sign_up.html'];
 // const STARTPAGE_URL= './summary_user.html';
 const STARTPAGE_URL= './contact.html';
 const FAVICON_DARK_BG_URL= './assets/img/logo-darkBG.svg'
@@ -30,14 +31,20 @@ function initPageMPA() {
     let rememberMe= getRememberMe();
     let loggedIn= getLoggedIn();
     if (rememberMe) setLoggedIn(rememberMe);
-    if (!loggedIn) loadPage(INDEXPAGE_URL);
+    if (!loggedIn) loadPage(INDEXPAGE_URLS[0]);
 }
 
 function isIndexPage() {
+    console.log('isIndexPage()'); ///DEBUG
     let currentURL= window.location.href;
     let currentFilename= getFilenameFromURL(currentURL); 
-    let indexFilename= getFilenameFromURL(INDEXPAGE_URL);
-    return currentFilename == indexFilename;
+    // let indexFilename= getFilenameFromURL(INDEXPAGE_URL);
+    let indexFilenames= [];
+    for (let indexPageURL of INDEXPAGE_URLS) {
+        indexFilenames.push(getFilenameFromURL(indexPageURL));
+    }
+    // return currentFilename == indexFilename;
+    return indexFilenames.includes(currentFilename);
 }
 
 /*##################*/
