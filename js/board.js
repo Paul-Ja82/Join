@@ -12,11 +12,11 @@ let dragAndDropSections = [
   "done_tasks",
 ];
 // let sectionToSaveTask;
-
 function init(params) {
   console.log('init()'); ///DEBUG
   // getIdAndData((pathData = ""));
   include();
+  loadContacts();
 }
 
 async function showDialog(selectedProcessCategory) {
