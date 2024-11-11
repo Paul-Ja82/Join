@@ -214,8 +214,6 @@ function showSubtaskCtn() {
     let subtascsCtn = document.getElementsByClassName("single_task_progress_ctn");
     Array.from(subtascsCtn).forEach(ctn => {
         if(ctn.innerHTML.includes("0/0 Subtasks")) {
-            console.log(ctn);
-            
             ctn.style.display = "none" 
         } else {
             ctn.style.display = "flex"
