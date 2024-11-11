@@ -4,12 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">
   <title>Log in Join </title>
   <link rel="stylesheet" href="css/log_in.css">
   <script src="./js/database.js"></script>
   <!--<script src="./script.js"></script>-->
   <script src="./js/multi-page-app.js"></script>
   <script src="./js/ui.js"></script>
+ 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -43,11 +45,11 @@
             <div class="divider"></div>
             <div class="input-main-div">
             <div class="email-input-div">
-                <input type="text"  class="log-input" id="emailInput" placeholder="Email" onclick="removeInputError()">
+                <input type="text"  class="log-input" id="emailInput" placeholder="Email" onclick="removeInputError()" autocomplete="off">
                 <img class="mail-Img" src="assets/img/mail.png">
             </div>
             <div class="password-input-div">
-              <input type="text" class="log-input" id="passwordInput" placeholder="Password" oninput="maskPassword(); togglePasswordImg()" onclick="removeInputError()">
+              <input type="text" class="log-input" id="passwordInput" placeholder="Password" oninput="maskPassword(); togglePasswordImg(); removeInputError()" onclick="removeInputError()" autocomplete="off">
               <img class="password-Img" src="assets/img/lock.png">
               <img onclick="openEyePassword()" class="password-Img-eye-of" src="assets/img/password-eye-of.svg">
               <img onclick="closeEyePassword()" class="password-Img-eye-on" src="assets/img/password-eye-on.svg">
@@ -70,6 +72,7 @@
 </div>
 </body>
 <script src="js/scriptLogIn.js"></script>
+<script src="js/summary.js"></script>
 </html>
 
 <!--<div class="j-logo-div-small">

@@ -4,21 +4,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">
     <title>SummaryUser-Join</title>
     <link rel="stylesheet" href="css/summary.css">
+    <link rel="stylesheet" href="css/header.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <!--<script src="./js/database.js"></script>
     <script src="./js/multi-page-app.js"></script>
-    <script src="./js/summary.js"></script>-->
+    >-->
 </head>
 
-<body onload="toggleGreetingsDisplay(); setGreeting(); setGreetedName()"> <!--"initSummary()"-->
+<body onload="toggleGreetingsDisplay(); setGreeting(); setGreetedName(); updateAllTasksInSummary()"> <!--"initSummary()"-->
     <div class="main-frame-div">
-        <div class="dummy_menu" id="dummyHeader"></div>
+        <div class="dummy_menu" id="dummYMenu"></div>
         <div class="under-frame-div">
-            <header class="dummy_header" id="dummyHeader"></header>
+            <header>
+                <div class="logo-header-div">
+                    <img class="img-logo-header" src="assets/img/j-logo-small.svg">
+                </div>
+                <div class="header-title">Kanban Project Management Tool</div>
+                <nav>
+                    <div class="help-button"><img class="help-button-img" src="./assets/img/help-icon.svg"></div>
+                    <div class="initials-circle" id="navCircle" onclick="openNavWindowFrame()"></div>
+                    <div class="nav-menu-resp-frame">
+                        <div class="nav-menu-responsive">
+                            <a class="nav-a">Help</a>
+                            <a class="nav-a">Legal Notice</a>
+                            <a class="nav-a">Privacy Policy</a>
+                            <a class="nav-a">Log out</a>
+                        </div>
+                </nav>
+           <div class="nav-menu-frame">
+            <div class="nav-menu">
+                <a class="nav-a">Legal Notice</a>
+                <a class="nav-a">Privacy Policy</a>
+                <a class="nav-a">Log out</a>
+            </div>
+            </div>
+        </header>
             <div class="greetings-frame-responsive">
                 <div class="greetings-div-responsive">
                     <div class="greeting-responsive" id="greetingSummary">Good morning,</div>
@@ -40,7 +65,7 @@
                 <div class="main-div">
                     <div class="tasks-div">
                         <div class="to-do-indicator-div">
-                            <a href="./board.html">
+                            <a class="a-frame" href="./board.html">
                                 <div class="to-do-div">
                                     <section class="to-do">
                                         <div class="pencil-div-blue-frame">
@@ -56,13 +81,13 @@
                                             </div>
                                         </div>
                                         <div class="to-do-amount">
-                                            <span class="amount" id="toDoAmountVariable">1</span>
+                                            <span class="amount" id="toDoAmount">1</span>
                                             <h3 class="to-do-amount-undertitle">To-do</h3>
                                         </div>
                                     </section>
                                 </div>
                             </a>
-                            <a href="./board.html">
+                            <a class="a-frame" href="./board.html">
                                 <div class="done-div">
                                     <section class="done">
                                         <div class="vector-div-blue-frame">
@@ -76,14 +101,14 @@
                                             </div>
                                         </div>
                                         <div class="check-amount">
-                                            <span class="amount" id="toDoAmountVariable">1</span>
+                                            <span class="amount" id="doneAmount">1</span>
                                             <h3 class="check-amount-undertitle">Done</h3>
                                         </div>
                                     </section>
                                 </div>
                             </a>
                         </div>
-                        <a href="./board.html">
+                        <a class="a-frame" href="./board.html">
                             <div class="to-do-urgency-div">
                                 <div class="urgency-div">
                                     <div class="urgency">
@@ -91,7 +116,7 @@
                                             <img class="urgency-img" src="assets/img/citroenWhite.svg">
                                         </div>
                                         <div class="urgency-amount">
-                                            <span class="amount" id="urgencyAmountVariable">1</span>
+                                            <span class="amount" id="urgencyAmount">1</span>
                                             <small class="urgency-amount-undertitle">Urgent</small>
                                         </div>
                                     </div>
@@ -105,8 +130,9 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="./board.html">
+                        
                             <div class="tasks-counter-div">
+                            <a class="a-frame" href="./board.html">
                                 <div class="t-in-board-div">
                                     <div class="t-in-board">
                                         <span class="amount" id="taskBoardAmount">5</span>
@@ -114,15 +140,15 @@
                                     </div>
                                 </div>
                             </a>
-                            <a href="./board.html">
+                            <a class="a-frame" href="./board.html">
                                 <div class="t-in-progress-div">
                                     <div class="t-in-progress">
-                                        <span class="amount" id="taskProgressAmount">55555555555</span>
+                                        <span class="amount" id="taskProgressAmount">1</span>
                                         <h3 class="t-in-progress-undertitle">Tasks in<br> Progress</h3>
                                     </div>
                                 </div>
                             </a>
-                            <a href="./board.html">
+                            <a class="a-frame" href="./board.html">
                                 <div class="awaiting-feedback-div">
                                     <div class="awaiting-feedback">
                                         <span class="amount" id="awaitingFeedbackAmount">2</span>
@@ -143,6 +169,12 @@
         </div>
     </div>
 </body>
+<!--<script src="js/add_task.js"></script>-->
+<script src="js/board.js"></script>
+<script src="js/loadTasks.js"></script>
+<script src="js/filterTasks.js"></script>
+<script src="js/showTasks.js"></script>
 <script src="js/summary.js"></script>
+<script src="js/scriptLogIn.js"></script>
 
 </html>

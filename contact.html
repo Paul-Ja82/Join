@@ -25,7 +25,6 @@
 <body class="ff-inter" onload="initContact()">
     <!-- HEADER  -->
     <header id="headerContainer" class="flex-row">
-        HEADER
     </header>
 
     <!-- MENU -->
@@ -56,26 +55,36 @@
         </div>
         <!-- detail container  -->
         <div id="detailContainer" class="d-none">
-            <h1>Contacts</h1>
-            <button id="closeDetailButton" class="h-pointer" onclick="closeDetailButtonHandler()">x</button>
+            <h1 id="detailHeadline">Contacts</h1>
+            <p id="infoTagLine">Better with a team</p>
+            <div id="cdDivider"></div>
+            <!-- <button id="closeDetailButton" class="h-pointer" onclick="closeDetailButtonHandler()">x</button> -->
+            <img id="closeDetailButton" src="./assets/img/arrowLeft.svg" alt="close-icon" class="h-pointer" onclick="closeDetailButtonHandler()">
             <!-- info container -->
             <div id="infoContainer">
-                <div id="coninfoPersonIcon" class="person-icon">
-                    <p id="coninfoMonogram">xx</p>
-                </div>
-                <p id="coninfoName">debug: should be set</p>
-                <div id="coninfoButtonContainer">
-                    <div id="conInfoButtonEdit" class="coninfo-button flex-row h-pointer" onclick="editContactButtonHandler()">
-                        <img class="coninfo-button-icon" src="./assets/icons/icon-pencil.svg" alt="icon-pencil">
-                        <p class="coninfo-button-text">Edit</p>
+                <div id="coninfoNameWrapper">
+                    <div id="coninfoPersonIcon" class="person-icon">
+                        <p id="coninfoMonogram">xx</p>
                     </div>
-                    <div class="coninfo-button flex-row h-pointer" onclick="deleteButtonHandler()">
-                        <img class="coninfo-button-icon" src="./assets/icons/icon-trash.svg" alt="icon-trash">
-                        <p class="coninfo-button-text">Delete</p>
+                    <div id="coninfoNameWrapper2">
+                        <p id="coninfoName">debug: should be set</p>
+                        <div id="coninfoButtonContainer">
+                            <div id="conInfoButtonEdit" class="coninfo-button flex-row h-pointer" onclick="editContactButtonHandler()">
+                                <img class="coninfo-button-icon" src="./assets/icons/icon-pencil.svg" alt="icon-pencil">
+                                <p class="coninfo-button-text">Edit</p>
+                            </div>
+                            <div class="coninfo-button flex-row h-pointer" onclick="deleteButtonHandler()">
+                                <img class="coninfo-button-icon" src="./assets/icons/icon-trash.svg" alt="icon-trash">
+                                <p class="coninfo-button-text">Delete</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <p id="coninfoEmail">debug: should be set</p>
-                <p id="coninfoPhone">debug: should be set</p>
+                <h2 id="coninfoHeading" class="mt">Contact Information</h2>
+                <h3 id="coninfoEmailHeading" class="coninfoHeadingH3 mt">Email</h3>
+                <a id="coninfoEmail" class="mt" href="mailto:testen@test.test">debug: should be set</a>
+                <h3 id="coninfoPhoneHeading" class="coninfoHeadingH3 mt">Phone</h3>
+                <p id="coninfoPhone" class="mt">debug: should be set</p>
             </div>
         </div>
     </main>
@@ -88,12 +97,13 @@
             <div id="CDheaderContainer" class="bg-menu">
                 <h2 id="CDheadline">Add Contact</h2>
                 <p id="CDtagline">Tasks are better with a team</p>
-            </div>
-            <div id="cdPersonIcon" class="person-icon">
-                <p id="cdMonogram">xx</p>
-                <img id="cdPersonIconAdd" src="./assets/icons/icon-person-white.svg" alt="">
+                <div id="cdHeaderDivider"></div>
             </div>
             <div id="CDcontentContainer" class="bg-white">
+                <div id="cdPersonIcon" class="person-icon">
+                    <p id="cdMonogram">xx</p>
+                    <img id="cdPersonIconAdd" src="./assets/icons/icon-person-white.svg" alt="">
+                </div>
                 <!-- contact form -->
                 <form id="contactForm" novalidate>
                     <!-- name input  -->
@@ -130,15 +140,17 @@
                         <p id="phoneVmsg" class="validation-message v-hidden">debug: should not display</p>
                     </div>
                     <!-- buttons -->
-                    <button id="cdCancelButton" class="button-wIcon button-sec d-none" type="button" onclick="closeDialog()">
-                        <span class="icon-button-text">Cancel</span>
-                        <img class="icon-button-icon" src="./assets/icons/icon-close.svg" alt="icon">
-                    </button>
-                    <button id="cdDeleteButton" class="button button-sec d-none" type="button" onclick="deleteButtonHandler()">Delete</button>
-                    <button id="CDsubmitButton" class="button-wIcon button-prim" type="submit" disabled>
-                        <span id="CDsubmitButtonText" class="icon-button-text">debug: text should be set</span>
-                        <img class="icon-button-icon" src="./assets/icons/icon-check.svg" alt="icon">
-                    </button>
+                    <div class="cdButtonContainer">
+                        <button id="cdCancelButton" class="button-wIcon button-sec d-none" type="button" onclick="closeDialog()">
+                            <span class="icon-button-text">Cancel</span>
+                            <img class="icon-button-icon" src="./assets/icons/icon-close.svg" alt="icon">
+                        </button>
+                        <button id="cdDeleteButton" class="button button-sec d-none" type="button" onclick="deleteButtonHandler()">Delete</button>
+                        <button id="CDsubmitButton" class="button-wIcon button-prim" type="submit" disabled>
+                            <span id="CDsubmitButtonText" class="icon-button-text">debug: text should be set</span>
+                            <img class="icon-button-icon" src="./assets/icons/icon-check.svg" alt="icon">
+                        </button>
+                    </div>
 
                 </form>
             </div>
