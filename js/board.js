@@ -14,7 +14,9 @@ let dragAndDropSections = [
 // let sectionToSaveTask;
 
 function init(params) {
+  console.log('init()'); ///DEBUG
   // getIdAndData((pathData = ""));
+  include();
 }
 
 async function showDialog(selectedProcessCategory) {

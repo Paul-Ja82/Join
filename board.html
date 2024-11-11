@@ -7,11 +7,15 @@
         <link rel="stylesheet" href="./css/board.css" />
         <link rel="stylesheet" href="./assets/fonts/fonts.css" />
         <link rel="stylesheet" href="css/add_Task.css" />
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="./css/menu.css">
+        <script src="./js/ui.js"></script>
+        <script src="./script.js"></script>
         <title>Board - join</title>
     </head>
-    <body id="board_body" onload="getIdAndData(pathData=''); init(); preparingElements()" class="no_drop_area">
+    <body id="board_body" onload="getIdAndData(pathData=''); init();preparingElements()" class="no_drop_area">
         <div id="dummy_header"></div>
-        <div id="dummy_menu"></div>
+        <div id="dummy_menu" data-include="./assets/templates/menu_template.html"></div>
         <div id="insertAddedToTaskConfirmation">
 
         </div>

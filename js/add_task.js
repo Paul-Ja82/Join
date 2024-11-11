@@ -4,6 +4,7 @@ const priorityClasses = ["low", "medium", "urgent"];
 let subtasks = [];
 let selectedPrio = "";
 let selectedContacts = [];
+/*
 let contacts = [
   "Anna Müller",
   "Ben Schneider",
@@ -16,6 +17,7 @@ let contacts = [
   "Isabel Koch",
   "Jonas Lehmann",
 ];
+*/
 let isListOpen = false;
 
 const avatarColors = ["#3498db", "#e74c3c", "#f39c12", "#2ecc71", "#9b59b6"];
