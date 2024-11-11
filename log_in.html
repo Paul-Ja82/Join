@@ -8,15 +8,16 @@
   <title>Log in Join </title>
   <link rel="stylesheet" href="css/log_in.css">
   <script src="./js/database.js"></script>
-  <!--<script src="./script.js"></script>-->
+  <script src="./script.js"></script>
   <script src="./js/multi-page-app.js"></script>
   <script src="./js/ui.js"></script>
+  <script src="./js/sign_up.js"></script>
  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
-<body onload="animateLogo(); showDivsDelayed(); colorBody(); colorLogo()"> <!--initLogin();--> 
+<body onload="animateLogo(); showDivsDelayed(); colorBody(); colorLogo(); initLogin()"> <!--initLogin();--> 
   <svg style="display: none;">
     <symbol id="icon-j-logo-bigger" viewBox="0 0 26 32">
         <path class="path1" d="M18.752 0h-5.797v6.67h5.797v-6.67z"></path>
@@ -40,7 +41,7 @@
         <a class="sign-up-button" href="./sign_up.html">Sign up</a>
        </div>
     </div>
-    <form class="log-in-div">
+    <form id="signUpForm" class="log-in-div">
             <h1 class="log-in-header">Log in</h1>
             <div class="divider"></div>
             <div class="input-main-div">
@@ -60,7 +61,8 @@
                 <label class="r-box-label">Remember me</label>
             </div>
             <div class="log-in-buttons-div">
-                <a  class="log-in-button"  onclick="checkEmailAndPassword()">Log in</a>       <!--login(); -->
+                <!-- <a  class="log-in-button"  onclick="checkEmailAndPassword()">Log in</a>       login(); -->
+                <a  class="log-in-button"  onclick="login()">Log in</a> 
                 <a  class="guest-log-in-button" href="./summary_guest.html">Guest Log in</a>
             </div>
     </form>
@@ -72,7 +74,7 @@
 </div>
 </body>
 <script src="js/scriptLogIn.js"></script>
-<script src="js/summary.js"></script>
+<!-- <script src="js/summary.js"></script> -->
 </html>
 
 <!--<div class="j-logo-div-small">
