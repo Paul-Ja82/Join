@@ -18,7 +18,7 @@ header {
     color: rgba(0, 0, 0, 1);
 }
 
-nav {
+.nav-header {
     width: 104px;
     height: 56px;
     margin-right: clamp(1rem, 0.176rem + 3.065vw, 2.188rem);
@@ -141,7 +141,7 @@ nav {
        display: none;
     }
 
-    nav {
+    .nav-header {
         width: clamp(2.5rem, 1.806rem + 2.581vw, 3.5rem);
         height: auto;
     }
