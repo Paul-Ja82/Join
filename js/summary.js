@@ -19,62 +19,48 @@ function toggleGreetingsDisplay() {
     }
 }
 
+function ifElseForSetGreeting(currentHour) {
+    if (currentHour >= 5 && currentHour < 13) {
+        return "Good morning,";
+    } else if (currentHour >= 13 && currentHour < 18) {
+        return "Good afternoon,";
+    } else if (currentHour >= 18 && currentHour < 23) {
+        return "Good evening,";
+    } else {
+        return "Good night,";
+    }
+}
+
 function setGreeting() {
     const greetingElements = document.querySelectorAll('#greetingSummary');
     const currentHour = new Date().getHours();
-    let greetingText = "";
-
-    if (currentHour >= 5 && currentHour < 13) {
-        greetingText = "Good morning,";
-    } else if (currentHour >= 13 && currentHour < 18) {
-        greetingText = "Good afternoon,";
-    } else if (currentHour >= 18 && currentHour < 23) {
-        greetingText = "Good evening,";
-    } else {
-        greetingText = "Good night,";
-    }
-
+    const greetingText = ifElseForSetGreeting(currentHour);
     for (let i = 0; i < greetingElements.length; i++) {
         greetingElements[i].textContent = greetingText;
     }
 }
 
+
 document.addEventListener("DOMContentLoaded", function () {
     setGreeting();
 });
 
-const dummyDatabase = [
-    {
-        "name": "Max Mustermann",
-        "email": "user2@example2.com",
-        "password": "password321"
-    }
-];
 
-localStorage.setItem('dummyDatabase', JSON.stringify(dummyDatabase));
-console.log(localStorage.getItem('dummyDatabase'));
-
-function setGreetedName() {
-    const storedDatabase = JSON.parse(localStorage.getItem('dummyDatabase'));
+function setGreetedName() { 
+    const storedName = localStorage.getItem('loggedInUserName');
     let greetednameText = "";
 
-    if (storedDatabase && Array.isArray(storedDatabase) && storedDatabase.length > 0) {
-        const name = storedDatabase[0].name;
-        console.log('Abgerufener Name:', name); 
+    if (storedName) {
+        console.log('Retrieved Name:', storedName); 
 
         const greetedNameElements = document.querySelectorAll('#greetedName');
         for (let i = 0; i < greetedNameElements.length; i++) {
-            greetedNameElements[i].textContent = name;
+            greetedNameElements[i].textContent = storedName;
         }
     } else {
-        console.error('No data found in Local Storage or data is invalid.');
+        console.error('No name found in Local Storage.');
     }
 }
-
-
-
-
-
 
 document.addEventListener("DOMContentLoaded", function () {
     let amountElements = document.querySelectorAll('.amount');
@@ -87,6 +73,54 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 });
+
+console.log(tasksTodo);
+console.log(tasksInProgress);
+console.log(tasksAwaitFeedback);
+console.log(tasksDone);
+
+function updateTkToDo() {
+    const tasksTodo = [];
+    const toDoAmount = document.getElementById('toDoAmount');
+
+    if (toDoAmount) {
+        toDoAmount.textContent = tasksTodo.length; 
+    }
+}
+
+function updateTkInProgress() {
+    const tasksInProgress = [];
+    const tasksInProgressAmount = document.getElementById('taskProgressAmount');
+
+    if (tasksInProgressAmount) {
+        tasksInProgressAmount.textContent = tasksInProgress.length; 
+    }
+}
+
+function updateTkAwaitFeedback() {
+    const AwaitFeedback = [];
+    const awaitingFeedbackAmount = document.getElementById('awaitingFeedbackAmount');
+
+    if (awaitingFeedbackAmount) {
+        awaitingFeedbackAmount.textContent = tasksAwaitFeedback.length; 
+    }
+}
+
+function updateTkDoneAmount() {
+    const tasksDone = [];
+    const doneAmount = document.getElementById('doneAmount');
+
+    if (doneAmount) {
+        doneAmount.textContent = tasksDone.length; 
+    }
+}
+
+function updateAllTasksInSummary() {
+    updateTkToDo();
+    updateTkInProgress();
+    updateTkAwaitFeedback() 
+    updateTkDoneAmount();
+}
 
 
 
