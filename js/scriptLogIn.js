@@ -1,14 +1,14 @@
 function animateLogo() {
     const logo = document.querySelector(".j-logo-img");
     logo.classList.add("start-position");
-    setTimeout(() => {
+    setTimeout(function() {
         logo.classList.add("animate-logo");
     }, 500);
 }
 
+
 document.addEventListener("DOMContentLoaded", function() {
     
-    console.log("Seite geladen");
 });
 
 
@@ -53,34 +53,34 @@ function colorLogo() {
     }
 }
 
-function maskPassword() {
-    const input = document.getElementById("passwordInput");
-    let actualValue = input.dataset.actualValue || ""; 
+function supportForMaskPassword(input, actualValue) {
     const lastChar = input.value.slice(-1);
-
     if (input.value.length < actualValue.length) {
         actualValue = actualValue.slice(0, input.value.length);
     } else {
         actualValue += lastChar;
     }
-
-    input.dataset.actualValue = actualValue;
-
     const eyeOnImg = document.querySelector('.password-Img-eye-on');
     if (eyeOnImg && eyeOnImg.style.display === 'block') {
         input.value = actualValue;
     } else {
-        input.value = '✹'.repeat(actualValue.length); // 8-spitziger Stern verwenden
+        input.value = '✹'.repeat(actualValue.length);
     }
+
+    return actualValue;
+}
+
+function maskPassword() {
+    const input = document.getElementById("passwordInput");
+    let actualValue = input.dataset.actualValue || ""; 
+
+    actualValue = supportForMaskPassword(input, actualValue);
+    input.dataset.actualValue = actualValue;
 }
 
 
-function togglePasswordImg() {
-    const input = document.getElementById("passwordInput");
-    const lockImg = document.querySelector('.password-Img');
-    const eyeOffImg = document.querySelector('.password-Img-eye-of');
-    const eyeOnImg = document.querySelector('.password-Img-eye-on');
 
+function eyeLockVariations(input, lockImg, eyeOffImg, eyeOnImg) {
     if (input.value.length > 0) {
         if (lockImg) lockImg.style.display = 'none';
         if (eyeOffImg) eyeOffImg.style.display = 'block';
@@ -91,6 +91,16 @@ function togglePasswordImg() {
         if (eyeOnImg) eyeOnImg.style.display = 'none';
     }
 }
+
+function togglePasswordImg() {
+    const input = document.getElementById("passwordInput");
+    const lockImg = document.querySelector('.password-Img');
+    const eyeOffImg = document.querySelector('.password-Img-eye-of');
+    const eyeOnImg = document.querySelector('.password-Img-eye-on');
+
+    eyeLockVariations(input, lockImg, eyeOffImg, eyeOnImg);
+}
+
 
 function openEyePassword() {
     const eyeOffImg = document.querySelector('.password-Img-eye-of');
@@ -120,11 +130,13 @@ function closeEyePassword() {
 
 const dummyDatabase = [
     {
+        "id": "1111",
         "name": "Paul Dietrich",
         "email": "user@example.com",
         "password": "password123"
     },
-    {
+    {    
+        "id": "2222",
         "name": "Maximilian Mustermann",
         "email": "user2@example2.com",
         "password": "password321"
@@ -132,23 +144,22 @@ const dummyDatabase = [
 
 ];
 
-function checkEmailAndPassword() {
-    const emailInput = document.getElementById('emailInput');
-    const passwordInput = document.getElementById('passwordInput');
-    const errorMessage = document.querySelector('.error-input-message');
-
-    const actualPasswordValue = passwordInput.dataset.actualValue || '';
+function validateUser(email, password) {
     let userExists = false;
     let loggedInUser = null;
 
     for (let i = 0; i < dummyDatabase.length; i++) {
-        if (dummyDatabase[i].email === emailInput.value && dummyDatabase[i].password === actualPasswordValue) {
+        if (dummyDatabase[i].email === email && dummyDatabase[i].password === password) {
             userExists = true;
             loggedInUser = dummyDatabase[i];
             break;
         }
     }
 
+    return { userExists, loggedInUser };
+}
+
+function handleValidationResult(userExists, emailInput, passwordInput, errorMessage) {
     if (!userExists) {
         emailInput.classList.add('input-error');
         passwordInput.classList.add('input-error');
@@ -157,27 +168,38 @@ function checkEmailAndPassword() {
             errorMessage.style.opacity = '1'; 
         }
     } else {
-
-        if (loggedInUser && loggedInUser.name) {
-            localStorage.setItem('loggedInUserName', loggedInUser.name);
-        }
-
-        emailInput.value = '';
-        passwordInput.value = '';
-
         emailInput.classList.remove('input-error');
         passwordInput.classList.remove('input-error');
 
         if (errorMessage) {
             errorMessage.style.opacity = '0'; 
         }
-
-        window.location.href = "./summary_user.html";
     }
 }
 
+function handleSuccessfulLogin(loggedInUser, emailInput, passwordInput) {
+    if (loggedInUser && loggedInUser.name) {
+        localStorage.setItem('loggedInUserName', loggedInUser.name);
+    }
 
+    emailInput.value = '';
+    passwordInput.value = '';
+    window.location.href = "./summary_user.html";
+}
 
+function checkEmailAndPassword() {
+    const emailInput = document.getElementById('emailInput');
+    const passwordInput = document.getElementById('passwordInput');
+    const errorMessage = document.querySelector('.error-input-message');
+    const actualPasswordValue = passwordInput.dataset.actualValue || '';
+
+    const { userExists, loggedInUser } = validateUser(emailInput.value, actualPasswordValue);
+    handleValidationResult(userExists, emailInput, passwordInput, errorMessage);
+
+    if (userExists) {
+        handleSuccessfulLogin(loggedInUser, emailInput, passwordInput);
+    }
+}
 
 function removeInputError() {
     const emailInput = document.getElementById('emailInput');

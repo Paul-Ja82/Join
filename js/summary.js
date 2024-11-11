@@ -19,25 +19,27 @@ function toggleGreetingsDisplay() {
     }
 }
 
+function ifElseForSetGreeting(currentHour) {
+    if (currentHour >= 5 && currentHour < 13) {
+        return "Good morning,";
+    } else if (currentHour >= 13 && currentHour < 18) {
+        return "Good afternoon,";
+    } else if (currentHour >= 18 && currentHour < 23) {
+        return "Good evening,";
+    } else {
+        return "Good night,";
+    }
+}
+
 function setGreeting() {
     const greetingElements = document.querySelectorAll('#greetingSummary');
     const currentHour = new Date().getHours();
-    let greetingText = "";
-
-    if (currentHour >= 5 && currentHour < 13) {
-        greetingText = "Good morning,";
-    } else if (currentHour >= 13 && currentHour < 18) {
-        greetingText = "Good afternoon,";
-    } else if (currentHour >= 18 && currentHour < 23) {
-        greetingText = "Good evening,";
-    } else {
-        greetingText = "Good night,";
-    }
-
+    const greetingText = ifElseForSetGreeting(currentHour);
     for (let i = 0; i < greetingElements.length; i++) {
         greetingElements[i].textContent = greetingText;
     }
 }
+
 
 document.addEventListener("DOMContentLoaded", function () {
     setGreeting();
@@ -60,12 +62,6 @@ function setGreetedName() {
     }
 }
 
-
-
-
-
-
-
 document.addEventListener("DOMContentLoaded", function () {
     let amountElements = document.querySelectorAll('.amount');
 
@@ -77,6 +73,54 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 });
+
+console.log(tasksTodo);
+console.log(tasksInProgress);
+console.log(tasksAwaitFeedback);
+console.log(tasksDone);
+
+function updateTkToDo() {
+    const tasksTodo = [];
+    const toDoAmount = document.getElementById('toDoAmount');
+
+    if (toDoAmount) {
+        toDoAmount.textContent = tasksTodo.length; 
+    }
+}
+
+function updateTkInProgress() {
+    const tasksInProgress = [];
+    const tasksInProgressAmount = document.getElementById('taskProgressAmount');
+
+    if (tasksInProgressAmount) {
+        tasksInProgressAmount.textContent = tasksInProgress.length; 
+    }
+}
+
+function updateTkAwaitFeedback() {
+    const AwaitFeedback = [];
+    const awaitingFeedbackAmount = document.getElementById('awaitingFeedbackAmount');
+
+    if (awaitingFeedbackAmount) {
+        awaitingFeedbackAmount.textContent = tasksAwaitFeedback.length; 
+    }
+}
+
+function updateTkDoneAmount() {
+    const tasksDone = [];
+    const doneAmount = document.getElementById('doneAmount');
+
+    if (doneAmount) {
+        doneAmount.textContent = tasksDone.length; 
+    }
+}
+
+function updateAllTasksInSummary() {
+    updateTkToDo();
+    updateTkInProgress();
+    updateTkAwaitFeedback() 
+    updateTkDoneAmount();
+}
 
 
 
