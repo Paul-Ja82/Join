@@ -44,8 +44,7 @@ header {
 }
 
 .initials-circle {
-    /* width:clamp(2rem, 1.306rem + 2.581vw, 3rem); */
-    font-size: clamp(2rem, 1.306rem + 2.581vw, 3rem);
+    width: clamp(2rem, 1.306rem + 2.581vw, 3rem);
     aspect-ratio: 1/1;
     border: solid 3px  rgba(42, 54, 71, 1);
     border-radius: 50%;
@@ -132,7 +131,7 @@ header {
     height: auto;
 }
 
-@media(max-width:1050px) {
+@media(max-width:950px) {
 
     .logo-header-div{
         display: block;

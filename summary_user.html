@@ -6,26 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">
     <title>SummaryUser-Join</title>
-    <link rel="stylesheet" href="css/summary.css">
+    
+    
     <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="./assets/fonts/fonts.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/summary.css">
+    <script src="./js/ui.js"></script>
+    <script src="./js/forms.js"></script>
+    <script src="js/board.js"></script>
+    <script src="./js/database.js"></script>
+    <script src="./js/multi-page-app.js"></script>
+    <script src="js/loadTasks.js"></script>
+    <script src="js/filterTasks.js"></script>
+    <script src="js/showTasks.js"></script>
+    <script src="js/header.js"></script>
+    <script src="script.js"></script>
+    <script src="js/scriptLogIn.js"></script>
+    <script src="js/summary.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <!--<script src="./js/database.js"></script>
-    <script src="./js/multi-page-app.js"></script>
-    >-->
+    
 </head>
 
-<body onload="toggleGreetingsDisplay(); setGreeting(); setGreetedName(); updateAllTasksInSummary()"> <!--"initSummary()"-->
+<body onload="toggleGreetingsDisplay(); setGreeting(); setGreetedName(); updateAllTasksInSummary(); getIdAndData(pathData=''); include()"> <!--"initSummary()"-->
     <div class="main-frame-div">
-        <div class="dummy_menu" id="dummYMenu"></div>
+        <div class="dummy_menu" data-include="assets/templates/menu_template.html"></div>
         <div class="under-frame-div">
             <header>
                 <div class="logo-header-div">
                     <img class="img-logo-header" src="assets/img/j-logo-small.svg">
                 </div>
                 <div class="header-title">Kanban Project Management Tool</div>
-                <nav>
+                <nav class="nav-header">
                     <div class="help-button"><img class="help-button-img" src="./assets/img/help-icon.svg"></div>
                     <div class="initials-circle" id="navCircle" onclick="openNavWindowFrame()"></div>
                     <div class="nav-menu-resp-frame">
@@ -81,7 +97,7 @@
                                             </div>
                                         </div>
                                         <div class="to-do-amount">
-                                            <span class="amount" id="toDoAmount">1</span>
+                                            <span class="amount" id="toDoAmount"></span>
                                             <h3 class="to-do-amount-undertitle">To-do</h3>
                                         </div>
                                     </section>
@@ -101,7 +117,7 @@
                                             </div>
                                         </div>
                                         <div class="check-amount">
-                                            <span class="amount" id="doneAmount">1</span>
+                                            <span class="amount" id="doneAmount"></span>
                                             <h3 class="check-amount-undertitle">Done</h3>
                                         </div>
                                     </section>
@@ -116,7 +132,7 @@
                                             <img class="urgency-img" src="assets/img/citroenWhite.svg">
                                         </div>
                                         <div class="urgency-amount">
-                                            <span class="amount" id="urgencyAmount">1</span>
+                                            <span class="amount" id="urgencyAmount"></span>
                                             <small class="urgency-amount-undertitle">Urgent</small>
                                         </div>
                                     </div>
@@ -135,7 +151,7 @@
                             <a class="a-frame" href="./board.html">
                                 <div class="t-in-board-div">
                                     <div class="t-in-board">
-                                        <span class="amount" id="taskBoardAmount">5</span>
+                                        <span class="amount" id="taskBoardAmount"></span>
                                         <h3 class="t-in-board-undertitle">Tasks in<br>Board</h3>
                                     </div>
                                 </div>
@@ -143,7 +159,7 @@
                             <a class="a-frame" href="./board.html">
                                 <div class="t-in-progress-div">
                                     <div class="t-in-progress">
-                                        <span class="amount" id="taskProgressAmount">1</span>
+                                        <span class="amount" id="taskProgressAmount"></span>
                                         <h3 class="t-in-progress-undertitle">Tasks in<br> Progress</h3>
                                     </div>
                                 </div>
@@ -151,7 +167,7 @@
                             <a class="a-frame" href="./board.html">
                                 <div class="awaiting-feedback-div">
                                     <div class="awaiting-feedback">
-                                        <span class="amount" id="awaitingFeedbackAmount">2</span>
+                                        <span class="amount" id="awaitingFeedbackAmount"></span>
                                         <h3 class="feedback-undertitle">Awaiting<br>Feedback</h3>
                                     </div>
                                 </div>
@@ -170,11 +186,4 @@
     </div>
 </body>
 <!--<script src="js/add_task.js"></script>-->
-<script src="js/board.js"></script>
-<script src="js/loadTasks.js"></script>
-<script src="js/filterTasks.js"></script>
-<script src="js/showTasks.js"></script>
-<script src="js/summary.js"></script>
-<script src="js/scriptLogIn.js"></script>
-
 </html>

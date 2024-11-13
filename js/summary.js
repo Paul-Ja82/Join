@@ -115,11 +115,28 @@ function updateTkDoneAmount() {
     }
 }
 
+function updateTkiInBoard() {
+    const toDoAmount = parseInt(updateTkToDo(), 10) || 0;
+    const inProgressAmount = parseInt(updateTkInProgress(), 10) || 0;
+    const awaitingFeedbackAmount = parseInt(updateTkAwaitFeedback(), 10) || 0;
+    const doneAmount = parseInt(updateTkDoneAmount(), 10) || 0;
+
+    const totalTasks = toDoAmount + inProgressAmount + awaitingFeedbackAmount + doneAmount;
+
+    const taskBoardAmountElement = document.getElementById("taskBoardAmount");
+    if (taskBoardAmountElement) {
+        taskBoardAmountElement.textContent = totalTasks.toString(); 
+    }
+}
+
+
+
 function updateAllTasksInSummary() {
     updateTkToDo();
     updateTkInProgress();
-    updateTkAwaitFeedback() 
+    updateTkAwaitFeedback(); 
     updateTkDoneAmount();
+    updateTkiInBoard();
 }
 
 

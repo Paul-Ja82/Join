@@ -46,7 +46,7 @@
             <div class="divider"></div>
             <div class="input-main-div">
             <div class="email-input-div">
-                <input type="text"  class="log-input" id="emailInput" placeholder="Email" onclick="removeInputError()" autocomplete="off">
+                <input type="text"  class="log-input" id="emailInput" placeholder="Email" onclick="removeInputError()" required autocomplete="off">
                 <img class="mail-Img" src="assets/img/mail.png">
             </div>
             <div class="password-input-div">
@@ -55,7 +55,10 @@
               <img onclick="openEyePassword()" class="password-Img-eye-of" src="assets/img/password-eye-of.svg">
               <img onclick="closeEyePassword()" class="password-Img-eye-on" src="assets/img/password-eye-on.svg">
           </div>
-          <p class="error-input-message">Check your email and password.Please</p>
+          <div class="hidden-input-messages-div">
+          <span class="error-input-message">Check your email and password.Please</span>
+          <a href="new_password.html" class="forgot-password-message">I forgot my password</a>
+        </div>
             <div class="remember-box-div" id="rememberBox">
                 <input type="checkbox" class="r-box-input" id="rememberCheckbox">
                 <label class="r-box-label">Remember me</label>

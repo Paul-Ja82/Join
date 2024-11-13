@@ -71,25 +71,31 @@ function supportForMaskPassword(input, actualValue) {
     } else {
         actualValue += lastChar;
     }
-    const eyeOnImg = document.querySelector('.password-Img-eye-on');
+    const eyeOnImg = input.parentElement.querySelector('.password-Img-eye-on'); 
     if (eyeOnImg && eyeOnImg.style.display === 'block') {
         input.value = actualValue;
     } else {
-        input.value = '✹'.repeat(actualValue.length);
+        input.value = '✶'.repeat(actualValue.length);
     }
 
     return actualValue;
 }
 
 function maskPassword() {
-    const input = document.getElementById("passwordInput");
-    let actualValue = input.dataset.actualValue || ""; 
+    const inputs = [
+        document.getElementById("passwordInput"),
+        document.getElementById("signUpPasswordInput")
+    ];
 
-    actualValue = supportForMaskPassword(input, actualValue);
-    input.dataset.actualValue = actualValue;
+    for (let i = 0; i < inputs.length; i++) {
+        const input = inputs[i];
+        if (input) {
+            let actualValue = input.dataset.actualValue || "";
+            actualValue = supportForMaskPassword(input, actualValue);
+            input.dataset.actualValue = actualValue;
+        }
+    }
 }
-
-
 
 function eyeLockVariations(input, lockImg, eyeOffImg, eyeOnImg) {
     if (input.value.length > 0) {
@@ -104,40 +110,67 @@ function eyeLockVariations(input, lockImg, eyeOffImg, eyeOnImg) {
 }
 
 function togglePasswordImg() {
-    const input = document.getElementById("passwordInput");
-    const lockImg = document.querySelector('.password-Img');
-    const eyeOffImg = document.querySelector('.password-Img-eye-of');
-    const eyeOnImg = document.querySelector('.password-Img-eye-on');
+    const inputs = [
+        document.getElementById("passwordInput"),
+        document.getElementById("signUpPasswordInput"),
+    ];
 
-    eyeLockVariations(input, lockImg, eyeOffImg, eyeOnImg);
+    for (var i = 0; i < inputs.length; i++) {
+        var input = inputs[i];
+        if (input) {
+            var lockImg = input.parentElement.querySelector('.password-Img');
+            var eyeOffImg = input.parentElement.querySelector('.password-Img-eye-of');
+            var eyeOnImg = input.parentElement.querySelector('.password-Img-eye-on');
+
+            eyeLockVariations(input, lockImg, eyeOffImg, eyeOnImg);
+        }
+    }
 }
 
-
 function openEyePassword() {
-    const eyeOffImg = document.querySelector('.password-Img-eye-of');
-    const eyeOnImg = document.querySelector('.password-Img-eye-on');
-    const input = document.getElementById("passwordInput");
+    const inputs = [
+        document.getElementById("passwordInput"),
+        document.getElementById("signUpPasswordInput")
+    ];
 
-    if (eyeOffImg && eyeOnImg) {
-        eyeOffImg.style.display = 'none';
-        eyeOnImg.style.display = 'block';
+    for (var i = 0; i < inputs.length; i++) {
+        var input = inputs[i];
+        if (input) {
+            var eyeOffImg = input.parentElement.querySelector('.password-Img-eye-of');
+            var eyeOnImg = input.parentElement.querySelector('.password-Img-eye-on');
 
-        input.value = input.dataset.actualValue || "";
+            if (eyeOffImg && eyeOnImg) {
+                eyeOffImg.style.display = 'none';
+                eyeOnImg.style.display = 'block';
+
+                input.value = input.dataset.actualValue || "";
+            }
+        }
     }
 }
 
 function closeEyePassword() {
-    const eyeOffImg = document.querySelector('.password-Img-eye-of');
-    const eyeOnImg = document.querySelector('.password-Img-eye-on');
-    const input = document.getElementById("passwordInput");
+    const inputs = [
+        document.getElementById("passwordInput"),
+        document.getElementById("signUpPasswordInput")
+    ];
 
-    if (eyeOffImg && eyeOnImg) {
-        eyeOffImg.style.display = 'block';
-        eyeOnImg.style.display = 'none';
+    for (var i = 0; i < inputs.length; i++) {
+        var input = inputs[i];
+        if (input) {
+            var eyeOffImg = input.parentElement.querySelector('.password-Img-eye-of');
+            var eyeOnImg = input.parentElement.querySelector('.password-Img-eye-on');
 
-        input.value = '✹'.repeat(input.dataset.actualValue ? input.dataset.actualValue.length : 0);
+            if (eyeOffImg && eyeOnImg) {
+                eyeOffImg.style.display = 'block';
+                eyeOnImg.style.display = 'none';
+
+                input.value = '✶'.repeat(input.dataset.actualValue ? input.dataset.actualValue.length : 0);
+            }
+        }
     }
 }
+
 
 const dummyDatabase = [
     {
