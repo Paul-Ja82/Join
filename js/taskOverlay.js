@@ -1,4 +1,5 @@
 let currentTaskInOverlay; 
+let currentUserLoggedIn = 'Ben Schneider'
 
 function openTaskOverlay(e) {
     document.getElementById(`task_overlay_ctn`).style.display = "flex";
@@ -91,16 +92,29 @@ function checkAssignedToOverlay(allTasks, keyToOpen) {
             let [firstName, lastName] = fullName.split(" ");
             let charOneFirstName = firstName.charAt(0);
             let charOneLastName = lastName.charAt(0);
+            let currentUser = checkCurrentUser(currentUserLoggedIn, fullName);
             contactsTemplate += `
                 <div class="single_task_single_contact">
                     <div class="task_contact_name_icon">${charOneFirstName}${charOneLastName}</div>
-                    <div class="task_contact_name">${fullName} (You??)</div>
+                    <div class="task_contact_name">${fullName} ${currentUser}</div>
                 </div>
             `
         }
     }
     return contactsTemplate
-}   
+} 
+
+function checkCurrentUser(currentUserLoggedIn, fullName) {
+    let currentUser = '';
+    // console.log('currentUserLoggedIn:', currentUserLoggedIn);
+    // console.log('fullNameAssignedTo:', fullName);
+    if (currentUserLoggedIn == fullName) {
+        currentUser = '(You)'
+    } else {
+        currentUser = ''
+    }
+    return currentUser
+}
    
 function checkSubtasksOverlay(allTasks, keyToOpen) {
     let subtasks = allTasks[keyToOpen].subtasks;
