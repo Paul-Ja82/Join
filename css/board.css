@@ -40,7 +40,7 @@ body {
   width: 100%;
   max-width: 1440px;
   height: 100vh;
-  max-height: 1024px;
+  /* max-height: 1024px; */
   position: relative;
   min-width: 320px;
   font-family: "Inter";
@@ -232,6 +232,12 @@ body {
     margin-bottom: 8px;
     /* border: 1px solid red;
     max-height: 50px; */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
   }
   & .single_task_description {
     font-size: 16px;
@@ -373,13 +379,15 @@ body {
   }
 }
 
+
+
 .board_ctn {
-  margin-left: calc(232px + 2.5%);
-  margin-right: 2.5%;
-  margin-top: 96px;
-  height: calc(100vh - 210px);
-  padding-top: 25px;
-  position: fixed;
+  /* margin: 0 2.5%; */
+  /* height: calc(100vh - 210px); */
+  /* padding-top: 25px; */
+  padding: 25px 2.5% 0 2.5%;
+  /* background-color: antiquewhite; */
+
   & .board_header {
     position: relative;
     margin: 0 50px 25px 0;
@@ -465,9 +473,14 @@ body {
     display: flex;
     gap: 12px;
     flex-wrap: nowrap;
-    width: 100%;
-    height: 98%;
-    padding-bottom: 10px;
+    /* width: 100%;
+    height: 88%; */
+    position: fixed;
+    top: 230px;
+    bottom: 10px;
+    /* right: 40px; */
+    /* left: calc((1440 / 2) + 235)px; */
+    /* border: 1px solid orangered; */
     & .task_section {
       width: 252px;
       padding: 0 10px 10px 0;
@@ -502,7 +515,7 @@ body {
         }
       }
       & .tasks_area {
-        max-height: calc(100% - 50px);
+        /* max-height: calc(100% - 280px); */
         /* background-color: lightcoral; */
         overflow: auto;
         /* padding-bottom: 24px; */
@@ -533,8 +546,8 @@ body {
         }
         & .task_section_tasks_area {
           display: block;
-          height: 100%;
-          min-height: calc(100vh - 370px);
+          max-height: 100%;
+          /* min-height: calc(100vh - 370px); */
           overflow-x: hidden;
           /* background-color: lightblue; */
           & .single_task_board {
@@ -630,12 +643,14 @@ body {
       margin-bottom: 12px;
       max-height: 70px;
       font-size: clamp(1.25rem, 0.893rem + 0.952vw, 1.75rem);
+      overflow: auto;
+      padding-right: 10px;
       /* border: 1px solid red; */
     }
     & .overlay_task_main {
       max-height: 500px;
       overflow: auto;
-      padding-right: 20px;
+      /* padding-right: 20px; */
       & .overlay_single_task_description {
         font-size: clamp(0.75rem, 0.571rem + 0.476vw, 1rem);
         font-weight: 400;
@@ -644,6 +659,7 @@ body {
         height: fit-content;
         max-height: 90px;
         overflow: auto;
+        padding-right: 10px;
         /* border: 1px solid blue; */
       }
       & .single_task_due_date_ctn {
@@ -806,11 +822,13 @@ body {
     left: 0px;
   }
   .board_ctn {
-    max-height: calc(100vh + 86px);
+    /* max-height: calc(100vh + 86px); */
     max-width: -webkit-fill-available;
     & .board_task_area {
       flex-direction: column;
-      height: 96%;
+      top: 230px;
+      right: 20px;
+      left: 260px;
       overflow: auto;
       & .task_section {
         width: 100%;
@@ -836,6 +854,7 @@ body {
             min-height: unset;
             & .single_task_ctn {
               margin: 5px;
+              max-width: 290px;
             }
           }
         }
@@ -851,7 +870,6 @@ body {
       & .board_header_headline_add {
         width: 552px;
         margin-bottom: 10px;
-        margin-top: 90px;
         & .add_task_ctn {
           position: unset;
           width: 48px;
@@ -868,6 +886,9 @@ body {
           width: 90%;
         }
       }
+    }
+    & .board_task_area {
+      top: 270px;
     }
   }
   .task_overlay_ctn {
@@ -897,6 +918,7 @@ body {
     min-width: 288px;
     padding-left: 5px;
     padding-top: 15px;
+  
     & .board_header {
       width: 100%;
       min-width: 288px;
@@ -914,7 +936,7 @@ body {
       }
     }
     & .board_task_area {
-      height: calc(96% - 80px);
+      top: 250px;
       & .task_section {
         width: 100%;
         & .task_section_header {
@@ -934,6 +956,23 @@ body {
       & .single_task_header_category_and_close {
         margin-bottom: 10px;
       }
+    }
+  }
+}
+
+@media (max-width: 850px) {
+  .board_ctn {
+    & .board_task_area {
+      top: 230px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .board_ctn {
+    & .board_task_area {
+      left: 20px;
+      bottom: 110px;
     }
   }
 }

@@ -16,7 +16,7 @@ function init(params) {
   // console.log('init()'); ///DEBUG
   // getIdAndData((pathData = ""));
   include();
-  loadContacts();
+  // loadContacts();
 }
 
 async function showDialog(selectedProcessCategory) {

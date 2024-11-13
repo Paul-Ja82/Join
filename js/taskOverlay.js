@@ -105,15 +105,15 @@ function checkAssignedToOverlay(allTasks, keyToOpen) {
 } 
 
 function checkCurrentUser(currentUserLoggedIn, fullName) {
-    let currentUser = '';
+    let currentUserForAssignedTo = '';
     // console.log('currentUserLoggedIn:', currentUserLoggedIn);
     // console.log('fullNameAssignedTo:', fullName);
     if (currentUserLoggedIn == fullName) {
-        currentUser = '(You)'
+        currentUserForAssignedTo = '(You)'
     } else {
-        currentUser = ''
+        currentUserForAssignedTo = ''
     }
-    return currentUser
+    return currentUserForAssignedTo
 }
    
 function checkSubtasksOverlay(allTasks, keyToOpen) {

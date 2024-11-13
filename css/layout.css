@@ -23,9 +23,9 @@ body {
 
 #contentContainer {
     grid-row: 2 / 3;
-    overflow-y: auto;
+    /* overflow-y: auto;
     scrollbar-color: var(--clr-menu-bg) transparent;
-    scrollbar-width: thin;
+    scrollbar-width: thin; */
     box-shadow: var(--shadow-top-inset);
 }
 
