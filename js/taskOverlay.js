@@ -25,7 +25,7 @@ function fillTaskOverlay(
   subTasks
 ) {
   document.getElementById(`dialogBox`).innerHTML = `
-
+  <div>     
     <div id="test1234" class="task_overlay_card_ctn single_task_ctn">
               <div class="overlay_task_header">
                       <div class="single_task_header_category_and_close">
@@ -81,7 +81,6 @@ function fillTaskOverlay(
                   </div>            
               </div>
           </div>
-       
     `;
   checkTaskCategoryColor("single_task_category_overlay");
 }
