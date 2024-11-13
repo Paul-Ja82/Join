@@ -93,8 +93,6 @@ body {
   height: 100vh;
   width: 100vw;
   z-index: 900;
-  transform: translateX(200vw);
-  transition: all 225ms ease-in-out;
 }
 
 .dialogBox {
@@ -103,6 +101,12 @@ body {
   padding: 40px;
   border-radius: 20px;
   width: 1200px;
+  transform: translateX(200vw); /* Startpunkt außerhalb des Bildschirms */
+  transition: all 225ms ease-in-out;
+}
+
+.d-none {
+  display: none;
 }
 
 .designFormAddTask {
@@ -134,7 +138,6 @@ body {
   width: 24px;
   height: 24px;
   object-fit: cover;
-  
 }
 
 .iconImage:hover {
@@ -207,7 +210,7 @@ body {
   100% {
     opacity: 1;
   }
-} 
+}
 
 .single_task_ctn {
   background-color: white;
