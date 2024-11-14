@@ -36,6 +36,7 @@
 
 :root {
     --border-radius-circular: 10000px;
+    /* --border-radius-default: 1em; */
     --transition-default: all 125ms ease;
     --shadow-button: 0px 4px 4px 0px #00000040;
     --shadow-top-inset: inset 0px 6px 5px -6px #888;

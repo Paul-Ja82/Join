@@ -289,12 +289,13 @@ p#coninfoName {
 
 #cdCloseIcon {
     position: absolute;
-    top: 1em;
-    right: 1em;
+    top: 2em;
+    right: 2em;
 }
 
 #CDheaderContainer {
-    flex: 0 0 50%;
+    flex: 0 0 46%;
+    gap: 0.5em;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -305,16 +306,13 @@ p#coninfoName {
     color: white;
 }
 
-#cdPersonIcon {
-    height: 4em;
-    margin: 0 auto;
-    transform: translateY(-50%);
-    border:  2px solid white;
+#CDheadline {
+    font-size: 2.7em;
+    font-weight: bold;
 }
 
-#CDheadline {
-    font-size: 2.3em;
-    font-weight: bold;
+#CDtagline {
+    font-size: 1.2em;
 }
 
 #cdHeaderDivider {
@@ -326,12 +324,58 @@ p#coninfoName {
 }
 
 #CDcontentContainer {
-    flex: 0 0 50%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 0.9em;
+    flex: 0 0 54%;
 }
 
+#cdPersonIcon {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    height: 8em;
+    border: 3.9px solid white;
+    margin: 0 auto;
+}
+
+#cdPersonIconAdd {
+    height: 3em;
+}
+
+#contactForm {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7em;
+    transform: translateY(1em);
+}
+
+#contactForm input {
+    border-radius: 0.4em;
+    padding: 0.3em 1.3em;
+    font-size: 1.3em;
+}
+
+#contactForm img.input-icon {
+    height: 1.3em;
+}
+
+#nameInputElem + .input-wrapper img.input-icon {
+    height: 1em;
+}
+
+/*
 input {
     border: 1px solid red;
     padding: 1em;
+}
+*/
+
+#contactForm .validation-message {
+    font-size: 0.9em;
 }
 
 .cdButtonContainer {
@@ -341,6 +385,16 @@ input {
 
 #cdCancelButton {
     display: none;
+}
+
+#CDsubmitButton {
+    margin-top: 1em;
+    font-size: 1.2em;
+    padding: 0.5em;
+}
+
+#CDsubmitButton img.icon-button-icon {
+    height: 0.7em;
 }
 
 /* Dialog Detailmenu */
