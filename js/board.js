@@ -42,11 +42,21 @@ function showTask() {
   document.getElementById("backgroundId").classList.remove("d-none");
   setTimeout(() => {
     document.getElementById("dialogBox").classList.add("showIt");
+    document.getElementById("dialogBox").style.backgroundColor = "unset";
   }, 10);
 
   document.getElementById("dialogBox").innerHTML = "";
   
 }
+
+function closeTask() {
+  document.getElementById("dialogBox").classList.remove("showIt");
+  setTimeout(() => {
+    document.getElementById("backgroundId").classList.add("d-none");
+    document.getElementById("dialogBox").style.backgroundColor = "white";
+  }, 225);
+}
+
 
 function closeDialog() {
   document.getElementById("dialogBox").classList.remove("showIt");
@@ -278,6 +288,15 @@ async function moveTaskWithMenu(id, toSection) {
   let path = `tasks/${keytoChangeSection}/currentStatus`;
   await putNewSection(path, toSection);
   await getIdAndData((pathData = ""));
+}
+
+function changeTaskValues(params) {
+ let selectedProcessCategory = "toDo";
+ document.getElementById("dialogBox").style.transition = "unset";
+ document.getElementById("dialogBox").style.backgroundColor = "white";
+ document.getElementById("dialogBox").innerHTML = renderFormAddTask(
+    selectedProcessCategory
+  );
 }
 
 function renderFormAddTask(selectedProcessCategory) {
