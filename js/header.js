@@ -26,3 +26,35 @@ window.addEventListener('resize', function() {
         navMenu.style.display = 'none';
     }
 });
+
+async function setGreetedName() { 
+    const storedName = localStorage.getItem('loggedInUserName');
+    let greetednameText = "";
+
+    if (storedName) {
+        console.log('Retrieved Name:', storedName); 
+
+        const greetedNameElements = document.querySelectorAll('#greetedName');
+        for (let i = 0; i < greetedNameElements.length; i++) {
+            greetedNameElements[i].textContent = storedName;
+        }
+    } else {
+        console.error('No name found in Local Storage.');
+    }
+}
+
+async function updateUserMonogram() {
+    await setGreetedName(); 
+    const storedName = localStorage.getItem('loggedInUserName');
+
+    if (storedName) {
+        const monogram = getMonogram(storedName);
+        const navCircleElement = document.getElementById('navCircle');
+        if (navCircleElement) {
+            navCircleElement.textContent = monogram;
+        }
+    } else {
+        console.error('No name found in Local Storage.');
+    }
+}
+

@@ -32,7 +32,7 @@
     
 </head>
 
-<body onload="toggleGreetingsDisplay(); setGreeting(); setGreetedName(); updateAllTasksInSummary(); getIdAndData(pathData=''); include()"> <!--"initSummary()"-->
+<body onload="toggleGreetingsDisplay(); updateUserMonogram(); setGreeting(); setGreetedName(); updateAllTasksInSummary(); getTaskData(); include()"> <!--"initSummary()"-->
     <div class="main-frame-div">
         <div class="dummy_menu" data-include="assets/templates/menu_template.html"></div>
         <div class="under-frame-div">
@@ -139,7 +139,7 @@
                                     <div class="urgency-divider"></div>
                                     <div class="deadline-div">
                                         <div class="deadline">
-                                            <h4 class="deadline-date">November 20, 2024</h4>
+                                            <h4 class="deadline-date" id="deadlineDate"></h4>
                                             <small class="deadline-undertitle">Upcoming Deadline</small>
                                         </div>
                                     </div>
@@ -185,5 +185,4 @@
         </div>
     </div>
 </body>
-<!--<script src="js/add_task.js"></script>-->
 </html>
