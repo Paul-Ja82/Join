@@ -58,3 +58,5 @@ async function updateUserMonogram() {
     }
 }
 
+updateUserMonogram();
+
