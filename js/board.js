@@ -112,6 +112,7 @@ async function checkDraggableArea(e) {
     } else {
         moveTo(newSection)
         endDragging()
+        getFilter()
     }
 }
 
@@ -173,7 +174,7 @@ function removeShadow(id) {
 async function moveTo(newSection) {
     // console.log(newSection);
     let keyForPath = checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys)
-    console.log(keyForPath);
+    // console.log(keyForPath);
     let path = `tasks/${keyForPath}/currentStatus`;
     // console.log(path);
     await putNewSection(path, newSection);

@@ -25,9 +25,7 @@
         </header>
         <!-- <div id="dummy_menu" data-include="./assets/templates/menu_template.html"></div> -->
         <div id="menuContainer" data-include="./assets/templates/menu_template.html"> </div>
-        <div id="insertAddedToTaskConfirmation">
-
-        </div>
+        <div id="insertAddedToTaskConfirmation"></div>
         <div id="backgroundId" class="background">
             
             <div id="dialogBox" class="dialogBox"></div>
@@ -70,7 +68,8 @@
                     </div>
                     <div id="tasks_area_add_task" class="tasks_area">
                         <div id="to_do_tasks_nothing" class="task_nothing_todo">No tasks To do</div>
-                        <div ondrop="checkDraggableArea(event); removeShadow('shadow_move_to_to_do_tasks')"
+                        <div 
+                            ondrop="removeShadow('shadow_move_to_to_do_tasks')"
                             ondragover="allowDrop(event); showShadow('shadow_move_to_to_do_tasks')" 
                             class="task_section_tasks_area" id="to_do_tasks">
                         </div>
@@ -216,7 +215,7 @@
             </div>
         </div>
         <div onclick="closeTaskOverlay(event)" id="task_overlay_ctn" class="task_overlay_ctn">
-        <!-- <div class="task_overlay_card_ctn single_task_ctn">
+            <!-- <div class="task_overlay_card_ctn single_task_ctn">
                 <div class="overlay_task_header">
                     <div class="single_task_header_category_and_close">
                         <div class="single_task_category">Technical Task</div>
