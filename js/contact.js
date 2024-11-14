@@ -7,7 +7,8 @@ let phoneInput;
 
 let emailAvailableContactFlag = false;
 
-let mediaDesktop = window.matchMedia('(768px < width)');
+// let mediaDesktop = window.matchMedia('(768px < width)');
+let mediaDesktop = window.matchMedia('(1010px < width)');
 mediaDesktop.addEventListener('change', mediaChangeHandler);
 
 /*##########*/

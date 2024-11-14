@@ -18,7 +18,8 @@ body {
     position: relative;
 }
 
-@media (768px < width) {
+/* @media (768px < width) { */
+@media (1010px < width) {
     #contentContainer {
         display: grid;
         grid-template-columns: auto 1fr;
@@ -88,7 +89,8 @@ body {
     margin-top: 0.3em;
 }
 
-@media (768px < width) {
+/* @media (768px < width) { */
+@media (1010px < width) {
     #listContainer {
         grid-column: 1 / 2;
         grid-row: 1 / 2;
@@ -227,7 +229,8 @@ p#coninfoName {
     font-weight: bold;
 }
 
-@media (768px < width) {
+/* @media (768px < width) { */
+@media (1010px < width) {
     #detailContainer {
         grid-column: 2 / 3;
         grid-row: 1 / 2;
@@ -351,7 +354,8 @@ input {
     box-shadow: var(--shadow-button);
 }
 
-@media (768px < width) {
+/* @media (768px < width) { */
+@media (1010px < width) {
     #cdCancelButton {
         display: unset;
     }
@@ -390,7 +394,8 @@ input {
     padding: 0.5em 1em;
 }
 
-@media (768px < width) { 
+/* @media (768px < width) {  */
+@media (1010px < width) { 
     .list-item:hover {
         background-color: green;
     }

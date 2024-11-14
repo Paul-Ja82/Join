@@ -134,8 +134,6 @@ function login() {
         loginMPA(user.id, rememberMeItem);
     } else {
         console.warn('Kein Login möglich'); ///DEBUG
-        logFlagsLogin(); ///DEBUG
-        logVarsLogin(); ///DEBUG
     }
 }
 
