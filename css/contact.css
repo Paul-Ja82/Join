@@ -10,8 +10,8 @@
 
 body {
     background-color: var(--clr-bg-main);
-    font-size: clamp(1rem, 0.679rem + 1.709vw, 1.5rem);
-
+    /* font-size: clamp(1rem, 0.679rem + 1.709vw, 1.5rem); */
+    font-size: clamp(0.9rem, 0.773rem + 0.676vw, 1.2rem);
 }
 
 #contentContainer {
@@ -20,6 +20,10 @@ body {
 
 /* @media (768px < width) { */
 @media (1010px < width) {
+    body {
+        font-size: clamp(1rem, 0.53rem + 0.744vw, 1.2rem);
+    }
+
     #contentContainer {
         display: grid;
         grid-template-columns: auto 1fr;
