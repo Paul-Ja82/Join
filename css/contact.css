@@ -126,7 +126,7 @@ body {
         padding: 1em 1.5em;
     }
 
-    .conlist-item:hover {
+    .conlist-item-hover:hover {
         background: var(--clr-conlist-item-bg-hover);
         color: black;
     }
@@ -135,6 +135,7 @@ body {
         background-color: var(--clr-conlist-item-bg-marked);
         color: white;
     }
+
 }
 
 

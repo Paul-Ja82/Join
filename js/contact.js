@@ -1,4 +1,5 @@
 let itemMarkClass= 'conlist-item-marked';
+let itemHoverClass= 'conlist-item-hover';
 let shownContactInfoId;
 
 let nameInput;
@@ -56,7 +57,7 @@ function contactToListItemHTML(contact, elemId) {
     let personIconColor= isColorLight(contact.color) ? 'black' : 'white';
     let contactMonogram= getMonogram(contact.name);
     return `
-        <div id="${elemId}" class="conlist-item flex-row h-pointer" data-contactid="${contact.id}">
+        <div id="${elemId}" class="conlist-item conlist-item-hover flex-row h-pointer" data-contactid="${contact.id}">
             <div class="person-icon conlist-person-icon" style="background-color:${contact.color};color:${personIconColor}">
                 <p>${contactMonogram}</p>
             </div>
@@ -75,10 +76,16 @@ function contactToListItemHTML(contact, elemId) {
 /*##################*/
 
 function listItemClickHandler(event) {
-    console.log('listItemClickHandler()'); ///DEBUG
     shownContactInfoId= event.currentTarget.dataset.contactid;
     if (mediaDesktop.matches) displayInfoDesktop(event);
     else displayInfoMobile(event);
+}
+
+function addHoverClassAllListItems() {
+    let listItems= document.querySelectorAll('.conlist-item');
+    for (itemI of listItems) {
+        itemI.classList.add(itemHoverClass);
+    }
 }
 
 /*##################*/
@@ -116,13 +123,17 @@ function displayInfoMobile(event) {
 
 function displayInfoDesktop(event) {
     let itemId= event.currentTarget.id;
+    let itemElem= document.getElementById(itemId);
     let contactId= event.currentTarget.dataset.contactid;
     if (isMarked(itemId, itemMarkClass)) {
         demmarkElem(itemId, itemMarkClass);
+        itemElem.classList.add(itemHoverClass);
         hideInfo();
     } else {
         demarkAllElems(itemMarkClass);
+        addHoverClassAllListItems();
         markElem(itemId, itemMarkClass);
+        itemElem.classList.remove(itemHoverClass);
         showInfo(contactId);
     }
 }
