@@ -242,10 +242,10 @@ p#coninfoName {
     }
 
     #infoContainer {
-        transform: translateX(100%);
+        transform: translateX(120%);
         transition: 
-            transform 0.25s,
-            display 0.25s allow-discrete;
+            transform 0.45s,
+            display 0.45s allow-discrete;
     }
 
     #infoContainer.show-info {
