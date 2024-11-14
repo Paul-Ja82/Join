@@ -12,7 +12,7 @@ function checkTask(e) {
     let container = e.target.closest('[id^="single_task_ctn"]');
     if (container) {
         let clickedSingleID = container.id.slice(15);
-        console.log(clickedSingleID);
+        // console.log(clickedSingleID);
         
         checkIndexOfAllTasks(clickedSingleID, allTasks, allKeys)
         openTaskOverlay(event)
@@ -82,7 +82,7 @@ function fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, s
 }
 
 function checkAssignedToOverlay(allTasks, keyToOpen) {
-    console.log(allTasks[keyToOpen]);
+    // console.log(allTasks[keyToOpen]);
     let contactsTemplate = "";
     if (allTasks[keyToOpen].assigned_to == 'nobody') {
         contactsTemplate = "";
