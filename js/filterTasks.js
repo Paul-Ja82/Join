@@ -7,6 +7,8 @@ let filteredTasksDone = [];
 
 function getFilter() {
     let filterInput = document.getElementById('name_of_task_input').value;
+    // console.log(filterInput);
+    
     filterTasks(allTasks, allKeys, filterInput)
     checkFilteredTaskLength(filteredTasks)
     pushFilteredTasksToArray()
@@ -20,12 +22,20 @@ function filterTasks(allTasks, allKeys, filter) {
     filteredTasks = [];
     filteredKeys = [];
     for (let i = 0; i < allKeys.length; i++) {
-        if(allTasks[`${allKeys[i]}`].title.toLowerCase().includes(`${filter.toLowerCase()}`) || 
-            allTasks[`${allKeys[i]}`].description.toLowerCase().includes(`${filter.toLowerCase()}`)) {
-                filteredTasks.push(allTasks[`${allKeys[i]}`])
-                filteredKeys.push(allKeys[i])
+        let task = allTasks[allKeys[i]];
+        if (task && (task.title || task.description)) {
+            let title = task.title ? task.title.toLowerCase() : "";
+            let description = task.description ? task.description.toLowerCase() : "";
+            if (title.includes(filter.toLowerCase()) || description.includes(filter.toLowerCase())) {
+                filteredTasks.push(task);
+                filteredKeys.push(allKeys[i]);
             }
         }
+    }
+    clearFilteredArrays()
+}
+
+function clearFilteredArrays() {
     filteredTasksTodo = [];
     filteredTasksInProgress = [];
     filteredTasksAwaitFeedback = [];

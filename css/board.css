@@ -41,7 +41,7 @@ body {
   width: 100%;
   max-width: 1440px;
   height: 100vh;
-  max-height: 1024px;
+  /* max-height: 1024px; */
   position: relative;
   min-width: 320px;
   
@@ -238,6 +238,12 @@ body {
     margin-bottom: 8px;
     /* border: 1px solid red;
     max-height: 50px; */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
   }
   & .single_task_description {
     font-size: 16px;
@@ -281,8 +287,10 @@ body {
     & .single_task_contacts_ctn {
       display: flex;
       position: relative;
-      height: 32px;
-      width: 200px;
+      height: 44px;
+      width: 170px;
+      margin-right: 10px;
+      overflow: auto;
       & .single_task_single_contact {
         position: absolute;
         display: flex;
@@ -377,13 +385,13 @@ body {
   }
 }
 
+
+
 .board_ctn {
-  margin-left: calc(232px + 2.5%);
-  margin-right: 2.5%;
-  margin-top: 96px;
-  height: calc(100vh - 210px);
-  padding-top: 25px;
-  position: fixed;
+  width: calc(100% - 50px);
+  padding: 25px 25px 0 25px;
+  /* background-color: antiquewhite; */
+  margin: 0;
   & .board_header {
     position: relative;
     margin: 0 50px 25px 0;
@@ -469,9 +477,14 @@ body {
     display: flex;
     gap: 12px;
     flex-wrap: nowrap;
-    width: 100%;
-    height: 98%;
-    padding-bottom: 10px;
+    /* width: 100%;
+    height: 88%; */
+    position: fixed;
+    top: 230px;
+    bottom: 20px;
+    /* right: 40px; */
+    /* left: calc((1440 / 2) + 235)px; */
+    /* border: 1px solid orangered; */
     & .task_section {
       width: 252px;
       padding: 0 10px 10px 0;
@@ -506,10 +519,8 @@ body {
         }
       }
       & .tasks_area {
-        max-height: calc(100% - 50px);
-        /* background-color: lightcoral; */
+        height: 97%;
         overflow: auto;
-        /* padding-bottom: 24px; */
         padding-right: 4px;
         & .task_nothing_todo {
           width: 96%;
@@ -537,10 +548,9 @@ body {
         }
         & .task_section_tasks_area {
           display: block;
-          height: 100%;
-          min-height: calc(100vh - 370px);
+          /* background-color: burlywood; */
+          min-height: calc(100% - 100px);
           overflow-x: hidden;
-          /* background-color: lightblue; */
           & .single_task_board {
             width: 220px;
           }
@@ -551,6 +561,7 @@ body {
         & .move_to_shadow {
           display: none;
           width: 96%;
+          max-width: 250px;
           height: 150px;
           color: rgba(168, 168, 168, 1);
           background-color: rgba(231, 231, 231, 1);
@@ -561,7 +572,7 @@ body {
           font-weight: 400;
           justify-content: center;
           align-items: center;
-          margin: 5px auto 20px auto;
+          /* margin: 5px auto 20px auto; */
         }
       }
     }
@@ -613,6 +624,9 @@ display: flex;
         justify-content: center;
         align-items: center;
         transition: all 0.1s ease-in-out;
+        position: absolute;
+        right: 20px;
+        top: 20px;
         &:hover {
           background-color: rgba(217, 217, 217, 1);
           cursor: pointer;
@@ -621,9 +635,13 @@ display: flex;
     }
     & .single_task_headline {
       font-weight: 700;
-      color: black;
-      margin-bottom: 20px;
-      font-size: 61px;
+      color: rgba(42, 54, 71, 1);
+      margin-bottom: 12px;
+      margin-right: 20px;
+      max-height: 70px;
+      font-size: clamp(1.25rem, 0.893rem + 0.952vw, 1.75rem);
+      overflow: auto;
+      padding-right: 10px;
       /* border: 1px solid red; */
     }
     & .overlay_task_main {
@@ -638,6 +656,7 @@ display: flex;
         height: fit-content;
         max-height: 90px;
         overflow: auto;
+        padding-right: 10px;
         /* border: 1px solid blue; */
       }
       & .single_task_due_date_ctn {
@@ -802,11 +821,13 @@ display: flex;
     left: 0px;
   }
   .board_ctn {
-    max-height: calc(100vh + 86px);
+    /* max-height: calc(100vh + 86px); */
     max-width: -webkit-fill-available;
     & .board_task_area {
       flex-direction: column;
-      height: 96%;
+      top: 230px;
+      right: 20px;
+      left: 260px;
       overflow: auto;
       & .task_section {
         width: 100%;
@@ -819,10 +840,11 @@ display: flex;
           overflow-y: unset;
           overflow: unset;
           padding-bottom: 0;
+          height: unset;
+          display: flex;
           & .task_nothing_todo {
             max-width: 396px;
-            margin-bottom: 20px;
-            margin-left: 0;
+            margin: 0 20px 20px 0;
           }
           & .task_section_tasks_area {
             display: flex;
@@ -830,8 +852,14 @@ display: flex;
             overflow-y: unset;
             overflow-x: auto;
             min-height: unset;
+            padding-bottom: 10px;
+            height: 100%;
+            min-height: 50px;
+            width: 100%;
+            /* background-color: lightblue; */
             & .single_task_ctn {
               margin: 5px;
+              max-width: 290px;
             }
           }
         }
@@ -847,7 +875,6 @@ display: flex;
       & .board_header_headline_add {
         width: 552px;
         margin-bottom: 10px;
-        margin-top: 90px;
         & .add_task_ctn {
           position: unset;
           width: 48px;
@@ -864,6 +891,9 @@ display: flex;
           width: 90%;
         }
       }
+    }
+    & .board_task_area {
+      top: 270px;
     }
   }
   .task_overlay_ctn {
@@ -888,14 +918,14 @@ display: flex;
     left: 0;
   }
   .board_ctn {
-    margin: 0 2.5%;
-    width: 95%;
+    /* margin: 0 2.5%;
+    width: 95%; */
     min-width: 288px;
-    padding-left: 5px;
-    padding-top: 15px;
+    /* padding-left: 5px;
+    padding-top: 15px; */
+  
     & .board_header {
-      width: 100%;
-      min-width: 288px;
+      width: 95%;
       & .board_header_headline_add {
         width: 100%;
         max-width: 552px;
@@ -910,7 +940,7 @@ display: flex;
       }
     }
     & .board_task_area {
-      height: calc(96% - 80px);
+      top: 250px;
       & .task_section {
         width: 100%;
         & .task_section_header {
@@ -930,6 +960,23 @@ display: flex;
       & .single_task_header_category_and_close {
         margin-bottom: 10px;
       }
+    }
+  }
+}
+
+@media (max-width: 850px) {
+  .board_ctn {
+    & .board_task_area {
+      top: 240px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .board_ctn {
+    & .board_task_area {
+      left: 20px;
+      bottom: 110px;
     }
   }
 }

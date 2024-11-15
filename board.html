@@ -1,173 +1,98 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="shortcut icon"
-      href="./assets/img/favicon.png"
-      type="image/x-icon"
-    />
-    <link rel="stylesheet" href="./css/board.css" />
-    <link rel="stylesheet" href="./assets/fonts/fonts.css" />
-    <link rel="stylesheet" href="css/add_Task.css" />
-    <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/menu.css" />
-    <link rel="stylesheet" href="./css/header.css" />
-    <script src="./js/database.js"></script>
-    <script src="./js/ui.js"></script>
-    <script src="./script.js"></script>
-    <script src="./js/header.js"></script>
-    <title>Board - join</title>
-  </head>
-  <body
-    id="board_body"
-    onload="getIdAndData(pathData=''); init();preparingElements()"
-    class="no_drop_area"
-  >
-    <div id="dummy_header" data-include="./header.html"></div>
-    <div
-      id="dummy_menu"
-      data-include="./assets/templates/menu_template.html"
-    ></div>
-    <div id="insertAddedToTaskConfirmation"></div>
-    <div id="backgroundId" class="background d-none">
-      <div id="dialogBox" class="dialogBox"></div>
-    </div>
-    <div class="board_ctn">
-      <div class="board_header">
-        <div class="board_header_headline_add">
-          <div class="board_header_headline">Board</div>
-          <div onclick="showDialog('todo')" class="add_task_ctn">
-            <span>Add Task</span>
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 32 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <mask
-                id="mask0_242426_5553"
-                style="mask-type: alpha"
-                maskUnits="userSpaceOnUse"
-                x="0"
-                y="0"
-                width="32"
-                height="32"
-              >
-                <rect width="32" height="32" fill="#D9D9D9" />
-              </mask>
-              <g mask="url(#mask0_242426_5553)">
-                <path
-                  d="M14.666 17.3327H6.66602V14.666H14.666V6.66602H17.3327V14.666H25.3327V17.3327H17.3327V25.3327H14.666V17.3327Z"
-                  fill="white"
-                />
-              </g>
-            </svg>
-          </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon"/>
+        <link rel="stylesheet" href="./css/layout.css" />
+        <link rel="stylesheet" href="./css/board.css" />
+        <link rel="stylesheet" href="./assets/fonts/fonts.css" />
+        <link rel="stylesheet" href="css/add_Task.css" />
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="./css/menu.css">
+        <link rel="stylesheet" href="./css/header.css">
+      
+        <script src="./js/database.js"></script>
+        <script src="./js/ui.js"></script>
+        <script src="./script.js"></script>
+        <script src="./js/header.js"></script>
+        <title>Board - join</title>
+    </head>
+    <body id="board_body" onload="getIdAndData(pathData=''); init(); preparingElements()" class="no_drop_area">
+        <!-- <div id="dummy_header" data-include="./header.html"></div> -->
+        <header id="headerContainer" class="flex-row" data-include="./header.html">
+            <p>shoud be included</p>
+        </header>
+        <!-- <div id="dummy_menu" data-include="./assets/templates/menu_template.html"></div> -->
+        <div id="menuContainer" data-include="./assets/templates/menu_template.html"> </div>
+        <div id="insertAddedToTaskConfirmation"></div>
+        <div id="backgroundId" class="background">
+            
+            <div id="dialogBox" class="dialogBox"></div>
         </div>
-        <div class="find_task_ctn">
-          <input
-            onkeydown="if(event.key === 'Enter') getFilter(event)"
-            type="text"
-            name="name_of_task"
-            id="name_of_task_input"
-            placeholder="Find Task"
-          />
-          <div onclick="getFilter()" class="button_find_task">
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 18 18"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M6.71181 13.2137C4.89463 13.2137 3.35669 12.5843 2.098 11.3256C0.839307 10.0669 0.209961 8.52899 0.209961 6.71181C0.209961 4.89463 0.839307 3.35669 2.098 2.098C3.35669 0.839307 4.89463 0.209961 6.71181 0.209961C8.52899 0.209961 10.0669 0.839307 11.3256 2.098C12.5843 3.35669 13.2137 4.89463 13.2137 6.71181C13.2137 7.44535 13.097 8.13721 12.8636 8.7874C12.6302 9.43758 12.3134 10.0127 11.9133 10.5129L17.5149 16.1145C17.6983 16.2979 17.79 16.5313 17.79 16.8147C17.79 17.0981 17.6983 17.3315 17.5149 17.5149C17.3315 17.6983 17.0981 17.79 16.8147 17.79C16.5313 17.79 16.2979 17.6983 16.1145 17.5149L10.5129 11.9133C10.0127 12.3134 9.43758 12.6302 8.7874 12.8636C8.13721 13.097 7.44535 13.2137 6.71181 13.2137ZM6.71181 11.2131C7.96217 11.2131 9.02497 10.7755 9.90022 9.90022C10.7755 9.02497 11.2131 7.96217 11.2131 6.71181C11.2131 5.46145 10.7755 4.39865 9.90022 3.5234C9.02497 2.64815 7.96217 2.21053 6.71181 2.21053C5.46145 2.21053 4.39865 2.64815 3.5234 3.5234C2.64815 4.39865 2.21053 5.46145 2.21053 6.71181C2.21053 7.96217 2.64815 9.02497 3.5234 9.90022C4.39865 10.7755 5.46145 11.2131 6.71181 11.2131Z"
-                fill="#2A3647"
-              />
-            </svg>
-          </div>
-        </div>
-      </div>
-      <div class="board_task_area">
-        <div id="task_section_todo" class="task_section">
-          <div class="task_section_header">
-            <span>To do</span>
-            <div onclick="showDialog('todo')" class="board_move_task_btn">
-              <svg
-                width="11"
-                height="11"
-                viewBox="0 0 11 11"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M5.6665 1.5V9.5"
-                  stroke="#2A3647"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M9.6665 5.57544L1.6665 5.57544"
-                  stroke="#2A3647"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
-              </svg>
+        <div id="contentContainer" class="board_ctn">
+            <div class="board_header">
+                <div class="board_header_headline_add">
+                    <div class="board_header_headline">Board</div>
+                    <div onclick="showDialog('todo')" class="add_task_ctn">
+                        <span>Add Task</span>
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <mask id="mask0_242426_5553" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="32">
+                                <rect width="32" height="32" fill="#D9D9D9" />
+                            </mask>
+                            <g mask="url(#mask0_242426_5553)">
+                                <path d="M14.666 17.3327H6.66602V14.666H14.666V6.66602H17.3327V14.666H25.3327V17.3327H17.3327V25.3327H14.666V17.3327Z" fill="white" />
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                <div id="find_task_ctn" class="find_task_ctn">
+                    <input onkeydown="if(event.key === 'Enter') getFilter(event)" type="text" name="name_of_task" id="name_of_task_input" placeholder="Find Task"/>
+                    <div onclick="getFilter()" class="button_find_task">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6.71181 13.2137C4.89463 13.2137 3.35669 12.5843 2.098 11.3256C0.839307 10.0669 0.209961 8.52899 0.209961 6.71181C0.209961 4.89463 0.839307 3.35669 2.098 2.098C3.35669 0.839307 4.89463 0.209961 6.71181 0.209961C8.52899 0.209961 10.0669 0.839307 11.3256 2.098C12.5843 3.35669 13.2137 4.89463 13.2137 6.71181C13.2137 7.44535 13.097 8.13721 12.8636 8.7874C12.6302 9.43758 12.3134 10.0127 11.9133 10.5129L17.5149 16.1145C17.6983 16.2979 17.79 16.5313 17.79 16.8147C17.79 17.0981 17.6983 17.3315 17.5149 17.5149C17.3315 17.6983 17.0981 17.79 16.8147 17.79C16.5313 17.79 16.2979 17.6983 16.1145 17.5149L10.5129 11.9133C10.0127 12.3134 9.43758 12.6302 8.7874 12.8636C8.13721 13.097 7.44535 13.2137 6.71181 13.2137ZM6.71181 11.2131C7.96217 11.2131 9.02497 10.7755 9.90022 9.90022C10.7755 9.02497 11.2131 7.96217 11.2131 6.71181C11.2131 5.46145 10.7755 4.39865 9.90022 3.5234C9.02497 2.64815 7.96217 2.21053 6.71181 2.21053C5.46145 2.21053 4.39865 2.64815 3.5234 3.5234C2.64815 4.39865 2.21053 5.46145 2.21053 6.71181C2.21053 7.96217 2.64815 9.02497 3.5234 9.90022C4.39865 10.7755 5.46145 11.2131 6.71181 11.2131Z" fill="#2A3647"/>
+                        </svg>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div id="tasks_area_add_task" class="tasks_area">
-            <div id="to_do_tasks_nothing" class="task_nothing_todo">
-              No tasks To do
-            </div>
-            <div
-              ondrop="checkDraggableArea(event); removeShadow('shadow_move_to_to_do_tasks')"
-              ondragover="allowDrop(event); showShadow('shadow_move_to_to_do_tasks')"
-              class="task_section_tasks_area"
-              id="to_do_tasks"
-            ></div>
-            <!-- <div id="shadow_move_to_todo" class="move_to_shadow"></div> -->
-          </div>
-        </div>
-        <div id="task_section_in_progress" class="task_section">
-          <div class="task_section_header">
-            <span>In progress</span>
-            <div onclick="showDialog('inProgress')" class="board_move_task_btn">
-              <svg
-                width="11"
-                height="11"
-                viewBox="0 0 11 11"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M5.6665 1.5V9.5"
-                  stroke="#2A3647"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M9.6665 5.57544L1.6665 5.57544"
-                  stroke="#2A3647"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
-              </svg>
-            </div>
-          </div>
-          <div id="tasks_area_in_progress" class="tasks_area">
-            <div id="in_progress_tasks_nothing" class="task_nothing_todo">
-              No tasks To do
-            </div>
-            <div
-              ondrop="checkDraggableArea(event); removeShadow('shadow_move_to_in_progress_tasks')"
-              ondragover="allowDrop(event); showShadow('shadow_move_to_in_progress_tasks')"
-              class="task_section_tasks_area"
-              id="in_progress_tasks"
-            >
-              <!-- <div draggable="true" ondragstart="startDragging(0)" onclick="openTaskOverlay(event)" id="single_task_ctn1" class="single_task_ctn">
+            <div class="board_task_area">
+                <div id="task_section_todo" class="task_section">
+                    <div class="task_section_header">
+                        <span>To do</span>
+                        <div onclick="showDialog('todo')" class="board_move_task_btn">
+                            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.6665 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M9.6665 5.57544L1.6665 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="tasks_area_add_task" class="tasks_area">
+                        <div id="to_do_tasks_nothing" class="task_nothing_todo">No tasks To do</div>
+                        <div 
+                            ondrop="removeShadow('shadow_move_to_to_do_tasks')"
+                            ondragover="allowDrop(event); showShadow('shadow_move_to_to_do_tasks')" 
+                            class="task_section_tasks_area" id="to_do_tasks">
+                        </div>
+                        <!-- <div id="shadow_move_to_todo" class="move_to_shadow"></div> -->
+                    </div>
+                </div>
+                <div id="task_section_in_progress" class="task_section">
+                    <div class="task_section_header">
+                        <span>In progress</span>
+                        <div onclick="showDialog('inProgress')" class="board_move_task_btn">
+                            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.6665 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M9.6665 5.57544L1.6665 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="tasks_area_in_progress" class="tasks_area" >
+                        <div id="in_progress_tasks_nothing" class="task_nothing_todo">No tasks To do</div>
+                        <div 
+                            ondrop="removeShadow('shadow_move_to_in_progress_tasks')" 
+                            ondragover="allowDrop(event); showShadow('shadow_move_to_in_progress_tasks')" 
+                            class="task_section_tasks_area" id="in_progress_tasks">
+                            <!-- <div draggable="true" ondragstart="startDragging(0)" onclick="openTaskOverlay(event)" id="single_task_ctn1" class="single_task_ctn">
                                 <div class="single_task_category">User Story</div>
                                 <div class="single_task_headline">Contact Form & Imprint</div>
                                 <div class="single_task_description">Create a contact form and imprint page...</div>
@@ -188,50 +113,27 @@
                                     </div>
                                 </div>
                             </div> -->
-            </div>
-            <!-- <div id="shadow_move_to_in_progress" class="move_to_shadow"></div> -->
-          </div>
-        </div>
-        <div id="task_section_await_feedback" class="task_section">
-          <div class="task_section_header">
-            <span>Await feedback</span>
-            <div
-              onclick="showDialog('awaitFeedback')"
-              class="board_move_task_btn"
-            >
-              <svg
-                width="11"
-                height="11"
-                viewBox="0 0 11 11"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M5.6665 1.5V9.5"
-                  stroke="#2A3647"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M9.6665 5.57544L1.6665 5.57544"
-                  stroke="#2A3647"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
-              </svg>
-            </div>
-          </div>
-          <div id="tasks_area_await_feedback" class="tasks_area">
-            <div id="await_feedback_tasks_nothing" class="task_nothing_todo">
-              No tasks To do
-            </div>
-            <div
-              ondrop="checkDraggableArea(event); removeShadow('shadow_move_to_await_feedback_tasks')"
-              ondragover="allowDrop(event); showShadow('shadow_move_to_await_feedback_tasks')"
-              class="task_section_tasks_area"
-              id="await_feedback_tasks"
-            >
-              <!-- <div draggable="true" ondragstart="startDragging(1)" onclick="openTaskOverlay(event)" id="single_task_ctn2" class="single_task_board single_task_ctn">
+                        </div>
+                        <!-- <div id="shadow_move_to_in_progress" class="move_to_shadow"></div> -->
+                    </div>
+                </div>
+                <div id="task_section_await_feedback" class="task_section" >
+                    <div class="task_section_header">
+                        <span>Await feedback</span>
+                        <div onclick="showDialog('awaitFeedback')" class="board_move_task_btn">
+                            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.6665 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M9.6665 5.57544L1.6665 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="tasks_area_await_feedback" class="tasks_area">
+                        <div id="await_feedback_tasks_nothing"  class="task_nothing_todo">No tasks To do</div>
+                        <div 
+                            ondrop="removeShadow('shadow_move_to_await_feedback_tasks')" 
+                            ondragover="allowDrop(event); showShadow('shadow_move_to_await_feedback_tasks')" 
+                            class="task_section_tasks_area" id="await_feedback_tasks">
+                            <!-- <div draggable="true" ondragstart="startDragging(1)" onclick="openTaskOverlay(event)" id="single_task_ctn2" class="single_task_board single_task_ctn">
                                 <div class="single_task_category">Technical Task</div>
                                 <div class="single_task_headline">HTML Base Template Creation</div>
                                 <div class="single_task_description">Create reusable HTML base templates...</div>
@@ -273,27 +175,20 @@
                                     </div>
                                 </div>
                             </div> -->
-            </div>
-            <!-- <div id="shadow_move_to_await_feedback" class="move_to_shadow"></div> -->
-          </div>
-        </div>
-        <div id="task_section_done" class="task_section">
-          <div class="task_section_header">
-            <span>Done</span>
-          </div>
-          <div id="tasks_area_done" class="tasks_area">
-            <div id="done_tasks_nothing" class="task_nothing_todo">
-              No tasks Done
-            </div>
-            <div
-              ondrop="
-                            checkDraggableArea(event)
-                            removeShadow('shadow_move_to_done_tasks')"
-              ondragover="allowDrop(event); showShadow('shadow_move_to_done_tasks')"
-              class="task_section_tasks_area"
-              id="done_tasks"
-            >
-              <!-- <div draggable="true" ondragstart="startDragging(3)" onclick="openTaskOverlay(event)" id="single_task_ctn4" class="single_task_ctn">
+                        </div>
+                        <!-- <div id="shadow_move_to_await_feedback" class="move_to_shadow"></div> -->
+                    </div>
+                </div>
+                <div id="task_section_done" class="task_section">
+                    <div class="task_section_header">
+                        <span>Done</span>
+                    </div>
+                    <div id="tasks_area_done" class="tasks_area" >
+                        <div id="done_tasks_nothing" class="task_nothing_todo">No tasks Done</div>
+                        <div ondrop="removeShadow('shadow_move_to_done_tasks')" 
+                            ondragover="allowDrop(event); showShadow('shadow_move_to_done_tasks')" 
+                            class="task_section_tasks_area" id="done_tasks">
+                            <!-- <div draggable="true" ondragstart="startDragging(3)" onclick="openTaskOverlay(event)" id="single_task_ctn4" class="single_task_ctn">
                                 <div class="single_task_category">Technical Task</div>
                                 <div class="single_task_headline">CSS Architecture Planning</div>
                                 <div class="single_task_description">Define CSS naming conventions and structure...</div>
@@ -317,14 +212,8 @@
             <!-- <div id="shadow_move_to_done" class="move_to_shadow"></div> -->
           </div>
         </div>
-      </div>
-    </div>
-    <div
-      onclick="clickCloseTaskOverlay(event)"
-      id="task_overlay_ctn"
-      class="task_overlay_ctn"
-    >
-      <!-- <div class="task_overlay_card_ctn single_task_ctn">
+        <div onclick="closeTaskOverlay(event)" id="task_overlay_ctn" class="task_overlay_ctn">
+            <!-- <div class="task_overlay_card_ctn single_task_ctn">
                 <div class="overlay_task_header">
                     <div class="single_task_header_category_and_close">
                         <div class="single_task_category">Technical Task</div>

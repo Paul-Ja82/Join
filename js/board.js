@@ -13,10 +13,10 @@ let dragAndDropSections = [
 ];
 // let sectionToSaveTask;
 function init(params) {
-  console.log("init()"); ///DEBUG
+  // console.log('init()'); ///DEBUG
   // getIdAndData((pathData = ""));
   include();
-  loadContacts();
+  // loadContacts();
 }
 
 async function showDialog(selectedProcessCategory) {
@@ -127,19 +127,20 @@ function endDragging() {
 }
 
 async function checkDraggableArea(e) {
-  let cursorX = e.clientX;
-  let cursorY = e.clientY;
-  let idFromSectionToDrop = checkIdFromSectionToDrop(cursorX, cursorY);
-  let newSection = checkNewSection(idFromSectionToDrop);
-  // console.log(newSection);
-  if (newSection == "noDropArea") {
-    endDragging();
-    removeShadow(id);
-    getIdAndData((pathData = ""));
-  } else {
-    moveTo(newSection);
-    endDragging();
-  }
+    let cursorX = e.clientX;
+    let cursorY = e.clientY;
+    let idFromSectionToDrop = checkIdFromSectionToDrop(cursorX, cursorY); 
+    let newSection = checkNewSection(idFromSectionToDrop);    
+    // console.log(newSection);
+    if (newSection == 'noDropArea') {
+        endDragging()
+        removeShadow(id)
+        getIdAndData(pathData='') 
+    } else {
+        moveTo(newSection)
+        endDragging()
+        getFilter()
+    }
 }
 
 function checkNewSection(idFromSectionToDrop) {
@@ -211,17 +212,13 @@ function removeShadow(id) {
 }
 
 async function moveTo(newSection) {
-  // console.log(newSection);
-  let keyForPath = checkIndexOfTaskToMove(
-    currentDraggedElementID,
-    allTasks,
-    allKeys
-  );
-  console.log(keyForPath);
-  let path = `tasks/${keyForPath}/currentStatus`;
-  // console.log(path);
-  await putNewSection(path, newSection);
-  await getIdAndData((pathData = ""));
+    // console.log(newSection);
+    let keyForPath = checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys)
+    // console.log(keyForPath);
+    let path = `tasks/${keyForPath}/currentStatus`;
+    // console.log(path);
+    await putNewSection(path, newSection);
+    await getIdAndData(pathData='')
 }
 
 // function openAddTaskForm(section) {
