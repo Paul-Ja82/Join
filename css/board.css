@@ -1014,3 +1014,8 @@ Gruß Reini */
 .menu-nav-item[data-filename="board.html"] {
   background-color: var(--clr-menu-selected);
 }
+/* Das ist zum markieren des aktuellen Navigations-Menü-Items
+Gruß Reini */
+.menu-nav-item[data-filename="add_task.html"] {
+  background-color: unset !important;
+}
