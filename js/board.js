@@ -40,13 +40,12 @@ async function showDialog(selectedProcessCategory) {
 
 function showTask() {
   document.getElementById("backgroundId").classList.remove("d-none");
+  document.getElementById("dialogBox").style.backgroundColor = "unset";
   setTimeout(() => {
     document.getElementById("dialogBox").classList.add("showIt");
-    document.getElementById("dialogBox").style.backgroundColor = "unset";
   }, 10);
 
   document.getElementById("dialogBox").innerHTML = "";
-  
 }
 
 function closeTask() {
@@ -56,7 +55,6 @@ function closeTask() {
     document.getElementById("dialogBox").style.backgroundColor = "white";
   }, 225);
 }
-
 
 function closeDialog() {
   document.getElementById("dialogBox").classList.remove("showIt");
@@ -291,10 +289,13 @@ async function moveTaskWithMenu(id, toSection) {
 }
 
 function changeTaskValues(params) {
- let selectedProcessCategory = "toDo";
- document.getElementById("dialogBox").style.transition = "unset";
- document.getElementById("dialogBox").style.backgroundColor = "white";
- document.getElementById("dialogBox").innerHTML = renderFormAddTask(
+  let selectedProcessCategory = "toDo";
+  document.getElementById("dialogBox").innerHTML = "";
+  document.getElementById("dialogBox").style.transition = "unset";
+  document.getElementById("dialogBox").style.backgroundColor = "white";
+  document.getElementById("dialogBox").style.width = "525px";
+  document.getElementById("dialogBox").style.boxSizing = "border-box";
+  document.getElementById("dialogBox").innerHTML = returnChangingAddTask(
     selectedProcessCategory
   );
 }

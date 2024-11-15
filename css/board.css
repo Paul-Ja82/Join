@@ -585,12 +585,13 @@ display: flex;
   justify-content: center;
   align-items: center;
   & .task_overlay_card_ctn {
-    width: 82%;
+    width: 525PX;
     box-sizing: border-box;
-    max-width: 525px;
+
     border-radius: 24px;
     padding: 48px 36px;
     max-height: 90%;
+    overflow: auto;
     & .single_task_header_category_and_close {
       display: flex;
       justify-content: space-between;
@@ -624,6 +625,7 @@ display: flex;
       color: black;
       margin-bottom: 20px;
       font-size: 61px;
+      word-wrap: break-word;
       /* border: 1px solid red; */
     }
     & .overlay_task_main {
@@ -789,6 +791,9 @@ display: flex;
           }
           & #task_overlay_edit_task_btn {
             border-right: 1px solid rgb(204, 204, 204);
+          }
+          .lineGap {
+            border-right: 1px solid #d1d1d1;
           }
         }
       }

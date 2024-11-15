@@ -594,6 +594,36 @@ input[type="date"].filled {
   transition: all 225ms ease-in-out;
 }
 
+/* Design for Board.html Changing Values of Add Task!*/
+
+.overInputFieldsChangeAddTask {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+}
+
+.fillOutChangeAddTask {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.overFieldChangeAddTask {
+  display: flex;
+    position: relative;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+}
+
+.lineChangeAddTask {
+  display: none;
+}
+
+/* Ende */
+
 @media only screen and (max-width: 1010px) {
   .overheader {
     padding: 40px 0 0 0;
