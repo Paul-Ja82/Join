@@ -60,7 +60,7 @@ function loginMPA(loggedInItem, rememberMeItem) {
 function logoutMPA() {
     clearLoggedIn();
     clearRememberMe();
-    loadPage(INDEXPAGE_URL);
+    loadPage(INDEXPAGE_URLS[0]);
 }
 
 function setLoggedIn(item) {
