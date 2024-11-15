@@ -37,10 +37,12 @@ body {
 #listContainer {
     min-height: 100%;
     background-color: white;
+    box-shadow: var(--shadow-top-inset);
 }
 
 #newContactButtonContainer {
-    background-color: var(--clr-bg-main);
+    background-color: white;
+    box-shadow: var(--shadow-top-inset);
     padding-bottom: 0;
     position: fixed;
     bottom: 5em;
@@ -151,6 +153,7 @@ body {
     font-size: clamp(0.9rem, 0.708rem + 1.026vw, 1.2rem);
     padding: 2em 1em;
     background-color: var(--clr-bg-main);
+    box-shadow: var(--shadow-top-inset);
 }
 
 #closeDetailButton {
