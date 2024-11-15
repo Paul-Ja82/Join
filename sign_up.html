@@ -14,6 +14,7 @@
     <script src="./js/multi-page-app.js"></script>
     <script src="./js/ui.js"></script>
     <script src="./script.js"></script>
+    <script src="js/scriptLogIn.js"></script>
     <script src="./js/sign_up.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', preventDefaultSignUp);
@@ -35,38 +36,40 @@
                 <h1 class="sign-up-header">Sign up</h1>
                 <div class="divider"></div>
                 <div class="name-input-div">
-                    <input type="text" class="log-input" id="nameInput" placeholder="Name">
+                    <input type="text" class="log-input" id="nameInput" placeholder="Name" autocomplete="off">
                     <img class="name-Img" src="assets/img/person.png">
                 </div>
                 <div class="email-input-div">
-                    <input type="text" class="log-input" id="emailInput" placeholder="Email" required>
+                    <input type="text" class="log-input" id="emailInput" placeholder="Email" required autocomplete="off">
                     <img class="mail-Img" src="assets/img/mail.png">
                 </div>
                 <div class="password-input-div">
-                    <input type="password" class="log-input-pass" id="passwordInput" placeholder="Password"
-                        oninput="maskPassword(); togglePasswordImg()">
+                    <input type="text" class="log-input-pass" id="signUpPasswordInput" placeholder="Password"
+                        oninput="maskPassword(); togglePasswordImg()" autocomplete="off">
                     <img class="password-Img" src="assets/img/lock.png">
                     <img onclick="openEyePassword()" class="password-Img-eye-of" src="assets/img/password-eye-of.svg">
                     <img onclick="closeEyePassword()" class="password-Img-eye-on" src="assets/img/password-eye-on.svg">
                 </div>
                 <div class="confirm-pw-input-div">
-                    <input type="password" class="log-input-pass" id="confirmPasswordInput"
-                        placeholder="Confirm Password" oninput="maskPassword(); togglePasswordImg()">
+                    <input type="text" class="log-input-confirm-pass" id="confirmPasswordInput"
+                        placeholder="Confirm Password" oninput="maskConfirmPassword(); togglePasswordImgForConfirm()" autocomplete="off">
                     <img class="password-Img" src="assets/img/lock.png">
-                    <img onclick="openEyePassword()" class="password-Img-eye-of" src="assets/img/password-eye-of.svg">
-                    <img onclick="closeEyePassword()" class="password-Img-eye-on" src="assets/img/password-eye-on.svg">
+                    <img onclick="openEyePasswordForConfirm()" class="password-Img-eye-of" src="assets/img/password-eye-of.svg">
+                    <img onclick="closeEyePasswordForConfirm()" class="password-Img-eye-on" src="assets/img/password-eye-on.svg">
                 </div>
+                <p class="no-match-confirm-message">Your password don't match.Please try again.</p>
                 <div class="accept-priv-box-div" id="accPrivacyBox">
                     <input type="checkbox" class="accept-box-input" id="rememberCheckbox">
                     <div class="acc-priv-box-label">I accept the <a class="privacy-policy">Privacy policy</a></div>
                 </div>
                 <button class="sign-up-final-button" id="signUpFinalButton" onclick="signup()">Sign up</button>
             </form>
+            <footer>
+                <a class="footer-element-left">Privacy Policy</a>
+                <a class="footer-element-right">Legal notice</a>
+            </footer>
         </div>
-        <footer>
-            <a class="footer-element-left">Privacy Policy</a>
-            <a class="footer-element-right">Legal notice</a>
-        </footer>
+       
 
     </div>
 </body>

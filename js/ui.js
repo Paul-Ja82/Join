@@ -104,4 +104,5 @@ function getMonogram(name) {
     if (letter1) monogram += letter1;
     if (letter2) monogram += letter2;
     return monogram;
+    return monogram.toUpperCase();
 }

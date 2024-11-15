@@ -23,75 +23,7 @@ let validUserFlag = false;
 /*## INIT ##*/
 /*##########*/
 
-function maskPassword() {
-    const input = document.getElementById("passwordInput");
-    let actualValue = input.dataset.actualValue || ""; 
-    const lastChar = input.value.slice(-1);
 
-    if (input.value.length < actualValue.length) {
-        actualValue = actualValue.slice(0, input.value.length);
-    } else {
-        actualValue += lastChar;
-    }
-
-    input.dataset.actualValue = actualValue;
-
-    const eyeOnImg = document.querySelector('.password-Img-eye-on');
-    if (eyeOnImg && eyeOnImg.style.display === 'block') {
-     
-        input.value = actualValue;
-    } else {
-        input.value = '✶'.repeat(actualValue.length);
-    }
-}
-
-function togglePasswordImg() {
-    const passwordInput = document.getElementById("passwordInput");
-    const confirmPasswordInput = document.getElementById("confirmPasswordInput");
-    const lockImg = document.querySelector('.password-Img');
-    const eyeOffImg = document.querySelector('.password-Img-eye-of');
-    const eyeOnImg = document.querySelector('.password-Img-eye-on');
-
-    if ((passwordInput.value.length > 0) || (confirmPasswordInput.value.length > 0)) {
-        if (lockImg) lockImg.style.display = 'none';
-        if (eyeOffImg) eyeOffImg.style.display = 'block';
-        if (eyeOnImg) eyeOnImg.style.display = 'none';
-    } else {
-        if (lockImg) lockImg.style.display = 'block';
-        if (eyeOffImg) eyeOffImg.style.display = 'none';
-        if (eyeOnImg) eyeOnImg.style.display = 'none';
-    }
-}
-
-function openEyePassword() {
-    const eyeOffImg = document.querySelector('.password-Img-eye-of');
-    const eyeOnImg = document.querySelector('.password-Img-eye-on');
-    const passwordInput = document.getElementById("passwordInput");
-    const confirmPasswordInput = document.getElementById("confirmPasswordInput");
-
-    if (eyeOffImg && eyeOnImg) {
-        eyeOffImg.style.display = 'none';
-        eyeOnImg.style.display = 'block';
-
-        passwordInput.value = passwordInput.dataset.actualValue || "";
-        confirmPasswordInput.value = confirmPasswordInput.dataset.actualValue || "";
-    }
-}
-
-function closeEyePassword() {
-    const eyeOffImg = document.querySelector('.password-Img-eye-of');
-    const eyeOnImg = document.querySelector('.password-Img-eye-on');
-    const passwordInput = document.getElementById("passwordInput");
-    const confirmPasswordInput = document.getElementById("confirmPasswordInput");
-
-    if (eyeOffImg && eyeOnImg) {
-        eyeOffImg.style.display = 'block';
-        eyeOnImg.style.display = 'none';
-
-        passwordInput.value = '✶'.repeat(passwordInput.dataset.actualValue ? passwordInput.dataset.actualValue.length : 0);
-        confirmPasswordInput.value = '✶'.repeat(confirmPasswordInput.dataset.actualValue ? confirmPasswordInput.dataset.actualValue.length : 0);
-    }
-}
 
 function initSignup() {
     console.log('initSignup()'); ///DEBUG
@@ -280,6 +212,22 @@ function checkPasswordConfirm() {
     }
 }
 
+function handlePasswordMatchConfirm() {
+    if (false) {
+        passwordConfirmInput.classList.add('input-error');
+
+        if (errorMessage) {
+            errorMessage.style.opacity = '1'; 
+        }
+    } else {
+        passwordConfirmInput.remove('input-error');           ///Paul noch vergleichjen mit log in JS 
+
+        if (true) {
+            errorMessage.style.opacity = '0'; 
+        }
+    }
+}
+
 function checkPrivacy() {
     privacyFlag = privacyInput;
     if (!privacyFlag) console.log('Please accept the Privacy Policy'); ///DEBUG
@@ -304,9 +252,9 @@ function logFlags() {
 
 function logVars() {
     console.log('nameInput: ' + nameInput); ///DEBUG
-    console.log('emailInput: ' + emailInput); ///DEBUG
-    console.log('passwordInput: ' + passwordInput); ///DEBUG    
-    console.log('paswwordConfirmInput: ' + passwordConfirmInput); ///DEBUG
+    console.log('emailInput: ' + emailInput); ///DEBUG                
+    console.log('passwordInput: ' + passwordInput); ///DEBUG    Paul: hier war ein sintax Fehler (paswwordInput)
+    console.log('passwordConfirmInput: ' + passwordConfirmInput); ///DEBUG
 }
 
 function logFlagsLogin() {
@@ -318,4 +266,87 @@ function logVarsLogin() {
     console.log('emailInputLoginFlag: ' + emailInputLogin); ///DEBUG    
     console.log('passwordInputLogin: ' + passwordInputLogin); ///DEBUG    
 
+}
+
+function supportForConfirmMaskPassword(input, actualValue) {
+    const lastChar = input.value.slice(-1);
+    if (input.value.length < actualValue.length) {
+        actualValue = actualValue.slice(0, input.value.length);
+    } else {
+        actualValue += lastChar;
+    }
+    const eyeOnImg = input.parentElement.querySelector('.password-Img-eye-on'); 
+    if (eyeOnImg && eyeOnImg.style.display === 'block') {
+        input.value = actualValue;
+    } else {
+        input.value = '✶'.repeat(actualValue.length);
+    }
+
+    return actualValue;
+}
+
+function maskConfirmPassword() { 
+    const input = document.getElementById("confirmPasswordInput");
+
+    if (input) {
+        let actualValue = input.dataset.actualValue || "";
+        actualValue = supportForConfirmMaskPassword(input, actualValue);
+        input.dataset.actualValue = actualValue;
+    }
+}
+
+function eyeLockVariationsForConfirm(input, lockImg, eyeOffImg, eyeOnImg) {
+    if (input.value.length > 0) {
+        if (lockImg) lockImg.style.display = 'none';
+        if (eyeOffImg) eyeOffImg.style.display = 'block';
+        if (eyeOnImg) eyeOnImg.style.display = 'none';
+    } else {
+        if (lockImg) lockImg.style.display = 'block';
+        if (eyeOffImg) eyeOffImg.style.display = 'none';
+        if (eyeOnImg) eyeOnImg.style.display = 'none';
+    }
+}
+
+function togglePasswordImgForConfirm() {
+    const input = document.getElementById("confirmPasswordInput");
+
+    if (input) {
+        var lockImg = input.parentElement.querySelector('.password-Img');
+        var eyeOffImg = input.parentElement.querySelector('.password-Img-eye-of');
+        var eyeOnImg = input.parentElement.querySelector('.password-Img-eye-on');
+
+        eyeLockVariationsForConfirm(input, lockImg, eyeOffImg, eyeOnImg);
+    }
+}
+
+function openEyePasswordForConfirm() {
+    const input = document.getElementById("confirmPasswordInput");
+
+    if (input) {
+        var eyeOffImg = input.parentElement.querySelector('.password-Img-eye-of');
+        var eyeOnImg = input.parentElement.querySelector('.password-Img-eye-on');
+
+        if (eyeOffImg && eyeOnImg) {
+            eyeOffImg.style.display = 'none';
+            eyeOnImg.style.display = 'block';
+
+            input.value = input.dataset.actualValue || "";
+        }
+    }
+}
+
+function closeEyePasswordForConfirm() {
+    const input = document.getElementById("confirmPasswordInput");
+
+    if (input) {
+        var eyeOffImg = input.parentElement.querySelector('.password-Img-eye-of');
+        var eyeOnImg = input.parentElement.querySelector('.password-Img-eye-on');
+
+        if (eyeOffImg && eyeOnImg) {
+            eyeOffImg.style.display = 'block';
+            eyeOnImg.style.display = 'none';
+
+            input.value = '✶'.repeat(input.dataset.actualValue ? input.dataset.actualValue.length : 0);
+        }
+    }
 }
