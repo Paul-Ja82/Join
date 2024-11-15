@@ -7,7 +7,12 @@ const REMEMBERME_LOCALSTORAGE_KEY= 'rememberMe';
 const INDEXPAGE_URLS= ['./log_in.html', './sign_up.html'];
 // const STARTPAGE_URL= './summary_user.html';
 const STARTPAGE_URL= './contact.html';
-const FAVICON_DARK_BG_URL= './assets/img/logo-darkBG.svg'
+const FAVICON_DARK_BG_URL= './assets/img/logo-darkBG.svg';
+
+const SUMMARY_URL= './summary_user.html';
+const ADDTASK_URL= './add_tasklhtml';
+const BOARD_URL= './board.html';
+const CONTACT_URL= './contact.html';
 
 /*##########*/
 /*## INIT ##*/
@@ -37,7 +42,7 @@ function initPageMPA() {
 function isIndexPage() {
     console.log('isIndexPage()'); ///DEBUG
     let currentURL= window.location.href;
-    let currentFilename= getFilenameFromURL(currentURL); 
+    let currentFilename= getFilenameFromURL(currentURL);
     // let indexFilename= getFilenameFromURL(INDEXPAGE_URL);
     let indexFilenames= [];
     for (let indexPageURL of INDEXPAGE_URLS) {
@@ -150,8 +155,6 @@ function parseJSONmpa(item) {
 }
 
 function getFilenameFromURL(url) {
-    // return (url.match(/^\w+:(\/+([^\/#?\s]+)){2,}/) || [])[2] || '';
-    // return (url.match(/^\w+:(\/+([^\/#?\s]+)){2,}(#|\?|$)/)||[])[2]||'';
     let splitSlash= url.split('/');
     return splitSlash.pop().split('?')[0];
 }

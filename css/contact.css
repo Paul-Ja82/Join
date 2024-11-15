@@ -30,6 +30,14 @@ body {
     }
 }
 
+/*##########*/
+/*## MENU ##*/
+/*##########*/
+
+.menu-nav-item[data-filename="contact.html"] {
+    background-color: var(--clr-menu-selected);
+}
+
 /*##################*/
 /*## CONTACT LIST ##*/
 /*##################*/
