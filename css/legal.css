@@ -11,9 +11,86 @@ h2 {
 }
 
 h3 {
-  font-size: 32px;
+  font-size: 27px;
+  margin-bottom: 16px;
 }
 
 h4 {
+  font-size: 24px;
+}
+
+h5 {
   font-size: 16px;
+}
+
+p {
+  margin-bottom: 24px;
+}
+
+li {
+  list-style-position: inside;
+}
+
+.helpArticle {
+  display: flex;
+  flex-direction: row;
+}
+
+.number {
+  font-size: 27px;
+  font-weight: 700;
+  padding-right: 20px;
+}
+
+.titleSelection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.getBack img {
+  height: 32px;
+  width: 32px;
+  align-self: center;
+  cursor: pointer;
+}
+
+.joinName {
+  color: #29abe2;
+}
+
+.joinNameInTitle {
+  color: #29abe2;
+  font-size: 32px;
+}
+
+article {
+  margin-bottom: 24px;
+}
+
+.helpTitle {
+  font-size: 61px;
+}
+
+.DeveloperAkademieName {
+  color: #29abe2;
+}
+
+.titleSelection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.privacyPolicyTitle {
+  font-size: 61px;
+}
+
+.getBack img {
+  height: 32px;
+  width: 32px;
+  align-self: center;
+  cursor: pointer;
 }

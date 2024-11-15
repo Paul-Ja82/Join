@@ -1,7 +1,7 @@
-const inputFindTask = document.getElementById('name_of_task_input');
-const targetElement = document.getElementById('find_task_ctn');
-let flyingElement = document.createElement("div")
-let elementIsFlying = false; 
+const inputFindTask = document.getElementById("name_of_task_input");
+const targetElement = document.getElementById("find_task_ctn");
+let flyingElement = document.createElement("div");
+let elementIsFlying = false;
 let currentDraggedElementID;
 let currentDraggedElement;
 let clonedElementForMoving;
@@ -13,7 +13,7 @@ let dragAndDropSections = [
 ];
 // let sectionToSaveTask;
 function init(params) {
-  console.log('init()'); ///DEBUG
+  console.log("init()"); ///DEBUG
   // getIdAndData((pathData = ""));
   include();
   loadContacts();
@@ -23,7 +23,11 @@ async function showDialog(selectedProcessCategory) {
   if (window.innerWidth < 400) {
     window.open("add_task.html", "_self");
   } else {
-    document.getElementById("backgroundId").classList.add("showIt");
+    document.getElementById("backgroundId").classList.remove("d-none");
+    setTimeout(() => {
+      document.getElementById("dialogBox").classList.add("showIt");
+    }, 10);
+
     document.getElementById("dialogBox").innerHTML = renderFormAddTask(
       selectedProcessCategory
     );
@@ -34,119 +38,155 @@ async function showDialog(selectedProcessCategory) {
   }
 }
 
+function showTask() {
+  document.getElementById("backgroundId").classList.remove("d-none");
+  setTimeout(() => {
+    document.getElementById("dialogBox").classList.add("showIt");
+    document.getElementById("dialogBox").style.backgroundColor = "unset";
+  }, 10);
+
+  document.getElementById("dialogBox").innerHTML = "";
+  
+}
+
+function closeTask() {
+  document.getElementById("dialogBox").classList.remove("showIt");
+  setTimeout(() => {
+    document.getElementById("backgroundId").classList.add("d-none");
+    document.getElementById("dialogBox").style.backgroundColor = "white";
+  }, 225);
+}
+
+
 function closeDialog() {
-  document.getElementById("backgroundId").classList.remove("showIt");
+  document.getElementById("dialogBox").classList.remove("showIt");
+  setTimeout(() => {
+    document.getElementById("backgroundId").classList.add("d-none");
+  }, 225);
 }
 
 function preparingElements() {
-    flyingElement.classList.add('flying_element_ctn');
-    flyingElement.id = 'flying_element_ctn';
-    inputFindTask.addEventListener('focus', () => {
-        targetElement.style.border = '1px solid #29ABE2';
-    });
-    inputFindTask.addEventListener('blur', () => {
-        targetElement.style.border = '1px solid #a8a8a8';
-    });
+  flyingElement.classList.add("flying_element_ctn");
+  flyingElement.id = "flying_element_ctn";
+  inputFindTask.addEventListener("focus", () => {
+    targetElement.style.border = "1px solid #29ABE2";
+  });
+  inputFindTask.addEventListener("blur", () => {
+    targetElement.style.border = "1px solid #a8a8a8";
+  });
 }
 
 function cloneElement(id, e) {
-    currentDraggedElementID = `single_task_ctn${id}`;
-    currentDraggedElement = document.getElementById(currentDraggedElementID);
-    clonedElementForMoving = currentDraggedElement.cloneNode(true);
-    clonedElementForMoving.id = 'clonedElement';
-    document.getElementById('board_body').appendChild(flyingElement)
-    elementIsFlying = true;
-    return elementIsFlying
+  currentDraggedElementID = `single_task_ctn${id}`;
+  currentDraggedElement = document.getElementById(currentDraggedElementID);
+  clonedElementForMoving = currentDraggedElement.cloneNode(true);
+  clonedElementForMoving.id = "clonedElement";
+  document.getElementById("board_body").appendChild(flyingElement);
+  elementIsFlying = true;
+  return elementIsFlying;
 }
 
 function startDragging(e) {
-    let rect = currentDraggedElement.getBoundingClientRect();
-    styleClonedElement(rect, event)
-    currentDraggedElement.classList.add("hide_original_task");
-    flyingElement.appendChild(clonedElementForMoving);
-    flyingElement.style.position = "absolute";
-    clonedElementForMoving.style.position = 'absolute';
-    e.dataTransfer.setDragImage(new Image(), 0, 0);
+  let rect = currentDraggedElement.getBoundingClientRect();
+  styleClonedElement(rect, event);
+  currentDraggedElement.classList.add("hide_original_task");
+  flyingElement.appendChild(clonedElementForMoving);
+  flyingElement.style.position = "absolute";
+  clonedElementForMoving.style.position = "absolute";
+  e.dataTransfer.setDragImage(new Image(), 0, 0);
 }
 
-function styleClonedElement(rect,e) {
-    clonedElementForMoving.style.left = `0px`;
-    clonedElementForMoving.style.top = `0px`;
-    clonedElementForMoving.style.right = `0px`;
-    clonedElementForMoving.style.bottom = `0px`;
-    clonedElementForMoving.style.height = `${rect.height}px`;
-    clonedElementForMoving.style.width = `${rect.width}px`;
+function styleClonedElement(rect, e) {
+  clonedElementForMoving.style.left = `0px`;
+  clonedElementForMoving.style.top = `0px`;
+  clonedElementForMoving.style.right = `0px`;
+  clonedElementForMoving.style.bottom = `0px`;
+  clonedElementForMoving.style.height = `${rect.height}px`;
+  clonedElementForMoving.style.width = `${rect.width}px`;
 }
 
 function whileDragging(e) {
-    let width = window.innerWidth;
-    let xStart;
-    if (width >= 1440) {
-         xStart = width / 2 - 720 
-    } else {
-        xStart = 0;
-    }
-    flyingElement.style.left = e.pageX - xStart + 'px';
-    flyingElement.style.top = e.pageY + 'px';
+  let width = window.innerWidth;
+  let xStart;
+  if (width >= 1440) {
+    xStart = width / 2 - 720;
+  } else {
+    xStart = 0;
+  }
+  flyingElement.style.left = e.pageX - xStart + "px";
+  flyingElement.style.top = e.pageY + "px";
 }
 
 function endDragging() {
-    if (elementIsFlying == true) {
-        flyingElement.removeChild(clonedElementForMoving)
-        clonedElementForMoving.remove();
-        document.getElementById('board_body').removeChild(flyingElement)
-    }
-    return elementIsFlying = false
+  if (elementIsFlying == true) {
+    flyingElement.removeChild(clonedElementForMoving);
+    clonedElementForMoving.remove();
+    document.getElementById("board_body").removeChild(flyingElement);
+  }
+  return (elementIsFlying = false);
 }
 
 async function checkDraggableArea(e) {
-    let cursorX = e.clientX;
-    let cursorY = e.clientY;
-    let idFromSectionToDrop = checkIdFromSectionToDrop(cursorX, cursorY); 
-    let newSection = checkNewSection(idFromSectionToDrop);    
-    // console.log(newSection);
-    if (newSection == 'noDropArea') {
-        endDragging()
-        removeShadow(id)
-        getIdAndData(pathData='') 
-    } else {
-        moveTo(newSection)
-        endDragging()
-    }
+  let cursorX = e.clientX;
+  let cursorY = e.clientY;
+  let idFromSectionToDrop = checkIdFromSectionToDrop(cursorX, cursorY);
+  let newSection = checkNewSection(idFromSectionToDrop);
+  // console.log(newSection);
+  if (newSection == "noDropArea") {
+    endDragging();
+    removeShadow(id);
+    getIdAndData((pathData = ""));
+  } else {
+    moveTo(newSection);
+    endDragging();
+  }
 }
 
 function checkNewSection(idFromSectionToDrop) {
-    // console.log(idFromSectionToDrop);
-    if (idFromSectionToDrop == 'to_do_tasks') {
-        newSection = 'todo';
-    } else if (idFromSectionToDrop == 'in_progress_tasks') {
-        newSection = 'inProgress';
-    } else if (idFromSectionToDrop == 'await_feedback_tasks') {
-        newSection = 'awaitFeedback'
-    } else if (idFromSectionToDrop == 'done_tasks') {
-        newSection = 'done'
-    } else {
-        newSection = 'noDropArea'
-    }    
-    return newSection
+  // console.log(idFromSectionToDrop);
+  if (idFromSectionToDrop == "to_do_tasks") {
+    newSection = "todo";
+  } else if (idFromSectionToDrop == "in_progress_tasks") {
+    newSection = "inProgress";
+  } else if (idFromSectionToDrop == "await_feedback_tasks") {
+    newSection = "awaitFeedback";
+  } else if (idFromSectionToDrop == "done_tasks") {
+    newSection = "done";
+  } else {
+    newSection = "noDropArea";
+  }
+  return newSection;
 }
 
 function checkIdFromSectionToDrop(cursorX, cursorY) {
-    let idFromSectionToDrop = 'noDropArea';
-    for (let i = 0; i < dragAndDropSections.length; i++) {
-      let sectionLeft = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().left;
-      let sectionRight = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().right;
-      let sectionTop = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().top;
-      let sectionBottom = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().bottom;
-      if ((cursorX > sectionLeft && cursorX < sectionRight) && (cursorY > sectionTop && cursorY < sectionBottom)) {
-        idFromSectionToDrop = dragAndDropSections[i];
-        // console.log(idFromSectionToDrop);
-        break
-      } 
+  let idFromSectionToDrop = "noDropArea";
+  for (let i = 0; i < dragAndDropSections.length; i++) {
+    let sectionLeft = document
+      .getElementById(`${dragAndDropSections[i]}`)
+      .getBoundingClientRect().left;
+    let sectionRight = document
+      .getElementById(`${dragAndDropSections[i]}`)
+      .getBoundingClientRect().right;
+    let sectionTop = document
+      .getElementById(`${dragAndDropSections[i]}`)
+      .getBoundingClientRect().top;
+    let sectionBottom = document
+      .getElementById(`${dragAndDropSections[i]}`)
+      .getBoundingClientRect().bottom;
+    if (
+      cursorX > sectionLeft &&
+      cursorX < sectionRight &&
+      cursorY > sectionTop &&
+      cursorY < sectionBottom
+    ) {
+      idFromSectionToDrop = dragAndDropSections[i];
+      // console.log(idFromSectionToDrop);
+      break;
     }
+  }
   return idFromSectionToDrop;
 }
- 
+
 function allowDrop(e) {
   e.preventDefault();
 }
@@ -171,13 +211,17 @@ function removeShadow(id) {
 }
 
 async function moveTo(newSection) {
-    // console.log(newSection);
-    let keyForPath = checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys)
-    console.log(keyForPath);
-    let path = `tasks/${keyForPath}/currentStatus`;
-    // console.log(path);
-    await putNewSection(path, newSection);
-    await getIdAndData(pathData='')
+  // console.log(newSection);
+  let keyForPath = checkIndexOfTaskToMove(
+    currentDraggedElementID,
+    allTasks,
+    allKeys
+  );
+  console.log(keyForPath);
+  let path = `tasks/${keyForPath}/currentStatus`;
+  // console.log(path);
+  await putNewSection(path, newSection);
+  await getIdAndData((pathData = ""));
 }
 
 // function openAddTaskForm(section) {
@@ -189,39 +233,43 @@ async function moveTo(newSection) {
 // }
 
 function checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys) {
-    let id = currentDraggedElementID.slice(15);
-    let keytoChangeCategory;
-    for (let i = 0; i < allKeys.length; i++) {
-        if (allTasks[`${allKeys[i]}`].single_ID == Number(id)) {
-            // console.log(i, allKeys[i])
-            keytoChangeCategory = allKeys[i]
-            break
-        }
+  let id = currentDraggedElementID.slice(15);
+  let keytoChangeCategory;
+  for (let i = 0; i < allKeys.length; i++) {
+    if (allTasks[`${allKeys[i]}`].single_ID == Number(id)) {
+      // console.log(i, allKeys[i])
+      keytoChangeCategory = allKeys[i];
+      break;
     }
-    return keytoChangeCategory
+  }
+  return keytoChangeCategory;
 }
 
 function openCloseMenuMovingTask(e, single_ID, currentStatus) {
-    e.stopPropagation()
-    single_ID = single_ID
-    currentStatus = currentStatus
-    let menuForMoving = document.getElementById(`move_task_menu_${single_ID}`)
-    menuForMoving.classList.toggle("visible");
-    if(menuForMoving.classList.contains('visible')) {
-        document.getElementById(`single_task_ctn${single_ID}`).style.filter = "grayscale(0.75)";
-    } else {
-        document.getElementById(`single_task_ctn${single_ID}`).style.filter = "grayscale(0)";
-    }
-    enableCurrentSection(currentStatus, single_ID)
+  e.stopPropagation();
+  single_ID = single_ID;
+  currentStatus = currentStatus;
+  let menuForMoving = document.getElementById(`move_task_menu_${single_ID}`);
+  menuForMoving.classList.toggle("visible");
+  if (menuForMoving.classList.contains("visible")) {
+    document.getElementById(`single_task_ctn${single_ID}`).style.filter =
+      "grayscale(0.75)";
+  } else {
+    document.getElementById(`single_task_ctn${single_ID}`).style.filter =
+      "grayscale(0)";
+  }
+  enableCurrentSection(currentStatus, single_ID);
 }
 
 function enableCurrentSection(currentStatus, single_ID) {
-    let moveToID = `move_${single_ID}_to_${currentStatus}`
-    document.getElementById(`move_${single_ID}_to_todo`).style.color = "black";
-    document.getElementById(`move_${single_ID}_to_inProgress`).style.color = "black";
-    document.getElementById(`move_${single_ID}_to_awaitFeedback`).style.color = "black";
-    document.getElementById(`move_${single_ID}_to_done`).style.color = "black";
-    document.getElementById(`${moveToID}`).style.color = "lightgray";
+  let moveToID = `move_${single_ID}_to_${currentStatus}`;
+  document.getElementById(`move_${single_ID}_to_todo`).style.color = "black";
+  document.getElementById(`move_${single_ID}_to_inProgress`).style.color =
+    "black";
+  document.getElementById(`move_${single_ID}_to_awaitFeedback`).style.color =
+    "black";
+  document.getElementById(`move_${single_ID}_to_done`).style.color = "black";
+  document.getElementById(`${moveToID}`).style.color = "lightgray";
 }
 
 function checkKeyToMove(allTasks, allKeys, id) {
@@ -240,6 +288,15 @@ async function moveTaskWithMenu(id, toSection) {
   let path = `tasks/${keytoChangeSection}/currentStatus`;
   await putNewSection(path, toSection);
   await getIdAndData((pathData = ""));
+}
+
+function changeTaskValues(params) {
+ let selectedProcessCategory = "toDo";
+ document.getElementById("dialogBox").style.transition = "unset";
+ document.getElementById("dialogBox").style.backgroundColor = "white";
+ document.getElementById("dialogBox").innerHTML = renderFormAddTask(
+    selectedProcessCategory
+  );
 }
 
 function renderFormAddTask(selectedProcessCategory) {

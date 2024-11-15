@@ -1,23 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Help</title>
+    <link rel="stylesheet" href="/css/add_Task.css" />
+    <link rel="stylesheet" href="assets/fonts/fonts.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/menu.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/legal.css" />
+    <script src="./js/ui.js"></script>
+    <script src="./script.js"></script>
+    <script src="./js/ui.js"></script>
+    <script src="./script.js"></script>
   </head>
-  <body>
-    <div class="titleSelection">
-    <h2>Help</h2><div class="getBack">Zurück</div></div>
-    <main>
-      <article>
+  <body onload="">
+    <header id="headerContainer" class="flex-row" data-include="./header.html">
+      <p>shoud be included</p>
+    </header>
+
+    <div
+      id="menuContainer"
+      data-include="./assets/templates/menu_template.html"
+    ></div>
+
+    <div class="main">
+      <div class="titleSelection">
+        <h2 class="helpTitle">Help</h2>
+        <div class="getBack">
+          <img src="assets/icons/ArrowToLeft.svg" alt="" />
+        </div>
+      </div>
+      <div>
         <p>
-          Welcome to the help page for <span class="joinName"></span>, your
+          Welcome to the help page for <span class="joinName">Join</span>, your
           guide to using our kanban project management tool. Here, we'll provide
-          an overview of what <span class="joinName"></span>
+          an overview of what <span class="joinName">Join</span>
           is, how it can benefit you, and how to use it.
         </p>
-      </article>
-      <article>
+      </div>
+      <div>
         <h3>What is <span class="joinName">Join</span>?</h3>
         <p>
           <span class="joinName">Join</span> is a kanban-based project
@@ -34,66 +58,84 @@
           guarantee consistent availability, reliability, accuracy, or other
           aspects of quality regarding <span class="joinName">Join</span>.
         </p>
-      </article>
-      <article>
-        <h3></h3>
+      </div>
+      <div>
+        <h3>How to use it</h3>
         <p>
           Here is a step-by-step guide on how to use
-          <span class="joinName">Join</span>:
+          <span class="joinName"><span class="joinName">Join</span></span
+          >:
         </p>
-        <ol>
-          <li>
-            <h4>Exploring the Board</h4>
-            <p>
-              When you log in to <span class="joinName">Join</span>, you'll find
-              a default board. This board represents your project and contains
-              four default lists: "To Do", "In Progress", “Await feedback” and
-              "Done".
-            </p>
-          </li>
-          <li>
-            <h4>Creating Contacts</h4>
-            <p>
-              In <span class="joinName">Join</span>, you can add contacts to
-              collaborate on your projects. Go to the "Contacts" section, click
-              on "New contact", and fill in the required information. Once
-              added, these contacts can be assigned tasks and they can interact
-              with the tasks on the board.
-            </p>
-          </li>
-          <li>
-            <h4>Adding Cards</h4>
-            <p>
-              Now that you've added your contacts, you can start adding cards.
-              Cards represent individual tasks. Click the "+" button under the
-              appropriate list to create a new card. Fill in the task details in
-              the card, like task name, description, due date, assignees, etc.
-            </p>
-          </li>
-          <li>
-            <h4>Moving Cards</h4>
-            <p>
-              As the task moves from one stage to another, you can reflect that
-              on the board by dragging and dropping the card from one list to
-              another.
-            </p>
-          </li>
-          <li>
-            <h4>Deleting Cards</h4>
-            <p>
-              Once a task is completed, you can either move it to the "Done"
-              list or delete it. Deleting a card will permanently remove it from
-              the board. Please exercise caution when deleting cards, as this
-              action is irreversible. Remember that using
-              <span class="joinName">Join</span> effectively requires consistent
-              updates from you and your team to ensure the board reflects the
-              current state of your project. Have more questions about
-              <span class="joinName">Join</span>? Feel free to contact us at
-              [Your Contact Email]. We're here to help you!
-            </p>
-          </li>
-        </ol>
-      </article>
-    </main>
+        <section>
+          <div class="helpArticle">
+            <div class="number">1.</div>
+            <div class="description">
+              <h4>Exploring the Board</h4>
+              <p>
+                When you log in to <span class="joinName">Join</span>, you'll
+                find a default board. This board represents your project and
+                contains four default lists: "To Do", "In Progress", “Await
+                feedback” and "Done".
+              </p>
+            </div>
+          </div>
+          <div class="helpArticle">
+            <div class="number">2.</div>
+            <div class="description">
+              <h4>Creating Contacts</h4>
+              <p>
+                Creating Contacts In <span class="joinName">Join</span>, you can
+                add contacts to collaborate on your projects. Go to the
+                "Contacts" section, click on "New contact", and fill in the
+                required information. Once added, these contacts can be assigned
+                tasks and they can interact with the tasks on the board.
+              </p>
+            </div>
+          </div>
+          <div class="helpArticle">
+            <div class="number">3.</div>
+            <div class="description">
+              <h4>Adding Cards</h4>
+              <p>
+                Adding Cards Now that you've added your contacts, you can start
+                adding cards. Cards represent individual tasks. Click the "+"
+                button under the appropriate list to create a new card. Fill in
+                the task details in the card, like task name, description, due
+                date, assignees, etc.
+              </p>
+            </div>
+          </div>
+          <div class="helpArticle">
+            <div class="number">4.</div>
+            <div class="description">
+              <h4>Moving Cards</h4>
+              <p>
+                Moving Cards As the task moves from one stage to another, you
+                can reflect that on the board by dragging and dropping the card
+                from one list to another.
+              </p>
+            </div>
+          </div>
+          <div class="helpArticle">
+            <div class="number">5.</div>
+            <div class="description">
+              <h4>Deleting Cards</h4>
+              <p>
+                Deleting Cards Once a task is completed, you can either move it
+                to the "Done" list or delete it. Deleting a card will
+                permanently remove it from the board. Please exercise caution
+                when deleting cards, as this action is irreversible. Remember
+                that using <span class="joinName">Join</span> effectively
+                requires consistent updates from you and your team to ensure the
+                board reflects the current state of your project. Have more
+                questions about <span class="joinName">Join</span>? Feel free to
+                contact us at [Your Contact Email]. We're here to help you!
+              </p>
+            </div>
+          </div>
+          <h3>Enjoy using Join!</h3>
+        </section>
+      </div>
+    </div>
   </body>
 </html>

@@ -22,10 +22,228 @@ let isListOpen = false;
 const avatarColors = ["#3498db", "#e74c3c", "#f39c12", "#2ecc71", "#9b59b6"];
 
 async function initAddTasks() {
+  document.getElementById("contentAddTaskContainer").innerHTML = returnAddTaskForm();
   const contactList = document.getElementById("insertContactList");
   contactList.classList.add("d-none");
   selectPrio("medium");
   await getIdAndDataForAddTask((pathData = ""));
+}
+
+function returnAddTaskForm(selectedProcessCategory) {
+  /*let selectedProcessCategory = selectCat == null ? "medium" : selectCat;*/
+  return `
+  <div class="overAllFormAddTask">
+        <div id="insertAddedToTaskConfirmation"></div>
+        <div class="overheader">
+          <h2 class="titleAddTask">Add Task</h2>
+        </div>
+        <form id="formAddTasks" class="formAddTasks">
+          <div class="seperateSendButtons">
+            <div class="overInputFields">
+              <div class="fillOut">
+                <div class="overField">
+                  <label for="title"
+                    >Title<span style="color: #ff8190">*</span></label
+                  >
+                  <input
+                    type="text"
+                    id="title"
+                    class="fieldInput"
+                    placeholder="Enter a Title"
+                  />
+                  <div id="errorTitle" class="errorMessage">
+                    This field is required.
+                  </div>
+                </div>
+                <div class="overField marginTop">
+                  <label for="description">Description</label>
+                  <textarea
+                    type="text"
+                    name="description"
+                    id="description"
+                    placeholder="Enter a Description"
+                  ></textarea>
+                </div>
+                <div class="overField">
+                  <label for="inputAssignedTo">Assigned to</label>
+                  <div id="setBackground" class="overaddAssignedTo">
+                    <div class="overInputAssignedTo">
+                      <input
+                        id="inputAssignedTo"
+                        class="fieldInput inputAssignedTo"
+                        type="text"
+                        onclick="toggleContactList()"
+                        oninput="filterContacts()"
+                        placeholder="Assigned To"
+                      />
+                      <div class="changeSymboles">
+                        <img
+                          id="arrowDropdown"
+                          src="assets/icons/arrowDropdown.svg"
+                          alt=""
+                          onclick="toggleContactList()"
+                        />
+                      </div>
+                    </div>
+                    <ul id="insertContactList" class="listContacts"></ul>
+                  </div>
+                  <div id="showPersons" class="showPersons"></div>
+                </div>
+              </div>
+              <div class="line"></div>
+              <div class="fillOut">
+                <div class="overField">
+                  <label for="date"
+                    >Due date<span style="color: #ff8190">*</span></label
+                  >
+                  <div class="dateWrapper">
+                    <input
+                      type="date"
+                      id="date"
+                      class="fieldInput dateInput"
+                      onchange="checkDateInput()"
+                    />
+                    <div
+                      class="dateIcon"
+                      onclick="document.getElementById('date').showPicker();"
+                    >
+                      <img
+                        src="/assets/icons/calendarIcon.svg"
+                        alt="Calendar Icon"
+                      />
+                    </div>
+                  </div>
+                  <div id="errorDate" class="errorMessage">
+                    This field is required.
+                  </div>
+                </div>
+                <div class="overField marginTop">
+                  <label>Prio</label>
+                  <div class="overPrioButtons">
+                    <button
+                      id="urgentButton"
+                      class="prioButtons"
+                      onclick="selectPrio('urgent')"
+                      type="button"
+                    >
+                      Urgent<img
+                        id="urgentButtonImg"
+                        src="assets/icons/urgent.svg"
+                        alt=""
+                      />
+                    </button>
+                    <button
+                      id="mediumButton"
+                      class="prioButtons"
+                      onclick="selectPrio('medium')"
+                      type="button"
+                    >
+                      Medium<img
+                        id="mediumButtonImg"
+                        src="assets/icons/medium.svg"
+                        alt=""
+                      />
+                    </button>
+                    <button
+                      id="lowButton"
+                      class="prioButtons"
+                      onclick="selectPrio('low')"
+                      type="button"
+                    >
+                      Low<img
+                        id="lowButtonImg"
+                        src="assets/icons/low.svg"
+                        alt=""
+                      />
+                    </button>
+                  </div>
+                </div>
+                <div class="overField">
+                  <label for="showSelectedCategory"
+                    >Category<span style="color: #ff8190">*</span></label
+                  >
+                  <div class="arrowCategory">
+                    <img
+                      id="categoryDropdown"
+                      class="categoryDropdown"
+                      src="assets/icons/arrowDropdown.svg"
+                      onclick="showMeCategorys()"
+                    />
+                  </div>
+                  <div id="costumSelect" class="costumSelect">
+                    <input
+                      type="text"
+                      id="showSelectedCategory"
+                      class="fieldInput"
+                      readonly
+                      placeholder="Select a option"
+                      onclick="showMeCategorys()"
+                    />
+                    <div id="showCategorys" class="showCategorys d-none">
+                      <div
+                        class="categoryItem"
+                        onclick="putInput('Technical Task)"
+                      >
+                        Technical Task
+                      </div>
+                      <div
+                        class="categoryItem"
+                        onclick="putInput('User Story')"
+                      >
+                        User Story
+                      </div>
+                    </div>
+                  </div>
+                  <div id="errorCategory" class="errorMessage">
+                    This field is required.
+                  </div>
+                </div>
+                <div class="overField marginTop">
+                  <label for="subtasks">Subtasks</label>
+                  <div class="overAddSubtasks">
+                    <input
+                      type="text"
+                      id="subtasks"
+                      class="fieldInput"
+                      oninput="changeSymbols()"
+                      placeholder="Add new Subtask"
+                    />
+                    <div id="symbolsSubtasks" class="changeSymboles">
+                      <img src="assets/icons/plus.svg" alt="" />
+                    </div>
+                  </div>
+                  <ul id="showSubtasks"></ul>
+                </div>
+              </div>
+            </div>
+            <div class="overFormButtons">
+              <div class="requiredInformation">
+                <span style="color: #ff8190">*</span>This field is required
+              </div>
+              <div class="setButtons">
+                <div class="overSendButtons">
+                  <button
+                    class="formButtons clearButton"
+                    type="button"
+                    onclick="reloadPage()"
+                  >
+                    Clear
+                    <div class="iconX"></div>
+                  </button>
+                  <button
+                    class="formButtons createButton"
+                    type="button"
+                    onclick="submitForm('${selectedProcessCategory}')"
+                  >
+                    Create Task <img src="assets/icons/checkWhite.svg" alt="" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+  `;
 }
 
 async function loadData(path = "") {
@@ -102,7 +320,7 @@ function renderContactList(filteredContacts = contacts) {
     const inputAssignedTo = document.getElementById("inputAssignedTo");
     const contactList = document.getElementById("insertContactList");
     const arrowDrop = document.getElementById("arrowDropdown");
-  
+
     if (
       !inputAssignedTo.contains(event.target) &&
       !contactList.contains(event.target) &&
@@ -111,17 +329,6 @@ function renderContactList(filteredContacts = contacts) {
       closeContactList();
     }
   });
-
-
-
-
-
-
-
-
-
-
-
 
   showPersons();
   colorSelectedContacts();
@@ -203,16 +410,15 @@ function checkDateInput() {
     valueDate.classList.remove("dateInput");
   }
 
-  const dateInput = document.getElementById('date');
+  const dateInput = document.getElementById("date");
   if (dateInput.value) {
     // Wenn ein Datum ausgewählt ist, setze die Klasse 'filled', damit die Farbe schwarz wird
-    dateInput.classList.add('filled');
+    dateInput.classList.add("filled");
   } else {
     // Wenn das Datum leer ist, setze die Farbe zurück auf grau
-    dateInput.classList.remove('filled');
+    dateInput.classList.remove("filled");
   }
 }
-
 
 function showProfilPicture(contact, index) {
   let linkProfil = document.getElementById(`profilPerson${index}`);
@@ -304,9 +510,8 @@ function pushTextSubtask(textSubtask) {
   };
 
   subtasks.push(newSubtask);
-console.log(newSubtask);
-console.log(subtasks);
-
+  console.log(newSubtask);
+  console.log(subtasks);
 }
 
 function saveEditSubtask(index) {
@@ -459,20 +664,19 @@ function showMeCategorys() {
   document.getElementById("categoryDropdown").src =
     "assets/icons/arrowUpDropdown.svg";
 
-    document.addEventListener("click", function (event) {
-      const catImage = document.getElementById("categoryDropdown");
-      const dropdown = document.getElementById("showSelectedCategory");
-      const selectBox = document.getElementById("showCategorys");
-    
-      if (
-        !dropdown.contains(event.target) &&
-        !selectBox.contains(event.target) &&
-        !catImage.contains(event.target)
-      ) {
-        closeDropdown();
-      }
-    });
+  document.addEventListener("click", function (event) {
+    const catImage = document.getElementById("categoryDropdown");
+    const dropdown = document.getElementById("showSelectedCategory");
+    const selectBox = document.getElementById("showCategorys");
 
+    if (
+      !dropdown.contains(event.target) &&
+      !selectBox.contains(event.target) &&
+      !catImage.contains(event.target)
+    ) {
+      closeDropdown();
+    }
+  });
 }
 
 async function submitForm(selectedProcessCategory) {
@@ -511,7 +715,6 @@ async function submitForm(selectedProcessCategory) {
   }
 
   if (!hasError) {
-    
     await collectDataFromAddTask(selectedProcessCategory, selectedContacts); //senden an loadTasks.js zum hochladen ins Firebase
     document.getElementById(
       "insertAddedToTaskConfirmation"

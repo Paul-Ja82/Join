@@ -436,7 +436,7 @@ input[type="date"].filled {
 .arrowCategory {
   display: flex;
   position: absolute;
-  top: 47px;
+  top: 50px;
   right: 10px;
   cursor: pointer;
 }
