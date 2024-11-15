@@ -1040,3 +1040,8 @@ small {
 }
 
 
+/* Das ist zum markieren des aktuellen Navigations-Menü-Items
+Gruß Reini */
+.menu-nav-item[data-filename="summary_user.html"] {
+    background-color: var(--clr-menu-selected);
+}

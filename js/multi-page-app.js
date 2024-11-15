@@ -10,7 +10,7 @@ const STARTPAGE_URL= './contact.html';
 const FAVICON_DARK_BG_URL= './assets/img/logo-darkBG.svg';
 
 const SUMMARY_URL= './summary_user.html';
-const ADDTASK_URL= './add_tasklhtml';
+const ADDTASK_URL= './add_task.html';
 const BOARD_URL= './board.html';
 const CONTACT_URL= './contact.html';
 
