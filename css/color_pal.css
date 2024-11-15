@@ -1,0 +1,87 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    position: relative;
+}
+
+.user_icon_circle {
+    width: 70px;
+    height: 70px;
+    background-color: lightgray;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.color_palette {
+    /* width: 250px;
+    height: 200px; */
+    padding: 10px;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    box-shadow: 0 0 5px black;
+}
+
+.color_ctn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    /* border: 2px solid orange; */
+}
+
+.color_option {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    box-shadow: 0 0 2px black;
+    cursor: pointer;
+}
+
+.close_color {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+    box-shadow: none;
+}
+.color_zero { background: transparent;}
+.color_one { background: #FF7A00;}
+.color_two { background: #FF5EB3;}
+.color_three { background: #6E52FF;}
+.color_four { background: #9327FF;}
+.color_five { background: #00BEE8;}
+.color_six { background: #1FD7C1;}
+.color_seven { background: #FF745E;}
+.color_eight { background: #FFA35E;}
+.color_nine { background: #FC71FF;}
+.color_ten { background: #FFC701;}
+.color_eleven { background: #0038FF;}
+.color_twelve { background: #C3FF2B;}
+.color_thirteen { background: #FFE62B;}
+.color_fourteen { background: #FF4646;}
+.color_fifteen { background: #FFBB2B;}
+.color_sixteen { background-image: linear-gradient(135deg, orange, green, blue,  yellow, red);}
+/* Weitere Farbdefinitionen nach Bedarf ... */
+
+/* Hover-Effekt */
+.color_ctn:hover {
+    border: 2px solid; /* Border-Farbe der `color_option` übernehmen */
+}
+
+.color_ctn:hover .color_option {
+    border-color: inherit; /* Border-Farbe anpassen */
+}
