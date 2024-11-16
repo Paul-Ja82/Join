@@ -23,8 +23,6 @@ let validUserFlag = false;
 /*## INIT ##*/
 /*##########*/
 
-
-
 function initSignup() {
     console.log('initSignup()'); ///DEBUG
     loadUsers();
@@ -116,8 +114,6 @@ function signup() {
         // loadPage('./log_in.html'); //TODO wird in Zukunft Index-Page sein? 
     } else {
         console.warn('Kein Signup möglich'); ///DEBUG
-        logFlags(); ///DEBUG
-        logVars(); ///DEBUG
     }
 }
 
@@ -133,7 +129,7 @@ function isUserExisting() {
 function loadInputValuesSignUp() {
     nameInput = document.getElementById('nameInput').value;
     emailInput = document.getElementById('emailInput').value;
-    passwordInput = document.getElementById('passwordInput').value;
+    passwordInput = document.getElementById('signUpPasswordInput').value;
     passwordConfirmInput = document.getElementById('confirmPasswordInput').value;
     privacyInput = document.getElementById('rememberCheckbox').checked;
 }
@@ -238,8 +234,8 @@ function checkPrivacy() {
 /*###########*/
 
 function tuEsSignup() {
-    let privacyInputElem = document.getElementById('rememberCheckbox');
-    console.log(privacyInputElem.checked);
+    getData('/users')
+
 }
 
 function logFlags() {

@@ -64,3 +64,20 @@ function getNextASCIIchar(text) {
   console.log(char); ///DEBUG
   return String.fromCharCode(char.charCodeAt(0) + 1).toUpperCase();
 }
+
+
+
+/*###########*/
+/*## DEBUG ##*/
+/*###########*/
+
+function logUsers() {
+  getData(USERS_PATH)
+    .then(users => console.log(users));
+}
+
+function deleteUser(userId) {
+  let path= USERS_PATH + '/' + userId;
+  deleteData(path)
+    .then(logUsers);
+}
