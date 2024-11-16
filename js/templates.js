@@ -1,15 +1,16 @@
 /* Für das Ändern der Task im Board */
 
 function returnChangingAddTask(selectedProcessCategory) {
-return `
-<div class="overAllFormAddTask">
-  <form id="formAddTasks" class="formAddTasks">
-      <div class="seperateSendButtons"><div class="titleSectionAddTask"><h2 class="titleAddTask">Add Task</h2><div class="iconImage"><img onclick="closeDialog()" src="assets/icons/close.svg"></div></div>
+  return `
+<div class="overAllFormAddTask overAllChangeAddTask">
+  <div class="closeButtonChangeAddTask"><img class="imgCloseChangeAddTask" src="assets/icons/close.svg"></div> 
+<form id="formAddTasks" class="formChangeAddTasks">
+      <div class="seperateSendButtons"><div class="titleSectionChangeAddTask"><h2 class="titleAddTask">Add Task</h2><div class="iconImage"><img onclick="closeDialog()" src="assets/icons/close.svg"></div></div>
         <div class="overInputFieldsChangeAddTask">
           <div class="fillOutChangeAddTask">
             <div class="overFieldChangeAddTask">
               <label for="title"
-                >Title<span style="color: #ff8190">*</span></label
+                >Title</label
               >
               <input
                 type="text"
@@ -27,40 +28,17 @@ return `
                 type="text"
                 name="description"
                 id="description"
+                class="inputFieldDescriptionChangeAddTask"
                 placeholder="Enter a Description"
               ></textarea>
             </div>
-            <div class="overFieldChangeAddTask">
-              <label for="inputAssignedTo">Assigned to</label>
-              <div id="setBackground" class="overaddAssignedTo">
-                <div class="overInputAssignedTo">
-                  <input
-                    id="inputAssignedTo"
-                    class="fieldInput inputAssignedTo"
-                    type="text"
-                    onclick="toggleContactList()"
-                    oninput="filterContacts()"
-                    placeholder="Assigned To"
-                  />
-                  <div class="changeSymboles">
-                    <img
-                      id="arrowDropdown"
-                      src="assets/icons/arrowDropdown.svg"
-                      alt=""
-                      onclick="toggleContactList()"
-                    />
-                  </div>
-                </div>
-                <ul id="insertContactList" class="listContacts"></ul>
-              </div>
-              <div id="showPersons" class="showPersons"></div>
-            </div>
+            
           </div>
           <div class="lineChangeAddTask"></div>
           <div class="fillOutChangeAddTask">
             <div class="overFieldChangeAddTask">
               <label for="date"
-                >Due date<span style="color: #ff8190">*</span></label
+                >Due date</label
               >
               <div class="dateWrapper">
                 <input
@@ -123,9 +101,9 @@ return `
             </div>
             <div class="overFieldChangeAddTask">
               <label for="showSelectedCategory"
-                >Category<span style="color: #ff8190">*</span></label
+                >Category</label
               >
-              <div class="arrowCategory">
+              <div class="arrowCategoryChangeAddTask">
                 <img
                   id="categoryDropdown"
                   class="categoryDropdown"
@@ -138,12 +116,12 @@ return `
                 <input
                   type="text"
                   id="showSelectedCategory"
-                  class="fieldInput"
+                  class="fieldInput showCategorysChangeAddTask"
                   readonly
                   placeholder="Select a option"
                   onclick="showMeCategorys()"
                 />
-                <div id="showCategorys" class="showCategorys d-none">
+                <div id="showCategorys" class="showCategorys  d-none">
                   <div class="categoryItem" onclick="putInput('Technical Task')">
                     Technical Task
                   </div>
@@ -156,8 +134,32 @@ return `
               <div id="errorCategory" class="errorMessage">
                 This field is required.
               </div>
+            </div><div class="overFieldChangeAddTask">
+              <label for="inputAssignedTo">Assigned to</label>
+              <div id="setBackground" class="overaddAssignedTo">
+                <div class="overInputAssignedTo">
+                  <input
+                    id="inputAssignedTo"
+                    class="fieldInput inputAssignedTo"
+                    type="text"
+                    onclick="toggleContactList()"
+                    oninput="filterContacts()"
+                    placeholder="Assigned To"
+                  />
+                  <div class="changeSymboles">
+                    <img
+                      id="arrowDropdown"
+                      src="assets/icons/arrowDropdown.svg"
+                      alt=""
+                      onclick="toggleContactList()"
+                    />
+                  </div>
+                </div>
+                <ul id="insertContactList" class="listContacts d-none"></ul>
+              </div>
+              <div id="showPersons" class="showPersons"></div>
             </div>
-            <div class="overFieldChangeAddTask marginTop">
+            <div class="overFieldChangeAddTask marginTopChangeAddTask">
               <label for="subtasks">Subtasks</label>
               <div class="overAddSubtasks">
                 <input
@@ -175,7 +177,7 @@ return `
             </div>
           </div>
         </div>
-        <div class="overFormButtons">
+        <div class="overFormButtonsChangeAddTask">
           <div class="requiredInformation">
             <span style="color: #ff8190">*</span>This field is required
           </div>
@@ -198,9 +200,11 @@ return `
               </button>
             </div>
           </div>
-        </div>
+          
+        </div><div class="overConfirmChangeAddTaskButton"><button type="button" class="confirmChangeAddTask">Ok<img class="imgCheckChangeAddTask" src="assets/icons/checkWhite.svg" alt="" /></button></div>
       </div>
     </form>
+    
     </div>
 `;
 }
