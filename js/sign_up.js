@@ -24,7 +24,6 @@ let validUserFlag = false;
 /*##########*/
 
 function initSignup() {
-    console.log('initSignup()'); ///DEBUG
     loadUsers();
     initMPA();
 }
