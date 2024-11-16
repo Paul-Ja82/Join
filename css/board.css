@@ -256,11 +256,12 @@ body {
   }
   & .single_task_progress_ctn {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: left;
     justify-content: space-between;
     margin-bottom: 10px;
     & .single_task_progress_bar_background {
-      width: 50%;
+      width: 100%;
       background-color: rgb(244, 244, 244);
       height: 8px;
       border-radius: 16px;
@@ -715,6 +716,11 @@ body {
             display: flex;
             justify-content: center;
             align-items: center;
+          }
+          & .task_contact_name {
+            width: 82%;
+            overflow: auto;
+            max-height: 45px;
           }
         }
       }

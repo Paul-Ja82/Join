@@ -126,7 +126,7 @@ function checkSubtasksOverlay(allTasks, keyToOpen) {
         for (let j = 0; j < allTasks[keyToOpen].subtasks.length; j++) {    
             let subtaskCheckbox = checkSubtaskStatus(allTasks, keyToOpen, j);     
             subtaskTemplate += `
-                <div class="single_task_subtask">
+                <div onclick="event.stopPropagation()" class="single_task_subtask">
                     ${subtaskCheckbox}
                     <label id="subtask${j}_${keyToOpen}" for="checkbox${j}_${keyToOpen}" onclick="changeSubtaskStatus(allTasks, event, labelID='${j}_${keyToOpen}')">
                         <div class="subtask_checkbox">
@@ -168,6 +168,7 @@ function checkSubtaskStatus(allTasks, keyToOpen, j) {
 }
 
 async function changeSubtaskStatus(allTasks, e, labelID) {
+    e.stopPropagation()
     let keyAndIndex = labelID.split('_')
     let thisSubtaskIndex = keyAndIndex[0];
     let thisTaskKey = keyAndIndex.slice(1).join('_');
@@ -178,7 +179,7 @@ async function changeSubtaskStatus(allTasks, e, labelID) {
     }
     let pathToStatus = `tasks/${thisTaskKey}/subtasks/${thisSubtaskIndex}/checked`
     await putNewCheckedStatus(pathToStatus, allTasks[thisTaskKey].subtasks[thisSubtaskIndex].checked);
-    getIdAndData(pathData='')
+    await getIdAndData(pathData='')
 }
 
 function checkIndexOfAllTasks(clickedSingleID, allTasks, allKeys) {
