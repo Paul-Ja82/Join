@@ -99,8 +99,8 @@ function checkAssignedTo(tasks, i) {
     if (tasks[i].assigned_to == 'nobody') {
         contactsIconsTemplate = "";
     } else {
-        if (tasks[i].assigned_to.length < 5) {
-            for (let j = 0; j < tasks[i].assigned_to.length; j++) {
+        if (tasks[i].assigned_to.length > 5) {
+            for (let j = 0; j < 5; j++) {
                 let fullName = tasks[i].assigned_to[j];
                 // console.log(fullName);
                 // console.log(tasks[i]);
@@ -111,17 +111,16 @@ function checkAssignedTo(tasks, i) {
                  <div class="single_task_single_contact" id="">${charOneFirstName}${charOneLastName}</div>
                 `
             }
+         
         }
-      
         if (tasks[i].assigned_to.length >= 5) {
-            let moreContacts = tasks[i].assigned_to.length - 4;
-            console.log(moreContacts);
-            
+            let moreContacts = tasks[i].assigned_to.length - 5;
             contactsIconsTemplate += `
-            <div class="single_task_single_contact" id="">+ ${moreContacts}</div>
+            <div class="single_task_single_contact" id="">+${moreContacts}</div>
            `
 
         }
+      
     }
     return contactsIconsTemplate
 }

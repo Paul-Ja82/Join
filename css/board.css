@@ -295,7 +295,7 @@ body {
         width: 32px;
         height: 32px;
         color: white;
-        background-color: rgb(110, 82, 255);
+        background-color: rgb(147, 147, 147);
         border: 1px solid white;
         border-radius: 50%;
         &:nth-child(1) {
