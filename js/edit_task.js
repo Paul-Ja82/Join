@@ -4,19 +4,19 @@ async function editTask(e, keyToOpen) {
     e.stopPropagation();
     let path = `tasks/${keyToOpen}/`
     taskForEdit = await getTaskForEdit(path);
-    console.log(taskForEdit.tasks[keyToOpen]);
-    showContactsEditTask()
+    console.log(taskForEdit);
+    // showContactsEditTask()
     // console.log(taskForEdit.tasks[keyToOpen].currentStatus);
     if (window.innerWidth < 400) {
         window.open("add_task.html", "_self");
       } else {
         document.getElementById("backgroundId").classList.add("showIt");
 
-        document.getElementById("dialogBox").innerHTML = renderFormEditTask(taskForEdit.tasks[keyToOpen].currentStatus, taskForEdit, keyToOpen);
-        selectPrio(taskForEdit.tasks[keyToOpen].priority);
+        document.getElementById("dialogBox").innerHTML = renderFormEditTask(taskForEdit.currentStatus, taskForEdit, keyToOpen);
+        selectPrio(taskForEdit.priority);
         // await getIdAndDataForAddTask((pathData = ""));
         const contactList = document.getElementById("insertContactList");
-        contactList.innerHTML = taskForEdit.tasks[keyToOpen].assigned_to;
+        contactList.innerHTML = taskForEdit.assigned_to;
         
         // contactList.classList.add("d-none");
       }
@@ -24,7 +24,7 @@ async function editTask(e, keyToOpen) {
 }
 
 function renderFormEditTask(selectedProcessCategory, taskForEdit, keyToOpen) {
-    console.log(taskForEdit.tasks[keyToOpen]);
+    console.log(taskForEdit);
     return `
     <div class="overAllFormAddTask">
     <form id="formAddTasks" class="formAddTasks">
@@ -47,7 +47,7 @@ function renderFormEditTask(selectedProcessCategory, taskForEdit, keyToOpen) {
                             id="title"
                             class="fieldInput"
                             placeholder="Enter a Title" 
-                            value="${taskForEdit.tasks[keyToOpen].title}"
+                            value="${taskForEdit.title}"
                         />
                         <div id="errorTitle" class="errorMessage">
                             This field is required.
@@ -62,7 +62,7 @@ function renderFormEditTask(selectedProcessCategory, taskForEdit, keyToOpen) {
                             placeholder="Enter a Description" 
                             value=""
                         >
-                            ${taskForEdit.tasks[keyToOpen].description}
+                            ${taskForEdit.description}
                         </textarea>
                     </div>
                     <div class="overField">
@@ -101,7 +101,7 @@ function renderFormEditTask(selectedProcessCategory, taskForEdit, keyToOpen) {
                             id="date"
                             class="fieldInput dateInput"
                             onchange="checkDateInput()"
-                            value="${taskForEdit.tasks[keyToOpen].due_date}"
+                            value="${taskForEdit.due_date}"
                         />
                         <div class="dateIcon" onclick="document.getElementById('date').showPicker();">
                             <img src="/assets/icons/calendarIcon.svg" alt="Calendar Icon"/>
@@ -148,7 +148,7 @@ function renderFormEditTask(selectedProcessCategory, taskForEdit, keyToOpen) {
                             readonly
                             placeholder="Select a option"
                             onclick="showMeCategorys()"
-                            value="${taskForEdit.tasks[keyToOpen].category}"
+                            value="${taskForEdit.category}"
                         />
                         <div id="showCategorys" class="showCategorys d-none">
                             <div class="categoryItem" onclick="putInput('Technical Task')">
