@@ -35,7 +35,7 @@ html {
 }
 
 body {
-  /* background-color: var(--background-gray); */
+  background: rgba(246, 247, 248, 1);
   margin: 0 auto;
   width: 100%;
   max-width: 1440px;
@@ -282,9 +282,8 @@ body {
     & .single_task_contacts_ctn {
       display: flex;
       position: relative;
-      height: 44px;
+      height: 34px;
       width: 170px;
-      margin-right: 10px;
       overflow: auto;
       & .single_task_single_contact {
         position: absolute;
@@ -411,6 +410,7 @@ body {
         position: absolute;
         top: 20px;
         right: 0;
+        gap: 6px;
         & span {
           font-size: 21px;
           font-weight: 700;
@@ -720,7 +720,7 @@ body {
           & .task_contact_name {
             width: 82%;
             overflow: auto;
-            max-height: 45px;
+            max-height: 50px;
           }
         }
       }
@@ -812,9 +812,9 @@ body {
             &:hover svg path {
               fill: rgba(41, 171, 226, 1);
             }
-          }
-          & #task_overlay_edit_task_btn {
-            border-right: 1px solid rgb(204, 204, 204);
+            &:first-child {
+              border-right: 1px solid rgb(204, 204, 204);
+            }
           }
         }
       }
