@@ -21,13 +21,13 @@ function toggleGreetingsDisplay() {
 
 function ifElseForSetGreeting(currentHour) {
     if (currentHour >= 5 && currentHour < 13) {
-        return "Good morning,";
+        return "Good morning";
     } else if (currentHour >= 13 && currentHour < 18) {
-        return "Good afternoon,";
+        return "Good afternoon";
     } else if (currentHour >= 18 && currentHour < 23) {
-        return "Good evening,";
+        return "Good evening";
     } else {
-        return "Good night,";
+        return "Good night";
     }
 }
 
@@ -41,26 +41,33 @@ function setGreeting() {
 }
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    setGreeting();
-});
-
+function formatName(name) {
+    let nameParts = name.split(' ');
+    for (let i = 0; i < nameParts.length; i++) {
+        nameParts[i] = nameParts[i].charAt(0).toUpperCase() + nameParts[i].slice(1).toLowerCase();
+    }
+    return nameParts.join(' ');
+}
 
 async function setGreetedName() { 
-    const storedName = localStorage.getItem('loggedInUserName');
+    const storedName = sessionStorage.getItem('loggedInUserName');
     let greetednameText = "";
 
     if (storedName) {
         console.log('Retrieved Name:', storedName); 
 
+        const formattedName = formatName(storedName);
         const greetedNameElements = document.querySelectorAll('#greetedName');
+
         for (let i = 0; i < greetedNameElements.length; i++) {
-            greetedNameElements[i].textContent = storedName;
+            greetedNameElements[i].textContent = formattedName;
         }
     } else {
-        console.error('No name found in Local Storage.');
+        console.error('No name found in Session Storage.');
     }
 }
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
     let amountElements = document.querySelectorAll('.amount');
@@ -137,7 +144,7 @@ function isUrgentTask(dueDate) {
     return daysDifference <= urgencyThreshold || dueDateObject < currentDate;
 }
 
-function supportForUpdateUrgTk(tasks, urgentTasks) {
+function checkUrgencyInArray(tasks, urgentTasks) {
     for (let i = 0; i < tasks.length; i++) {
         if (isUrgentTask(tasks[i].due_date)) { 
             urgentTasks.push(tasks[i]);
@@ -155,13 +162,12 @@ async function updateUrgentTasks() {
 
     await updateTkToDo(); 
 
-    supportForUpdateUrgTk(tasksTodo, urgentTasks);
+    checkUrgencyInArray(tasksTodo, urgentTasks);
 
     console.log('Urgent Tasks:', urgentTasks);
 
     return urgentTasks; 
 }
-
 
 function findOldestTask(urgentTasks) {
     if (urgentTasks.length === 0) {
@@ -175,21 +181,61 @@ function findOldestTask(urgentTasks) {
     });
 }
 
+function setRedIfPastDate(element, date) {
+    const today = new Date();
+    const taskDate = new Date(date);
+    if (taskDate < today) {
+        element.style.color = 'rgb(255, 61, 0, 1)';
+    } else {
+        element.style.color = ''; 
+    }
+}
+
+function updateDeadlineDateElement(deadlineDateElement, formattedDate, dueDate) {
+    if (deadlineDateElement) {
+        deadlineDateElement.textContent = `${formattedDate}`;
+        setRedIfPastDate(deadlineDateElement, dueDate);
+    }
+}
+
+function updateDeadlineMessageElement(deadlineMsgElement, dueDate) {
+    if (deadlineMsgElement) {
+        const today = new Date();
+        if (dueDate < today) {
+            deadlineMsgElement.textContent = "Deadline crossed";
+        } else {
+            deadlineMsgElement.textContent = '';
+        }
+    }
+}
+
 function displayDeadline(oldestTask) {
     let deadlineDateElement = document.getElementById('deadlineDate');
+    let deadlineMsgElement = document.getElementById('deadlineMsg');
+
     if (!oldestTask) {
         if (deadlineDateElement) {
             deadlineDateElement.textContent = "No deadlines";
+            deadlineDateElement.style.color = ''; 
+        }
+        if (deadlineMsgElement) {                            // function zu lang 
+            deadlineMsgElement.textContent = ''; 
         }
         return;
     }
+
     let dueDateObject = new Date(oldestTask.due_date);
     let options = { year: 'numeric', month: 'long', day: 'numeric' }; 
     let formattedDate = dueDateObject.toLocaleDateString('en-US', options);
-    if (deadlineDateElement) {
-        deadlineDateElement.textContent = `${formattedDate}`;
-    }
+
+    updateDeadlineDateElement(deadlineDateElement, formattedDate, oldestTask.due_date);
+    updateDeadlineMessageElement(deadlineMsgElement, dueDateObject);
 }
+
+
+
+
+
 
 async function updateDeadline() {
     let urgentTasks = await updateUrgentTasks(); 

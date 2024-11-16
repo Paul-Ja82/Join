@@ -8,6 +8,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: aqua;
 }
 
 ::-webkit-scrollbar {
@@ -65,17 +66,19 @@ a {
     max-height: 1024px;
     display: flex;
     position: relative;
+    background-color: blue;
 }
 
-.dummy_menu {
-    width: 232px;
+.menu-summary-div {
+    width: 16,11%;
 }
 
 .under-frame-div {
-    width: 100%;      
+    width: 83.89%;      
     display: flex;
     flex-direction: column;
     justify-content: start;
+    background-color: brown;
     
 }
 
@@ -126,7 +129,6 @@ a {
 .sub-title {
     font-weight: 400;
     font-size: 27px;
-    width: 301px;
     height: 32px;
 }
 
@@ -708,7 +710,7 @@ small {
     }
 }
 
-@media(max-width:950px) {
+@media(max-width: 1050px) {
 
     .main-frame-div {
         width: 100%;
@@ -721,7 +723,7 @@ small {
         position: relative;
     }
 
-    .dummy_menu {
+    .menu-summary-div {
         position: absolute;
         height: 80px;
         width: 100%;

@@ -64,6 +64,49 @@ function colorLogo() {
     }
 }
 
+document.getElementById('emailInput').addEventListener('input', function() {
+    const emailValue = this.value.trim();
+    const passwordInput = document.getElementById('passwordInput');
+
+    if (emailValue.length > 0) {                                                     
+        passwordInput.disabled = false;
+    } else {                                                                         
+        passwordInput.disabled = true;
+    }
+});
+// Hier mussen wir noch integrieren das die email auch registriert seien muss bevor wir password eingeben 
+// Dann mussen wir verhindern das wenn ich email eingegeben habe anfange die password zu schreiben und dann wieder in das email fehlde gehe das password mit zeichen bleibt oder auch nicht ?
+
+function showForgotPasswordMsg() {
+    const forgotPasswordElement = document.getElementById('forgotPassword');
+    const passwordInput = document.getElementById('passwordInput');
+
+    if (forgotPasswordElement) {
+        if (passwordInput && !passwordInput.disabled) {
+            forgotPasswordElement.style.opacity = '1';
+        } else {
+            forgotPasswordElement.style.opacity = '0';
+        }
+    }
+}
+
+document.getElementById('emailInput').addEventListener('input', function() {
+    const emailValue = this.value.trim();
+    const passwordInput = document.getElementById('passwordInput');
+
+    if (emailValue.length > 0) {
+        passwordInput.disabled = false;
+    } else {
+        passwordInput.disabled = true;
+        const forgotPasswordElement = document.getElementById('forgotPassword');
+        if (forgotPasswordElement) {
+            forgotPasswordElement.style.opacity = '0';
+        }
+    }
+});
+
+
+
 function supportForMaskPassword(input, actualValue) {
     const lastChar = input.value.slice(-1);
     if (input.value.length < actualValue.length) {
@@ -171,40 +214,35 @@ function closeEyePassword() {
     }
 }
 
+function login() {
+    resetFlagsLogin();
+    loadInputValuesLogin();
+    checkEmailInputLogin();
+    checkValidUser();
+    let flags = emailInputLoginFlag && validUserFlag;
+    let emailInput = document.getElementById('emailInput');
+    let passwordInput = document.getElementById('passwordInput');
+    let errorMessage = document.querySelector('.error-input-message');
 
-const dummyDatabase = [
-    {
-        "id": "1111",
-        "name": "Paul Dietrich",
-        "email": "user@example.com",
-        "password": "password123"
-    },
-    {    
-        "id": "2222",
-        "name": "Maximilian Mustermann",
-        "email": "user2@example2.com",
-        "password": "password321"
+    if (flags) {
+        let user = getUserByEmail(emailInputLogin);
+        let rememberMeInputElem = document.getElementById('rememberCheckbox');
+        let rememberMeItem = rememberMeInputElem.checked ? user.id : null;
+        loginMPA(user.id, rememberMeItem);
+
+        sessionStorage.setItem('loggedInUserName', user.name);
+        sessionStorage.setItem('loggedInUserId', user.id);
+    } else {
+        console.warn('Kein Login möglich'); ///DEBUG
+        logFlagsLogin(); ///DEBUG
+        logVarsLogin(); ///DEBUG
+
+        handleValidationResult(emailInput, passwordInput, flags, errorMessage);
     }
-
-];
-
-function validateUser(email, password) {
-    let userExists = false;
-    let loggedInUser = null;
-
-    for (let i = 0; i < dummyDatabase.length; i++) {
-        if (dummyDatabase[i].email === email && dummyDatabase[i].password === password) {
-            userExists = true;
-            loggedInUser = dummyDatabase[i];
-            break;
-        }
-    }
-
-    return { userExists, loggedInUser };
 }
 
-function handleValidationResult(userExists, emailInput, passwordInput, errorMessage) {
-    if (!userExists) {
+function handleValidationResult(emailInput, passwordInput, isValidUser, errorMessage) {
+    if (!isValidUser) {
         emailInput.classList.add('input-error');
         passwordInput.classList.add('input-error');
 
@@ -221,9 +259,27 @@ function handleValidationResult(userExists, emailInput, passwordInput, errorMess
     }
 }
 
+
+/*function validateUser(email, password) {
+    let userExists = false;
+    let loggedInUser = null;
+
+    for (let i = 0; i < dummyDatabase.length; i++) {
+        if (dummyDatabase[i].email === email && dummyDatabase[i].password === password) {
+            userExists = true;
+            loggedInUser = dummyDatabase[i];
+            break;
+        }
+    }
+
+    return { userExists, loggedInUser };
+}
+
+
+
 function handleSuccessfulLogin(loggedInUser, emailInput, passwordInput) {
     if (loggedInUser && loggedInUser.name) {
-        localStorage.setItem('loggedInUserName', loggedInUser.name);
+        sessionStorage.setItem('loggedInUserName', loggedInUser.name);
     }
 
     emailInput.value = '';
@@ -231,7 +287,7 @@ function handleSuccessfulLogin(loggedInUser, emailInput, passwordInput) {
     window.location.href = "./summary_user.html";
 }
 
-function checkEmailAndPassword() {
+function checkEmailAndPassword() {                                           //Paul login funktionen
     const emailInput = document.getElementById('emailInput');
     const passwordInput = document.getElementById('passwordInput');
     const errorMessage = document.querySelector('.error-input-message');
@@ -243,7 +299,7 @@ function checkEmailAndPassword() {
     if (userExists) {
         handleSuccessfulLogin(loggedInUser, emailInput, passwordInput);
     }
-}
+}*/
 
 function removeInputError() {
     const emailInput = document.getElementById('emailInput');
@@ -258,19 +314,6 @@ function removeInputError() {
     }
 }
 
-/*function toggleAutocomplete() {
-    const rememberMeCheckbox = document.getElementById('rememberCheckbox');
-    const emailInput = document.getElementById('emailInput');
-    const passwordInput = document.getElementById('passwordInput');
-
-    if (rememberMeCheckbox.checked) {
-        emailInput.setAttribute('autocomplete', 'on');             ### ?? für den moment in html auf off 
-        passwordInput.setAttribute('autocomplete', 'on');
-    } else {
-        emailInput.setAttribute('autocomplete', 'off');
-        passwordInput.setAttribute('autocomplete', 'off');
-    }
-}*/ 
 
 
 

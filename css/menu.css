@@ -52,7 +52,7 @@ img.menu-nav-icon {
 /*## DESKTOP ##*/
 /*#############*/
 
-@media (950px < width) {
+@media (1050px < width) {
     #menuLogo,
     #legalLinksContainer {
         display: unset;

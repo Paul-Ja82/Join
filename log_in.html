@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="css/log_in.css">
   <script src="./js/database.js"></script>
   <script src="./script.js"></script>
+  <script src="js/summary.js"></script>
   <script src="./js/multi-page-app.js"></script>
   <script src="./js/ui.js"></script>
   <script src="./js/sign_up.js"></script>
@@ -17,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
-<body onload="animateLogo(); showDivsDelayed(); colorBody(); colorLogo(); initLogin()"> <!--initLogin();--> 
+<body onload="animateLogo(); showDivsDelayed(); colorBody(); colorLogo(); initLogin()">
   <svg style="display: none;">
     <symbol id="icon-j-logo-bigger" viewBox="0 0 26 32">
         <path class="path1" d="M18.752 0h-5.797v6.67h5.797v-6.67z"></path>
@@ -50,14 +51,14 @@
                 <img class="mail-Img" src="assets/img/mail.png">
             </div>
             <div class="password-input-div">
-              <input type="text" class="log-input" id="passwordInput" placeholder="Password" oninput="maskPassword(); togglePasswordImg(); removeInputError()" onclick="removeInputError()" autocomplete="off">
+              <input type="text" class="log-input" id="passwordInput" placeholder="Password" disabled onclick="showForgotPasswordMsg()" oninput="maskPassword(); showForgotPasswordMsg(); togglePasswordImg(); removeInputError()" onclick="removeInputError()" autocomplete="off">
               <img class="password-Img" src="assets/img/lock.png">
               <img onclick="openEyePassword()" class="password-Img-eye-of" src="assets/img/password-eye-of.svg">
               <img onclick="closeEyePassword()" class="password-Img-eye-on" src="assets/img/password-eye-on.svg">
           </div>
           <div class="hidden-input-messages-div">
           <span class="error-input-message">Check your email and password.Please</span>
-          <a href="new_password.html" class="forgot-password-message">I forgot my password</a>
+          <a href="new_password.html" class="forgot-password-message" id="forgotPassword">I forgot my password</a>
         </div>
             <div class="remember-box-div" id="rememberBox">
                 <input type="checkbox" class="r-box-input" id="rememberCheckbox">
@@ -66,7 +67,7 @@
             <div class="log-in-buttons-div">
                 <!-- <a  class="log-in-button"  onclick="checkEmailAndPassword()">Log in</a>       login(); -->
                 <a  class="log-in-button"  onclick="login()">Log in</a> 
-                <a  class="guest-log-in-button" href="./summary_guest.html">Guest Log in</a>
+                <a  class="guest-log-in-button" href="./summary_user.html">Guest Log in</a>
             </div>
     </form>
   </div>

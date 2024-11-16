@@ -44,19 +44,36 @@ header {
 }
 
 .initials-circle {
-    width: clamp(2rem, 1.306rem + 2.581vw, 3rem);
-    aspect-ratio: 1/1;
+    width: 48px;
+    height: 48px;
     border: solid 3px  rgba(42, 54, 71, 1);
     border-radius: 50%;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-    font-weight: 700;
     color: rgb(41,171,226);
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
+
+#navCircle {
+    width: 27.94px;
+    height: 14.24px;
+    font-size: clamp(0.875rem, 0.788rem + 0.323vw, 1rem);
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#navCircle.guest-monogram {
+    width: 17.61px;
+    height: 20px;
+    font-size: clamp(1.125rem, 0.822rem + 1.129vw, 1.563rem);
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 .initials-circle:hover {
     background-color: rgba(12, 46, 98, 0.12);
@@ -150,8 +167,8 @@ header {
     }
 
     .nav-header {
-        width: clamp(2.5rem, 1.806rem + 2.581vw, 3.5rem);
-        height: auto;
+        width: 56px;
+        height: 56px;
     }
 
     .help-button {
@@ -164,11 +181,88 @@ header {
     header {
         height: 84px;
     }
+
+    .nav-header {
+        width: 54px;
+        height: 54px;
+    }
+
+    .initials-circle {
+        width: 46px;
+        height: 46px;
+    }
+
+    #navCircle.guest-monogram {
+        width: 17.61px;
+        height: 18px;
+    }
+    
 }
 
 @media(max-width:750px) {
 
+    .nav-header {
+        width: 52px;
+        height: 52px;
+    }
+
+    .initials-circle {
+        width: 44px;
+        height: 44px;
+    }
+
+    #navCircle.guest-monogram {
+        width: 17.61px;
+        height: 17px;
+    }
+}
+
+@media(max-width:650px) {
+
+    .nav-header {
+        width: 50px;
+        height: 50px;
+    }
+
+    .initials-circle {
+        width: 42px;
+        height: 42px;
+    }
+
+    #navCircle {
+        width: 22.94px;
+        height: 13.24px;
+    }
+    
+    #navCircle.guest-monogram {
+        width: 15.61px;
+        height: 16px;
+    }
+}
+
+@media(max-width:550px) {
+
     header {
         height: 80px;
     }
+
+    .nav-header {
+        width: 48px;
+        height: 48px;
+    }
+
+    .initials-circle {
+        width: 40px;
+        height: 40px;
+    }
+
+    #navCircle {
+        height: 10.54px;
+    }
+
+    #navCircle.guest-monogram {
+        width: 11.59px;
+        height: 13.16px;
+    }
 }
+

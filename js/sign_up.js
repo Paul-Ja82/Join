@@ -207,24 +207,33 @@ function checkEmailAvailable() {
 }
 
 function checkPasswordConfirm() {
-    if (passwordInput == passwordConfirmInput) passwordConfirmFlag = true;
-    else {
+    const passwordInput = document.getElementById('passwordInput').value;
+    const passwordConfirmInput = document.getElementById('confirmPasswordInput').value;
+    if (passwordInput === passwordConfirmInput) {
+        passwordConfirmFlag = true;
+    } else {
         passwordConfirmFlag = false;
         console.log('Die Passwörter sind nicht gleich'); ///DEBUG
+        
+        handlePasswordMatchConfirm();
     }
 }
 
+
 function handlePasswordMatchConfirm() {
-    if (false) {
+    const passwordConfirmInput = document.getElementById('confirmPasswordInput');
+    const errorMessage = document.querySelector('.no-match-confirm-message'); 
+
+    if (!passwordConfirmFlag) {
         passwordConfirmInput.classList.add('input-error');
 
         if (errorMessage) {
             errorMessage.style.opacity = '1'; 
         }
     } else {
-        passwordConfirmInput.remove('input-error');           ///Paul noch vergleichjen mit log in JS 
+        passwordConfirmInput.classList.remove('input-error');          
 
-        if (true) {
+        if (errorMessage) {
             errorMessage.style.opacity = '0'; 
         }
     }
