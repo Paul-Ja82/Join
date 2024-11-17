@@ -20,7 +20,7 @@ function checkTask(e) {
 function fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, subTasks) {
     document.getElementById(`task_overlay_ctn`).innerHTML = "";
     document.getElementById(`task_overlay_ctn`).innerHTML = `
-       <div class="task_overlay_card_ctn single_task_ctn">
+       <div class="task_overlay_card_ctn single_task_ctn" onclick="event.stopPropagation()">
             <div class="overlay_task_header">
                     <div class="single_task_header_category_and_close">
                         <div class="single_task_category_overlay">${allTasks[keyToOpen].category}</div>
