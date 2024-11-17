@@ -1,28 +1,14 @@
-let allContactsForTasks = []
 let filteredContactsForTasks = []
 
-async function getContacsForTasks(pathData='') {
-    let responseData = await fetch(firebase_URL + pathData + ".json");
-    let responseDataToJson = await responseData.json();
-    // console.log(responseDataToJson);
-    allContactsForTasks = responseDataToJson.contacts;
-    filteredContactsForTasks = checkContacts(allContactsForTasks);
-    return allContactsForTasks, filteredContactsForTasks
-}
-
 function checkContacts(allContactsForTasks) {
-    filteredContactsForTasks = []
-    // console.log(allContactsForTasks);
-    
+    filteredContactsForTasks = [];
     for (let i = 11; i < allContactsForTasks.length; i++) {
         if (allContactsForTasks[i] !== null) {
             filteredContactsForTasks.push(allContactsForTasks[i])
         }
     }
-    
     let contactListTemplate = createContactsTemplate(filteredContactsForTasks)
     document.getElementById("insertContactList").appendChild(contactListTemplate)
-    
 }
 
 function createContactsTemplate(filteredContactsForTasks) {

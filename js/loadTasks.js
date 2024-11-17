@@ -52,7 +52,8 @@ async function getIdAndDataForAddTask(pathData='') {
     // console.log(responseDataToJson);
     allTasks = responseDataToJson.tasks
     id = responseDataToJson.id;
-    return id, allTasks
+    allContactsForTasks = responseDataToJson.contacts;
+    return id, allTasks, allContactsForTasks
 }
 
 async function getIdAndData(pathData='') {
@@ -61,9 +62,10 @@ async function getIdAndData(pathData='') {
     // console.log(responseDataToJson);
     allTasks = responseDataToJson.tasks
     id = responseDataToJson.id;
+    allContactsForTasks = responseDataToJson.contacts;
     keyForAllTasks();
     checkTaskSections();
-    return id
+    return id, allTasks, allContactsForTasks
 }
 
 async function postData(path="", data={}) {
