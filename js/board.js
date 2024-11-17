@@ -11,7 +11,7 @@ let dragAndDropSections = [
   "await_feedback_tasks",
   "done_tasks",
 ];
-// let sectionToSaveTask;
+
 function init(params) {
   // console.log('init()'); ///DEBUG
   // getIdAndData((pathData = ""));
@@ -103,8 +103,7 @@ async function checkDraggableArea(e) {
     let cursorX = e.clientX;
     let cursorY = e.clientY;
     let idFromSectionToDrop = checkIdFromSectionToDrop(cursorX, cursorY); 
-    let newSection = checkNewSection(idFromSectionToDrop);    
-    // console.log(newSection);
+    let newSection = checkNewSection(idFromSectionToDrop);  
     if (newSection == 'noDropArea') {
         endDragging()
         removeShadow(id)
@@ -117,7 +116,6 @@ async function checkDraggableArea(e) {
 }
 
 function checkNewSection(idFromSectionToDrop) {
-    // console.log(idFromSectionToDrop);
     if (idFromSectionToDrop == 'to_do_tasks') {
         newSection = 'todo';
     } else if (idFromSectionToDrop == 'in_progress_tasks') {
@@ -141,7 +139,6 @@ function checkIdFromSectionToDrop(cursorX, cursorY) {
       let sectionBottom = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().bottom;
       if ((cursorX > sectionLeft && cursorX < sectionRight) && (cursorY > sectionTop && cursorY < sectionBottom)) {
         idFromSectionToDrop = dragAndDropSections[i];
-        // console.log(idFromSectionToDrop);
         break
       } 
     }
@@ -154,47 +151,31 @@ function allowDrop(e) {
 
 function showShadow(id) {
   document.getElementById("shadow_move_to_to_do_tasks").style.display = "none";
-  document.getElementById("shadow_move_to_in_progress_tasks").style.display =
-    "none";
-  document.getElementById("shadow_move_to_await_feedback_tasks").style.display =
-    "none";
+  document.getElementById("shadow_move_to_in_progress_tasks").style.display = "none";
+  document.getElementById("shadow_move_to_await_feedback_tasks").style.display = "none";
   document.getElementById("shadow_move_to_done_tasks").style.display = "none";
   document.getElementById(id).style.display = "flex";
 }
 
 function removeShadow(id) {
   document.getElementById("shadow_move_to_to_do_tasks").style.display = "none";
-  document.getElementById("shadow_move_to_in_progress_tasks").style.display =
-    "none";
-  document.getElementById("shadow_move_to_await_feedback_tasks").style.display =
-    "none";
+  document.getElementById("shadow_move_to_in_progress_tasks").style.display = "none";
+  document.getElementById("shadow_move_to_await_feedback_tasks").style.display = "none";
   document.getElementById("shadow_move_to_done_tasks").style.display = "none";
 }
 
 async function moveTo(newSection) {
-    // console.log(newSection);
-    let keyForPath = checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys)
-    // console.log(keyForPath);
+    let keyForPath = checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys);
     let path = `tasks/${keyForPath}/currentStatus`;
-    // console.log(path);
     await putNewSection(path, newSection);
     await getIdAndData(pathData='')
 }
-
-// function openAddTaskForm(section) {
-//   sectionToSaveTask = section;
-//   console.log(section);
-
-//   window.location.href = "/add_task.html";
-//   return sectionToSaveTask;
-// }
 
 function checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys) {
     let id = currentDraggedElementID.slice(15);
     let keytoChangeCategory;
     for (let i = 0; i < allKeys.length; i++) {
         if (allTasks[`${allKeys[i]}`].single_ID == Number(id)) {
-            // console.log(i, allKeys[i])
             keytoChangeCategory = allKeys[i]
             break
         }

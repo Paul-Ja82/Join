@@ -12,8 +12,6 @@ function checkTask(e) {
     let container = e.target.closest('[id^="single_task_ctn"]');
     if (container) {
         let clickedSingleID = container.id.slice(15);
-        // console.log(clickedSingleID);
-        
         checkIndexOfAllTasks(clickedSingleID, allTasks, allKeys)
         openTaskOverlay(event)
     }
@@ -82,7 +80,6 @@ function fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, s
 }
 
 function checkAssignedToOverlay(allTasks, keyToOpen) {
-    // console.log(allTasks[keyToOpen]);
     let contactsTemplate = "";
     if (allTasks[keyToOpen].assigned_to == 'nobody') {
         contactsTemplate = "";
@@ -106,8 +103,6 @@ function checkAssignedToOverlay(allTasks, keyToOpen) {
 
 function checkCurrentUser(currentUserLoggedIn, fullName) {
     let currentUserForAssignedTo = '';
-    // console.log('currentUserLoggedIn:', currentUserLoggedIn);
-    // console.log('fullNameAssignedTo:', fullName);
     if (currentUserLoggedIn == fullName) {
         currentUserForAssignedTo = '(You)'
     } else {
@@ -119,7 +114,6 @@ function checkCurrentUser(currentUserLoggedIn, fullName) {
 function checkSubtasksOverlay(allTasks, keyToOpen) {
     let subtasks = allTasks[keyToOpen].subtasks;
     let subtaskTemplate = "";
-    // console.log(subtasks, typeof subtasks);
     if (typeof subtasks === 'undefined') {
        subtaskTemplate = `keine Subtasks vorhanden`
     } else {
