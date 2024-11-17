@@ -57,8 +57,7 @@ function fillTaskSections(section, tasks) {
     document.getElementById(section).innerHTML = "";
     for (let i = 0; i < tasks.length; i++) {
         let assignedTocontacts = checkAssignedTo(tasks, i);
-        // console.log(assignedTocontacts);
-        
+        console.log(assignedTocontacts);
         let priorityImg = checkPriorityImg(tasks, i);
         let checkedSubtasks = checkCheckedSubtasks(tasks, i);
         let subtasksLength = checkSubtaskLength(tasks, i)
@@ -110,6 +109,8 @@ function checkAssignedTo(tasks, i) {
                 contactsIconsTemplate += `
                  <div class="single_task_single_contact" id="">${charOneFirstName}${charOneLastName}</div>
                 `
+                console.log(contactsIconsTemplate);
+                
             }
          
         }

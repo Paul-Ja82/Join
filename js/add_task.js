@@ -152,9 +152,7 @@ function closeContactList() {
 
 function changeCheckbox(index) {
   const checkbox = document.getElementById(`checkbox${index}`);
-
   checkbox.checked = !checkbox.checked;
-
   document.getElementById(`checkboxId${index}`).src =
     "assets/icons/checkbox.svg";
 
@@ -181,15 +179,11 @@ function renderAddedPersons() {
 
 function toggleContactList(filteredContactsForTasks) {
   const inputField = document.getElementById("inputAssignedTo");
-
   if (isListOpen) {
     closeContactList();
   } else {
-    // renderContactList();
-    // let contactsTemplate = createContactsTemplate(filteredContactsForTasks)
-    // console.log(contactsTemplate);
     checkContacts(allContactsForTasks)
-    console.log(document.getElementById("insertContactList"));
+    // console.log(document.getElementById("insertContactList"));
     document.getElementById("setBackground").classList.add("whiteBG");
     document.getElementById("insertContactList").classList.remove("d-none");
   }
@@ -225,14 +219,14 @@ function checkDateInput() {
 // }
 
 // Versuch Sabrina: 
-function showProfilPicture(listPersonId) {
-  let linkProfil = document.getElementById(`profilPerson${listPersonId}`);
-  linkProfil.innerHTML = "";
-  const initials = getInitials(contact);
-  const bgColor = avatarColors[index % avatarColors.length];
-  const svgAvatar = createAvatarSVG(initials, bgColor);
-  linkProfil.appendChild(svgAvatar);
-}
+// function showProfilPicture(listPersonId) {
+//   let linkProfil = document.getElementById(`profilPerson${listPersonId}`);
+//   linkProfil.innerHTML = "";
+//   const initials = getInitials(contact);
+//   const bgColor = avatarColors[index % avatarColors.length];
+//   const svgAvatar = createAvatarSVG(initials, bgColor);
+//   linkProfil.appendChild(svgAvatar);
+// }
 
 function showPersons() {
   const avatarContainer = document.getElementById("showPersons");

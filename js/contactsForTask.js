@@ -9,6 +9,7 @@ function checkContacts(allContactsForTasks) {
     }
     let contactListTemplate = createContactsTemplate(filteredContactsForTasks)
     document.getElementById("insertContactList").appendChild(contactListTemplate)
+    return filteredContactsForTasks
 }
 
 function createContactsTemplate(filteredContactsForTasks) {
