@@ -883,6 +883,8 @@ function closeDropdown() {
     "assets/icons/arrowDropdown.svg";
 }
 
+//Test//
+
 function putInput(value) {
   document.getElementById("showSelectedCategory").value = value;
   closeDropdown();
