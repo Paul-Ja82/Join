@@ -225,7 +225,7 @@ async function moveTaskWithMenu(id, toSection) {
 }
 
 function renderFormAddTask(selectedProcessCategory) {
-  console.log(selectedProcessCategory);
+  // console.log(selectedProcessCategory);
   return `
   <div class="overAllFormAddTask">
   <form id="formAddTasks" class="formAddTasks">

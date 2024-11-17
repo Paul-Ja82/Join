@@ -25,7 +25,7 @@ async function initAddTasks() {
   const contactList = document.getElementById("insertContactList");
   contactList.classList.add("d-none");
   selectPrio("medium");
-  await getIdAndDataForAddTask((pathData = ""));
+  // await getIdAndDataForAddTask((pathData = ""));
 }
 
 async function loadData(path = "") {
@@ -111,18 +111,6 @@ function renderContactList(filteredContacts = contacts) {
       closeContactList();
     }
   });
-
-
-
-
-
-
-
-
-
-
-
-
   showPersons();
   colorSelectedContacts();
 }
@@ -140,16 +128,23 @@ function colorSelectedContacts() {
 
 function filterContacts() {
   const input = document.getElementById("inputAssignedTo").value.toLowerCase();
-  const filteredContacts = contacts.filter((contact) =>
+  const filteredContacts = filteredContactsForTasks.filter((contact) =>
     contact.toLowerCase().includes(input)
   );
-  renderContactList(filteredContacts);
+  let contactsTemplate = createContactsTemplate(filteredContacts)
+  console.log(contactsTemplate);
+  
+  // renderContactList(filteredContacts);
 }
 
 function closeContactList() {
-  const contactList = document.getElementById("insertContactList");
-  contactList.innerHTML = "";
+ 
+  let templateToRemove = document.getElementById("contactListTemplate");
+  let contactList = document.getElementById("insertContactList");
+  console.log(contactList);
+  contactList.removeChild(templateToRemove)
   contactList.classList.add("d-none");
+  // console.log(contactList);
   document.getElementById("arrowDropdown").src =
     "/assets/icons/arrowDropdown.svg";
   document.getElementById("setBackground").classList.remove("whiteBG");
@@ -184,13 +179,19 @@ function renderAddedPersons() {
   return selectedContacts;
 }
 
-function toggleContactList() {
+function toggleContactList(filteredContactsForTasks) {
   const inputField = document.getElementById("inputAssignedTo");
 
   if (isListOpen) {
     closeContactList();
   } else {
-    renderContactList();
+    // renderContactList();
+    // let contactsTemplate = createContactsTemplate(filteredContactsForTasks)
+    // console.log(contactsTemplate);
+    checkContacts(allContactsForTasks)
+    console.log(document.getElementById("insertContactList"));
+    document.getElementById("setBackground").classList.add("whiteBG");
+    document.getElementById("insertContactList").classList.remove("d-none");
   }
   isListOpen = !isListOpen;
 }

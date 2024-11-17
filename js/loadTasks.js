@@ -49,16 +49,16 @@ async function collectDataFromAddTask(currentStatus, selectedContacts) {
 async function getIdAndDataForAddTask(pathData='') {
     let responseData = await fetch(firebase_URL + pathData + ".json");
     let responseDataToJson = await responseData.json();
-    console.log(responseDataToJson);
+    // console.log(responseDataToJson);
     allTasks = responseDataToJson.tasks
     id = responseDataToJson.id;
-    return id
+    return id, allTasks
 }
 
 async function getIdAndData(pathData='') {
     let responseData = await fetch(firebase_URL + pathData + ".json");
     let responseDataToJson = await responseData.json();
-    console.log(responseDataToJson);
+    // console.log(responseDataToJson);
     allTasks = responseDataToJson.tasks
     id = responseDataToJson.id;
     keyForAllTasks();
