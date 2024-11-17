@@ -110,6 +110,13 @@ async function putNewCheckedStatus(path="", data={}) {
     let responseToJson = await response.json();
 }
 
+async function getTaskForEdit(pathData='') {   //Daten holen ohne weitere Aktivitäten im Board
+    let responseData = await fetch(firebase_URL + pathData + ".json");
+    let responseDataToJson = await responseData.json();
+    console.log(responseDataToJson);
+    return responseDataToJson
+}
+
 function keyForAllTasks() {
     allKeys = [];
     allKeys = Object.keys(allTasks);
