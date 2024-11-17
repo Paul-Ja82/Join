@@ -488,6 +488,16 @@ input[type="date"].filled {
   vertical-align: middle;
 }
 
+.subtaskText {
+  max-width: 333px;
+  word-wrap: break-word;
+}
+
+.showEntrySubtask:hover .subtaskText { 
+max-width: 333px;
+}
+
+
 .showEntrySubtask {
   display: flex;
   justify-content: space-between;
@@ -596,11 +606,6 @@ input[type="date"].filled {
 
 /* Design for Board.html Changing Values of Add Task!*/
 
-.dialogBox {
-  max-height: 930px;
-
-}
-
 .overAllChangeAddTask * {
   font-size: 20px;
 }
@@ -608,7 +613,25 @@ input[type="date"].filled {
 .formChangeAddTasks {
   overflow: auto;
   height: 697px;
-  padding-right: 5px;
+  padding: 0 5px;
+}
+
+.imgCloseChangeAddTask {
+  position: relative;
+  height: 24px;
+  width: 24px;
+}
+
+.overImgCloser {
+  vertical-align: middle;
+  display: flex;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.overImgCloser:hover {
+  border-radius: 50%;
+  background-color: #d1d1d1;
 }
 
 .closeButtonChangeAddTask {
@@ -616,11 +639,6 @@ input[type="date"].filled {
   width: 100%;
   justify-content: flex-end;
   margin-bottom: 24px;
-}
-
-.imgCloseChangeAddTask {
-  height: 24px;
-  width: 24px;
 }
 
 .overInputFieldsChangeAddTask {
@@ -667,10 +685,6 @@ input[type="date"].filled {
   display: none;
 }
 
-.overFormButtonsChangeAddTask {
-  display: none;
-}
-
 .arrowCategoryChangeAddTask {
   display: flex;
   position: absolute;
@@ -679,12 +693,12 @@ input[type="date"].filled {
   cursor: pointer;
 }
 
-.showCategorysChangeAddTask {
-  margin-bottom: 24px;
-}
-
 .marginTopChangeAddTask {
   margin-top: 16px;
+}
+
+.marginTopAssignedToChangeAddTask {
+  margin-top: 24px;
 }
 
 .confirmChangeAddTask {
@@ -699,10 +713,8 @@ input[type="date"].filled {
 }
 
 .confirmChangeAddTask:hover {
-  background-color: #29ABE2;
+  background-color: #29abe2;
   box-shadow: 0px 4px 4px 0px #00000040;
-
-
 }
 
 .imgCheckChangeAddTask {

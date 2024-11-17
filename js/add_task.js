@@ -719,7 +719,7 @@ async function submitForm(selectedProcessCategory) {
     document.getElementById(
       "insertAddedToTaskConfirmation"
     ).innerHTML = `<div class="backgroundInformationForm"><div id="addConfirmation" class="addedToBoard">
-<div class="taskAddedInformation">Task added To board</div>
+<div class="taskAddedInformation">Task added to board</div>
 <img src="assets/icons/boardIcon.svg" alt="" />
 </div></div>`;
     setTimeout(() => {

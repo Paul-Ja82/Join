@@ -288,17 +288,27 @@ async function moveTaskWithMenu(id, toSection) {
   await getIdAndData((pathData = ""));
 }
 
-function changeTaskValues(params) {
-  let selectedProcessCategory = "toDo";
+function changeTaskValues() {
   document.getElementById("dialogBox").innerHTML = "";
   document.getElementById("dialogBox").style.transition = "unset";
   document.getElementById("dialogBox").style.backgroundColor = "white";
   document.getElementById("dialogBox").style.width = "525px";
   document.getElementById("dialogBox").style.boxSizing = "border-box";
-  document.getElementById("dialogBox").innerHTML = returnChangingAddTask(
-    selectedProcessCategory
-  );
+  document.getElementById("dialogBox").innerHTML = returnChangingAddTask();
+
+  returnChangeAddTask();
 }
+
+function closeChangeTaskValues() {
+  document.getElementById("dialogBox").style.cssText = "";
+  document.getElementById("dialogBox").classList.remove("showIt");
+  setTimeout(() => {
+    document.getElementById("backgroundId").classList.add("d-none");
+    document.getElementById("dialogBox").style.backgroundColor = "white";
+  }, 225);
+}
+
+
 
 function renderFormAddTask(selectedProcessCategory) {
   console.log(selectedProcessCategory);
@@ -384,7 +394,6 @@ function renderFormAddTask(selectedProcessCategory) {
                 This field is required.
               </div>
             </div>
-
             <div class="overField marginTop">
               <label>Prio</label>
               <div class="overPrioButtons">
@@ -434,7 +443,6 @@ function renderFormAddTask(selectedProcessCategory) {
                   onclick="showMeCategorys()"
                 />
               </div>
-
               <div id="costumSelect" class="costumSelect">
                 <input
                   type="text"
@@ -453,7 +461,6 @@ function renderFormAddTask(selectedProcessCategory) {
                   </div>
                 </div>
               </div>
-
               <div id="errorCategory" class="errorMessage">
                 This field is required.
               </div>

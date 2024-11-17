@@ -1,9 +1,9 @@
 /* Für das Ändern der Task im Board */
 
-function returnChangingAddTask(selectedProcessCategory) {
+function returnChangingAddTask() {
   return `
 <div class="overAllFormAddTask overAllChangeAddTask">
-  <div class="closeButtonChangeAddTask"><img class="imgCloseChangeAddTask" src="assets/icons/close.svg"></div> 
+  <div class="closeButtonChangeAddTask"><div class="overImgCloser"><img onclick="closeChangeTaskValues()" class="imgCloseChangeAddTask" src="assets/icons/close.svg"></div></div>
 <form id="formAddTasks" class="formChangeAddTasks">
       <div class="seperateSendButtons"><div class="titleSectionChangeAddTask"><h2 class="titleAddTask">Add Task</h2><div class="iconImage"><img onclick="closeDialog()" src="assets/icons/close.svg"></div></div>
         <div class="overInputFieldsChangeAddTask">
@@ -116,7 +116,7 @@ function returnChangingAddTask(selectedProcessCategory) {
                 <input
                   type="text"
                   id="showSelectedCategory"
-                  class="fieldInput showCategorysChangeAddTask"
+                  class="fieldInput"
                   readonly
                   placeholder="Select a option"
                   onclick="showMeCategorys()"
@@ -134,7 +134,7 @@ function returnChangingAddTask(selectedProcessCategory) {
               <div id="errorCategory" class="errorMessage">
                 This field is required.
               </div>
-            </div><div class="overFieldChangeAddTask">
+            </div><div class="overFieldChangeAddTask marginTopAssignedToChangeAddTask">
               <label for="inputAssignedTo">Assigned to</label>
               <div id="setBackground" class="overaddAssignedTo">
                 <div class="overInputAssignedTo">
@@ -177,34 +177,9 @@ function returnChangingAddTask(selectedProcessCategory) {
             </div>
           </div>
         </div>
-        <div class="overFormButtonsChangeAddTask">
-          <div class="requiredInformation">
-            <span style="color: #ff8190">*</span>This field is required
-          </div>
-          <div class="setButtons">
-            <div class="overSendButtons">
-              <button
-                class="formButtons clearButton"
-                type="button"
-                onclick="reloadPage()"
-              >
-                Clear
-                <div class="iconX"></div>
-              </button>
-              <button
-                class="formButtons createButton"
-                type="button"
-                onclick="submitForm('${selectedProcessCategory}')"
-              >
-                Create Task <img src="assets/icons/checkWhite.svg" alt="" />
-              </button>
-            </div>
-          </div>
-          
-        </div><div class="overConfirmChangeAddTaskButton"><button type="button" class="confirmChangeAddTask">Ok<img class="imgCheckChangeAddTask" src="assets/icons/checkWhite.svg" alt="" /></button></div>
       </div>
     </form>
-    
+    <div class="overConfirmChangeAddTaskButton"><button onclick="collectDataFromChangingAddTask()" type="button" class="confirmChangeAddTask">Ok<img class="imgCheckChangeAddTask" src="assets/icons/checkWhite.svg" alt="" /></button></div>
     </div>
 `;
 }

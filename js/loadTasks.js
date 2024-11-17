@@ -3,6 +3,7 @@ let allTasks = [];
 let allKeys = [];
 let id;
 
+/* Nicht mehr in Gebrauch -> Zum löschen? 
 async function collectData(currentStatus, selectedContacts) {
     
     let taskData = {
@@ -21,7 +22,7 @@ async function collectData(currentStatus, selectedContacts) {
     await postData(path="tasks", taskData)
     await getIdAndData(pathData='')
     return id
-}
+}*/
 
 async function collectDataFromAddTask(currentStatus, selectedContacts) {
     console.log(selectedContacts);
@@ -47,6 +48,25 @@ async function collectDataFromAddTask(currentStatus, selectedContacts) {
     await postData(path="tasks", taskData)
     await getIdAndDataForAddTask(pathData='')
     return id
+}
+
+async function collectDataFromChangingAddTask() {
+   console.log(currentKeyToOpen);
+   
+    let taskData = {
+        "assigned_to" : "",
+        "category" : document.getElementById("showSelectedCategory").value,
+        "description" : document.getElementById("description").value,
+        "due_date" : document.getElementById("date").value,
+        "priority" : selectedPrio == null ? "medium" : selectedPrio,
+        "subtasks" : subtasks,
+        "title" : document.getElementById("title").value,
+        "currentStatus" : currentStatusofChangingTask,
+        "single_ID" : currentTaskForEdit,
+    }
+    await putChangeInTask(path=`${currentKeyToOpen}`, taskData);
+    await getIdAndData(pathData='');
+    openEditedTask();
 }
 
 async function getIdAndDataForAddTask(pathData='') {   //Daten holen ohne weitere Aktivitäten im Board
@@ -93,6 +113,18 @@ async function putID(path="", data={}) {
 
 async function putNewSection(path="", data={}) {
     let response = await fetch(firebase_URL + path + ".json", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
+    });
+    let responseToJson = await response.json();
+    // console.log(responseToJson);
+}
+
+async function putChangeInTask(path="", data={}) {
+    let response = await fetch(firebase_URL + "/tasks/" + path + ".json", {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",

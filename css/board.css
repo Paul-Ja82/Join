@@ -99,7 +99,7 @@ body {
 .dialogBox {
   align-self: center;
   background-color: white;
-  padding: 40px;
+  padding: 60px 40px;
   border-radius: 20px;
   width: 1200px;
   transform: translateX(200vw); /* Startpunkt außerhalb des Bildschirms */
