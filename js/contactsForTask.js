@@ -21,10 +21,15 @@ function createContactsTemplate(filteredContactsForTasks) {
     } else {
         for (let i = 0; i < filteredContactsForTasks.length; i++) {
             let isSelected = '';
+            let listPersonId = filteredContactsForTasks[i].id;
+            const initials = getInitials(filteredContactsForTasks[i].name);
             let contact = `
-                <li id="listPerson${filteredContactsForTasks[i].id}" class="backgroundOnHover" onclick="changeCheckbox(${filteredContactsForTasks[i].id})">
+                <li id="listPerson${listPersonId}" class="backgroundOnHover" onclick="changeCheckbox(${listPersonId})">
                     <div class="profile">
-                        <div id="profilPerson${filteredContactsForTasks[i].id}" class="profilePerson"></div>    
+                        <div class="initialsImg" id="initialsImg${listPersonId}" style="background-color: ${filteredContactsForTasks[i].color}">
+                            ${initials}
+                        </div>
+                        <div id="profilPerson${listPersonId}" class="profilePerson"></div>    
                         <div class="contactPerson">${filteredContactsForTasks[i].name}</div>
                     </div>
                     <input type="checkbox" value="${filteredContactsForTasks[i].name}" class="contactListCheckbox" 
@@ -32,9 +37,8 @@ function createContactsTemplate(filteredContactsForTasks) {
                         onclick="event.stopPropagation()" 
                         ${isSelected ? "checked" : ""}
                     >
-                    <img id="checkboxId${filteredContactsForTasks[i].id}" src="assets/icons/checkbox.svg">
+                    <img id="checkboxId${listPersonId}" src="assets/icons/checkbox.svg">
                 </li>`
-            // console.log(contact);
             template.innerHTML += contact
         }
     }

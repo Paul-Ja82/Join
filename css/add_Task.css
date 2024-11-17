@@ -1,3 +1,13 @@
+.initialsImg {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .overAllFormAddTask * {
   box-sizing: border-box;
   font-size: 24px;

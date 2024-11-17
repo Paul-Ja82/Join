@@ -215,8 +215,18 @@ function checkDateInput() {
 }
 
 
-function showProfilPicture(contact, index) {
-  let linkProfil = document.getElementById(`profilPerson${index}`);
+// function showProfilPicture(contact, index) {
+//   let linkProfil = document.getElementById(`profilPerson${index}`);
+//   linkProfil.innerHTML = "";
+//   const initials = getInitials(contact);
+//   const bgColor = avatarColors[index % avatarColors.length];
+//   const svgAvatar = createAvatarSVG(initials, bgColor);
+//   linkProfil.appendChild(svgAvatar);
+// }
+
+// Versuch Sabrina: 
+function showProfilPicture(listPersonId) {
+  let linkProfil = document.getElementById(`profilPerson${listPersonId}`);
   linkProfil.innerHTML = "";
   const initials = getInitials(contact);
   const bgColor = avatarColors[index % avatarColors.length];
