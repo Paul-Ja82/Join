@@ -11,12 +11,12 @@ let dragAndDropSections = [
   "await_feedback_tasks",
   "done_tasks",
 ];
-// let sectionToSaveTask;
+
 function init(params) {
-  console.log("init()"); ///DEBUG
+  // console.log('init()'); ///DEBUG
   // getIdAndData((pathData = ""));
   include();
-  loadContacts();
+  // loadContacts();
 }
 
 async function showDialog(selectedProcessCategory) {
@@ -125,63 +125,48 @@ function endDragging() {
 }
 
 async function checkDraggableArea(e) {
-  let cursorX = e.clientX;
-  let cursorY = e.clientY;
-  let idFromSectionToDrop = checkIdFromSectionToDrop(cursorX, cursorY);
-  let newSection = checkNewSection(idFromSectionToDrop);
-  // console.log(newSection);
-  if (newSection == "noDropArea") {
-    endDragging();
-    removeShadow(id);
-    getIdAndData((pathData = ""));
-  } else {
-    moveTo(newSection);
-    endDragging();
-  }
+    let cursorX = e.clientX;
+    let cursorY = e.clientY;
+    let idFromSectionToDrop = checkIdFromSectionToDrop(cursorX, cursorY); 
+    let newSection = checkNewSection(idFromSectionToDrop);  
+    if (newSection == 'noDropArea') {
+        endDragging()
+        removeShadow(id)
+        getIdAndData(pathData='') 
+    } else {
+        moveTo(newSection)
+        endDragging()
+        getFilter()
+    }
 }
 
 function checkNewSection(idFromSectionToDrop) {
-  // console.log(idFromSectionToDrop);
-  if (idFromSectionToDrop == "to_do_tasks") {
-    newSection = "todo";
-  } else if (idFromSectionToDrop == "in_progress_tasks") {
-    newSection = "inProgress";
-  } else if (idFromSectionToDrop == "await_feedback_tasks") {
-    newSection = "awaitFeedback";
-  } else if (idFromSectionToDrop == "done_tasks") {
-    newSection = "done";
-  } else {
-    newSection = "noDropArea";
-  }
-  return newSection;
+    if (idFromSectionToDrop == 'to_do_tasks') {
+        newSection = 'todo';
+    } else if (idFromSectionToDrop == 'in_progress_tasks') {
+        newSection = 'inProgress';
+    } else if (idFromSectionToDrop == 'await_feedback_tasks') {
+        newSection = 'awaitFeedback'
+    } else if (idFromSectionToDrop == 'done_tasks') {
+        newSection = 'done'
+    } else {
+        newSection = 'noDropArea'
+    }    
+    return newSection
 }
 
 function checkIdFromSectionToDrop(cursorX, cursorY) {
-  let idFromSectionToDrop = "noDropArea";
-  for (let i = 0; i < dragAndDropSections.length; i++) {
-    let sectionLeft = document
-      .getElementById(`${dragAndDropSections[i]}`)
-      .getBoundingClientRect().left;
-    let sectionRight = document
-      .getElementById(`${dragAndDropSections[i]}`)
-      .getBoundingClientRect().right;
-    let sectionTop = document
-      .getElementById(`${dragAndDropSections[i]}`)
-      .getBoundingClientRect().top;
-    let sectionBottom = document
-      .getElementById(`${dragAndDropSections[i]}`)
-      .getBoundingClientRect().bottom;
-    if (
-      cursorX > sectionLeft &&
-      cursorX < sectionRight &&
-      cursorY > sectionTop &&
-      cursorY < sectionBottom
-    ) {
-      idFromSectionToDrop = dragAndDropSections[i];
-      // console.log(idFromSectionToDrop);
-      break;
+    let idFromSectionToDrop = 'noDropArea';
+    for (let i = 0; i < dragAndDropSections.length; i++) {
+      let sectionLeft = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().left;
+      let sectionRight = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().right;
+      let sectionTop = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().top;
+      let sectionBottom = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().bottom;
+      if ((cursorX > sectionLeft && cursorX < sectionRight) && (cursorY > sectionTop && cursorY < sectionBottom)) {
+        idFromSectionToDrop = dragAndDropSections[i];
+        break
+      } 
     }
-  }
   return idFromSectionToDrop;
 }
 
@@ -191,56 +176,36 @@ function allowDrop(e) {
 
 function showShadow(id) {
   document.getElementById("shadow_move_to_to_do_tasks").style.display = "none";
-  document.getElementById("shadow_move_to_in_progress_tasks").style.display =
-    "none";
-  document.getElementById("shadow_move_to_await_feedback_tasks").style.display =
-    "none";
+  document.getElementById("shadow_move_to_in_progress_tasks").style.display = "none";
+  document.getElementById("shadow_move_to_await_feedback_tasks").style.display = "none";
   document.getElementById("shadow_move_to_done_tasks").style.display = "none";
   document.getElementById(id).style.display = "flex";
 }
 
 function removeShadow(id) {
   document.getElementById("shadow_move_to_to_do_tasks").style.display = "none";
-  document.getElementById("shadow_move_to_in_progress_tasks").style.display =
-    "none";
-  document.getElementById("shadow_move_to_await_feedback_tasks").style.display =
-    "none";
+  document.getElementById("shadow_move_to_in_progress_tasks").style.display = "none";
+  document.getElementById("shadow_move_to_await_feedback_tasks").style.display = "none";
   document.getElementById("shadow_move_to_done_tasks").style.display = "none";
 }
 
 async function moveTo(newSection) {
-  // console.log(newSection);
-  let keyForPath = checkIndexOfTaskToMove(
-    currentDraggedElementID,
-    allTasks,
-    allKeys
-  );
-  console.log(keyForPath);
-  let path = `tasks/${keyForPath}/currentStatus`;
-  // console.log(path);
-  await putNewSection(path, newSection);
-  await getIdAndData((pathData = ""));
+    let keyForPath = checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys);
+    let path = `tasks/${keyForPath}/currentStatus`;
+    await putNewSection(path, newSection);
+    await getIdAndData(pathData='')
 }
 
-// function openAddTaskForm(section) {
-//   sectionToSaveTask = section;
-//   console.log(section);
-
-//   window.location.href = "/add_task.html";
-//   return sectionToSaveTask;
-// }
-
 function checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys) {
-  let id = currentDraggedElementID.slice(15);
-  let keytoChangeCategory;
-  for (let i = 0; i < allKeys.length; i++) {
-    if (allTasks[`${allKeys[i]}`].single_ID == Number(id)) {
-      // console.log(i, allKeys[i])
-      keytoChangeCategory = allKeys[i];
-      break;
+    let id = currentDraggedElementID.slice(15);
+    let keytoChangeCategory;
+    for (let i = 0; i < allKeys.length; i++) {
+        if (allTasks[`${allKeys[i]}`].single_ID == Number(id)) {
+            keytoChangeCategory = allKeys[i]
+            break
+        }
     }
-  }
-  return keytoChangeCategory;
+    return keytoChangeCategory
 }
 
 function openCloseMenuMovingTask(e, single_ID, currentStatus) {
@@ -311,7 +276,7 @@ function closeChangeTaskValues() {
 
 
 function renderFormAddTask(selectedProcessCategory) {
-  console.log(selectedProcessCategory);
+  // console.log(selectedProcessCategory);
   return `
   <div class="overAllFormAddTask">
   <form id="formAddTasks" class="formAddTasks">

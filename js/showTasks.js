@@ -19,7 +19,7 @@ function pushTasksToArray() {
     for (let i = 0; i < allKeys.length; i++) {
         if (allTasks[`${allKeys[i]}`].currentStatus === "todo") {
             tasksTodo.push(allTasks[`${allKeys[i]}`])
-            console.log(allKeys[i])
+            // console.log(allKeys[i])
         } 
         if (allTasks[`${allKeys[i]}`].currentStatus === "inProgress") {
             tasksInProgress.push(allTasks[`${allKeys[i]}`])
@@ -34,8 +34,8 @@ function pushTasksToArray() {
 }
 
 function pushFilteredTasksToArray() {
-    console.log(filteredTasks);
-    console.log(filteredKeys);
+    // console.log(filteredTasks);
+    // console.log(filteredKeys);
     for (let i = 0; i < filteredKeys.length; i++) {
         // console.log(filteredTasks[i]);
         if (filteredTasks[i].currentStatus === "todo") {
@@ -57,6 +57,7 @@ function fillTaskSections(section, tasks) {
     document.getElementById(section).innerHTML = "";
     for (let i = 0; i < tasks.length; i++) {
         let assignedTocontacts = checkAssignedTo(tasks, i);
+        console.log(assignedTocontacts);
         let priorityImg = checkPriorityImg(tasks, i);
         let checkedSubtasks = checkCheckedSubtasks(tasks, i);
         let subtasksLength = checkSubtaskLength(tasks, i)
@@ -72,21 +73,55 @@ function fillTaskSections(section, tasks) {
     showSubtaskCtn()
 }
 
+// function checkAssignedTo(tasks, i) {
+//     let contactsIconsTemplate = "";
+//     if (tasks[i].assigned_to == 'nobody') {
+//         contactsIconsTemplate = "";
+//     } else {
+//         for (let j = 0; j < tasks[i].assigned_to.length; j++) {
+//             let fullName = tasks[i].assigned_to[j];
+//             // console.log(fullName);
+//             // console.log(tasks[i]);
+//             let [firstName, lastName] = fullName.split(" ");
+//             let charOneFirstName = firstName.charAt(0)
+//             let charOneLastName = lastName.charAt(0)
+//             contactsIconsTemplate += `
+//              <div class="single_task_single_contact" id="">${charOneFirstName}${charOneLastName}</div>
+//             `
+//         }
+//     }
+//     return contactsIconsTemplate
+// }
+
 function checkAssignedTo(tasks, i) {
-    // console.log(selectedContacts);
     let contactsIconsTemplate = "";
-    if (selectedContacts.length > 0) {
-        for (let j = 0; j < tasks[i].assigned_to.length; j++) {
-            let fullName = tasks[i].assigned_to[j];
-            let [firstName, lastName] = fullName.split(" ");
-            let charOneFirstName = firstName.charAt(0)
-            let charOneLastName = lastName.charAt(0)
-            contactsIconsTemplate += `
-             <div class="single_task_single_contact" id="">${charOneFirstName}${charOneLastName}</div>
-            `
-        }
-    } else if(selectedContacts.length == 0) {
+    if (tasks[i].assigned_to == 'nobody') {
         contactsIconsTemplate = "";
+    } else {
+        if (tasks[i].assigned_to.length > 5) {
+            for (let j = 0; j < 5; j++) {
+                let fullName = tasks[i].assigned_to[j];
+                // console.log(fullName);
+                // console.log(tasks[i]);
+                let [firstName, lastName] = fullName.split(" ");
+                let charOneFirstName = firstName.charAt(0)
+                let charOneLastName = lastName.charAt(0)
+                contactsIconsTemplate += `
+                 <div class="single_task_single_contact" id="">${charOneFirstName}${charOneLastName}</div>
+                `
+                console.log(contactsIconsTemplate);
+                
+            }
+         
+        }
+        if (tasks[i].assigned_to.length >= 5) {
+            let moreContacts = tasks[i].assigned_to.length - 5;
+            contactsIconsTemplate += `
+            <div class="single_task_single_contact" id="">+${moreContacts}</div>
+           `
+
+        }
+      
     }
     return contactsIconsTemplate
 }
@@ -157,10 +192,10 @@ function calcProcessBarWidth(checkedSubtasks, subtasksLength) {
 function createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, width, checkedSubtasks, subtasksLength) {
     document.getElementById(section).innerHTML += `
     <div draggable="true" 
-    onmousedown="cloneElement(${tasks[i].single_ID}, event)"
+    onmousedown="if (window.innerWidth > 600) cloneElement(${tasks[i].single_ID}, event)"
     ondragstart="startDragging(event)" 
     ondrag="whileDragging(event)"
-    ondragend="endDragging()"
+    ondragend="checkDraggableArea(event)"
     onclick="checkTask(event)"  
     id="single_task_ctn${tasks[i].single_ID}" class="single_task_ctn">
         <div class="single_task_category">${tasks[i].category}</div>
@@ -209,8 +244,10 @@ function checkTaskCategoryColor(classname) {
 function showSubtaskCtn() {
     let subtascsCtn = document.getElementsByClassName("single_task_progress_ctn");
     Array.from(subtascsCtn).forEach(ctn => {
-        if(ctn.innerText == "0/0 Subtasks") {
+        if(ctn.innerHTML.includes("0/0 Subtasks")) {
             ctn.style.display = "none" 
+        } else {
+            ctn.style.display = "flex"
         }
     });
 }

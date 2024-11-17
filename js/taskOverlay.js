@@ -1,4 +1,5 @@
 let currentTaskInOverlay;
+let currentUserLoggedIn = 'Ben Schneider'
 let currentTaskForEdit;
 let inChangeSubtasksTask = [];
 let currentKeyToOpen;
@@ -82,8 +83,7 @@ function fillTaskOverlay(
                             </svg>
                             <span>Delete</span>
                         </div>
-                        <div class="lineGap"></div>
-                        <div onclick="changeTaskValues()" id="id="btnEdt${keyToOpen}" class="delete_or_edit_button">
+                        <div onclick="editTask(event, '${keyToOpen}')" id="id="btnEdt${keyToOpen}" class="delete_or_edit_button">
                             <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M2 17H3.4L12.025 8.375L10.625 6.975L2 15.6V17ZM16.3 6.925L12.05 2.725L13.45 1.325C13.8333 0.941667 14.3042 0.75 14.8625 0.75C15.4208 0.75 15.8917 0.941667 16.275 1.325L17.675 2.725C18.0583 3.10833 18.2583 3.57083 18.275 4.1125C18.2917 4.65417 18.1083 5.11667 17.725 5.5L16.3 6.925ZM14.85 8.4L4.25 19H0V14.75L10.6 4.15L14.85 8.4Z" fill="#2A3647"/>
                             </svg>
@@ -99,38 +99,47 @@ function fillTaskOverlay(
 }
 
 function checkAssignedToOverlay(allTasks, keyToOpen) {
-  console.log(allTasks[keyToOpen]);
-  let contactsTemplate = "";
-  if (allTasks[keyToOpen].assigned_to == "nobody") {
-    contactsTemplate = "";
-  } else {
-    for (let j = 0; j < allTasks[keyToOpen].assigned_to.length; j++) {
-      let fullName = allTasks[keyToOpen].assigned_to[j];
-      let [firstName, lastName] = fullName.split(" ");
-      let charOneFirstName = firstName.charAt(0);
-      let charOneLastName = lastName.charAt(0);
-      contactsTemplate += `
+    let contactsTemplate = "";
+    if (allTasks[keyToOpen].assigned_to == 'nobody') {
+        contactsTemplate = "";
+    } else {
+        for (let j = 0; j < allTasks[keyToOpen].assigned_to.length; j++) {
+            let fullName = allTasks[keyToOpen].assigned_to[j];
+            let [firstName, lastName] = fullName.split(" ");
+            let charOneFirstName = firstName.charAt(0);
+            let charOneLastName = lastName.charAt(0);
+            let currentUser = checkCurrentUser(currentUserLoggedIn, fullName);
+            contactsTemplate += `
                 <div class="single_task_single_contact">
                     <div class="task_contact_name_icon">${charOneFirstName}${charOneLastName}</div>
-                    <div class="task_contact_name">${fullName} (You??)</div>
+                    <div class="task_contact_name">${fullName} ${currentUser}</div>
                 </div>
-            `;
+            `
+        }
     }
-  }
-  return contactsTemplate;
-}
+    return contactsTemplate
+} 
 
+function checkCurrentUser(currentUserLoggedIn, fullName) {
+    let currentUserForAssignedTo = '';
+    if (currentUserLoggedIn == fullName) {
+        currentUserForAssignedTo = '(You)'
+    } else {
+        currentUserForAssignedTo = ''
+    }
+    return currentUserForAssignedTo
+}
+   
 function checkSubtasksOverlay(allTasks, keyToOpen) {
-  let subtasks = allTasks[keyToOpen].subtasks;
-  let subtaskTemplate = "";
-  // console.log(subtasks, typeof subtasks);
-  if (typeof subtasks === "undefined") {
-    subtaskTemplate = `keine Subtasks vorhanden`;
-  } else {
-    for (let j = 0; j < allTasks[keyToOpen].subtasks.length; j++) {
-      let subtaskCheckbox = checkSubtaskStatus(allTasks, keyToOpen, j);
-      subtaskTemplate += `
-                <div class="single_task_subtask">
+    let subtasks = allTasks[keyToOpen].subtasks;
+    let subtaskTemplate = "";
+    if (typeof subtasks === 'undefined') {
+       subtaskTemplate = `keine Subtasks vorhanden`
+    } else {
+        for (let j = 0; j < allTasks[keyToOpen].subtasks.length; j++) {    
+            let subtaskCheckbox = checkSubtaskStatus(allTasks, keyToOpen, j);     
+            subtaskTemplate += `
+                <div onclick="event.stopPropagation()" class="single_task_subtask">
                     ${subtaskCheckbox}
                     <label id="subtask${j}_${keyToOpen}" for="checkbox${j}_${keyToOpen}" onclick="changeSubtaskStatus(allTasks, event, labelID='${j}_${keyToOpen}')">
                         <div class="subtask_checkbox">
@@ -172,20 +181,18 @@ function checkSubtaskStatus(allTasks, keyToOpen, j) {
 }
 
 async function changeSubtaskStatus(allTasks, e, labelID) {
-  let keyAndIndex = labelID.split("_");
-  let thisSubtaskIndex = keyAndIndex[0];
-  let thisTaskKey = keyAndIndex.slice(1).join("_");
-  if (allTasks[thisTaskKey].subtasks[thisSubtaskIndex].checked == true) {
-    allTasks[thisTaskKey].subtasks[thisSubtaskIndex].checked = false;
-  } else {
-    allTasks[thisTaskKey].subtasks[thisSubtaskIndex].checked = true;
-  }
-  let pathToStatus = `tasks/${thisTaskKey}/subtasks/${thisSubtaskIndex}/checked`;
-  await putNewCheckedStatus(
-    pathToStatus,
-    allTasks[thisTaskKey].subtasks[thisSubtaskIndex].checked
-  );
-  getIdAndData((pathData = ""));
+    e.stopPropagation()
+    let keyAndIndex = labelID.split('_')
+    let thisSubtaskIndex = keyAndIndex[0];
+    let thisTaskKey = keyAndIndex.slice(1).join('_');
+    if (allTasks[thisTaskKey].subtasks[thisSubtaskIndex].checked == true) {
+        allTasks[thisTaskKey].subtasks[thisSubtaskIndex].checked = false
+    } else {
+       allTasks[thisTaskKey].subtasks[thisSubtaskIndex].checked = true
+    }
+    let pathToStatus = `tasks/${thisTaskKey}/subtasks/${thisSubtaskIndex}/checked`
+    await putNewCheckedStatus(pathToStatus, allTasks[thisTaskKey].subtasks[thisSubtaskIndex].checked);
+    await getIdAndData(pathData='')
 }
 
 function checkIndexOfAllTasks(clickedSingleID, allTasks, allKeys) {
