@@ -17,9 +17,7 @@ function animateLogo() {
     }, 500);
 }
 
-
 document.addEventListener("DOMContentLoaded", function() {
-    
 });
 
 
@@ -64,6 +62,81 @@ function colorLogo() {
     }
 }
 
+/**
+ * Enables or disables the password input field based on the presence of a valid email in the email input field.
+ *
+ * @function ablePasswordInput
+ */
+function ablePasswordInput() {
+    const emailInput = document.getElementById('emailInput');
+    const passwordInput = document.getElementById('passwordInput');
+
+    if (emailInput) {
+        const emailValue = emailInput.value.trim();
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
+
+        if (emailPattern.test(emailValue)) {
+            passwordInput.disabled = false;
+        } else {
+            passwordInput.disabled = true;
+        }
+    }
+}
+
+// Hier mussen wir noch integrieren das die email auch registriert seien muss bevor wir password eingeben ,ausserdem stört der addEventlistner die signUp seite 
+// Dann mussen wir verhindern das wenn ich email eingegeben habe anfange die password zu schreiben und dann wieder in das email fehlde gehe das password mit zeichen bleibt oder auch nicht ?
+
+/**
+ * Displays or hides the forgot password message based on the state of the password input field.
+ * If the password input field is not disabled, the forgot password message is shown by setting its opacity to 1.
+ * If the password input field is disabled, the message is hidden by setting its opacity to 0.
+ *
+ * @function showForgotPasswordMsg
+ */
+function showForgotPasswordMsg() {
+    const forgotPasswordElement = document.getElementById('forgotPassword');
+    const passwordInput = document.getElementById('passwordInput');
+
+    if (forgotPasswordElement) {
+        if (passwordInput && !passwordInput.disabled) {
+            forgotPasswordElement.style.opacity = '1';
+        } else {
+            forgotPasswordElement.style.opacity = '0';
+        }
+    }
+}
+
+/**
+ * Adds an input event listener to the element with the ID 'emailInput'.
+ * Enables or disables the password input field based on the value entered in the email input field.
+ * If the email input field contains text, the password input field is enabled. If the email input field is empty,
+ * the password input field is disabled and the forgot password message's opacity is set to 0, hiding it.
+ */
+document.getElementById('emailInput').addEventListener('input', function() {
+    const emailValue = this.value.trim();
+    const passwordInput = document.getElementById('passwordInput');
+
+    if (emailValue.length > 0) {
+        passwordInput.disabled = false;
+    } else {
+        passwordInput.disabled = true;
+        const forgotPasswordElement = document.getElementById('forgotPassword');
+        if (forgotPasswordElement) {
+            forgotPasswordElement.style.opacity = '0';
+        }
+    }
+});
+
+/**
+ * Handles the masking of password input fields by updating the visible input value
+ * with masked characters or the actual value depending on the state of an associated eye icon.
+ * It updates the stored actual value to reflect the current input state.
+ *
+ * @function supportForMaskPassword
+ * @param {HTMLInputElement} input - The input element whose value is being masked.
+ * @param {string} actualValue - The current actual (unmasked) value of the input.
+ * @returns {string} - The updated actual value of the input.
+ */
 function supportForMaskPassword(input, actualValue) {
     const lastChar = input.value.slice(-1);
     if (input.value.length < actualValue.length) {

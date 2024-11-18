@@ -47,11 +47,12 @@
             <div class="divider"></div>
             <div class="input-main-div">
             <div class="email-input-div">
-                <input type="text"  class="log-input" id="emailInput" placeholder="Email" onclick="removeInputError()" required autocomplete="off">
+                <input type="email"  class="log-input" id="emailInput" placeholder="Email" onclick="removeInputError()" required autocomplete="off">
                 <img class="mail-Img" src="assets/img/mail.png">
             </div>
+            
             <div class="password-input-div">
-              <input type="text" class="log-input" id="passwordInput" placeholder="Password" disabled onclick="showForgotPasswordMsg()" oninput="maskPassword(); showForgotPasswordMsg(); togglePasswordImg(); removeInputError()" onclick="removeInputError()" autocomplete="off">
+              <input type="text" class="log-input" id="passwordInput" placeholder="Password" disabled onclick="ablePasswordInput(); showForgotPasswordMsg()" oninput="maskPassword(); showForgotPasswordMsg(); togglePasswordImg(); removeInputError()" onclick="removeInputError()" autocomplete="off">
               <img class="password-Img" src="assets/img/lock.png">
               <img onclick="openEyePassword()" class="password-Img-eye-of" src="assets/img/password-eye-of.svg">
               <img onclick="closeEyePassword()" class="password-Img-eye-on" src="assets/img/password-eye-on.svg">
