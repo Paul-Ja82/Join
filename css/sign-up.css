@@ -394,6 +394,7 @@ footer {
     font-size: 16px;
     font-weight: 400;
     color: rgb(168, 168, 168);
+    text-decoration: none;
     cursor: pointer;
 }
 
@@ -401,6 +402,7 @@ footer {
     font-size: 16px;
     font-weight: 400;
     color: rgb(168, 168, 168);
+    text-decoration: none;
     margin-left: 8px;
     cursor: pointer;
 }

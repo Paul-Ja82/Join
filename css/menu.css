@@ -71,8 +71,10 @@ img.menu-nav-icon {
 
     #menuNavContainer {
         display: block;
-        margin-top: clamp(0rem, -3.706rem + 13.176vh, 7rem);
+        margin-top: clamp(0rem, -3.706rem + 13.176vh, 7rem);   
     }
+
+    /* max witdh 232px und die links demnach anpassen bei max witdh 232px sind sonst die links verschben (add task link zB)*/
 
     .menu-nav-item {
         flex-direction: row;
@@ -92,7 +94,7 @@ img.menu-nav-icon {
     #legalLinksContainer {
         position: absolute;
         left: var(--spacing-left);
-        bottom: clamp(1rem, -0.588rem + 5.647vh, 4rem);;
+        bottom: clamp(1rem, -0.588rem + 5.647vh, 4rem);
     }
 
     .legal-link {

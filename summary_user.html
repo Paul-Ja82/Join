@@ -8,11 +8,12 @@
     <title>SummaryUser-Join</title>
     
     
-    <link rel="stylesheet" href="css/header.css">
+    
     <link rel="stylesheet" href="./assets/fonts/fonts.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/summary.css">
     <script src="./js/ui.js"></script>
     <script src="./js/forms.js"></script>
@@ -24,7 +25,7 @@
     <script src="js/showTasks.js"></script>
     <script src="js/header.js"></script>
     <script src="script.js"></script>
-    <script src="js/logIn.js"></script>
+   
     <script src="js/summary.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,9 +33,9 @@
     
 </head>
 
-<body onload="toggleGreetingsDisplay(); updateUserMonogram(); setGreeting(); setGreetedName(); updateAllTasksInSummary(); getTaskData(); include()"> <!--"initSummary()"-->
+<body onload="toggleGreetingsDisplay(); initHeaderJs(); setGreeting(); setGreetedName(); updateAllTasksInSummary(); getTaskData(); include()"> <!--"initSummary()"-->
     <div class="main-frame-div">
-        <div class="dummy_menu" data-include="assets/templates/menu_template.html"></div>
+        <div id="menuContainer" class="menu-summary-div" data-include="assets/templates/menu_template.html"></div>
         <div class="under-frame-div">
             <header>
                 <div class="logo-header-div">
@@ -42,8 +43,10 @@
                 </div>
                 <div class="header-title">Kanban Project Management Tool</div>
                 <nav class="nav-header">
-                    <div class="help-button"><img class="help-button-img" src="./assets/img/help-icon.svg"></div>
-                    <div class="initials-circle" id="navCircle" onclick="openNavWindowFrame()"></div>
+                    <a href="help.html" class="help-button"><img class="help-button-img" src="./assets/img/help-icon.svg"></a>
+                    <div class="initials-circle" onclick="openNavWindowFrame()">
+                        <div  id="navCircle" ></div>
+                    </div>
                     <div class="nav-menu-resp-frame">
                         <div class="nav-menu-responsive">
                             <a class="nav-a">Help</a>
@@ -140,7 +143,7 @@
                                     <div class="deadline-div">
                                         <div class="deadline">
                                             <h4 class="deadline-date" id="deadlineDate"></h4>
-                                            <small class="deadline-undertitle">Upcoming Deadline</small>
+                                            <small class="deadline-undertitle" id="deadlineMsg">Upcoming Deadline</small>
                                         </div>
                                     </div>
                                 </div>

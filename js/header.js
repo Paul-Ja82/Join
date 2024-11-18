@@ -15,20 +15,20 @@ function openNavWindowFrame() {
 
 window.addEventListener('resize', function() {
     const navMenuRespFrame = document.querySelector('.nav-menu-resp-frame');
-    if (window.innerWidth > 1050 && navMenuRespFrame) {
+    if (window.innerWidth > 950 && navMenuRespFrame) {
         navMenuRespFrame.style.display = 'none';
     }
 });
 
 window.addEventListener('resize', function() {
     const navMenu = document.querySelector('.nav-menu-frame');
-    if (window.innerWidth < 1050 && navMenu) {
+    if (window.innerWidth < 950 && navMenu) {
         navMenu.style.display = 'none';
     }
 });
 
 async function setGreetedName() { 
-    const storedName = localStorage.getItem('loggedInUserName');
+    const storedName = sessionStorage.getItem('loggedInUserName');
     let greetednameText = "";
 
     if (storedName) {
@@ -39,24 +39,43 @@ async function setGreetedName() {
             greetedNameElements[i].textContent = storedName;
         }
     } else {
-        console.error('No name found in Local Storage.');
+        console.error('No name found in Session Storage.');
     }
+}
+
+function getMonogramHeader(name) {
+    let words = name.split(' ').filter(Boolean); 
+    let monogram = '';
+    for (let i = 0; i < Math.min(2, words.length); i++) {
+        if (words[i].length > 0) {
+            monogram += words[i][0]; 
+        }
+    }
+
+    return monogram.toUpperCase(); 
 }
 
 async function updateUserMonogram() {
     await setGreetedName(); 
-    const storedName = localStorage.getItem('loggedInUserName');
+    const storedName = sessionStorage.getItem('loggedInUserName');
+    const navCircleElement = document.getElementById('navCircle');
 
-    if (storedName) {
-        const monogram = getMonogram(storedName);
-        const navCircleElement = document.getElementById('navCircle');
-        if (navCircleElement) {
+    if (navCircleElement) {
+        if (storedName) {
+            const monogram = getMonogramHeader(storedName);
             navCircleElement.textContent = monogram;
+            navCircleElement.classList.remove('guest-monogram');
+        } else {
+            navCircleElement.textContent = 'G';
+            navCircleElement.classList.add('guest-monogram'); 
         }
-    } else {
-        console.error('No name found in Local Storage.');
     }
 }
 
-updateUserMonogram();
 
+
+
+
+function initHeaderJs() {
+    updateUserMonogram();
+}
