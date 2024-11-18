@@ -1,3 +1,17 @@
+.contentAddTaskContainer {
+  padding: 0 80px;
+}
+
+.initialsImg {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .overAllFormAddTask * {
   box-sizing: border-box;
   font-size: 24px;
@@ -488,6 +502,15 @@ input[type="date"].filled {
   vertical-align: middle;
 }
 
+.subtaskText {
+  max-width: 333px;
+  word-wrap: break-word;
+}
+
+.showEntrySubtask:hover .subtaskText {
+  max-width: 333px;
+}
+
 .showEntrySubtask {
   display: flex;
   justify-content: space-between;
@@ -593,6 +616,134 @@ input[type="date"].filled {
 
   transition: all 225ms ease-in-out;
 }
+
+/* Design for Board.html Changing Values of Add Task!*/
+
+.overAllChangeAddTask * {
+  font-size: 20px;
+}
+
+.formChangeAddTasks {
+  overflow: auto;
+  height: 697px;
+  padding: 0 5px;
+}
+
+.imgCloseChangeAddTask {
+  position: relative;
+  height: 24px;
+  width: 24px;
+}
+
+.overImgCloser {
+  vertical-align: middle;
+  display: flex;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.overImgCloser:hover {
+  border-radius: 50%;
+  background-color: #d1d1d1;
+}
+
+.closeButtonChangeAddTask {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  margin-bottom: 24px;
+}
+
+.overInputFieldsChangeAddTask {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+}
+
+.titleSectionChangeAddTask {
+  display: none;
+}
+
+.inputFieldDescriptionChangeAddTask {
+  border-radius: 10px;
+  border: solid 1px #d1d1d1;
+  width: 100%;
+  padding: 12px 21px;
+  margin-bottom: 24px;
+  outline: none;
+  resize: vertical;
+}
+
+.inputFieldDescriptionChangeAddTask::placeholder {
+  color: #d1d1d1;
+}
+
+.fillOutChangeAddTask {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.overFieldChangeAddTask {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+}
+
+.lineChangeAddTask {
+  display: none;
+}
+
+.arrowCategoryChangeAddTask {
+  display: flex;
+  position: absolute;
+  top: 47px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.marginTopChangeAddTask {
+  margin-top: 16px;
+}
+
+.marginTopAssignedToChangeAddTask {
+  margin-top: 24px;
+}
+
+.confirmChangeAddTask {
+  border: unset;
+  border-radius: 10px;
+  padding: 16px;
+  background-color: #2a3647;
+  font-size: 21px;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+}
+
+.confirmChangeAddTask:hover {
+  background-color: #29abe2;
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.imgCheckChangeAddTask {
+  vertical-align: middle;
+  height: 25px;
+  width: 25px;
+}
+
+.overConfirmChangeAddTaskButton {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* Ende */
 
 @media only screen and (max-width: 1010px) {
   .overheader {

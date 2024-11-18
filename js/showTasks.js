@@ -57,8 +57,7 @@ function fillTaskSections(section, tasks) {
     document.getElementById(section).innerHTML = "";
     for (let i = 0; i < tasks.length; i++) {
         let assignedTocontacts = checkAssignedTo(tasks, i);
-        // console.log(assignedTocontacts);
-        
+        console.log(assignedTocontacts);
         let priorityImg = checkPriorityImg(tasks, i);
         let checkedSubtasks = checkCheckedSubtasks(tasks, i);
         let subtasksLength = checkSubtaskLength(tasks, i)
@@ -74,22 +73,55 @@ function fillTaskSections(section, tasks) {
     showSubtaskCtn()
 }
 
+// function checkAssignedTo(tasks, i) {
+//     let contactsIconsTemplate = "";
+//     if (tasks[i].assigned_to == 'nobody') {
+//         contactsIconsTemplate = "";
+//     } else {
+//         for (let j = 0; j < tasks[i].assigned_to.length; j++) {
+//             let fullName = tasks[i].assigned_to[j];
+//             // console.log(fullName);
+//             // console.log(tasks[i]);
+//             let [firstName, lastName] = fullName.split(" ");
+//             let charOneFirstName = firstName.charAt(0)
+//             let charOneLastName = lastName.charAt(0)
+//             contactsIconsTemplate += `
+//              <div class="single_task_single_contact" id="">${charOneFirstName}${charOneLastName}</div>
+//             `
+//         }
+//     }
+//     return contactsIconsTemplate
+// }
+
 function checkAssignedTo(tasks, i) {
     let contactsIconsTemplate = "";
     if (tasks[i].assigned_to == 'nobody') {
         contactsIconsTemplate = "";
     } else {
-        for (let j = 0; j < tasks[i].assigned_to.length; j++) {
-            let fullName = tasks[i].assigned_to[j];
-            // console.log(fullName);
-            // console.log(tasks[i]);
-            let [firstName, lastName] = fullName.split(" ");
-            let charOneFirstName = firstName.charAt(0)
-            let charOneLastName = lastName.charAt(0)
-            contactsIconsTemplate += `
-             <div class="single_task_single_contact" id="">${charOneFirstName}${charOneLastName}</div>
-            `
+        if (tasks[i].assigned_to.length > 5) {
+            for (let j = 0; j < 5; j++) {
+                let fullName = tasks[i].assigned_to[j];
+                // console.log(fullName);
+                // console.log(tasks[i]);
+                let [firstName, lastName] = fullName.split(" ");
+                let charOneFirstName = firstName.charAt(0)
+                let charOneLastName = lastName.charAt(0)
+                contactsIconsTemplate += `
+                 <div class="single_task_single_contact" id="">${charOneFirstName}${charOneLastName}</div>
+                `
+                console.log(contactsIconsTemplate);
+                
+            }
+         
         }
+        if (tasks[i].assigned_to.length >= 5) {
+            let moreContacts = tasks[i].assigned_to.length - 5;
+            contactsIconsTemplate += `
+            <div class="single_task_single_contact" id="">+${moreContacts}</div>
+           `
+
+        }
+      
     }
     return contactsIconsTemplate
 }
@@ -160,7 +192,7 @@ function calcProcessBarWidth(checkedSubtasks, subtasksLength) {
 function createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, width, checkedSubtasks, subtasksLength) {
     document.getElementById(section).innerHTML += `
     <div draggable="true" 
-    onmousedown="cloneElement(${tasks[i].single_ID}, event)"
+    onmousedown="if (window.innerWidth > 600) cloneElement(${tasks[i].single_ID}, event)"
     ondragstart="startDragging(event)" 
     ondrag="whileDragging(event)"
     ondragend="checkDraggableArea(event)"

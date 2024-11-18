@@ -26,7 +26,223 @@ async function initAddTasks() {
   const contactList = document.getElementById("insertContactList");
   contactList.classList.add("d-none");
   selectPrio("medium");
-  await getIdAndDataForAddTask((pathData = ""));
+}
+
+function returnAddTaskForm(selectedProcessCategory) {
+  /*let selectedProcessCategory = selectCat == null ? "medium" : selectCat;*/
+  return `
+  <div class="overAllFormAddTask">
+        <div id="insertAddedToTaskConfirmation"></div>
+        <div class="overheader">
+          <h2 class="titleAddTask">Add Task</h2>
+        </div>
+        <form id="formAddTasks" class="formAddTasks">
+          <div class="seperateSendButtons">
+            <div class="overInputFields">
+              <div class="fillOut">
+                <div class="overField">
+                  <label for="title"
+                    >Title<span style="color: #ff8190">*</span></label
+                  >
+                  <input
+                    type="text"
+                    id="title"
+                    class="fieldInput"
+                    placeholder="Enter a Title"
+                  />
+                  <div id="errorTitle" class="errorMessage">
+                    This field is required.
+                  </div>
+                </div>
+                <div class="overField marginTop">
+                  <label for="description">Description</label>
+                  <textarea
+                    type="text"
+                    name="description"
+                    id="description"
+                    placeholder="Enter a Description"
+                  ></textarea>
+                </div>
+                <div class="overField">
+                  <label for="inputAssignedTo">Assigned to</label>
+                  <div id="setBackground" class="overaddAssignedTo">
+                    <div class="overInputAssignedTo">
+                      <input
+                        id="inputAssignedTo"
+                        class="fieldInput inputAssignedTo"
+                        type="text"
+                        onclick="toggleContactList()"
+                        oninput="filterContacts()"
+                        placeholder="Assigned To"
+                      />
+                      <div class="changeSymboles">
+                        <img
+                          id="arrowDropdown"
+                          src="assets/icons/arrowDropdown.svg"
+                          alt=""
+                          onclick="toggleContactList()"
+                        />
+                      </div>
+                    </div>
+                    <ul id="insertContactList" class="listContacts"></ul>
+                  </div>
+                  <div id="showPersons" class="showPersons"></div>
+                </div>
+              </div>
+              <div class="line"></div>
+              <div class="fillOut">
+                <div class="overField">
+                  <label for="date"
+                    >Due date<span style="color: #ff8190">*</span></label
+                  >
+                  <div class="dateWrapper">
+                    <input
+                      type="date"
+                      id="date"
+                      class="fieldInput dateInput"
+                      onchange="checkDateInput()"
+                    />
+                    <div
+                      class="dateIcon"
+                      onclick="document.getElementById('date').showPicker();"
+                    >
+                      <img
+                        src="/assets/icons/calendarIcon.svg"
+                        alt="Calendar Icon"
+                      />
+                    </div>
+                  </div>
+                  <div id="errorDate" class="errorMessage">
+                    This field is required.
+                  </div>
+                </div>
+                <div class="overField marginTop">
+                  <label>Prio</label>
+                  <div class="overPrioButtons">
+                    <button
+                      id="urgentButton"
+                      class="prioButtons"
+                      onclick="selectPrio('urgent')"
+                      type="button"
+                    >
+                      Urgent<img
+                        id="urgentButtonImg"
+                        src="assets/icons/urgent.svg"
+                        alt=""
+                      />
+                    </button>
+                    <button
+                      id="mediumButton"
+                      class="prioButtons"
+                      onclick="selectPrio('medium')"
+                      type="button"
+                    >
+                      Medium<img
+                        id="mediumButtonImg"
+                        src="assets/icons/medium.svg"
+                        alt=""
+                      />
+                    </button>
+                    <button
+                      id="lowButton"
+                      class="prioButtons"
+                      onclick="selectPrio('low')"
+                      type="button"
+                    >
+                      Low<img
+                        id="lowButtonImg"
+                        src="assets/icons/low.svg"
+                        alt=""
+                      />
+                    </button>
+                  </div>
+                </div>
+                <div class="overField">
+                  <label for="showSelectedCategory"
+                    >Category<span style="color: #ff8190">*</span></label
+                  >
+                  <div class="arrowCategory">
+                    <img
+                      id="categoryDropdown"
+                      class="categoryDropdown"
+                      src="assets/icons/arrowDropdown.svg"
+                      onclick="showMeCategorys()"
+                    />
+                  </div>
+                  <div id="costumSelect" class="costumSelect">
+                    <input
+                      type="text"
+                      id="showSelectedCategory"
+                      class="fieldInput"
+                      readonly
+                      placeholder="Select a option"
+                      onclick="showMeCategorys()"
+                    />
+                    <div id="showCategorys" class="showCategorys d-none">
+                      <div
+                        class="categoryItem"
+                        onclick="putInput('Technical Task)"
+                      >
+                        Technical Task
+                      </div>
+                      <div
+                        class="categoryItem"
+                        onclick="putInput('User Story')"
+                      >
+                        User Story
+                      </div>
+                    </div>
+                  </div>
+                  <div id="errorCategory" class="errorMessage">
+                    This field is required.
+                  </div>
+                </div>
+                <div class="overField marginTop">
+                  <label for="subtasks">Subtasks</label>
+                  <div class="overAddSubtasks">
+                    <input
+                      type="text"
+                      id="subtasks"
+                      class="fieldInput"
+                      oninput="changeSymbols()"
+                      placeholder="Add new Subtask"
+                    />
+                    <div id="symbolsSubtasks" class="changeSymboles">
+                      <img src="assets/icons/plus.svg" alt="" />
+                    </div>
+                  </div>
+                  <ul id="showSubtasks"></ul>
+                </div>
+              </div>
+            </div>
+            <div class="overFormButtons">
+              <div class="requiredInformation">
+                <span style="color: #ff8190">*</span>This field is required
+              </div>
+              <div class="setButtons">
+                <div class="overSendButtons">
+                  <button
+                    class="formButtons clearButton"
+                    type="button"
+                    onclick="reloadPage()"
+                  >
+                    Clear
+                    <div class="iconX"></div>
+                  </button>
+                  <button
+                    class="formButtons createButton"
+                    type="button"
+                    onclick="submitForm('${selectedProcessCategory}')"
+                  >
+                    Create Task <img src="assets/icons/checkWhite.svg" alt="" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+  `;
 }
 
 function returnAddTaskForm(selectedProcessCategory) {
@@ -347,16 +563,23 @@ function colorSelectedContacts() {
 
 function filterContacts() {
   const input = document.getElementById("inputAssignedTo").value.toLowerCase();
-  const filteredContacts = contacts.filter((contact) =>
+  const filteredContacts = filteredContactsForTasks.filter((contact) =>
     contact.toLowerCase().includes(input)
   );
-  renderContactList(filteredContacts);
+  let contactsTemplate = createContactsTemplate(filteredContacts)
+  console.log(contactsTemplate);
+  
+  // renderContactList(filteredContacts);
 }
 
 function closeContactList() {
-  const contactList = document.getElementById("insertContactList");
-  contactList.innerHTML = "";
+ 
+  let templateToRemove = document.getElementById("contactListTemplate");
+  let contactList = document.getElementById("insertContactList");
+  console.log(contactList);
+  contactList.removeChild(templateToRemove)
   contactList.classList.add("d-none");
+  // console.log(contactList);
   document.getElementById("arrowDropdown").src =
     "/assets/icons/arrowDropdown.svg";
   document.getElementById("setBackground").classList.remove("whiteBG");
@@ -364,9 +587,7 @@ function closeContactList() {
 
 function changeCheckbox(index) {
   const checkbox = document.getElementById(`checkbox${index}`);
-
   checkbox.checked = !checkbox.checked;
-
   document.getElementById(`checkboxId${index}`).src =
     "assets/icons/checkbox.svg";
 
@@ -391,13 +612,15 @@ function renderAddedPersons() {
   return selectedContacts;
 }
 
-function toggleContactList() {
+function toggleContactList(filteredContactsForTasks) {
   const inputField = document.getElementById("inputAssignedTo");
-
   if (isListOpen) {
     closeContactList();
   } else {
-    renderContactList();
+    checkContacts(allContactsForTasks)
+    // console.log(document.getElementById("insertContactList"));
+    document.getElementById("setBackground").classList.add("whiteBG");
+    document.getElementById("insertContactList").classList.remove("d-none");
   }
   isListOpen = !isListOpen;
 }
@@ -420,14 +643,24 @@ function checkDateInput() {
   }
 }
 
-function showProfilPicture(contact, index) {
-  let linkProfil = document.getElementById(`profilPerson${index}`);
-  linkProfil.innerHTML = "";
-  const initials = getInitials(contact);
-  const bgColor = avatarColors[index % avatarColors.length];
-  const svgAvatar = createAvatarSVG(initials, bgColor);
-  linkProfil.appendChild(svgAvatar);
-}
+// function showProfilPicture(contact, index) {
+//   let linkProfil = document.getElementById(`profilPerson${index}`);
+//   linkProfil.innerHTML = "";
+//   const initials = getInitials(contact);
+//   const bgColor = avatarColors[index % avatarColors.length];
+//   const svgAvatar = createAvatarSVG(initials, bgColor);
+//   linkProfil.appendChild(svgAvatar);
+// }
+
+// Versuch Sabrina: 
+// function showProfilPicture(listPersonId) {
+//   let linkProfil = document.getElementById(`profilPerson${listPersonId}`);
+//   linkProfil.innerHTML = "";
+//   const initials = getInitials(contact);
+//   const bgColor = avatarColors[index % avatarColors.length];
+//   const svgAvatar = createAvatarSVG(initials, bgColor);
+//   linkProfil.appendChild(svgAvatar);
+// }
 
 function showPersons() {
   const avatarContainer = document.getElementById("showPersons");
@@ -650,6 +883,8 @@ function closeDropdown() {
     "assets/icons/arrowDropdown.svg";
 }
 
+//Test//
+
 function putInput(value) {
   document.getElementById("showSelectedCategory").value = value;
   closeDropdown();
@@ -719,7 +954,7 @@ async function submitForm(selectedProcessCategory) {
     document.getElementById(
       "insertAddedToTaskConfirmation"
     ).innerHTML = `<div class="backgroundInformationForm"><div id="addConfirmation" class="addedToBoard">
-<div class="taskAddedInformation">Task added To board</div>
+<div class="taskAddedInformation">Task added to board</div>
 <img src="assets/icons/boardIcon.svg" alt="" />
 </div></div>`;
     setTimeout(() => {

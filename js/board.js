@@ -11,7 +11,7 @@ let dragAndDropSections = [
   "await_feedback_tasks",
   "done_tasks",
 ];
-// let sectionToSaveTask;
+
 function init(params) {
   // console.log('init()'); ///DEBUG
   // getIdAndData((pathData = ""));
@@ -40,13 +40,12 @@ async function showDialog(selectedProcessCategory) {
 
 function showTask() {
   document.getElementById("backgroundId").classList.remove("d-none");
+  document.getElementById("dialogBox").style.backgroundColor = "unset";
   setTimeout(() => {
     document.getElementById("dialogBox").classList.add("showIt");
-    document.getElementById("dialogBox").style.backgroundColor = "unset";
   }, 10);
 
   document.getElementById("dialogBox").innerHTML = "";
-  
 }
 
 function closeTask() {
@@ -56,7 +55,6 @@ function closeTask() {
     document.getElementById("dialogBox").style.backgroundColor = "white";
   }, 225);
 }
-
 
 function closeDialog() {
   document.getElementById("dialogBox").classList.remove("showIt");
@@ -130,8 +128,7 @@ async function checkDraggableArea(e) {
     let cursorX = e.clientX;
     let cursorY = e.clientY;
     let idFromSectionToDrop = checkIdFromSectionToDrop(cursorX, cursorY); 
-    let newSection = checkNewSection(idFromSectionToDrop);    
-    // console.log(newSection);
+    let newSection = checkNewSection(idFromSectionToDrop);  
     if (newSection == 'noDropArea') {
         endDragging()
         removeShadow(id)
@@ -144,47 +141,32 @@ async function checkDraggableArea(e) {
 }
 
 function checkNewSection(idFromSectionToDrop) {
-  // console.log(idFromSectionToDrop);
-  if (idFromSectionToDrop == "to_do_tasks") {
-    newSection = "todo";
-  } else if (idFromSectionToDrop == "in_progress_tasks") {
-    newSection = "inProgress";
-  } else if (idFromSectionToDrop == "await_feedback_tasks") {
-    newSection = "awaitFeedback";
-  } else if (idFromSectionToDrop == "done_tasks") {
-    newSection = "done";
-  } else {
-    newSection = "noDropArea";
-  }
-  return newSection;
+    if (idFromSectionToDrop == 'to_do_tasks') {
+        newSection = 'todo';
+    } else if (idFromSectionToDrop == 'in_progress_tasks') {
+        newSection = 'inProgress';
+    } else if (idFromSectionToDrop == 'await_feedback_tasks') {
+        newSection = 'awaitFeedback'
+    } else if (idFromSectionToDrop == 'done_tasks') {
+        newSection = 'done'
+    } else {
+        newSection = 'noDropArea'
+    }    
+    return newSection
 }
 
 function checkIdFromSectionToDrop(cursorX, cursorY) {
-  let idFromSectionToDrop = "noDropArea";
-  for (let i = 0; i < dragAndDropSections.length; i++) {
-    let sectionLeft = document
-      .getElementById(`${dragAndDropSections[i]}`)
-      .getBoundingClientRect().left;
-    let sectionRight = document
-      .getElementById(`${dragAndDropSections[i]}`)
-      .getBoundingClientRect().right;
-    let sectionTop = document
-      .getElementById(`${dragAndDropSections[i]}`)
-      .getBoundingClientRect().top;
-    let sectionBottom = document
-      .getElementById(`${dragAndDropSections[i]}`)
-      .getBoundingClientRect().bottom;
-    if (
-      cursorX > sectionLeft &&
-      cursorX < sectionRight &&
-      cursorY > sectionTop &&
-      cursorY < sectionBottom
-    ) {
-      idFromSectionToDrop = dragAndDropSections[i];
-      // console.log(idFromSectionToDrop);
-      break;
+    let idFromSectionToDrop = 'noDropArea';
+    for (let i = 0; i < dragAndDropSections.length; i++) {
+      let sectionLeft = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().left;
+      let sectionRight = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().right;
+      let sectionTop = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().top;
+      let sectionBottom = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().bottom;
+      if ((cursorX > sectionLeft && cursorX < sectionRight) && (cursorY > sectionTop && cursorY < sectionBottom)) {
+        idFromSectionToDrop = dragAndDropSections[i];
+        break
+      } 
     }
-  }
   return idFromSectionToDrop;
 }
 
@@ -194,31 +176,40 @@ function allowDrop(e) {
 
 function showShadow(id) {
   document.getElementById("shadow_move_to_to_do_tasks").style.display = "none";
-  document.getElementById("shadow_move_to_in_progress_tasks").style.display =
-    "none";
-  document.getElementById("shadow_move_to_await_feedback_tasks").style.display =
-    "none";
+  document.getElementById("shadow_move_to_in_progress_tasks").style.display = "none";
+  document.getElementById("shadow_move_to_await_feedback_tasks").style.display = "none";
   document.getElementById("shadow_move_to_done_tasks").style.display = "none";
   document.getElementById(id).style.display = "flex";
 }
 
 function removeShadow(id) {
   document.getElementById("shadow_move_to_to_do_tasks").style.display = "none";
-  document.getElementById("shadow_move_to_in_progress_tasks").style.display =
-    "none";
-  document.getElementById("shadow_move_to_await_feedback_tasks").style.display =
-    "none";
+  document.getElementById("shadow_move_to_in_progress_tasks").style.display = "none";
+  document.getElementById("shadow_move_to_await_feedback_tasks").style.display = "none";
   document.getElementById("shadow_move_to_done_tasks").style.display = "none";
 }
 
 async function moveTo(newSection) {
+<<<<<<<<< Temporary merge branch 1
     // console.log(newSection);
     let keyForPath = checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys)
     // console.log(keyForPath);
     let path = `tasks/${keyForPath}/currentStatus`;
-    // console.log(path);
     await putNewSection(path, newSection);
     await getIdAndData(pathData='')
+=========
+  // console.log(newSection);
+  let keyForPath = checkIndexOfTaskToMove(
+    currentDraggedElementID,
+    allTasks,
+    allKeys
+  );
+  console.log(keyForPath);
+  let path = `tasks/${keyForPath}/currentStatus`;
+  // console.log(path);
+  await putNewSection(path, newSection);
+  await getIdAndData((pathData = ""));
+>>>>>>>>> Temporary merge branch 2
 }
 
 // function openAddTaskForm(section) {
@@ -230,16 +221,15 @@ async function moveTo(newSection) {
 // }
 
 function checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys) {
-  let id = currentDraggedElementID.slice(15);
-  let keytoChangeCategory;
-  for (let i = 0; i < allKeys.length; i++) {
-    if (allTasks[`${allKeys[i]}`].single_ID == Number(id)) {
-      // console.log(i, allKeys[i])
-      keytoChangeCategory = allKeys[i];
-      break;
+    let id = currentDraggedElementID.slice(15);
+    let keytoChangeCategory;
+    for (let i = 0; i < allKeys.length; i++) {
+        if (allTasks[`${allKeys[i]}`].single_ID == Number(id)) {
+            keytoChangeCategory = allKeys[i]
+            break
+        }
     }
-  }
-  return keytoChangeCategory;
+    return keytoChangeCategory
 }
 
 function openCloseMenuMovingTask(e, single_ID, currentStatus) {
@@ -287,17 +277,30 @@ async function moveTaskWithMenu(id, toSection) {
   await getIdAndData((pathData = ""));
 }
 
-function changeTaskValues(params) {
- let selectedProcessCategory = "toDo";
- document.getElementById("dialogBox").style.transition = "unset";
- document.getElementById("dialogBox").style.backgroundColor = "white";
- document.getElementById("dialogBox").innerHTML = renderFormAddTask(
-    selectedProcessCategory
-  );
+function changeTaskValues() {
+  document.getElementById("dialogBox").innerHTML = "";
+  document.getElementById("dialogBox").style.transition = "unset";
+  document.getElementById("dialogBox").style.backgroundColor = "white";
+  document.getElementById("dialogBox").style.width = "525px";
+  document.getElementById("dialogBox").style.boxSizing = "border-box";
+  document.getElementById("dialogBox").innerHTML = returnChangingAddTask();
+
+  returnChangeAddTask();
 }
 
+function closeChangeTaskValues() {
+  document.getElementById("dialogBox").style.cssText = "";
+  document.getElementById("dialogBox").classList.remove("showIt");
+  setTimeout(() => {
+    document.getElementById("backgroundId").classList.add("d-none");
+    document.getElementById("dialogBox").style.backgroundColor = "white";
+  }, 225);
+}
+
+
+
 function renderFormAddTask(selectedProcessCategory) {
-  console.log(selectedProcessCategory);
+  // console.log(selectedProcessCategory);
   return `
   <div class="overAllFormAddTask">
   <form id="formAddTasks" class="formAddTasks">
@@ -380,7 +383,6 @@ function renderFormAddTask(selectedProcessCategory) {
                 This field is required.
               </div>
             </div>
-
             <div class="overField marginTop">
               <label>Prio</label>
               <div class="overPrioButtons">
@@ -430,7 +432,6 @@ function renderFormAddTask(selectedProcessCategory) {
                   onclick="showMeCategorys()"
                 />
               </div>
-
               <div id="costumSelect" class="costumSelect">
                 <input
                   type="text"
@@ -449,7 +450,6 @@ function renderFormAddTask(selectedProcessCategory) {
                   </div>
                 </div>
               </div>
-
               <div id="errorCategory" class="errorMessage">
                 This field is required.
               </div>

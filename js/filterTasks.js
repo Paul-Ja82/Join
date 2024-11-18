@@ -7,8 +7,6 @@ let filteredTasksDone = [];
 
 function getFilter() {
     let filterInput = document.getElementById('name_of_task_input').value;
-    // console.log(filterInput);
-    
     filterTasks(allTasks, allKeys, filterInput)
     checkFilteredTaskLength(filteredTasks)
     pushFilteredTasksToArray()
