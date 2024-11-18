@@ -1025,4 +1025,17 @@ footer {
     }
 
 
+/*###############*/
+/*## VON REINI ##*/
+/*###############*/
+
+#signUpFinalButton:disabled {
+    filter: grayscale(1) opacity(0.5);
+}
+
+#signUpFinalButton:hover:disabled {
+    background-color: rgba(42, 54, 71, 1);
+    box-shadow: none;
+    cursor: unset;
+}
 

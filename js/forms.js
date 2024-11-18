@@ -125,10 +125,6 @@ function isFormValidBuiltIn(formId) {
     return isFormValidBuiltIn;
 }
 
-function isSubmitHandler(formId, handlerFunc) {
-    
-}
-
 /*#################*/
 /*## VALIDATIONS ##*/
 /*#################*/

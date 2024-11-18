@@ -12,6 +12,7 @@
     <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
     <script src="./js/database.js"></script>
     <script src="./js/multi-page-app.js"></script>
+    <script src="./js/forms.js"></script> <!-- reini: das ist für die Validierung -->
     <script src="./js/ui.js"></script>
     <script src="./script.js"></script>
     <script src="js/scriptLogIn.js"></script>
@@ -62,7 +63,7 @@
                     <input type="checkbox" class="accept-box-input" id="rememberCheckbox">
                     <div class="acc-priv-box-label">I accept the <a class="privacy-policy">Privacy policy</a></div>
                 </div>
-                <button class="sign-up-final-button" id="signUpFinalButton" onclick="signup()">Sign up</button>
+                <button type="submit" class="sign-up-final-button" id="signUpFinalButton" onclick="signup()" disabled>Sign up</button> <!-- reini: type="submit" für Validierung -->
             </form>
             <footer>
                 <a class="footer-element-left">Privacy Policy</a>
