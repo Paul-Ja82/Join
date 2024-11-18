@@ -89,8 +89,9 @@ function checkEmailInputLogin() {
 
 function checkValidUser() {
     let user = getUserByEmail(emailInputLogin);
+    let passwordInput= document.getElementById('passwordInput').value;
     if (user) {
-        if (user.password == passwordInput) validUserFlag = true;
+        if (user.pw == passwordInput) validUserFlag = true;
         else {
             console.log('Passwort falsch'); ///DEBUG
         }

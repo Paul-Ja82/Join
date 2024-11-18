@@ -40,7 +40,6 @@ function initPageMPA() {
 }
 
 function isIndexPage() {
-    console.log('isIndexPage()'); ///DEBUG
     let currentURL= window.location.href;
     let currentFilename= getFilenameFromURL(currentURL);
     // let indexFilename= getFilenameFromURL(INDEXPAGE_URL);
