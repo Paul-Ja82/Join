@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign up Join </title>
     <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/sign_up.css">
+    <link rel="stylesheet" href="css/sign-up.css">
     <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
     <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet"> -->
     <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
@@ -15,8 +15,8 @@
     <script src="./js/forms.js"></script> <!-- reini: das ist für die Validierung -->
     <script src="./js/ui.js"></script>
     <script src="./script.js"></script>
-    <script src="js/scriptLogIn.js"></script>
-    <script src="./js/sign_up.js"></script>
+    <script src="js/logIn.js"></script>
+    <script src="./js/signUp.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', preventDefaultSignUp);
     </script>
@@ -37,12 +37,12 @@
                 <h1 class="sign-up-header">Sign up</h1>
                 <div class="divider"></div>
                 <div class="name-input-div">
-                    <input type="text" class="log-input " id="nameInput" placeholder="Name" autocomplete="off" data-validationmessageid="nameVmsg" required>
+                    <input type="text" class="log-input " id="nameInput" placeholder="Name" autocomplete="off" data-validationmessageid="nameVmsg" required> <!-- reini: required dazu -->
                     <img class="name-Img" src="assets/img/person.png">
                     <p id="nameVmsg" class="validation-message v-hidden">Please enter name</p> <!-- reini -->
                 </div>
                 <div class="email-input-div">
-                    <input type="email" class="log-input" id="emailInput" placeholder="Email" required autocomplete="off" data-validationmessageid="emailVmsg" required>
+                    <input type="email" class="log-input" id="emailInput" placeholder="Email" required autocomplete="off" data-validationmessageid="emailVmsg" required> <!-- reini: required dazu -->
                     <img class="mail-Img" src="assets/img/mail.png">
                     <p id="emailVmsg" class="validation-message v-hidden">Please enter valid eMail-Address</p>
                 </div>
