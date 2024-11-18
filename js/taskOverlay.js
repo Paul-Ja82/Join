@@ -99,7 +99,6 @@ function fillTaskOverlay(
 }
 
 function checkAssignedToOverlay(allTasks, keyToOpen) {
-<<<<<<<<< Temporary merge branch 1
     // console.log(allTasks[keyToOpen]);
     let contactsTemplate = "";
     if (allTasks[keyToOpen].assigned_to == 'nobody') {

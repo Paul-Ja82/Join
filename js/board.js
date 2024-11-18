@@ -190,14 +190,6 @@ function removeShadow(id) {
 }
 
 async function moveTo(newSection) {
-<<<<<<<<< Temporary merge branch 1
-    // console.log(newSection);
-    let keyForPath = checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys)
-    // console.log(keyForPath);
-    let path = `tasks/${keyForPath}/currentStatus`;
-    await putNewSection(path, newSection);
-    await getIdAndData(pathData='')
-=========
   // console.log(newSection);
   let keyForPath = checkIndexOfTaskToMove(
     currentDraggedElementID,
@@ -209,7 +201,6 @@ async function moveTo(newSection) {
   // console.log(path);
   await putNewSection(path, newSection);
   await getIdAndData((pathData = ""));
->>>>>>>>> Temporary merge branch 2
 }
 
 // function openAddTaskForm(section) {
