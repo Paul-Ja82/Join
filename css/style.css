@@ -58,6 +58,10 @@ body {
     display: none !important; 
 }
 
+.v-hidden {
+    visibility: hidden;
+}
+
 .h-pointer:hover {
     cursor: pointer;
 }
@@ -242,6 +246,14 @@ body {
     font-size: var(--fs-300);
     color: red;
 }
+
+/* .validate-input:invalid ~ .validation-message {
+    visibility: unset;
+} */
+
+/* .input-wrapper input:invalid {
+    background-color: red;
+} */
 
 
 

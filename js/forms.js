@@ -51,6 +51,7 @@ function addFocusHandlers() {
     let inputs = document.querySelectorAll('input');
     for (let inputI of inputs) {
         inputI.addEventListener('focus', addInvalidStyles);
+        // validateInput(inputI);
     }
 }
 
@@ -73,6 +74,7 @@ function addInvalidStyles() {
     let inputs= document.querySelectorAll('input');
     for (let inputI of inputs) {
         inputI.classList.add(invalidStyleClass);
+        validateInput(inputI);
     }
     removeFocusHandlers();
 }
