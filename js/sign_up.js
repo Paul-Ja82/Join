@@ -131,7 +131,7 @@ function loadInputValuesSignUp() {
     emailInput = document.getElementById('emailInput').value;
     passwordInput = document.getElementById('signUpPasswordInput').value;
     passwordConfirmInput = document.getElementById('confirmPasswordInput').value;
-    privacyInput = document.getElementById('rememberCheckbox').checked;
+    privacyInput = document.getElementById('privacyCheckbox').checked;
 }
 
 function getUserByEmail(email) {

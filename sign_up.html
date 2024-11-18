@@ -63,8 +63,9 @@
                 </div>
                 <p class="no-match-confirm-message">Your password don't match.Please try again.</p>
                 <div class="accept-priv-box-div" id="accPrivacyBox">
-                    <input type="checkbox" class="accept-box-input" id="rememberCheckbox">
+                    <input type="checkbox" class="accept-box-input" id="privacyCheckbox" required>
                     <div class="acc-priv-box-label">I accept the <a class="privacy-policy">Privacy policy</a></div>
+                    <p id="confirmPwVmsg" class="validation-message d-none">Please accept the privacy policy</p> <!-- reini -->
                 </div>
                 <button type="submit" class="sign-up-final-button" id="signUpFinalButton" onclick="signup()" disabled>Sign up</button> <!-- reini: type="submit" für Validierung -->
             </form>

@@ -1057,7 +1057,14 @@ footer {
     display: unset;
 }
 
+#accPrivacyBox {
+    position: relative;
+}
+
+#privacyCheckbox {
+    border: none;
+}
+
 .d-none {
     display: none;
 }
-
