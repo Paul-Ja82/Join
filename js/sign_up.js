@@ -29,7 +29,8 @@ function initSignup() {
     loadUsers();
     initMPA();
     initForms();
-    addValidation('signUpForm', checkEmailAvailable, 'emailVmsg', 'You already have an account');
+    addValidation('signUpForm', isEmailAvailable, 'emailVmsg', 'You already have an account');
+    addValidation('signUpForm', isPasswordConfirm, 'confirmPwVmsg', 'The passwords dont match');
     addSubmitHandler('signUpForm', addUser);
 }
 
@@ -105,13 +106,13 @@ function checkValidUser() {
 
 /* function signup() {
     console.log('signup()'); ///DEBUG
-    console.log(checkEmailAvailable()); ///DEBUG
+    console.log(isEmailAvailable()); ///DEBUG
     // resetFlagsSignUp();
     // loadInputValuesSignUp();
     // checkNameInput();
     // checkEmailInput();
-    // checkEmailAvailable();
-    checkPasswordConfirm();
+    // isEmailAvailable();
+    isPasswordConfirm();
     // checkPrivacy();
     // let flags = nameInputFlag && emailInputFlag && emailAvailableFlag && passwordConfirmFlag && privacyFlag;
     if (flags) {
@@ -201,7 +202,7 @@ function checkNameInput() {
 } */
 
 /*
-function checkEmailAvailable() {
+function isEmailAvailable() {
     let user = getUserByEmail(emailInput);
     if (!user) emailAvailableFlag = true;
     else {
@@ -210,7 +211,7 @@ function checkEmailAvailable() {
     }
 }
 */
-async function checkEmailAvailable() {
+async function isEmailAvailable() {
     let emailInput= document.getElementById('emailInput').value;
     let user = await getUserByEmail(emailInput);
     console.log(user); ///DEBUG
@@ -224,13 +225,21 @@ async function checkEmailAvailable() {
     }
 }
 
-function checkPasswordConfirm() {
+/* 
+function isPasswordConfirm() {
     if (passwordInput == passwordConfirmInput) passwordConfirmFlag = true;
     else {
         passwordConfirmFlag = false;
         console.log('Die Passwörter sind nicht gleich'); ///DEBUG
     }
-}
+} 
+*/
+function isPasswordConfirm() {
+    let passwordInput= document.getElementById('signUpPasswordInput').value;
+    let passwordInputConfirm= document.getElementById('confirmPasswordInput').value;
+    if (passwordInput == passwordInputConfirm) return true;
+    else return false;
+} 
 
 function handlePasswordMatchConfirm() {
     if (false) {
