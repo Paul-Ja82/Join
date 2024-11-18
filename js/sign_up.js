@@ -1,5 +1,6 @@
 let users = [];
 
+/*
 let nameInput;
 let emailInput;
 let passwordInput;
@@ -11,6 +12,7 @@ let emailInputFlag = false;
 let emailAvailableFlag = false;
 let passwordConfirmFlag = false;
 let privacyFlag = false;
+*/
 
 let emailInputLogin;
 let passwordInputLogin;
@@ -27,6 +29,8 @@ function initSignup() {
     loadUsers();
     initMPA();
     initForms();
+    addValidation('signUpForm', checkEmailAvailable, 'emailVmsg', 'You already have an account');
+    addSubmitHandler('signUpForm', addUser);
 }
 
 /*
@@ -99,23 +103,25 @@ function checkValidUser() {
 /*## SIGN UP ##*/
 /*#############*/
 
-function signup() {
+/* function signup() {
     console.log('signup()'); ///DEBUG
-    resetFlagsSignUp();
-    loadInputValuesSignUp();
-    checkNameInput();
-    checkEmailInput();
-    checkEmailAvailable();
+    console.log(checkEmailAvailable()); ///DEBUG
+    // resetFlagsSignUp();
+    // loadInputValuesSignUp();
+    // checkNameInput();
+    // checkEmailInput();
+    // checkEmailAvailable();
     checkPasswordConfirm();
-    checkPrivacy();
-    let flags = nameInputFlag && emailInputFlag && emailAvailableFlag && passwordConfirmFlag && privacyFlag;
+    // checkPrivacy();
+    // let flags = nameInputFlag && emailInputFlag && emailAvailableFlag && passwordConfirmFlag && privacyFlag;
     if (flags) {
         addUser();
         // loadPage('./log_in.html'); //TODO wird in Zukunft Index-Page sein? 
     } else {
         console.warn('Kein Signup möglich'); ///DEBUG
     }
-}
+   addUser();
+} */
 
 function isUserExisting() {
     let emailInput= document.getElementById('emailInput').value;
@@ -142,6 +148,9 @@ async function addUser() {
     console.log('addUser()'); ///DEBUG
     let newId = await getId();
     let path = USERS_PATH + newId;
+    let nameInput= document.getElementById('nameInput').value;
+    let emailInput= document.getElementById('emailInput').value;
+    let passwordInput= document.getElementById('signUpPasswordInput').value;
     let user = {
         id: newId,
         name: nameInput,
@@ -151,7 +160,7 @@ async function addUser() {
     saveData(path, user);
     users.push(user);
     //TODO Show Toast
-    console.log('addUser(): User wird angelegt.', user); ///DEBUG
+    console.log('addUser(): User wurde angelegt.', user); ///DEBUG
 }
 
 function resetFlagsSignUp() {
@@ -181,7 +190,7 @@ function checkNameInput() {
     }
 }
 
-function checkEmailInput() {
+/* function checkEmailInput() {
     if (emailInput) {
         emailInputFlag = true;
     } else {
@@ -189,14 +198,29 @@ function checkEmailInput() {
         console.log('please input email'); ///DEBUG
         // TODO Validation-Message anzeigen
     }
-}
+} */
 
+/*
 function checkEmailAvailable() {
     let user = getUserByEmail(emailInput);
     if (!user) emailAvailableFlag = true;
     else {
         emailAvailableFlag = false;
         console.log('Ein User mit dieser email-Adresse existiert bereits'); ///DEBUG
+    }
+}
+*/
+async function checkEmailAvailable() {
+    let emailInput= document.getElementById('emailInput').value;
+    let user = await getUserByEmail(emailInput);
+    console.log(user); ///DEBUG
+    if (user) {
+        console.log('user gefunden. --> false'); ///DEBUG
+        return false;
+    }
+    else {
+        console.log('kein user gefunden. --> true'); ///DEBUG
+        return true;
     }
 }
 
@@ -234,7 +258,9 @@ function checkPrivacy() {
 /*###########*/
 
 function tuEsSignup() {
-    getData('/users')
+    deleteUser(27);
+    deleteUser(29);
+    deleteUser(30);
 
 }
 
@@ -263,6 +289,20 @@ function logVarsLogin() {
     console.log('passwordInputLogin: ' + passwordInputLogin); ///DEBUG    
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function supportForConfirmMaskPassword(input, actualValue) {
     const lastChar = input.value.slice(-1);

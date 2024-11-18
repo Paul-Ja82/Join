@@ -39,12 +39,12 @@
                 <div class="name-input-div">
                     <input type="text" class="log-input " id="nameInput" placeholder="Name" autocomplete="off" data-validationmessageid="nameVmsg" required>
                     <img class="name-Img" src="assets/img/person.png">
-                    <p id="nameVmsg" class="validation-message d-none">Please enter name</p> <!-- reini -->
+                    <p id="nameVmsg" class="validation-message v-hidden">Please enter name</p> <!-- reini -->
                 </div>
                 <div class="email-input-div">
                     <input type="email" class="log-input" id="emailInput" placeholder="Email" required autocomplete="off" data-validationmessageid="emailVmsg" required>
                     <img class="mail-Img" src="assets/img/mail.png">
-                    <p id="emailVmsg" class="validation-message d-none">Please enter valid eMail-Address</p>
+                    <p id="emailVmsg" class="validation-message v-hidden">Please enter valid eMail-Address</p>
                 </div>
                 <div class="password-input-div">
                     <input type="text" class="log-input-pass" id="signUpPasswordInput" placeholder="Password"
@@ -59,15 +59,15 @@
                     <img class="password-Img" src="assets/img/lock.png">
                     <img onclick="openEyePasswordForConfirm()" class="password-Img-eye-of" src="assets/img/password-eye-of.svg">
                     <img onclick="closeEyePasswordForConfirm()" class="password-Img-eye-on" src="assets/img/password-eye-on.svg">
-                    <p id="confirmPwVmsg" class="validation-message d-none">The passwords dont match</p> <!-- reini -->
+                    <p id="confirmPwVmsg" class="validation-message v-hidden">The passwords dont match</p> <!-- reini -->
                 </div>
                 <p class="no-match-confirm-message">Your password don't match.Please try again.</p>
                 <div class="accept-priv-box-div" id="accPrivacyBox">
                     <input type="checkbox" class="accept-box-input" id="privacyCheckbox" required>
                     <div class="acc-priv-box-label">I accept the <a class="privacy-policy">Privacy policy</a></div>
-                    <p id="confirmPwVmsg" class="validation-message d-none">Please accept the privacy policy</p> <!-- reini -->
+                    <p id="confirmPwVmsg" class="validation-message v-hidden">Please accept the privacy policy</p> <!-- reini -->
                 </div>
-                <button type="submit" class="sign-up-final-button" id="signUpFinalButton" onclick="signup()" disabled>Sign up</button> <!-- reini: type="submit" für Validierung -->
+                <button type="submit" class="sign-up-final-button" id="signUpFinalButton" disabled>Sign up</button> <!-- reini: type="submit" für Validierung -->
             </form>
             <footer>
                 <a class="footer-element-left">Privacy Policy</a>

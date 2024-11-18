@@ -1054,7 +1054,7 @@ footer {
 }
 
 .validate-input:invalid ~ .validation-message {
-    display: unset;
+    visibility: unset;
 }
 
 #accPrivacyBox {
@@ -1065,6 +1065,6 @@ footer {
     border: none;
 }
 
-.d-none {
-    display: none;
+.v-hidden {
+    visibility: hidden;
 }
