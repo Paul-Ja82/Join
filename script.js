@@ -62,3 +62,16 @@ function getNextASCIIchar(text) {
   console.log(char); ///DEBUG
   return String.fromCharCode(char.charCodeAt(0) + 1).toUpperCase();
 }
+
+function toggleDisplay() {
+  const userMsgFrame = document.querySelector('.user-msg-frame');
+  const mainFrameDiv = document.querySelector('.main-frame-div');
+
+  if (userMsgFrame) {
+      userMsgFrame.style.display = 'none';
+  }
+
+  if (mainFrameDiv) {
+      mainFrameDiv.style.display = 'block';
+  }
+}

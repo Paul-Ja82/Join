@@ -15,14 +15,14 @@ function openNavWindowFrame() {
 
 window.addEventListener('resize', function() {
     const navMenuRespFrame = document.querySelector('.nav-menu-resp-frame');
-    if (window.innerWidth > 1050 && navMenuRespFrame) {
+    if (window.innerWidth > 950 && navMenuRespFrame) {
         navMenuRespFrame.style.display = 'none';
     }
 });
 
 window.addEventListener('resize', function() {
     const navMenu = document.querySelector('.nav-menu-frame');
-    if (window.innerWidth < 1050 && navMenu) {
+    if (window.innerWidth < 950 && navMenu) {
         navMenu.style.display = 'none';
     }
 });
