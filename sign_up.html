@@ -15,7 +15,7 @@
     <script src="./js/forms.js"></script> <!-- reini: das ist für die Validierung -->
     <script src="./js/ui.js"></script>
     <script src="./script.js"></script>
-    <script src="js/logIn.js"></script>
+    <!-- <script src="js/logIn.js"></script> -->
     <script src="./js/signUp.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', preventDefaultSignUp);
@@ -63,9 +63,9 @@
                 </div>
                 <p class="no-match-confirm-message">Your password don't match.Please try again.</p>
                 <div class="accept-priv-box-div" id="accPrivacyBox">
-                    <input type="checkbox" class="accept-box-input" id="privacyCheckbox" required>
+                    <input type="checkbox" class="accept-box-input" id="privacyCheckbox" data-validationmessageid="privacyVmsg" required>
                     <div class="acc-priv-box-label">I accept the <a class="privacy-policy">Privacy policy</a></div>
-                    <p id="confirmPwVmsg" class="validation-message v-hidden">Please accept the privacy policy</p> <!-- reini -->
+                    <p id="privacyVmsg" class="validation-message v-hidden">Please accept the privacy policy</p> <!-- reini -->
                 </div>
                 <button type="submit" class="sign-up-final-button" id="signUpFinalButton" disabled>Sign up</button>
             </form>
