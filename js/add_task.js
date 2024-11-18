@@ -22,7 +22,8 @@ let isListOpen = false;
 const avatarColors = ["#3498db", "#e74c3c", "#f39c12", "#2ecc71", "#9b59b6"];
 
 async function initAddTasks() {
-  document.getElementById("contentAddTaskContainer").innerHTML = returnAddTaskForm();
+  document.getElementById("contentAddTaskContainer").innerHTML =
+    returnAddTaskForm();
   const contactList = document.getElementById("insertContactList");
   contactList.classList.add("d-none");
   selectPrio("medium");
@@ -181,7 +182,7 @@ function returnAddTaskForm(selectedProcessCategory) {
                     <div id="showCategorys" class="showCategorys d-none">
                       <div
                         class="categoryItem"
-                        onclick="putInput('Technical Task)"
+                        onclick="putInput('Technical Task')"
                       >
                         Technical Task
                       </div>
@@ -244,9 +245,9 @@ function returnAddTaskForm(selectedProcessCategory) {
       </div>
   `;
 }
-
+/*
 function returnAddTaskForm(selectedProcessCategory) {
-  /*let selectedProcessCategory = selectCat == null ? "medium" : selectCat;*/
+ 
   return `
   <div class="overAllFormAddTask">
         <div id="insertAddedToTaskConfirmation"></div>
@@ -460,7 +461,7 @@ function returnAddTaskForm(selectedProcessCategory) {
         </form>
       </div>
   `;
-}
+}*/
 
 async function loadData(path = "") {
   let response = await fetch(BASE_URL + path + ".json");
@@ -532,6 +533,10 @@ function renderContactList(filteredContacts = contacts) {
     }
   });
 
+  showPersons();
+  colorSelectedContacts();
+
+  /* Hier schauen wegen AddEventlistener funktioniert net*/
   document.addEventListener("click", function (event) {
     const inputAssignedTo = document.getElementById("inputAssignedTo");
     const contactList = document.getElementById("insertContactList");
@@ -545,9 +550,6 @@ function renderContactList(filteredContacts = contacts) {
       closeContactList();
     }
   });
-
-  showPersons();
-  colorSelectedContacts();
 }
 function colorSelectedContacts() {
   const selectedPersons = document.querySelectorAll(".contactListCheckbox");
@@ -566,18 +568,17 @@ function filterContacts() {
   const filteredContacts = filteredContactsForTasks.filter((contact) =>
     contact.toLowerCase().includes(input)
   );
-  let contactsTemplate = createContactsTemplate(filteredContacts)
+  let contactsTemplate = createContactsTemplate(filteredContacts);
   console.log(contactsTemplate);
-  
+
   // renderContactList(filteredContacts);
 }
 
 function closeContactList() {
- 
   let templateToRemove = document.getElementById("contactListTemplate");
   let contactList = document.getElementById("insertContactList");
   console.log(contactList);
-  contactList.removeChild(templateToRemove)
+  contactList.removeChild(templateToRemove);
   contactList.classList.add("d-none");
   // console.log(contactList);
   document.getElementById("arrowDropdown").src =
@@ -617,7 +618,7 @@ function toggleContactList(filteredContactsForTasks) {
   if (isListOpen) {
     closeContactList();
   } else {
-    checkContacts(allContactsForTasks)
+    checkContacts(allContactsForTasks);
     // console.log(document.getElementById("insertContactList"));
     document.getElementById("setBackground").classList.add("whiteBG");
     document.getElementById("insertContactList").classList.remove("d-none");
@@ -652,7 +653,7 @@ function checkDateInput() {
 //   linkProfil.appendChild(svgAvatar);
 // }
 
-// Versuch Sabrina: 
+// Versuch Sabrina:
 // function showProfilPicture(listPersonId) {
 //   let linkProfil = document.getElementById(`profilPerson${listPersonId}`);
 //   linkProfil.innerHTML = "";

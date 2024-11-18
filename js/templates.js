@@ -103,34 +103,16 @@ function returnChangingAddTask() {
               <label for="showSelectedCategory"
                 >Category</label
               >
-              <div class="arrowCategoryChangeAddTask">
-                <img
-                  id="categoryDropdown"
-                  class="categoryDropdown"
-                  src="assets/icons/arrowDropdown.svg"
-                  onclick="showMeCategorys()"
-                />
-              </div>
 
               <div id="costumSelect" class="costumSelect">
                 <input
                   type="text"
                   id="showSelectedCategory"
                   class="fieldInput"
-                  readonly
+                  disabled
                   placeholder="Select a option"
-                  onclick="showMeCategorys()"
                 />
-                <div id="showCategorys" class="showCategorys  d-none">
-                  <div class="categoryItem" onclick="putInput('Technical Task')">
-                    Technical Task
-                  </div>
-                  <div class="categoryItem" onclick="putInput('User Story')">
-                    User Story
-                  </div>
-                </div>
               </div>
-
               <div id="errorCategory" class="errorMessage">
                 This field is required.
               </div>

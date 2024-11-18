@@ -278,19 +278,18 @@ function clickCloseTaskOverlay(event) {
   event.stopPropagation();
 }*/
 
+/*
 function closeTaskOverlay(e) {
   document.getElementById(`task_overlay_ctn`).style.right = "-100%";
   document.getElementById(`task_overlay_ctn`).style.display = "none";
   document.body.style.overflow = "";
-}
+}*/
 
 async function deleteTask(e, keyToDelete) {
   e.stopPropagation();
   console.log(keyToDelete);
   let pathToDelete = `tasks/${keyToDelete}`;
   await deleteTaskID(pathToDelete);
-  document.getElementById(`task_overlay_ctn`).style.right = "-100%";
-  document.getElementById(`task_overlay_ctn`).style.display = "none";
-  document.body.style.overflow = "";
+  closeTask();
   await getIdAndData((pathData = ""));
 }

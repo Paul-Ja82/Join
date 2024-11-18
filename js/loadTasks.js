@@ -6,7 +6,7 @@ let id;
 async function collectDataFromAddTask(currentStatus, selectedContacts) {
     console.log(selectedContacts);
     if(selectedContacts.length == 0) {
-        selectedContacts = 'nobody'
+        selectedContacts = 'nobody';
     }
     let taskData = {
         "assigned_to" : selectedContacts,
@@ -19,10 +19,10 @@ async function collectDataFromAddTask(currentStatus, selectedContacts) {
         "currentStatus" : currentStatus,
         "single_ID" : id,
     }
-    id = Number(id) + 1
-    await putID(path="id", id)
-    await postData(path="tasks", taskData)
-    await getIdAndDataForAddTask(pathData='')
+    id = Number(id) + 1;
+    await putID(path="id", id);
+    await postData(path="tasks", taskData);
+    await getIdAndDataForAddTask(pathData='');
     return id
 }
 

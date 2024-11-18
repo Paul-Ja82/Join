@@ -28,6 +28,7 @@
 }
 
 html {
+  background-color: #F6F7F8;
   margin: 0;
   padding: 0;
   -webkit-tap-highlight-color: transparent;
@@ -358,7 +359,6 @@ body {
 }
 
 .board_ctn {
-  background: rgba(246, 247, 248, 1);
   width: calc(100% - 50px);
   padding: 25px 25px 0 25px;
   margin: 0;
