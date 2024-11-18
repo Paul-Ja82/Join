@@ -1,3 +1,7 @@
+.contentAddTaskContainer {
+  padding: 0 80px;
+}
+
 .initialsImg {
   width: 42px;
   height: 42px;
@@ -503,10 +507,9 @@ input[type="date"].filled {
   word-wrap: break-word;
 }
 
-.showEntrySubtask:hover .subtaskText { 
-max-width: 333px;
+.showEntrySubtask:hover .subtaskText {
+  max-width: 333px;
 }
-
 
 .showEntrySubtask {
   display: flex;
