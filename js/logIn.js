@@ -24,10 +24,7 @@ function animateLogo() {
     }, 500);
 }
 
-
-
 document.addEventListener("DOMContentLoaded", function() {
-    
 });
 
 
@@ -93,17 +90,27 @@ function colorLogo() {
     }
 }
 
-
-document.getElementById('emailInput').addEventListener('input', function() {
-    const emailValue = this.value.trim();
+/**
+ * Enables or disables the password input field based on the presence of a valid email in the email input field.
+ *
+ * @function ablePasswordInput
+ */
+function ablePasswordInput() {
+    const emailInput = document.getElementById('emailInput');
     const passwordInput = document.getElementById('passwordInput');
 
-    if (emailValue.length > 0) {                                                     
-        passwordInput.disabled = false;
-    } else {                                                                         
-        passwordInput.disabled = true;
+    if (emailInput) {
+        const emailValue = emailInput.value.trim();
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
+
+        if (emailPattern.test(emailValue)) {
+            passwordInput.disabled = false;
+        } else {
+            passwordInput.disabled = true;
+        }
     }
-});
+}
+
 // Hier mussen wir noch integrieren das die email auch registriert seien muss bevor wir password eingeben ,ausserdem stört der addEventlistner die signUp seite 
 // Dann mussen wir verhindern das wenn ich email eingegeben habe anfange die password zu schreiben und dann wieder in das email fehlde gehe das password mit zeichen bleibt oder auch nicht ?
 
@@ -126,7 +133,6 @@ function showForgotPasswordMsg() {
         }
     }
 }
-
 
 /**
  * Adds an input event listener to the element with the ID 'emailInput'.
