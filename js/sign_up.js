@@ -26,6 +26,7 @@ let validUserFlag = false;
 function initSignup() {
     loadUsers();
     initMPA();
+    initForms();
 }
 
 /*

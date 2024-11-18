@@ -1039,3 +1039,25 @@ footer {
     cursor: unset;
 }
 
+.validation-message {
+    /* display: none; */
+    position: absolute;
+    margin: 0;
+    bottom: 0;
+    transform: translate(0, 110%);
+    color: red;
+    font-size: 0.8em;
+}
+
+.validate-input:invalid {
+    border: 1px solid red;
+}
+
+.validate-input:invalid ~ .validation-message {
+    display: unset;
+}
+
+.d-none {
+    display: none;
+}
+
