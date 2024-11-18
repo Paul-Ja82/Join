@@ -50,7 +50,6 @@ body {
 
 #newContactButtonContainer {
     background-color: white;
-    box-shadow: var(--shadow-top-inset);
     padding-bottom: 0;
     position: fixed;
     bottom: 5em;
@@ -116,6 +115,7 @@ body {
         position: sticky;
         top: 0;
         padding: 1.5em;
+        box-shadow: var(--shadow-top-inset);
     }
 
     #newContactButton {
@@ -398,13 +398,13 @@ input {
     display: none;
 }
 
-#CDsubmitButton {
+#contactForm button {
     margin-top: 1em;
     font-size: 1.2em;
     padding: 0.5em;
 }
 
-#CDsubmitButton img.icon-button-icon {
+#contactForm button img.icon-button-icon {
     height: 0.7em;
 }
 
