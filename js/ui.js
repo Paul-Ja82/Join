@@ -95,6 +95,17 @@ function isMarked(elemId, className) {
 /*##########*/
 
 function getMonogram(name) {
+    let words= name.split(' ');
+    let word;
+    let monogram= '';
+    words.reverse();
+    while (words.length > 0) {
+        monogram += words.pop().charAt(0).toUpperCase();
+    }
+    return monogram.slice(0,2);
+}
+/*
+function getMonogram(name) {
     //the first letters of the two first words
     let regex = /^(\w)\w*\b(\s+(\w)\w*\b)?/
     let match = name.match(regex);
@@ -103,6 +114,7 @@ function getMonogram(name) {
     let monogram = '';
     if (letter1) monogram += letter1;
     if (letter2) monogram += letter2;
-    return monogram;
+    // return monogram;
     return monogram.toUpperCase();
 }
+*/
