@@ -92,6 +92,27 @@ function colorLogo() {
 }
 
 /**
+ * Controls the visibility of the forgot password message based on the email input value.
+ * If the input matches a valid email format, the message is shown; otherwise, it is hidden.
+ */
+function showForgotPasswordMsg() {
+    const emailInput = document.getElementById('emailInput');
+    const forgotPassword = document.getElementById('forgotPassword'); // Assumes the element has this ID
+
+    if (emailInput && forgotPassword) {
+        const emailValue = emailInput.value.trim();
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic regex for email validation
+
+        if (emailPattern.test(emailValue)) {
+            forgotPassword.style.opacity = '1'; // Show message if input is a valid email
+        } else {
+            forgotPassword.style.opacity = '0'; // Hide message if input is empty or invalid
+        }
+    }
+}
+
+
+/**
  * Displays a message indicating incorrect email format by setting the opacity
  * of elements with the 'incorrect-email-format' class to 1 and adding the 
  * 'input-error' class to the email input field.
@@ -158,7 +179,7 @@ function checkUserExist() {
         const user = getUserByEmail(emailValue);
 
         if (user) {
-            window.location.href = 'new_password.html'; // Redirects to new_password.html if user exists
+            window.location.href = 'new_password.html'; 
         } else {
             showNotRegisteredMsg();
             console.log('User does not exist.');
@@ -305,6 +326,7 @@ function removeInputError() {
     const passwordInput = document.getElementById('passwordInput');
     const errorMessage = document.querySelector('.error-input-message');
     const incorrectMessage = document.querySelector('.incorrect-email-format');
+    const notRegisteredMessage = document.querySelector('.not-registered-msg');
 
     emailInput.classList.remove('input-error');
     passwordInput.classList.remove('input-error');
@@ -314,6 +336,9 @@ function removeInputError() {
     }
     if (incorrectMessage) {
         incorrectMessage.style.opacity = '0'; 
+    }
+    if (notRegisteredMessage) {
+        notRegisteredMessage.style.opacity = '0'; 
     }
 }
 
