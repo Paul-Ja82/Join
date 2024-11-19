@@ -32,6 +32,14 @@ function addListItemClickHandlers() {
     }
 }
 
+/*##############*/
+/*## DATABASE ##*/
+/*##############*/
+
+function saveContacts() {
+    saveData(CONTACTS_PATH, contacts);
+}
+
 /*###########################*/
 /*## GENERATE CONTACT LIST ##*/
 /*###########################*/
@@ -202,12 +210,12 @@ function isEmailAvailable() {
     else return true;
 }
 
-
-
 async function addContact() {
     let newId = await getId();
-    let path = CONTACTS_PATH;
     let colorHex = getRandomColorHex();
+    let nameInput= document.getElementById('nameInputElem').value;
+    let emailInput= document.getElementById('emailInputElem').value;
+    let phoneInput= document.getElementById('phoneInputElem').value;
     let newContact = {
         id: newId,
         name: nameInput,
@@ -215,7 +223,7 @@ async function addContact() {
         phone: phoneInput,
         color: colorHex
     };
-    saveData(path, newContact, 'POST');
+    saveData(CONTACTS_PATH, newContact, 'POST');
     contacts.push(newContact);
     //TODO Show Toast
 }
@@ -261,11 +269,16 @@ function cdSetPersonIconAdd() {
 }
 
 function setFormAdd() {
-    // setInputsAdd();
+    setInputsAdd();
     setButtonsAdd();
     addValidation('contactForm', isEmailAvailable, 'emailVmsg', 'You already added a contact with this email');
     removeSubmitHandler('contactForm', createContactHandler);
     addSubmitHandler('contactForm', createContactHandler);
+}
+
+function setInputsAdd() {
+    let inputEmail = document.getElementById('emailInputElem');
+    inputEmail.disabled= false;
 }
 
 function setButtonsAdd() {
@@ -363,15 +376,11 @@ function deleteButtonHandler() {
 }
 
 async function deleteContact(contactId) {
-    // let userEamil= encodeURIComponentJOIN(getLoggedIn());
-    // let contactEmail= encodeURIComponentJOIN(shownContactInfoEmail);
-    // let contactPath= `${CONTACTS_PATH}${userEamil}/${contactEmail}`;
-    // await deleteData(contactPath);
-    let contactPath = CONTACTS_PATH + currentUser.id + '/' + contactId;
-    // let contact= getContactById(contactId);
-    // let contactIndex= contacts.indexOf(contact);
-    // contacts.splice(contactIndex, 1);
-    deleteData(contactPath);
+    let contact= getContactById(contactId);
+    let index= contacts.indexOf(contact);
+    console.log('index: ', index); ///DEBUG
+    contacts.splice(index, 1);
+    saveData(CONTACTS_PATH, contacts);
 }
 
 async function afterToastHandlerDeleteContact() {

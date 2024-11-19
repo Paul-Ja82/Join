@@ -132,6 +132,7 @@ function isFormValidBuiltIn(formId) {
 /*#################*/
 
 function addValidation(formId, validFunc, vmsgId, vmsg) {
+    console.log('addValidation(..)'); ///DEBUG
     let vmsgElem = document.getElementById(vmsgId);
     let validation = {
         'validFunc': validFunc,
@@ -142,8 +143,10 @@ function addValidation(formId, validFunc, vmsgId, vmsg) {
 }
 
 function removeValidation(formId, validFunc) {
+    console.log('removeValidation(..)'); ///DEBUG
     let validationsArray= validations[formId];
     let arrayIndex= validationsArray.findIndex(validationI => validationI.validFunc==validFunc);
+    console.log('validations arrayIndex: ' + arrayIndex); ///DEBUG
     validations[formId].splice(arrayIndex, 1);
 }
 
