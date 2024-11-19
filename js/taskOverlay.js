@@ -20,7 +20,7 @@ function checkTask(e) {
     showTask();
     checkIndexOfAllTasks(clickedSingleID, allTasks, allKeys);
     currentTaskForEdit = clickedSingleID;
-    console.log(allTasks);
+    // console.log(allTasks);
   }
 }
 
@@ -104,8 +104,9 @@ function checkAssignedToOverlay(allTasks, keyToOpen) {
     if (allTasks[keyToOpen].assigned_to == 'nobody') {
         contactsTemplate = "";
     } else {
-        for (let j = 0; j < allTasks[keyToOpen].assigned_to.length; j++) {
+        for (let j = 0; j < allTasks[keyToOpen].assigned_to.length; j++) {          
             let fullName = allTasks[keyToOpen].assigned_to[j];
+            
             let [firstName, lastName] = fullName.split(" ");
             let charOneFirstName = firstName.charAt(0);
             let charOneLastName = lastName.charAt(0);

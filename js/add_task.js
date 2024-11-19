@@ -958,12 +958,12 @@ async function submitForm(selectedProcessCategory) {
 
   if (!hasError) {
     await collectDataFromAddTask(selectedProcessCategory, selectedContacts); //senden an loadTasks.js zum hochladen ins Firebase
-    document.getElementById(
-      "insertAddedToTaskConfirmation"
-    ).innerHTML = `<div class="backgroundInformationForm"><div id="addConfirmation" class="addedToBoard">
-<div class="taskAddedInformation">Task added to board</div>
-<img src="assets/icons/boardIcon.svg" alt="" />
-</div></div>`;
+//     document.getElementById(
+//       "insertAddedToTaskConfirmation"
+//     ).innerHTML = `<div class="backgroundInformationForm"><div id="addConfirmation" class="addedToBoard">
+// <div class="taskAddedInformation">Task added to board</div>
+// <img src="assets/icons/boardIcon.svg" alt="" />
+// </div></div>`;
     setTimeout(() => {
       window.open("board.html", "_self");
     }, 2000);

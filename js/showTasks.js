@@ -98,18 +98,41 @@ function checkAssignedTo(tasks, i) {
     if (tasks[i].assigned_to == 'nobody') {
         contactsIconsTemplate = "";
     } else {
-        if (tasks[i].assigned_to.length > 5) {
-            for (let j = 0; j < 5; j++) {
+        console.log(tasks[i].assigned_to);
+        if (tasks[i].assigned_to.length < 4) {
+            for (let j = 0; j < 4; j++) {                       
                 let fullName = tasks[i].assigned_to[j];
-                // console.log(fullName);
-                // console.log(tasks[i]);
-                let [firstName, lastName] = fullName.split(" ");
-                let charOneFirstName = firstName.charAt(0)
-                let charOneLastName = lastName.charAt(0)
+                console.log(fullName);
+                let charOneFirstName = fullName[0].toUpperCase();
+                if (fullName.includes(" ")) {
+                    let partsOfName = fullName.split(" ");
+                    console.log(partsOfName);
+                    let charOneLastName = partsOfName[1] && partsOfName[1][0] 
+                    ? partsOfName[1][0].toUpperCase() 
+                    : "";
+                    return charOneLastName
+                }
+              
+                
+                // Sicherstellen, dass partsOfName[0] existiert
+               
+                
+                // Sicherstellen, dass partsOfName[1] existiert
+             
+                // let charOneFirstName = firstName.charAt(0);
+                // let charOneLastName = lastName.charAt(0);
+                // if (partsOfName.length == 1) {
+                //     let charOneFirstName = partsOfName[0][0].toUpperCase();
+                //     return charOneFirstName
+                // } else if (partsOfName.length >= 2) {
+                //     let charOneFirstName = partsOfName[0][0].toUpperCase();
+                //     let charOneLastName = partsOfName[1][0].toUpperCase();
+                //     return charOneFirstName + charOneLastName;
+                // }
                 contactsIconsTemplate += `
                  <div class="single_task_single_contact" id="">${charOneFirstName}${charOneLastName}</div>
                 `
-                console.log(contactsIconsTemplate);
+                // console.log(contactsIconsTemplate);
                 
             }
          
@@ -118,11 +141,13 @@ function checkAssignedTo(tasks, i) {
             let moreContacts = tasks[i].assigned_to.length - 5;
             contactsIconsTemplate += `
             <div class="single_task_single_contact" id="">+${moreContacts}</div>
-           `
-
+            `
+    
         }
-      
-    }
+        }
+    
+     
+    
     return contactsIconsTemplate
 }
 
