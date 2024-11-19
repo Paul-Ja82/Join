@@ -665,6 +665,7 @@ function checkDateInput() {
 function showPersons() {
   const avatarContainer = document.getElementById("showPersons");
   avatarContainer.innerHTML = "";
+console.log(selectedContacts);
 
   selectedContacts.forEach((contact, index) => {
     const initials = getInitials(contact);
@@ -676,9 +677,15 @@ function showPersons() {
 
 function getInitials(name) {
   const nameParts = name.split(" ");
-  const firstNameInitial = nameParts[0][0].toUpperCase();
-  const lastNameInitial = nameParts[1][0].toUpperCase();
-  return firstNameInitial + lastNameInitial;
+  console.log(nameParts);
+  if (nameParts.length == 1) {
+    const firstNameInitial = nameParts[0][0].toUpperCase();
+    return firstNameInitial
+  } else if (nameParts.length >= 2) {
+    const firstNameInitial = nameParts[0][0].toUpperCase();
+    const lastNameInitial = nameParts[1][0].toUpperCase();
+    return firstNameInitial + lastNameInitial;
+  }
 }
 
 function createAvatarSVG(initials, bgColor) {

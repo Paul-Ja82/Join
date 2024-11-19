@@ -1,8 +1,10 @@
 let filteredContactsForTasks = []
 
 function checkContacts(allContactsForTasks) {
+    console.log(allContactsForTasks);
+    
     filteredContactsForTasks = [];
-    for (let i = 11; i < allContactsForTasks.length; i++) {
+    for (let i = 0; i < allContactsForTasks.length; i++) {
         if (allContactsForTasks[i] !== null) {
             filteredContactsForTasks.push(allContactsForTasks[i])
         }
@@ -23,6 +25,8 @@ function createContactsTemplate(filteredContactsForTasks) {
         for (let i = 0; i < filteredContactsForTasks.length; i++) {
             let isSelected = '';
             let listPersonId = filteredContactsForTasks[i].id;
+            console.log(filteredContactsForTasks[i].name);
+            
             const initials = getInitials(filteredContactsForTasks[i].name);
             let contact = `
                 <li id="listPerson${listPersonId}" class="backgroundOnHover" onclick="changeCheckbox(${listPersonId})">
