@@ -2,11 +2,11 @@ let itemMarkClass = 'conlist-item-marked';
 let itemHoverClass = 'conlist-item-hover';
 let shownContactInfoId;
 
-let nameInput;
+// let nameInput;
 // let emailInput;
-let phoneInput;
+// let phoneInput;
 
-let emailAvailableContactFlag = false;
+// let emailAvailableContactFlag = false;
 
 // let mediaDesktop = window.matchMedia('(768px < width)');
 let mediaDesktop = window.matchMedia('(1010px < width)');
