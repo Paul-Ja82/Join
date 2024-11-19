@@ -206,11 +206,6 @@ function showIncorrectFormatMsg() {
 }
 
 /**
- * Controls the visibility of the forgot password message based on the email input value.
- * If the input matches a valid email format, the message is shown; otherwise, it is hidden.
- */
-
-/**
  * Initializes the login process by resetting flags, loading input values,
  * and checking the validity of email input and user data.
  *
@@ -236,7 +231,7 @@ function initializeLogin() {
  */
 function supportForProcess(flags, emailInput, passwordInput, errorMessage) {
     if (flags) {
-        let user = getUserByEmail(emailInput);
+        let user = getUserByEmail(emailInputLogin);
         let rememberMeInputElem = document.getElementById('rememberCheckbox');
         let rememberMeItem = rememberMeInputElem.checked ? user.id : null;
         loginMPA(user.id, rememberMeItem);
@@ -315,7 +310,6 @@ function handleValidationResult(emailInput, passwordInput, isValidUser, errorMes
         }
     }
 }
-
 /**
  * Removes input error states and restores the enabled state of the password input field.
  * This function removes the 'input-error' class from the email and password input fields,
