@@ -163,7 +163,7 @@ function hideContactInfoButtonMobile() {
 /*#################*/
 
 function createContactHandler() {
-    loadInputValuesAddContact();
+    // loadInputValuesAddContact();
     // checkEmailAvailableContact();
     addContact().then(generateContactList);
     showToast('newContactToast', afterToastHandlerCreateContact);
@@ -181,11 +181,13 @@ function createContactHandler() {
 } 
 */
 
+/*
 function loadInputValuesAddContact() {
     nameInput = document.getElementById('nameInputElem').value;
     emailInput = document.getElementById('emailInputElem').value;
     phoneInput = document.getElementById('phoneInputElem').value;
 }
+*/
 
 /* function checkEmailAvailableContact() {
     let contact = contacts.find(contactI => contactI.email == emailInput);
@@ -327,23 +329,26 @@ function setFormEdit() {
     setInputsEdit();
     setButtonsEdit();
     // removeValidation('contactForm', validateContactExisting);
+    removeValidation('contactForm', isEmailAvailable);
     removeSubmitHandler('contactForm', addContact);
     removeSubmitHandler('contactForm', submitHandlerEdit);
     addSubmitHandler('contactForm', submitHandlerEdit);
 }
 
 function submitHandlerEdit() {
-    loadInputValuesAddContact();
+    // loadInputValuesAddContact();
     editContact().then(generateContactList);
     showToast('editContactToast', afterToastHandlerEditContact);
 }
 
 async function editContact() {
-    let path = CONTACTS_PATH + currentUser.id + '/' + shownContactInfoId;
+    let path = CONTACTS_PATH;
     let contact = getContactById(shownContactInfoId);
+    let nameInput= document.getElementById('nameInputElem').value;
+    let phoneInput= document.getElementById('phoneInputElem').value;
     contact.name = nameInput;
     contact.phone = phoneInput;
-    saveData(path, contact);
+    saveData(path, contacts);
 }
 
 /*####################*/
@@ -410,6 +415,11 @@ function tuEsContact() {
 function logDB() {
     getData('')
         .then(data => console.log(data));
+}
+
+function logContactsFromDB() {
+    getData(CONTACTS_PATH)
+        .then(cons => console.log(cons));
 }
 
 function deleteContacts() {
