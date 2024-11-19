@@ -25,6 +25,8 @@ async function saveData(path, data, method = 'PUT') {
         .then((res) => res.json);
 }
 
+
+
 // params: {key: value, key: value, ...}
 async function getData(path, params = {}) {
     let pathMod = BASE_URL + path + '.json?';

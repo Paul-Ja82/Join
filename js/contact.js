@@ -204,7 +204,7 @@ function isEmailAvailable() {
 
 async function addContact() {
     let newId = await getId();
-    let path = CONTACTS_PATH + currentUser.id + '/' + newId;
+    let path = CONTACTS_PATH;
     let colorHex = getRandomColorHex();
     let newContact = {
         id: newId,
@@ -213,7 +213,7 @@ async function addContact() {
         phone: phoneInput,
         color: colorHex
     };
-    saveData(path, newContact);
+    saveData(path, newContact, 'POST');
     contacts.push(newContact);
     //TODO Show Toast
 }
@@ -407,12 +407,12 @@ function tuEsContact() {
     console.log(getMonogram('öööööööö')); ///DEBUG
 }
 
-function tuEsContact2() {
-    let x= ['Hallo', 'wie', läu]
+function logDB() {
+    getData('')
+        .then(data => console.log(data));
 }
 
-function logVarsContact() {
-    console.log(nameInput); ///DEBUG
-    console.log(emailInput); ///DEBUG
-    console.log(phoneInput); ///DEBUG
+function deleteContacts() {
+    saveData(CONTACTS_PATH, {});
+    
 }
