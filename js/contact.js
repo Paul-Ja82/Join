@@ -196,8 +196,6 @@ function loadInputValuesAddContact() {
 function isEmailAvailable() {
     let emailInput= document.getElementById('emailInputElem').value;
     let contact = contacts.find(contactI => contactI.email == emailInput);
-    console.log(contact); ///DEBUG
-    console.log(emailInput); ///DEBUG
     if (contact) return false;
     else return true;
 }
@@ -218,7 +216,6 @@ async function addContact() {
     saveData(path, newContact);
     contacts.push(newContact);
     //TODO Show Toast
-    console.log('addContact(): Contact wird angelegt.', newContact); ///DEBUG
 }
 
 function afterToastHandlerCreateContact() {

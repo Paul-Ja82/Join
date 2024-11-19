@@ -45,8 +45,6 @@ async function getId() {
 }
 
 async function deleteData(path) {
-    console.log('deleteData(path)'); ///DEBUG
-    console.log(path); ///DEBUG
     return fetch(BASE_URL + path + '.json', {
         method: 'DELETE'
     })
