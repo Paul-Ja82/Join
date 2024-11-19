@@ -15,8 +15,9 @@ async function initJoin() {
 
 async function loadContacts() {
   contacts = [];
-  let path = CONTACTS_PATH + currentUser.id + "/";
+  let path = CONTACTS_PATH;
   let contactsObj = await getData(path);
+  console.log(contactsObj); ///DEBUG
   for (let contactObjKey in contactsObj) {
     contacts.push(contactsObj[contactObjKey]);
   }
