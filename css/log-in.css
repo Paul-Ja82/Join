@@ -233,14 +233,14 @@ h3 {
     margin-left: 1.5%;
     font-size: clamp(0.75rem, 0.732rem + 0.089vw, 0.813rem);
     color: rgba(255, 129, 144, 1);
-    opacity: 1;
+    opacity: 0;
 }
 
 .not-registered-msg {
     margin-bottom: 10px;
     font-size: clamp(0.75rem, 0.732rem + 0.089vw, 0.813rem);
     color: rgba(255, 129, 144, 1);
-    opacity: 1;
+    opacity: 0;
 }
 
 .password-input-div {

@@ -131,6 +131,23 @@ function ablePasswordInput() {
 }
 
 /**
+ * Shows the "not registered" message by setting elements with the class "not-registered-msg" to an opacity of 1
+ * and adds the 'input-error' class to the email input element.
+ */
+function showNotRegisteredMsg() {
+    const elements = document.querySelectorAll('.not-registered-msg');
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].style.opacity = '1';
+    }
+
+    const emailInput = document.getElementById('emailInput');
+    if (emailInput) {
+        emailInput.classList.add('input-error'); 
+    }
+}
+
+
+/**
  * Checks if the user exists by testing the email input value.
  * If the user exists, the function redirects to 'new_password.html'.
  */
@@ -143,8 +160,9 @@ function checkUserExist() {
         if (user) {
             window.location.href = 'new_password.html'; // Redirects to new_password.html if user exists
         } else {
+            showNotRegisteredMsg();
             console.log('User does not exist.');
-            // Additional behavior can be added here if the user does not exist
+            
         }
     }
 }
@@ -154,25 +172,22 @@ function getUserByEmail(email) {
     return users.find((userI) => userI.email == email);
 }
 
+function showIncorrectFormatMsg() {
+    let elements = document.querySelectorAll('.incorrect-email-format');
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].style.opacity = '1';
+    }
+
+    let emailInput = document.getElementById('emailInput');
+    if (emailInput) {
+        emailInput.classList.add('input-error');
+    }
+}
+
 /**
  * Controls the visibility of the forgot password message based on the email input value.
  * If the input matches a valid email format, the message is shown; otherwise, it is hidden.
  */
-function showForgotPasswordMsg() {
-    const emailInput = document.getElementById('emailInput');
-    const forgotPassword = document.getElementById('forgotPassword'); // Assumes the element has this ID
-
-    if (emailInput && forgotPassword) {
-        const emailValue = emailInput.value.trim();
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic regex for email validation
-
-        if (emailPattern.test(emailValue)) {
-            forgotPassword.style.opacity = '1'; // Show message if input is a valid email
-        } else {
-            forgotPassword.style.opacity = '0'; // Hide message if input is empty or invalid
-        }
-    }
-}
 
 /**
  * Initializes the login process by resetting flags, loading input values,
