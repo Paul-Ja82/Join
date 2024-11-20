@@ -99,20 +99,33 @@ function checkAssignedTo(tasks, i) {
         contactsIconsTemplate = "";
     } else {
         console.log(tasks[i].assigned_to);
-        if (tasks[i].assigned_to.length < 4) {
-            for (let j = 0; j < 4; j++) {                       
+        if (tasks[i].assigned_to.length > 4) {
+            for (let j = 0; j < 5 ; j++) {                       
                 let fullName = tasks[i].assigned_to[j];
+                let charOneFirstName = "";
+                let charOneLastName = "";
                 console.log(fullName);
-                let charOneFirstName = fullName[0].toUpperCase();
+                // let charOneFirstName = fullName[0].toUpperCase();
                 if (fullName.includes(" ")) {
-                    let partsOfName = fullName.split(" ");
-                    console.log(partsOfName);
-                    let charOneLastName = partsOfName[1] && partsOfName[1][0] 
-                    ? partsOfName[1][0].toUpperCase() 
-                    : "";
-                    return charOneLastName
+                let partsOfName = fullName.split(" ");
+                charOneFirstName = partsOfName[0][0].toUpperCase();
+                charOneLastName = partsOfName[1][0].toUpperCase();
+
+                } else {
+                    charOneFirstName = fullName[0].toUpperCase();
+                   
                 }
-              
+                console.log(charOneFirstName + charOneLastName);
+                contactsIconsTemplate += `
+                <div class="single_task_single_contact" id="">${charOneFirstName}${charOneLastName}</div>
+               `
+            }
+                
+            if (tasks[i].assigned_to.length >= 5) {
+                let moreContacts = tasks[i].assigned_to.length - 5;
+                contactsIconsTemplate += `
+                <div class="single_task_single_contact" id="">+${moreContacts}</div>
+                `
                 
                 // Sicherstellen, dass partsOfName[0] existiert
                
@@ -129,21 +142,36 @@ function checkAssignedTo(tasks, i) {
                 //     let charOneLastName = partsOfName[1][0].toUpperCase();
                 //     return charOneFirstName + charOneLastName;
                 // }
-                contactsIconsTemplate += `
-                 <div class="single_task_single_contact" id="">${charOneFirstName}${charOneLastName}</div>
-                `
+              
                 // console.log(contactsIconsTemplate);
                 
             }
+            return contactsIconsTemplate
          
         }
-        if (tasks[i].assigned_to.length >= 5) {
-            let moreContacts = tasks[i].assigned_to.length - 5;
-            contactsIconsTemplate += `
-            <div class="single_task_single_contact" id="">+${moreContacts}</div>
-            `
-    
+        if (tasks[i].assigned_to.length < 5) {
+            for (let j = 0; j < tasks[i].assigned_to.length; j++) {
+                let fullName = tasks[i].assigned_to[j];
+                let charOneFirstName = "";
+                let charOneLastName = "";
+                console.log(fullName);
+                // let charOneFirstName = fullName[0].toUpperCase();
+                if (fullName.includes(" ")) {
+                let partsOfName = fullName.split(" ");
+                charOneFirstName = partsOfName[0][0].toUpperCase();
+                charOneLastName = partsOfName[1][0].toUpperCase();
+
+                } else {
+                    charOneFirstName = fullName[0].toUpperCase();
+                   
+                }
+                console.log(charOneFirstName + charOneLastName);
+                contactsIconsTemplate += `
+                <div class="single_task_single_contact" id="">${charOneFirstName}${charOneLastName}</div>
+               `
+            }
         }
+
         }
     
      
