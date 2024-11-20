@@ -463,11 +463,29 @@ input {
         display: none;
     }
 
+    #cdCloseIconDesktop {
+        z-index: 10;
+    }
+
+    #cdCloseIconDesktop {
+        position: absolute;
+        top: 2em;
+        right: 2em;
+    }
+
     #CDheaderContainer {
         flex: unset;
         border-top-right-radius: 0;
         border-bottom-left-radius: 1.5em;
+        justify-content: center;
+        align-items: start;
+        padding: 0;
+        padding-left: 1.5em;
         padding-right: 3em;
+    }
+
+    img#cdHeaderLogo {
+        height: 3em;
     }
 
     #CDcontentContainer {
@@ -485,9 +503,13 @@ input {
         flex: unset;
     }
 
+    #cdMonogram {
+        font-size: 2em;
+    }
+
     #contactForm {
         transform: none;
-        padding: 4em var(--padding-inline-cdContentContainer);
+        padding: 6em var(--padding-inline-cdContentContainer);
     }
 
     #contactForm .input-wrapper {
