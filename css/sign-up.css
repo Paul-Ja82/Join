@@ -11,6 +11,10 @@ body {
     
 }
 
+.rotate-message {
+    display: none;
+}
+
 ::-webkit-scrollbar {
     background-color: rgb(246,247,248,1);
     width: 8px;
@@ -415,7 +419,7 @@ footer {
   color: rgba(41, 171, 226, 1);
 }
 
-@media(max-width:1050px) {
+@media(max-width:960px) {
 
     body {
         padding-bottom: 50px;
@@ -540,6 +544,28 @@ footer {
       top: unset;
       bottom: 16px;
    }
+
+   @media (orientation: landscape) {
+    .main-frame-div {
+        display: none;
+    }
+    .rotate-message {
+        color: rgba(41, 171, 226, 1);
+        display: block; 
+        text-align: center;
+        font-size: 20px;
+        padding: 20px;
+    }
+}
+
+@media (orientation: portrait) {
+    .main-frame-div{
+        display: block;
+    }
+    .rotate-message {
+        display: none;
+    }
+}
    
 }
 
