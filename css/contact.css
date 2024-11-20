@@ -16,6 +16,7 @@ body {
 
 #contentContainer {
     position: relative;
+    overflow-x: hidden;
 }
 
 /* @media (768px < width) { */
@@ -83,6 +84,7 @@ body {
 }
 
 .conlist-item {
+    overflow: hidden;
     padding: 0.5em 1.8em;
     border-radius: 0.5em;
     gap: 2em;
@@ -130,6 +132,8 @@ body {
     #contactListContainer {
         padding: 1em;
         padding-top: 0;
+        max-width: 22em;
+        overflow-y: auto;
     }
 
     .conlist-item {
