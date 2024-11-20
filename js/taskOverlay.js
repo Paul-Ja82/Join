@@ -105,11 +105,23 @@ function checkAssignedToOverlay(allTasks, keyToOpen) {
         contactsTemplate = "";
     } else {
         for (let j = 0; j < allTasks[keyToOpen].assigned_to.length; j++) {          
-            let fullName = allTasks[keyToOpen].assigned_to[j];
-            
-            let [firstName, lastName] = fullName.split(" ");
-            let charOneFirstName = firstName.charAt(0);
-            let charOneLastName = lastName.charAt(0);
+          let fullName = allTasks[keyToOpen].assigned_to[j];
+          let charOneFirstName = "";
+          let charOneLastName = "";
+          console.log(fullName);
+          if (fullName.includes(" ")) {
+          let partsOfName = fullName.split(" ");
+          charOneFirstName = partsOfName[0][0].toUpperCase();
+          charOneLastName = partsOfName[1][0].toUpperCase();
+          } else {
+              charOneFirstName = fullName[0].toUpperCase();
+          }
+          console.log(charOneFirstName + charOneLastName);
+
+
+
+
+
             let currentUser = checkCurrentUser(currentUserLoggedIn, fullName);
             contactsTemplate += `
                 <div class="single_task_single_contact">
