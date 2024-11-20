@@ -57,7 +57,7 @@ function fillTaskSections(section, tasks) {
     document.getElementById(section).innerHTML = "";
     for (let i = 0; i < tasks.length; i++) {
         let assignedTocontacts = checkAssignedTo(tasks, i);
-        console.log(assignedTocontacts);
+        // console.log(assignedTocontacts);
         let priorityImg = checkPriorityImg(tasks, i);
         let checkedSubtasks = checkCheckedSubtasks(tasks, i);
         let subtasksLength = checkSubtaskLength(tasks, i)
@@ -73,38 +73,18 @@ function fillTaskSections(section, tasks) {
     showSubtaskCtn()
 }
 
-// function checkAssignedTo(tasks, i) {
-//     let contactsIconsTemplate = "";
-//     if (tasks[i].assigned_to == 'nobody') {
-//         contactsIconsTemplate = "";
-//     } else {
-//         for (let j = 0; j < tasks[i].assigned_to.length; j++) {
-//             let fullName = tasks[i].assigned_to[j];
-//             // console.log(fullName);
-//             // console.log(tasks[i]);
-//             let [firstName, lastName] = fullName.split(" ");
-//             let charOneFirstName = firstName.charAt(0)
-//             let charOneLastName = lastName.charAt(0)
-//             contactsIconsTemplate += `
-//              <div class="single_task_single_contact" id="">${charOneFirstName}${charOneLastName}</div>
-//             `
-//         }
-//     }
-//     return contactsIconsTemplate
-// }
-
 function checkAssignedTo(tasks, i) {
     let contactsIconsTemplate = "";
     if (tasks[i].assigned_to == 'nobody') {
         contactsIconsTemplate = "";
     } else {
-        console.log(tasks[i].assigned_to);
+        // console.log(tasks[i].assigned_to);
         if (tasks[i].assigned_to.length > 4) {
             for (let j = 0; j < 5 ; j++) {                       
                 let fullName = tasks[i].assigned_to[j];
                 let charOneFirstName = "";
                 let charOneLastName = "";
-                console.log(fullName);
+                // console.log(fullName);
                 // let charOneFirstName = fullName[0].toUpperCase();
                 if (fullName.includes(" ")) {
                 let partsOfName = fullName.split(" ");
@@ -115,7 +95,7 @@ function checkAssignedTo(tasks, i) {
                     charOneFirstName = fullName[0].toUpperCase();
                    
                 }
-                console.log(charOneFirstName + charOneLastName);
+                // console.log(charOneFirstName + charOneLastName);
                 contactsIconsTemplate += `
                 <div class="single_task_single_contact" id="">${charOneFirstName}${charOneLastName}</div>
                `
@@ -154,7 +134,7 @@ function checkAssignedTo(tasks, i) {
                 let fullName = tasks[i].assigned_to[j];
                 let charOneFirstName = "";
                 let charOneLastName = "";
-                console.log(fullName);
+                // console.log(fullName);
                 if (fullName.includes(" ")) {
                 let partsOfName = fullName.split(" ");
                 charOneFirstName = partsOfName[0][0].toUpperCase();
@@ -162,7 +142,7 @@ function checkAssignedTo(tasks, i) {
                 } else {
                     charOneFirstName = fullName[0].toUpperCase();
                 }
-                console.log(charOneFirstName + charOneLastName);
+                // console.log(charOneFirstName + charOneLastName);
                 contactsIconsTemplate += `
                 <div class="single_task_single_contact" id="">${charOneFirstName}${charOneLastName}</div>
                `
