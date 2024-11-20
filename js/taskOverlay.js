@@ -123,13 +123,12 @@ function checkAssignedToOverlay(allTasks, keyToOpen) {
 } 
 
 function checkContactColor(fullName, allContactsForTasks) {
-  console.log(allContactsForTasks, fullName);
+  // console.log(allContactsForTasks, fullName);
   let colorForInitials; 
   for (let i = 0; i < allContactsForTasks.length; i++) {
     if (allContactsForTasks[i].name == fullName) {
       colorForInitials = allContactsForTasks[i].color;
-      console.log(colorForInitials);
-      
+      // console.log(colorForInitials);      
       break;
     }
   }
