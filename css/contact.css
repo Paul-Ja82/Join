@@ -409,9 +409,20 @@ input {
     padding: 0.5em;
 }
 
-#contactForm button img.icon-button-icon {
+#contactForm button img.icon-button-icon,
+#contactForm button img.icon-button-icon-hover {
     height: 0.7em;
 }
+
+#cdCancelButton .icon-button-icon-hover {
+    display: none;
+} 
+#cdCancelButton:hover .icon-button-icon {
+    display: none;
+} 
+#cdCancelButton:hover .icon-button-icon-hover {
+    display: unset;
+} 
 
 /* Dialog Detailmenu */
 
