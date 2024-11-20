@@ -78,63 +78,37 @@ function checkAssignedTo(tasks, i) {
     if (tasks[i].assigned_to == 'nobody') {
         contactsIconsTemplate = "";
     } else {
-        // console.log(tasks[i].assigned_to);
         if (tasks[i].assigned_to.length > 4) {
-            for (let j = 0; j < 5 ; j++) {                       
+            for (let j = 0; j < 5 ; j++) {                    
                 let fullName = tasks[i].assigned_to[j];
                 let charOneFirstName = "";
                 let charOneLastName = "";
-                // console.log(fullName);
-                // let charOneFirstName = fullName[0].toUpperCase();
+                let backgroundColorInitials = checkContactColor(fullName, allContactsForTasks); 
                 if (fullName.includes(" ")) {
                 let partsOfName = fullName.split(" ");
                 charOneFirstName = partsOfName[0][0].toUpperCase();
                 charOneLastName = partsOfName[1][0].toUpperCase();
-
                 } else {
-                    charOneFirstName = fullName[0].toUpperCase();
-                   
+                    charOneFirstName = fullName[0].toUpperCase(); 
                 }
-                // console.log(charOneFirstName + charOneLastName);
                 contactsIconsTemplate += `
-                <div class="single_task_single_contact" id="">${charOneFirstName}${charOneLastName}</div>
+                <div style="background-color: ${backgroundColorInitials};" class="single_task_single_contact" id="">${charOneFirstName}${charOneLastName}</div>
                `
-            }
-                
+            }  
             if (tasks[i].assigned_to.length >= 5) {
                 let moreContacts = tasks[i].assigned_to.length - 5;
                 contactsIconsTemplate += `
                 <div class="single_task_single_contact" id="">+${moreContacts}</div>
                 `
-                
-                // Sicherstellen, dass partsOfName[0] existiert
-               
-                
-                // Sicherstellen, dass partsOfName[1] existiert
-             
-                // let charOneFirstName = firstName.charAt(0);
-                // let charOneLastName = lastName.charAt(0);
-                // if (partsOfName.length == 1) {
-                //     let charOneFirstName = partsOfName[0][0].toUpperCase();
-                //     return charOneFirstName
-                // } else if (partsOfName.length >= 2) {
-                //     let charOneFirstName = partsOfName[0][0].toUpperCase();
-                //     let charOneLastName = partsOfName[1][0].toUpperCase();
-                //     return charOneFirstName + charOneLastName;
-                // }
-              
-                // console.log(contactsIconsTemplate);
-                
             }
             return contactsIconsTemplate
-         
         }
         if (tasks[i].assigned_to.length < 5) {
             for (let j = 0; j < tasks[i].assigned_to.length; j++) {
                 let fullName = tasks[i].assigned_to[j];
                 let charOneFirstName = "";
                 let charOneLastName = "";
-                // console.log(fullName);
+                let backgroundColorInitials = checkContactColor(fullName, allContactsForTasks); 
                 if (fullName.includes(" ")) {
                 let partsOfName = fullName.split(" ");
                 charOneFirstName = partsOfName[0][0].toUpperCase();
@@ -142,17 +116,12 @@ function checkAssignedTo(tasks, i) {
                 } else {
                     charOneFirstName = fullName[0].toUpperCase();
                 }
-                // console.log(charOneFirstName + charOneLastName);
                 contactsIconsTemplate += `
-                <div class="single_task_single_contact" id="">${charOneFirstName}${charOneLastName}</div>
+                <div style="background-color: ${backgroundColorInitials};" class="single_task_single_contact" id="">${charOneFirstName}${charOneLastName}</div>
                `
             }
         }
-
-        }
-    
-     
-    
+    }
     return contactsIconsTemplate
 }
 

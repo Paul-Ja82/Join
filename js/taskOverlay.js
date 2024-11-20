@@ -29,13 +29,7 @@ function openEditedTask() {
     checkIndexOfAllTasks(currentTaskForEdit, allTasks, allKeys);
 }
 
-function fillTaskOverlay(
-  allTasks,
-  keyToOpen,
-  priorityImg,
-  assignedToContacts,
-  subTasks
-) {
+function fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, subTasks) {
   document.getElementById(`dialogBox`).innerHTML = `
   <div class="task_overlay_ctn">
   <div id="boxTask" class="task_overlay_card_ctn single_task_ctn">
@@ -99,7 +93,6 @@ function fillTaskOverlay(
 }
 
 function checkAssignedToOverlay(allTasks, keyToOpen) {
-    // console.log(allTasks[keyToOpen]);
     let contactsTemplate = "";
     if (allTasks[keyToOpen].assigned_to == 'nobody') {
         contactsTemplate = "";
@@ -108,7 +101,6 @@ function checkAssignedToOverlay(allTasks, keyToOpen) {
           let fullName = allTasks[keyToOpen].assigned_to[j];
           let charOneFirstName = "";
           let charOneLastName = "";
-          // console.log(fullName);
           if (fullName.includes(" ")) {
           let partsOfName = fullName.split(" ");
           charOneFirstName = partsOfName[0][0].toUpperCase();
@@ -116,11 +108,12 @@ function checkAssignedToOverlay(allTasks, keyToOpen) {
           } else {
               charOneFirstName = fullName[0].toUpperCase();
           }
-          // console.log(charOneFirstName + charOneLastName);
             let currentUser = checkCurrentUser(currentUserLoggedIn, fullName);
+            console.log();
+            let backgroundColorInitials = checkContactColor(fullName, allContactsForTasks);
             contactsTemplate += `
                 <div class="single_task_single_contact">
-                    <div class="task_contact_name_icon">${charOneFirstName}${charOneLastName}</div>
+                    <div style="background-color: ${backgroundColorInitials}" class="task_contact_name_icon">${charOneFirstName}${charOneLastName}</div>
                     <div class="task_contact_name">${fullName} ${currentUser}</div>
                 </div>
             `
@@ -128,6 +121,20 @@ function checkAssignedToOverlay(allTasks, keyToOpen) {
     }
     return contactsTemplate
 } 
+
+function checkContactColor(fullName, allContactsForTasks) {
+  console.log(allContactsForTasks, fullName);
+  let colorForInitials; 
+  for (let i = 0; i < allContactsForTasks.length; i++) {
+    if (allContactsForTasks[i].name == fullName) {
+      colorForInitials = allContactsForTasks[i].color;
+      console.log(colorForInitials);
+      
+      break;
+    }
+  }
+  return colorForInitials
+}
 
 function checkCurrentUser(currentUserLoggedIn, fullName) {
     let currentUserForAssignedTo = '';
