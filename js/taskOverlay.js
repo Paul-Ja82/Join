@@ -117,11 +117,6 @@ function checkAssignedToOverlay(allTasks, keyToOpen) {
               charOneFirstName = fullName[0].toUpperCase();
           }
           console.log(charOneFirstName + charOneLastName);
-
-
-
-
-
             let currentUser = checkCurrentUser(currentUserLoggedIn, fullName);
             contactsTemplate += `
                 <div class="single_task_single_contact">

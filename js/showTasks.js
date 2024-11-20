@@ -155,15 +155,12 @@ function checkAssignedTo(tasks, i) {
                 let charOneFirstName = "";
                 let charOneLastName = "";
                 console.log(fullName);
-                // let charOneFirstName = fullName[0].toUpperCase();
                 if (fullName.includes(" ")) {
                 let partsOfName = fullName.split(" ");
                 charOneFirstName = partsOfName[0][0].toUpperCase();
                 charOneLastName = partsOfName[1][0].toUpperCase();
-
                 } else {
                     charOneFirstName = fullName[0].toUpperCase();
-                   
                 }
                 console.log(charOneFirstName + charOneLastName);
                 contactsIconsTemplate += `
