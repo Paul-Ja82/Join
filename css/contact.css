@@ -440,8 +440,65 @@ input {
     box-shadow: var(--shadow-button);
 }
 
+/*############################*/
+/*## CONTACT DIALOG DESKTOP ##*/
+/*############################*/
+
 /* @media (768px < width) { */
 @media (1010px < width) {
+
+    :root {
+        --padding-inline-cdContentContainer: 2em;
+    }
+
+    #dialogContact {
+        height: unset;
+        width: unset;
+        flex-direction: row;
+        justify-content: start;
+        max-width: unset;
+    }
+
+    #cdCloseIcon {
+        display: none;
+    }
+
+    #CDheaderContainer {
+        flex: unset;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 1.5em;
+        padding-right: 3em;
+    }
+
+    #CDcontentContainer {
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+        padding-left: var(--padding-inline-cdContentContainer);
+        flex: unset;
+    }
+
+    #cdPersonIcon {
+        position: static;
+        margin: 0;
+        transform: none;
+        flex: unset;
+    }
+
+    #contactForm {
+        transform: none;
+        padding: 4em var(--padding-inline-cdContentContainer);
+    }
+
+    #contactForm .input-wrapper {
+        min-width: 25em;
+    }
+
+    .cdButtonContainer {
+        justify-content: start;
+        gap: 3em;
+    }
+
     #cdCancelButton {
         display: unset;
     }
