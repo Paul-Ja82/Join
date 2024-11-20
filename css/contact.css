@@ -11,7 +11,7 @@
 body {
     background-color: var(--clr-bg-main);
     /* font-size: clamp(1rem, 0.679rem + 1.709vw, 1.5rem); */
-    font-size: clamp(0.9rem, 0.773rem + 0.676vw, 1.2rem);
+    /* font-size: clamp(0.9rem, 0.773rem + 0.676vw, 1.2rem); */
 }
 
 #contentContainer {
@@ -22,7 +22,7 @@ body {
 /* @media (768px < width) { */
 @media (1010px < width) {
     body {
-        font-size: clamp(1rem, 0.53rem + 0.744vw, 1.2rem);
+        /* font-size: clamp(1rem, 0.53rem + 0.744vw, 1.2rem); */
     }
 
     #contentContainer {
@@ -162,7 +162,7 @@ body {
     min-height: 100%;
     min-width: 100%;
     top: 0;
-    font-size: clamp(0.9rem, 0.708rem + 1.026vw, 1.2rem);
+    /* font-size: clamp(0.9rem, 0.708rem + 1.026vw, 1.2rem); */
     padding: 2em 1em;
     background-color: var(--clr-bg-main);
     box-shadow: var(--shadow-top-inset);
