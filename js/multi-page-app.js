@@ -34,7 +34,6 @@ function initIndexMPA() {
 }
 
 function initPageMPA() {
-    console.log('initPageMPA'); ///DEBUG
     let rememberMe= getRememberMe();
     let loggedIn= getLoggedIn();
     if (rememberMe) setLoggedIn(rememberMe);

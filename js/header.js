@@ -39,7 +39,7 @@ async function setGreetedName() {
             greetedNameElements[i].textContent = storedName;
         }
     } else {
-        console.error('No name found in Session Storage.');
+        // console.error('No name found in Session Storage.');
     }
 }
 

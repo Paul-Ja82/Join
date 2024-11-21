@@ -577,6 +577,14 @@ input {
 /*## DEBUG ##*/
 /*###########*/
 
+.nav-menu-resp-frame {
+    z-index: 10;
+    position: absolute;
+}
+
+
+
+
 .list-item {
     padding: 0.5em 1em;
 }
