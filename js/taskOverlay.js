@@ -12,10 +12,6 @@ function openTaskOverlay(e) {
   document.body.style.overflow = "hidden";
 }*/
 
-function closeBackground() {
-  document.getElementById()
-}
-
 function checkTask(e) {
   e.stopPropagation();
   let container = e.target.closest('[id^="single_task_ctn"]');
@@ -35,8 +31,8 @@ function openEditedTask() {
 
 function fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, subTasks) {
   document.getElementById(`dialogBox`).innerHTML = `
-  <div class="task_overlay_ctn">
-  <div id="boxTask" class="task_overlay_card_ctn single_task_ctn">
+  <div onclick="event.stopPropagation(); closeTask(event)" class="task_overlay_ctn">
+  <div onclick="event.stopPropagation()" id="boxTask" class="task_overlay_card_ctn single_task_ctn">
             <div class="overlay_task_header">
                     <div class="single_task_header_category_and_close">
                         <div class="single_task_category_overlay">${allTasks[keyToOpen].category}</div>

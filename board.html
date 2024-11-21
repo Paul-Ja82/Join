@@ -52,8 +52,8 @@
     </header> -->
     <div id="menuContainer" data-include="./assets/templates/menu_template.html"></div>
     <!-- <div id="insertAddedToTaskConfirmation"></div> -->
-    <div onclick="closeTask(event)" id="backgroundId" class="background d-none">
-      <div id="dialogBox" class="dialogBox"></div>
+    <div onclick="event.stopPropagation(); closeTask(event)" id="backgroundId" class="background d-none">
+      <div onclick="event.stopPropagation()" id="dialogBox" class="dialogBox"></div>
     </div>
     <div class="board_ctn">
       <div class="board_header">

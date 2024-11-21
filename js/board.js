@@ -49,7 +49,7 @@ function showTask() {
 }
 
 function closeTask(e) {
-  e.stopPropagation()
+  // e.stopPropagation()
   document.getElementById("dialogBox").classList.remove("showIt");
   setTimeout(() => {
     document.getElementById("backgroundId").classList.add("d-none");
