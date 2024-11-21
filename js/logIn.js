@@ -235,7 +235,7 @@ function supportForProcess(flags, emailInput, passwordInput, errorMessage) {
         let rememberMeInputElem = document.getElementById('rememberCheckbox');
         let rememberMeItem = rememberMeInputElem.checked ? user.id : null;
         loginMPA(user.id, rememberMeItem);
-
+        if (rememberMeInputElem.checked) localStorage.setItem('loggedInUserName', user.name); ///von reini
         sessionStorage.setItem('loggedInUserName', user.name);
         sessionStorage.setItem('loggedInUserId', user.id);
     } else {
@@ -280,6 +280,7 @@ function handleLoginFailure(emailInput, passwordInput, flags, errorMessage) {
  * @function login
  */
 function login() {
+    console.log('login()'); ///DEBUG
     initializeLogin();
     processLogin();
 }

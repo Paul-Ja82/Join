@@ -56,8 +56,11 @@ function getMonogramHeader(name) {
 }
 
 async function updateUserMonogram() {
-    await setGreetedName(); 
-    const storedName = sessionStorage.getItem('loggedInUserName');
+    await setGreetedName();
+    let storedName;
+    if (localStorage.getItem('loggedInUserName')) {
+        storedName = localStorage.getItem('loggedInUserName');
+    } else storedName = sessionStorage.getItem('loggedInUserName');
     const navCircleElement = document.getElementById('navCircle');
 
     if (navCircleElement) {

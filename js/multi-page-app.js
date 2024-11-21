@@ -1,6 +1,7 @@
 
 const LOGGEDIN_SESSIONSTORAGE_KEY= 'loggedIn';
-const REMEMBERME_LOCALSTORAGE_KEY= 'rememberMe';
+// const REMEMBERME_LOCALSTORAGE_KEY= 'rememberMe';
+const REMEMBERME_LOCALSTORAGE_KEY= 'loggedInUserName';
 
 // const INDEXPAGE_URL= './sign_up.html';
 // const INDEXPAGE_URL= './log_in.html';
@@ -33,6 +34,7 @@ function initIndexMPA() {
 }
 
 function initPageMPA() {
+    console.log('initPageMPA'); ///DEBUG
     let rememberMe= getRememberMe();
     let loggedIn= getLoggedIn();
     if (rememberMe) setLoggedIn(rememberMe);
