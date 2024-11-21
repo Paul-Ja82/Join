@@ -612,7 +612,7 @@ body {
       color: rgba(42, 54, 71, 1);
       margin-bottom: 12px;
       margin-right: 20px;
-      max-height: 70px;
+      max-height: 75px;
       font-size: clamp(1.25rem, 0.893rem + 0.952vw, 1.75rem);
       overflow: auto;
       padding-right: 10px;
