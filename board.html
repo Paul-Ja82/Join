@@ -16,16 +16,17 @@
     <script src="./script.js"></script>
     <script src="./js/header.js"></script>
     <script src="./js/templates.js"></script>
+    <script src="./js/logIn.js"></script>
     <script src="./js/multi-page-app.js"></script>
     <title>Board - join</title>
   </head>
-  <body id="board_body" onload="getIdAndData(pathData=''); init(); preparingElements()" class="no_drop_area">
+  <body id="board_body" onload="getIdAndData(pathData=''); initHeaderJs(); init(); preparingElements()" class="no_drop_area">
     <header id="headerContainer" class="flex-row" data-include="./header.html">
       <p>shoud be included</p>
     </header>
     <div id="menuContainer" data-include="./assets/templates/menu_template.html"></div>
     <!-- <div id="insertAddedToTaskConfirmation"></div> -->
-    <div id="backgroundId" class="background d-none">
+    <div  id="backgroundId" class="background d-none">
       <div id="dialogBox" class="dialogBox"></div>
     </div>
     <div class="board_ctn">

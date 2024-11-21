@@ -101,3 +101,18 @@ img.menu-nav-icon {
         margin-top: clamp(0.5rem, 0.235rem + 0.941vh, 1rem);
     }
 }
+
+@media (max-width: 500px) {
+    .menu-nav-item {
+        min-height: 0;
+    }
+    
+    .menu-nav-text {
+        margin: 0;
+    }
+    
+    #menuContainer {
+        position: relative;
+        z-index: 10;
+    }
+}

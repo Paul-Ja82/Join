@@ -31,6 +31,7 @@ html {
   margin: 0;
   padding: 0;
   -webkit-tap-highlight-color: transparent;
+  background: rgba(246, 247, 248, 1);
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
 }
@@ -49,9 +50,9 @@ body {
 /* Start */
 
 /* Nachher löschen */
-body {
+/* body {
   overflow-x: hidden;
-}
+} */
 
 .showButton {
   display: flex;
@@ -358,7 +359,6 @@ body {
 }
 
 .board_ctn {
-  background: rgba(246, 247, 248, 1);
   width: calc(100% - 50px);
   padding: 25px 25px 0 25px;
   margin: 0;
@@ -555,18 +555,27 @@ body {
   width: 100%;
   height: 100vh;
   /* background-color: rgba(235, 194, 108, 0.548); */
-display: flex;
+  display: flex;
   z-index: 30;
   justify-content: center;
   align-items: center;
   & .task_overlay_card_ctn {
-    width: 525PX;
+    /* width: 525PX;
     box-sizing: border-box;
-
     border-radius: 24px;
     padding: 48px 36px;
     max-height: 90%;
-    overflow: auto;
+    overflow: auto; */
+    /*Maße wieder geändert, da Overlay so nicht responsive war. Bitte nichts ohne Rücksprache ändern!*/
+    width: 82%;
+    max-width: 525px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+    border-radius: 24px;
+    padding: 36px;
+    max-height: 90%;
+    margin: 5% auto;
+    /* scale: 0.9; */
     & .single_task_header_category_and_close {
       display: flex;
       justify-content: space-between;
@@ -873,7 +882,7 @@ display: flex;
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1010px) {
   body {
     padding-bottom: 80px;
     max-height: calc(100% - 80px);
@@ -907,7 +916,9 @@ display: flex;
       }
     }
     & .board_task_area {
-      top: 250px;
+      top: 270px;
+      left: 20px;
+      bottom: 110px;
       & .task_section {
         width: 100%;
         & .task_section_header {
@@ -939,16 +950,25 @@ display: flex;
   }
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .board_ctn {
     & .board_task_area {
       left: 20px;
       bottom: 110px;
     }
   }
-}
+} */
 
 @media (max-width: 500px) {
+  .board_ctn {
+    & .board_task_area {
+        & .task_section {
+            & .task_section_header {
+                width: 95%;
+            }
+        }
+    }
+}
   .task_overlay_ctn {
     & .task_overlay_card_ctn {
       & .single_task_due_date_ctn {

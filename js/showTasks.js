@@ -95,7 +95,7 @@ function checkAssignedTo(tasks, i) {
                 <div style="background-color: ${backgroundColorInitials};" class="single_task_single_contact" id="">${charOneFirstName}${charOneLastName}</div>
                `
             }  
-            if (tasks[i].assigned_to.length >= 5) {
+            if (tasks[i].assigned_to.length > 5) {
                 let moreContacts = tasks[i].assigned_to.length - 5;
                 contactsIconsTemplate += `
                 <div class="single_task_single_contact" id="">+${moreContacts}</div>
