@@ -20,7 +20,7 @@ function checkTask(e) {
     showTask();
     checkIndexOfAllTasks(clickedSingleID, allTasks, allKeys);
     currentTaskForEdit = clickedSingleID;
-    console.log(allTasks);
+    // console.log(allTasks);
   }
 }
 
@@ -29,13 +29,7 @@ function openEditedTask() {
     checkIndexOfAllTasks(currentTaskForEdit, allTasks, allKeys);
 }
 
-function fillTaskOverlay(
-  allTasks,
-  keyToOpen,
-  priorityImg,
-  assignedToContacts,
-  subTasks
-) {
+function fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, subTasks) {
   document.getElementById(`dialogBox`).innerHTML = `
   <div class="task_overlay_ctn">
   <div id="boxTask" class="task_overlay_card_ctn single_task_ctn">
@@ -99,20 +93,27 @@ function fillTaskOverlay(
 }
 
 function checkAssignedToOverlay(allTasks, keyToOpen) {
-    // console.log(allTasks[keyToOpen]);
     let contactsTemplate = "";
     if (allTasks[keyToOpen].assigned_to == 'nobody') {
         contactsTemplate = "";
     } else {
-        for (let j = 0; j < allTasks[keyToOpen].assigned_to.length; j++) {
-            let fullName = allTasks[keyToOpen].assigned_to[j];
-            let [firstName, lastName] = fullName.split(" ");
-            let charOneFirstName = firstName.charAt(0);
-            let charOneLastName = lastName.charAt(0);
+        for (let j = 0; j < allTasks[keyToOpen].assigned_to.length; j++) {          
+          let fullName = allTasks[keyToOpen].assigned_to[j];
+          let charOneFirstName = "";
+          let charOneLastName = "";
+          if (fullName.includes(" ")) {
+          let partsOfName = fullName.split(" ");
+          charOneFirstName = partsOfName[0][0].toUpperCase();
+          charOneLastName = partsOfName[1][0].toUpperCase();
+          } else {
+              charOneFirstName = fullName[0].toUpperCase();
+          }
             let currentUser = checkCurrentUser(currentUserLoggedIn, fullName);
+            console.log();
+            let backgroundColorInitials = checkContactColor(fullName, allContactsForTasks);
             contactsTemplate += `
                 <div class="single_task_single_contact">
-                    <div class="task_contact_name_icon">${charOneFirstName}${charOneLastName}</div>
+                    <div style="background-color: ${backgroundColorInitials}" class="task_contact_name_icon">${charOneFirstName}${charOneLastName}</div>
                     <div class="task_contact_name">${fullName} ${currentUser}</div>
                 </div>
             `
@@ -120,6 +121,19 @@ function checkAssignedToOverlay(allTasks, keyToOpen) {
     }
     return contactsTemplate
 } 
+
+function checkContactColor(fullName, allContactsForTasks) {
+  // console.log(allContactsForTasks, fullName);
+  let colorForInitials; 
+  for (let i = 0; i < allContactsForTasks.length; i++) {
+    if (allContactsForTasks[i].name == fullName) {
+      colorForInitials = allContactsForTasks[i].color;
+      // console.log(colorForInitials);      
+      break;
+    }
+  }
+  return colorForInitials
+}
 
 function checkCurrentUser(currentUserLoggedIn, fullName) {
     let currentUserForAssignedTo = '';
@@ -279,19 +293,20 @@ function clickCloseTaskOverlay(event) {
   event.stopPropagation();
 }*/
 
-function closeTaskOverlay(e) {
-  document.getElementById(`task_overlay_ctn`).style.right = "-100%";
-  document.getElementById(`task_overlay_ctn`).style.display = "none";
-  document.body.style.overflow = "";
-}
+// function closeTaskOverlay(e) {
+//   document.getElementById(`task_overlay_ctn`).style.right = "-100%";
+//   document.getElementById(`task_overlay_ctn`).style.display = "none";
+//   document.body.style.overflow = "";
+// }
 
 async function deleteTask(e, keyToDelete) {
   e.stopPropagation();
   console.log(keyToDelete);
   let pathToDelete = `tasks/${keyToDelete}`;
   await deleteTaskID(pathToDelete);
-  document.getElementById(`task_overlay_ctn`).style.right = "-100%";
-  document.getElementById(`task_overlay_ctn`).style.display = "none";
+  // document.getElementById(`task_overlay_ctn`).style.right = "-100%";
+  // document.getElementById(`task_overlay_ctn`).style.display = "none";
+  closeTask()
   document.body.style.overflow = "";
   await getIdAndData((pathData = ""));
 }

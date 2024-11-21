@@ -48,7 +48,7 @@ function showTask() {
   document.getElementById("dialogBox").innerHTML = "";
 }
 
-function closeTask() {
+function closeTask(e) {
   document.getElementById("dialogBox").classList.remove("showIt");
   setTimeout(() => {
     document.getElementById("backgroundId").classList.add("d-none");

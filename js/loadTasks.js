@@ -26,24 +26,24 @@ async function collectDataFromAddTask(currentStatus, selectedContacts) {
     return id
 }
 
-async function collectDataFromChangingAddTask() {
-   console.log(currentKeyToOpen);
+// async function collectDataFromChangingAddTask() {
+//    console.log(currentKeyToOpen);
    
-    let taskData = {
-        "assigned_to" : "",
-        "category" : document.getElementById("showSelectedCategory").value,
-        "description" : document.getElementById("description").value,
-        "due_date" : document.getElementById("date").value,
-        "priority" : selectedPrio == null ? "medium" : selectedPrio,
-        "subtasks" : subtasks,
-        "title" : document.getElementById("title").value,
-        "currentStatus" : currentStatusofChangingTask,
-        "single_ID" : currentTaskForEdit,
-    }
-    await putChangeInTask(path=`${currentKeyToOpen}`, taskData);
-    await getIdAndData(pathData='');
-    openEditedTask();
-}
+//     let taskData = {
+//         "assigned_to" : "",
+//         "category" : document.getElementById("showSelectedCategory").value,
+//         "description" : document.getElementById("description").value,
+//         "due_date" : document.getElementById("date").value,
+//         "priority" : selectedPrio == null ? "medium" : selectedPrio,
+//         "subtasks" : subtasks,
+//         "title" : document.getElementById("title").value,
+//         "currentStatus" : currentStatusofChangingTask,
+//         "single_ID" : currentTaskForEdit,
+//     }
+//     await putChangeInTask(path=`${currentKeyToOpen}`, taskData);
+//     await getIdAndData(pathData='');
+//     openEditedTask();
+// }
 
 async function collectDataFromChangingAddTask() {
    console.log(currentKeyToOpen);
