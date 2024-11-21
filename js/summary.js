@@ -7,6 +7,7 @@ function initSummary() {
     initMPA();
 }
 
+
 /**
  * Toggles the display of greeting elements based on the window width.
  * If the window width is less than or equal to 1280 pixels, the greetings frame is shown for 2 seconds,

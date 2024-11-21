@@ -9,6 +9,13 @@ function initLogin() {
     initMPA();
 }
 
+/**
+ * Animates the logo element by adding CSS classes to control its position and animation.
+ * The function selects an element with the class `j-logo-img` and adds a `start-position` class immediately.
+ * After a 500ms delay, it adds an `animate-logo` class to trigger further animations.
+ *
+ * @function animateLogo
+ */
 function animateLogo() {
     const logo = document.querySelector(".j-logo-img");
     logo.classList.add("start-position");
@@ -18,9 +25,17 @@ function animateLogo() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+    
 });
 
 
+/**
+ * Delays the display of elements on the page by changing their opacity and visibility properties.
+ * The function targets elements with the classes `log-in-div`, `sign-up-under-div`, and the `footer` element,
+ * making them fully visible after a delay of 900 milliseconds.
+ *
+ * @function showDivsDelayed
+ */
 function showDivsDelayed() {
     const logIn = document.querySelector(".log-in-div");
     const signUpDiv = document.querySelector(".sign-up-under-div");
@@ -36,10 +51,17 @@ function showDivsDelayed() {
     }, 900);
 }
 
+/**
+ * Changes the background color of the body element based on screen width.
+ * If the screen width is less than or equal to 950 pixels, it changes the body's background color to a dark color,
+ * then reverts it back to a light color after a 700ms delay.
+ *
+ * @function colorBody
+ */
 function colorBody() {
     const screenWidth = window.innerWidth;
 
-    if (screenWidth <= 1050) {
+    if (screenWidth <= 950) {
         const body = document.body;
 
         body.style.backgroundColor = "rgba(9, 25, 49, 1)";
@@ -50,10 +72,17 @@ function colorBody() {
     }
 }
 
+/**
+ * Changes the custom CSS property `--logo-color` based on screen width.
+ * If the screen width is less than or equal to 950 pixels, it changes the `--logo-color` to white,
+ * then reverts it to a dark color after a 700ms delay.
+ *
+ * @function colorLogo
+ */
 function colorLogo() {
     const screenWidth = window.innerWidth;
 
-    if (screenWidth <= 1050) {
+    if (screenWidth <= 950) {
         document.documentElement.style.setProperty('--logo-color', '#ffffff');
 
         setTimeout(() => {
@@ -63,103 +92,209 @@ function colorLogo() {
 }
 
 /**
- * Enables or disables the password input field based on the presence of a valid email in the email input field.
- *
- * @function ablePasswordInput
- */
-function ablePasswordInput() {
-    const emailInput = document.getElementById('emailInput');
-    const passwordInput = document.getElementById('passwordInput');
-
-    if (emailInput) {
-        const emailValue = emailInput.value.trim();
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
-
-        if (emailPattern.test(emailValue)) {
-            passwordInput.disabled = false;
-        } else {
-            passwordInput.disabled = true;
-        }
-    }
-}
-
-// Hier mussen wir noch integrieren das die email auch registriert seien muss bevor wir password eingeben ,ausserdem stört der addEventlistner die signUp seite 
-// Dann mussen wir verhindern das wenn ich email eingegeben habe anfange die password zu schreiben und dann wieder in das email fehlde gehe das password mit zeichen bleibt oder auch nicht ?
-
-/**
- * Displays or hides the forgot password message based on the state of the password input field.
- * If the password input field is not disabled, the forgot password message is shown by setting its opacity to 1.
- * If the password input field is disabled, the message is hidden by setting its opacity to 0.
- *
- * @function showForgotPasswordMsg
+ * Controls the visibility of the forgot password message based on the email input value.
+ * If the input matches a valid email format, the message is shown; otherwise, it is hidden.
  */
 function showForgotPasswordMsg() {
-    const forgotPasswordElement = document.getElementById('forgotPassword');
-    const passwordInput = document.getElementById('passwordInput');
+    const emailInput = document.getElementById('emailInput');
+    const forgotPassword = document.getElementById('forgotPassword'); // Assumes the element has this ID
 
-    if (forgotPasswordElement) {
-        if (passwordInput && !passwordInput.disabled) {
-            forgotPasswordElement.style.opacity = '1';
+    if (emailInput && forgotPassword) {
+        const emailValue = emailInput.value.trim();
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic regex for email validation
+
+        if (emailPattern.test(emailValue)) {
+            forgotPassword.style.opacity = '1'; // Show message if input is a valid email
         } else {
-            forgotPasswordElement.style.opacity = '0';
+            forgotPassword.style.opacity = '0'; // Hide message if input is empty or invalid
+        }
+    }
+}
+
+
+/**
+ * Displays a message indicating incorrect email format by setting the opacity
+ * of elements with the 'incorrect-email-format' class to 1 and adding the 
+ * 'input-error' class to the email input field.
+ */
+function showIncorrectFormatMsg() {
+    let elements = document.querySelectorAll('.incorrect-email-format');
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].style.opacity = '1';
+    }
+
+    let emailInput = document.getElementById('emailInput');
+    if (emailInput) {
+        emailInput.classList.add('input-error');
+    }
+}
+
+/**
+ * Enables or disables the password input field based on the validity of the email input.
+ * If the email input is empty, contains less than one character, or does not match the expected email format,
+ * the password input is disabled and an error message is displayed using the showIncorrectFormatMsg function.
+ */
+function ablePasswordInput() {
+    let emailInput = document.getElementById('emailInput');
+    let passwordInput = document.getElementById('passwordInput');
+
+    if (emailInput) {
+        let emailValue = emailInput.value.trim();
+        let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
+
+        if (emailPattern.test(emailValue) && emailValue.length > 0) {
+            passwordInput.disabled = false; 
+        } else {
+            passwordInput.disabled = true; 
+            showIncorrectFormatMsg(); 
         }
     }
 }
 
 /**
- * Adds an input event listener to the element with the ID 'emailInput'.
- * Enables or disables the password input field based on the value entered in the email input field.
- * If the email input field contains text, the password input field is enabled. If the email input field is empty,
- * the password input field is disabled and the forgot password message's opacity is set to 0, hiding it.
+ * Shows the "not registered" message by setting elements with the class "not-registered-msg" to an opacity of 1
+ * and adds the 'input-error' class to the email input element.
  */
-document.getElementById('emailInput').addEventListener('input', function() {
-    const emailValue = this.value.trim();
-    const passwordInput = document.getElementById('passwordInput');
-
-    if (emailValue.length > 0) {
-        passwordInput.disabled = false;
-    } else {
-        passwordInput.disabled = true;
-        const forgotPasswordElement = document.getElementById('forgotPassword');
-        if (forgotPasswordElement) {
-            forgotPasswordElement.style.opacity = '0';
-        }
-    }
-});
-
-const dummyDatabase = [
-    {
-        "id": "1111",
-        "name": "Paul Dietrich",
-        "email": "user@example.com",
-        "password": "password123"
-    },
-    {    
-        "id": "2222",
-        "name": "Maximilian Mustermann",
-        "email": "user2@example2.com",
-        "password": "password321"
+function showNotRegisteredMsg() {
+    const elements = document.querySelectorAll('.not-registered-msg');
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].style.opacity = '1';
     }
 
-];
-
-function validateUser(email, password) {
-    let userExists = false;
-    let loggedInUser = null;
-
-    for (let i = 0; i < dummyDatabase.length; i++) {
-        if (dummyDatabase[i].email === email && dummyDatabase[i].password === password) {
-            userExists = true;
-            loggedInUser = dummyDatabase[i];
-            break;
-        }
+    const emailInput = document.getElementById('emailInput');
+    if (emailInput) {
+        emailInput.classList.add('input-error'); 
     }
-
-    return { userExists, loggedInUser };
 }
 
-function handleValidationResult(userExists, emailInput, passwordInput, errorMessage) {
-    if (!userExists) {
+
+/**
+ * Checks if the user exists by testing the email input value.
+ * If the user exists, the function redirects to 'new_password.html'.
+ */
+function checkUserExist() {
+    const emailInput = document.getElementById('emailInput');
+    if (emailInput) {
+        const emailValue = emailInput.value.trim();
+        const user = getUserByEmail(emailValue);
+
+        if (user) {
+            window.location.href = 'new_password.html'; 
+        } else {
+            showNotRegisteredMsg();
+            console.log('User does not exist.');
+            
+        }
+    }
+}
+
+
+function getUserByEmail(email) {
+    return users.find((userI) => userI.email == email);
+}
+
+function showIncorrectFormatMsg() {
+    let elements = document.querySelectorAll('.incorrect-email-format');
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].style.opacity = '1';
+    }
+
+    let emailInput = document.getElementById('emailInput');
+    if (emailInput) {
+        emailInput.classList.add('input-error');
+    }
+}
+
+/**
+ * Initializes the login process by resetting flags, loading input values,
+ * and checking the validity of email input and user data.
+ *
+ * @function initializeLogin
+ */
+function initializeLogin() {
+    resetFlagsLogin();
+    loadInputValuesLogin();
+    checkEmailInputLogin();
+    checkValidUser();
+}
+
+/**
+ * Handles the main processing of the login flow.
+ * If flags are valid, retrieves the user and logs in.
+ * Otherwise, handles login failure.
+ *
+ * @function supportForProcess
+ * @param {boolean} flags - Indicates whether the login input and user data are valid.
+ * @param {HTMLInputElement} emailInput - The email input element.
+ * @param {HTMLInputElement} passwordInput - The password input element.
+ * @param {HTMLElement} errorMessage - The error message element.
+ */
+function supportForProcess(flags, emailInput, passwordInput, errorMessage) {
+    if (flags) {
+        let user = getUserByEmail(emailInputLogin);
+        let rememberMeInputElem = document.getElementById('rememberCheckbox');
+        let rememberMeItem = rememberMeInputElem.checked ? user.id : null;
+        loginMPA(user.id, rememberMeItem);
+
+        sessionStorage.setItem('loggedInUserName', user.name);
+        sessionStorage.setItem('loggedInUserId', user.id);
+    } else {
+        handleLoginFailure(emailInput, passwordInput, flags, errorMessage);
+    }
+}
+
+/**
+ * Processes the login by checking flags and calling the support function.
+ *
+ * @function processLogin
+ */
+function processLogin() {
+    let flags = emailInputLoginFlag && validUserFlag;
+    let emailInput = document.getElementById('emailInput');
+    let passwordInput = document.getElementById('passwordInput');
+    let errorMessage = document.querySelector('.error-input-message');
+
+    supportForProcess(flags, emailInput, passwordInput, errorMessage);
+}
+
+/**
+ * Handles the case when login fails by showing appropriate messages and logging debug info.
+ *
+ * @function handleLoginFailure
+ * @param {HTMLInputElement} emailInput - The email input element.
+ * @param {HTMLInputElement} passwordInput - The password input element.
+ * @param {boolean} flags - Indicates whether the login input and user data are valid.
+ * @param {HTMLElement} errorMessage - The error message element.
+ */
+function handleLoginFailure(emailInput, passwordInput, flags, errorMessage) {
+    console.warn('Kein Login möglich'); ///DEBUG
+    logFlagsLogin(); ///DEBUG
+    logVarsLogin(); ///DEBUG
+
+    handleValidationResult(emailInput, passwordInput, flags, errorMessage);
+}
+
+/**
+ * Main login function that initializes and processes the login.
+ *
+ * @function login
+ */
+function login() {
+    initializeLogin();
+    processLogin();
+}
+
+/**
+ * Handles validation results by adding or removing error classes and setting error message visibility.
+ *
+ * @function handleValidationResult
+ * @param {HTMLInputElement} emailInput - The email input element.
+ * @param {HTMLInputElement} passwordInput - The password input element.
+ * @param {boolean} isValidUser - Indicates whether the user data is valid.
+ * @param {HTMLElement} errorMessage - The error message element.
+ */
+function handleValidationResult(emailInput, passwordInput, isValidUser, errorMessage) {
+    if (!isValidUser) {
         emailInput.classList.add('input-error');
         passwordInput.classList.add('input-error');
 
@@ -175,57 +310,33 @@ function handleValidationResult(userExists, emailInput, passwordInput, errorMess
         }
     }
 }
-
-function handleSuccessfulLogin(loggedInUser, emailInput, passwordInput) {
-    if (loggedInUser && loggedInUser.name) {
-        localStorage.setItem('loggedInUserName', loggedInUser.name);
-    }
-
-    emailInput.value = '';
-    passwordInput.value = '';
-    window.location.href = "./summary_user.html";
-}
-
-function checkEmailAndPassword() {
-    const emailInput = document.getElementById('emailInput');
-    const passwordInput = document.getElementById('passwordInput');
-    const errorMessage = document.querySelector('.error-input-message');
-    const actualPasswordValue = passwordInput.dataset.actualValue || '';
-
-    const { userExists, loggedInUser } = validateUser(emailInput.value, actualPasswordValue);
-    handleValidationResult(userExists, emailInput, passwordInput, errorMessage);
-
-    if (userExists) {
-        handleSuccessfulLogin(loggedInUser, emailInput, passwordInput);
-    }
-}
-
+/**
+ * Removes input error states and restores the enabled state of the password input field.
+ * This function removes the 'input-error' class from the email and password input fields,
+ * hides any displayed error messages by setting their opacity to 0, and re-enables the password input.
+ */
 function removeInputError() {
     const emailInput = document.getElementById('emailInput');
     const passwordInput = document.getElementById('passwordInput');
     const errorMessage = document.querySelector('.error-input-message');
+    const incorrectMessage = document.querySelector('.incorrect-email-format');
+    const notRegisteredMessage = document.querySelector('.not-registered-msg');
 
     emailInput.classList.remove('input-error');
     passwordInput.classList.remove('input-error');
-
+    passwordInput.disabled = false;
     if (errorMessage) {
         errorMessage.style.opacity = '0'; 
     }
+    if (incorrectMessage) {
+        incorrectMessage.style.opacity = '0'; 
+    }
+    if (notRegisteredMessage) {
+        notRegisteredMessage.style.opacity = '0'; 
+    }
 }
 
-/*function toggleAutocomplete() {
-    const rememberMeCheckbox = document.getElementById('rememberCheckbox');
-    const emailInput = document.getElementById('emailInput');
-    const passwordInput = document.getElementById('passwordInput');
 
-    if (rememberMeCheckbox.checked) {
-        emailInput.setAttribute('autocomplete', 'on');             ### ?? für den moment in html auf off 
-        passwordInput.setAttribute('autocomplete', 'on');
-    } else {
-        emailInput.setAttribute('autocomplete', 'off');
-        passwordInput.setAttribute('autocomplete', 'off');
-    }
-}*/ 
 
 
 
