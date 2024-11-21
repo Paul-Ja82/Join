@@ -49,6 +49,7 @@ function showTask() {
 }
 
 function closeTask(e) {
+  e.stopPropagation()
   document.getElementById("dialogBox").classList.remove("showIt");
   setTimeout(() => {
     document.getElementById("backgroundId").classList.add("d-none");
@@ -268,7 +269,8 @@ async function moveTaskWithMenu(id, toSection) {
   await getIdAndData((pathData = ""));
 }
 
-function changeTaskValues() {
+function changeTaskValues(e) {
+  e.stopPropagation();
   document.getElementById("dialogBox").innerHTML = "";
   document.getElementById("dialogBox").style.transition = "unset";
   document.getElementById("dialogBox").style.backgroundColor = "white";

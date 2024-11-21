@@ -668,7 +668,7 @@ body {
         }
       }
       & .single_task_contacts_ctn {
-        max-height: 150px;
+        max-height: 155px;
         overflow: auto;
         display: flex;
         flex-direction: column;
