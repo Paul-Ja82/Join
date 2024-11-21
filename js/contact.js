@@ -19,7 +19,8 @@ mediaDesktop.addEventListener('change', mediaChangeHandler);
 async function initContact() {
     await initJoin();
     initForms();
-    include();
+    include()
+        .then(initHeaderJs);
     mediaChangeHandler();
     generateContactList();
     addListItemClickHandlers();
