@@ -27,10 +27,10 @@ async function showDialog(selectedProcessCategory) {
     setTimeout(() => {
       document.getElementById("dialogBox").classList.add("showIt");
     }, 10);
-
-    document.getElementById("dialogBox").innerHTML = renderFormAddTask(
-      selectedProcessCategory
-    );
+    let today = new Date().toISOString().split('T')[0];
+    console.log(today);
+    
+    document.getElementById("dialogBox").innerHTML = renderFormAddTask(selectedProcessCategory, today);
     selectPrio("medium");
     await getIdAndDataForAddTask((pathData = ""));
     const contactList = document.getElementById("insertContactList");
@@ -292,7 +292,7 @@ function closeChangeTaskValues() {
 
 
 
-function renderFormAddTask(selectedProcessCategory) {
+function renderFormAddTask(selectedProcessCategory, today) {
   // console.log(selectedProcessCategory);
   return `
   <div class="overAllFormAddTask">
@@ -359,6 +359,7 @@ function renderFormAddTask(selectedProcessCategory) {
                 <input
                   type="date"
                   id="date"
+                  min="${today}"
                   class="fieldInput dateInput"
                   onchange="checkDateInput()"
                 />
