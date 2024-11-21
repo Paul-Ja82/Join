@@ -251,6 +251,8 @@ function clearAddContactForm() {
     nameInputElem.value = '';
     emailInputElem.value = '';
     phoneInputElem.value = '';
+    resetForm('contactForm');
+    addFocusHandlers();
 }
 
 function setContactDialogAdd() {

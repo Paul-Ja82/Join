@@ -132,7 +132,6 @@ function isFormValidBuiltIn(formId) {
 /*#################*/
 
 function addValidation(formId, validFunc, vmsgId, vmsg) {
-    console.log('addValidation(..)'); ///DEBUG
     let vmsgElem = document.getElementById(vmsgId);
     let validation = {
         'validFunc': validFunc,
@@ -199,6 +198,13 @@ function enableButton(buttonId) {
 function disableButton(buttonId) {
     let button = document.getElementById(buttonId);
     button.disabled = true;
+}
+
+function resetForm(formId) {
+    let inputs= document.querySelectorAll(`#${formId} .${invalidStyleClass}`);
+    for (let inputI of inputs) {
+        inputI.classList.remove(invalidStyleClass);
+    }
 }
 
 function resetVsmgs(formId) {
