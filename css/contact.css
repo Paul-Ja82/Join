@@ -309,6 +309,10 @@ p#coninfoName {
     right: 2em;
 }
 
+#cdCloseIconDesktop {
+    display: none;
+}
+
 #CDheaderContainer {
     flex: 0 0 46%;
     gap: 0.5em;
@@ -320,6 +324,10 @@ p#coninfoName {
     border-top-left-radius: 1.5em;
     border-top-right-radius: 1.5em;
     color: white;
+}
+
+img#cdHeaderLogo {
+    display: none;
 }
 
 #CDheadline {
@@ -523,6 +531,20 @@ input {
 
     #cdCancelButton {
         display: unset;
+    }
+}
+
+/*########################################*/
+/*## CONTACT DIALOG MOBILE SMALL HEIGHT ##*/
+/*########################################*/
+
+@media (width < 1010px) and (height < 700px) {
+    #dialogContact {
+        font-size: 0.9em;
+    }
+    
+    #cdPersonIcon {
+        font-size: 0.6rem;
     }
 }
 
