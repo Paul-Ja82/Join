@@ -276,7 +276,8 @@ function changeTaskValues(e) {
   document.getElementById("dialogBox").style.backgroundColor = "white";
   document.getElementById("dialogBox").style.width = "525px";
   document.getElementById("dialogBox").style.boxSizing = "border-box";
-  document.getElementById("dialogBox").innerHTML = returnChangingAddTask();
+  let today = new Date().toISOString().split('T')[0];
+  document.getElementById("dialogBox").innerHTML = returnChangingAddTask(today);
 
   returnChangeAddTask();
 }
