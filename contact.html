@@ -139,13 +139,13 @@
                     <!-- phone input  -->
                     <div class="input-wrapper">
                         <div class="input-elem-wrapper">
-                            <input id="phoneInputElem" class="textinput" placeholder="Phone"
+                            <input id="phoneInputElem" class="textinput" type="tel" pattern="[0-9]*" placeholder="Phone"
                                 data-validationmessageid="phoneVmsg">
                             <div class="input-icon-wrapper">
                                 <img class="input-icon" src="./assets/icons/icon-phone.svg" alt="mail-person">
                             </div>
                         </div>
-                        <p id="phoneVmsg" class="validation-message v-hidden">debug: should not display</p>
+                        <p id="phoneVmsg" class="validation-message v-hidden">Please enter valid phone number (only digits)</p>
                     </div>
                     <!-- buttons -->
                     <div class="cdButtonContainer">
