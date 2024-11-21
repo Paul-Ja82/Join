@@ -133,8 +133,11 @@ function ifElseForGreetedName(storedName, greetingText) {
  * @async
  * @function setGreetedName
  */
-async function setGreetedName() { 
-    const storedName = sessionStorage.getItem('loggedInUserName');
+async function setGreetedName() {
+    let storedName;
+    if (localStorage.getItem('loggedInUserName')) {
+        storedName = localStorage.getItem('loggedInUserName');
+    } else storedName = sessionStorage.getItem('loggedInUserName');
     const currentHour = new Date().getHours();
     let greetingText = ifElseForSetGreeting(currentHour);
 
