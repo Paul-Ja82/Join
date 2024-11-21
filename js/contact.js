@@ -126,6 +126,7 @@ function displayInfoMobile(event) {
     let contactId = event.currentTarget.dataset.contactid;
     setInfo(contactId);
     showElem('detailContainer');
+    hideElem('listContainer');
     showContactInfoButtonMobile();
 }
 
@@ -152,6 +153,7 @@ function displayInfoDesktop(event) {
 /*####################*/
 
 function closeDetailButtonHandler() {
+    showElem('listContainer');
     hideElem('detailContainer');
     hideContactInfoButtonMobile();
 }
