@@ -14,14 +14,18 @@
   <link rel="stylesheet" href="./css/header.css" />
   <script src="./js/ui.js"></script>
   <script src="./script.js"></script>
-  <!-- Das ist für Login-, Navigation- und Menü-Funktionalität. Gruß Reini -->
   <script src="./js/multi-page-app.js"></script>
     <script src="./js/contactsForTask.js"></script>
+    <script src="./js/header.js"></script>
 </head>
 
-  <body
+  <!-- <body
     class="designForBody"
     onload="initAddTasks(); getIdAndDataForAddTask(pathData=''); init();"
+  > -->
+  <body
+    class="designForBody"
+    onload="initAddTasks(); getIdAndDataForAddTask(pathData=''); init(); include().then(initHeaderJs);"
   >
 
     <header id="headerContainer" class="flex-row" data-include="./header.html">
