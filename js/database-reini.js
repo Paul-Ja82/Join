@@ -6,7 +6,7 @@ const BASE_URL = "https://join-7ae0e-default-rtdb.europe-west1.firebasedatabase.
 // const BASE_URL = "https://join-43c13-default-rtdb.europe-west1.firebasedatabase.app/";
 
 const USERS_PATH = 'users/';
-const CONTACTS_PATH= 'contactsTEST/'
+const CONTACTS_PATH= 'contacts/';
 // const CONTACTS_PATH= 'contactsTESTING/'; ///DEBUG
 const NEXT_ID_PATH = 'nextId/';
 
