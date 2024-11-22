@@ -191,26 +191,15 @@ function removeShadow(id) {
 }
 
 async function moveTo(newSection) {
-  // console.log(newSection);
   let keyForPath = checkIndexOfTaskToMove(
     currentDraggedElementID,
     allTasks,
     allKeys
   );
-  console.log(keyForPath);
   let path = `tasks/${keyForPath}/currentStatus`;
-  // console.log(path);
   await putNewSection(path, newSection);
   await getIdAndData((pathData = ""));
 }
-
-// function openAddTaskForm(section) {
-//   sectionToSaveTask = section;
-//   console.log(section);
-
-//   window.location.href = "/add_task.html";
-//   return sectionToSaveTask;
-// }
 
 function checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys) {
     let id = currentDraggedElementID.slice(15);

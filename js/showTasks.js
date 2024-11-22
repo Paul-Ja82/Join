@@ -34,10 +34,7 @@ function pushTasksToArray() {
 }
 
 function pushFilteredTasksToArray() {
-    // console.log(filteredTasks);
-    // console.log(filteredKeys);
     for (let i = 0; i < filteredKeys.length; i++) {
-        // console.log(filteredTasks[i]);
         if (filteredTasks[i].currentStatus === "todo") {
             filteredTasksTodo.push(filteredTasks[i])
         } 
@@ -57,7 +54,6 @@ function fillTaskSections(section, tasks) {
     document.getElementById(section).innerHTML = "";
     for (let i = 0; i < tasks.length; i++) {
         let assignedTocontacts = checkAssignedTo(tasks, i);
-        // console.log(assignedTocontacts);
         let priorityImg = checkPriorityImg(tasks, i);
         let checkedSubtasks = checkCheckedSubtasks(tasks, i);
         let subtasksLength = checkSubtaskLength(tasks, i)
@@ -188,10 +184,12 @@ function calcProcessBarWidth(checkedSubtasks, subtasksLength) {
     return processBarWidth
 } 
 
+// if (window.innerWidth > 600) 
+
 function createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, width, checkedSubtasks, subtasksLength) {
     document.getElementById(section).innerHTML += `
     <div draggable="true" 
-    onmousedown="if (window.innerWidth > 600) cloneElement(${tasks[i].single_ID}, event)"
+    onmousedown="cloneElement(${tasks[i].single_ID}, event)"
     ondragstart="startDragging(event)" 
     ondrag="whileDragging(event)"
     ondragend="checkDraggableArea(event)"
