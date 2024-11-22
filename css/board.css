@@ -603,7 +603,7 @@ body {
             label {
               display: flex;
               position: relative;
-              width: fit-content;
+              width: -webkit-fill-available;
               transition: all 0.2s ease-in-out;
               padding: 5px 18px;
               #checkbox_empty {
@@ -627,6 +627,7 @@ body {
               }
               span {
                 margin-left: 60px;
+                width: 100%;
               }
               &:hover {
                 background-color: rgb(244, 244, 244);
