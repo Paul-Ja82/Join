@@ -508,7 +508,7 @@ function renderContactList(filteredContacts = contacts) {
 
   contactList.innerHTML = "";
   document.getElementById("arrowDropdown").src =
-    "/assets/icons/arrowUpDropdown.svg";
+    "./assets/icons/arrowUpDropdown.svg";
 
   if (filteredContacts.length === 0) {
     contactList.innerHTML =

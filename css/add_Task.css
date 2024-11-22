@@ -31,9 +31,23 @@
   border-radius: 20px;
   /* width: 1200px; */
   max-width: 1200px;
+  
   transform: translateX(200vw); /* Startpunkt außerhalb des Bildschirms */
   transition: all 225ms ease-in-out;
   z-index: 999;
+  /*Ergänzung Sabrina:*/
+  max-height: 90%;
+}
+
+.testSabrinaAddTaskCtn {
+  
+  width: 82%;
+  max-width: 525px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  border-radius: 24px;
+  /* padding: 36px; */
+  max-height: 80%;
 }
 
 .d-none {
@@ -992,9 +1006,9 @@ input[type="date"].filled {
   .contactPerson {
     font-size: 16px;
   }
-  .seperateSendButtons {
+  /* .seperateSendButtons {
     margin-bottom: 100px;
-  }
+  } */
 
   .requiredInformation {
     align-self: flex-start;

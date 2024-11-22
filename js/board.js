@@ -26,6 +26,7 @@ async function showDialog(selectedProcessCategory) {
     document.getElementById("backgroundId").classList.remove("d-none");
     setTimeout(() => {
       document.getElementById("dialogBox").classList.add("showIt");
+      document.getElementById("dialogBox").classList.add("testSabrinaAddTaskCtn");
     }, 10);
     let today = new Date().toISOString().split('T')[0];
     console.log(today);
@@ -50,6 +51,11 @@ function showTask() {
 
 function closeTask(e) {
   // e.stopPropagation()
+
+  // if (document.getElementById("insertContactList").classList.contains("d-none")) {
+  //   closeContactList()
+  //   isListOpen = !isListOpen;
+  // } 
   document.getElementById("dialogBox").classList.remove("showIt");
   setTimeout(() => {
     document.getElementById("backgroundId").classList.add("d-none");
@@ -272,6 +278,13 @@ function changeTaskValues(e) {
 }
 
 function closeChangeTaskValues() {
+  if (document.getElementById("insertContactList").classList.contains(!"d-none")) {
+    console.log('d-none nicht enthalten, Liste geöffnet');
+    
+    closeContactList()
+  isListOpen = !isListOpen;
+  }
+
   document.getElementById("dialogBox").style.cssText = "";
   document.getElementById("dialogBox").classList.remove("showIt");
   setTimeout(() => {
@@ -279,8 +292,6 @@ function closeChangeTaskValues() {
     document.getElementById("dialogBox").style.backgroundColor = "white";
   }, 225);
 }
-
-
 
 function renderFormAddTask(selectedProcessCategory, today) {
   // console.log(selectedProcessCategory);
@@ -328,7 +339,7 @@ function renderFormAddTask(selectedProcessCategory, today) {
                   <div class="changeSymboles">
                     <img
                       id="arrowDropdown"
-                      src="assets/icons/arrowDropdown.svg"
+                      src="./assets/icons/arrowDropdown.svg"
                       alt=""
                       onclick="toggleContactList()"
                     />
@@ -358,7 +369,7 @@ function renderFormAddTask(selectedProcessCategory, today) {
                   onclick="document.getElementById('date').showPicker();"
                 >
                   <img
-                    src="/assets/icons/calendarIcon.svg"
+                    src="./assets/icons/calendarIcon.svg"
                     alt="Calendar Icon"
                   />
                 </div>
