@@ -48,123 +48,6 @@ body {
   overflow: hidden;
 }
 
-/* Start */
-
-/* Nachher löschen */
-/* body {
-  overflow-x: hidden;
-} */
-
-.showButton {
-  display: flex;
-  justify-content: center;
-}
-
-.background {
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  background-color: rgba(0, 0, 0, 0.1);
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  z-index: 900;
-}
-
-.dialogBox {
-  align-self: center;
-  background-color: white;
-  padding: 60px 40px;
-  border-radius: 20px;
-  width: 1200px;
-  transform: translateX(200vw); /* Startpunkt außerhalb des Bildschirms */
-  transition: all 225ms ease-in-out;
-  z-index: 999;
-}
-
-.d-none {
-  display: none;
-}
-
-.designFormAddTask {
-  padding: 0;
-  margin: 0;
-}
-
-.titleSectionAddTask {
-  display: flex;
-  position: relative;
-  justify-content: space-between;
-  margin-bottom: 48px;
-}
-
-.iconImage {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 30px;
-  width: 30px;
-  position: absolute;
-  right: -20px;
-  cursor: pointer;
-}
-
-.iconImage img {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 24px;
-  height: 24px;
-  object-fit: cover;
-}
-
-.iconImage:hover {
-  background-color: #d1d1d1;
-  border-radius: 50%;
-}
-
-.overFormCloseImg img {
-  position: absolute;
-  cursor: pointer;
-}
-
-.overFormCloseImg img:hover {
-  background-color: #eeeeee;
-  border-radius: 50%;
-}
-
-.overheader {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin: 0;
-}
-
-.iconImage {
-  display: flex-end;
-}
-
-.titleAddTask {
-  padding: 0;
-  margin: 0;
-}
-.centerForm {
-  align-items: center;
-}
-
-.showIt {
-  transform: translateX(0);
-}
-
-.seperateSendButtons {
-  align-self: center;
-}
-
-/* Ende */
-
 .user_story {
   background-color: rgba(0, 56, 255, 1);
 }
@@ -575,7 +458,7 @@ body {
     border-radius: 24px;
     padding: 36px;
     max-height: 90%;
-    margin: 5% auto;
+    /* margin: 5% auto; */
     /* scale: 0.9; */
     & .single_task_header_category_and_close {
       display: flex;
@@ -627,7 +510,7 @@ body {
         font-size: clamp(1rem, 0.571rem + 0.476vw, 1.2rem);
         font-weight: 400;
         color: black;
-        margin-bottom: 20px;
+        margin-bottom: 12px;
         height: fit-content;
         max-height: 90px;
         overflow: auto;
@@ -636,7 +519,8 @@ body {
       }
       & .single_task_due_date_ctn {
         display: flex;
-        margin-bottom: 18px;
+        margin-bottom: 12px;
+        min-width: max-content;
         & .single_task_line_header {
           width: 120px;
         }
@@ -660,15 +544,14 @@ body {
         }
       }
       & .single_task_assigned_to_ctn {
-        padding-bottom: 8px;
         & .single_task_line_header {
-          padding: 16px 0 8px 0;
+          padding: 0px 0px 8px 0px;
           width: 120px;
       
         }
       }
       & .single_task_contacts_ctn {
-        max-height: 150px;
+        max-height: 155px;
         overflow: auto;
         display: flex;
         flex-direction: column;
@@ -690,7 +573,7 @@ body {
             align-items: center;
           }
           & .task_contact_name {
-            width: 82%;
+            max-width: 375px;
             overflow: auto;
             max-height: 50px;
             font-size: 16px;
@@ -951,14 +834,30 @@ body {
   }
 }
 
-/* @media (max-width: 768px) {
-  .board_ctn {
-    & .board_task_area {
-      left: 20px;
-      bottom: 110px;
+@media (max-width: 700px) {
+  .task_overlay_ctn {
+    & .task_overlay_card_ctn {
+      padding: 20px;
+        & .single_task_headline {
+            max-width: 280px;
+        }
+        & .overlay_task_main {
+          & .single_task_contacts_ctn {
+              & .single_task_single_contact {
+                  & .task_contact_name {
+                      /* max-width: 200px; */
+                      max-width: 75%;
+                      overflow: auto;
+                      max-height: 50px;
+                      font-size: 16px;
+                  }
+              }
+          }
+      }
     }
-  }
-} */
+
+}
+}
 
 @media (max-width: 500px) {
   .board_ctn {
@@ -969,9 +868,27 @@ body {
             }
         }
     }
-}
+  }
   .task_overlay_ctn {
     & .task_overlay_card_ctn {
+      scale: 0.9;
+        & .overlay_task_main {
+            & .single_task_contacts_ctn {
+                & .single_task_single_contact {
+                    & .task_contact_name {
+                        max-width: 120px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+  /* .task_overlay_ctn {
+    & .task_overlay_card_ctn {
+      & .overlay_task_header {
+        max-width: 300px;
+      }
       & .single_task_due_date_ctn {
         margin-bottom: 18px;
       }
@@ -983,7 +900,13 @@ body {
       }
       & .single_task_contacts_ctn {
         gap: 14px;
+        & .single_task_single_contact {
+          & .task_contact_name {
+              max-width: 120px;
+          }
+        }
       }
+    
       & .single_task_subtasks_ctn {
         & .single_task_subtask_collection {
           & .single_task_subtask {
@@ -994,7 +917,7 @@ body {
         }
       }
     }
-  }
+  } */
 }
 
 /* Das ist zum markieren des aktuellen Navigations-Menü-Items

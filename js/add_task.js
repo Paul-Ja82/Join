@@ -43,8 +43,8 @@ async function initAddTasks() {
  * @param {string} selectedProcessCategory - The selected process category for the task (default: "medium" if not provided).
  * @returns {string} The HTML string representing the form for adding a task.
  */
-function returnAddTaskForm(selectedProcessCategory) {
-  /*let selectedProcessCategory = selectCat == null ? "medium" : selectCat;*/
+function returnAddTaskForm(selectedProcessCategory, today) {
+    /*let selectedProcessCategory = selectCat == null ? "medium" : selectCat;*/
   return `
   <div class="overAllFormAddTask">
         <div id="insertAddedToTaskConfirmation"></div>
@@ -114,6 +114,7 @@ function returnAddTaskForm(selectedProcessCategory) {
                     <input
                       type="date"
                       id="date"
+                      min="${today}"
                       class="fieldInput dateInput"
                       onchange="checkDateInput()"
                     />
@@ -122,7 +123,7 @@ function returnAddTaskForm(selectedProcessCategory) {
                       onclick="document.getElementById('date').showPicker();"
                     >
                       <img
-                        src="/assets/icons/calendarIcon.svg"
+                        src="./assets/icons/calendarIcon.svg"
                         alt="Calendar Icon"
                       />
                     </div>
@@ -331,6 +332,7 @@ function returnAddTaskForm(selectedProcessCategory) {
                     <input
                       type="date"
                       id="date"
+                      min=""
                       class="fieldInput dateInput"
                       onchange="checkDateInput()"
                     />
@@ -547,7 +549,7 @@ function renderContactList(filteredContacts = contacts) {
 
   contactList.innerHTML = "";
   document.getElementById("arrowDropdown").src =
-    "/assets/icons/arrowUpDropdown.svg";
+    "./assets/icons/arrowUpDropdown.svg";
 
   if (filteredContacts.length === 0) {
     contactList.innerHTML =
@@ -636,6 +638,10 @@ function filterContacts() {
 
   // renderContactList(filteredContacts);
 }
+
+
+
+
 
 
 /**
@@ -730,6 +736,20 @@ function toggleContactList(filteredContactsForTasks) {
     document.getElementById("insertContactList").classList.remove("d-none");
   }
   isListOpen = !isListOpen;
+}
+
+
+function prepareCalender() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0'); // Monate sind 0-indexiert
+  const day = String(today.getDate()).padStart(2, '0');
+  const formattedDate = `${year}-${month}-${day}`; // Format: YYYY-MM-DD
+
+  const dateInput = document.getElementById("date");
+  if (dateInput) {
+    dateInput.min = formattedDate;
+  }
 }
 
 /**

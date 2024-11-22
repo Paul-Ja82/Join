@@ -1,6 +1,6 @@
 /* Für das Ändern der Task im Board */
 
-function returnChangingAddTask() {
+function returnChangingAddTask(today) {
   return `
 <div class="overAllFormAddTask overAllChangeAddTask">
   <div class="closeButtonChangeAddTask"><div class="overImgCloser"><img onclick="closeChangeTaskValues()" class="imgCloseChangeAddTask" src="assets/icons/close.svg"></div></div>
@@ -44,6 +44,7 @@ function returnChangingAddTask() {
                 <input
                   type="date"
                   id="date"
+                  min="${today}"
                   class="fieldInput dateInput"
                   onchange="checkDateInput()"
                 />

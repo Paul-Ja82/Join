@@ -50,6 +50,7 @@ function init(params) {
  * @param {string} selectedProcessCategory - The category for the process that is pre-selected in the add-task form.
  */
 
+// UMZUG IN OPENCLOSEOVERLAY.JS
 async function showDialog(selectedProcessCategory) {
   if (window.innerWidth < 400) {
     window.open("add_task.html", "_self");
@@ -57,18 +58,17 @@ async function showDialog(selectedProcessCategory) {
     document.getElementById("backgroundId").classList.remove("d-none");
     setTimeout(() => {
       document.getElementById("dialogBox").classList.add("showIt");
+      document.getElementById("dialogBox").classList.add("testSabrinaAddTaskCtn");
     }, 10);
-
-    document.getElementById("dialogBox").innerHTML = renderFormAddTask(
-      selectedProcessCategory
-    );
+    let today = new Date().toISOString().split('T')[0];
+    document.getElementById("dialogBox").innerHTML = renderFormAddTask(selectedProcessCategory, today);
     selectPrio("medium");
     await getIdAndDataForAddTask((pathData = ""));
     const contactList = document.getElementById("insertContactList");
     contactList.classList.add("d-none");
   }
 }
-
+// UMZUG IN OPENCLOSEOVERLAY.JS
 /**
  * Displays a task dialog by removing the background's hidden class, adjusting styles, and adding an animation class.
  * The dialog content is cleared and background color reset during this process.
@@ -82,20 +82,26 @@ function showTask() {
 
   document.getElementById("dialogBox").innerHTML = "";
 }
-
+// UMZUG IN OPENCLOSEOVERLAY.JS
 /**
  * Closes the task dialog by removing the animation class, then hides the background and resets dialog styles after a delay.
  * 
  * @param {Event} e - The event object passed from the calling action (not utilized in this function).
  */
 function closeTask(e) {
+  // e.stopPropagation()
+
+  // if (document.getElementById("insertContactList").classList.contains("d-none")) {
+  //   closeContactList()
+  //   isListOpen = !isListOpen;
+  // } 
   document.getElementById("dialogBox").classList.remove("showIt");
   setTimeout(() => {
     document.getElementById("backgroundId").classList.add("d-none");
     document.getElementById("dialogBox").style.backgroundColor = "white";
   }, 225);
 }
-
+// UMZUG IN OPENCLOSEOVERLAY.JS
 /**
  * Closes the dialog box by removing the animation class and hides the background after a delay.
  */
@@ -348,7 +354,6 @@ async function moveTo(newSection) {
     allTasks,
     allKeys
   );
-  console.log(keyForPath);
   let path = `tasks/${keyForPath}/currentStatus`;
   await putNewSection(path, newSection);
   await getIdAndData((pathData = ""));
@@ -472,7 +477,7 @@ async function moveTaskWithMenu(id, toSection) {
   await putNewSection(path, toSection);
   await getIdAndData((pathData = ""));
 }
-
+// UMZUG IN EDIT_TASK.JS
 
 /**
  * Updates the dialog box to display the form for changing task values.
@@ -484,17 +489,19 @@ async function moveTaskWithMenu(id, toSection) {
  * 4. Inserts the HTML for the change-task form using `returnChangingAddTask`.
  * 5. Calls `returnChangeAddTask` to initialize the form functionality or additional logic.
  */
-function changeTaskValues() {
+function changeTaskValues(e) {
+  e.stopPropagation();
   document.getElementById("dialogBox").innerHTML = "";
   document.getElementById("dialogBox").style.transition = "unset";
   document.getElementById("dialogBox").style.backgroundColor = "white";
   document.getElementById("dialogBox").style.width = "525px";
   document.getElementById("dialogBox").style.boxSizing = "border-box";
-  document.getElementById("dialogBox").innerHTML = returnChangingAddTask();
+  let today = new Date().toISOString().split('T')[0];
+  document.getElementById("dialogBox").innerHTML = returnChangingAddTask(today);
 
   returnChangeAddTask();
 }
-
+// UMZUG IN EDIT_TASK.JS
 /**
  * Closes the dialog box for changing task values and restores its original styles.
  * 
@@ -504,6 +511,13 @@ function changeTaskValues() {
  * 3. After a delay (225ms), hides the background element and sets the dialog box's background color to white.
  */
 function closeChangeTaskValues() {
+  if (document.getElementById("insertContactList").classList.contains(!"d-none")) {
+    console.log('d-none nicht enthalten, Liste geöffnet');
+    
+    closeContactList()
+  isListOpen = !isListOpen;
+  }
+
   document.getElementById("dialogBox").style.cssText = "";
   document.getElementById("dialogBox").classList.remove("showIt");
   setTimeout(() => {
@@ -511,15 +525,13 @@ function closeChangeTaskValues() {
     document.getElementById("dialogBox").style.backgroundColor = "white";
   }, 225);
 }
-
-
-/**
+// UMZUG IN OPENCLOSEOVERLAY.JS ODER ADD_TASK.JS/**
  * Renders the HTML form for adding a task based on the selected process category.
  * 
  * @param {string} selectedProcessCategory - The category selected for the task, used to customize the form.
  * @returns {string} The HTML string for the add-task form, ready to be inserted into the DOM.
  */
-function renderFormAddTask(selectedProcessCategory) {
+function renderFormAddTask(selectedProcessCategory, today) {
   // console.log(selectedProcessCategory);
   return `
   <div class="overAllFormAddTask">
@@ -565,7 +577,7 @@ function renderFormAddTask(selectedProcessCategory) {
                   <div class="changeSymboles">
                     <img
                       id="arrowDropdown"
-                      src="assets/icons/arrowDropdown.svg"
+                      src="./assets/icons/arrowDropdown.svg"
                       alt=""
                       onclick="toggleContactList()"
                     />
@@ -586,6 +598,7 @@ function renderFormAddTask(selectedProcessCategory) {
                 <input
                   type="date"
                   id="date"
+                  min="${today}"
                   class="fieldInput dateInput"
                   onchange="checkDateInput()"
                 />
@@ -594,7 +607,7 @@ function renderFormAddTask(selectedProcessCategory) {
                   onclick="document.getElementById('date').showPicker();"
                 >
                   <img
-                    src="/assets/icons/calendarIcon.svg"
+                    src="./assets/icons/calendarIcon.svg"
                     alt="Calendar Icon"
                   />
                 </div>

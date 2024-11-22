@@ -1,5 +1,143 @@
+/* Start */
+
+/* Nachher löschen */
+/* body {
+  overflow-x: hidden;
+} */
+
+.showButton {
+  display: flex;
+  justify-content: center;
+}
+
+.background {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.1);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 900;
+}
+
+.dialogBox {
+  align-self: center;
+  background-color: white;
+  padding: 60px 40px;
+  border-radius: 20px;
+  /* width: 1200px; */
+  max-width: 1200px;
+  
+  transform: translateX(200vw); /* Startpunkt außerhalb des Bildschirms */
+  transition: all 225ms ease-in-out;
+  z-index: 999;
+  /*Ergänzung Sabrina:*/
+  max-height: 90%;
+}
+
+.testSabrinaAddTaskCtn {
+  
+  width: 82%;
+  max-width: 525px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  border-radius: 24px;
+  /* padding: 36px; */
+  max-height: 80%;
+}
+
+.d-none {
+  display: none;
+}
+
+.designFormAddTask {
+  padding: 0;
+  margin: 0;
+}
+
+.titleSectionAddTask {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  margin-bottom: 48px;
+}
+
+.iconImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  right: -20px;
+  cursor: pointer;
+}
+
+.iconImage img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+}
+
+.iconImage:hover {
+  background-color: #d1d1d1;
+  border-radius: 50%;
+}
+
+.overFormCloseImg img {
+  position: absolute;
+  cursor: pointer;
+}
+
+.overFormCloseImg img:hover {
+  background-color: #eeeeee;
+  border-radius: 50%;
+}
+
+.overheader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.iconImage {
+  display: flex-end;
+}
+
+.titleAddTask {
+  padding: 0;
+  margin: 0;
+}
+.centerForm {
+  align-items: center;
+}
+
+.showIt {
+  transform: translateX(0);
+}
+
+.seperateSendButtons {
+  align-self: center;
+}
+
+/* Ende */
+
 .contentAddTaskContainer {
   padding: 0 80px;
+}
+
+.overAllFormAddTask * {
+  box-sizing: border-box;
+  font-size: 24px;
+  font-family: "Inter";
 }
 
 .initialsImg {
@@ -10,12 +148,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.overAllFormAddTask * {
-  box-sizing: border-box;
-  font-size: 24px;
-  font-family: "Inter";
+  color: white;
+  font-size: 16px;
 }
 
 .designForBody {
@@ -174,6 +308,12 @@ textarea:focus {
   padding: 0;
   overflow: auto;
   cursor: pointer;
+  /*Ergänzung Sabrina:*/
+  z-index: 20;
+}
+
+#contactListTemplate {
+  padding-left: 0;
 }
 
 .listContacts::-webkit-scrollbar {
@@ -802,9 +942,9 @@ input[type="date"].filled {
     font-size: 16px;
   }
 
-  .listContacts {
+  /* .listContacts {
     position: relative;
-  }
+  } */
 
   option {
     font-size: 16px;
@@ -841,14 +981,15 @@ input[type="date"].filled {
 
   .overSendButtons {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    /* justify-content: flex-end; */
     position: fixed;
-    background-color: #f6f7f8;
+    /* background-color: #f6f7f8; */
     bottom: 0;
     font-size: 21px;
     right: 0;
     left: 0;
-    width: 100vw;
+    /* width: 100vw; */
     gap: 8px;
     z-index: 999;
     padding-bottom: 10px;
@@ -865,9 +1006,9 @@ input[type="date"].filled {
   .contactPerson {
     font-size: 16px;
   }
-  .seperateSendButtons {
+  /* .seperateSendButtons {
     margin-bottom: 100px;
-  }
+  } */
 
   .requiredInformation {
     align-self: flex-start;
