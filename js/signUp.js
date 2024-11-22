@@ -168,7 +168,7 @@ async function addUser() {
     let path = USERS_PATH + newId;
     let nameInput= document.getElementById('nameInput').value;
     let emailInput= document.getElementById('emailInput').value;
-    let passwordInput= document.getElementById('signUpPasswordInput').value;
+    let passwordInput= document.getElementById('signUpPasswordInput').dataset.actualvalue;
     let user = {
         id: newId,
         name: nameInput,
@@ -252,8 +252,9 @@ function isPasswordConfirm() {
 } 
 */
 function isPasswordConfirm() {
-    let passwordInput= document.getElementById('signUpPasswordInput').value;
-    let passwordInputConfirm= document.getElementById('confirmPasswordInput').value;
+    let passwordInput= document.getElementById('signUpPasswordInput').dataset.actualvalue;
+    let passwordInputConfirm= document.getElementById('confirmPasswordInput').dataset.actualvalue;
+    console.log(passwordInput == passwordInputConfirm); ///DEBUG
     if (passwordInput == passwordInputConfirm) return true;
     else return false;
 } 
@@ -351,9 +352,9 @@ function maskConfirmPassword() {
     const input = document.getElementById("confirmPasswordInput");
 
     if (input) {
-        let actualValue = input.dataset.actualValue || "";
-        actualValue = supportForConfirmMaskPassword(input, actualValue);
-        input.dataset.actualValue = actualValue;
+        let actualvalue = input.dataset.actualvalue || "";
+        actualvalue = supportForConfirmMaskPassword(input, actualvalue);
+        input.dataset.actualvalue = actualvalue;
     }
 }
 
