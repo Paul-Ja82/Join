@@ -27,7 +27,7 @@ window.addEventListener('resize', function() {
     }
 });
 
-async function setGreetedName() { 
+async function setGreetedName() {
     const storedName = sessionStorage.getItem('loggedInUserName');
     let greetednameText = "";
 
