@@ -105,9 +105,9 @@ function maskPassword() {
   for (let i = 0; i < inputs.length; i++) {
       const input = inputs[i];
       if (input) {
-          let actualValue = input.dataset.actualValue || "";
-          actualValue = supportForMaskPassword(input, actualValue);
-          input.dataset.actualValue = actualValue;
+          let actualvalue = input.dataset.actualvalue || "";
+          actualvalue = supportForMaskPassword(input, actualvalue);
+          input.dataset.actualvalue = actualvalue;
       }
   }
 }

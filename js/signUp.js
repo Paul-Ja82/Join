@@ -56,7 +56,8 @@ function preventDefaultSignUp() {
 /*## LOGIN ##*/
 /*###########*/
 
-function login() {
+function loginSU() {
+    console.log('login(), ist in signUp.js'); ///DEBUG
     resetFlagsLogin();
     loadInputValuesLogin();
     checkEmailInputLogin();
@@ -73,8 +74,10 @@ function login() {
 }
 
 function loadInputValuesLogin() {
+    console.log('loadInputValuesLogin()'); ///DEBUG
     emailInputLogin = document.getElementById('emailInput').value;
-    passwordInputLogin = document.getElementById('passwordInput').value;
+    // passwordInputLogin = document.getElementById('passwordInput').value;
+    passwordInputLogin = document.getElementById('passwordInput').dataset.actualvalue;
 }
 
 function checkEmailInputLogin() {
@@ -89,9 +92,11 @@ function checkEmailInputLogin() {
 
 function checkValidUser() {
     let user = getUserByEmail(emailInputLogin);
-    let passwordInput= document.getElementById('passwordInput').value;
+    console.log(user); ///DEBUG
+    console.log(passwordInputLogin); ///DEBUG
+    // let passwordInput= document.getElementById('passwordInput').value;
     if (user) {
-        if (user.pw == passwordInput) validUserFlag = true;
+        if (user.pw == passwordInputLogin) validUserFlag = true;
         else {
             console.log('Passwort falsch'); ///DEBUG
         }
