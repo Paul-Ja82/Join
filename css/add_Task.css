@@ -120,6 +120,12 @@
   padding: 0 80px;
 }
 
+.overAllFormAddTask * {
+  box-sizing: border-box;
+  font-size: 24px;
+  font-family: "Inter";
+}
+
 .initialsImg {
   width: 42px;
   height: 42px;
@@ -128,12 +134,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.overAllFormAddTask * {
-  box-sizing: border-box;
-  font-size: 24px;
-  font-family: "Inter";
+  color: white;
+  font-size: 16px;
 }
 
 .designForBody {
@@ -292,6 +294,12 @@ textarea:focus {
   padding: 0;
   overflow: auto;
   cursor: pointer;
+  /*Ergänzung Sabrina:*/
+  z-index: 20;
+}
+
+#contactListTemplate {
+  padding-left: 0;
 }
 
 .listContacts::-webkit-scrollbar {
@@ -920,9 +928,9 @@ input[type="date"].filled {
     font-size: 16px;
   }
 
-  .listContacts {
+  /* .listContacts {
     position: relative;
-  }
+  } */
 
   option {
     font-size: 16px;

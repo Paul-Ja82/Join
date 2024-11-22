@@ -111,7 +111,7 @@ function returnAddTaskForm(selectedProcessCategory, today) {
                       onclick="document.getElementById('date').showPicker();"
                     >
                       <img
-                        src="/assets/icons/calendarIcon.svg"
+                        src="./assets/icons/calendarIcon.svg"
                         alt="Calendar Icon"
                       />
                     </div>
