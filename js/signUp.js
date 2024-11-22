@@ -99,11 +99,18 @@ function checkValidUser() {
         if (user.pw == passwordInputLogin) validUserFlag = true;
         else {
             console.log('Passwort falsch'); ///DEBUG
+            showInvalidUserVmsgLogin();
         }
     } else {
         validUserFlag= false;
         console.log('Kein User-Account gefunden'); ///DEBUG
+        showInvalidUserVmsgLogin();
     }
+}
+
+function showInvalidUserVmsgLogin() {
+    let vmsgElem= document.getElementById('vmsgPwLogin');
+    vmsgElem.style.opacity= 1;
 }
 
 /*#############*/
