@@ -31,7 +31,7 @@ async function initAddTasks() {
 
 
 
-function returnAddTaskForm(selectedProcessCategory) {
+function returnAddTaskForm(selectedProcessCategory, today) {
     /*let selectedProcessCategory = selectCat == null ? "medium" : selectCat;*/
   return `
   <div class="overAllFormAddTask">
@@ -632,19 +632,18 @@ function toggleContactList(filteredContactsForTasks) {
   isListOpen = !isListOpen;
 }
 
+function prepareCalender() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0'); // Monate sind 0-indexiert
+  const day = String(today.getDate()).padStart(2, '0');
+  const formattedDate = `${year}-${month}-${day}`; // Format: YYYY-MM-DD
 
-// function prepareCalender() {
-//   const today = new Date();
-//   const year = today.getFullYear();
-//   const month = String(today.getMonth() + 1).padStart(2, '0'); // Monate sind 0-indexiert
-//   const day = String(today.getDate()).padStart(2, '0');
-//   const formattedDate = `${year}-${month}-${day}`; // Format: YYYY-MM-DD
-
-//   const dateInput = document.getElementById("date");
-//   if (dateInput) {
-//     dateInput.min = formattedDate;
-//   }
-// }
+  const dateInput = document.getElementById("date");
+  if (dateInput) {
+    dateInput.min = formattedDate;
+  }
+}
 
 function checkDateInput() {
   let valueDate = document.getElementById("date");
