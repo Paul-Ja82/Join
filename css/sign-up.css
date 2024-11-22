@@ -13,6 +13,7 @@ body {
 
 .rotate-message {
     display: none;
+    font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
 }
 
 ::-webkit-scrollbar {
@@ -543,7 +544,7 @@ footer {
       position: absolute;
       top: unset;
       bottom: 16px;
-   }
+   }   
 
    @media (orientation: landscape) {
     .main-frame-div {
@@ -566,9 +567,7 @@ footer {
         display: none;
     }
 }
-   
 }
-
 
 @media(max-width:450px) {
     

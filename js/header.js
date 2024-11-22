@@ -1,5 +1,8 @@
+/**
+ * Toggles the visibility of the navigation menu based on screen size and updates the background color of the initials circle.
+ */
 function openNavWindowFrame() {
-    const isSmallScreen = window.innerWidth <= 1050;
+    const isSmallScreen = window.innerWidth <= 960;
 
     const navMenuFrame = document.querySelector(isSmallScreen ? '.nav-menu-resp-frame' : '.nav-menu-frame');
     const initialsCircle = document.getElementById('navCircle'); 
@@ -13,6 +16,9 @@ function openNavWindowFrame() {
     }
 }
 
+/**
+ * Ensures that the responsive navigation menu is hidden when the screen size exceeds 960 pixels.
+ */
 window.addEventListener('resize', function() {
     const navMenuRespFrame = document.querySelector('.nav-menu-resp-frame');
     if (window.innerWidth > 960 && navMenuRespFrame) {
@@ -20,6 +26,9 @@ window.addEventListener('resize', function() {
     }
 });
 
+/**
+ * Ensures that the standard navigation menu is hidden when the screen size is less than 960 pixels.
+ */
 window.addEventListener('resize', function() {
     const navMenu = document.querySelector('.nav-menu-frame');
     if (window.innerWidth < 960 && navMenu) {
@@ -27,22 +36,27 @@ window.addEventListener('resize', function() {
     }
 });
 
-async function setGreetedName() {
+/**
+ * Sets the greeted name in the header based on the "loggedInUserName" stored in the session storage.
+ * If no name is found, the function does nothing.
+ */
+async function setGreetedName() { 
     const storedName = sessionStorage.getItem('loggedInUserName');
-    let greetednameText = "";
-
     if (storedName) {
         console.log('Retrieved Name:', storedName); 
 
         const greetedNameElements = document.querySelectorAll('#greetedName');
-        for (let i = 0; i < greetedNameElements.length; i++) {
-            greetedNameElements[i].textContent = storedName;
-        }
-    } else {
-        // console.error('No name found in Session Storage.');
-    }
+        greetedNameElements.forEach(element => {
+            element.textContent = storedName;
+        });
+    } 
 }
 
+/**
+ * Generates a monogram (initials) from the given full name.
+ * @param {string} name - The full name of the user.
+ * @returns {string} The generated monogram in uppercase.
+ */
 function getMonogramHeader(name) {
     let words = name.split(' ').filter(Boolean); 
     let monogram = '';
@@ -55,12 +69,17 @@ function getMonogramHeader(name) {
     return monogram.toUpperCase(); 
 }
 
+/**
+ * Updates the user's monogram (initials) in the navigation circle based on the "loggedInUserName" stored in localStorage or sessionStorage.
+ * Defaults to 'G' if no name is available.
+ */
 async function updateUserMonogram() {
     await setGreetedName();
     let storedName;
     if (localStorage.getItem('loggedInUserName')) {
         storedName = localStorage.getItem('loggedInUserName');
     } else storedName = sessionStorage.getItem('loggedInUserName');
+
     const navCircleElement = document.getElementById('navCircle');
 
     if (navCircleElement) {
@@ -75,6 +94,9 @@ async function updateUserMonogram() {
     }
 }
 
+/**
+ * Initializes the header by updating the user's monogram and greeted name.
+ */
 function initHeaderJs() {
     updateUserMonogram();
 }

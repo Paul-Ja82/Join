@@ -320,20 +320,6 @@ function logVarsLogin() {
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function supportForConfirmMaskPassword(input, actualValue) {
     const lastChar = input.value.slice(-1);
     if (input.value.length < actualValue.length) {

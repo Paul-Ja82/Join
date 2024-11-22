@@ -113,8 +113,8 @@ img.menu-nav-icon {
         margin: 0;
     }
     
-    #menuContainer {
+    /*#menuContainer {
         position: relative;
         z-index: 10;
-    }
+    }*/
 }

@@ -1,13 +1,15 @@
-// let users=[];
-
-/*##########*/
-/*## INIT ##*/
-/*##########*/
-
+/**
+ * Initializes the login functionality by performing the necessary setup steps.
+ * 
+ * Steps performed:
+ * 1. Calls `loadUsers()` to load user data (e.g., from a server or local storage).
+ * 2. Calls `initMPA()` to initialize the Multi-Page Application (MPA) functionality.
+ */
 function initLogin() {
     loadUsers();
     initMPA();
 }
+
 
 /**
  * Animates the logo element by adding CSS classes to control its position and animation.
@@ -232,7 +234,7 @@ function initializeLogin() {
  */
 function supportForProcess(flags, emailInput, passwordInput, errorMessage) {
     if (flags) {
-        let user = getUserByEmail(emailInputLogin);
+        let user = getUserByEmail(emailInput);
         let rememberMeInputElem = document.getElementById('rememberCheckbox');
         let rememberMeItem = rememberMeInputElem.checked ? user.id : null;
         loginMPA(user.id, rememberMeItem);
