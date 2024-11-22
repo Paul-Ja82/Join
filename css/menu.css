@@ -53,7 +53,9 @@ img.menu-nav-icon {
 /*#############*/
 
 /* @media (768px < width) { */
-@media (960px < width) {
+/* @media (960px < width) { */
+@media (1010px < width) {
+
     #menuLogo,
     #legalLinksContainer {
         display: unset;
