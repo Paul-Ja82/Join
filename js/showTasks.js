@@ -188,11 +188,11 @@ function calcProcessBarWidth(checkedSubtasks, subtasksLength) {
 
 function createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, width, checkedSubtasks, subtasksLength) {
     document.getElementById(section).innerHTML += `
-    <div draggable="" 
-    onmousedown="if (window.innerWidth > 600) cloneElement(${tasks[i].single_ID}, event)"
-    ondragstart="if (window.innerWidth > 600) startDragging(event)" 
-    ondrag="if (window.innerWidth > 600) whileDragging(event)"
-    ondragend="if (window.innerWidth > 600) checkDraggableArea(event)"
+    <div draggable="true" 
+    onmousedown="cloneElement(${tasks[i].single_ID}, event)"
+    ondragstart="startDragging(event)" 
+    ondrag="whileDragging(event)"
+    ondragend="checkDraggableArea(event)"
     onclick="checkTask(event)"  
     id="single_task_ctn${tasks[i].single_ID}" class="single_task_ctn">
         <div class="single_task_category">${tasks[i].category}</div>

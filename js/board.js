@@ -141,20 +141,6 @@ async function checkDraggableArea(e) {
     }
 }
 
-function updateDraggable() {
-  const tasks = document.querySelectorAll('.single_task_ctn');
-  tasks.forEach(task => {
-      if (window.innerWidth > 600) {
-          task.setAttribute('draggable', 'true');
-      } else {
-          task.setAttribute('draggable', 'false');
-      }
-  });
-}
-
-window.addEventListener('DOMContentLoaded', updateDraggable);
-window.addEventListener('resize', updateDraggable);
-
 function checkNewSection(idFromSectionToDrop) {
     if (idFromSectionToDrop == 'to_do_tasks') {
         newSection = 'todo';
