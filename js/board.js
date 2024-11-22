@@ -19,6 +19,7 @@ function init(params) {
   // loadContacts();
 }
 
+// UMZUG IN OPENCLOSEOVERLAY.JS
 async function showDialog(selectedProcessCategory) {
   if (window.innerWidth < 400) {
     window.open("add_task.html", "_self");
@@ -36,7 +37,7 @@ async function showDialog(selectedProcessCategory) {
     contactList.classList.add("d-none");
   }
 }
-
+// UMZUG IN OPENCLOSEOVERLAY.JS
 function showTask() {
   document.getElementById("backgroundId").classList.remove("d-none");
   document.getElementById("dialogBox").style.backgroundColor = "unset";
@@ -46,7 +47,7 @@ function showTask() {
 
   document.getElementById("dialogBox").innerHTML = "";
 }
-
+// UMZUG IN OPENCLOSEOVERLAY.JS
 function closeTask(e) {
   // e.stopPropagation()
 
@@ -60,7 +61,7 @@ function closeTask(e) {
     document.getElementById("dialogBox").style.backgroundColor = "white";
   }, 225);
 }
-
+// UMZUG IN OPENCLOSEOVERLAY.JS
 function closeDialog() {
   document.getElementById("dialogBox").classList.remove("showIt");
   setTimeout(() => {
@@ -261,7 +262,7 @@ async function moveTaskWithMenu(id, toSection) {
   await putNewSection(path, toSection);
   await getIdAndData((pathData = ""));
 }
-
+// UMZUG IN EDIT_TASK.JS
 function changeTaskValues(e) {
   e.stopPropagation();
   document.getElementById("dialogBox").innerHTML = "";
@@ -274,7 +275,7 @@ function changeTaskValues(e) {
 
   returnChangeAddTask();
 }
-
+// UMZUG IN EDIT_TASK.JS
 function closeChangeTaskValues() {
   if (document.getElementById("insertContactList").classList.contains(!"d-none")) {
     console.log('d-none nicht enthalten, Liste geöffnet');
@@ -290,7 +291,7 @@ function closeChangeTaskValues() {
     document.getElementById("dialogBox").style.backgroundColor = "white";
   }, 225);
 }
-
+// UMZUG IN OPENCLOSEOVERLAY.JS ODER ADD_TASK.JS
 function renderFormAddTask(selectedProcessCategory, today) {
   // console.log(selectedProcessCategory);
   return `
