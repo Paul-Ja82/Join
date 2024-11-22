@@ -179,7 +179,8 @@ function checkUserExist() {
         const user = getUserByEmail(emailValue);
 
         if (user) {
-            window.location.href = 'new_password.html'; 
+            // window.location.href = 'new_password.html'; 
+            window.location.href = 'new_password.html' + `?id=${user.id}`; 
         } else {
             showNotRegisteredMsg();
             console.log('User does not exist.');

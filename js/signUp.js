@@ -146,6 +146,10 @@ function getUserByEmail(email) {
     return users.find((userI) => userI.email == email);
 }
 
+function getUserById(id) {
+    return users.find((userI) => userI.id == id);
+}
+
 async function addUser() {
     console.log('addUser()'); ///DEBUG
     let newId = await getId();

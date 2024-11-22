@@ -132,7 +132,6 @@ function isFormValidBuiltIn(formId) {
 /*#################*/
 
 function addValidation(formId, validFunc, vmsgId, vmsg) {
-    console.log('addValidation(..)'); ///DEBUG
     let vmsgElem = document.getElementById(vmsgId);
     let validation = {
         'validFunc': validFunc,
