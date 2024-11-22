@@ -29,8 +29,6 @@ async function showDialog(selectedProcessCategory) {
       document.getElementById("dialogBox").classList.add("testSabrinaAddTaskCtn");
     }, 10);
     let today = new Date().toISOString().split('T')[0];
-    console.log(today);
-    
     document.getElementById("dialogBox").innerHTML = renderFormAddTask(selectedProcessCategory, today);
     selectPrio("medium");
     await getIdAndDataForAddTask((pathData = ""));
