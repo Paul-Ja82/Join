@@ -587,7 +587,7 @@ function renderFormAddTask(selectedProcessCategory, today) {
                     />
                   </div>
                 </div>
-                <ul id="insertContactList" class="listContacts"></ul>
+                <div id="insertContactList" class="listContacts"></div>
               </div>
               <div id="showPersons" class="showPersons"></div>
             </div>

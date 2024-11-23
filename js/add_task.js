@@ -100,7 +100,7 @@ function returnAddTaskForm(selectedProcessCategory, today) {
                         />
                       </div>
                     </div>
-                    <ul id="insertContactList" class="listContacts"></ul>
+                    <div id="insertContactList" class="listContacts"></div>
                   </div>
                   <div id="showPersons" class="showPersons"></div>
                 </div>
@@ -544,47 +544,67 @@ async function saveData() {
  * @param {Array} [filteredContacts=contacts] - The array of contacts to render. Defaults to the full `contacts` array.
  */
 
-
 function renderContactList(filteredContacts = contacts) {
-  if (!hasEventListener) {
-    const contactList = document.getElementById("insertContactList");
-    contactList.classList.remove("d-none");
+  const contactList = document.getElementById("insertContactList");
+  contactList.classList.remove("d-none");
 
-    contactList.innerHTML = "";
-    document.getElementById("arrowDropdown").src =
-      "./assets/icons/arrowUpDropdown.svg";
+  contactList.innerHTML = "";
+  document.getElementById("arrowDropdown").src =
+    "./assets/icons/arrowUpDropdown.svg";
 
-    if (filteredContacts.length === 0) {
-      contactList.innerHTML =
-        "<li class='emptyListMessage'>Ganz schön leer hier! :(</li>";
-      return;
-    }
-
-    filteredContacts.forEach((contact, index) => {
-      const isSelected = selectedContacts.includes(contact);
-      contactList.innerHTML += `
-      <li id="listPerson${index}" class="backgroundOnHover" onclick="changeCheckbox(${index})">
-        <div class="profile">
-          <div id="profilPerson${index}" class="profilePerson"></div>    
-          <div class="contactPerson">${contact}</div>
-        </div>
-        <input type="checkbox" value="${contact}" class="contactListCheckbox" 
-          id="checkbox${index}" onchange="renderAddedPersons()" 
-          onclick="event.stopPropagation()" 
-          ${isSelected ? "checked" : ""}>
-        <img id="checkboxId${index}" src="assets/icons/checkbox.svg">
-      </li>`;
-      showProfilPicture(contact, index);
-      if (isSelected) {
-        document.getElementById(`checkboxId${index}`).src =
-          "assets/icons/checkboxChecked.svg";
-      }
-    });
-
-    showPersons();
-    colorSelectedContacts();
+  if (filteredContacts.length === 0) {
+    contactList.innerHTML =
+      "<li class='emptyListMessage'>Ganz schön leer hier! :(</li>";
+    return;
   }
+
+  filteredContacts.forEach((contact, index) => {
+    const isSelected = selectedContacts.includes(contact);
+    contactList.innerHTML += `
+    <li id="listPerson${index}" class="backgroundOnHover" onclick="changeCheckbox(${index})">
+      <div class="profile">
+        <div id="profilPerson${index}" class="profilePerson"></div>    
+        <div class="contactPerson">${contact}</div>
+      </div>
+      <input type="checkbox" value="${contact}" class="contactListCheckbox" 
+        id="checkbox${index}" onchange="renderAddedPersons()" 
+        onclick="event.stopPropagation()" 
+        ${isSelected ? "checked" : ""}>
+      <img id="checkboxId${index}" src="assets/icons/checkbox.svg">
+    </li>`;
+    showProfilPicture(contact, index);
+    if (isSelected) {
+      document.getElementById(`checkboxId${index}`).src =
+        "assets/icons/checkboxChecked.svg";
+    }
+  });
+
+  showPersons();
+  colorSelectedContacts();
+
+  // Event Handler für das Schließen der Liste, wenn außerhalb geklickt wird
+  function closeOnClickOutsideContacts(event) {
+    const dropdown = document.getElementById("inputAssignedTo");
+    const contactList = document.getElementById("insertContactList");
+    const arrowDrop = document.getElementById("arrowDropdown");
+
+    if (
+      !dropdown.contains(event.target) &&
+      !contactList.contains(event.target) &&
+      !arrowDrop.contains(event.target)
+    ) {
+      closeContactList(); // Schließe das Dropdown
+      document.removeEventListener("click", closeOnClickOutsideContacts); // Entferne den Listener
+    }
+  }
+
+  // Füge den Event Listener hinzu
+  document.addEventListener("click", closeOnClickOutsideContacts);
 }
+
+
+
+
 
 /**
  * Highlights selected contacts in the contact list by adding a specific background class.
@@ -1174,6 +1194,7 @@ function closeDropdown() {
   document.getElementById("categoryDropdown").src =
     "assets/icons/arrowDropdown.svg";
 }
+
 //Test//
 /**
  * Updates the input field with a selected category value and closes the dropdown menu.
@@ -1190,13 +1211,30 @@ function putInput(value) {
 }
 
 function showMeCategorys() {
-    putInput(``);
-    document.getElementById("showSelectedCategory").onclick = closeDropdown;
-    document.getElementById("showCategorys").classList.remove("d-none");
-    document.getElementById("customSelect").classList.add("whiteBG");
-    document.getElementById("categoryDropdown").onclick = closeDropdown;
-    document.getElementById("categoryDropdown").src =
-      "assets/icons/arrowUpDropdown.svg";
+  putInput(``);
+  document.getElementById("showSelectedCategory").onclick = closeDropdown;
+  document.getElementById("showCategorys").classList.remove("d-none");
+  document.getElementById("categoryDropdown").onclick = closeDropdown;
+  document.getElementById("categoryDropdown").src = "assets/icons/arrowUpDropdown.svg";
+
+  // Event Listener hinzufügen
+  function closeOnClickOutside(event) {
+    const catImage = document.getElementById("categoryDropdown");
+    const dropdown = document.getElementById("showSelectedCategory");
+    const selectBox = document.getElementById("showCategorys");
+
+    if (
+      !dropdown.contains(event.target) &&
+      !selectBox.contains(event.target) &&
+      !catImage.contains(event.target)
+    ) {
+      closeDropdown(); // Schließe das Dropdown
+      document.removeEventListener("click", closeOnClickOutside); // Entferne den Listener manuell
+    }
+  }
+
+  // Füge den Event Listener hinzu, aber nur einmal pro Öffnen
+  document.addEventListener("click", closeOnClickOutside);
 }
 
 async function submitForm(selectedProcessCategory) {
