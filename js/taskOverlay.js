@@ -1,5 +1,7 @@
 let currentTaskInOverlay;
-let currentUserLoggedIn = 'Ben Schneider'
+let currentUserLoggedIn = sessionStorage.getItem('loggedInUserName');
+console.log(currentUserLoggedIn);
+
 let currentTaskForEdit;
 let inChangeSubtasksTask = [];
 let currentKeyToOpen;

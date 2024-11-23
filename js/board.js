@@ -452,7 +452,6 @@ function checkKeyToMove(allTasks, allKeys, id) {
   let keytoChangeSection;
   for (let i = 0; i < allKeys.length; i++) {
     if (allTasks[`${allKeys[i]}`].single_ID == id) {
-      console.log(i, allKeys[i]);
       keytoChangeSection = allKeys[i];
     }
   }
