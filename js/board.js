@@ -95,6 +95,7 @@ function closeTask(e) {
   //   closeContactList()
   //   isListOpen = !isListOpen;
   // } 
+  document.getElementById("dialogBox").style.transition = "all 225ms ease-in-out";
   document.getElementById("dialogBox").classList.remove("showIt");
   setTimeout(() => {
     document.getElementById("backgroundId").classList.add("d-none");
@@ -575,7 +576,7 @@ function renderFormAddTask(selectedProcessCategory, today) {
                     type="text"
                     onclick="toggleContactList()"
                     oninput="filterContacts()"
-                    placeholder="Assigned To"
+                    placeholder="Select contacts to assign"
                   />
                   <div class="changeSymboles">
                     <img
@@ -674,7 +675,7 @@ function renderFormAddTask(selectedProcessCategory, today) {
                   id="showSelectedCategory"
                   class="fieldInput"
                   readonly
-                  placeholder="Select a option"
+                  placeholder="Select a task category"
                   onclick="showMeCategorys()"
                 />
                 <div id="showCategorys" class="showCategorys d-none">
@@ -698,7 +699,7 @@ function renderFormAddTask(selectedProcessCategory, today) {
                   id="subtasks"
                   class="fieldInput"
                   oninput="changeSymbols()"
-                  placeholder="Add new Subtask"
+                  placeholder="Add new subtask"
                 />
                 <div id="symbolsSubtasks" class="changeSymboles">
                   <img src="assets/icons/plus.svg" alt="" />

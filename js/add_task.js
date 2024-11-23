@@ -18,6 +18,7 @@ let contacts = [
 ];
 */
 let isListOpen = false;
+let hasEventListener = false;
 
 const avatarColors = ["#3498db", "#e74c3c", "#f39c12", "#2ecc71", "#9b59b6"];
 
@@ -31,7 +32,7 @@ const avatarColors = ["#3498db", "#e74c3c", "#f39c12", "#2ecc71", "#9b59b6"];
  */
 async function initAddTasks() {
   document.getElementById("contentAddTaskContainer").innerHTML =
-    returnAddTaskForm();
+    returnAddTaskForm("todo");
   const contactList = document.getElementById("insertContactList");
   contactList.classList.add("d-none");
   selectPrio("medium");
@@ -88,7 +89,7 @@ function returnAddTaskForm(selectedProcessCategory, today) {
                         type="text"
                         onclick="toggleContactList()"
                         oninput="filterContacts()"
-                        placeholder="Assigned To"
+                        placeholder="Select contacts to assign"
                       />
                       <div class="changeSymboles">
                         <img
@@ -191,7 +192,7 @@ function returnAddTaskForm(selectedProcessCategory, today) {
                       id="showSelectedCategory"
                       class="fieldInput"
                       readonly
-                      placeholder="Select a option"
+                      placeholder="Select a task category"
                       onclick="showMeCategorys()"
                     />
                     <div id="showCategorys" class="showCategorys d-none">
@@ -221,7 +222,7 @@ function returnAddTaskForm(selectedProcessCategory, today) {
                       id="subtasks"
                       class="fieldInput"
                       oninput="changeSymbols()"
-                      placeholder="Add new Subtask"
+                      placeholder="Add new subtask"
                     />
                     <div id="symbolsSubtasks" class="changeSymboles">
                       <img src="assets/icons/plus.svg" alt="" />
@@ -306,7 +307,7 @@ function returnAddTaskForm(selectedProcessCategory) {
                         type="text"
                         onclick="toggleContactList()"
                         oninput="filterContacts()"
-                        placeholder="Assigned To"
+                        placeholder="Select contacts to assign"
                       />
                       <div class="changeSymboles">
                         <img
@@ -409,7 +410,7 @@ function returnAddTaskForm(selectedProcessCategory) {
                       id="showSelectedCategory"
                       class="fieldInput"
                       readonly
-                      placeholder="Select a option"
+                      placeholder="Select a task category"
                       onclick="showMeCategorys()"
                     />
                     <div id="showCategorys" class="showCategorys d-none">
@@ -439,7 +440,7 @@ function returnAddTaskForm(selectedProcessCategory) {
                       id="subtasks"
                       class="fieldInput"
                       oninput="changeSymbols()"
-                      placeholder="Add new Subtask"
+                      placeholder="Add new subtask"
                     />
                     <div id="symbolsSubtasks" class="changeSymboles">
                       <img src="assets/icons/plus.svg" alt="" />
@@ -542,24 +543,26 @@ async function saveData() {
  *
  * @param {Array} [filteredContacts=contacts] - The array of contacts to render. Defaults to the full `contacts` array.
  */
+
+
 function renderContactList(filteredContacts = contacts) {
+  if (!hasEventListener) {
+    const contactList = document.getElementById("insertContactList");
+    contactList.classList.remove("d-none");
 
-  const contactList = document.getElementById("insertContactList");
-  contactList.classList.remove("d-none");
+    contactList.innerHTML = "";
+    document.getElementById("arrowDropdown").src =
+      "./assets/icons/arrowUpDropdown.svg";
 
-  contactList.innerHTML = "";
-  document.getElementById("arrowDropdown").src =
-    "./assets/icons/arrowUpDropdown.svg";
+    if (filteredContacts.length === 0) {
+      contactList.innerHTML =
+        "<li class='emptyListMessage'>Ganz schön leer hier! :(</li>";
+      return;
+    }
 
-  if (filteredContacts.length === 0) {
-    contactList.innerHTML =
-      "<li class='emptyListMessage'>Ganz schön leer hier! :(</li>";
-    return;
-  }
-
-  filteredContacts.forEach((contact, index) => {
-    const isSelected = selectedContacts.includes(contact);
-    contactList.innerHTML += `
+    filteredContacts.forEach((contact, index) => {
+      const isSelected = selectedContacts.includes(contact);
+      contactList.innerHTML += `
       <li id="listPerson${index}" class="backgroundOnHover" onclick="changeCheckbox(${index})">
         <div class="profile">
           <div id="profilPerson${index}" class="profilePerson"></div>    
@@ -571,31 +574,18 @@ function renderContactList(filteredContacts = contacts) {
           ${isSelected ? "checked" : ""}>
         <img id="checkboxId${index}" src="assets/icons/checkbox.svg">
       </li>`;
-    showProfilPicture(contact, index);
-    if (isSelected) {
-      document.getElementById(`checkboxId${index}`).src =
-        "assets/icons/checkboxChecked.svg";
-    }
-  });
+      showProfilPicture(contact, index);
+      if (isSelected) {
+        document.getElementById(`checkboxId${index}`).src =
+          "assets/icons/checkboxChecked.svg";
+      }
+    });
 
-  showPersons();
-  colorSelectedContacts();
-
-  /* Hier schauen wegen AddEventlistener funktioniert net*/
-  document.addEventListener("click", function (event) {
-    const inputAssignedTo = document.getElementById("inputAssignedTo");
-    const contactList = document.getElementById("insertContactList");
-    const arrowDrop = document.getElementById("arrowDropdown");
-
-    if (
-      !inputAssignedTo.contains(event.target) &&
-      !contactList.contains(event.target) &&
-      !arrowDrop.contains(event.target)
-    ) {
-      closeContactList();
-    }
-  });
+    showPersons();
+    colorSelectedContacts();
+  }
 }
+
 /**
  * Highlights selected contacts in the contact list by adding a specific background class.
  *
@@ -657,7 +647,6 @@ function closeContactList() {
   contactList.classList.add("d-none");
   document.getElementById("arrowDropdown").src =
     "/assets/icons/arrowDropdown.svg";
-
 }
 
 /**
@@ -727,7 +716,7 @@ function toggleContactList(filteredContactsForTasks) {
     closeContactList();
   } else {
     checkContacts(allContactsForTasks);
-   
+
     document.getElementById("insertContactList").classList.remove("d-none");
   }
   isListOpen = !isListOpen;
@@ -1181,7 +1170,7 @@ function closeDropdown() {
   document.getElementById("showSelectedCategory").onclick = showMeCategorys;
   document.getElementById("categoryDropdown").onclick = showMeCategorys;
   document.getElementById("showCategorys").classList.add("d-none");
- 
+
   document.getElementById("categoryDropdown").src =
     "assets/icons/arrowDropdown.svg";
 }
@@ -1201,27 +1190,13 @@ function putInput(value) {
 }
 
 function showMeCategorys() {
-  putInput(``);
-  document.getElementById("showSelectedCategory").onclick = closeDropdown;
-  document.getElementById("showCategorys").classList.remove("d-none");
-  
-  document.getElementById("categoryDropdown").onclick = closeDropdown;
-  document.getElementById("categoryDropdown").src =
-    "assets/icons/arrowUpDropdown.svg";
-
-  document.addEventListener("click", function (event) {
-    const catImage = document.getElementById("categoryDropdown");
-    const dropdown = document.getElementById("showSelectedCategory");
-    const selectBox = document.getElementById("showCategorys");
-
-    if (
-      !dropdown.contains(event.target) &&
-      !selectBox.contains(event.target) &&
-      !catImage.contains(event.target)
-    ) {
-      closeDropdown();
-    }
-  });
+    putInput(``);
+    document.getElementById("showSelectedCategory").onclick = closeDropdown;
+    document.getElementById("showCategorys").classList.remove("d-none");
+    document.getElementById("customSelect").classList.add("whiteBG");
+    document.getElementById("categoryDropdown").onclick = closeDropdown;
+    document.getElementById("categoryDropdown").src =
+      "assets/icons/arrowUpDropdown.svg";
 }
 
 async function submitForm(selectedProcessCategory) {
@@ -1260,19 +1235,17 @@ async function submitForm(selectedProcessCategory) {
   }
 
   if (!hasError) {
+    console.log(selectedProcessCategory);
     await collectDataFromAddTask(selectedProcessCategory, selectedContacts); //senden an loadTasks.js zum hochladen ins Firebase
-    //     document.getElementById(
-    //       "insertAddedToTaskConfirmation"
-    //     ).innerHTML = `<div class="backgroundInformationForm"><div id="addConfirmation" class="addedToBoard">
-    // <div class="taskAddedInformation">Task added to board</div>
-    // <img src="assets/icons/boardIcon.svg" alt="" />
-    // </div></div>`;
+    document.getElementById(
+      "insertAddedToTaskConfirmation"
+    ).innerHTML = `<div class="backgroundInformationForm"><div id="addConfirmation" class="addedToBoard">
+     <div class="taskAddedInformation">Task added to board</div>
+     <img src="assets/icons/boardIcon.svg" alt="" />
+     </div></div>`;
     setTimeout(() => {
       window.open("board.html", "_self");
     }, 2000);
   }
-}
-
-function reloadPage() {
-  location.reload();
+  console.log(selectedProcessCategory);
 }

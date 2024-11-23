@@ -349,9 +349,13 @@ textarea:focus {
   background-color: #091931;
   color: white;
 }
-
 .contactListCheckbox {
   display: none;
+}
+
+.contactPerson {
+  width: 250px;
+  word-wrap: break-word;
 }
 
 .backgroundContact {
