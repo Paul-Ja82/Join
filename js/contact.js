@@ -215,7 +215,10 @@ function isEmailAvailable() {
 
 async function addContact() {
     let newId = await getId();
-    let colorHex = getRandomColorHex();
+    // let colorHex = getRandomColorHex();
+    let colorHex = colorForContact;
+    console.log(colorHex);
+    
     let nameInput= document.getElementById('nameInputElem').value;
     let emailInput= document.getElementById('emailInputElem').value;
     let phoneInput= document.getElementById('phoneInputElem').value;
