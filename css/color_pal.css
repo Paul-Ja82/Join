@@ -1,4 +1,4 @@
-* {
+/* * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -11,9 +11,9 @@ body {
 
 .contact_color {
     position: relative;   
-}
+} */
 
-.user_icon_circle {
+/* .user_icon_circle {
     width: 120px;
     height: 120px;
     background: rgba(209, 209, 209, 1);
@@ -26,17 +26,31 @@ body {
         cursor: pointer;
         box-shadow: 0 0 2px rgba(0, 0, 0, 0.2) inset;
     }
+} */
+
+#cdPersonIcon:hover {
+    cursor: pointer;
 }
 
 .color_pal_overlay {
     visibility: hidden;
     width: 0px;
-    height: 285px;
+    border-radius: 1.5em;
     background-color: rgba(0, 0, 0, 0.158);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    /* left: 0; */
+    /* height: 100%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
     & .color_palette {
         width: 150px;
         padding: 10px;
-        border-radius: 10px;
+        border-radius: 1.5em;
         background-color: rgb(255, 255, 255);
         display: flex;
         justify-content: space-around;
@@ -44,7 +58,7 @@ body {
         flex-wrap: wrap;
         gap: 5px;
         box-shadow: 0 0 5px black;
-        margin: 0 auto;
+        margin-left: -100px;
     }
 }
 
@@ -140,4 +154,12 @@ body {
     padding: 10px;
     width: 220px;
     margin: 20px auto;
+}
+
+@media(max-width: 1010px) {
+    .color_pal_overlay {
+        & .color_palette {
+            margin-left: 0px;
+        }
+    }
 }

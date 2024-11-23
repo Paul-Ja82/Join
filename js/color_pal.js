@@ -12,14 +12,16 @@ function closeColorPal(e) {
 function chooseColorForContact(e) {
     e.stopPropagation();
     colorForContact = window.getComputedStyle(e.target).backgroundColor;
-    document.getElementById("user_icon_circle").style.backgroundColor = `${colorForContact}`;
-    document.getElementById("color_for_contact").innerHTML = `Farbe: ${colorForContact}`;
+    document.getElementById("cdPersonIcon").style.backgroundColor = `${colorForContact}`;
+    // document.getElementById("color_for_contact").innerHTML = `Farbe: ${colorForContact}`;
+    closeColorPal(event)
     return colorForContact
 }
 
-function randomColorContact() {
+function randomColorContact(e) {
     colorForContact = getRandomColorHex();
-    document.getElementById("user_icon_circle").style.backgroundColor = `${colorForContact}`;
-    document.getElementById("color_for_contact").innerHTML = `Farbe: ${colorForContact}`;
+    document.getElementById("cdPersonIcon").style.backgroundColor = `${colorForContact}`;
+    // document.getElementById("color_for_contact").innerHTML = `Farbe: ${colorForContact}`;
+    closeColorPal(event)
     return colorForContact;
 }
