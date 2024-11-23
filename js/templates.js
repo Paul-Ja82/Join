@@ -138,7 +138,7 @@ function returnChangingAddTask(today) {
                     />
                   </div>
                 </div>
-                <ul id="insertContactList" class="listContacts d-none"></ul>
+                <div id="insertContactList" class="listContacts d-none"></div>
               </div>
               <div id="showPersons" class="showPersons"></div>
             </div>
