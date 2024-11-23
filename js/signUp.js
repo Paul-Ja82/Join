@@ -363,9 +363,9 @@ function togglePasswordImgForConfirm() {
     const input = document.getElementById("confirmPasswordInput");
 
     if (input) {
-        var lockImg = input.parentElement.querySelector('.password-Img');
-        var eyeOffImg = input.parentElement.querySelector('.password-Img-eye-of');
-        var eyeOnImg = input.parentElement.querySelector('.password-Img-eye-on');
+        let lockImg = input.parentElement.querySelector('.password-Img');
+        let eyeOffImg = input.parentElement.querySelector('.password-Img-eye-of');
+        let eyeOnImg = input.parentElement.querySelector('.password-Img-eye-on');
 
         eyeLockVariationsForConfirm(input, lockImg, eyeOffImg, eyeOnImg);
     }
@@ -375,14 +375,13 @@ function openEyePasswordForConfirm() {
     const input = document.getElementById("confirmPasswordInput");
 
     if (input) {
-        var eyeOffImg = input.parentElement.querySelector('.password-Img-eye-of');
-        var eyeOnImg = input.parentElement.querySelector('.password-Img-eye-on');
+        let eyeOffImg = input.parentElement.querySelector('.password-Img-eye-of');
+        let eyeOnImg = input.parentElement.querySelector('.password-Img-eye-on');
 
         if (eyeOffImg && eyeOnImg) {
             eyeOffImg.style.display = 'none';
             eyeOnImg.style.display = 'block';
-
-            input.value = input.dataset.actualValue || "";
+            input.value = input.dataset.actualvalue || ""; 
         }
     }
 }
@@ -391,14 +390,13 @@ function closeEyePasswordForConfirm() {
     const input = document.getElementById("confirmPasswordInput");
 
     if (input) {
-        var eyeOffImg = input.parentElement.querySelector('.password-Img-eye-of');
-        var eyeOnImg = input.parentElement.querySelector('.password-Img-eye-on');
+        let eyeOffImg = input.parentElement.querySelector('.password-Img-eye-of');
+        let eyeOnImg = input.parentElement.querySelector('.password-Img-eye-on');
 
         if (eyeOffImg && eyeOnImg) {
             eyeOffImg.style.display = 'block';
             eyeOnImg.style.display = 'none';
-
-            input.value = '✶'.repeat(input.dataset.actualValue ? input.dataset.actualValue.length : 0);
+            input.value = '✶'.repeat(input.dataset.actualvalue ? input.dataset.actualvalue.length : 0);
         }
     }
 }

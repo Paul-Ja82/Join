@@ -118,12 +118,12 @@ function togglePasswordImg() {
       document.getElementById("signUpPasswordInput"),
   ];
 
-  for (var i = 0; i < inputs.length; i++) {
-      var input = inputs[i];
+  for (let i = 0; i < inputs.length; i++) {
+      let input = inputs[i];
       if (input) {
-          var lockImg = input.parentElement.querySelector('.password-Img');
-          var eyeOffImg = input.parentElement.querySelector('.password-Img-eye-of');
-          var eyeOnImg = input.parentElement.querySelector('.password-Img-eye-on');
+          let lockImg = input.parentElement.querySelector('.password-Img');
+          let eyeOffImg = input.parentElement.querySelector('.password-Img-eye-of');
+          let eyeOnImg = input.parentElement.querySelector('.password-Img-eye-on');
 
           eyeLockVariations(input, lockImg, eyeOffImg, eyeOnImg);
       }
@@ -136,21 +136,21 @@ function openEyePassword() {
       document.getElementById("signUpPasswordInput")
   ];
 
-  for (var i = 0; i < inputs.length; i++) {
-      var input = inputs[i];
+  for (let i = 0; i < inputs.length; i++) {
+      let input = inputs[i];
       if (input) {
-          var eyeOffImg = input.parentElement.querySelector('.password-Img-eye-of');
-          var eyeOnImg = input.parentElement.querySelector('.password-Img-eye-on');
+          let eyeOffImg = input.parentElement.querySelector('.password-Img-eye-of');
+          let eyeOnImg = input.parentElement.querySelector('.password-Img-eye-on');
 
           if (eyeOffImg && eyeOnImg) {
               eyeOffImg.style.display = 'none';
               eyeOnImg.style.display = 'block';
-
-              input.value = input.dataset.actualValue || "";
+              input.value = input.dataset.actualvalue || ""; 
           }
       }
   }
 }
+
 
 function closeEyePassword() {
   const inputs = [
@@ -158,21 +158,21 @@ function closeEyePassword() {
       document.getElementById("signUpPasswordInput")
   ];
 
-  for (var i = 0; i < inputs.length; i++) {
-      var input = inputs[i];
+  for (let i = 0; i < inputs.length; i++) {
+      let input = inputs[i];
       if (input) {
-          var eyeOffImg = input.parentElement.querySelector('.password-Img-eye-of');
-          var eyeOnImg = input.parentElement.querySelector('.password-Img-eye-on');
+          let eyeOffImg = input.parentElement.querySelector('.password-Img-eye-of');
+          let eyeOnImg = input.parentElement.querySelector('.password-Img-eye-on');
 
           if (eyeOffImg && eyeOnImg) {
               eyeOffImg.style.display = 'block';
-              eyeOnImg.style.display = 'none';
-
-              input.value = '✶'.repeat(input.dataset.actualValue ? input.dataset.actualValue.length : 0);
+              eyeOnImg.style.display = 'none'; 
+              input.value = '✶'.repeat(input.dataset.actualvalue ? input.dataset.actualvalue.length : 0);
           }
       }
   }
 }
+
 
 function eyeLockVariations(input, lockImg, eyeOffImg, eyeOnImg) {
   if (input.value.length > 0) {
