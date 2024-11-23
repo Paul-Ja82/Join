@@ -12,6 +12,7 @@ let dragAndDropSections = [
   "done_tasks",
 ];
 
+// Prüfen ob nötig, wenn ja -> befüllen
 /**
  * Initializes the application by performing setup tasks such as including external resources or initializing components.
  * 
@@ -28,7 +29,7 @@ function init(params) {
   // loadContacts();
 }
 
-
+// UMZUG IN OPENCLOSEOVERLAY.JS
 /**
  * Displays a dialog for adding a task or navigates to a new page depending on the screen width.
  * 
@@ -49,8 +50,6 @@ function init(params) {
  * 
  * @param {string} selectedProcessCategory - The category for the process that is pre-selected in the add-task form.
  */
-
-// UMZUG IN OPENCLOSEOVERLAY.JS
 async function showDialog(selectedProcessCategory) {
   if (window.innerWidth < 400) {
     window.open("add_task.html", "_self");
@@ -68,6 +67,7 @@ async function showDialog(selectedProcessCategory) {
     contactList.classList.add("d-none");
   }
 }
+
 // UMZUG IN OPENCLOSEOVERLAY.JS
 /**
  * Displays a task dialog by removing the background's hidden class, adjusting styles, and adding an animation class.
@@ -82,6 +82,7 @@ function showTask() {
 
   document.getElementById("dialogBox").innerHTML = "";
 }
+
 // UMZUG IN OPENCLOSEOVERLAY.JS
 /**
  * Closes the task dialog by removing the animation class, then hides the background and resets dialog styles after a delay.
@@ -111,7 +112,6 @@ function closeDialog() {
     document.getElementById("backgroundId").classList.add("d-none");
   }, 225);
 }
-
 
 /**
  * Prepares specific elements by adding classes and IDs to the flying element, and sets up event listeners for input focus and blur actions.
@@ -145,7 +145,6 @@ function cloneElement(id, e) {
   elementIsFlying = true;
   return elementIsFlying;
 }
-
 
 /**
  * Starts the drag operation by styling and positioning the cloned element, hiding the original task, 
@@ -210,7 +209,6 @@ function endDragging() {
   }
   return (elementIsFlying = false);
 }
-
 
 /**
  * Checks whether the dragged element is over a valid drop area and handles the drop operation.
@@ -300,7 +298,6 @@ function checkIdFromSectionToDrop(cursorX, cursorY) {
   return idFromSectionToDrop;
 }
 
-
 /**
  * Allows the dragged element to be dropped by preventing the default behavior of the dragover event.
  * 
@@ -359,15 +356,6 @@ async function moveTo(newSection) {
   await getIdAndData((pathData = ""));
 }
 
-
-// function openAddTaskForm(section) {
-//   sectionToSaveTask = section;
-//   console.log(section);
-
-//   window.location.href = "/add_task.html";
-//   return sectionToSaveTask;
-// }
-
 /**
  * Finds the key corresponding to a task to be moved based on its ID.
  * 
@@ -385,10 +373,10 @@ function checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys) {
   let id = currentDraggedElementID.slice(15);
   let keytoChangeCategory;
   for (let i = 0; i < allKeys.length; i++) {
-      if (allTasks[`${allKeys[i]}`].single_ID == Number(id)) {
-          keytoChangeCategory = allKeys[i];
-          break;
-      }
+    if (allTasks[`${allKeys[i]}`].single_ID == Number(id)) {
+      keytoChangeCategory = allKeys[i];
+      break;
+    }
   }
   return keytoChangeCategory;
 }
@@ -407,21 +395,20 @@ function checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys) {
 * @param {string} currentStatus - The current status/category of the task.
 */
 function openCloseMenuMovingTask(e, single_ID, currentStatus) {
-e.stopPropagation();
-single_ID = single_ID;
-currentStatus = currentStatus;
-let menuForMoving = document.getElementById(`move_task_menu_${single_ID}`);
-menuForMoving.classList.toggle("visible");
-if (menuForMoving.classList.contains("visible")) {
-  document.getElementById(`single_task_ctn${single_ID}`).style.filter =
-    "grayscale(0.75)";
-} else {
-  document.getElementById(`single_task_ctn${single_ID}`).style.filter =
-    "grayscale(0)";
+  e.stopPropagation();
+  single_ID = single_ID;
+  currentStatus = currentStatus;
+  let menuForMoving = document.getElementById(`move_task_menu_${single_ID}`);
+  menuForMoving.classList.toggle("visible");
+  if (menuForMoving.classList.contains("visible")) {
+    document.getElementById(`single_task_ctn${single_ID}`).style.filter =
+      "grayscale(0.75)";
+  } else {
+    document.getElementById(`single_task_ctn${single_ID}`).style.filter =
+      "grayscale(0)";
+  }
+  enableCurrentSection(currentStatus, single_ID);
 }
-enableCurrentSection(currentStatus, single_ID);
-}
-
 
 /**
  * Highlights the current section of a task in the move menu by changing its text color.
@@ -476,8 +463,8 @@ async function moveTaskWithMenu(id, toSection) {
   await putNewSection(path, toSection);
   await getIdAndData((pathData = ""));
 }
-// UMZUG IN EDIT_TASK.JS
 
+// UMZUG IN EDIT_TASK.JS
 /**
  * Updates the dialog box to display the form for changing task values.
  * 
@@ -500,6 +487,7 @@ function changeTaskValues(e) {
 
   returnChangeAddTask();
 }
+
 // UMZUG IN EDIT_TASK.JS
 /**
  * Closes the dialog box for changing task values and restores its original styles.

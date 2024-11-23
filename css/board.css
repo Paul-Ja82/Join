@@ -1,25 +1,21 @@
 ::-webkit-scrollbar {
-  width: 8px; /* Breite der Scrollbar */
+  width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Hintergrund des Scrollbars-Tracks */
+  background: #f1f1f1;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: #2a4872;
-  background: linear-gradient(
-    180deg,
-    #315e9e,
-    #2a3647
-  ); /* Farbverlauf für die Scroll-Leiste */
+  background: linear-gradient(180deg, #315e9e, #2a3647);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #3971c0, #293d58); /* Hover-Effekt */
+  background: linear-gradient(180deg, #3971c0, #293d58);
   cursor: pointer;
 }
 
@@ -44,7 +40,6 @@ body {
   height: 100vh;
   position: relative;
   min-width: 320px;
-  
   overflow: hidden;
 }
 
@@ -84,7 +79,6 @@ body {
   height: fit-content;
   position: relative;
   margin: 5px 5px 60px 5px;
-  /* margin: 5px 5px 20px 5px; */
   & .single_task_category {
     width: fit-content;
     border-radius: 10px;
@@ -97,8 +91,6 @@ body {
     font-weight: 700;
     color: rgba(42, 54, 71, 1);
     margin-bottom: 8px;
-    /* border: 1px solid red;
-    max-height: 50px; */
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -242,7 +234,6 @@ body {
     }
   }
 }
-
 .board_ctn {
   width: calc(100% - 50px);
   padding: 25px 25px 0 25px;
@@ -294,7 +285,6 @@ body {
       border: 1px solid #a8a8a8;
       border-radius: 10px;
       padding: 8px 16px;
-
       & #name_of_task_input {
         border: none;
         border-right: 1px solid #d1d1d1;
@@ -315,7 +305,6 @@ body {
       &:hover {
         cursor: pointer;
       }
-
       & .button_find_task {
         height: 32px;
         width: 48px;
@@ -398,7 +387,6 @@ body {
         }
         & .task_section_tasks_area {
           display: block;
-          /* background-color: burlywood; */
           min-height: calc(100% - 100px);
           overflow-x: hidden;
           & .single_task_board {
@@ -435,23 +423,13 @@ body {
 }
 
 .task_overlay_ctn {
-
-  /* display: flex; */
   width: 100%;
   height: 100vh;
-  /* background-color: rgba(235, 194, 108, 0.548); */
   display: flex;
   z-index: 30;
   justify-content: center;
   align-items: center;
   & .task_overlay_card_ctn {
-    /* width: 525PX;
-    box-sizing: border-box;
-    border-radius: 24px;
-    padding: 48px 36px;
-    max-height: 90%;
-    overflow: auto; */
-    /*Maße wieder geändert, da Overlay so nicht responsive war. Bitte nichts ohne Rücksprache ändern!*/
     width: 90%;
     max-width: 525px;
     background-color: white;
@@ -460,8 +438,6 @@ body {
     padding: 36px 18px 36px 36px;
     max-height: 90%;
     margin-top: -96px;
-    /* margin: 5% auto; */
-    /* scale: 0.9; */
     & .single_task_header_category_and_close {
       display: flex;
       justify-content: space-between;
@@ -502,7 +478,6 @@ body {
       font-size: clamp(1.25rem, 0.893rem + 0.952vw, 1.75rem);
       overflow: auto;
       padding-right: 10px;
-      /* border: 1px solid red; */
     }
     & .overlay_task_main {
       max-height: 500px;
@@ -517,7 +492,6 @@ body {
         max-height: 90px;
         overflow: auto;
         padding-right: 10px;
-        /* border: 1px solid blue; */
       }
       & .single_task_due_date_ctn {
         display: flex;
@@ -549,7 +523,6 @@ body {
         & .single_task_line_header {
           padding: 0px 0px 8px 0px;
           width: 120px;
-      
         }
       }
       & .single_task_contacts_ctn {
@@ -569,7 +542,6 @@ body {
             height: 42px;
             border-radius: 50%;
             font-size: 16px;
-            /* background-color: lightsalmon; */
             color: white;
             display: flex;
             justify-content: center;
@@ -588,7 +560,6 @@ body {
         & .single_task_line_header {
           padding: 16px 0 8px 0;
           width: 120px;
-    
         }
         & .single_task_subtask_collection {
           max-height: 106px;
@@ -676,21 +647,15 @@ body {
             &:first-child {
               border-right: 1px solid rgb(204, 204, 204);
             }
-
           }
-          
         }
-       }
+      }
     }
-   }
+  }
 }
 
 
 @media (max-width: 1440px) {
-  #dummy_menu {
-    position: fixed;
-    left: 0px;
-  }
   .board_ctn {
     max-width: -webkit-fill-available;
     & .board_task_area {
@@ -775,17 +740,6 @@ body {
     padding-bottom: 80px;
     max-height: calc(100% - 80px);
   }
-  #dummy_menu {
-    height: 80px;
-  }
-  #dummy_menu {
-    position: fixed;
-    height: 80px;
-    width: 100%;
-    top: unset;
-    bottom: 0;
-    left: 0;
-  }
   .board_ctn {
     min-width: 288px;
     & .board_header {
@@ -847,90 +801,50 @@ body {
         }
         & .overlay_task_main {
           & .single_task_contacts_ctn {
-              & .single_task_single_contact {
-                  & .task_contact_name {
-                      /* max-width: 200px; */
-                      max-width: 75%;
-                      overflow: auto;
-                      max-height: 50px;
-                      font-size: 16px;
-                  }
+            & .single_task_single_contact {
+              & .task_contact_name {
+                  max-width: 75%;
+                  overflow: auto;
+                  max-height: 50px;
+                  font-size: 16px;
               }
+            }
           }
-      }
+        }
     }
-
-}
+  }
 }
 
 @media (max-width: 500px) {
   .board_ctn {
     & .board_task_area {
-        & .task_section {
-            & .task_section_header {
-                width: 95%;
-            }
+      & .task_section {
+        & .task_section_header {
+            width: 95%;
         }
+      }
     }
   }
   .task_overlay_ctn {
     & .task_overlay_card_ctn {
       scale: 0.9;
-        & .overlay_task_main {
-            & .single_task_contacts_ctn {
-                & .single_task_single_contact {
-                    & .task_contact_name {
-                        max-width: 120px;
-                    }
-                }
-            }
-        }
-    }
-}
-
-  /* .task_overlay_ctn {
-    & .task_overlay_card_ctn {
-      & .overlay_task_header {
-        max-width: 300px;
-      }
-      & .single_task_due_date_ctn {
-        margin-bottom: 18px;
-      }
-      & .overlay_single_task_description {
-        margin-bottom: 12px;
-      }
-      & .single_task_pritoity_ctn {
-        margin-bottom: 12px;
-      }
-      & .single_task_contacts_ctn {
-        gap: 14px;
-        & .single_task_single_contact {
-          & .task_contact_name {
-              max-width: 120px;
-          }
-        }
-      }
-    
-      & .single_task_subtasks_ctn {
-        & .single_task_subtask_collection {
-          & .single_task_subtask {
-            label {
-              margin-bottom: 8px;
+      & .overlay_task_main {
+        & .single_task_contacts_ctn {
+          & .single_task_single_contact {
+            & .task_contact_name {
+                max-width: 120px;
             }
           }
         }
       }
     }
-  } */
+  }
 }
 
-/* Das ist zum markieren des aktuellen Navigations-Menü-Items
-Gruß Reini */
 .menu-nav-item[data-filename="board.html"] {
   background-color: var(--clr-menu-selected);
 }
-/* Das ist zum markieren des aktuellen Navigations-Menü-Items
-Gruß Reini */
+
 .menu-nav-item[data-filename="add_task.html"] {
   background-color: unset !important;
 }

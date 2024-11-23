@@ -13,7 +13,6 @@ function chooseColorForContact(e) {
     e.stopPropagation();
     colorForContact = window.getComputedStyle(e.target).backgroundColor;
     document.getElementById("cdPersonIcon").style.backgroundColor = `${colorForContact}`;
-    // document.getElementById("color_for_contact").innerHTML = `Farbe: ${colorForContact}`;
     closeColorPal(event)
     return colorForContact
 }
@@ -21,7 +20,6 @@ function chooseColorForContact(e) {
 function randomColorContact(e) {
     colorForContact = getRandomColorHex();
     document.getElementById("cdPersonIcon").style.backgroundColor = `${colorForContact}`;
-    // document.getElementById("color_for_contact").innerHTML = `Farbe: ${colorForContact}`;
     closeColorPal(event)
     return colorForContact;
 }

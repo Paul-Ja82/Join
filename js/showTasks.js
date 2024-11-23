@@ -19,7 +19,6 @@ function pushTasksToArray() {
     for (let i = 0; i < allKeys.length; i++) {
         if (allTasks[`${allKeys[i]}`].currentStatus === "todo") {
             tasksTodo.push(allTasks[`${allKeys[i]}`])
-            // console.log(allKeys[i])
         } 
         if (allTasks[`${allKeys[i]}`].currentStatus === "inProgress") {
             tasksInProgress.push(allTasks[`${allKeys[i]}`])
@@ -50,6 +49,7 @@ function pushFilteredTasksToArray() {
     }
 }
 
+// Funktion kürzen
 function fillTaskSections(section, tasks) {
     document.getElementById(section).innerHTML = "";
     for (let i = 0; i < tasks.length; i++) {
@@ -69,6 +69,7 @@ function fillTaskSections(section, tasks) {
     showSubtaskCtn()
 }
 
+// Funktion kürzen
 function checkAssignedTo(tasks, i) {
     let contactsIconsTemplate = "";
     if (tasks[i].assigned_to == 'nobody') {
@@ -183,8 +184,6 @@ function calcProcessBarWidth(checkedSubtasks, subtasksLength) {
     }
     return processBarWidth
 } 
-
-// if (window.innerWidth > 600) 
 
 function createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, width, checkedSubtasks, subtasksLength) {
     document.getElementById(section).innerHTML += `

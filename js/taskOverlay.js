@@ -1,18 +1,9 @@
 let currentTaskInOverlay;
 let currentUserLoggedIn = sessionStorage.getItem('loggedInUserName');
-console.log(currentUserLoggedIn);
-
 let currentTaskForEdit;
 let inChangeSubtasksTask = [];
 let currentKeyToOpen;
 let currentStatusofChangingTask;
-
-/*Wird ersetzt durch showTask() 
-function openTaskOverlay(e) {
-  document.getElementById(`task_overlay_ctn`).style.display = "flex";
-  document.getElementById(`task_overlay_ctn`).style.tr = "0";
-  document.body.style.overflow = "hidden";
-}*/
 
 function checkTask(e) {
   e.stopPropagation();
@@ -22,7 +13,6 @@ function checkTask(e) {
     showTask();
     checkIndexOfAllTasks(clickedSingleID, allTasks, allKeys);
     currentTaskForEdit = clickedSingleID;
-    // console.log(allTasks);
   }
 }
 
@@ -94,6 +84,7 @@ function fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, s
   checkTaskCategoryColor("single_task_category_overlay");
 }
 
+// Funktion kürzen
 function checkAssignedToOverlay(allTasks, keyToOpen) {
     let contactsTemplate = "";
     if (allTasks[keyToOpen].assigned_to == 'nobody') {
@@ -125,12 +116,10 @@ function checkAssignedToOverlay(allTasks, keyToOpen) {
 } 
 
 function checkContactColor(fullName, allContactsForTasks) {
-  // console.log(allContactsForTasks, fullName);
   let colorForInitials; 
   for (let i = 0; i < allContactsForTasks.length; i++) {
     if (allContactsForTasks[i].name == fullName) {
       colorForInitials = allContactsForTasks[i].color;
-      // console.log(colorForInitials);      
       break;
     }
   }
@@ -223,16 +212,11 @@ function checkIndexOfAllTasks(clickedSingleID, allTasks, allKeys) {
   let assignedToContacts = checkAssignedToOverlay(allTasks, keyToOpen);
   let priorityImg = checkPriorityImg(allTasks, keyToOpen);
   let subTasks = checkSubtasksOverlay(allTasks, keyToOpen);
-  fillTaskOverlay(
-    allTasks,
-    keyToOpen,
-    priorityImg,
-    assignedToContacts,
-    subTasks
-  );
+  fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, subTasks);
   return (currentTaskInOverlay = allTasks[keyToOpen]);
 }
 
+// UMZUG IN OPENCLOSEOVERLAY.JS ODER ADDTASK/EDITTASK
 function returnChangeAddTask() {
   let keyToOpen;
   console.log(currentTaskForEdit);
@@ -247,37 +231,23 @@ function returnChangeAddTask() {
   let priorityImg = checkPriorityImg(allTasks, keyToOpen);
   let subTasks = checkSubtasksOverlay(allTasks, keyToOpen);
   currentKeyToOpen = keyToOpen;
-
-  fillOutInputChangeAddTask(
-    allTasks,
-    keyToOpen,
-    priorityImg,
-    assignedToContacts,
-    subTasks
-  );
+  fillOutInputChangeAddTask(allTasks, keyToOpen, priorityImg, assignedToContacts, subTasks);
 }
 
-function fillOutInputChangeAddTask(
-  allTasks,
-  keyToOpen,
-  priorityImg,
-  assignedToContacts,
-  subTasks
-) {
+// UMZUG IN OPENCLOSEOVERLAY.JS ODER ADDTASK/EDITTASK
+function fillOutInputChangeAddTask(allTasks, keyToOpen, priorityImg, assignedToContacts, subTasks) {
   document.getElementById("title").value = allTasks[keyToOpen].title;
-  document.getElementById("description").value =
-    allTasks[keyToOpen].description;
+  document.getElementById("description").value = allTasks[keyToOpen].description;
   document.getElementById("date").value = allTasks[keyToOpen].due_date;
   selectPrio(`${allTasks[keyToOpen].priority}`);
   selectedPrio = allTasks[keyToOpen].priority;
-  document.getElementById("showSelectedCategory").value =
-    allTasks[keyToOpen].category;
-    currentStatusofChangingTask = allTasks[keyToOpen].currentStatus;
-    
-document.getElementById("date").style.color = "black";
+  document.getElementById("showSelectedCategory").value = allTasks[keyToOpen].category;
+  currentStatusofChangingTask = allTasks[keyToOpen].currentStatus;
+  document.getElementById("date").style.color = "black";
   getSubtasksChangeTaskAdded(keyToOpen, allTasks);
 }
 
+// UMZUG IN OPENCLOSEOVERLAY.JS ODER ADDTASK/EDITTASK
 function getSubtasksChangeTaskAdded(keyToOpen, allTasks) {
  subtasks = [];
   if (allTasks[keyToOpen].subtasks) {
@@ -285,29 +255,14 @@ function getSubtasksChangeTaskAdded(keyToOpen, allTasks) {
     subtasks.push(allTasks[keyToOpen].subtasks[index]);
   }
   renderSubtasks();
- }
- 
+  }
 }
-
-/*
-function clickCloseTaskOverlay(event) {
-  document.getElementById("close_task_overlay").click();
-  event.stopPropagation();
-}*/
-
-// function closeTaskOverlay(e) {
-//   document.getElementById(`task_overlay_ctn`).style.right = "-100%";
-//   document.getElementById(`task_overlay_ctn`).style.display = "none";
-//   document.body.style.overflow = "";
-// }
 
 async function deleteTask(e, keyToDelete) {
   e.stopPropagation();
   console.log(keyToDelete);
   let pathToDelete = `tasks/${keyToDelete}`;
   await deleteTaskID(pathToDelete);
-  // document.getElementById(`task_overlay_ctn`).style.right = "-100%";
-  // document.getElementById(`task_overlay_ctn`).style.display = "none";
   closeTask(event)
   document.body.style.overflow = "";
   await getIdAndData((pathData = ""));

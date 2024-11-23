@@ -1,33 +1,3 @@
-/* * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    position: relative;
-    font-family: sans-serif;
-}
-
-.contact_color {
-    position: relative;   
-} */
-
-/* .user_icon_circle {
-    width: 120px;
-    height: 120px;
-    background: rgba(209, 209, 209, 1);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px auto;
-    &:hover {
-        cursor: pointer;
-        box-shadow: 0 0 2px rgba(0, 0, 0, 0.2) inset;
-    }
-} */
-
 #cdPersonIcon:hover {
     cursor: pointer;
 }
@@ -41,8 +11,6 @@ body {
     top: 0;
     right: 0;
     bottom: 0;
-    /* left: 0; */
-    /* height: 100%; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -116,13 +84,7 @@ body {
     }
 }
 
-.color_zero { 
-    background: #d1d1d1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-}
+.color_zero { background: #d1d1d1;}
 .color_one { background: #FF7A00;}
 .color_two { background: #FF5EB3;}
 .color_three { background: #6E52FF;}
@@ -145,15 +107,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-#color_for_contact {
-    background-color: #d1d1d1;
-    text-align: center;
-    border-radius: 10px;
-    padding: 10px;
-    width: 220px;
-    margin: 20px auto;
 }
 
 @media(max-width: 1010px) {
