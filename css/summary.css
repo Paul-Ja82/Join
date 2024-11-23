@@ -822,6 +822,10 @@ small {
     .amount {
         height: auto; 
     }    
+    
+}
+
+@media(max-width:945px) {
     @media (orientation: landscape) {
         .landscape-div {
             display: none;

@@ -4,7 +4,7 @@
     --clr-conlist-item-bg-marked: var(--clr-blue-200);
 }
 
-@media(max-width:960px) {
+@media(max-width:945px) {
 
     @media (orientation: landscape) {
         main {
@@ -281,6 +281,11 @@ p#coninfoName {
 
 .coninfoHeadingH3 {
     font-weight: bold;
+}
+
+.rotate-message {
+    display: none;
+    font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
 }
 
 /* @media (768px < width) { */

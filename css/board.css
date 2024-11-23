@@ -832,7 +832,7 @@ body {
 }
 
 /*das ist für die msg wenn du das handy drehst */
-@media(max-width:960px) {
+@media(max-width:945px) {
 
   @media (orientation: landscape) {
       .board_ctn {
