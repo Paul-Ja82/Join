@@ -452,7 +452,7 @@ body {
     max-height: 90%;
     overflow: auto; */
     /*Maße wieder geändert, da Overlay so nicht responsive war. Bitte nichts ohne Rücksprache ändern!*/
-    width: 82%;
+    width: 90%;
     max-width: 525px;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
