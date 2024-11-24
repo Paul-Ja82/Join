@@ -377,6 +377,7 @@ async function editContact() {
     let phoneInput= document.getElementById('phoneInputElem').value;
     contact.name = nameInput;
     contact.phone = phoneInput;
+    // TODO set color
     saveData(path, contacts);
 }
 
@@ -432,9 +433,6 @@ function mediaChangeHandler() {
 /*###########*/
 
 function tuEsContact() {
-    console.log(getMonogram('Hallo Welt')); ///DEBUG
-    console.log(getMonogram('Furzkopf')); ///DEBUG
-    console.log(getMonogram('öööööööö')); ///DEBUG
 }
 
 function logDB() {
@@ -444,7 +442,10 @@ function logDB() {
 
 function logContactsFromDB() {
     getData(CONTACTS_PATH)
-        .then(cons => console.log(cons));
+        .then(cons => {
+            console.log(cons); ///DEBUG
+            console.log(JSON.stringify(cons)); ///DEBUG
+        });
 }
 
 function deleteContacts() {
