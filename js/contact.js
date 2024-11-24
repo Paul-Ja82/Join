@@ -237,6 +237,7 @@ async function addContact() {
         color: colorHex
     };
     let path= CONTACTS_PATH + newContact.id;
+    console.log(path); ///DEBUG
     saveData(path, newContact);
     contacts.push(newContact);
     //TODO Show Toast
@@ -394,11 +395,12 @@ function deleteButtonHandler() {
 }
 
 async function deleteContact(contactId) {
-    let contact= getContactById(contactId);
+    console.warn('deleteContact(..)'); ///DEBUG
+    let contact= await getContactById(contactId);
     let index= contacts.indexOf(contact);
-    console.log('index: ', index); ///DEBUG
+    let path= CONTACTS_PATH + contact.id;
     contacts.splice(index, 1);
-    saveData(CONTACTS_PATH, contacts);
+    await deleteData(path, contact);
 }
 
 async function afterToastHandlerDeleteContact() {
@@ -450,7 +452,7 @@ function logContactsFromDB() {
         });
 }
 
-function deleteContacts() {
+function deleteContactsFromDb() {
     saveData(CONTACTS_PATH, {});
     
 }
