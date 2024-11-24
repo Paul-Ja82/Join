@@ -520,7 +520,6 @@ function closeChangeTaskValues() {
  * @param {string} selectedProcessCategory - The category selected for the task, used to customize the form.
  * @returns {string} The HTML string for the add-task form, ready to be inserted into the DOM.
  */
-
 function renderFormAddTask(selectedProcessCategory, today) {
   // console.log(selectedProcessCategory);
   return `

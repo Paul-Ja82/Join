@@ -92,21 +92,20 @@ function checkAssignedToOverlay(allTasks, keyToOpen) {
     } else {
         for (let j = 0; j < allTasks[keyToOpen].assigned_to.length; j++) {          
           let fullName = allTasks[keyToOpen].assigned_to[j];
-          let charOneFirstName = "";
-          let charOneLastName = "";
-          if (fullName.includes(" ")) {
-          let partsOfName = fullName.split(" ");
-          charOneFirstName = partsOfName[0][0].toUpperCase();
-          charOneLastName = partsOfName[1][0].toUpperCase();
-          } else {
-              charOneFirstName = fullName[0].toUpperCase();
-          }
+        
+          // if (fullName.includes(" ")) {
+          // let partsOfName = fullName.split(" ");
+          // charOneFirstName = partsOfName[0][0].toUpperCase();
+          // charOneLastName = partsOfName[1][0].toUpperCase();
+          // } else {
+          //     charOneFirstName = fullName[0].toUpperCase();
+          // }
+          let initials = checkInitials(fullName)
             let currentUser = checkCurrentUser(currentUserLoggedIn, fullName);
-            console.log();
             let backgroundColorInitials = checkContactColor(fullName, allContactsForTasks);
             contactsTemplate += `
                 <div class="single_task_single_contact">
-                    <div style="background-color: ${backgroundColorInitials}" class="task_contact_name_icon">${charOneFirstName}${charOneLastName}</div>
+                    <div style="background-color: ${backgroundColorInitials}" class="task_contact_name_icon">${initials}</div>
                     <div class="task_contact_name">${fullName} ${currentUser}</div>
                 </div>
             `
@@ -114,6 +113,19 @@ function checkAssignedToOverlay(allTasks, keyToOpen) {
     }
     return contactsTemplate
 } 
+
+function checkInitials(fullName) {
+  let charOneFirstName = "";
+  let charOneLastName = "";
+  if (fullName.includes(" ")) {
+    let partsOfName = fullName.split(" ");
+    charOneFirstName = partsOfName[0][0].toUpperCase();
+    charOneLastName = partsOfName[1][0].toUpperCase();
+    } else {
+        charOneFirstName = fullName[0].toUpperCase();
+  }
+  return charOneFirstName + charOneLastName
+}
 
 function checkContactColor(fullName, allContactsForTasks) {
   let colorForInitials; 
