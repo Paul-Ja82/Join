@@ -66,7 +66,7 @@ function loginSU() {
     if (flags) {
         let user = getUserByEmail(emailInputLogin);
         let rememberMeInputElem = document.getElementById('rememberCheckbox');
-        let rememberMeItem = rememberMeInputElem.checked ? user.id : null;
+        let rememberMeItem = rememberMeInputElem.checked ? user.name : null;
         if (rememberMeInputElem.checked) localStorage.setItem('loggedInUserName', user.name);
         sessionStorage.setItem('loggedInUserName', user.name);
         sessionStorage.setItem('loggedInUserId', user.id);
