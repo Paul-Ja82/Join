@@ -7,7 +7,7 @@ const BASE_URL = "https://join-7ae0e-default-rtdb.europe-west1.firebasedatabase.
 
 const USERS_PATH = 'users/';
 const CONTACTS_PATH= 'contacts/';
-// const CONTACTS_PATH= 'contactsTESTING/'; ///DEBUG
+// const CONTACTS_PATH= 'contactsTEST/'; ///DEBUG
 const NEXT_ID_PATH = 'nextId/';
 
 
@@ -25,7 +25,6 @@ async function saveData(path, data, method = 'PUT') {
     })
         .then((res) => res.json);
 }
-
 
 
 // params: {key: value, key: value, ...}

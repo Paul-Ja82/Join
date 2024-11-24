@@ -71,8 +71,10 @@ function graspVmsgs() {
 }
 
 function addInvalidStyles() {
+    console.warn('addInvalidStyles()'); ///DEBUG
     let inputs= document.querySelectorAll('input');
     for (let inputI of inputs) {
+        console.log(inputI); ///DEBUG
         inputI.classList.add(invalidStyleClass);
         validateInput(inputI);
     }
@@ -152,7 +154,9 @@ function removeValidation(formId, validFunc) {
 //überprüft die standard-validationen, die mit den html-attributen gesetzt wurden für ein bestimmtes feld
 //wenn nicht valid wird vmsg angezeigt
 function validateInput(input) {
+    console.warn('validateInput(..)'); ///DEBUG
     let vmsgElemId = input.dataset.validationmessageid;
+    console.log(vmsgElemId); ///DEBUG
     let vmsg = defaultVsmgs[vmsgElemId];
     if (input.validity.valid) {
         if (vmsgElemId) hideValidationMessage(vmsgElemId, vmsg);

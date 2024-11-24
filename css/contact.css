@@ -4,6 +4,7 @@
     --clr-conlist-item-bg-marked: var(--clr-blue-200);
 }
 
+/*
 @media(max-width:960px) {
 
     @media (orientation: landscape) {
@@ -29,6 +30,7 @@
     }
 
 }
+*/
 
 /*############*/
 /*## LAYOUT ##*/
@@ -38,6 +40,10 @@ body {
     background-color: var(--clr-bg-main);
     /* font-size: clamp(1rem, 0.679rem + 1.709vw, 1.5rem); */
     /* font-size: clamp(0.9rem, 0.773rem + 0.676vw, 1.2rem); */
+}
+
+header .nav-menu-frame {
+    z-index: 10;
 }
 
 #contentContainer {

@@ -127,7 +127,10 @@ function displayInfoMobile(event) {
     let contactId = event.currentTarget.dataset.contactid;
     setInfo(contactId);
     showElem('detailContainer');
-    hideElem('listContainer');
+    document.getElementById('contentContainer').style.overflowY= 'hidden';
+    document.getElementById('listContainer').style.height= '100%';
+    document.getElementById('contactListContainer').style.overflowY= 'hidden';
+    document.getElementById('contactListContainer').style.height= '100%';
     showContactInfoButtonMobile();
 }
 
@@ -154,9 +157,13 @@ function displayInfoDesktop(event) {
 /*####################*/
 
 function closeDetailButtonHandler() {
-    showElem('listContainer');
+    // showElem('listContainer');
     hideElem('detailContainer');
     hideContactInfoButtonMobile();
+    document.getElementById('contentContainer').style.overflowY= '';
+    document.getElementById('listContainer').style.height= '';
+    document.getElementById('contactListContainer').style.overflowY= '';
+    document.getElementById('contactListContainer').style.height= '';
 }
 
 function showContactInfoButtonMobile() {
@@ -167,6 +174,7 @@ function showContactInfoButtonMobile() {
 function hideContactInfoButtonMobile() {
     hideElem('contactInfoButtonMobile');
     showElem('newContactButton');
+
 }
 
 /*#################*/
@@ -217,8 +225,7 @@ async function addContact() {
     let newId = await getId();
     // let colorHex = getRandomColorHex();
     let colorHex = colorForContact;
-    console.log(colorHex);
-    
+    console.log(colorHex); ///DEBUG
     let nameInput= document.getElementById('nameInputElem').value;
     let emailInput= document.getElementById('emailInputElem').value;
     let phoneInput= document.getElementById('phoneInputElem').value;
@@ -229,7 +236,9 @@ async function addContact() {
         phone: phoneInput,
         color: colorHex
     };
-    saveData(CONTACTS_PATH, newContact, 'POST');
+    let path= CONTACTS_PATH + newContact.id;
+    console.log(path); ///DEBUG
+    saveData(path, newContact);
     contacts.push(newContact);
     //TODO Show Toast
 }
@@ -302,6 +311,7 @@ function setButtonsAdd() {
 
 
 function editContactButtonHandler() {
+    // addFocusHandlers();
     setContactDialogEdit();
     closeDialog();
     resetVsmgs('contactForm');
@@ -328,6 +338,16 @@ function setPersonIconEdit() {
     hideElem('cdPersonIconAdd');
 }
 
+function setFormEdit() {
+    setInputsEdit();
+    setButtonsEdit();
+    // removeValidation('contactForm', validateContactExisting);
+    removeValidation('contactForm', isEmailAvailable);
+    removeSubmitHandler('contactForm', addContact);
+    removeSubmitHandler('contactForm', submitHandlerEdit);
+    addSubmitHandler('contactForm', submitHandlerEdit);
+}
+
 function setInputsEdit() {
     let contact = getContactById(shownContactInfoId);
     let inputName = document.getElementById('nameInputElem');
@@ -346,16 +366,6 @@ function setButtonsEdit() {
     hideElem('cdCancelButton');
 }
 
-function setFormEdit() {
-    setInputsEdit();
-    setButtonsEdit();
-    // removeValidation('contactForm', validateContactExisting);
-    removeValidation('contactForm', isEmailAvailable);
-    removeSubmitHandler('contactForm', addContact);
-    removeSubmitHandler('contactForm', submitHandlerEdit);
-    addSubmitHandler('contactForm', submitHandlerEdit);
-}
-
 function submitHandlerEdit() {
     // loadInputValuesAddContact();
     editContact().then(generateContactList);
@@ -363,13 +373,14 @@ function submitHandlerEdit() {
 }
 
 async function editContact() {
-    let path = CONTACTS_PATH;
+    let path = CONTACTS_PATH + shownContactInfoId;
     let contact = getContactById(shownContactInfoId);
     let nameInput= document.getElementById('nameInputElem').value;
     let phoneInput= document.getElementById('phoneInputElem').value;
     contact.name = nameInput;
     contact.phone = phoneInput;
-    saveData(path, contacts);
+    // TODO set color
+    saveData(path, contact);
 }
 
 /*####################*/
@@ -384,11 +395,12 @@ function deleteButtonHandler() {
 }
 
 async function deleteContact(contactId) {
-    let contact= getContactById(contactId);
+    console.warn('deleteContact(..)'); ///DEBUG
+    let contact= await getContactById(contactId);
     let index= contacts.indexOf(contact);
-    console.log('index: ', index); ///DEBUG
+    let path= CONTACTS_PATH + contact.id;
     contacts.splice(index, 1);
-    saveData(CONTACTS_PATH, contacts);
+    await deleteData(path, contact);
 }
 
 async function afterToastHandlerDeleteContact() {
@@ -424,9 +436,7 @@ function mediaChangeHandler() {
 /*###########*/
 
 function tuEsContact() {
-    console.log(getMonogram('Hallo Welt')); ///DEBUG
-    console.log(getMonogram('Furzkopf')); ///DEBUG
-    console.log(getMonogram('öööööööö')); ///DEBUG
+    getData(CONTACTS_PATH)
 }
 
 function logDB() {
@@ -436,10 +446,13 @@ function logDB() {
 
 function logContactsFromDB() {
     getData(CONTACTS_PATH)
-        .then(cons => console.log(cons));
+        .then(cons => {
+            console.log(cons); ///DEBUG
+            console.log(JSON.stringify(cons)); ///DEBUG
+        });
 }
 
-function deleteContacts() {
+function deleteContactsFromDb() {
     saveData(CONTACTS_PATH, {});
     
 }
