@@ -434,6 +434,7 @@ function mediaChangeHandler() {
 /*###########*/
 
 function tuEsContact() {
+    getData(CONTACTS_PATH)
 }
 
 function logDB() {
