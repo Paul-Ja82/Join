@@ -119,10 +119,11 @@ function checkInitials(fullName) {
 }
 
 function checkContactColor(fullName, allContactsForTasks) {
+  const contactsArray = Object.values(allContactsForTasks);
   let colorForInitials; 
-  for (let i = 0; i < allContactsForTasks.length; i++) {
-    if (allContactsForTasks[i].name == fullName) {
-      colorForInitials = allContactsForTasks[i].color;
+  for (let i = 0; i < contactsArray.length; i++) {
+    if (contactsArray[i].name == fullName) {
+      colorForInitials = contactsArray[i].color;
       break;
     }
   }
