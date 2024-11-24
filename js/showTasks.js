@@ -3,6 +3,9 @@ let tasksInProgress = [];
 let tasksAwaitFeedback = [];
 let tasksDone = [];
 
+/**
+ * Sorts tasks into different categories and populates the corresponding sections.
+ */
 function checkTaskSections() {
     tasksTodo = [];
     tasksInProgress = [];
@@ -15,6 +18,10 @@ function checkTaskSections() {
     fillTaskSections("done_tasks", tasksDone)
 }
 
+/**
+ * Distributes tasks from the `allTasks` object into separate arrays based on their current status.
+ * Populates the arrays: `tasksTodo`, `tasksInProgress`, `tasksAwaitFeedback`, and `tasksDone`.
+ */
 function pushTasksToArray() {
     for (let i = 0; i < allKeys.length; i++) {
         if (allTasks[`${allKeys[i]}`].currentStatus === "todo") {
@@ -32,6 +39,10 @@ function pushTasksToArray() {
     }
 }
 
+/**
+ * Distributes filtered tasks into separate arrays based on their current status.
+ * Populates the arrays: `filteredTasksTodo`, `filteredTasksInProgress`, `filteredTasksAwaitFeedback`, and `filteredTasksDone`.
+ */
 function pushFilteredTasksToArray() {
     for (let i = 0; i < filteredKeys.length; i++) {
         if (filteredTasks[i].currentStatus === "todo") {
@@ -49,6 +60,12 @@ function pushFilteredTasksToArray() {
     }
 }
 
+/**
+ * Populates a section with task elements based on the provided tasks array.
+ * 
+ * @param {string} section - The ID of the section to populate with tasks.
+ * @param {Array<Object>} tasks - An array of task objects to be displayed in the section.
+ */
 function fillTaskSections(section, tasks) {
     document.getElementById(section).innerHTML = "";
     for (let i = 0; i < tasks.length; i++) {
@@ -66,6 +83,12 @@ function fillTaskSections(section, tasks) {
     showSubtaskCtn()
 }
 
+/**
+ * Creates a shadow element for drag-and-drop functionality.
+ * 
+ * @param {string} section - The ID of the section where the shadow element will be used.
+ * @returns {HTMLDivElement} The created shadow element with the appropriate class and ID.
+ */
 function createDragAndDropShadow(section) {
     let shadow = document.createElement("div");
     shadow.className = "move_to_shadow";
@@ -73,6 +96,13 @@ function createDragAndDropShadow(section) {
     return shadow;
 }
 
+/**
+ * Generates a template with icons representing the contacts assigned to a specific task.
+ * 
+ * @param {Array<Object>} tasks - An array of task objects.
+ * @param {number} i - The index of the task in the tasks array.
+ * @returns {string} A string containing the HTML template for the assigned contacts' icons.
+ */
 function checkAssignedTo(tasks, i) {
     let contactsIconsTemplate = "";
     if (tasks[i].assigned_to == 'nobody') {
@@ -96,6 +126,14 @@ function checkAssignedTo(tasks, i) {
     return contactsIconsTemplate
 }
 
+/**
+ * Creates a template for a contact icon displaying the initials of the assigned contact.
+ * 
+ * @param {Array<Object>} tasks - An array of task objects.
+ * @param {number} i - The index of the task in the tasks array.
+ * @param {number} j - The index of the assigned contact in the `assigned_to` array of the task.
+ * @returns {string} A string containing the HTML template for a single contact icon, styled with initials and a background color.
+ */
 function createContactsIconsTemplate(tasks, i, j) {
     let iconsTemplate = ""
     let fullName = tasks[i].assigned_to[j];
@@ -113,6 +151,17 @@ function createContactsIconsTemplate(tasks, i, j) {
     return iconsTemplate
 }
 
+/**
+ * Generates an SVG icon representing the priority level of a task.
+ * 
+ * @param {Array<Object>} tasks - An array of task objects.
+ * @param {number} i - The index of the task in the tasks array.
+ * @returns {string} A string containing the SVG markup for the priority icon.
+ * 
+ * - If the priority is "urgent" or "high", a red icon is returned.
+ * - If the priority is "medium", an orange icon is returned.
+ * - If the priority is "low", a green icon is returned.
+ */
 function checkPriorityImg(tasks, i) {
     if (tasks[i].priority === "urgent" || tasks[i].priority === "high") {
         return `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -148,6 +197,13 @@ function checkPriorityImg(tasks, i) {
     }
 }
 
+/**
+ * Counts how many of the subtasks of a specific task are marked as completed.
+ * 
+ * @param {Object[]} tasks - Array of tasks, each of which may contain a subtasks array.
+ * @param {number} i - The index of the task for which completed subtasks are to be counted.
+ * @returns {number} - The number of completed subtasks (with `checked: true`).
+ */
 function checkCheckedSubtasks(tasks, i) {
     let checkedSubtasksNo = 0;
     if(tasks[i].subtasks) {
@@ -160,6 +216,13 @@ function checkCheckedSubtasks(tasks, i) {
     return checkedSubtasksNo
 }
 
+/**
+ * Returns the number of subtasks for a specific task.
+ * 
+ * @param {Object[]} tasks - Array of tasks, each of which may contain a subtasks array.
+ * @param {number} i - The index of the task for which the number of subtasks is to be returned.
+ * @returns {number} - The number of subtasks for the specified task, or 0 if no subtasks exist.
+ */
 function checkSubtaskLength(tasks, i) {
     if(tasks[i].subtasks) {
        return tasks[i].subtasks.length
@@ -168,6 +231,13 @@ function checkSubtaskLength(tasks, i) {
     }
 }
 
+/**
+ * Calculates the width of a progress bar based on the number of checked subtasks and the total number of subtasks.
+ * 
+ * @param {number} checkedSubtasks - The number of checked subtasks.
+ * @param {number} subtasksLength - The total number of subtasks.
+ * @returns {string} - The width of the progress bar as a percentage (e.g., "50%"), or "0%" if the calculation results in NaN.
+ */
 function calcProcessBarWidth(checkedSubtasks, subtasksLength) {
     let processBarWidth = checkedSubtasks/subtasksLength*100 + "%";
     if (processBarWidth == "NaN%") {
@@ -176,6 +246,20 @@ function calcProcessBarWidth(checkedSubtasks, subtasksLength) {
     return processBarWidth
 } 
 
+/**
+ * Generates and appends the HTML for a task to a specified section.
+ * The task HTML includes details such as category, title, description, progress, contacts, and priority.
+ * It also sets up event listeners for drag-and-drop functionality and task status updates.
+ * 
+ * @param {string} section - The ID of the section where the task HTML should be appended.
+ * @param {Array} tasks - An array of task objects containing task details.
+ * @param {number} i - The index of the task in the `tasks` array to generate HTML for.
+ * @param {string} assignedTocontacts - The HTML for the contacts assigned to the task.
+ * @param {string} priorityImg - The HTML or image source for the task's priority icon.
+ * @param {string} width - The width of the progress bar, represented as a percentage (e.g., "50%").
+ * @param {number} checkedSubtasks - The number of checked subtasks.
+ * @param {number} subtasksLength - The total number of subtasks.
+ */
 function createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, width, checkedSubtasks, subtasksLength) {
     document.getElementById(section).innerHTML += `
     <div draggable="true" 
@@ -217,6 +301,14 @@ function createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, widt
   `
 }
 
+/**
+ * Adds a specific class to task category elements based on their text content.
+ * The function checks the text of each element and applies a corresponding class:
+ * - Adds the class "user_story" for elements with the text "User Story".
+ * - Adds the class "technical_task" for elements with the text "Technical Task".
+ * 
+ * @param {string} classname - The class name of the task category elements to be processed.
+ */
 function checkTaskCategoryColor(classname) {
     let taskTypes = document.getElementsByClassName(classname);
     Array.from(taskTypes).forEach(taskType => {
@@ -228,6 +320,11 @@ function checkTaskCategoryColor(classname) {
     });
 }
 
+/**
+ * Toggles the visibility of the task progress container based on the number of subtasks.
+ * If the container contains the text "0/0 Subtasks", it hides the container.
+ * Otherwise, it sets the container's display style to "flex" to make it visible.
+ */
 function showSubtaskCtn() {
     let subtascsCtn = document.getElementsByClassName("single_task_progress_ctn");
     Array.from(subtascsCtn).forEach(ctn => {
@@ -239,6 +336,14 @@ function showSubtaskCtn() {
     });
 }
 
+/**
+ * Toggles the visibility of a section's "nothing" message based on whether the task list is empty.
+ * If the task list is empty, it displays the element with the ID `${section}_nothing` as a flex container.
+ * Otherwise, it hides the element.
+ * 
+ * @param {Array} tasks - The list of tasks to check.
+ * @param {string} section - The section identifier used to target the "nothing" element.
+ */
 function nothingTodoOrDone(tasks, section) {
     if (tasks.length == 0) {
         document.getElementById(`${section}_nothing`).style.display = "flex";
