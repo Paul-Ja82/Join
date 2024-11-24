@@ -127,8 +127,10 @@ function displayInfoMobile(event) {
     let contactId = event.currentTarget.dataset.contactid;
     setInfo(contactId);
     showElem('detailContainer');
-    // hideElem('listContainer');
     document.getElementById('contentContainer').style.overflowY= 'hidden';
+    document.getElementById('listContainer').style.height= '100%';
+    document.getElementById('contactListContainer').style.overflowY= 'hidden';
+    document.getElementById('contactListContainer').style.height= '100%';
     showContactInfoButtonMobile();
 }
 
@@ -159,6 +161,9 @@ function closeDetailButtonHandler() {
     hideElem('detailContainer');
     hideContactInfoButtonMobile();
     document.getElementById('contentContainer').style.overflowY= '';
+    document.getElementById('listContainer').style.height= '';
+    document.getElementById('contactListContainer').style.overflowY= '';
+    document.getElementById('contactListContainer').style.height= '';
 }
 
 function showContactInfoButtonMobile() {

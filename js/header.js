@@ -1,4 +1,4 @@
-/**
+    /**
  * Toggles the visibility of the navigation menu based on screen size and updates the background color of the initials circle.
  */
 function openNavWindowFrame() {
