@@ -102,6 +102,12 @@ img.menu-nav-icon {
     .legal-link {
         margin-top: clamp(0.5rem, 0.235rem + 0.941vh, 1rem);
     }
+
+    .legal-link a {
+        text-decoration: none;
+        color: var(--clr-gray-500);
+    }
+
 }
 
 @media (max-width: 500px) {

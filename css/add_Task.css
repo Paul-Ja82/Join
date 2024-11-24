@@ -105,7 +105,6 @@
   flex-direction: row;
   justify-content: space-between;
   margin: 0;
-  width: 976px;
 }
 
 .iconImage {
@@ -131,7 +130,7 @@
 /* Ende */
 
 .contentAddTaskContainer {
-  padding: 0 80px;
+  margin: 0 80px;
 }
 
 .overAllFormAddTask * {
@@ -175,6 +174,7 @@ ul {
 }
 
 .formAddTasks {
+  width: ;
   display: flex;
   flex-direction: column;
 }
@@ -184,6 +184,7 @@ ul {
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 120px;
+  width: 976px;
 }
 
 .fillOut {
@@ -437,7 +438,6 @@ input[type="date"].filled {
   display: flex;
   justify-content: space-between;
   gap: 8px;
-  width: 976px;
   height: 60px;
 }
 
@@ -516,7 +516,6 @@ input[type="date"].filled {
   flex: 1;
   border: unset;
   background-color: white;
-  width: 136px;
   padding: 16px 10px;
   border-radius: 10px;
   cursor: pointer;
@@ -904,8 +903,13 @@ input[type="date"].filled {
 /* Ende */
 
 @media only screen and (max-width: 1375px) {
+  .contentAddTaskContainer {
+margin: 0 40px;
+  }
+  
   .overInputFields {
     flex-direction: column;
+    width: unset;
   }
 
 .line {
@@ -923,7 +927,7 @@ input[type="date"].filled {
 
 @media only screen and (max-width: 1010px) {
   .overheader {
-    padding: 40px 0 0 0;
+    margin: 40px 0 0 0;
     background-color: #f6f7f8;
     position: sticky;
     top: 0;
@@ -960,7 +964,6 @@ input[type="date"].filled {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: 100%;
     gap: 100px;
     margin-top: 15px;
   }

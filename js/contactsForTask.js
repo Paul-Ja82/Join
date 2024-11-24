@@ -1,7 +1,7 @@
 let filteredContactsForTasks = []
 
 function checkContacts(allContactsForTasks) {
-    // console.log(allContactsForTasks);
+    console.log(allContactsForTasks);
     
     filteredContactsForTasks = [];
     for (let i = 0; i < allContactsForTasks.length; i++) {
