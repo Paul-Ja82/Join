@@ -105,6 +105,7 @@
   flex-direction: row;
   justify-content: space-between;
   margin: 0;
+  width: 976px;
 }
 
 .iconImage {
@@ -112,7 +113,9 @@
 }
 
 .titleAddTask {
-  padding: 0;
+  font-size: 61px;
+  font-weight: 700;
+  padding: 50px 0 0 0;
   margin: 0;
 }
 .centerForm {
@@ -123,9 +126,7 @@
   transform: translateX(0);
 }
 
-.seperateSendButtons {
-  align-self: center;
-}
+
 
 /* Ende */
 
@@ -182,7 +183,6 @@ ul {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 976px;
   margin-bottom: 120px;
 }
 
@@ -761,6 +761,20 @@ input[type="date"].filled {
   transition: all 225ms ease-in-out;
 }
 
+.backgroundForAssignedTo {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  align-items: center;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 999;
+}
+
 /* Design for Board.html Changing Values of Add Task!*/
 
 .overAllChangeAddTask * {
@@ -888,6 +902,24 @@ input[type="date"].filled {
 }
 
 /* Ende */
+
+@media only screen and (max-width: 1375px) {
+  .overInputFields {
+    flex-direction: column;
+  }
+
+.line {
+  display: none;
+  
+}
+
+.fillOut {
+  width: 100%;
+}
+
+}
+
+
 
 @media only screen and (max-width: 1010px) {
   .overheader {

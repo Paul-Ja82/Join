@@ -47,8 +47,8 @@ async function initAddTasks() {
 function returnAddTaskForm(selectedProcessCategory, today) {
   /*let selectedProcessCategory = selectCat == null ? "medium" : selectCat;*/
   return `
+  <div id="insertAddedToTaskConfirmation"></div>
   <div class="overAllFormAddTask">
-        <div id="insertAddedToTaskConfirmation"></div>
         <div class="overheader">
           <h2 class="titleAddTask">Add Task</h2>
         </div>
@@ -584,16 +584,16 @@ function renderContactList(filteredContacts = contacts) {
 
   // Event Handler für das Schließen der Liste, wenn außerhalb geklickt wird
   function closeOnClickOutsideContacts(event) {
-    const dropdown = document.getElementById("inputAssignedTo");
+    const inputField = document.getElementById("inputAssignedTo");
     const contactList = document.getElementById("insertContactList");
     const arrowDrop = document.getElementById("arrowDropdown");
 
     if (
-      !dropdown.contains(event.target) &&
+      !inputField.contains(event.target) &&
       !contactList.contains(event.target) &&
       !arrowDrop.contains(event.target)
     ) {
-      closeContactList(); // Schließe das Dropdown
+     toggleContactList();
       document.removeEventListener("click", closeOnClickOutsideContacts); // Entferne den Listener
     }
   }
@@ -732,6 +732,7 @@ function renderAddedPersons() {
  */
 function toggleContactList(filteredContactsForTasks) {
   const inputField = document.getElementById("inputAssignedTo");
+  console.log(isListOpen);
   if (isListOpen) {
     closeContactList();
   } else {
@@ -1286,4 +1287,12 @@ async function submitForm(selectedProcessCategory) {
     }, 2000);
   }
   console.log(selectedProcessCategory);
+}
+
+function checkIfOpenDropdown() {
+stopPropagation();
+  if (isListOpen == true) {
+    toggleContactList();
+    return;
+  }
 }
