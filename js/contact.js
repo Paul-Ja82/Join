@@ -225,8 +225,7 @@ async function addContact() {
     let newId = await getId();
     // let colorHex = getRandomColorHex();
     let colorHex = colorForContact;
-    console.log(colorHex);
-    
+    console.log(colorHex); ///DEBUG
     let nameInput= document.getElementById('nameInputElem').value;
     let emailInput= document.getElementById('emailInputElem').value;
     let phoneInput= document.getElementById('phoneInputElem').value;
@@ -237,7 +236,8 @@ async function addContact() {
         phone: phoneInput,
         color: colorHex
     };
-    saveData(CONTACTS_PATH, newContact, 'POST');
+    let path= CONTACTS_PATH + newContact.id;
+    saveData(path, newContact);
     contacts.push(newContact);
     //TODO Show Toast
 }
@@ -310,6 +310,7 @@ function setButtonsAdd() {
 
 
 function editContactButtonHandler() {
+    // addFocusHandlers();
     setContactDialogEdit();
     closeDialog();
     resetVsmgs('contactForm');
@@ -336,6 +337,16 @@ function setPersonIconEdit() {
     hideElem('cdPersonIconAdd');
 }
 
+function setFormEdit() {
+    setInputsEdit();
+    setButtonsEdit();
+    // removeValidation('contactForm', validateContactExisting);
+    removeValidation('contactForm', isEmailAvailable);
+    removeSubmitHandler('contactForm', addContact);
+    removeSubmitHandler('contactForm', submitHandlerEdit);
+    addSubmitHandler('contactForm', submitHandlerEdit);
+}
+
 function setInputsEdit() {
     let contact = getContactById(shownContactInfoId);
     let inputName = document.getElementById('nameInputElem');
@@ -354,16 +365,6 @@ function setButtonsEdit() {
     hideElem('cdCancelButton');
 }
 
-function setFormEdit() {
-    setInputsEdit();
-    setButtonsEdit();
-    // removeValidation('contactForm', validateContactExisting);
-    removeValidation('contactForm', isEmailAvailable);
-    removeSubmitHandler('contactForm', addContact);
-    removeSubmitHandler('contactForm', submitHandlerEdit);
-    addSubmitHandler('contactForm', submitHandlerEdit);
-}
-
 function submitHandlerEdit() {
     // loadInputValuesAddContact();
     editContact().then(generateContactList);
@@ -371,14 +372,14 @@ function submitHandlerEdit() {
 }
 
 async function editContact() {
-    let path = CONTACTS_PATH;
+    let path = CONTACTS_PATH + shownContactInfoId;
     let contact = getContactById(shownContactInfoId);
     let nameInput= document.getElementById('nameInputElem').value;
     let phoneInput= document.getElementById('phoneInputElem').value;
     contact.name = nameInput;
     contact.phone = phoneInput;
     // TODO set color
-    saveData(path, contacts);
+    saveData(path, contact);
 }
 
 /*####################*/
