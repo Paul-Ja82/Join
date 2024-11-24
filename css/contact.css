@@ -4,6 +4,7 @@
     --clr-conlist-item-bg-marked: var(--clr-blue-200);
 }
 
+/*
 @media(max-width:960px) {
 
     @media (orientation: landscape) {
@@ -29,6 +30,7 @@
     }
 
 }
+*/
 
 /*############*/
 /*## LAYOUT ##*/
