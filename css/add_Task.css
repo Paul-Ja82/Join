@@ -5,6 +5,11 @@
   overflow-x: hidden;
 } */
 
+.rotate-message {
+  display: none;
+  font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
+}
+
 .showButton {
   display: flex;
   justify-content: center;
@@ -1035,6 +1040,34 @@ input[type="date"].filled {
   .errorMessage {
     top: 82px;
   }
+}
+/*das ist für die msg wenn du das handy drehst */
+@media(max-width:945px) {
+
+  @media (orientation: landscape) {
+      .contentAddTaskContainer {
+          display: none;
+      }
+      .rotate-message {
+          color: rgba(41, 171, 226, 1);
+          display: block; 
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          padding: 20px;
+      }
+  }
+  
+  @media (orientation: portrait) {
+      .contentAddTaskContainer{
+          display: block;
+      }
+      .rotate-message {
+          display: none;
+      }
+  }
+
 }
 
 /* Das ist zum markieren des aktuellen Navigations-Menü-Items

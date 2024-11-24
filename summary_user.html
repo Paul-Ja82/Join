@@ -33,36 +33,14 @@
     
 </head>
 
-<body onload="initMPA(); toggleGreetingsDisplay(); initHeaderJs(); setGreeting(); setGreetedName(); updateAllTasksInSummary(); getTaskData(); include()"> <!--"initSummary()"-->
+<body onload="initMPA(); toggleGreetingsDisplay(); include().then(initHeaderJs); setGreeting(); setGreetedName(); updateAllTasksInSummary(); getTaskData()"> <!--"initSummary()"-->
     <div class="main-frame-div">
         <div id="menuContainer" class="menu-summary-div" data-include="assets/templates/menu_template.html"></div>
         <div class="under-frame-div">
-            <header>
-                <div class="logo-header-div">
-                    <img class="img-logo-header" src="assets/img/j-logo-small.svg">
-                </div>
-                <div class="header-title">Kanban Project Management Tool</div>
-                <nav class="nav-header">
-                    <a href="help.html" class="help-button"><img class="help-button-img" src="./assets/img/help-icon.svg"></a>
-                    <div class="initials-circle" onclick="openNavWindowFrame()">
-                        <div  id="navCircle" ></div>
-                    </div>
-                    <div class="nav-menu-resp-frame">
-                        <div class="nav-menu-responsive">
-                            <a class="nav-a">Help</a>
-                            <a class="nav-a">Legal Notice</a>
-                            <a class="nav-a">Privacy Policy</a>
-                            <a class="nav-a" onclick="logoutMPA()">Log out</a>
-                        </div>
-                </nav>
-           <div class="nav-menu-frame">
-            <div class="nav-menu">
-                <a class="nav-a">Legal Notice</a>
-                <a class="nav-a">Privacy Policy</a>
-                <a class="nav-a" onclick="logoutMPA()">Log out</a>
-            </div>
-            </div>
-        </header>
+        <header id="headerContainer" class="flex-row" data-include="./header.html">
+            <p>shoud be included</p>
+          </header> 
+        <div class="landscape-div">
             <div class="greetings-frame-responsive">
                 <div class="greetings-div-responsive">
                     <div class="greeting-responsive" id="greetingSummary">Good morning,</div>
@@ -185,10 +163,13 @@
                     </div>
                 </div>
             </div>
+            
+        </div>
+        <div class="rotate-message">
+            Please rotate your device back to portrait mode.
         </div>
     </div>
-    <div class="rotate-message">
-        Please rotate your device back to portrait mode.
     </div>
+    
 </body>
 </html>

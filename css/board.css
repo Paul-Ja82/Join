@@ -43,6 +43,12 @@ body {
   overflow: hidden;
 }
 
+.rotate-message {
+  display: none;
+  font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
+}
+
+
 .user_story {
   background-color: rgba(0, 56, 255, 1);
 }
@@ -782,6 +788,35 @@ body {
       }
     }
   }
+}
+
+/*das ist für die msg wenn du das handy drehst */
+@media(max-width:945px) {
+
+  @media (orientation: landscape) {
+      .board_ctn {
+          display: none;
+      }
+      .rotate-message {
+          color: rgba(41, 171, 226, 1);
+          display: block; 
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          padding: 20px;
+      }
+  }
+  
+  @media (orientation: portrait) {
+      .board_ctn{
+          display: block;
+      }
+      .rotate-message {
+          display: none;
+      }
+  }
+
 }
 
 @media (max-width: 850px) {

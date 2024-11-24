@@ -891,6 +891,10 @@ footer {
         margin-top: 40px;
     }
 
+    .sign-up-button {
+        height: 40px;
+    }
+
 }
 
 @media(max-height:670px) {

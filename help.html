@@ -10,13 +10,14 @@
     <link rel="stylesheet" href="css/menu.css" />
     <link rel="stylesheet" href="css/layout.css" />
     <link rel="stylesheet" href="css/header.css" />
-    <link rel="stylesheet" href="css/legal.css" />
+    <link rel="stylesheet" href="css/help.css" />
     <script src="./js/ui.js"></script>
     <script src="./script.js"></script>
     <script src="./js/ui.js"></script>
-    <script src="./script.js"></script>
+    <script src="./js/multi-page-app.js"></script>
+    <script src="js/header.js"></script>
   </head>
-  <body onload="">
+  <body onload="include().then(initHeaderJs)">
     <header id="headerContainer" class="flex-row" data-include="./header.html">
       <p>shoud be included</p>
     </header>

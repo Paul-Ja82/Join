@@ -20,9 +20,8 @@
     <script src="./js/multi-page-app.js"></script>
     <title>Board - join</title>
   </head>
-  <body id="board_body" onload="getIdAndData(pathData=''); initHeaderJs(); init(); preparingElements()" class="no_drop_area">
-    <!--HEADER PRÜFEN, WELCHER IST DER RICHTIGE?-->
-    <header>
+  <body id="board_body" onload="getIdAndData(pathData=''); include().then(initHeaderJs); init(); preparingElements()" class="no_drop_area">
+     <!--<header>
       <div class="logo-header-div">
           <img class="img-logo-header" src="assets/img/j-logo-small.svg">
       </div>
@@ -33,24 +32,24 @@
               <div  id="navCircle" ></div>
           </div>
           <div class="nav-menu-resp-frame">
-              <div class="nav-menu-responsive">
-                  <a class="nav-a">Help</a>
-                  <a class="nav-a">Legal Notice</a>
-                  <a class="nav-a">Privacy Policy</a>
-                  <a class="nav-a" onclick="logoutMPA()">Log out</a>
-              </div>
-      </nav>
- <div class="nav-menu-frame">
-  <div class="nav-menu">
-      <a class="nav-a">Legal Notice</a>
-      <a class="nav-a">Privacy Policy</a>
-      <a class="nav-a" onclick="logoutMPA()">Log out</a>
-  </div>
-  </div>
-    </header>
-    <!-- <header id="headerContainer" class="flex-row" data-include="./header.html">
+            <div class="nav-menu-responsive">
+                <a href="help.html" class="nav-a">Help</a>
+                <a href="legal_notice.html" class="nav-a">Legal Notice</a>
+                <a href="privacy_policy.html" class="nav-a">Privacy Policy</a>
+                <a class="nav-a" onclick="logoutMPA()">Log out</a>
+            </div>
+        </div>
+    <div class="nav-menu-frame">
+        <div class="nav-menu">
+            <a href="legal_notice.html" class="nav-a">Legal Notice</a>
+            <a href="privacy_policy.html" class="nav-a">Privacy Policy</a>
+            <a class="nav-a" onclick="logoutMPA()">Log out</a>
+        </div>
+    </div>
+</header>-->
+    <header id="headerContainer" class="flex-row" data-include="./header.html">
       <p>shoud be included</p>
-    </header> -->
+    </header> 
     <div id="menuContainer" data-include="./assets/templates/menu_template.html"></div>
     <div onclick="event.stopPropagation(); closeTask(event)" id="backgroundId" class="background d-none">
       <div onclick="event.stopPropagation();" id="dialogBox" class="dialogBox"></div>
@@ -166,6 +165,10 @@
         </div>
       </div>
     </div>
+
+    <div class="rotate-message">
+      Please rotate your device back to portrait mode.
+   </div>
     <script src="./js/add_task.js"></script>
     <script src="./js/loadTasks.js"></script>
     <script src="./js/showTasks.js"></script>
