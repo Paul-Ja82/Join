@@ -69,57 +69,44 @@ function fillTaskSections(section, tasks) {
     showSubtaskCtn()
 }
 
-// Funktion kürzen
 function checkAssignedTo(tasks, i) {
     let contactsIconsTemplate = "";
     if (tasks[i].assigned_to == 'nobody') {
         contactsIconsTemplate = "";
     } else {
-        if (tasks[i].assigned_to.length > 4) {
-            for (let j = 0; j < 5 ; j++) {                    
-                let fullName = tasks[i].assigned_to[j];
-                let charOneFirstName = "";
-                let charOneLastName = "";
-                let backgroundColorInitials = checkContactColor(fullName, allContactsForTasks); 
-                if (fullName.includes(" ")) {
-                let partsOfName = fullName.split(" ");
-                charOneFirstName = partsOfName[0][0].toUpperCase();
-                charOneLastName = partsOfName[1][0].toUpperCase();
-                } else {
-                    charOneFirstName = fullName[0].toUpperCase(); 
-                }
-                contactsIconsTemplate += `
-                <div style="background-color: ${backgroundColorInitials};" class="single_task_single_contact" id="">${charOneFirstName}${charOneLastName}</div>
-               `
+        if (tasks[i].assigned_to.length >= 5) {
+            for (let j = 0; j < 5 ; j++) {       
+            contactsIconsTemplate += createContactsIconsTemplate(tasks, i, j)
             }  
             if (tasks[i].assigned_to.length > 5) {
                 let moreContacts = tasks[i].assigned_to.length - 5;
-                contactsIconsTemplate += `
-                <div class="single_task_single_contact" id="">+${moreContacts}</div>
-                `
+                contactsIconsTemplate += `<div class="single_task_single_contact" id="">+${moreContacts}</div>`
             }
-            return contactsIconsTemplate
         }
         if (tasks[i].assigned_to.length < 5) {
-            for (let j = 0; j < tasks[i].assigned_to.length; j++) {
-                let fullName = tasks[i].assigned_to[j];
-                let charOneFirstName = "";
-                let charOneLastName = "";
-                let backgroundColorInitials = checkContactColor(fullName, allContactsForTasks); 
-                if (fullName.includes(" ")) {
-                let partsOfName = fullName.split(" ");
-                charOneFirstName = partsOfName[0][0].toUpperCase();
-                charOneLastName = partsOfName[1][0].toUpperCase();
-                } else {
-                    charOneFirstName = fullName[0].toUpperCase();
-                }
-                contactsIconsTemplate += `
-                <div style="background-color: ${backgroundColorInitials};" class="single_task_single_contact" id="">${charOneFirstName}${charOneLastName}</div>
-               `
-            }
+            for (let j = 0; j < tasks[i].assigned_to.length; j++) {          
+            contactsIconsTemplate += createContactsIconsTemplate(tasks, i, j)
+            }  
         }
     }
     return contactsIconsTemplate
+}
+
+function createContactsIconsTemplate(tasks, i, j) {
+    let iconsTemplate = ""
+    let fullName = tasks[i].assigned_to[j];
+    let charOneFirstName = "";
+    let charOneLastName = "";
+    let backgroundColorInitials = checkContactColor(fullName, allContactsForTasks); 
+    if (fullName.includes(" ")) {
+        let partsOfName = fullName.split(" ");
+        charOneFirstName = partsOfName[0][0].toUpperCase();
+        charOneLastName = partsOfName[1][0].toUpperCase();
+    } else {
+        charOneFirstName = fullName[0].toUpperCase(); 
+    }
+    iconsTemplate += `<div style="background-color: ${backgroundColorInitials};" class="single_task_single_contact" id="">${charOneFirstName}${charOneLastName}</div>`
+    return iconsTemplate
 }
 
 function checkPriorityImg(tasks, i) {

@@ -16,6 +16,7 @@ function checkTask(e) {
   }
 }
 
+// UMZUG IN EDITTASK.JS
 function openEditedTask() {
   showTask();
     checkIndexOfAllTasks(currentTaskForEdit, allTasks, allKeys);
