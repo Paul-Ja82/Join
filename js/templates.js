@@ -166,3 +166,227 @@ function returnChangingAddTask(today) {
     </div>
 `;
 }
+
+/**
+ * Returns the HTML structure for the "Add Task" form with a pre-selected process category.
+ *
+ * @param {string} selectedProcessCategory - The selected process category for the task (default: "medium" if not provided).
+ * @returns {string} The HTML string representing the form for adding a task.
+ */
+function returnAddTaskForm(selectedProcessCategory, today) {
+  /*let selectedProcessCategory = selectCat == null ? "medium" : selectCat;*/
+  return `
+  <div id="insertAddedToTaskConfirmation"></div>
+  <div class="overAllFormAddTask">
+        <div class="overheader">
+          <h2 class="titleAddTask">Add Task</h2>
+        </div>
+        <form id="formAddTasks" class="formAddTasks">
+          <div class="seperateSendButtons">
+            <div class="overInputFields">
+              <div class="fillOut">
+                <div class="overField">
+                  <label for="title"
+                    >Title<span style="color: #ff8190">*</span></label
+                  >
+                  <input
+                    type="text"
+                    id="title"
+                    class="fieldInput"
+                    placeholder="Enter a Title"
+                  />
+                  <div id="errorTitle" class="errorMessage">
+                    This field is required.
+                  </div>
+                </div>
+                <div class="overField marginTop">
+                  <label for="description">Description</label>
+                  <textarea
+                    type="text"
+                    name="description"
+                    id="description"
+                    placeholder="Enter a Description"
+                  ></textarea>
+                </div>
+                <div class="overField">
+                  <label for="inputAssignedTo">Assigned to</label>
+                  <div id="setBackground" class="overaddAssignedTo">
+                    <div class="overInputAssignedTo">
+                      <input
+                        id="inputAssignedTo"
+                        class="fieldInput inputAssignedTo"
+                        type="text"
+                        onclick="toggleContactList()"
+                        oninput="filterContacts()"
+                        placeholder="Select contacts to assign"
+                      />
+                      <div class="changeSymboles">
+                        <img
+                          id="arrowDropdown"
+                          src="assets/icons/arrowDropdown.svg"
+                          alt=""
+                          onclick="toggleContactList()"
+                        />
+                      </div>
+                    </div>
+                    <div id="insertContactList" class="listContacts"></div>
+                  </div>
+                  <div id="showPersons" class="showPersons"></div>
+                </div>
+              </div>
+              <div class="line"></div>
+              <div class="fillOut">
+                <div class="overField">
+                  <label for="date"
+                    >Due date<span style="color: #ff8190">*</span></label
+                  >
+                  <div class="dateWrapper">
+                    <input
+                      type="date"
+                      id="date"
+                      min="${today}"
+                      class="fieldInput dateInput"
+                      onchange="checkDateInput()"
+                    />
+                    <div
+                      class="dateIcon"
+                      onclick="document.getElementById('date').showPicker();"
+                    >
+                      <img
+                        src="./assets/icons/calendarIcon.svg"
+                        alt="Calendar Icon"
+                      />
+                    </div>
+                  </div>
+                  <div id="errorDate" class="errorMessage">
+                    This field is required.
+                  </div>
+                </div>
+                <div class="overField marginTop">
+                  <label>Prio</label>
+                  <div class="overPrioButtons">
+                    <button
+                      id="urgentButton"
+                      class="prioButtons"
+                      onclick="selectPrio('urgent')"
+                      type="button"
+                    >
+                      Urgent<img
+                        id="urgentButtonImg"
+                        src="assets/icons/urgent.svg"
+                        alt=""
+                      />
+                    </button>
+                    <button
+                      id="mediumButton"
+                      class="prioButtons"
+                      onclick="selectPrio('medium')"
+                      type="button"
+                    >
+                      Medium<img
+                        id="mediumButtonImg"
+                        src="assets/icons/medium.svg"
+                        alt=""
+                      />
+                    </button>
+                    <button
+                      id="lowButton"
+                      class="prioButtons"
+                      onclick="selectPrio('low')"
+                      type="button"
+                    >
+                      Low<img
+                        id="lowButtonImg"
+                        src="assets/icons/low.svg"
+                        alt=""
+                      />
+                    </button>
+                  </div>
+                </div>
+                <div class="overField">
+                  <label for="showSelectedCategory"
+                    >Category<span style="color: #ff8190">*</span></label
+                  >
+                  <div class="arrowCategory">
+                    <img
+                      id="categoryDropdown"
+                      class="categoryDropdown"
+                      src="assets/icons/arrowDropdown.svg"
+                      onclick="showMeCategorys()"
+                    />
+                  </div>
+                  <div id="costumSelect" class="costumSelect">
+                    <input
+                      type="text"
+                      id="showSelectedCategory"
+                      class="fieldInput"
+                      readonly
+                      placeholder="Select a task category"
+                      onclick="showMeCategorys()"
+                    />
+                    <div id="showCategorys" class="showCategorys d-none">
+                      <div
+                        class="categoryItem"
+                        onclick="putInput('Technical Task')"
+                      >
+                        Technical Task
+                      </div>
+                      <div
+                        class="categoryItem"
+                        onclick="putInput('User Story')"
+                      >
+                        User Story
+                      </div>
+                    </div>
+                  </div>
+                  <div id="errorCategory" class="errorMessage">
+                    This field is required.
+                  </div>
+                </div>
+                <div class="overField marginTop">
+                  <label for="subtasks">Subtasks</label>
+                  <div class="overAddSubtasks">
+                    <input
+                      type="text"
+                      id="subtasks"
+                      class="fieldInput"
+                      oninput="changeSymbols()"
+                      placeholder="Add new subtask"
+                    />
+                    <div id="symbolsSubtasks" class="changeSymboles">
+                      <img src="assets/icons/plus.svg" alt="" />
+                    </div>
+                  </div>
+                  <ul id="showSubtasks"></ul>
+                </div>
+              </div>
+            </div>
+            <div class="overFormButtons">
+              <div class="requiredInformation">
+                <span style="color: #ff8190">*</span>This field is required
+              </div>
+              <div class="setButtons">
+                <div class="overSendButtons">
+                  <button
+                    class="formButtons clearButton"
+                    type="button"
+                    onclick="reloadPage()"
+                  >
+                    Clear
+                    <div class="iconX"></div>
+                  </button>
+                  <button
+                    class="formButtons createButton"
+                    type="button"
+                    onclick="submitForm('${selectedProcessCategory}')"
+                  >
+                    Create Task <img src="assets/icons/checkWhite.svg" alt="" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+  `;
+}

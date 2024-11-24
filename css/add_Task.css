@@ -34,24 +34,19 @@
   background-color: white;
   padding: 60px 40px;
   border-radius: 20px;
-  /* width: 1200px; */
-  max-width: 1200px;
-  
   transform: translateX(200vw); /* Startpunkt außerhalb des Bildschirms */
   transition: all 225ms ease-in-out;
   z-index: 999;
   /*Ergänzung Sabrina:*/
-  max-height: 90%;
+  margin: 36px;
 }
 
 .testSabrinaAddTaskCtn {
-  
-  width: 82%;
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
   border-radius: 24px;
-  /* padding: 36px; */
-  max-height: 80%;
+  padding: 36px 60px;
+ 
 }
 
 .d-none {
@@ -67,7 +62,6 @@
   display: flex;
   position: relative;
   justify-content: space-between;
-  margin-bottom: 48px;
 }
 
 .iconImage {
@@ -109,7 +103,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 0;
+  margin-top: 40px;
 }
 
 .iconImage {
@@ -118,8 +112,6 @@
 
 .titleAddTask {
   font-weight: 700;
-  padding: 50px 0;
-  margin: 0;
 }
 .centerForm {
   align-items: center;
@@ -190,6 +182,12 @@ ul {
   width: 976px;
 }
 
+.overInputFieldsBoard {
+  height: 500px;
+  overflow: auto;
+  padding-right: 10px;
+}
+
 .fillOut {
   width: 440px;
   display: flex;
@@ -199,6 +197,11 @@ ul {
 .line {
   border: 1px solid #d1d1d1;
   height: 455px;
+}
+
+.lineBoard {
+  border: 1px solid #d1d1d1;
+
 }
 
 .overField {
@@ -301,7 +304,7 @@ textarea:focus {
 }
 
 .listContacts {
-  position: static;
+  position: absolute;
   width: 100%;
   height: 250px;
   background-color: white;
@@ -442,6 +445,11 @@ input[type="date"].filled {
   justify-content: space-between;
   gap: 8px;
   height: 60px;
+  margin-bottom: 15px;
+}
+
+.overFormButtonsBoard {
+  margin-top: 20px;
 }
 
 .formButtons {
@@ -510,7 +518,7 @@ input[type="date"].filled {
 
 .overPrioButtons {
   display: flex;
-  gap: 8px;
+  gap: 12px;
   margin-bottom: 24px;
   width: 100%;
 }
@@ -907,9 +915,13 @@ input[type="date"].filled {
 
 @media only screen and (max-width: 1375px) {
   .contentAddTaskContainer {
-margin: 0 40px;
+    margin: 0 40px;
   }
   
+  .listContacts {
+    position: static;
+  }
+
   .overInputFields {
     flex-direction: column;
     width: unset;
@@ -929,8 +941,11 @@ margin: 0 40px;
 
 
 @media only screen and (max-width: 1010px) {
+  .contentAddTaskContainer {
+    margin: 0 5px;
+  }
+  
   .overheader {
-    margin: 40px 0 0 0;
     background-color: #f6f7f8;
     position: sticky;
     top: 0;
@@ -939,8 +954,10 @@ margin: 0 40px;
     z-index: 999;
   }
 
-  h2 {
+  .titleAddTask {
     font-size: 47px;
+margin: 20px 0 10px 0;
+position: sticky;
   }
 
   .overInputFields {
@@ -1054,7 +1071,7 @@ margin: 0 40px;
 
   .requiredInformation {
     align-self: flex-start;
-    font-size: 21px;
+    font-size: 16px;
     padding-bottom: 200px;
   }
 
@@ -1078,6 +1095,10 @@ margin: 0 40px;
     top: 82px;
   }
 }
+
+
+
+
 /*das ist für die msg wenn du das handy drehst */
 @media(max-width:945px) {
 
