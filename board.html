@@ -20,8 +20,8 @@
     <script src="./js/multi-page-app.js"></script>
     <title>Board - join</title>
   </head>
-  <body id="board_body" onload="getIdAndData(pathData=''); initHeaderJs(); init(); preparingElements()" class="no_drop_area">
-    <header>
+  <body id="board_body" onload="getIdAndData(pathData=''); include().then(initHeaderJs); init(); preparingElements()" class="no_drop_area">
+     <!--<header>
       <div class="logo-header-div">
           <img class="img-logo-header" src="assets/img/j-logo-small.svg">
       </div>
@@ -46,10 +46,10 @@
             <a class="nav-a" onclick="logoutMPA()">Log out</a>
         </div>
     </div>
-</header>
-    <!-- <header id="headerContainer" class="flex-row" data-include="./header.html">
+</header>-->
+    <header id="headerContainer" class="flex-row" data-include="./header.html">
       <p>shoud be included</p>
-    </header> -->
+    </header> 
     <div id="menuContainer" data-include="./assets/templates/menu_template.html"></div>
     <!-- <div id="insertAddedToTaskConfirmation"></div> -->
     <div onclick="event.stopPropagation(); closeTask(event)" id="backgroundId" class="background d-none">

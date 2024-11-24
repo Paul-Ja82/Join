@@ -53,6 +53,7 @@ body {
   font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
 }
 
+
 .user_story {
   background-color: rgba(0, 56, 255, 1);
 }
