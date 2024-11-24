@@ -49,7 +49,6 @@ function pushFilteredTasksToArray() {
     }
 }
 
-// Funktion kürzen
 function fillTaskSections(section, tasks) {
     document.getElementById(section).innerHTML = "";
     for (let i = 0; i < tasks.length; i++) {
@@ -60,13 +59,18 @@ function fillTaskSections(section, tasks) {
         let width = calcProcessBarWidth(checkedSubtasks, subtasksLength);
         createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, width, checkedSubtasks, subtasksLength)
     }
-    let moveToShadow = document.createElement("div")
-    moveToShadow.className = "move_to_shadow";
-    moveToShadow.id = `shadow_move_to_${section}`;
+    let moveToShadow = createDragAndDropShadow(section)
     nothingTodoOrDone(tasks, section)
     document.getElementById(section).appendChild(moveToShadow)
     checkTaskCategoryColor("single_task_category")
     showSubtaskCtn()
+}
+
+function createDragAndDropShadow(section) {
+    let shadow = document.createElement("div");
+    shadow.className = "move_to_shadow";
+    shadow.id = `shadow_move_to_${section}`;
+    return shadow;
 }
 
 function checkAssignedTo(tasks, i) {
