@@ -84,34 +84,24 @@ function fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, s
   checkTaskCategoryColor("single_task_category_overlay");
 }
 
-// Funktion kürzen
 function checkAssignedToOverlay(allTasks, keyToOpen) {
-    let contactsTemplate = "";
-    if (allTasks[keyToOpen].assigned_to == 'nobody') {
-        contactsTemplate = "";
-    } else {
-        for (let j = 0; j < allTasks[keyToOpen].assigned_to.length; j++) {          
-          let fullName = allTasks[keyToOpen].assigned_to[j];
-        
-          // if (fullName.includes(" ")) {
-          // let partsOfName = fullName.split(" ");
-          // charOneFirstName = partsOfName[0][0].toUpperCase();
-          // charOneLastName = partsOfName[1][0].toUpperCase();
-          // } else {
-          //     charOneFirstName = fullName[0].toUpperCase();
-          // }
-          let initials = checkInitials(fullName)
-            let currentUser = checkCurrentUser(currentUserLoggedIn, fullName);
-            let backgroundColorInitials = checkContactColor(fullName, allContactsForTasks);
-            contactsTemplate += `
-                <div class="single_task_single_contact">
-                    <div style="background-color: ${backgroundColorInitials}" class="task_contact_name_icon">${initials}</div>
-                    <div class="task_contact_name">${fullName} ${currentUser}</div>
-                </div>
-            `
-        }
+  let contactsTemplate = "";
+  if (allTasks[keyToOpen].assigned_to == 'nobody') {
+      contactsTemplate = "";
+  } else {
+    for (let j = 0; j < allTasks[keyToOpen].assigned_to.length; j++) {          
+      let fullName = allTasks[keyToOpen].assigned_to[j];
+      let initials = checkInitials(fullName);
+      let currentUser = checkCurrentUser(currentUserLoggedIn, fullName);
+      let backgroundColorInitials = checkContactColor(fullName, allContactsForTasks);
+      contactsTemplate += `
+        <div class="single_task_single_contact">
+            <div style="background-color: ${backgroundColorInitials}" class="task_contact_name_icon">${initials}</div>
+            <div class="task_contact_name">${fullName} ${currentUser}</div>
+        </div>`
     }
-    return contactsTemplate
+  }
+  return contactsTemplate
 } 
 
 function checkInitials(fullName) {
