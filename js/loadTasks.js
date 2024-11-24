@@ -26,25 +26,6 @@ async function collectDataFromAddTask(currentStatus, selectedContacts) {
     return id
 }
 
-// async function collectDataFromChangingAddTask() {
-//    console.log(currentKeyToOpen);
-   
-//     let taskData = {
-//         "assigned_to" : "",
-//         "category" : document.getElementById("showSelectedCategory").value,
-//         "description" : document.getElementById("description").value,
-//         "due_date" : document.getElementById("date").value,
-//         "priority" : selectedPrio == null ? "medium" : selectedPrio,
-//         "subtasks" : subtasks,
-//         "title" : document.getElementById("title").value,
-//         "currentStatus" : currentStatusofChangingTask,
-//         "single_ID" : currentTaskForEdit,
-//     }
-//     await putChangeInTask(path=`${currentKeyToOpen}`, taskData);
-//     await getIdAndData(pathData='');
-//     openEditedTask();
-// }
-
 async function collectDataFromChangingAddTask() {
    console.log(currentKeyToOpen);
    
@@ -63,7 +44,6 @@ async function collectDataFromChangingAddTask() {
     await getIdAndData(pathData='');
     openEditedTask();
 }
-
 
 async function getIdAndDataForAddTask(pathData='') {
     let responseData = await fetch(firebase_URL + pathData + ".json");
@@ -117,7 +97,6 @@ async function putNewSection(path="", data={}) {
         body: JSON.stringify(data)
     });
     let responseToJson = await response.json();
-    // console.log(responseToJson);
 }
 
 async function putChangeInTask(path="", data={}) {
@@ -129,7 +108,6 @@ async function putChangeInTask(path="", data={}) {
         body: JSON.stringify(data)
     });
     let responseToJson = await response.json();
-    // console.log(responseToJson);
 }
 
 async function putNewCheckedStatus(path="", data={}) {
@@ -143,7 +121,7 @@ async function putNewCheckedStatus(path="", data={}) {
     let responseToJson = await response.json();
 }
 
-async function getTaskForEdit(pathData='') {   //Daten holen ohne weitere Aktivitäten im Board
+async function getTaskForEdit(pathData='') {
     let responseData = await fetch(firebase_URL + pathData + ".json");
     let responseDataToJson = await responseData.json();
     console.log(responseDataToJson);
