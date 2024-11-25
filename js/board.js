@@ -528,7 +528,7 @@ function renderFormAddTask(selectedProcessCategory, today) {
   <form id="formAddTasks" class="formAddTasks">
       <div class="seperateSendButtons"><div class="titleSectionAddTask"><h2 class="titleAddTask">Add Task</h2><div class="iconImage"><img onclick="closeDialog()" src="assets/icons/close.svg"></div></div>
         <div class="overInputFieldsBoard">
-          <div class="fillOut">
+          <div class="fillOutBoard">
             <div class="overField">
               <label for="title"
                 >Title<span style="color: #ff8190">*</span></label
@@ -579,7 +579,7 @@ function renderFormAddTask(selectedProcessCategory, today) {
             </div>
           </div>
           <div class="lineBoard"></div>
-          <div class="fillOut">
+          <div class="fillOutBoard">
             <div class="overField">
               <label for="date"
                 >Due date<span style="color: #ff8190">*</span></label
@@ -700,7 +700,7 @@ function renderFormAddTask(selectedProcessCategory, today) {
             <span style="color: #ff8190">*</span>This field is required
           </div>
           <div class="setButtons">
-            <div class="overSendButtons">
+            <div class="overSendButtonsBoard">
               <button
                 class="formButtons clearButton"
                 type="button"

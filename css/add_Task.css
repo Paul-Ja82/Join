@@ -183,12 +183,21 @@ ul {
 }
 
 .overInputFieldsBoard {
-  height: 500px;
-  overflow: auto;
-  padding-right: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 120px;
+  gap: 5%;
+  
 }
 
 .fillOut {
+  width: 440px;
+  display: flex;
+  flex-direction: column;
+}
+
+.fillOutBoard {
   width: 440px;
   display: flex;
   flex-direction: column;
@@ -450,6 +459,9 @@ input[type="date"].filled {
 
 .overFormButtonsBoard {
   margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .formButtons {
@@ -732,6 +744,13 @@ input[type="date"].filled {
   gap: 8px;
 }
 
+.overSendButtonsBoard {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
 .errorMessage {
   position: absolute;
   top: 90px;
@@ -967,12 +986,23 @@ position: sticky;
     margin: 0;
   }
 
+.overInputFieldsBoard {
+  flex-direction: column;
+  height: 500px;
+  overflow: auto;
+  padding-right: 10px;
+}
+
   .overField {
     display: flex;
     justify-content: center;
   }
 
   .fillOut {
+    width: auto;
+  }
+
+  .fillOutBoard {
     width: auto;
   }
 
