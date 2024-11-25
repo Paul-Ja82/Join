@@ -46,12 +46,36 @@ function getRandomColorHexComponent() {
     }
 }
 
+function getColorHexComponent(number) {
+    let comp = parseInt(number).toString(16);
+    console.log(comp); ///DEBUG
+    if (comp.length == 2)
+        return comp;
+    else {
+        return '0' + comp;
+    }
+}
+
 function isColorLight(colorHex) {
     let r = parseInt(colorHex.substring(1, 3), 16);
     let g = parseInt(colorHex.substring(3, 5), 16);
     let b = parseInt(colorHex.substring(5, 7), 16);
     let luminance = 0.299 * r + 0.587 * g + 0.114 * b;
     return luminance >= 128;
+}
+
+function rgbToHex(r, g, b) {
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
+
+function rgbStringToHex(rgbString) {
+    let rgbStringMod= rgbString.split('(')[1];
+    rgbStringMod= rgbStringMod.split(')')[0];
+    rgbStringMod= rgbStringMod.split(','); 
+    let rComp= getColorHexComponent(rgbStringMod[0]);
+    let gComp= getColorHexComponent(rgbStringMod[1]);
+    let bComp= getColorHexComponent(rgbStringMod[2]);
+    return '#' + rComp + gComp + bComp;
 }
 
 /*###################*/

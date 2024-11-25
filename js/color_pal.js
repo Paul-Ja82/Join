@@ -11,8 +11,11 @@ function closeColorPal(e) {
 
 function chooseColorForContact(e) {
     e.stopPropagation();
-    colorForContact = window.getComputedStyle(e.target).backgroundColor;
-    document.getElementById("cdPersonIcon").style.backgroundColor = `${colorForContact}`;
+    let rgbString= window.getComputedStyle(e.target).backgroundColor;
+    colorForContact = rgbStringToHex(rgbString);
+    let cdPersonIcon= document.getElementById("cdPersonIcon");
+    cdPersonIcon.style.backgroundColor = `${colorForContact}`;
+    cdPersonIcon.style.color = isColorLight(colorForContact) ? 'black' : 'white';
     closeColorPal(event)
     return colorForContact
 }
