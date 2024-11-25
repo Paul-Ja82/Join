@@ -89,11 +89,11 @@ function closeDialog() {
 function renderFormAddTask(selectedProcessCategory, today) {
     // console.log(selectedProcessCategory);
     return `
-    <div class="overAllFormAddTask">
+    <div class="overAllFormAddTaskBoard">
     <form id="formAddTasks" class="formAddTasks">
         <div class="seperateSendButtons"><div class="titleSectionAddTask"><h2 class="titleAddTask">Add Task</h2><div class="iconImage"><img onclick="closeDialog()" src="assets/icons/close.svg"></div></div>
-          <div class="overInputFields">
-            <div class="fillOut">
+          <div class="overInputFieldsBoard">
+            <div class="fillOutBoard">
               <div class="overField">
                 <label for="title"
                   >Title<span style="color: #ff8190">*</span></label
@@ -143,8 +143,8 @@ function renderFormAddTask(selectedProcessCategory, today) {
                 <div id="showPersons" class="showPersons"></div>
               </div>
             </div>
-            <div class="line"></div>
-            <div class="fillOut">
+            <div class="lineBoard"></div>
+            <div class="fillOutBoard">
               <div class="overField">
                 <label for="date"
                   >Due date<span style="color: #ff8190">*</span></label
@@ -173,10 +173,10 @@ function renderFormAddTask(selectedProcessCategory, today) {
               </div>
               <div class="overField marginTop">
                 <label>Prio</label>
-                <div class="overPrioButtons">
+                <div class="overPrioButtonsBoard">
                   <button
                     id="urgentButton"
-                    class="prioButtons"
+                    class="prioButtonsBoard"
                     onclick="selectPrio('urgent')"
                     type="button"
                   >
@@ -188,7 +188,7 @@ function renderFormAddTask(selectedProcessCategory, today) {
                   </button>
                   <button
                     id="mediumButton"
-                    class="prioButtons"
+                    class="prioButtonsBoard"
                     onclick="selectPrio('medium')"
                     type="button"
                   >
@@ -200,7 +200,7 @@ function renderFormAddTask(selectedProcessCategory, today) {
                   </button>
                   <button
                     id="lowButton"
-                    class="prioButtons"
+                    class="prioButtonsBoard"
                     onclick="selectPrio('low')"
                     type="button"
                   >
@@ -260,12 +260,12 @@ function renderFormAddTask(selectedProcessCategory, today) {
               </div>
             </div>
           </div>
-          <div class="overFormButtons">
-            <div class="requiredInformation">
+          <div class="overFormButtonsBoard">
+            <div class="requiredInformationBoard">
               <span style="color: #ff8190">*</span>This field is required
             </div>
             <div class="setButtons">
-              <div class="overSendButtons">
+              <div class="overSendButtonsBoard">
                 <button
                   class="formButtons clearButton"
                   type="button"
