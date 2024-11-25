@@ -225,7 +225,6 @@ async function addContact() {
     let newId = await getId();
     // let colorHex = getRandomColorHex();
     let colorHex = colorForContact;
-    console.log(colorHex); ///DEBUG
     let nameInput= document.getElementById('nameInputElem').value;
     let emailInput= document.getElementById('emailInputElem').value;
     let phoneInput= document.getElementById('phoneInputElem').value;
@@ -237,7 +236,6 @@ async function addContact() {
         color: colorHex
     };
     let path= CONTACTS_PATH + newContact.id;
-    console.log(path); ///DEBUG
     saveData(path, newContact);
     contacts.push(newContact);
     //TODO Show Toast
@@ -341,11 +339,11 @@ function setPersonIconEdit() {
 function setFormEdit() {
     setInputsEdit();
     setButtonsEdit();
-    // removeValidation('contactForm', validateContactExisting);
     removeValidation('contactForm', isEmailAvailable);
     removeSubmitHandler('contactForm', addContact);
     removeSubmitHandler('contactForm', submitHandlerEdit);
     addSubmitHandler('contactForm', submitHandlerEdit);
+    isFormValidBuiltIn('contactForm');
 }
 
 function setInputsEdit() {
@@ -379,7 +377,7 @@ async function editContact() {
     let phoneInput= document.getElementById('phoneInputElem').value;
     contact.name = nameInput;
     contact.phone = phoneInput;
-    // TODO set color
+    contact.color = colorForContact;
     saveData(path, contact);
 }
 
@@ -395,7 +393,6 @@ function deleteButtonHandler() {
 }
 
 async function deleteContact(contactId) {
-    console.warn('deleteContact(..)'); ///DEBUG
     let contact= await getContactById(contactId);
     let index= contacts.indexOf(contact);
     let path= CONTACTS_PATH + contact.id;
