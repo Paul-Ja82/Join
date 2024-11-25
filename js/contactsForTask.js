@@ -1,14 +1,13 @@
 let filteredContactsForTasks = []
 
 /**
- * Filters out null values from the given list of contacts and appends the filtered contact list to the DOM.
- * 
- * @param {Array} allContactsForTasks - The array containing all contacts for tasks, which may include null values.
- * @returns {Array} filteredContactsForTasks - The filtered array containing only non-null contacts.
+ * Filters out null values from the provided contacts and appends a generated contact list template to the DOM.
+ *
+ * @param {Object} allContactsForTasks - An object containing all contacts, where each contact is associated with a task.
+ * @returns {Array} filteredContactsForTasks - An array of contacts excluding null values.
  */
 function checkContacts(allContactsForTasks) {
     const contactsArray = Object.values(allContactsForTasks);
-    
     filteredContactsForTasks = [];
     for (let i = 0; i < contactsArray.length; i++) {
         if (contactsArray[i] !== null) {

@@ -50,38 +50,41 @@ function init(params) {
  * 
  * @param {string} selectedProcessCategory - The category for the process that is pre-selected in the add-task form.
  */
-async function showDialog(selectedProcessCategory) {
-  if (window.innerWidth < 400) {
-    window.open("add_task.html", "_self");
-  } else {
-    document.getElementById("backgroundId").classList.remove("d-none");
-    setTimeout(() => {
-      document.getElementById("dialogBox").classList.add("showIt");
-      document.getElementById("dialogBox").classList.add("testSabrinaAddTaskCtn");
-    }, 10);
-    let today = new Date().toISOString().split('T')[0];
-    document.getElementById("dialogBox").innerHTML = renderFormAddTask(selectedProcessCategory, today);
-    selectPrio("medium");
-    await getIdAndDataForAddTask((pathData = ""));
-    const contactList = document.getElementById("insertContactList");
-    contactList.classList.add("d-none");
-  }
-}
+// async function showDialog(selectedProcessCategory) {
+//   if (window.innerWidth < 400) {
+//     window.open("add_task.html", "_self");
+//   } else {
+//     document.getElementById("backgroundId").classList.remove("d-none");
+//     setTimeout(() => {
+//       document.getElementById("dialogBox").classList.add("showIt");
+//       document.getElementById("dialogBox").classList.add("testSabrinaAddTaskCtn");
+//     }, 10);
+//     let today = new Date().toISOString().split('T')[0];
+//     document.getElementById("dialogBox").innerHTML = renderFormAddTask(selectedProcessCategory, today);
+//     selectPrio("medium");
+//     await getIdAndDataForAddTask((pathData = ""));
+//     const contactList = document.getElementById("insertContactList");
+//     contactList.classList.add("d-none");
+//   }
+// }
+
+
 
 // UMZUG IN OPENCLOSEOVERLAY.JS
 /**
  * Displays a task dialog by removing the background's hidden class, adjusting styles, and adding an animation class.
  * The dialog content is cleared and background color reset during this process.
  */
-function showTask() {
-  document.getElementById("backgroundId").classList.remove("d-none");
-  document.getElementById("dialogBox").style.backgroundColor = "unset";
-  setTimeout(() => {
-    document.getElementById("dialogBox").classList.add("showIt");
-  }, 10);
+// function showTask() {
+//   document.getElementById("backgroundId").classList.remove("d-none");
+//   document.getElementById("dialogBox").style.backgroundColor = "unset";
+//   setTimeout(() => {
+//     document.getElementById("dialogBox").classList.add("showIt");
+//   }, 10);
 
-  document.getElementById("dialogBox").innerHTML = "";
-}
+//   document.getElementById("dialogBox").innerHTML = "";
+// }
+
 
 // UMZUG IN OPENCLOSEOVERLAY.JS
 /**
@@ -89,30 +92,34 @@ function showTask() {
  * 
  * @param {Event} e - The event object passed from the calling action (not utilized in this function).
  */
-function closeTask(e) {
-  // e.stopPropagation()
+// function closeTask(e) {
+//   // e.stopPropagation()
 
-  // if (document.getElementById("insertContactList").classList.contains("d-none")) {
-  //   closeContactList()
-  //   isListOpen = !isListOpen;
-  // } 
-  document.getElementById("dialogBox").style.transition = "all 225ms ease-in-out";
-  document.getElementById("dialogBox").classList.remove("showIt");
-  setTimeout(() => {
-    document.getElementById("backgroundId").classList.add("d-none");
-    document.getElementById("dialogBox").style.backgroundColor = "white";
-  }, 225);
-}
+//   // if (document.getElementById("insertContactList").classList.contains("d-none")) {
+//   //   closeContactList()
+//   //   isListOpen = !isListOpen;
+//   // } 
+//   document.getElementById("dialogBox").style.transition = "all 225ms ease-in-out";
+//   document.getElementById("dialogBox").classList.remove("showIt");
+//   setTimeout(() => {
+//     document.getElementById("backgroundId").classList.add("d-none");
+//     document.getElementById("dialogBox").style.backgroundColor = "white";
+//   }, 225);
+// }
+
 // UMZUG IN OPENCLOSEOVERLAY.JS
 /**
  * Closes the dialog box by removing the animation class and hides the background after a delay.
  */
-function closeDialog() {
-  document.getElementById("dialogBox").classList.remove("showIt");
-  setTimeout(() => {
-    document.getElementById("backgroundId").classList.add("d-none");
-  }, 225);
-}
+// function closeDialog() {
+//   document.getElementById("dialogBox").classList.remove("showIt");
+//   setTimeout(() => {
+//     document.getElementById("backgroundId").classList.add("d-none");
+//   }, 225);
+// }
+
+
+
 
 /**
  * Prepares specific elements by adding classes and IDs to the flying element, and sets up event listeners for input focus and blur actions.
@@ -515,211 +522,211 @@ function closeChangeTaskValues() {
 }
 
 //UMZUG IN OPENCLOSEOVERLAY.JS ODER ADD_TASK.JS
-/** 
- * Renders the HTML form for adding a task based on the selected process category.
- * 
- * @param {string} selectedProcessCategory - The category selected for the task, used to customize the form.
- * @returns {string} The HTML string for the add-task form, ready to be inserted into the DOM.
- */
-function renderFormAddTask(selectedProcessCategory, today) {
-  // console.log(selectedProcessCategory);
-  return `
-  <div class="overAllFormAddTask">
-  <form id="formAddTasks" class="formAddTasks">
-      <div class="seperateSendButtons"><div class="titleSectionAddTask"><h2 class="titleAddTask">Add Task</h2><div class="iconImage"><img onclick="closeDialog()" src="assets/icons/close.svg"></div></div>
-        <div class="overInputFields">
-          <div class="fillOut">
-            <div class="overField">
-              <label for="title"
-                >Title<span style="color: #ff8190">*</span></label
-              >
-              <input
-                type="text"
-                id="title"
-                class="fieldInput"
-                placeholder="Enter a Title"
-              />
-              <div id="errorTitle" class="errorMessage">
-                This field is required.
-              </div>
-            </div>
-            <div class="overField marginTop">
-              <label for="description">Description</label>
-              <textarea
-                type="text"
-                name="description"
-                id="description"
-                placeholder="Enter a Description"
-              ></textarea>
-            </div>
-            <div class="overField">
-              <label for="inputAssignedTo">Assigned to</label>
-              <div id="setBackground" class="overaddAssignedTo">
-                <div class="overInputAssignedTo">
-                  <input
-                    id="inputAssignedTo"
-                    class="fieldInput inputAssignedTo"
-                    type="text"
-                    onclick="toggleContactList()"
-                    oninput="filterContacts()"
-                    placeholder="Select contacts to assign"
-                  />
-                  <div class="changeSymboles">
-                    <img
-                      id="arrowDropdown"
-                      src="./assets/icons/arrowDropdown.svg"
-                      alt=""
-                      onclick="toggleContactList()"
-                    />
-                  </div>
-                </div>
-                <div id="insertContactList" class="listContacts"></div>
-              </div>
-              <div id="showPersons" class="showPersons"></div>
-            </div>
-          </div>
-          <div class="line"></div>
-          <div class="fillOut">
-            <div class="overField">
-              <label for="date"
-                >Due date<span style="color: #ff8190">*</span></label
-              >
-              <div class="dateWrapper">
-                <input
-                  type="date"
-                  id="date"
-                  min="${today}"
-                  class="fieldInput dateInput"
-                  onchange="checkDateInput()"
-                />
-                <div
-                  class="dateIcon"
-                  onclick="document.getElementById('date').showPicker();"
-                >
-                  <img
-                    src="./assets/icons/calendarIcon.svg"
-                    alt="Calendar Icon"
-                  />
-                </div>
-              </div>
-              <div id="errorDate" class="errorMessage">
-                This field is required.
-              </div>
-            </div>
-            <div class="overField marginTop">
-              <label>Prio</label>
-              <div class="overPrioButtons">
-                <button
-                  id="urgentButton"
-                  class="prioButtons"
-                  onclick="selectPrio('urgent')"
-                  type="button"
-                >
-                  Urgent<img
-                    id="urgentButtonImg"
-                    src="assets/icons/urgent.svg"
-                    alt=""
-                  />
-                </button>
-                <button
-                  id="mediumButton"
-                  class="prioButtons"
-                  onclick="selectPrio('medium')"
-                  type="button"
-                >
-                  Medium<img
-                    id="mediumButtonImg"
-                    src="assets/icons/medium.svg"
-                    alt=""
-                  />
-                </button>
-                <button
-                  id="lowButton"
-                  class="prioButtons"
-                  onclick="selectPrio('low')"
-                  type="button"
-                >
-                  Low<img id="lowButtonImg" src="assets/icons/low.svg" alt="" />
-                </button>
-              </div>
-            </div>
-            <div class="overField">
-              <label for="showSelectedCategory"
-                >Category<span style="color: #ff8190">*</span></label
-              >
-              <div class="arrowCategory">
-                <img
-                  id="categoryDropdown"
-                  class="categoryDropdown"
-                  src="assets/icons/arrowDropdown.svg"
-                  onclick="showMeCategorys()"
-                />
-              </div>
-              <div id="costumSelect" class="costumSelect">
-                <input
-                  type="text"
-                  id="showSelectedCategory"
-                  class="fieldInput"
-                  readonly
-                  placeholder="Select a task category"
-                  onclick="showMeCategorys()"
-                />
-                <div id="showCategorys" class="showCategorys d-none">
-                  <div class="categoryItem" onclick="putInput('Technical Task')">
-                    Technical Task
-                  </div>
-                  <div class="categoryItem" onclick="putInput('User Story')">
-                    User Story
-                  </div>
-                </div>
-              </div>
-              <div id="errorCategory" class="errorMessage">
-                This field is required.
-              </div>
-            </div>
-            <div class="overField marginTop">
-              <label for="subtasks">Subtasks</label>
-              <div class="overAddSubtasks">
-                <input
-                  type="text"
-                  id="subtasks"
-                  class="fieldInput"
-                  oninput="changeSymbols()"
-                  placeholder="Add new subtask"
-                />
-                <div id="symbolsSubtasks" class="changeSymboles">
-                  <img src="assets/icons/plus.svg" alt="" />
-                </div>
-              </div>
-              <ul id="showSubtasks"></ul>
-            </div>
-          </div>
-        </div>
-        <div class="overFormButtons">
-          <div class="requiredInformation">
-            <span style="color: #ff8190">*</span>This field is required
-          </div>
-          <div class="setButtons">
-            <div class="overSendButtons">
-              <button
-                class="formButtons clearButton"
-                type="button"
-                onclick="reloadPage()"
-              >
-                Clear
-                <div class="iconX"></div>
-              </button>
-              <button
-                class="formButtons createButton"
-                type="button"
-                onclick="submitForm('${selectedProcessCategory}')"
-              >
-                Create Task <img src="assets/icons/checkWhite.svg" alt="" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </form>
-    </div>`;
-}
+// /** 
+//  * Renders the HTML form for adding a task based on the selected process category.
+//  * 
+//  * @param {string} selectedProcessCategory - The category selected for the task, used to customize the form.
+//  * @returns {string} The HTML string for the add-task form, ready to be inserted into the DOM.
+//  */
+// function renderFormAddTask(selectedProcessCategory, today) {
+//   // console.log(selectedProcessCategory);
+//   return `
+//   <div class="overAllFormAddTask">
+//   <form id="formAddTasks" class="formAddTasks">
+//       <div class="seperateSendButtons"><div class="titleSectionAddTask"><h2 class="titleAddTask">Add Task</h2><div class="iconImage"><img onclick="closeDialog()" src="assets/icons/close.svg"></div></div>
+//         <div class="overInputFields">
+//           <div class="fillOut">
+//             <div class="overField">
+//               <label for="title"
+//                 >Title<span style="color: #ff8190">*</span></label
+//               >
+//               <input
+//                 type="text"
+//                 id="title"
+//                 class="fieldInput"
+//                 placeholder="Enter a Title"
+//               />
+//               <div id="errorTitle" class="errorMessage">
+//                 This field is required.
+//               </div>
+//             </div>
+//             <div class="overField marginTop">
+//               <label for="description">Description</label>
+//               <textarea
+//                 type="text"
+//                 name="description"
+//                 id="description"
+//                 placeholder="Enter a Description"
+//               ></textarea>
+//             </div>
+//             <div class="overField">
+//               <label for="inputAssignedTo">Assigned to</label>
+//               <div id="setBackground" class="overaddAssignedTo">
+//                 <div class="overInputAssignedTo">
+//                   <input
+//                     id="inputAssignedTo"
+//                     class="fieldInput inputAssignedTo"
+//                     type="text"
+//                     onclick="toggleContactList()"
+//                     oninput="filterContacts()"
+//                     placeholder="Select contacts to assign"
+//                   />
+//                   <div class="changeSymboles">
+//                     <img
+//                       id="arrowDropdown"
+//                       src="./assets/icons/arrowDropdown.svg"
+//                       alt=""
+//                       onclick="toggleContactList()"
+//                     />
+//                   </div>
+//                 </div>
+//                 <div id="insertContactList" class="listContacts"></div>
+//               </div>
+//               <div id="showPersons" class="showPersons"></div>
+//             </div>
+//           </div>
+//           <div class="line"></div>
+//           <div class="fillOut">
+//             <div class="overField">
+//               <label for="date"
+//                 >Due date<span style="color: #ff8190">*</span></label
+//               >
+//               <div class="dateWrapper">
+//                 <input
+//                   type="date"
+//                   id="date"
+//                   min="${today}"
+//                   class="fieldInput dateInput"
+//                   onchange="checkDateInput()"
+//                 />
+//                 <div
+//                   class="dateIcon"
+//                   onclick="document.getElementById('date').showPicker();"
+//                 >
+//                   <img
+//                     src="./assets/icons/calendarIcon.svg"
+//                     alt="Calendar Icon"
+//                   />
+//                 </div>
+//               </div>
+//               <div id="errorDate" class="errorMessage">
+//                 This field is required.
+//               </div>
+//             </div>
+//             <div class="overField marginTop">
+//               <label>Prio</label>
+//               <div class="overPrioButtons">
+//                 <button
+//                   id="urgentButton"
+//                   class="prioButtons"
+//                   onclick="selectPrio('urgent')"
+//                   type="button"
+//                 >
+//                   Urgent<img
+//                     id="urgentButtonImg"
+//                     src="assets/icons/urgent.svg"
+//                     alt=""
+//                   />
+//                 </button>
+//                 <button
+//                   id="mediumButton"
+//                   class="prioButtons"
+//                   onclick="selectPrio('medium')"
+//                   type="button"
+//                 >
+//                   Medium<img
+//                     id="mediumButtonImg"
+//                     src="assets/icons/medium.svg"
+//                     alt=""
+//                   />
+//                 </button>
+//                 <button
+//                   id="lowButton"
+//                   class="prioButtons"
+//                   onclick="selectPrio('low')"
+//                   type="button"
+//                 >
+//                   Low<img id="lowButtonImg" src="assets/icons/low.svg" alt="" />
+//                 </button>
+//               </div>
+//             </div>
+//             <div class="overField">
+//               <label for="showSelectedCategory"
+//                 >Category<span style="color: #ff8190">*</span></label
+//               >
+//               <div class="arrowCategory">
+//                 <img
+//                   id="categoryDropdown"
+//                   class="categoryDropdown"
+//                   src="assets/icons/arrowDropdown.svg"
+//                   onclick="showMeCategorys()"
+//                 />
+//               </div>
+//               <div id="costumSelect" class="costumSelect">
+//                 <input
+//                   type="text"
+//                   id="showSelectedCategory"
+//                   class="fieldInput"
+//                   readonly
+//                   placeholder="Select a task category"
+//                   onclick="showMeCategorys()"
+//                 />
+//                 <div id="showCategorys" class="showCategorys d-none">
+//                   <div class="categoryItem" onclick="putInput('Technical Task')">
+//                     Technical Task
+//                   </div>
+//                   <div class="categoryItem" onclick="putInput('User Story')">
+//                     User Story
+//                   </div>
+//                 </div>
+//               </div>
+//               <div id="errorCategory" class="errorMessage">
+//                 This field is required.
+//               </div>
+//             </div>
+//             <div class="overField marginTop">
+//               <label for="subtasks">Subtasks</label>
+//               <div class="overAddSubtasks">
+//                 <input
+//                   type="text"
+//                   id="subtasks"
+//                   class="fieldInput"
+//                   oninput="changeSymbols()"
+//                   placeholder="Add new subtask"
+//                 />
+//                 <div id="symbolsSubtasks" class="changeSymboles">
+//                   <img src="assets/icons/plus.svg" alt="" />
+//                 </div>
+//               </div>
+//               <ul id="showSubtasks"></ul>
+//             </div>
+//           </div>
+//         </div>
+//         <div class="overFormButtons">
+//           <div class="requiredInformation">
+//             <span style="color: #ff8190">*</span>This field is required
+//           </div>
+//           <div class="setButtons">
+//             <div class="overSendButtons">
+//               <button
+//                 class="formButtons clearButton"
+//                 type="button"
+//                 onclick="reloadPage()"
+//               >
+//                 Clear
+//                 <div class="iconX"></div>
+//               </button>
+//               <button
+//                 class="formButtons createButton"
+//                 type="button"
+//                 onclick="submitForm('${selectedProcessCategory}')"
+//               >
+//                 Create Task <img src="assets/icons/checkWhite.svg" alt="" />
+//               </button>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </form>
+//     </div>`;
+// }
