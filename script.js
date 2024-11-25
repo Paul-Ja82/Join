@@ -9,7 +9,7 @@ let currentUser;
 async function initJoin() {
   initMPA();
   initDialog();
-  await loadCurrentUser();
+  // await loadCurrentUser();
   await loadContacts();
 }
 
