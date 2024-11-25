@@ -17,10 +17,10 @@ function checkTask(e) {
 }
 
 // UMZUG IN EDITTASK.JS
-function openEditedTask() {
-  showTask();
-    checkIndexOfAllTasks(currentTaskForEdit, allTasks, allKeys);
-}
+// function openEditedTask() {
+//   showTask();
+//     checkIndexOfAllTasks(currentTaskForEdit, allTasks, allKeys);
+// }
 
 function fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, subTasks) {
   document.getElementById(`dialogBox`).innerHTML = `
@@ -221,46 +221,46 @@ function checkIndexOfAllTasks(clickedSingleID, allTasks, allKeys) {
 }
 
 // UMZUG IN OPENCLOSEOVERLAY.JS ODER ADDTASK/EDITTASK
-function returnChangeAddTask() {
-  let keyToOpen;
-  console.log(currentTaskForEdit);
-  console.log(allTasks);
-  for (let i = 0; i < allKeys.length; i++) {
-    let key = allKeys[i];
-    if (allTasks[key].single_ID == currentTaskForEdit) {
-      keyToOpen = allKeys[i];
-    }
-  }
-  let assignedToContacts = checkAssignedToOverlay(allTasks, keyToOpen);
-  let priorityImg = checkPriorityImg(allTasks, keyToOpen);
-  let subTasks = checkSubtasksOverlay(allTasks, keyToOpen);
-  currentKeyToOpen = keyToOpen;
-  fillOutInputChangeAddTask(allTasks, keyToOpen, priorityImg, assignedToContacts, subTasks);
-}
+// function returnChangeAddTask() {
+//   let keyToOpen;
+//   console.log(currentTaskForEdit);
+//   console.log(allTasks);
+//   for (let i = 0; i < allKeys.length; i++) {
+//     let key = allKeys[i];
+//     if (allTasks[key].single_ID == currentTaskForEdit) {
+//       keyToOpen = allKeys[i];
+//     }
+//   }
+//   let assignedToContacts = checkAssignedToOverlay(allTasks, keyToOpen);
+//   let priorityImg = checkPriorityImg(allTasks, keyToOpen);
+//   let subTasks = checkSubtasksOverlay(allTasks, keyToOpen);
+//   currentKeyToOpen = keyToOpen;
+//   fillOutInputChangeAddTask(allTasks, keyToOpen, priorityImg, assignedToContacts, subTasks);
+// }
 
 // UMZUG IN OPENCLOSEOVERLAY.JS ODER ADDTASK/EDITTASK
-function fillOutInputChangeAddTask(allTasks, keyToOpen, priorityImg, assignedToContacts, subTasks) {
-  document.getElementById("title").value = allTasks[keyToOpen].title;
-  document.getElementById("description").value = allTasks[keyToOpen].description;
-  document.getElementById("date").value = allTasks[keyToOpen].due_date;
-  selectPrio(`${allTasks[keyToOpen].priority}`);
-  selectedPrio = allTasks[keyToOpen].priority;
-  document.getElementById("showSelectedCategory").value = allTasks[keyToOpen].category;
-  currentStatusofChangingTask = allTasks[keyToOpen].currentStatus;
-  document.getElementById("date").style.color = "black";
-  getSubtasksChangeTaskAdded(keyToOpen, allTasks);
-}
+// function fillOutInputChangeAddTask(allTasks, keyToOpen, priorityImg, assignedToContacts, subTasks) {
+//   document.getElementById("title").value = allTasks[keyToOpen].title;
+//   document.getElementById("description").value = allTasks[keyToOpen].description;
+//   document.getElementById("date").value = allTasks[keyToOpen].due_date;
+//   selectPrio(`${allTasks[keyToOpen].priority}`);
+//   selectedPrio = allTasks[keyToOpen].priority;
+//   document.getElementById("showSelectedCategory").value = allTasks[keyToOpen].category;
+//   currentStatusofChangingTask = allTasks[keyToOpen].currentStatus;
+//   document.getElementById("date").style.color = "black";
+//   getSubtasksChangeTaskAdded(keyToOpen, allTasks);
+// }
 
 // UMZUG IN OPENCLOSEOVERLAY.JS ODER ADDTASK/EDITTASK
-function getSubtasksChangeTaskAdded(keyToOpen, allTasks) {
- subtasks = [];
-  if (allTasks[keyToOpen].subtasks) {
-   for (let index = 0; index < allTasks[keyToOpen].subtasks.length; index++) {
-    subtasks.push(allTasks[keyToOpen].subtasks[index]);
-  }
-  renderSubtasks();
-  }
-}
+// function getSubtasksChangeTaskAdded(keyToOpen, allTasks) {
+//  subtasks = [];
+//   if (allTasks[keyToOpen].subtasks) {
+//    for (let index = 0; index < allTasks[keyToOpen].subtasks.length; index++) {
+//     subtasks.push(allTasks[keyToOpen].subtasks[index]);
+//   }
+//   renderSubtasks();
+//   }
+// }
 
 async function deleteTask(e, keyToDelete) {
   e.stopPropagation();

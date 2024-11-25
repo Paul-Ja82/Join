@@ -1,3 +1,47 @@
+function openEditedTask() {
+    showTask();
+      checkIndexOfAllTasks(currentTaskForEdit, allTasks, allKeys);
+}
+
+function returnChangeAddTask() {
+    let keyToOpen;
+    console.log(currentTaskForEdit);
+    console.log(allTasks);
+    for (let i = 0; i < allKeys.length; i++) {
+      let key = allKeys[i];
+      if (allTasks[key].single_ID == currentTaskForEdit) {
+        keyToOpen = allKeys[i];
+      }
+    }
+    let assignedToContacts = checkAssignedToOverlay(allTasks, keyToOpen);
+    let priorityImg = checkPriorityImg(allTasks, keyToOpen);
+    let subTasks = checkSubtasksOverlay(allTasks, keyToOpen);
+    currentKeyToOpen = keyToOpen;
+    fillOutInputChangeAddTask(allTasks, keyToOpen, priorityImg, assignedToContacts, subTasks);
+}
+
+function fillOutInputChangeAddTask(allTasks, keyToOpen, priorityImg, assignedToContacts, subTasks) {
+    document.getElementById("title").value = allTasks[keyToOpen].title;
+    document.getElementById("description").value = allTasks[keyToOpen].description;
+    document.getElementById("date").value = allTasks[keyToOpen].due_date;
+    selectPrio(`${allTasks[keyToOpen].priority}`);
+    selectedPrio = allTasks[keyToOpen].priority;
+    document.getElementById("showSelectedCategory").value = allTasks[keyToOpen].category;
+    currentStatusofChangingTask = allTasks[keyToOpen].currentStatus;
+    document.getElementById("date").style.color = "black";
+    getSubtasksChangeTaskAdded(keyToOpen, allTasks);
+}
+
+function getSubtasksChangeTaskAdded(keyToOpen, allTasks) {
+    subtasks = [];
+    if (allTasks[keyToOpen].subtasks) {
+      for (let index = 0; index < allTasks[keyToOpen].subtasks.length; index++) {
+        subtasks.push(allTasks[keyToOpen].subtasks[index]);
+        }
+        renderSubtasks();
+    }
+}
+
 // let taskForEdit;
 
 // async function editTask(e, keyToOpen) {
