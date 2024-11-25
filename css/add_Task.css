@@ -5,6 +5,11 @@
   overflow-x: hidden;
 } */
 
+.rotate-message {
+  display: none;
+  font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
+}
+
 .showButton {
   display: flex;
   justify-content: center;
@@ -42,7 +47,6 @@
 .testSabrinaAddTaskCtn {
   
   width: 82%;
-  max-width: 525px;
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
   border-radius: 24px;
@@ -113,7 +117,9 @@
 }
 
 .titleAddTask {
-  padding: 0;
+  font-size: 61px;
+  font-weight: 700;
+  padding: 50px 0 0 0;
   margin: 0;
 }
 .centerForm {
@@ -124,14 +130,12 @@
   transform: translateX(0);
 }
 
-.seperateSendButtons {
-  align-self: center;
-}
+
 
 /* Ende */
 
 .contentAddTaskContainer {
-  padding: 0 80px;
+  margin: 0 80px;
 }
 
 .overAllFormAddTask * {
@@ -183,8 +187,8 @@ ul {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 976px;
   margin-bottom: 120px;
+  width: 976px;
 }
 
 .fillOut {
@@ -298,7 +302,7 @@ textarea:focus {
 }
 
 .listContacts {
-  position: absolute;
+  position: static;
   width: 100%;
   height: 250px;
   background-color: white;
@@ -306,10 +310,10 @@ textarea:focus {
   box-shadow: 0px 5px 14px -5px rgba(0, 0, 0, 0.1);
   list-style-type: none;
   padding: 0;
-  overflow: auto;
+  overflow-x: hidden;
   cursor: pointer;
   /*Ergänzung Sabrina:*/
-  z-index: 20;
+  z-index: 1000;
 }
 
 #contactListTemplate {
@@ -349,9 +353,13 @@ textarea:focus {
   background-color: #091931;
   color: white;
 }
-
 .contactListCheckbox {
   display: none;
+}
+
+.contactPerson {
+  width: 250px;
+  word-wrap: break-word;
 }
 
 .backgroundContact {
@@ -434,7 +442,6 @@ input[type="date"].filled {
   display: flex;
   justify-content: space-between;
   gap: 8px;
-  width: 976px;
   height: 60px;
 }
 
@@ -513,7 +520,6 @@ input[type="date"].filled {
   flex: 1;
   border: unset;
   background-color: white;
-  width: 136px;
   padding: 16px 10px;
   border-radius: 10px;
   cursor: pointer;
@@ -551,7 +557,7 @@ input[type="date"].filled {
 }
 
 .showCategorys {
-  position: absolute;
+  position: static;
   width: 100%;
   background-color: white;
   border-radius: 0 0 10px 10px;
@@ -559,6 +565,7 @@ input[type="date"].filled {
   padding: 0;
   cursor: pointer;
   z-index: 1;
+  transition: opacity 0.5s ease, height 0.5s ease;
 }
 
 .costumSelect {
@@ -757,6 +764,20 @@ input[type="date"].filled {
   transition: all 225ms ease-in-out;
 }
 
+.backgroundForAssignedTo {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  align-items: center;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 999;
+}
+
 /* Design for Board.html Changing Values of Add Task!*/
 
 .overAllChangeAddTask * {
@@ -885,9 +906,32 @@ input[type="date"].filled {
 
 /* Ende */
 
+@media only screen and (max-width: 1375px) {
+  .contentAddTaskContainer {
+margin: 0 40px;
+  }
+  
+  .overInputFields {
+    flex-direction: column;
+    width: unset;
+  }
+
+.line {
+  display: none;
+  
+}
+
+.fillOut {
+  width: 100%;
+}
+
+}
+
+
+
 @media only screen and (max-width: 1010px) {
   .overheader {
-    padding: 40px 0 0 0;
+    margin: 40px 0 0 0;
     background-color: #f6f7f8;
     position: sticky;
     top: 0;
@@ -924,7 +968,6 @@ input[type="date"].filled {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: 100%;
     gap: 100px;
     margin-top: 15px;
   }
@@ -1035,6 +1078,34 @@ input[type="date"].filled {
   .errorMessage {
     top: 82px;
   }
+}
+/*das ist für die msg wenn du das handy drehst */
+@media(max-width:945px) {
+
+  @media (orientation: landscape) {
+      .contentAddTaskContainer {
+          display: none;
+      }
+      .rotate-message {
+          color: rgba(41, 171, 226, 1);
+          display: block; 
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          padding: 20px;
+      }
+  }
+  
+  @media (orientation: portrait) {
+      .contentAddTaskContainer{
+          display: block;
+      }
+      .rotate-message {
+          display: none;
+      }
+  }
+
 }
 
 /* Das ist zum markieren des aktuellen Navigations-Menü-Items

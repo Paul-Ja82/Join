@@ -146,7 +146,7 @@
 //                             id="showSelectedCategory"
 //                             class="fieldInput"
 //                             readonly
-//                             placeholder="Select a option"
+//                             placeholder="Select a task category"
 //                             onclick="showMeCategorys()"
 //                             value="${taskForEdit.category}"
 //                         />
@@ -171,7 +171,7 @@
 //                             id="subtasks"
 //                             class="fieldInput"
 //                             oninput="changeSymbols()"
-//                             placeholder="Add new Subtask"
+//                             placeholder="Add new subtask"
 //                         />
 //                         <div id="symbolsSubtasks" class="changeSymboles">
 //                             <img src="assets/icons/plus.svg" alt="" />

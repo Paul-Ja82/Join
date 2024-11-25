@@ -1,6 +1,7 @@
 const firebase_URL = 'https://join-7ae0e-default-rtdb.europe-west1.firebasedatabase.app/'
 let allTasks = [];
 let allKeys = [];
+let allContactsForTasks = [];
 let id;
 
 async function collectDataFromAddTask(currentStatus, selectedContacts) {

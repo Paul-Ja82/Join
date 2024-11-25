@@ -315,7 +315,8 @@ function checkUrgencyInArray(tasks, urgentTasks) {
 async function updateUrgentTasks() {
     let urgentTasks = [];
 
-    await updateTkToDo(); 
+    await updateTkToDo(); updateTkInProgress();
+    updateTkAwaitFeedback();  
 
     checkUrgencyInArray(tasksTodo, urgentTasks);
 

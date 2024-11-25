@@ -111,7 +111,7 @@ function returnChangingAddTask(today) {
                   id="showSelectedCategory"
                   class="fieldInput"
                   disabled
-                  placeholder="Select a option"
+                  placeholder="Select a task category"
                 />
               </div>
               <div id="errorCategory" class="errorMessage">
@@ -127,7 +127,7 @@ function returnChangingAddTask(today) {
                     type="text"
                     onclick="toggleContactList()"
                     oninput="filterContacts()"
-                    placeholder="Assigned To"
+                    placeholder="Select contacts to assign"
                   />
                   <div class="changeSymboles">
                     <img
@@ -138,7 +138,7 @@ function returnChangingAddTask(today) {
                     />
                   </div>
                 </div>
-                <ul id="insertContactList" class="listContacts d-none"></ul>
+                <div id="insertContactList" class="listContacts d-none"></div>
               </div>
               <div id="showPersons" class="showPersons"></div>
             </div>
@@ -150,7 +150,7 @@ function returnChangingAddTask(today) {
                   id="subtasks"
                   class="fieldInput"
                   oninput="changeSymbols()"
-                  placeholder="Add new Subtask"
+                  placeholder="Add new subtask"
                 />
                 <div id="symbolsSubtasks" class="changeSymboles">
                   <img src="assets/icons/plus.svg" alt="" />

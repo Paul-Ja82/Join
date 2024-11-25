@@ -4,8 +4,7 @@
     --clr-conlist-item-bg-marked: var(--clr-blue-200);
 }
 
-/*
-@media(max-width:960px) {
+@media(max-width:945px) {
 
     @media (orientation: landscape) {
         main {
@@ -14,8 +13,11 @@
         .rotate-message {
             color: rgba(41, 171, 226, 1);
             display: block; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            font-size: 20px;
+            font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
             padding: 20px;
         }
     }
@@ -284,6 +286,11 @@ p#coninfoName {
 
 .coninfoHeadingH3 {
     font-weight: bold;
+}
+
+.rotate-message {
+    display: none;
+    font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
 }
 
 /* @media (768px < width) { */

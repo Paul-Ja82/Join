@@ -97,11 +97,22 @@ img.menu-nav-icon {
         position: absolute;
         left: var(--spacing-left);
         bottom: clamp(1rem, -0.588rem + 5.647vh, 4rem);
+        display: flex;
+        flex-direction: column;
     }
 
     .legal-link {
+        color: rgba(205, 205, 205, 1);
         margin-top: clamp(0.5rem, 0.235rem + 0.941vh, 1rem);
+        text-decoration: none;
+        cursor: pointer;
     }
+
+    .legal-link a {
+        text-decoration: none;
+        color: var(--clr-gray-500);
+    }
+
 }
 
 @media (max-width: 500px) {

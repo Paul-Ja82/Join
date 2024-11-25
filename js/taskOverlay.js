@@ -16,6 +16,7 @@ function checkTask(e) {
   }
 }
 
+// UMZUG IN EDITTASK.JS
 function openEditedTask() {
   showTask();
     checkIndexOfAllTasks(currentTaskForEdit, allTasks, allKeys);
@@ -84,42 +85,45 @@ function fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, s
   checkTaskCategoryColor("single_task_category_overlay");
 }
 
-// Funktion kürzen
 function checkAssignedToOverlay(allTasks, keyToOpen) {
-    let contactsTemplate = "";
-    if (allTasks[keyToOpen].assigned_to == 'nobody') {
-        contactsTemplate = "";
-    } else {
-        for (let j = 0; j < allTasks[keyToOpen].assigned_to.length; j++) {          
-          let fullName = allTasks[keyToOpen].assigned_to[j];
-          let charOneFirstName = "";
-          let charOneLastName = "";
-          if (fullName.includes(" ")) {
-          let partsOfName = fullName.split(" ");
-          charOneFirstName = partsOfName[0][0].toUpperCase();
-          charOneLastName = partsOfName[1][0].toUpperCase();
-          } else {
-              charOneFirstName = fullName[0].toUpperCase();
-          }
-            let currentUser = checkCurrentUser(currentUserLoggedIn, fullName);
-            console.log();
-            let backgroundColorInitials = checkContactColor(fullName, allContactsForTasks);
-            contactsTemplate += `
-                <div class="single_task_single_contact">
-                    <div style="background-color: ${backgroundColorInitials}" class="task_contact_name_icon">${charOneFirstName}${charOneLastName}</div>
-                    <div class="task_contact_name">${fullName} ${currentUser}</div>
-                </div>
-            `
-        }
+  let contactsTemplate = "";
+  if (allTasks[keyToOpen].assigned_to == 'nobody') {
+      contactsTemplate = "";
+  } else {
+    for (let j = 0; j < allTasks[keyToOpen].assigned_to.length; j++) {          
+      let fullName = allTasks[keyToOpen].assigned_to[j];
+      let initials = checkInitials(fullName);
+      let currentUser = checkCurrentUser(currentUserLoggedIn, fullName);
+      let backgroundColorInitials = checkContactColor(fullName, allContactsForTasks);
+      contactsTemplate += `
+        <div class="single_task_single_contact">
+            <div style="background-color: ${backgroundColorInitials}" class="task_contact_name_icon">${initials}</div>
+            <div class="task_contact_name">${fullName} ${currentUser}</div>
+        </div>`
     }
-    return contactsTemplate
+  }
+  return contactsTemplate
 } 
 
+function checkInitials(fullName) {
+  let charOneFirstName = "";
+  let charOneLastName = "";
+  if (fullName.includes(" ")) {
+    let partsOfName = fullName.split(" ");
+    charOneFirstName = partsOfName[0][0].toUpperCase();
+    charOneLastName = partsOfName[1][0].toUpperCase();
+    } else {
+        charOneFirstName = fullName[0].toUpperCase();
+  }
+  return charOneFirstName + charOneLastName
+}
+
 function checkContactColor(fullName, allContactsForTasks) {
+  const contactsArray = Object.values(allContactsForTasks);
   let colorForInitials; 
-  for (let i = 0; i < allContactsForTasks.length; i++) {
-    if (allContactsForTasks[i].name == fullName) {
-      colorForInitials = allContactsForTasks[i].color;
+  for (let i = 0; i < contactsArray.length; i++) {
+    if (contactsArray[i].name == fullName) {
+      colorForInitials = contactsArray[i].color;
       break;
     }
   }
