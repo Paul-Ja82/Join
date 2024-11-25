@@ -5,10 +5,16 @@
   overflow-x: hidden;
 } */
 
+body {
+  height: 100vh;
+}
+
 .rotate-message {
   display: none;
   font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
 }
+
+
 
 .showButton {
   display: flex;
@@ -34,24 +40,21 @@
   background-color: white;
   padding: 60px 40px;
   border-radius: 20px;
-  /* width: 1200px; */
-  max-width: 1200px;
-  
   transform: translateX(200vw); /* Startpunkt außerhalb des Bildschirms */
   transition: all 225ms ease-in-out;
   z-index: 999;
   /*Ergänzung Sabrina:*/
-  max-height: 90%;
+  max-height: 80vh;
+  max-width: 80vw;
+  margin: 36px;
 }
 
 .testSabrinaAddTaskCtn {
-  
-  width: 82%;
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
   border-radius: 24px;
-  /* padding: 36px; */
-  max-height: 80%;
+  padding: 36px 60px;
+ 
 }
 
 .d-none {
@@ -67,7 +70,6 @@
   display: flex;
   position: relative;
   justify-content: space-between;
-  margin-bottom: 48px;
 }
 
 .iconImage {
@@ -109,7 +111,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 0;
+  padding-top: 40px;
 }
 
 .iconImage {
@@ -117,10 +119,7 @@
 }
 
 .titleAddTask {
-  font-size: 61px;
   font-weight: 700;
-  padding: 50px 0 0 0;
-  margin: 0;
 }
 .centerForm {
   align-items: center;
@@ -191,7 +190,23 @@ ul {
   width: 976px;
 }
 
+.overInputFieldsBoard {
+  display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 5vh;
+      gap: 5%;
+      height: 40vh;
+      overflow: auto;
+}
+
 .fillOut {
+  width: 440px;
+  display: flex;
+  flex-direction: column;
+}
+
+.fillOutBoard {
   width: 440px;
   display: flex;
   flex-direction: column;
@@ -200,6 +215,11 @@ ul {
 .line {
   border: 1px solid #d1d1d1;
   height: 455px;
+}
+
+.lineBoard {
+  border: 1px solid #d1d1d1;
+
 }
 
 .overField {
@@ -302,7 +322,7 @@ textarea:focus {
 }
 
 .listContacts {
-  position: static;
+  position: absolute;
   width: 100%;
   height: 250px;
   background-color: white;
@@ -443,9 +463,29 @@ input[type="date"].filled {
   justify-content: space-between;
   gap: 8px;
   height: 60px;
+  margin-bottom: 15px;
+}
+
+.overFormButtonsBoard {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .formButtons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border-radius: 10px;
+  font-size: 21px;
+  padding: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.formButtonsBoard {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -511,7 +551,14 @@ input[type="date"].filled {
 
 .overPrioButtons {
   display: flex;
-  gap: 8px;
+  gap: 12px;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.overPrioButtonsBoard {
+  display: flex;
+  gap: 12px;
   margin-bottom: 24px;
   width: 100%;
 }
@@ -725,6 +772,13 @@ input[type="date"].filled {
   gap: 8px;
 }
 
+.overSendButtonsBoard {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
 .errorMessage {
   position: absolute;
   top: 90px;
@@ -786,7 +840,7 @@ input[type="date"].filled {
 
 .formChangeAddTasks {
   overflow: auto;
-  height: 697px;
+  height: 60vh;
   padding: 0 5px;
 }
 
@@ -821,6 +875,8 @@ input[type="date"].filled {
   justify-content: center;
   width: 100%;
   margin: 0;
+  padding-right: 5px;
+  overflow: auto;
 }
 
 .titleSectionChangeAddTask {
@@ -907,10 +963,19 @@ input[type="date"].filled {
 /* Ende */
 
 @media only screen and (max-width: 1375px) {
-  .contentAddTaskContainer {
-margin: 0 40px;
+  .overSendButtons {
+    
   }
   
+  
+  .contentAddTaskContainer {
+    margin: 0 40px;
+  }
+  
+  .listContacts {
+    position: static;
+  }
+
   .overInputFields {
     flex-direction: column;
     width: unset;
@@ -925,23 +990,48 @@ margin: 0 40px;
   width: 100%;
 }
 
+.createButton {
+  margin-right: 0;
+}
+
 }
 
 
 
 @media only screen and (max-width: 1010px) {
-  .overheader {
-    margin: 40px 0 0 0;
-    background-color: #f6f7f8;
-    position: sticky;
-    top: 0;
-    right: 0;
+  .menuAddTask {
+    position: fixed;
     left: 0;
-    z-index: 999;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+}
+  
+  .headerAddTask {
+    position: sticky;
+      z-index: 99;
+      top: 0;
   }
 
-  h2 {
+  .testSabrinaAddTaskCtn {
+padding: 20px 35px;
+   }
+  .contentAddTaskContainer {
+    margin: 0 5px;
+  }
+  
+  .overheader {
+    background-color: #f6f7f8;
+        position: sticky;
+        top: 85px;
+        right: 0;
+        left: 0;
+        z-index: 10;
+  }
+
+  .titleAddTask {
     font-size: 47px;
+margin: 20px 0 10px 0;
   }
 
   .overInputFields {
@@ -950,6 +1040,18 @@ margin: 0 40px;
     width: 100%;
     margin: 0;
   }
+
+.overInputFieldsChangeAddTask {
+  height: 60vh;
+  overflow: auto;
+}
+
+.overInputFieldsBoard {
+  flex-direction: column;
+  overflow: auto;
+  padding-right: 10px;
+  margin-bottom: 30px;
+}
 
   .overField {
     display: flex;
@@ -960,7 +1062,15 @@ margin: 0 40px;
     width: auto;
   }
 
+  .fillOutBoard {
+    width: auto;
+  }
+
   .line {
+    display: none;
+  }
+
+  .lineBoard {
     display: none;
   }
 
@@ -974,6 +1084,11 @@ margin: 0 40px;
 
   .formButtons {
     padding: 18px 10px;
+  }
+  
+  .formButtonsBoard {
+    padding: 8px 4px;
+    font-size: 12px;
   }
 
   .required {
@@ -1018,30 +1133,42 @@ margin: 0 40px;
     font-size: 16px;
   }
 
+  .overPrioButtonsBoard {
+  gap: 1%;
+  }
+
   .prioButtons {
     font-size: 16px;
   }
 
+
   .overSendButtons {
     display: flex;
     justify-content: center;
-    /* justify-content: flex-end; */
+    justify-content: flex-end; 
     position: fixed;
-    /* background-color: #f6f7f8; */
-    bottom: 0;
+    background-color: #f6f7f8; 
+    bottom: 96px;
     font-size: 21px;
     right: 0;
     left: 0;
-    /* width: 100vw; */
+    width: 100vw;
     gap: 8px;
     z-index: 999;
-    padding-bottom: 10px;
+    padding: 10px 0;
   }
 
   .createButton {
-    margin-right: 25px;
+    margin-right: 5px;
   }
 
+  .createButtonNoPaddingBoard {
+    margin: 0;
+  }
+  
+.fontSizeBoard {
+  font-size: 12px;
+}
   .profile {
     font-size: 16px;
   }
@@ -1055,9 +1182,14 @@ margin: 0 40px;
 
   .requiredInformation {
     align-self: flex-start;
-    font-size: 21px;
+    font-size: 16px;
     padding-bottom: 200px;
   }
+
+.requiredInformationBoard {
+  align-self: flex-start;
+    font-size: 12px;
+}
 
   .clearButton {
     border: 1px solid #2a3647;
@@ -1079,6 +1211,10 @@ margin: 0 40px;
     top: 82px;
   }
 }
+
+
+
+
 /*das ist für die msg wenn du das handy drehst */
 @media(max-width:945px) {
 
@@ -1108,8 +1244,24 @@ margin: 0 40px;
 
 }
 
+
+
+
+
+@media(max-width:945px) {
+  
+
+
+ }
+
+
 /* Das ist zum markieren des aktuellen Navigations-Menü-Items
 Gruß Reini */
 .menu-nav-item[data-filename="add_task.html"] {
   background-color: var(--clr-menu-selected);
 }
+@media(max-width:500px) {
+  .overSendButtons {
+    bottom: 65px;
+  }
+ }
