@@ -10,7 +10,6 @@ function initLogin() {
     initMPA();
 }
 
-
 /**
  * Animates the logo element by adding CSS classes to control its position and animation.
  * The function selects an element with the class `j-logo-img` and adds a `start-position` class immediately.
@@ -63,7 +62,7 @@ function showDivsDelayed() {
 function colorBody() {
     const screenWidth = window.innerWidth;
 
-    if (screenWidth <= 950) {
+    if (screenWidth <= 1010) {
         const body = document.body;
 
         body.style.backgroundColor = "rgba(9, 25, 49, 1)";
@@ -84,7 +83,7 @@ function colorBody() {
 function colorLogo() {
     const screenWidth = window.innerWidth;
 
-    if (screenWidth <= 950) {
+    if (screenWidth <= 1010) {
         document.documentElement.style.setProperty('--logo-color', '#ffffff');
 
         setTimeout(() => {
@@ -169,7 +168,6 @@ function showNotRegisteredMsg() {
     }
 }
 
-
 /**
  * Checks if the user exists by testing the email input value.
  * If the user exists, the function redirects to 'new_password.html'.
@@ -190,7 +188,6 @@ function checkUserExist() {
         }
     }
 }
-
 
 function getUserByEmail(email) {
     return users.find((userI) => userI.email == email);

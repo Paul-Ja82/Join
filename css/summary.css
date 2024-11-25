@@ -718,7 +718,7 @@ small {
     }
 }
 
-@media(max-width: 960px) {
+@media(max-width: 1010px) {
 
     .main-frame-div {
         width: 100%;
@@ -764,7 +764,7 @@ small {
     .title-frame-div {
         width: 100%;
         height: 186px;
-        margin-bottom: 36px;
+        margin-bottom: 26px;
         display: flex;
         flex-direction: column;
         align-items:start;
@@ -774,7 +774,7 @@ small {
     .title-div {
         width: 51.86%;
         height: 104px;
-        margin-top: 52px;    
+        margin-top: 42px;    
         margin-left: clamp(1rem, -2.441rem + 12.862vw, 6rem);
         display: flex;
         margin-bottom: 35px;
@@ -854,6 +854,15 @@ small {
 
 @media(max-width:850px) {
 
+    .title-frame-div {
+        margin-bottom: 36px;
+    }
+
+
+    .title-div {
+        margin-top: 52px;    
+    }
+
     .urgency-divider {
         height: 91px;
     }
@@ -925,13 +934,14 @@ small {
 @media(max-width:430px) {
 
     .title-div {  
-        margin-left: clamp(0.625rem, -0.466rem + 5.455vw, 1rem);
+        margin-left: 16px;
     }
 
     .tasks-div {
         width: clamp(18.938rem, 2.028rem + 84.545vw, 24.75rem);
         aspect-ratio: 1 / 0.6364;
-        margin-left: clamp(0.625rem, -0.466rem + 5.455vw, 1rem);
+        margin-left: 16px;
+        margin-right: 0;
     }
 
     .amount {

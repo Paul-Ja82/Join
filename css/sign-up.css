@@ -420,7 +420,7 @@ footer {
   color: rgba(41, 171, 226, 1);
 }
 
-@media(max-width:960px) {
+@media(max-width:1010px) {
 
     body {
         padding-bottom: 50px;
@@ -545,29 +545,36 @@ footer {
       top: unset;
       bottom: 16px;
    }   
-
-   @media (orientation: landscape) {
-    .main-frame-div {
-        display: none;
-    }
-    .rotate-message {
-        color: rgba(41, 171, 226, 1);
-        display: block; 
-        text-align: center;
-        font-size: 20px;
-        padding: 20px;
-    }
 }
 
-@media (orientation: portrait) {
-    .main-frame-div{
-        display: block;
+@media(max-width:945px) {
+
+    @media (orientation: landscape) {
+        .main-frame-div {
+            display: none;
+        }
+        .rotate-message {
+            color: rgba(41, 171, 226, 1);
+            display: block; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
     }
-    .rotate-message {
-        display: none;
+    
+    @media (orientation: portrait) {
+        
+        .main-frame-div{
+            display: block;
+        }
+        .rotate-message {
+            display: none;
+        }
     }
-}
-}
+  
+  }
 
 @media(max-width:450px) {
     
