@@ -32,6 +32,7 @@ function initSignup() {
     addValidation('signUpForm', isEmailAvailable, 'emailVmsg', 'You already have an account');
     addValidation('signUpForm', isPasswordConfirm, 'confirmPwVmsg', 'The passwords dont match');
     addSubmitHandler('signUpForm', addUser);
+    addSubmitHandler('signUpForm', afterSignupHandler);
 }
 
 /*
@@ -195,6 +196,10 @@ function resetFlagsSignUp() {
 function resetFlagsLogin() {
     emailInputLoginFlag = false;
     validUserFlag = false;
+}
+
+function afterSignupHandler() {
+    showToast('signupToast', ()=> loadPage(INDEXPAGE_URLS[0]));
 }
 
 /*################*/

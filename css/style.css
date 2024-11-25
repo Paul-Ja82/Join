@@ -254,7 +254,7 @@ body {
 .toast {
     background-color: var(--clr-menu-bg);
     padding: 1em 1em;
-    border-radius: 0.7em;
+    border-radius: 1em;
 }
 
 

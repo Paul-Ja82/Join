@@ -35,9 +35,9 @@ TODO
     position: fixed;
     bottom: 0;
     transform: translateY(200%);
-    background-color: var(--clr-menu-bg);
+    /* background-color: var(--clr-menu-bg); */
     color: white;
-    border-radius: var(--space-300);
+    /* border-radius: var(--space-300); */
     transition: 
         bottom 0s,
         transform 0s;

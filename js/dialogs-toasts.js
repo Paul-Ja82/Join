@@ -6,7 +6,6 @@
 /*** Init ***/
 /************/
 
-// document.addEventListener('DOMContentLoaded', initToastPlay);
 
 function initToastPlay() {
     addTransitionEndHandler();

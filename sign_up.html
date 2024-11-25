@@ -6,17 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign up Join </title>
     <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="css/sign-up.css">
+    <link rel="stylesheet" href="./css/dialogs-toasts.css">
     <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
     <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet"> -->
     <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
     <script src="./js/database.js"></script>
     <script src="./js/multi-page-app.js"></script>
-    <script src="./js/forms.js"></script> <!-- reini: das ist für die Validierung -->
+    <script src="./js/forms.js"></script>
     <script src="./js/ui.js"></script>
     <script src="./script.js"></script>
     <!-- <script src="js/logIn.js"></script> -->
     <script src="./js/signUp.js"></script>
+    <script src="./js/dialogs-toasts.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', preventDefaultSignUp);
     </script>
@@ -80,6 +83,13 @@
         </div>
        
 
+    </div>
+
+    <!-- TOASTS  -->
+    <div id="toastBg" class="dialog-bg d-none">
+        <div id="signupToast" class="toast p-400" data-duration="1000">
+            <p>Signup successfull</p>
+        </div>
     </div>
 </body>
 
