@@ -129,13 +129,26 @@ header .nav-menu-frame {
     height: 3em;
 }
 
+.userListItem .person-icon {
+    outline: 2px solid var(--clr-turquoise);
+    outline-offset: 2px;
+}
+
 .conlist-name {
     font-size: 1.2em;
+}
+
+.userListItem .conlist-name {
+    font-weight: bold;
 }
 
 .conlist-email {
     color: var(--clr-conlist-email);
     margin-top: 0.3em;
+}
+
+.userListItem .conlist-email {
+    font-weight: bold;
 }
 
 /* @media (768px < width) { */

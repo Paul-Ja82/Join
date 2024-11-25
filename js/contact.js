@@ -1,5 +1,5 @@
-const USER_COLOR= '#ffffff';
-const USER_PHONE= '111 222 333 444';
+const USER_COLOR= '#2A3647';
+const USER_PHONE= '111222333444';
 
 let itemMarkClass = 'conlist-item-marked';
 let itemHoverClass = 'conlist-item-hover';
@@ -71,6 +71,7 @@ function generateContactList() {
         content += contactToListItemHTML(contactI, 'conlistItem' + contactI.id);
     }
     contactListContainer.innerHTML = content;
+    markUserContactItem();
 }
 
 // contact: {email, name, phone, color}
@@ -91,7 +92,10 @@ function contactToListItemHTML(contact, elemId) {
 }
 
 function markUserContactItem() {
-    document.getElementById('');
+    let elemId= 'conlistItem' + currentUser.id;
+    let listItem= document.getElementById(elemId);
+    listItem.classList.add('userListItem');
+    console.log(listItem); ///DEBUG
 }
 
 
