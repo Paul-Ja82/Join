@@ -379,7 +379,7 @@ async function editContact() {
     let phoneInput= document.getElementById('phoneInputElem').value;
     contact.name = nameInput;
     contact.phone = phoneInput;
-    // TODO set color
+    contact.color = colorForContact;
     saveData(path, contact);
 }
 
