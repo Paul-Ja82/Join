@@ -1,3 +1,6 @@
+const USER_COLOR= '#ffffff';
+const USER_PHONE= '111 222 333 444';
+
 let itemMarkClass = 'conlist-item-marked';
 let itemHoverClass = 'conlist-item-hover';
 let shownContactInfoId;
@@ -18,6 +21,7 @@ mediaDesktop.addEventListener('change', mediaChangeHandler);
 
 async function initContact() {
     await initJoin();
+    await loadCurrentUserContact();
     initForms();
     include()
         .then(initHeaderJs);
@@ -31,6 +35,14 @@ function addListItemClickHandlers() {
     for (itemI of listItems) {
         itemI.addEventListener('click', listItemClickHandler);
     }
+}
+
+async function loadCurrentUserContact() {
+    let userId= window.sessionStorage.getItem('loggedInUserId');
+    currentUser= await getData(USERS_PATH + userId);
+    currentUser.color= USER_COLOR;
+    currentUser.phone= USER_PHONE;
+    contacts.push(currentUser);
 }
 
 /*##############*/
@@ -76,6 +88,10 @@ function contactToListItemHTML(contact, elemId) {
             </div>
         </div> 
     `;
+}
+
+function markUserContactItem() {
+    document.getElementById('');
 }
 
 
