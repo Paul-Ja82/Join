@@ -38,6 +38,8 @@
   transition: all 225ms ease-in-out;
   z-index: 999;
   /*Ergänzung Sabrina:*/
+  max-height: 80vh;
+  max-width: 80vw;
   margin: 36px;
 }
 
@@ -184,11 +186,12 @@ ul {
 
 .overInputFieldsBoard {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 120px;
-  gap: 5%;
-  
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 5vh;
+      gap: 5%;
+      height: 40vh;
+      overflow: auto;
 }
 
 .fillOut {
@@ -529,6 +532,13 @@ input[type="date"].filled {
 }
 
 .overPrioButtons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.overPrioButtonsBoard {
   display: flex;
   gap: 12px;
   margin-bottom: 24px;
@@ -960,6 +970,9 @@ input[type="date"].filled {
 
 
 @media only screen and (max-width: 1010px) {
+  .testSabrinaAddTaskCtn {
+padding: 20px 35px;
+   }
   .contentAddTaskContainer {
     margin: 0 5px;
   }
@@ -988,9 +1001,10 @@ position: sticky;
 
 .overInputFieldsBoard {
   flex-direction: column;
-  height: 500px;
+  height: ;
   overflow: auto;
   padding-right: 10px;
+  margin-bottom: 30px;
 }
 
   .overField {
@@ -1007,6 +1021,10 @@ position: sticky;
   }
 
   .line {
+    display: none;
+  }
+
+  .lineBoard {
     display: none;
   }
 
@@ -1064,9 +1082,14 @@ position: sticky;
     font-size: 16px;
   }
 
+  .overPrioButtonsBoard {
+  gap: 1%;
+  }
+
   .prioButtons {
     font-size: 16px;
   }
+
 
   .overSendButtons {
     display: flex;
@@ -1104,6 +1127,11 @@ position: sticky;
     font-size: 16px;
     padding-bottom: 200px;
   }
+
+.requiredInformationBoard {
+  align-self: flex-start;
+    font-size: 16px;
+}
 
   .clearButton {
     border: 1px solid #2a3647;

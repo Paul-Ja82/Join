@@ -608,7 +608,7 @@ function renderFormAddTask(selectedProcessCategory, today) {
             </div>
             <div class="overField marginTop">
               <label>Prio</label>
-              <div class="overPrioButtons">
+              <div class="overPrioButtonsBoard">
                 <button
                   id="urgentButton"
                   class="prioButtons"
@@ -696,7 +696,7 @@ function renderFormAddTask(selectedProcessCategory, today) {
           </div>
         </div>
         <div class="overFormButtonsBoard">
-          <div class="requiredInformation">
+          <div class="requiredInformationBoard">
             <span style="color: #ff8190">*</span>This field is required
           </div>
           <div class="setButtons">
