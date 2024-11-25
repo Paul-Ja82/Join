@@ -275,6 +275,7 @@ h3 {
     right: 20px;
     top: 11.640px;
     display: none;
+    cursor: pointer;
 }
 
 .password-Img-eye-on {
@@ -283,6 +284,7 @@ h3 {
     right: 20px;
     top: 11.640px;
     display: none;
+    cursor: pointer;
 }
 
 .hidden-input-messages-div {

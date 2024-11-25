@@ -295,8 +295,9 @@ function login() {
  * @param {HTMLElement} errorMessage - The error message element.
  */
 function handleValidationResult(emailInput, passwordInput, isValidUser, errorMessage) {
+    
     if (!isValidUser) {
-        emailInput.classList.add('input-error');
+        emailInput.classList.add('.input-error');
         passwordInput.classList.add('input-error');
 
         if (errorMessage) {

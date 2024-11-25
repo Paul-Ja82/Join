@@ -1,3 +1,33 @@
+::-webkit-scrollbar {
+    width: 8px; 
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #2a4872;
+    background: linear-gradient(
+      180deg,
+      #315e9e,
+      #2a3647
+    ); 
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #3971c0, #293d58); 
+    cursor: pointer;
+  }
+
+  .rotate-message {
+    display: none;
+    font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
+}
+
 * {
   box-sizing: border-box;
   scroll-behavior: smooth;
@@ -7,7 +37,7 @@
 }
 
 h2 {
-  font-size: 61px;
+  font-size: clamp(2.938rem, 2.688rem + 1.25vw, 3.813rem);
 }
 
 h3 {
@@ -94,3 +124,77 @@ article {
   align-self: center;
   cursor: pointer;
 }
+
+.main {
+  margin-top: 105px;
+  margin-left: 116px;
+  margin-right: 10%;
+}
+
+
+@media(max-width: 1010px) {
+
+  *{
+      position: relative;
+      overflow: hidden;
+  }
+
+  #menuContainer{
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      z-index: 10;
+  }
+
+  .main {
+      position: relative;
+      overflow: auto;
+      margin-top: 45px;
+      margin-left: 6%;
+      margin-right: 0;
+    }
+
+    .privacyPolicyTitle {
+      font-size: 47px;
+      margin-bottom: 32px;
+    }
+    
+
+    .text {
+      margin-right: 5%;
+      padding-bottom: 100px;
+    }
+}
+
+
+@media(max-width:945px) {
+
+  @media (orientation: landscape) {
+
+      .main {
+          display: none;
+      }
+      .rotate-message {
+          height: 65%;
+          color: rgba(41, 171, 226, 1);
+          display: block; 
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          padding: 20px;
+      }
+  }
+  
+  @media (orientation: portrait) {
+      
+      .main{
+          display: block;
+      }
+      .rotate-message {
+          display: none;
+      }
+  }
+
+}
+

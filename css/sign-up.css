@@ -268,6 +268,7 @@ h1 {
     right: 20px;
     top: 11.640px;
     display: none;
+    cursor: pointer;
 }
 
 .password-Img-eye-on {
@@ -276,6 +277,7 @@ h1 {
     right: 20px;
     top: 11.640px;
     display: none;
+    cursor: pointer;
 }
 
 .no-match-confirm-message {
