@@ -1,10 +1,10 @@
 ::-webkit-scrollbar {
-    width: 8px; /* Breite der Scrollbar */
+    width: 8px; 
     height: 8px;
   }
   
   ::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Hintergrund des Scrollbars-Tracks */
+    background: #f1f1f1; 
     border-radius: 10px;
   }
   
@@ -14,12 +14,12 @@
       180deg,
       #315e9e,
       #2a3647
-    ); /* Farbverlauf für die Scroll-Leiste */
+    ); 
     border-radius: 10px;
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, #3971c0, #293d58); /* Hover-Effekt */
+    background: linear-gradient(180deg, #3971c0, #293d58); 
     cursor: pointer;
   }
 
