@@ -71,10 +71,8 @@ function graspVmsgs() {
 }
 
 function addInvalidStyles() {
-    console.warn('addInvalidStyles()'); ///DEBUG
     let inputs= document.querySelectorAll('input');
     for (let inputI of inputs) {
-        console.log(inputI); ///DEBUG
         inputI.classList.add(invalidStyleClass);
         validateInput(inputI);
     }
@@ -144,19 +142,15 @@ function addValidation(formId, validFunc, vmsgId, vmsg) {
 }
 
 function removeValidation(formId, validFunc) {
-    console.log('removeValidation(..)'); ///DEBUG
     let validationsArray= validations[formId];
     let arrayIndex= validationsArray.findIndex(validationI => validationI.validFunc==validFunc);
-    console.log('validations arrayIndex: ' + arrayIndex); ///DEBUG
     validations[formId].splice(arrayIndex, 1);
 }
 
 //überprüft die standard-validationen, die mit den html-attributen gesetzt wurden für ein bestimmtes feld
 //wenn nicht valid wird vmsg angezeigt
 function validateInput(input) {
-    console.warn('validateInput(..)'); ///DEBUG
     let vmsgElemId = input.dataset.validationmessageid;
-    console.log(vmsgElemId); ///DEBUG
     let vmsg = defaultVsmgs[vmsgElemId];
     if (input.validity.valid) {
         if (vmsgElemId) hideValidationMessage(vmsgElemId, vmsg);
