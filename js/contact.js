@@ -433,7 +433,8 @@ function mediaChangeHandler() {
 /*###########*/
 
 function tuEsContact() {
-    getData(CONTACTS_PATH)
+    let x= 'rgb(100,14,1)';
+    console.log(rgbStringToHex(x)); ///DEBUG
 }
 
 function logDB() {
