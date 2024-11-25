@@ -10,6 +10,7 @@ function initNewPassword() {
     initForms();
     addValidation('formNewPw', isPasswordConfirm, 'vmsgPwConfirm', 'The passwords dont match');
     addSubmitHandler('formNewPw', updateUserPw);
+    addSubmitHandler('formNewPw', afterPwChangeHandler);
 }
 
 function isPasswordConfirm() {
@@ -33,4 +34,8 @@ function updateUserPw() {
     let path= USERS_PATH + `${currentUser.id}/${'pw'}`;
     console.log(path); ///DEBUG
     saveData(path, newPassword);
+}
+
+function afterPwChangeHandler() {
+    showToast('pwChangeToast', ()=> loadPage(INDEXPAGE_URLS[0]));
 }
