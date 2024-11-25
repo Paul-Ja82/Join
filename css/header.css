@@ -148,6 +148,7 @@ header {
     flex-direction: column;
     justify-content: center;
     gap: 8px;
+    z-index: 10;
 }
 
 .logo-header-div{
@@ -162,7 +163,7 @@ header {
     height: auto;
 }
 
-@media(max-width:950px) {
+@media(max-width:1010px) {
 
     .logo-header-div{
         display: block;

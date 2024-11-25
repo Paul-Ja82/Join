@@ -305,8 +305,8 @@ function checkUrgencyInArray(tasks, urgentTasks) {
 }
 
 /**
- * Asynchronously updates the list of urgent tasks by checking tasks in the 'tasksTodo' array.
- * Calls `updateTkToDo()` to ensure tasks are up-to-date.
+ * Asynchronously updates the list of urgent tasks by checking tasks in multiple arrays.
+ * Calls `updateTkToDo()` and other functions to ensure tasks are up-to-date.
  *
  * @async
  * @function updateUrgentTasks
@@ -315,15 +315,19 @@ function checkUrgencyInArray(tasks, urgentTasks) {
 async function updateUrgentTasks() {
     let urgentTasks = [];
 
-    await updateTkToDo(); updateTkInProgress();
-    updateTkAwaitFeedback();  
+    await updateTkToDo(); 
+    await updateTkInProgress();
+    await updateTkAwaitFeedback();  
 
     checkUrgencyInArray(tasksTodo, urgentTasks);
+    checkUrgencyInArray(tasksInProgress, urgentTasks);
+    checkUrgencyInArray(tasksAwaitFeedback, urgentTasks);
 
     console.log('Urgent Tasks:', urgentTasks);
 
     return urgentTasks; 
 }
+
 
 /**
  * Finds the oldest task (earliest due date) in an array of urgent tasks.
