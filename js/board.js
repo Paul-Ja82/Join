@@ -697,12 +697,12 @@ function renderFormAddTask(selectedProcessCategory, today) {
         </div>
         <div class="overFormButtonsBoard">
           <div class="requiredInformationBoard">
-            <span style="color: #ff8190">*</span>This field is required
+            <span class="fontSizeBoard" style="color: #ff8190">*</span>This field is required
           </div>
           <div class="setButtons">
             <div class="overSendButtonsBoard">
               <button
-                class="formButtons clearButton"
+                class="formButtonsBoard clearButton"
                 type="button"
                 onclick="reloadPage()"
               >
@@ -710,7 +710,7 @@ function renderFormAddTask(selectedProcessCategory, today) {
                 <div class="iconX"></div>
               </button>
               <button
-                class="formButtons createButton"
+                class="formButtonsBoard createButton createButtonNoPaddingBoard"
                 type="button"
                 onclick="submitForm('${selectedProcessCategory}')"
               >

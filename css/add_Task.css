@@ -5,6 +5,10 @@
   overflow-x: hidden;
 } */
 
+body {
+  height: 100vh;
+}
+
 .rotate-message {
   display: none;
   font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
@@ -479,6 +483,18 @@ input[type="date"].filled {
   cursor: pointer;
 }
 
+.formButtonsBoard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border-radius: 10px;
+  font-size: 21px;
+  padding: 16px;
+  border: none;
+  cursor: pointer;
+}
+
 .clearButton {
   border: 2px solid #2a3647;
   color: #2a3647;
@@ -822,7 +838,7 @@ input[type="date"].filled {
 
 .formChangeAddTasks {
   overflow: auto;
-  height: 697px;
+  height: 60vh;
   padding: 0 5px;
 }
 
@@ -857,6 +873,8 @@ input[type="date"].filled {
   justify-content: center;
   width: 100%;
   margin: 0;
+  padding-right: 5px;
+  overflow: auto;
 }
 
 .titleSectionChangeAddTask {
@@ -999,9 +1017,13 @@ position: sticky;
     margin: 0;
   }
 
+.overInputFieldsChangeAddTask {
+  height: 60vh;
+  overflow: auto;
+}
+
 .overInputFieldsBoard {
   flex-direction: column;
-  height: ;
   overflow: auto;
   padding-right: 10px;
   margin-bottom: 30px;
@@ -1038,6 +1060,11 @@ position: sticky;
 
   .formButtons {
     padding: 18px 10px;
+  }
+  
+  .formButtonsBoard {
+    padding: 8px 4px;
+    font-size: 12px;
   }
 
   .required {
@@ -1111,6 +1138,13 @@ position: sticky;
     margin-right: 25px;
   }
 
+  .createButtonNoPaddingBoard {
+    margin: 0;
+  }
+  
+.fontSizeBoard {
+  font-size: 12px;
+}
   .profile {
     font-size: 16px;
   }
@@ -1130,7 +1164,7 @@ position: sticky;
 
 .requiredInformationBoard {
   align-self: flex-start;
-    font-size: 16px;
+    font-size: 12px;
 }
 
   .clearButton {
