@@ -3,19 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="./css/legal.css" />
-    <link rel="stylesheet" href="./assets/fonts/fonts.css" />
+    <title>Privacy Policy</title>
+    <link rel="stylesheet" href="/css/add_Task.css" />
+    <link rel="stylesheet" href="assets/fonts/fonts.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/menu.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/privacy.css" />
+    <script src="./js/forms.js"></script>
+    <script src="./js/ui.js"></script>
+    <script src="./script.js"></script>
+    <script src="./js/multi-page-app.js"></script>
+    <script src="js/header.js"></script>
   </head>
-  <body>
+  <body onload="include().then(initHeaderJs)">
+    <header id="headerContainer" class="flex-row" data-include="./header.html">
+      <p>shoud be included</p>
+    </header>
+
+    <div
+      id="menuContainer"
+      data-include="./assets/templates/menu_template.html"
+    ></div>
+    <div class="rotate-message">
+      Please rotate your device back to portrait mode.
+    </div>
+    <main class="main">
     <div class="titleSelection">
       <h2 class="privacyPolicyTitle">Privacy Policy</h2>
-      <div class="getBack">
+      <div class="getBack" onclick="window.history.back();">
         <img src="assets/icons/ArrowToLeft.svg" alt="" />
       </div>
     </div>
-    <main>
-      <section>
+    <div class="text"> 
+     <section >
         <article>
           <h3>1. Datenschutz auf einen Blick</h3>
           <h4>Allgemeine Hinweise</h4>
@@ -326,6 +348,7 @@
           <a href="https://www.e-recht24.de">https://www.e-recht24.de</a>
         </p>
       </section>
+    </div>
     </main>
   </body>
 </html>

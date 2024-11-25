@@ -28,7 +28,7 @@
     font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
 }
 
-  * {
+* {
     box-sizing: border-box;
     scroll-behavior: smooth;
     padding: 0;
@@ -78,12 +78,17 @@
     justify-content: space-between;
     margin-bottom: 16px;
   }
+
+  .privacyPolicyTitle {
+    margin-bottom: 40px;
+  }
   
   .getBack img {
     height: 32px;
     width: 32px;
     align-self: center;
     cursor: pointer;
+    margin-bottom: 40px;
   }
   
   .joinName {
@@ -137,6 +142,7 @@
         position: relative;
         overflow: hidden;
     }
+
     #menuContainer{
         width: 100%;
         position: absolute;
@@ -145,11 +151,18 @@
     }
 
     .main {
+        position: relative;
         overflow: auto;
         margin-top: 45px;
         margin-left: 6%;
         margin-right: 0;
       }
+
+      .privacyPolicyTitle {
+        font-size: 47px;
+        margin-bottom: 32px;
+      }
+      
 
       .text {
         margin-right: 5%;
@@ -157,14 +170,16 @@
       }
   }
 
+
   @media(max-width:945px) {
 
     @media (orientation: landscape) {
+
         .main {
             display: none;
         }
         .rotate-message {
-            height: 60%;
+            height: 65%;
             color: rgba(41, 171, 226, 1);
             display: block; 
             display: flex;
