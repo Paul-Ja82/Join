@@ -30,6 +30,10 @@
     --clr-input-invalid: red;
 }
 
+.bg-clr-main {
+    background-color: var(--clr-bg-main);
+}
+
 /*#####################*/
 /*## MISC PROPERTIES ##*/
 /*#####################*/
