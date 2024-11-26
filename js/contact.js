@@ -105,6 +105,8 @@ function markUserContactItem() {
 
 function listItemClickHandler(event) {
     shownContactInfoId = event.currentTarget.dataset.contactid;
+    let contact= getContactById(shownContactInfoId);
+    colorForContact= contact.color; 
     if (mediaDesktop.matches) displayInfoDesktop(event);
     else displayInfoMobile(event);
 }
