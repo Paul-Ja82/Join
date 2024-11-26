@@ -100,3 +100,11 @@ async function updateUserMonogram() {
 function initHeaderJs() {
     updateUserMonogram();
 }
+
+
+
+function logout() {
+    sessionStorage.clear();
+    localStorage.clear();
+    logoutMPA();
+}

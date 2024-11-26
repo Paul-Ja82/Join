@@ -2,7 +2,7 @@ body {
     width: 100%;
     height: 100vh;
     margin: 0;
-    overflow: hidden;
+    overflow: auto;
     font-family: "Inter", sans-serif;
     transition: background-color 0.6s ease-out;
     background-color: rgb(246,247,248,1);
@@ -11,15 +11,9 @@ body {
     align-items: center;
 }
 
-.rotate-message {
-    display: none;
-    font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
-}
-
 .main-frame-div {
     width: 100%;
     height: 100vh;
-    max-height: 1024px;
     max-width: 1440px;
     position: relative;
 }
@@ -94,13 +88,14 @@ body {
     }
 }
 
+
 .sign-up-div {
     width: 100%;
     height: 120px;
 }
 
 .sign-up-under-div {
-    margin-left: 71%;
+    margin-left: 71.15%;
     margin-top: 67px;
     display: flex;
     align-items: center;
@@ -213,7 +208,7 @@ h3 {
 .email-input-div {
     width: 100%;
     height: 48px;
-    margin-bottom: 12px;  
+    margin-bottom: 32px;  
     display: flex;
     align-items: center;
     position: relative;
@@ -224,27 +219,6 @@ h3 {
     position: absolute;
     right: 4.3%;
     top: 11.640px;
-}
-
-.email-error-msg-div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.incorrect-email-format {
-    margin-bottom: 10px;
-    margin-left: 1.5%;
-    font-size: clamp(0.75rem, 0.732rem + 0.089vw, 0.813rem);
-    color: rgba(255, 129, 144, 1);
-    opacity: 0;
-}
-
-.not-registered-msg {
-    margin-bottom: 10px;
-    font-size: clamp(0.75rem, 0.732rem + 0.089vw, 0.813rem);
-    color: rgba(255, 129, 144, 1);
-    opacity: 0;
 }
 
 .password-input-div {
@@ -275,7 +249,6 @@ h3 {
     right: 20px;
     top: 11.640px;
     display: none;
-    cursor: pointer;
 }
 
 .password-Img-eye-on {
@@ -284,12 +257,6 @@ h3 {
     right: 20px;
     top: 11.640px;
     display: none;
-    cursor: pointer;
-}
-
-.hidden-input-messages-div {
-     display: flex;
-     justify-content: space-between;
 }
 
 .error-input-message {
@@ -298,21 +265,6 @@ h3 {
     font-size: clamp(0.75rem, 0.732rem + 0.089vw, 0.813rem);
     color: rgba(255, 129, 144, 1);
     opacity: 0;
-}
-
-.forgot-password-message {
-    margin-bottom: 20px;
-    margin-right: 1.5%;
-    cursor: pointer;
-    font-size: clamp(0.75rem, 0.732rem + 0.089vw, 0.813rem);
-    color: rgba(41, 171, 226, 1);
-    text-decoration: none;
-    opacity: 0;
-}
-
-.forgot-password-message:active {
-    text-decoration: underline;
-    text-underline-offset: 3px;
 }
 
 .remember-box-div {
@@ -413,8 +365,8 @@ h3 {
 }
 
 .guest-log-in-button {
-    width: 175px;
-    height: 44px;
+    width: 177px;
+    height: 48px;
     text-decoration: none;
     background-color: rgba(255, 255, 255, 1);
     color: rgba(42, 54, 71, 1);
@@ -452,8 +404,7 @@ footer {
     height: 35px;
     gap: 8px;
     position: absolute;
-    top: unset;
-    bottom: 16px;
+    top: 949px;
     display: flex;
     justify-content: center;
     opacity: 0;
@@ -465,7 +416,6 @@ footer {
     font-size: 16px;
     font-weight: 400;
     color: rgb(168, 168, 168);
-    text-decoration: none;
     cursor: pointer;
 }
 
@@ -473,7 +423,6 @@ footer {
     font-size: 16px;
     font-weight: 400;
     color: rgb(168, 168, 168);
-    text-decoration: none;
     margin-left: 8px;
     cursor: pointer;
 }
@@ -486,15 +435,10 @@ footer {
     color: rgba(41, 171, 226, 1);
 }
 
-@media(max-width:1010px) {
-
-    body {
-        padding-bottom: 50px;
-        max-height: calc(100% - 50px);
-    }
+@media(max-width:1050px) {
 
     .main-frame-div {
-        max-height: 1024px;
+        max-height: 926px;
     }
 
     .j-logo-img {
@@ -537,6 +481,12 @@ footer {
             top: 37px;
             left: 8.5%;
         }
+    }
+
+    .under-frame-div {
+        display: flex;
+        flex-direction: column;
+        position: relative;
     }
 
     .under-frame-div {
@@ -634,40 +584,10 @@ footer {
 
     footer {
         position: absolute;
-        top: unset;
-        bottom: 8px;
+        top: 869px;
     }
     
 }
-
-@media(max-width:945px) {
-
-    @media (orientation: landscape) {
-        .main-frame-div {
-            display: none;
-        }
-        .rotate-message {
-            color: rgba(41, 171, 226, 1);
-            display: block; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-        }
-    }
-    
-    @media (orientation: portrait) {
-        
-        .main-frame-div{
-            display: block;
-        }
-        .rotate-message {
-            display: none;
-        }
-    }
-  
-  }
 
 @media(max-width:850px) {
 
@@ -712,7 +632,6 @@ footer {
             left: 8.5%;
         }
     }
-
 }
 
 @media(max-width:650px) {
@@ -777,14 +696,6 @@ footer {
         font-size: clamp(1rem, 0.389rem + 3.053vw, 1.25rem);
     }
 
-    .error-input-message {
-        font-size: 10px;
-    }
-    
-    .forgot-password-message {
-        font-size: 10px;
-    }
-
     .footer-element-left {
         font-size: clamp(0.875rem, 0.567rem + 1.538vw, 1rem);
     }
@@ -796,155 +707,8 @@ footer {
 }
 
 @media(max-width:400px) {
-    .error-input-message {
-        font-size: 9px;
-    }
+
     
-    .forgot-password-message {
-        font-size: 9px;
-    }
-    
-}
-
-@media(max-height:850px) {
-
-    .log-in-div {
-        width: 92%;
-        max-width: 652px;
-        margin-top: 170px;
-    }
-
-    .sign-up-div {
-        margin-top: 50px;
-    }
-
-    footer {
-        height: 20px;
-        position: absolute;
-        top: unset;
-        bottom: 2px;
-    }
-}
-
-@media(max-height:740px) {
-
-    .log-in-div {
-        width: 92%;
-        max-width: 652px;
-        height: 420px;
-        margin-top: 170px;
-    }
-
-    .log-in-header {
-        font-size: clamp(2.938rem, 2.54rem + 1.413vw, 3.813rem);
-        margin-top: 15px;
-    }
-    
-    .input-main-div {
-        width: 91.9%;
-        height: 110px;
-        margin-top: 15px;
-    }
-    
-    .log-input {
-        width: 100%;
-        height: 38px;
-        padding-top: 6px;
-    }
-
-    .log-in-buttons-div {
-        width: 100%;
-        height: 123px;
-        margin-top: 16px;
-        margin-left: 0px;
-        gap: 8px;
-    }
-
-    .email-input-div {
-        margin-bottom: 2px;  
-    }
-
-    .incorrect-email-format {
-        margin-bottom: 6px;
-    }
-
-    .not-registered-msg {
-        margin-bottom: 6px;
-    }
-
-    .error-input-message {
-        margin-bottom: 8px;
-        opacity: 0;
-    }
-    
-    .forgot-password-message {
-        margin-bottom: 8px;
-        margin-right: 1.5%;
-        opacity: 0;
-    }
-
-    .log-in-button {
-        height: 40px;
-    }
-
-    .guest-a{
-        text-decoration: none;
-    }
-    
-    .guest-log-in-button {
-        height: 38px;
-        text-decoration: none;
-    }
-
-    .sign-up-div {
-        margin-top: 40px;
-    }
-
-    .sign-up-button {
-        height: 40px;
-    }
-
-}
-
-@media(max-height:670px) {
-
-    .log-in-div {
-        height: 400px;
-        margin-top: 150px;
-    }
-
-    .sign-up-div {
-        margin-top: 20px;
-    }
-}
-
-@media (min-width: 1020px) and (max-height: 800px) {
-    
-    body {
-        overflow: auto;
-    }
-
-    .main-frame-div {
-        width: 100%;
-        height: unset;
-        height: 100%;
-        max-height: 1024px;
-        max-width: 1440px;
-    }
-
-    .log-in-div {
-        margin-top: 20px;
-    }
-    
-    footer {
-        height: 20px;
-        margin: 0;
-        position: absolute;
-        top: unset;
-        bottom: 2px;
-    }
-
-
 }
 
 

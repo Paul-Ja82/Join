@@ -49,7 +49,7 @@ function showDivsDelayed() {
         signUpDiv.style.visibility = "visible";
         footer.style.opacity = "1";
         footer.style.visibility = "visible";
-    }, 900);
+    }, 1000);
 }
 
 /**
@@ -295,6 +295,7 @@ function login() {
  * @param {HTMLElement} errorMessage - The error message element.
  */
 function handleValidationResult(emailInput, passwordInput, isValidUser, errorMessage) {
+    
     if (!isValidUser) {
         emailInput.classList.add('input-error');
         passwordInput.classList.add('input-error');

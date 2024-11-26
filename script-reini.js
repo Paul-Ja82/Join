@@ -49,8 +49,8 @@ function getPersonIcon(id) {
 
 function sortContactsByName() {
   if (contacts.length > 1) {
+    contacts.sort((contactI, contactJ) => contactI.name.localeCompare(contactJ.name));
   }
-  contacts.sort((contactI, contactJ) => contactI.name.localeCompare(contactJ.name));
 }
 
 /*##########*/

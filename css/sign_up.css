@@ -2,18 +2,12 @@ body {
     width: 100%;
     height: 100vh;
     margin: 0;
-    overflow: hidden;
+    overflow: auto;
     font-family: "Inter", sans-serif;
     background-color: rgb(246,247,248,1);
     display: flex;
     justify-content:center;
     align-items: center;
-    
-}
-
-.rotate-message {
-    display: none;
-    font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
 }
 
 ::-webkit-scrollbar {
@@ -36,10 +30,8 @@ body {
     width: 100%;
     height: 100vh;
     max-width: 1440px;
-    max-height: 1024px;
     display: flex;
     position: relative;
-    
 }
 
 .logo-header-div {
@@ -58,6 +50,7 @@ body {
     width: 70.35%;
     display: flex;
     flex-direction: column;
+
 }
 
 .sign-up-div {
@@ -155,20 +148,6 @@ h1 {
     align-items: center;
 }
 
-.log-input-confirm-pass {
-    height: 48px;
-    width: 100%;
-    padding-left: 4.7%;
-    font-size: clamp(1.125rem, 1.089rem + 0.179vw, 1.25rem);
-    font-weight: 400;
-    color: black;
-    border: solid 1px rgb(209, 209, 209);
-    border-radius: 10px;
-    outline: none;
-    display: flex;
-    align-items: center;
-}
-
 .log-input:focus {
     outline: none;
     border: solid 1px  rgba(41, 171, 226, 1); 
@@ -177,15 +156,6 @@ h1 {
 .log-input-pass:focus {
     outline: none;
     border: solid 1px  rgba(41, 171, 226, 1); 
-}
-
-.log-input-confirm-pass:focus {
-    outline: none;
-    border: solid 1px  rgba(41, 171, 226, 1); 
-}
-
-.log-input-confirm-pass.input-error {
-    border: solid 1px rgba(255, 129, 144, 1);
 }
 
 ::placeholder {
@@ -247,12 +217,11 @@ h1 {
 .confirm-pw-input-div {
     width: 422px;
     height: 48px;
-    margin-bottom: 0px; 
+    margin-bottom: 35px; 
     border-radius: 10px;
     display: flex;
     align-items: center;
     position: relative;
-    background-color: aquamarine;
 }
 
 .password-Img {
@@ -268,7 +237,6 @@ h1 {
     right: 20px;
     top: 11.640px;
     display: none;
-    cursor: pointer;
 }
 
 .password-Img-eye-on {
@@ -277,15 +245,6 @@ h1 {
     right: 20px;
     top: 11.640px;
     display: none;
-    cursor: pointer;
-}
-
-.no-match-confirm-message {
-    width: 70%;
-    margin-bottom: 16px;
-    font-size: clamp(0.75rem, 0.732rem + 0.089vw, 0.813rem);
-    color: rgba(255, 129, 144, 1);
-    opacity: 0;
 }
 
 .accept-priv-box-div {
@@ -386,14 +345,12 @@ h1 {
 }
 
 footer {
-    width: 598px;
+    width: 100%;
     height: 35px;
     position: absolute;
-    top: unset;
-    bottom: 16px;
+    top: 949px;
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 8px;
 }
 
@@ -401,7 +358,6 @@ footer {
     font-size: 16px;
     font-weight: 400;
     color: rgb(168, 168, 168);
-    text-decoration: none;
     cursor: pointer;
 }
 
@@ -409,7 +365,6 @@ footer {
     font-size: 16px;
     font-weight: 400;
     color: rgb(168, 168, 168);
-    text-decoration: none;
     margin-left: 8px;
     cursor: pointer;
 }
@@ -422,16 +377,12 @@ footer {
   color: rgba(41, 171, 226, 1);
 }
 
-@media(max-width:1010px) {
-
-    body {
-        padding-bottom: 50px;
-        max-height: calc(100% - 50px);
-    }
+@media(max-width:1050px) {
 
     .main-frame-div {
         width: 100%;
         max-width: 1440px;
+        max-height: 926px;
         display: flex;
         flex-direction: column;
         position: relative;
@@ -487,11 +438,6 @@ footer {
        height: 51px;
        width: 100%;
    }
-
-   .log-input-confirm-pass {
-    height: 51px;
-    width: 100%;
-   }
    
    .name-input-div {
        width: 91.9%;
@@ -515,15 +461,7 @@ footer {
    .confirm-pw-input-div {
        width: 91.9%;
        height: 51px;
-       margin-bottom: 0px;
-   }
-
-   .no-match-confirm-message {
-    width: 92%;
-    margin-bottom: 30px;
-    font-size: clamp(0.75rem, 0.732rem + 0.089vw, 0.813rem);
-    color: rgba(255, 129, 144, 1);
-    opacity: 0;
+       margin-bottom: 48px;
    }
    
    .accept-priv-box-div{
@@ -537,46 +475,17 @@ footer {
    .sign-up-final-button {
        width: 180px;                       /*43%  ?*/
        height: 51px;
-       margin-top: 20px;
+       margin-top: 30px;
        font-size: 16px;
    }
    
    footer {
-      width: 100%;
       position: absolute;
-      top: unset;
-      bottom: 16px;
-   }   
+      top: 869px;
+   }
+   
 }
 
-@media(max-width:945px) {
-
-    @media (orientation: landscape) {
-        .main-frame-div {
-            display: none;
-        }
-        .rotate-message {
-            color: rgba(41, 171, 226, 1);
-            display: block; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-        }
-    }
-    
-    @media (orientation: portrait) {
-        
-        .main-frame-div{
-            display: block;
-        }
-        .rotate-message {
-            display: none;
-        }
-    }
-  
-  }
 
 @media(max-width:450px) {
     
@@ -635,7 +544,7 @@ footer {
    .confirm-pw-input-div {
        width: 91.9%;
        height: 51px;
-       margin-bottom: 0px;
+       margin-bottom: 48px;
    }
    
    .accept-priv-box-div{
@@ -762,11 +671,7 @@ footer {
    .confirm-pw-input-div {
        width: 91.9%;
        height: 48px;
-       margin-bottom: 0px;
-   }
-
-   .no-match-confirm-message {
-      margin-bottom: 8px;
+       margin-bottom: 24px;
    }
    
    .accept-priv-box-div{
@@ -786,7 +691,7 @@ footer {
 
    footer {
     position: absolute;
-    top: 730px;
+    top: 750px;
  }
    
 }
@@ -864,36 +769,32 @@ footer {
 .confirm-pw-input-div {
     width: 91.9%;
     height: 48px;
-    margin-bottom: 0px;
+    margin-bottom: 16px;
 }
 
-.no-match-confirm-message {
-    margin-bottom: 8px;
+   
+   .accept-priv-box-div{
+       width: 231px;
+       height: 24px;
+       margin-left: 0px;
+       margin-top: 0px;
+       margin-bottom: 0px;
+       display: flex;
+       justify-content: center;
    }
-
    
-.accept-priv-box-div{
-    width: 231px;
-    height: 24px;
-    margin-left: 0px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    display: flex;
-    justify-content: center;
-}
-   
-.sign-up-final-button {
-    width: 180px;
-    height: 51px;
-    margin-bottom: 0px;
-    margin-top: 0px;
-    font-size: 20px;
-}
+   .sign-up-final-button {
+       width: 180px;
+       height: 51px;
+       margin-bottom: 0px;
+       margin-top: 0px;
+       font-size: 20px;
+   }
 
    footer {
     position: absolute;
     top: 565px;
-}
+ }
    
 }
    
@@ -924,7 +825,7 @@ footer {
 
     .confirm-pw-input-div {
         height: 48px;
-        margin-bottom: 0px;
+        margin-bottom: 24px;
     }
 
     footer {
@@ -978,13 +879,8 @@ footer {
         
         .confirm-pw-input-div {
             height: 48px;
-            margin-bottom: 0px;
+            margin-bottom: 24px;
         }
-
-        .no-match-confirm-message {
-            margin-bottom: 8px;
-           }
-        
 
         .sign-up-final-button {
             height: 45px;
@@ -1037,12 +933,8 @@ footer {
         .confirm-pw-input-div {
             width: 91.9%;
             height: 48px;
-            margin-bottom: 0px;
+            margin-bottom: 24px;
         }
-
-        .no-match-confirm-message {
-            margin-bottom: 6px;
-           }
         
 
         .sign-up-final-button {
@@ -1061,47 +953,4 @@ footer {
     }
 
 
-/*###############*/
-/*## VON REINI ##*/
-/*###############*/
-
-#signUpFinalButton:disabled {
-    filter: grayscale(1) opacity(0.5);
-}
-
-#signUpFinalButton:hover:disabled {
-    background-color: rgba(42, 54, 71, 1);
-    box-shadow: none;
-    cursor: unset;
-}
-
-.validation-message {
-    /* display: none; */
-    position: absolute;
-    margin: 0;
-    bottom: 0;
-    transform: translate(0, 110%);
-    color: red;
-    font-size: 0.8em;
-}
-
-.validate-input:invalid {
-    border: 1px solid red;
-}
-
-.validate-input:invalid ~ .validation-message {
-    visibility: unset;
-}
-
-#accPrivacyBox {
-    position: relative;
-}
-
-#privacyCheckbox {
-    border: none;
-}
-
-.v-hidden {
-    visibility: hidden;
-}
 

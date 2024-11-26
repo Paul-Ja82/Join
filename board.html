@@ -7,52 +7,19 @@
     <link rel="stylesheet" href="./css/layout.css" />
     <link rel="stylesheet" href="./css/board.css" />
     <link rel="stylesheet" href="./assets/fonts/fonts.css" />
-    <link rel="stylesheet" href="css/add_Task.css" />
+    <link rel="stylesheet" href="./css/add_Task.css" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/menu.css" />
     <link rel="stylesheet" href="./css/header.css" />
-    <script src="./js/database.js"></script>
-    <script src="./js/ui.js"></script>
-    <script src="./script.js"></script>
-    <script src="./js/header.js"></script>
-    <script src="./js/templates.js"></script>
-    <script src="./js/logIn.js"></script>
-    <script src="./js/multi-page-app.js"></script>
     <title>Board - join</title>
   </head>
-  <body id="board_body" onload="getIdAndData(pathData=''); include().then(initHeaderJs); init(); preparingElements()" class="no_drop_area">
-     <!--<header>
-      <div class="logo-header-div">
-          <img class="img-logo-header" src="assets/img/j-logo-small.svg">
-      </div>
-      <div class="header-title">Kanban Project Management Tool</div>
-      <nav class="nav-header">
-          <a href="help.html" class="help-button"><img class="help-button-img" src="./assets/img/help-icon.svg"></a>
-          <div class="initials-circle" onclick="openNavWindowFrame()">
-              <div  id="navCircle" ></div>
-          </div>
-          <div class="nav-menu-resp-frame">
-            <div class="nav-menu-responsive">
-                <a href="help.html" class="nav-a">Help</a>
-                <a href="legal_notice.html" class="nav-a">Legal Notice</a>
-                <a href="privacy_policy.html" class="nav-a">Privacy Policy</a>
-                <a class="nav-a" onclick="logoutMPA()">Log out</a>
-            </div>
-        </div>
-    <div class="nav-menu-frame">
-        <div class="nav-menu">
-            <a href="legal_notice.html" class="nav-a">Legal Notice</a>
-            <a href="privacy_policy.html" class="nav-a">Privacy Policy</a>
-            <a class="nav-a" onclick="logoutMPA()">Log out</a>
-        </div>
-    </div>
-</header>-->
+  <body id="board_body" onload="initBoard()" class="no_drop_area">
     <header id="headerContainer" class="flex-row" data-include="./header.html">
       <p>shoud be included</p>
     </header> 
     <div id="menuContainer" data-include="./assets/templates/menu_template.html"></div>
     <div onclick="event.stopPropagation(); closeTask(event)" id="backgroundId" class="background d-none">
-      <div onclick="event.stopPropagation();" id="dialogBox" class="dialogBox"></div>
+      <div onclick="event.stopPropagation(); closeTask(event)" id="dialogBox" class="dialogBox"></div>
     </div>
     <div class="board_ctn">
       <div class="board_header">
@@ -96,7 +63,7 @@
             </div>
             <div
               ondrop="checkDraggableArea(event); removeShadow('shadow_move_to_to_do_tasks')"
-              ondragover="allowDrop(event); showShadow('shadow_move_to_to_do_tasks')"
+              ondragover="allowDrop(event); if (window.innerWidth > 600) showShadow('shadow_move_to_to_do_tasks')"
               class="task_section_tasks_area"
               id="to_do_tasks"
             ></div>
@@ -118,7 +85,7 @@
             </div>
             <div
               ondrop="checkDraggableArea(event); removeShadow('shadow_move_to_in_progress_tasks')"
-              ondragover="allowDrop(event); showShadow('shadow_move_to_in_progress_tasks')"
+              ondragover="allowDrop(event); if (window.innerWidth > 600) showShadow('shadow_move_to_in_progress_tasks')"
               class="task_section_tasks_area"
               id="in_progress_tasks"
             >
@@ -141,7 +108,7 @@
             </div>
             <div
               ondrop="removeShadow('shadow_move_to_await_feedback_tasks')"
-              ondragover="allowDrop(event); showShadow('shadow_move_to_await_feedback_tasks')"
+              ondragover="allowDrop(event); if (window.innerWidth > 600) showShadow('shadow_move_to_await_feedback_tasks')"
               class="task_section_tasks_area"
               id="await_feedback_tasks"
             >
@@ -156,7 +123,7 @@
             <div id="done_tasks_nothing" class="task_nothing_todo">No tasks Done</div>
             <div
               ondrop="removeShadow('shadow_move_to_done_tasks')"
-              ondragover="allowDrop(event); showShadow('shadow_move_to_done_tasks')"
+              ondragover="allowDrop(event); if (window.innerWidth > 600) showShadow('shadow_move_to_done_tasks')"
               class="task_section_tasks_area"
               id="done_tasks"
             >
@@ -165,18 +132,24 @@
         </div>
       </div>
     </div>
-
     <div class="rotate-message">
       Please rotate your device back to portrait mode.
    </div>
-    <script src="./js/add_task.js"></script>
-    <script src="./js/loadTasks.js"></script>
-    <script src="./js/showTasks.js"></script>
-    <script src="./js/board.js"></script>
-    <script src="./js/taskOverlay.js"></script>
-    <script src="./js/filterTasks.js"></script>
-    <script src="./js/contactsForTask.js"></script>
-    <script src="./js/edit_task.js"></script>
-    <script src="./js/openCloseBoardOverlay.js"></script>
+   <script src="./js/database.js"></script>
+   <script src="./js/ui.js"></script>
+   <script src="./script.js"></script>
+   <script src="./js/header.js"></script>
+   <script src="./js/templates.js"></script>
+   <script src="./js/logIn.js"></script>
+   <script src="./js/multi-page-app.js"></script>
+   <script src="./js/add_task.js"></script>
+   <script src="./js/loadTasks.js"></script>
+   <script src="./js/showTasks.js"></script>
+   <script src="./js/board.js"></script>
+   <script src="./js/taskOverlay.js"></script>
+   <script src="./js/filterTasks.js"></script>
+   <script src="./js/contactsForTask.js"></script>
+   <script src="./js/edit_task.js"></script>
+   <script src="./js/openCloseBoardOverlay.js"></script>
   </body>
 </html>

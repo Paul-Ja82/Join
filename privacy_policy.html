@@ -1,20 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="./css/legal.css" />
-    <link rel="stylesheet" href="./assets/fonts/fonts.css" />
-  </head>
-  <body>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join | Privacy Policy</title>
+  <!-- fonts -->
+  <link rel="stylesheet" href="./assets/fonts/fonts.css">
+  <!-- styles -->
+  <!-- <link rel="stylesheet" href="./css/reset.css"> -->
+  <link rel="stylesheet" href="./css/layout-reini.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/menu.css">
+  <link rel="stylesheet" href="./css/header.css">
+  <link rel="stylesheet" href="./css/legal.css">
+  <!-- scrips -->
+  <script src="./js/multi-page-app.js"></script>
+  <script src="./js/ui.js"></script>
+  <script src="./js/header.js"></script>
+  <script src="./js/privacy_policy.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', initPrivacy);
+  </script>
+</head>
+
+<body>
+  <!-- HEADER  -->
+  <header id="headerContainer" data-include="./header.html">
+  </header>
+
+  <!-- MENU -->
+  <div id="menuContainer" data-include="./assets/templates/menu_template.html">
+  </div>
+
+  <!-- CONTENT -->
+  <main id="contentContainer" class="bg-main">
     <div class="titleSelection">
       <h2 class="privacyPolicyTitle">Privacy Policy</h2>
-      <div class="getBack">
+      <div class="getBack" onclick="window.history.back();">
         <img src="assets/icons/ArrowToLeft.svg" alt="" />
       </div>
     </div>
-    <main>
+    <div>
       <section>
         <article>
           <h3>1. Datenschutz auf einen Blick</h3>
@@ -326,6 +353,8 @@
           <a href="https://www.e-recht24.de">https://www.e-recht24.de</a>
         </p>
       </section>
-    </main>
-  </body>
+    </div>
+  </main>
+</body>
+
 </html>

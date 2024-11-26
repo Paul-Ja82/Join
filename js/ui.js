@@ -48,7 +48,6 @@ function getRandomColorHexComponent() {
 
 function getColorHexComponent(number) {
     let comp = parseInt(number).toString(16);
-    console.log(comp); ///DEBUG
     if (comp.length == 2)
         return comp;
     else {

@@ -5,6 +5,17 @@ let inChangeSubtasksTask = [];
 let currentKeyToOpen;
 let currentStatusofChangingTask;
 
+/**
+ * Handles the task selection process when a task is clicked.
+ * - Prevents the event from propagating further.
+ * - Identifies the container associated with the clicked task.
+ * - Extracts the ID of the clicked task.
+ * - Displays the task details.
+ * - Checks the index of the clicked task within the list of all tasks.
+ * - Sets the clicked task as the current task for editing.
+ * 
+ * @param {Event} e - The event object triggered by the click action.
+ */
 function checkTask(e) {
   e.stopPropagation();
   let container = e.target.closest('[id^="single_task_ctn"]');
@@ -16,12 +27,21 @@ function checkTask(e) {
   }
 }
 
-// UMZUG IN EDITTASK.JS
-// function openEditedTask() {
-//   showTask();
-//     checkIndexOfAllTasks(currentTaskForEdit, allTasks, allKeys);
-// }
-
+/**
+ * Populates and displays the task overlay with detailed information about a specific task.
+ * 
+ * - Sets the content of the overlay's HTML structure with task details.
+ * - Configures the header, description, due date, priority, assigned contacts, subtasks, 
+ *   and action buttons (delete and edit).
+ * - Stops propagation of click events to prevent accidental closures.
+ * - Applies a category-specific color to the task category display.
+ * 
+ * @param {Object} allTasks - An object containing all tasks, indexed by keys.
+ * @param {string} keyToOpen - The key identifying the task to be displayed.
+ * @param {string} priorityImg - HTML string representing the priority icon.
+ * @param {string} assignedToContacts - HTML string for the list of assigned contacts.
+ * @param {string} subTasks - HTML string for the collection of subtasks.
+ */
 function fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, subTasks) {
   document.getElementById(`dialogBox`).innerHTML = `
   <div onclick="event.stopPropagation(); closeTask(event)" class="task_overlay_ctn">
@@ -85,6 +105,18 @@ function fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, s
   checkTaskCategoryColor("single_task_category_overlay");
 }
 
+/**
+ * Generates the HTML template for displaying the contacts assigned to a specific task.
+ * 
+ * - Checks if the task is assigned to any contacts. If not, an empty string is returned.
+ * - Iterates through the list of assigned contacts and creates a template for each.
+ * - Retrieves the initials, user-specific indicators, and background colors for contacts.
+ * - Assembles the HTML for displaying each contact with their details.
+ * 
+ * @param {Object} allTasks - An object containing all tasks, indexed by keys.
+ * @param {string} keyToOpen - The key identifying the task whose assigned contacts are to be displayed.
+ * @returns {string} The HTML string for the assigned contacts template.
+ */
 function checkAssignedToOverlay(allTasks, keyToOpen) {
   let contactsTemplate = "";
   if (allTasks[keyToOpen].assigned_to == 'nobody') {
@@ -105,6 +137,21 @@ function checkAssignedToOverlay(allTasks, keyToOpen) {
   return contactsTemplate
 } 
 
+/**
+ * Extracts and returns the initials from a full name.
+ * 
+ * - If the full name contains a space (indicating first and last name), 
+ *   the function returns the first letters of the first and last names, both in uppercase.
+ * - If the full name does not contain a space (indicating a single word name), 
+ *   the function returns the first letter of the name in uppercase.
+ * 
+ * @param {string} fullName - The full name of a person.
+ * @returns {string} The initials of the name in uppercase.
+ * 
+ * @example
+ * checkInitials("John Doe"); // Returns "JD"
+ * checkInitials("Alice"); // Returns "A"
+ */
 function checkInitials(fullName) {
   let charOneFirstName = "";
   let charOneLastName = "";
@@ -118,6 +165,16 @@ function checkInitials(fullName) {
   return charOneFirstName + charOneLastName
 }
 
+/**
+ * Retrieves the background color associated with a contact's name.
+ * 
+ * - Iterates through the list of all contacts to find a match for the given full name.
+ * - Returns the color assigned to the contact if a match is found.
+ * 
+ * @param {string} fullName - The full name of the contact.
+ * @param {Object} allContactsForTasks - An object containing contact details, where each key maps to an object with `name` and `color` properties.
+ * @returns {string} The color associated with the contact's initials, or `undefined` if no match is found.
+ */
 function checkContactColor(fullName, allContactsForTasks) {
   const contactsArray = Object.values(allContactsForTasks);
   let colorForInitials; 
@@ -130,6 +187,16 @@ function checkContactColor(fullName, allContactsForTasks) {
   return colorForInitials
 }
 
+/**
+ * Checks if the logged-in user matches a given full name.
+ * 
+ * - If the logged-in user matches the full name, returns "(You)".
+ * - Otherwise, returns an empty string.
+ * 
+ * @param {string} currentUserLoggedIn - The name of the currently logged-in user.
+ * @param {string} fullName - The full name to compare against the logged-in user.
+ * @returns {string} A string indicating the current user or an empty string.
+ */
 function checkCurrentUser(currentUserLoggedIn, fullName) {
     let currentUserForAssignedTo = '';
     if (currentUserLoggedIn == fullName) {
@@ -139,7 +206,17 @@ function checkCurrentUser(currentUserLoggedIn, fullName) {
     }
     return currentUserForAssignedTo
 }
-   
+ 
+/**
+ * Checks the subtasks of a given task and generates HTML for the overlay.
+ * 
+ * - If no subtasks are defined, returns a message indicating that there are no subtasks.
+ * - Otherwise, generates a list of subtasks with checkboxes.
+ * 
+ * @param {Object} allTasks - The object containing all tasks.
+ * @param {string} keyToOpen - The key identifying the task to be opened.
+ * @returns {string} HTML string representing the subtasks of the task.
+ */
 function checkSubtasksOverlay(allTasks, keyToOpen) {
     let subtasks = allTasks[keyToOpen].subtasks;
     let subtaskTemplate = "";
@@ -176,6 +253,14 @@ function checkSubtasksOverlay(allTasks, keyToOpen) {
   return subtaskTemplate;
 }
 
+/**
+ * Generates the HTML for a checkbox input element based on the checked status of a subtask.
+ * 
+ * @param {Object} allTasks - The object containing all tasks, where each task has an array of subtasks.
+ * @param {string} keyToOpen - The key representing the task in the allTasks object to which the subtasks belong.
+ * @param {number} j - The index of the subtask within the subtasks array.
+ * @returns {string} The HTML string for the checkbox input element, with the "checked" attribute set if the subtask is marked as completed.
+ */
 function checkSubtaskStatus(allTasks, keyToOpen, j) {
   let checkboxSubtaskHTML = "";
   if (allTasks[keyToOpen].subtasks[j].checked == true) {
@@ -190,6 +275,17 @@ function checkSubtaskStatus(allTasks, keyToOpen, j) {
   return checkboxSubtaskHTML;
 }
 
+/**
+ * Toggles the checked status of a subtask and updates the status in the backend.
+ * 
+ * This function stops the event propagation, splits the labelID to get the task key and subtask index,
+ * toggles the `checked` property of the subtask, and then updates the status in the database.
+ * 
+ * @param {Object} allTasks - The object containing all tasks, where each task has an array of subtasks.
+ * @param {Event} e - The event object from the DOM event that triggered this function.
+ * @param {string} labelID - A string representing the ID of the label, used to extract the task key and subtask index.
+ * @returns {Promise<void>} A promise that resolves when the status has been updated and data has been fetched.
+ */
 async function changeSubtaskStatus(allTasks, e, labelID) {
     e.stopPropagation()
     let keyAndIndex = labelID.split('_')
@@ -205,6 +301,18 @@ async function changeSubtaskStatus(allTasks, e, labelID) {
     await getIdAndData(pathData='')
 }
 
+/**
+ * Finds the task associated with a clicked ID and fills the task overlay with relevant information.
+ * 
+ * This function iterates through the task keys to find the task that matches the clicked ID, 
+ * retrieves the task's assigned contacts, priority image, and subtasks, and then fills the task overlay 
+ * with this information.
+ * 
+ * @param {string} clickedSingleID - The ID of the clicked task, used to match it with a task in `allTasks`.
+ * @param {Object} allTasks - The object containing all tasks, where each task has properties like `single_ID`.
+ * @param {Array<string>} allKeys - The array of keys used to access the tasks in `allTasks`.
+ * @returns {Object} The task object that matches the clicked ID, now assigned to `currentTaskInOverlay`.
+ */
 function checkIndexOfAllTasks(clickedSingleID, allTasks, allKeys) {
   let keyToOpen;
   for (let i = 0; i < allKeys.length; i++) {
@@ -220,48 +328,17 @@ function checkIndexOfAllTasks(clickedSingleID, allTasks, allKeys) {
   return (currentTaskInOverlay = allTasks[keyToOpen]);
 }
 
-// UMZUG IN OPENCLOSEOVERLAY.JS ODER ADDTASK/EDITTASK
-// function returnChangeAddTask() {
-//   let keyToOpen;
-//   console.log(currentTaskForEdit);
-//   console.log(allTasks);
-//   for (let i = 0; i < allKeys.length; i++) {
-//     let key = allKeys[i];
-//     if (allTasks[key].single_ID == currentTaskForEdit) {
-//       keyToOpen = allKeys[i];
-//     }
-//   }
-//   let assignedToContacts = checkAssignedToOverlay(allTasks, keyToOpen);
-//   let priorityImg = checkPriorityImg(allTasks, keyToOpen);
-//   let subTasks = checkSubtasksOverlay(allTasks, keyToOpen);
-//   currentKeyToOpen = keyToOpen;
-//   fillOutInputChangeAddTask(allTasks, keyToOpen, priorityImg, assignedToContacts, subTasks);
-// }
-
-// UMZUG IN OPENCLOSEOVERLAY.JS ODER ADDTASK/EDITTASK
-// function fillOutInputChangeAddTask(allTasks, keyToOpen, priorityImg, assignedToContacts, subTasks) {
-//   document.getElementById("title").value = allTasks[keyToOpen].title;
-//   document.getElementById("description").value = allTasks[keyToOpen].description;
-//   document.getElementById("date").value = allTasks[keyToOpen].due_date;
-//   selectPrio(`${allTasks[keyToOpen].priority}`);
-//   selectedPrio = allTasks[keyToOpen].priority;
-//   document.getElementById("showSelectedCategory").value = allTasks[keyToOpen].category;
-//   currentStatusofChangingTask = allTasks[keyToOpen].currentStatus;
-//   document.getElementById("date").style.color = "black";
-//   getSubtasksChangeTaskAdded(keyToOpen, allTasks);
-// }
-
-// UMZUG IN OPENCLOSEOVERLAY.JS ODER ADDTASK/EDITTASK
-// function getSubtasksChangeTaskAdded(keyToOpen, allTasks) {
-//  subtasks = [];
-//   if (allTasks[keyToOpen].subtasks) {
-//    for (let index = 0; index < allTasks[keyToOpen].subtasks.length; index++) {
-//     subtasks.push(allTasks[keyToOpen].subtasks[index]);
-//   }
-//   renderSubtasks();
-//   }
-// }
-
+/**
+ * Deletes a task based on the provided key and updates the UI accordingly.
+ * 
+ * This function stops the propagation of the event, logs the task key to be deleted,
+ * sends a request to delete the task with the specified key, and then closes the task overlay.
+ * It also resets the body's overflow style and fetches updated task data after the deletion.
+ * 
+ * @param {Event} e - The event object triggered by the task delete action, used to prevent event propagation.
+ * @param {string} keyToDelete - The key of the task to be deleted, which is used to identify the task in the database.
+ * @returns {Promise<void>} A promise that resolves once the task deletion is completed and the UI is updated.
+ */
 async function deleteTask(e, keyToDelete) {
   e.stopPropagation();
   console.log(keyToDelete);
