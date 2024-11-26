@@ -30,8 +30,9 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  height: 100vh;
-  width: 100vw;
+  /*Test Sabrina. Unter ca. 330px geht der Overlay Background mit vw nicht über die Komplette Breite und Höhe. Angaben entfernt, da pos. fixed.*/
+  /* height: 100vh; */
+  /* width: 100vw; */
   z-index: 900;
 }
 
