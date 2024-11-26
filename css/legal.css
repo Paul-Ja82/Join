@@ -1,3 +1,13 @@
+.menu-nav-item {
+  min-height: unset;
+}
+
+.menu-nav-text {
+  margin: 0;
+}
+
+/*
+
 * {
   box-sizing: border-box;
   scroll-behavior: smooth;
@@ -94,3 +104,5 @@ article {
   align-self: center;
   cursor: pointer;
 }
+
+*/
