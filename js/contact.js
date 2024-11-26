@@ -41,7 +41,6 @@ async function loadCurrentUserContact() {
     let userId= window.sessionStorage.getItem('loggedInUserId');
     currentUser= await getData(USERS_PATH + userId);
     if (!currentUser.color) currentUser.color= USER_COLOR;
-    console.log(currentUser.phone); ///DEBUG
     if (!currentUser.phone) currentUser.phone= USER_PHONE;
     contacts.push(currentUser);
 }
@@ -385,6 +384,8 @@ function setButtonsEdit() {
 function submitHandlerEdit() {
     if (isUserContact()) editUserContact().then(generateContactList);
     else editContact().then(generateContactList);
+    sessionStorage.setItem('loggedInUserName', currentUser.name);
+    updateUserMonogram();
     showToast('editContactToast', afterToastHandlerEditContact);
 }
 
