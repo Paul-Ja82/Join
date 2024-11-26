@@ -20,8 +20,6 @@ let contacts = [
 let isListOpen = false;
 let hasEventListener = false;
 
-const avatarColors = ["#3498db", "#e74c3c", "#f39c12", "#2ecc71", "#9b59b6"];
-
 /**
  * Initializes the "Add Tasks" functionality by rendering the task form, hiding the contact list, and setting default priority.
  *
@@ -592,18 +590,35 @@ function checkDateInput() {
  *    - Creates an SVG avatar using `createAvatarSVG`.
  *    - Appends the SVG avatar to the `avatarContainer`.
  */
+
 function showPersons() {
   const avatarContainer = document.getElementById("showPersons");
   avatarContainer.innerHTML = "";
   console.log(selectedContacts);
 
-  selectedContacts.forEach((contact, index) => {
+  selectedContacts.forEach((contact) => {
+    console.log(contact);
+    console.log(allContactsForTasks);
+    
     const initials = getInitials(contact);
-    const bgColor = avatarColors[index % avatarColors.length];
+    let bgColor = "";
+
+    
+    for (let key in allContactsForTasks) {
+      console.log(allContactsForTasks[key])
+      if (allContactsForTasks[key].name === contact) {
+        bgColor = allContactsForTasks[key].color;
+        break;
+      }
+    }
+
+    console.log(bgColor);
     const svgAvatar = createAvatarSVG(initials, bgColor);
     avatarContainer.appendChild(svgAvatar);
   });
 }
+
+
 
 /**
  * Extracts initials from a given name, considering both single and multi-word names.
@@ -680,7 +695,7 @@ function createAvatarSVG(initials, bgColor) {
 
   svg.appendChild(circle);
   svg.appendChild(text);
-
+console.log(bgColor);
   return svg;
 }
 

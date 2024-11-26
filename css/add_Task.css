@@ -391,7 +391,7 @@ textarea:focus {
 
 .contactPerson {
   width: 250px;
-  word-wrap: break-word;
+  word-wrap:normal;
 }
 
 .backgroundContact {
@@ -476,7 +476,6 @@ input[type="date"].filled {
   gap: 8px;
   height: 60px;
   margin-bottom: 15px;
-  width: 976px;
 }
 
 .overFormButtonsBoard {
