@@ -13,14 +13,13 @@
     <link rel="stylesheet" href="./css/header.css" />
     <title>Board - join</title>
   </head>
-  <!-- <body id="board_body" onload="getIdAndData(pathData=''); include().then(initHeaderJs); initBoard(); preparingElements()" class="no_drop_area"> -->
   <body id="board_body" onload="initBoard()" class="no_drop_area">
     <header id="headerContainer" class="flex-row" data-include="./header.html">
       <p>shoud be included</p>
     </header> 
     <div id="menuContainer" data-include="./assets/templates/menu_template.html"></div>
     <div onclick="event.stopPropagation(); closeTask(event)" id="backgroundId" class="background d-none">
-      <div onclick="event.stopPropagation();" id="dialogBox" class="dialogBox"></div>
+      <div onclick="event.stopPropagation(); closeTask(event)" id="dialogBox" class="dialogBox"></div>
     </div>
     <div class="board_ctn">
       <div class="board_header">
