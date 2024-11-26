@@ -191,12 +191,16 @@ function closeDetailButtonHandler() {
 function showContactInfoButtonMobile() {
     hideElem('newContactButton');
     showElem('contactInfoButtonMobile');
+    let newContactButtonContainer= document.getElementById('newContactButtonContainer');
+    newContactButtonContainer.style.backgroundColor= 'var(--clr-bg-main)';
 }
 
 function hideContactInfoButtonMobile() {
     hideElem('contactInfoButtonMobile');
     showElem('newContactButton');
-
+    document.getElementById('newContactButtonContainer').classList.remove('bg-clr-main');
+    let newContactButtonContainer= document.getElementById('newContactButtonContainer');
+    newContactButtonContainer.style.backgroundColor= '';
 }
 
 /*#################*/
