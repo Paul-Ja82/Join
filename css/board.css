@@ -552,7 +552,8 @@ body {
             align-items: center;
           }
           & .task_contact_name {
-            max-width: 280px;
+            width: 100%;
+            max-width: 380px;
             overflow: auto;
             max-height: 50px;
             font-size: 16px;
@@ -837,7 +838,8 @@ body {
           & .single_task_contacts_ctn {
             & .single_task_single_contact {
               & .task_contact_name {
-                  max-width: 75%;
+                  width: 75%;
+                  max-width: 280px;
                   overflow: auto;
                   max-height: 50px;
                   font-size: 16px;
@@ -865,7 +867,7 @@ body {
         & .single_task_contacts_ctn {
           & .single_task_single_contact {
             & .task_contact_name {
-                max-width: 120px;
+                max-width: 150px;
             }
           }
         }
