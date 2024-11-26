@@ -142,6 +142,7 @@ function setInfo(contactId) {
     document.getElementById('coninfoName').innerHTML = contact.name;
     document.getElementById('coninfoEmail').innerHTML = contact.email;
     document.getElementById('coninfoPhone').innerHTML = contact.phone;
+    document.getElementById('coninfoPhone').href = 'tel:' + contact.phone;
 }
 
 function displayInfoMobile(event) {
