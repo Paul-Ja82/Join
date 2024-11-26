@@ -39,14 +39,14 @@ body {
 .dialogBox {
   align-self: center;
   background-color: white;
-  padding: 60px 40px;
+  padding: 3% 3%;
   border-radius: 20px;
   transform: translateX(200vw); /* Startpunkt außerhalb des Bildschirms */
   transition: all 225ms ease-in-out;
   z-index: 999;
   /*Ergänzung Sabrina:*/
-  max-height: 80vh;
-  max-width: 80vw;
+  max-height: 90vh;
+  max-width: 90vw;
   margin: 36px;
 }
 
@@ -144,6 +144,16 @@ body {
   font-family: "Inter";
 }
 
+.overAllFormAddTaskBoard * {
+  box-sizing: border-box;
+  font-size: 24px;
+  font-family: "Inter";
+}
+
+.overAllFormAddTaskBoard {
+  padding: 25px;
+}
+
 .initialsImg {
   width: 42px;
   height: 42px;
@@ -197,7 +207,8 @@ ul {
       justify-content: space-between;
       margin-bottom: 5vh;
       gap: 5%;
-      height: 40vh;
+      max-height: 40vh;
+      padding-right: 5px;
       overflow: auto;
 }
 
@@ -465,10 +476,12 @@ input[type="date"].filled {
   gap: 8px;
   height: 60px;
   margin-bottom: 15px;
+  width: 976px;
 }
 
 .overFormButtonsBoard {
   margin-top: 20px;
+  margin-bottom: 60px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -564,6 +577,13 @@ input[type="date"].filled {
   width: 100%;
 }
 
+.overPrioButtonsBoard {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
 .prioButtons {
   flex: 1;
   border: unset;
@@ -579,6 +599,23 @@ input[type="date"].filled {
 }
 
 .prioButtons:hover {
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.prioButtonsBoard {
+  flex: 1;
+  border: unset;
+  background-color: white;
+  padding: 16px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0px 0px 4px 0px #0000001a;}
+
+.prioButtonsBoard:hover{
   box-shadow: 0px 4px 4px 0px #00000040;
 }
 
@@ -964,10 +1001,7 @@ input[type="date"].filled {
 /* Ende */
 
 @media only screen and (max-width: 1375px) {
-  .overSendButtons {
     
-  }
-  
   
   .contentAddTaskContainer {
     margin: 0 40px;
@@ -982,11 +1016,6 @@ input[type="date"].filled {
     width: unset;
   }
 
-.line {
-  display: none;
-  
-}
-
 .fillOut {
   width: 100%;
 }
@@ -994,6 +1023,11 @@ input[type="date"].filled {
 .createButton {
   margin-right: 0;
 }
+
+.line {
+  display: none;
+}
+
 
 }
 
@@ -1024,7 +1058,7 @@ padding: 20px 35px;
   .overheader {
     background-color: #f6f7f8;
         position: sticky;
-        top: 85px;
+        top: 84px;
         right: 0;
         left: 0;
         z-index: 10;
@@ -1032,7 +1066,7 @@ padding: 20px 35px;
 
   .titleAddTask {
     font-size: 47px;
-margin: 20px 0 10px 0;
+margin: 10px 0 5px 0;
   }
 
   .overInputFields {
@@ -1051,7 +1085,7 @@ margin: 20px 0 10px 0;
   flex-direction: column;
   overflow: auto;
   padding-right: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 0;
 }
 
   .overField {
@@ -1064,7 +1098,7 @@ margin: 20px 0 10px 0;
   }
 
   .fillOutBoard {
-    width: auto;
+    width: 440px;
   }
 
   .line {
@@ -1083,6 +1117,8 @@ margin: 20px 0 10px 0;
     margin-top: 15px;
   }
 
+  
+
   .formButtons {
     padding: 18px 10px;
   }
@@ -1090,6 +1126,14 @@ margin: 20px 0 10px 0;
   .formButtonsBoard {
     padding: 8px 4px;
     font-size: 12px;
+  }
+
+  .overSendButtonsBoard {
+    display: flex;
+    justify-content: flex-end;
+    right: 35px;
+    position: absolute;
+    bottom: 30px;
   }
 
   .required {
@@ -1142,6 +1186,10 @@ margin: 20px 0 10px 0;
     font-size: 16px;
   }
 
+  .prioButtonsBoard {
+    font-size: 16px;
+    padding: 10px;
+  }
 
   .overSendButtons {
     display: flex;
@@ -1153,7 +1201,6 @@ margin: 20px 0 10px 0;
     font-size: 21px;
     right: 0;
     left: 0;
-    width: 100vw;
     gap: 8px;
     z-index: 999;
     padding: 10px 0;
@@ -1251,7 +1298,9 @@ margin: 20px 0 10px 0;
 
 
 @media(max-width:945px) {
-  
+  .fillOutBoard {
+    width: 100%;
+  }
 
 
  }
