@@ -40,9 +40,11 @@ function addListItemClickHandlers() {
 async function loadCurrentUserContact() {
     let userId= window.sessionStorage.getItem('loggedInUserId');
     currentUser= await getData(USERS_PATH + userId);
-    if (!currentUser.color) currentUser.color= USER_COLOR;
-    if (!currentUser.phone) currentUser.phone= USER_PHONE;
-    contacts.push(currentUser);
+    if (currentUser) {
+        if (!currentUser.color) currentUser.color= USER_COLOR;
+        if (!currentUser.phone) currentUser.phone= USER_PHONE;
+        contacts.push(currentUser);
+    }
 }
 
 /*##############*/
@@ -71,7 +73,7 @@ function generateContactList() {
         content += contactToListItemHTML(contactI, 'conlistItem' + contactI.id);
     }
     contactListContainer.innerHTML = content;
-    markUserContactItem();
+    if(currentUser) markUserContactItem();
 }
 
 // contact: {email, name, phone, color}
@@ -389,10 +391,10 @@ function setButtonsEdit() {
 }
 
 function submitHandlerEdit() {
-    if (isUserContact()) editUserContact().then(generateContactList);
+    if (isUserContact()) {
+        editUserContact().then(generateContactList);
+    }
     else editContact().then(generateContactList);
-    sessionStorage.setItem('loggedInUserName', currentUser.name);
-    updateUserMonogram();
     showToast('editContactToast', afterToastHandlerEditContact);
 }
 
@@ -415,10 +417,18 @@ async function editUserContact() {
     currentUser.phone = phoneInput;
     currentUser.color = colorForContact;
     saveData(path, currentUser);
+    setUserInStorages(currentUser);
+    updateUserMonogram();
+}
+
+function setUserInStorages(user) {
+    let userLocal= localStorage.getItem('loggedInUserName');
+    if (userLocal) localStorage.setItem('loggedInUserName', user.name);
+    sessionStorage.setItem('loggedInUserName', user.name);
 }
 
 function isUserContact() {
-    return shownContactInfoId==currentUser.id;
+    return currentUser ? shownContactInfoId==currentUser.id : false;
 }
 
 /*####################*/

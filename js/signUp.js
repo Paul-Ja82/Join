@@ -77,6 +77,11 @@ function loginSU() {
     }
 }
 
+function loginGuestSU() {
+    setLoggedIn(true);
+    loadPage(STARTPAGE_URL);
+}
+
 function loadInputValuesLogin() {
     console.log('loadInputValuesLogin()'); ///DEBUG
     emailInputLogin = document.getElementById('emailInput').value;
