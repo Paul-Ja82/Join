@@ -57,6 +57,20 @@ function preventDefaultSignUp() {
 /*## LOGIN ##*/
 /*###########*/
 
+function handleValidationResult(emailInput, passwordInput, isValidUser, errorMessage) {
+    
+    if (!isValidUser) {
+        emailInput.classList.add('input-error');
+        passwordInput.classList.add('input-error');
+
+        console.log(emailInput, passwordInput);
+    } else {
+        emailInput.classList.remove('input-error');
+        passwordInput.classList.remove('input-error');  //jetz funktionieren die input-error wieder 
+
+    }
+}
+
 function loginSU() {
     console.log('login(), ist in signUp.js'); ///DEBUG
     resetFlagsLogin();
@@ -73,6 +87,7 @@ function loginSU() {
         sessionStorage.setItem('loggedInUserId', user.id);
         loginMPA(user.id, rememberMeItem);
     } else {
+        handleValidationResult(emailInput, passwordInput);
         console.warn('Kein Login möglich'); ///DEBUG
     }
 }

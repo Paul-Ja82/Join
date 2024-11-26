@@ -28,12 +28,12 @@
     font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
 }
 
-* {
-  box-sizing: border-box;
+*{
   scroll-behavior: smooth;
   padding: 0;
   margin: 0;
   font-family: "Inter";
+  z-index: 0;
 }
 
 h2 {
@@ -114,10 +114,6 @@ article {
   margin-bottom: 16px;
 }
 
-.privacyPolicyTitle {
-  font-size: 61px;
-}
-
 .getBack img {
   height: 32px;
   width: 32px;
@@ -153,13 +149,7 @@ article {
       margin-left: 6%;
       margin-right: 0;
     }
-
-    .privacyPolicyTitle {
-      font-size: 47px;
-      margin-bottom: 32px;
-    }
     
-
     .text {
       margin-right: 5%;
       padding-bottom: 100px;

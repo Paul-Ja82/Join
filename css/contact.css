@@ -11,6 +11,7 @@
             display: none;
         }
         .rotate-message {
+            height: 60%;
             color: rgba(41, 171, 226, 1);
             display: block; 
             display: flex;
