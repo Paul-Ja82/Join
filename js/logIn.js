@@ -49,7 +49,7 @@ function showDivsDelayed() {
         signUpDiv.style.visibility = "visible";
         footer.style.opacity = "1";
         footer.style.visibility = "visible";
-    }, 900);
+    }, 1000);
 }
 
 /**
