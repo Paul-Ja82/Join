@@ -95,7 +95,6 @@ function markUserContactItem() {
     let elemId= 'conlistItem' + currentUser.id;
     let listItem= document.getElementById(elemId);
     listItem.classList.add('userListItem');
-    console.log(listItem); ///DEBUG
 }
 
 
