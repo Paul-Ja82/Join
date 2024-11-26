@@ -242,7 +242,6 @@ function isEmailAvailable() {
 
 async function addContact() {
     let newId = await getId();
-    // let colorHex = getRandomColorHex();
     let colorHex = colorForContact;
     let nameInput= document.getElementById('nameInputElem').value;
     let emailInput= document.getElementById('emailInputElem').value;
@@ -257,7 +256,7 @@ async function addContact() {
     let path= CONTACTS_PATH + newContact.id;
     saveData(path, newContact);
     contacts.push(newContact);
-    //TODO Show Toast
+    // showToast(..) 
 }
 
 function afterToastHandlerCreateContact() {
@@ -421,6 +420,7 @@ async function deleteContact(contactId) {
 
 async function afterToastHandlerDeleteContact() {
     await loadContacts();
+    await loadCurrentUserContact();
     generateContactList();
     addListItemClickHandlers();
     closeDialog();

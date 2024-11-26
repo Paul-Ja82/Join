@@ -142,10 +142,8 @@ function addValidation(formId, validFunc, vmsgId, vmsg) {
 }
 
 function removeValidation(formId, validFunc) {
-    console.log('removeValidation(..)'); ///DEBUG
     let validationsArray= validations[formId];
     let arrayIndex= validationsArray.findIndex(validationI => validationI.validFunc==validFunc);
-    console.log('validations arrayIndex: ' + arrayIndex); ///DEBUG
     validations[formId].splice(arrayIndex, 1);
 }
 
