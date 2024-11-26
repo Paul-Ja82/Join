@@ -11,25 +11,10 @@
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/menu.css" />
     <link rel="stylesheet" href="./css/header.css" />
-    <script src="./js/database.js"></script>
-    <script src="./js/ui.js"></script>
-    <script src="./script.js"></script>
-    <script src="./js/header.js"></script>
-    <script src="./js/templates.js"></script>
-    <script src="./js/logIn.js"></script>
-    <script src="./js/multi-page-app.js"></script>
-    <script src="./js/add_task.js"></script>
-    <script src="./js/loadTasks.js"></script>
-    <script src="./js/showTasks.js"></script>
-    <script src="./js/board.js"></script>
-    <script src="./js/taskOverlay.js"></script>
-    <script src="./js/filterTasks.js"></script>
-    <script src="./js/contactsForTask.js"></script>
-    <script src="./js/edit_task.js"></script>
-    <script src="./js/openCloseBoardOverlay.js"></script>
     <title>Board - join</title>
   </head>
-  <body id="board_body" onload="getIdAndData(pathData=''); include().then(initHeaderJs); init(); preparingElements()" class="no_drop_area">
+  <!-- <body id="board_body" onload="getIdAndData(pathData=''); include().then(initHeaderJs); initBoard(); preparingElements()" class="no_drop_area"> -->
+  <body id="board_body" onload="initBoard()" class="no_drop_area">
     <header id="headerContainer" class="flex-row" data-include="./header.html">
       <p>shoud be included</p>
     </header> 
@@ -151,5 +136,21 @@
     <div class="rotate-message">
       Please rotate your device back to portrait mode.
    </div>
+   <script src="./js/database.js"></script>
+   <script src="./js/ui.js"></script>
+   <script src="./script.js"></script>
+   <script src="./js/header.js"></script>
+   <script src="./js/templates.js"></script>
+   <script src="./js/logIn.js"></script>
+   <script src="./js/multi-page-app.js"></script>
+   <script src="./js/add_task.js"></script>
+   <script src="./js/loadTasks.js"></script>
+   <script src="./js/showTasks.js"></script>
+   <script src="./js/board.js"></script>
+   <script src="./js/taskOverlay.js"></script>
+   <script src="./js/filterTasks.js"></script>
+   <script src="./js/contactsForTask.js"></script>
+   <script src="./js/edit_task.js"></script>
+   <script src="./js/openCloseBoardOverlay.js"></script>
   </body>
 </html>

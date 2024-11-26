@@ -22,11 +22,10 @@ let dragAndDropSections = [
  * 
  * @param {Object} params - Optional parameters to configure the initialization process.
  */
-function init(params) {
-  // console.log('init()'); ///DEBUG
-  // getIdAndData((pathData = ""));
-  include();
-  // loadContacts();
+function initBoard() {
+  getIdAndData(pathData='');
+  preparingElements();
+  include().then(initHeaderJs);
 }
 
 // UMZUG IN OPENCLOSEOVERLAY.JS
@@ -128,12 +127,8 @@ function init(params) {
 function preparingElements() {
   flyingElement.classList.add("flying_element_ctn");
   flyingElement.id = "flying_element_ctn";
-  inputFindTask.addEventListener("focus", () => {
-    targetElement.style.border = "1px solid #29ABE2";
-  });
-  inputFindTask.addEventListener("blur", () => {
-    targetElement.style.border = "1px solid #a8a8a8";
-  });
+  inputFindTask.addEventListener("focus", () => {targetElement.style.border = "1px solid #29ABE2";});
+  inputFindTask.addEventListener("blur", () => {targetElement.style.border = "1px solid #a8a8a8";});
 }
 
 /**
