@@ -13,14 +13,16 @@ let dragAndDropSections = [
 ];
 
 /**
- * Initializes the board by performing the following actions:
- * - Retrieves ID and data based on the provided path.
- * - Prepares the necessary elements for the board.
- * - Includes additional scripts and initializes the header JavaScript.
+ * Initializes the board by performing necessary setup tasks.
+ * - Retrieves data and element IDs using `getIdAndData()`.
+ * - Prepares the elements on the board with `preparingElements()`.
+ * - Disables the default drag image during drag operations with `disableDragImage()`.
+ * - Initializes the header JS functionality asynchronously with `include()` and `initHeaderJs()`.
  */
 function initBoard() {
   getIdAndData(pathData='');
   preparingElements();
+  disableDragImage();
   include().then(initHeaderJs);
 }
 
@@ -33,6 +35,17 @@ function preparingElements() {
   flyingElement.id = "flying_element_ctn";
   inputFindTask.addEventListener("focus", () => {targetElement.style.border = "1px solid #29ABE2";});
   inputFindTask.addEventListener("blur", () => {targetElement.style.border = "1px solid #a8a8a8";});
+}
+
+/**
+ * Disables the default drag image when dragging an element.
+ * Listens for the 'dragstart' event and prevents the default drag image
+ * from being displayed by setting a transparent image as the drag image.
+ */
+function disableDragImage() {
+  document.addEventListener('dragstart', function(event) {
+    event.dataTransfer.setDragImage(new Image(), 0, 0);
+  });
 }
 
 /**
