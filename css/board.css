@@ -48,7 +48,6 @@ body {
   font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
 }
 
-
 .user_story {
   background-color: rgba(0, 56, 255, 1);
 }
@@ -240,6 +239,7 @@ body {
     }
   }
 }
+
 .board_ctn {
   width: calc(100% - 50px);
   padding: 25px 25px 0 25px;
@@ -430,20 +430,17 @@ body {
 
 .task_overlay_ctn {
   width: 100%;
-  /* height: 100vh; */
   display: flex;
   z-index: 30;
   justify-content: center;
   align-items: center;
   & .task_overlay_card_ctn {
-    /* width: 90%; */
     width: 525px;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
     border-radius: 24px;
     padding: 36px 18px 36px 36px;
     max-height: 90%;
-    /* margin-top: -96px; */
     & .single_task_header_category_and_close {
       display: flex;
       justify-content: space-between;
@@ -660,7 +657,6 @@ body {
   }
 }
 
-
 @media (max-width: 1440px) {
   .board_ctn {
     max-width: -webkit-fill-available;
@@ -796,33 +792,29 @@ body {
   }
 }
 
-/*das ist für die msg wenn du das handy drehst */
-@media(max-width:945px) {
-
+@media(max-width: 945px) {
   @media (orientation: landscape) {
-      .board_ctn {
-          display: none;
-      }
-      .rotate-message {
-          color: rgba(41, 171, 226, 1);
-          display: block; 
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          text-align: center;
-          padding: 20px;
-      }
+    .board_ctn {
+        display: none;
+    }
+    .rotate-message {
+        color: rgba(41, 171, 226, 1);
+        display: block; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 20px;
+    }
   }
-  
   @media (orientation: portrait) {
-      .board_ctn{
-          display: block;
-      }
-      .rotate-message {
-          display: none;
-      }
+    .board_ctn{
+        display: block;
+    }
+    .rotate-message {
+        display: none;
+    }
   }
-
 }
 
 @media (max-width: 850px) {
@@ -868,7 +860,6 @@ body {
   }
   .task_overlay_ctn {
     & .task_overlay_card_ctn {
-      /* scale: 0.9; */
       & .overlay_task_main {
         & .single_task_contacts_ctn {
           & .single_task_single_contact {
