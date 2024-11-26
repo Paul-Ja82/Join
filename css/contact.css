@@ -4,6 +4,10 @@
     --clr-conlist-item-bg-marked: var(--clr-blue-200);
 }
 
+/*###############################*/
+/*## MOBILE LANDSCAPE DETECTOR ##*/
+/*###############################*/
+
 @media(max-width:945px) {
 
     @media (orientation: landscape) {
@@ -32,7 +36,6 @@
     }
 
 }
-*/
 
 /*############*/
 /*## LAYOUT ##*/
@@ -427,6 +430,10 @@ img#cdHeaderLogo {
     height: 3em;
 }
 
+#cdMonogram {
+    font-size: 2em;
+}
+
 #contactForm {
     display: flex;
     flex-direction: column;
@@ -564,10 +571,6 @@ input {
         margin: 0;
         transform: none;
         flex: unset;
-    }
-
-    #cdMonogram {
-        font-size: 2em;
     }
 
     #contactForm {

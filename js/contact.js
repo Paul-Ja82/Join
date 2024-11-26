@@ -40,8 +40,9 @@ function addListItemClickHandlers() {
 async function loadCurrentUserContact() {
     let userId= window.sessionStorage.getItem('loggedInUserId');
     currentUser= await getData(USERS_PATH + userId);
-    currentUser.color= USER_COLOR;
-    currentUser.phone= USER_PHONE;
+    if (!currentUser.color) currentUser.color= USER_COLOR;
+    console.log(currentUser.phone); ///DEBUG
+    if (!currentUser.phone) currentUser.phone= USER_PHONE;
     contacts.push(currentUser);
 }
 
@@ -325,7 +326,6 @@ function setButtonsAdd() {
 /*## EDIT CONTACT ##*/
 /*##################*/
 
-
 function editContactButtonHandler() {
     // addFocusHandlers();
     setContactDialogEdit();
@@ -383,8 +383,8 @@ function setButtonsEdit() {
 }
 
 function submitHandlerEdit() {
-    // loadInputValuesAddContact();
-    editContact().then(generateContactList);
+    if (isUserContact()) editUserContact().then(generateContactList);
+    else editContact().then(generateContactList);
     showToast('editContactToast', afterToastHandlerEditContact);
 }
 
@@ -397,6 +397,20 @@ async function editContact() {
     contact.phone = phoneInput;
     contact.color = colorForContact;
     saveData(path, contact);
+}
+
+async function editUserContact() {
+    let path = USERS_PATH + shownContactInfoId;
+    let nameInput= document.getElementById('nameInputElem').value;
+    let phoneInput= document.getElementById('phoneInputElem').value;
+    currentUser.name = nameInput;
+    currentUser.phone = phoneInput;
+    currentUser.color = colorForContact;
+    saveData(path, currentUser);
+}
+
+function isUserContact() {
+    return shownContactInfoId==currentUser.id;
 }
 
 /*####################*/
