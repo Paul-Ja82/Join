@@ -581,28 +581,60 @@ function checkDateInput() {
 // }
 
 /**
- * Displays avatars for the selected contacts by creating and appending SVG elements.
+ * Displays avatars for selected contacts, limiting to a maximum of 5.
+ * Clears the avatar container and creates SVG avatars for each contact.
+ * If more than 5 contacts are selected, it appends a visual indicator.
  *
- * Steps performed:
- * 1. Retrieves the `showPersons` container element and clears its content.
- * 2. Logs the list of selected contacts to the console.
- * 3. Iterates over the `selectedContacts` array:
- *    - Generates initials for each contact using `getInitials`.
- *    - Determines the background color for the avatar from `avatarColors` (cyclically).
- *    - Creates an SVG avatar using `createAvatarSVG`.
- *    - Appends the SVG avatar to the `avatarContainer`.
+ * @function showPersons
+ * @returns {void}
  */
 function showPersons() {
   const avatarContainer = document.getElementById("showPersons");
   avatarContainer.innerHTML = "";
-  console.log(selectedContacts);
+  if (selectedContacts.length > 5) {
+      const contactsToShow = selectedContacts.slice(0, 5);
+      contactsToShow.forEach((contact, index) => {
+        createAndAppendSVG(avatarContainer, contact, index)
+      });
+    avatarContainer.appendChild(checkAssignedToContactsLength());
+  } else if (selectedContacts.length <= 5) {
+    selectedContacts.forEach((contact, index) => {
+      createAndAppendSVG(avatarContainer, contact, index)
+    });
+  }
+}
 
-  selectedContacts.forEach((contact, index) => {
-    const initials = getInitials(contact);
-    const bgColor = avatarColors[index % avatarColors.length];
-    const svgAvatar = createAvatarSVG(initials, bgColor);
-    avatarContainer.appendChild(svgAvatar);
-  });
+/**
+ * Creates an SVG avatar with the contact's initials and appends it to the specified container.
+ * The background color of the avatar is determined based on the contact's index.
+ *
+ * @function createAndAppendSVG
+ * @param {HTMLElement} avatarContainer - The container element to which the SVG will be appended.
+ * @param {Object} contact - The contact object containing details used to generate initials.
+ * @param {number} index - The index of the contact used to determine the background color.
+ * @returns {void}
+ */
+function createAndAppendSVG(avatarContainer, contact, index) {
+  const initials = getInitials(contact);
+  const bgColor = avatarColors[index % avatarColors.length];
+  const svgAvatar = createAvatarSVG(initials, bgColor);
+  avatarContainer.appendChild(svgAvatar);
+}
+
+/**
+ * Creates a div element indicating the number of additional selected contacts beyond the first five.
+ * The element displays the count in the format "+X" where X is the number of extra contacts.
+ *
+ * @function checkAssignedToContactsLength
+ * @returns {HTMLDivElement} - A div element displaying the number of extra contacts.
+ */
+function checkAssignedToContactsLength() {
+  let moreContactsChecked = document.createElement("div");
+  moreContactsChecked.id = "moreContactsChecked";
+  moreContactsChecked.classList.add("moreContactschecked")
+  let moreContactsCount = Number(selectedContacts.length - 5);
+  moreContactsChecked.innerHTML = `+${moreContactsCount}`;
+  return moreContactsChecked
 }
 
 /**
