@@ -11,7 +11,7 @@ body {
     max-width: 1440px;
     margin: 0 auto;
     /*Sabrina: min-width zum Testen hinzugefügt, da Menü unterhalb 350px im Board immer etwas hoch gerutscht ist.*/
-    min-width: 350px;
+    /* min-width: 350px; */
 }
 
 #headerContainer {
