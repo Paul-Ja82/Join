@@ -7,27 +7,30 @@ function initSummary() {
     initMPA();
 }
 
-
 /**
  * Toggles the display of greeting elements based on the window width.
  * If the window width is less than or equal to 1280 pixels, the greetings frame is shown for 2 seconds,
  * after which it is hidden, and the main display is shown.
+ * The greetings frame is shown only once per session using sessionStorage to track if it has been displayed.
  *
  * @function toggleGreetingsDisplay
  */
 function toggleGreetingsDisplay() {
     if (window.innerWidth <= 1280) {
-        const greetingsFrame = document.querySelector('.greetings-frame-responsive');
-        const titleAndMainDisplay = document.querySelector('.title-and-main-display-resposive');
-        
-        if (greetingsFrame && titleAndMainDisplay) {
-            greetingsFrame.style.display = 'block';
-            titleAndMainDisplay.style.display = 'none';
+        if (!sessionStorage.getItem('greetingShown')) {
+            const greetingsFrame = document.querySelector('.greetings-frame-responsive');
+            const titleAndMainDisplay = document.querySelector('.title-and-main-display-resposive');
 
-            setTimeout(() => {
-                greetingsFrame.style.display = 'none';
-                titleAndMainDisplay.style.display = 'block';
-            }, 2000);
+            if (greetingsFrame && titleAndMainDisplay) {
+                greetingsFrame.style.display = 'block';
+                titleAndMainDisplay.style.display = 'none';
+
+                setTimeout(() => {
+                    greetingsFrame.style.display = 'none';
+                    titleAndMainDisplay.style.display = 'block';
+                    sessionStorage.setItem('greetingShown', 'true');
+                }, 2000);
+            }
         }
     }
 }
@@ -64,7 +67,6 @@ function setGreeting() {
         greetingElements[i].textContent = greetingText;
     }
 }
-
 
 /**
  * Adds a comma to the provided greeting text if a name is stored in session storage.
@@ -328,7 +330,6 @@ async function updateUrgentTasks() {
     return urgentTasks; 
 }
 
-
 /**
  * Finds the oldest task (earliest due date) in an array of urgent tasks.
  *
@@ -347,7 +348,6 @@ function findOldestTask(urgentTasks) {
         return currentDate < oldestDate ? currentTask : oldest;
     });
 }
-
 
 /**
  * Sets the text color of an element to red if the provided date is in the past.
@@ -398,7 +398,6 @@ function updateDeadlineMessageElement(deadlineMsgElement, dueDate) {
         }
     }
 }
-
 
 /**
  * Displays the deadline information for the oldest task.

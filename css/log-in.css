@@ -640,34 +640,30 @@ footer {
     
 }
 
-@media(max-width:945px) {
+@media (max-height: 500px) and (max-width: 945px) and (orientation: landscape) {
+    .main-frame-div {
+        display: none;
+    }
+    .rotate-message {
+        height: 50vh;
+        color: rgba(41, 171, 226, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
+        padding: 20px;
+    }
+}
 
-    @media (orientation: landscape) {
-        .main-frame-div {
-            display: none;
-        }
-        .rotate-message {
-            color: rgba(41, 171, 226, 1);
-            display: block; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-        }
+@media (max-height: 500px) and (max-width: 945px) and (orientation: portrait) {
+    .main-frame-div {
+        display: block;
     }
-    
-    @media (orientation: portrait) {
-        
-        .main-frame-div{
-            display: block;
-        }
-        .rotate-message {
-            display: none;
-        }
+    .rotate-message {
+        display: none;
     }
-  
-  }
+}
 
 @media(max-width:850px) {
 
