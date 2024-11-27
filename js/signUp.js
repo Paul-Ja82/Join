@@ -1,10 +1,12 @@
 let users = [];
 
+/*
 let emailInputLogin;
 let passwordInputLogin;
 
 let emailInputLoginFlag = false;
 let validUserFlag = false;
+*/
 
 
 /*##########*/
@@ -132,6 +134,7 @@ function showInvalidUserVmsgLogin() {
    addUser();
 } */
 
+/*
 function isUserExisting() {
     let emailInput= document.getElementById('emailInput').value;
     let user= getUser(emailInput);
@@ -140,7 +143,9 @@ function isUserExisting() {
     else console.log('User kann angelegt werden'); ///DEBUG
     return false;
 }
+*/
 
+/*
 function loadInputValuesSignUp() {
     nameInput = document.getElementById('nameInput').value;
     emailInput = document.getElementById('emailInput').value;
@@ -148,6 +153,7 @@ function loadInputValuesSignUp() {
     passwordConfirmInput = document.getElementById('confirmPasswordInput').value;
     privacyInput = document.getElementById('privacyCheckbox').checked;
 }
+*/
 
 function getUserByEmail(email) {
     return users.find((userI) => userI.email == email);
@@ -173,6 +179,7 @@ async function addUser() {
     users.push(user);
 }
 
+/*
 function resetFlagsSignUp() {
     nameInputFlag = false;
     emailInputFlag = false;
@@ -180,6 +187,7 @@ function resetFlagsSignUp() {
     passwordConfirmFlag = false;
     privacyFlag = false;
 }
+*/
 
 function resetFlagsLogin() {
     emailInputLoginFlag = false;
@@ -194,6 +202,7 @@ function afterSignupHandler() {
 /*## VALIDATION ##*/
 /*################*/
 
+/*
 function checkNameInput() {
     if (nameInput) {
         nameInputFlag = true;
@@ -203,6 +212,7 @@ function checkNameInput() {
         // TODO Validation-Message anzeigen
     }
 }
+*/
 
 /* function checkEmailInput() {
     if (emailInput) {
@@ -271,10 +281,12 @@ function handlePasswordMatchConfirm() {
     }
 }
 
+/*
 function checkPrivacy() {
     privacyFlag = privacyInput;
     if (!privacyFlag) console.log('Please accept the Privacy Policy'); ///DEBUG
 }
+*/
 
 /*######################*/
 /*## PASSWORD MASKING ##*/
