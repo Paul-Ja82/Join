@@ -108,7 +108,7 @@ function markUserContactItem() {
 function listItemClickHandler(event) {
     shownContactInfoId = event.currentTarget.dataset.contactid;
     let contact= getContactById(shownContactInfoId);
-    colorForContact= contact.color; 
+    colorForContact= contact.color;
     if (mediaDesktop.matches) displayInfoDesktop(event);
     else displayInfoMobile(event);
 }
@@ -469,8 +469,10 @@ async function afterToastHandlerEditContact() {
 
 function mediaChangeHandler() {
     if (mediaDesktop.matches) {
+        closeDetailButtonHandler();
         showElem('detailContainer');
-        // hideContactInfoButtonMobile();
+        hideInfo();
+        demarkAllElems(itemMarkClass);
     }
     else hideElem('detailContainer');
 }
