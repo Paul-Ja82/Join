@@ -4,6 +4,8 @@
     --clr-conlist-item-bg-marked: var(--clr-blue-200);
 }
 
+
+
 <<<<<<< HEAD
 @media(max-width:945px) {
 
@@ -525,6 +527,10 @@ input {
         --padding-inline-cdContentContainer: 2em;
     }
 
+    #menuNavContainer {
+        height: 80px;
+    }
+   
     #dialogContact {
         height: unset;
         width: unset;
@@ -693,5 +699,44 @@ input {
 
     #closeDetailButton {
         display: none;
+    }
+}
+
+@media(min-width: 1010px){
+    /* .menu-nav-item {
+        margin-top: 1.2em;
+    } */
+      .menu-nav-item {
+        margin-top: 0;
+        padding: 1.7em var(--spacing-left) !important;
+    }
+}
+
+@media(max-width: 1010px) {
+    #menuNavContainer {
+        height: 80px;
+    }
+    .menu-nav-text {
+        margin-top: 8px;
+        margin-bottom: 0;
+        padding: unset !important;
+    }
+}
+
+@media(max-width: 500px) {
+    #menuContainer {
+        overflow: hidden;
+      }
+    .menu-nav-text {
+        /* margin-top: 8px;
+        margin-bottom: 0; */
+        padding: unset;
+    }
+}
+
+@media(max-width: 350px) {
+    .menu-nav-item {
+        padding: 0.5em;
+        scale: 0.95;
     }
 }

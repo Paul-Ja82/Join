@@ -136,6 +136,8 @@ body {
 
 .contentAddTaskContainer {
   margin: 0 80px;
+  /*Sabrina: Zum Test vom responsive Menü Overflow hidden eingestellt, da ich noch keine responsive Variante von addTask habe*/
+  overflow: hidden;
 }
 
 .overAllFormAddTask * {
@@ -1034,6 +1036,20 @@ input[type="date"].filled {
 
 
 @media only screen and (max-width: 1010px) {
+
+  #menuNavContainer {
+      height: 80px;
+  }
+  .menu-nav-item {
+    justify-content: center !important;
+  }
+  .menu-nav-text {
+      margin-top: 8px !important;
+      margin-bottom: 0;
+      padding: unset !important;
+  }
+
+
   .menuAddTask {
     position: fixed;
     left: 0;
@@ -1313,6 +1329,18 @@ Gruß Reini */
 }
 @media(max-width:500px) {
   .overSendButtons {
-    bottom: 65px;
+    bottom: 84px;
   }
  }
+
+ @media(max-width: 350px) {
+  .menu-nav-item {
+      scale: 0.95;
+  }
+}
+
+/* @media(max-width: 500px) {
+  #menuContainer {
+    overflow: hidden;
+  }
+} */

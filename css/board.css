@@ -740,11 +740,21 @@ body {
 
 @media (max-width: 1010px) {
   #menuContainer {
+    height: 80px;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
   }
+  .menu-nav-item {
+    justify-content: center !important;
+}
+
+.menu-nav-text {
+    margin-top: 8px;
+    margin-bottom: 0;
+}
+
   body {
     padding-bottom: 80px;
     max-height: calc(100% - 80px);
@@ -851,6 +861,20 @@ body {
 }
 
 @media (max-width: 500px) {
+  #menuContainer {
+    overflow: hidden;
+  }
+  #menuNavContainer {
+    height: 80px;
+  }
+  .menu-nav-item {
+    justify-content: center !important;
+  }
+
+  .menu-nav-text {
+      margin-top: 8px !important;
+      margin-bottom: 0;
+  }
   .board_ctn {
     & .board_task_area {
       & .task_section {
@@ -872,6 +896,34 @@ body {
         }
       }
     }
+  }
+}
+
+@media(max-width: 1010px) {
+  #menuNavContainer {
+    height: 80px;
+    position: fixed !important;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+  .menu-nav-text {
+      margin-top: 8px;
+      margin-bottom: 0;
+      padding: unset !important;
+  }
+}
+
+@media(max-width: 500px) {
+  .board_ctn {
+    padding-right: 0px !important;
+  }
+}
+
+@media(max-width: 350px) {
+  .menu-nav-item {
+      scale: 0.95;
+      padding: 0.5em;
   }
 }
 

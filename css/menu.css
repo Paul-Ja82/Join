@@ -82,10 +82,10 @@ img.menu-nav-icon {
         flex-direction: row;
         gap: 0.5em;
         padding: 0.5em var(--spacing-left);
-        min-height: unset;
+        /* min-height: unset; */
         border-radius: unset;
         justify-content: unset;
-        margin-top: 1.2em;
+        /* margin-top: 1.2em; */
     }
 
     .menu-nav-item:hover {
@@ -116,9 +116,11 @@ img.menu-nav-icon {
 }
 
 @media (max-width: 500px) {
-    .menu-nav-item {
+
+  
+    /* .menu-nav-item {
         min-height: 0;
-    }
+    } */
     
     .menu-nav-text {
         margin: 0;
