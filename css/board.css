@@ -793,31 +793,6 @@ body {
   }
 }
 
-@media (max-width: 945px) and (max-height: 700px) {
-  @media (orientation: landscape) {
-    .board_ctn {
-        display: none;
-    }
-    .rotate-message {
-        color: rgba(41, 171, 226, 1);
-        display: block; 
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 20px;
-    }
-  }
-  @media (orientation: portrait) {
-    .board_ctn{
-        display: block;
-    }
-    .rotate-message {
-        display: none;
-    }
-  }
-}
-
 @media (max-width: 850px) {
   .board_ctn {
     & .board_task_area {
@@ -872,6 +847,30 @@ body {
         }
       }
     }
+  }
+}
+
+@media (max-height: 500px) and (max-width: 945px) and (orientation: landscape) {
+  .board_ctn {
+      display: none;
+  }
+  .rotate-message {
+      color: rgba(41, 171, 226, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
+      padding: 20px;
+  }
+}
+
+@media (max-height: 500px) and (max-width: 945px) and (orientation: portrait) {
+  .board_ctn {
+      display: block;
+  }
+  .rotate-message {
+      display: none;
   }
 }
 

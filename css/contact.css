@@ -4,40 +4,11 @@
     --clr-conlist-item-bg-marked: var(--clr-blue-200);
 }
 
-<<<<<<< HEAD
-@media(max-width:945px) {
 
-    @media (orientation: landscape) {
-        main {
-            display: none;
-        }
-        .rotate-message {
-            height: 60%;
-            color: rgba(41, 171, 226, 1);
-            display: block; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
-            padding: 20px;
-        }
-    }
-    
-    @media (orientation: portrait) {
-        main{
-            display: block;
-        }
-        .rotate-message {
-            display: none;
-        }
-    }
 
-}
-*/
 
-=======
->>>>>>> reini
+
+
 /*############*/
 /*## LAYOUT ##*/
 /*############*/
@@ -629,33 +600,28 @@ input {
 /*## MOBILE LANDSCAPE DETECTOR ##*/
 /*###############################*/
 
-@media(max-width:945px) {
-
-    @media (orientation: landscape) {
-        main {
-            display: none;
-        }
-        .rotate-message {
-            color: rgba(41, 171, 226, 1);
-            display: block; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
-            padding: 20px;
-        }
+@media (max-height: 500px) and (max-width: 945px) and (orientation: landscape) {
+    main {
+        display: none;
     }
-    
-    @media (orientation: portrait) {
-        main{
-            display: block;
-        }
-        .rotate-message {
-            display: none;
-        }
+    .rotate-message {
+        color: rgba(41, 171, 226, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
+        padding: 20px;
     }
+}
 
+@media (max-height: 500px) and (max-width: 945px) and (orientation: portrait) {
+    main {
+        display: block;
+    }
+    .rotate-message {
+        display: none;
+    }
 }
 
 

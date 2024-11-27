@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded", function() {
     
 });
 
-
 /**
  * Delays the display of elements on the page by changing their opacity and visibility properties.
  * The function targets elements with the classes `log-in-div`, `sign-up-under-div`, and the `footer` element,

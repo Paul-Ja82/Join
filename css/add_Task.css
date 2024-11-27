@@ -1260,41 +1260,30 @@ margin: 10px 0 5px 0;
   }
 }
 
-
-
-
-/*das ist für die msg wenn du das handy drehst */
-@media(max-width:945px)and (max-height: 700px)  {
-
-  @media (orientation: landscape) {
-      .contentAddTaskContainer {
-          display: none;
-      }
-      .rotate-message {
-          height: 60%;
-          color: rgba(41, 171, 226, 1);
-          display: block; 
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          text-align: center;
-          padding: 20px;
-      }
-  }
-  
-  @media (orientation: portrait) {
-      .contentAddTaskContainer{
-          display: block;
-      }
-      .rotate-message {
-          display: none;
-      }
-  }
-
+@media (max-height: 500px) and (max-width: 945px) and (orientation: landscape) {
+    .contentAddTaskContainer {
+        display: none;
+    }
+    .rotate-message {
+        height: 60%;
+        color: rgba(41, 171, 226, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
+        padding: 20px;
+    }
 }
 
-
-
+@media (max-height: 500px) and (max-width: 945px) and (orientation: portrait) {
+    .contentAddTaskContainer{
+        display: block;
+    }
+    .rotate-message {
+        display: none;
+    }
+}
 
 
 @media(max-width:945px) {
