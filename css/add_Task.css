@@ -440,8 +440,6 @@ textarea:focus {
   display: flex;
   flex-direction: row;
   gap: 8px;
-  position: absolute;
-  margin-top: -200px;
 }
 
 svg text {
