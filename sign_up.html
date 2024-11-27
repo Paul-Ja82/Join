@@ -48,7 +48,7 @@
                     <p id="nameVmsg" class="validation-message v-hidden">Please enter name</p> <!-- reini -->
                 </div>
                 <div class="email-input-div">
-                    <input type="email" class="log-input" id="emailInput" placeholder="Email" required autocomplete="off" data-validationmessageid="emailVmsg" required> <!-- reini: required dazu -->
+                    <input type="email" class="log-input" id="emailInput" placeholder="Email" autocomplete="off" data-validationmessageid="emailVmsg" pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" required> <!-- reini: required dazu -->
                     <img class="mail-Img" src="assets/img/mail.png">
                     <p id="emailVmsg" class="validation-message v-hidden">Please enter valid eMail-Address</p>
                 </div>

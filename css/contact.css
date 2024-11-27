@@ -4,40 +4,8 @@
     --clr-conlist-item-bg-marked: var(--clr-blue-200);
 }
 
-<<<<<<< HEAD
-@media(max-width:945px) {
 
-    @media (orientation: landscape) {
-        main {
-            display: none;
-        }
-        .rotate-message {
-            height: 60%;
-            color: rgba(41, 171, 226, 1);
-            display: block; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
-            padding: 20px;
-        }
-    }
-    
-    @media (orientation: portrait) {
-        main{
-            display: block;
-        }
-        .rotate-message {
-            display: none;
-        }
-    }
 
-}
-*/
-
-=======
->>>>>>> reini
 /*############*/
 /*## LAYOUT ##*/
 /*############*/
@@ -371,7 +339,7 @@ p#coninfoName {
     right: 2em;
 }
 
-#cdCloseIconDesktop {
+#cdCloseIconDesktopWrapper {
     display: none;
 }
 
@@ -537,12 +505,22 @@ input {
         display: none;
     }
     
-    #cdCloseIconDesktop {
+    div#cdCloseIconDesktopWrapper {
         display: unset;
         position: absolute;
         top: 2em;
         right: 2em;
         z-index: 10;
+        height: 2.2em;
+        aspect-ratio: 1;
+        border-radius: var(--border-radius-circular);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    #cdCloseIconDesktopWrapper:hover {
+        background-color: var(--clr-gray-600);
     }
 
     #CDheaderContainer {
@@ -623,6 +601,8 @@ input {
 .mt {
     margin-top: 1em;
 }
+
+
 
 
 /*###############################*/

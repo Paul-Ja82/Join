@@ -1,24 +1,12 @@
 let users = [];
 
 /*
-let nameInput;
-let emailInput;
-let passwordInput;
-let passwordConfirmInput;
-let privacyInput;
-
-let nameInputFlag = false;
-let emailInputFlag = false;
-let emailAvailableFlag = false;
-let passwordConfirmFlag = false;
-let privacyFlag = false;
-*/
-
 let emailInputLogin;
 let passwordInputLogin;
 
 let emailInputLoginFlag = false;
 let validUserFlag = false;
+*/
 
 
 /*##########*/
@@ -34,13 +22,6 @@ function initSignup() {
     addSubmitHandler('signUpForm', addUser);
     addSubmitHandler('signUpForm', afterSignupHandler);
 }
-
-/*
-function initLogin() {
-    loadUsers();
-    initMPA();
-}
-*/
 
 async function loadUsers() {
     let usersObj = await getData(USERS_PATH);
@@ -72,7 +53,6 @@ function handleValidationResult(emailInput, passwordInput, isValidUser, errorMes
 }
 
 function loginSU() {
-    console.log('login(), ist in signUp.js'); ///DEBUG
     resetFlagsLogin();
     loadInputValuesLogin();
     checkEmailInputLogin();
@@ -88,7 +68,6 @@ function loginSU() {
         loginMPA(user.id, rememberMeItem);
     } else {
         handleValidationResult(emailInput, passwordInput);
-        console.warn('Kein Login möglich'); ///DEBUG
     }
 }
 
@@ -98,7 +77,6 @@ function loginGuestSU() {
 }
 
 function loadInputValuesLogin() {
-    console.log('loadInputValuesLogin()'); ///DEBUG
     emailInputLogin = document.getElementById('emailInput').value;
     // passwordInputLogin = document.getElementById('passwordInput').value;
     passwordInputLogin = document.getElementById('passwordInput').dataset.actualvalue;
@@ -109,25 +87,20 @@ function checkEmailInputLogin() {
         emailInputLoginFlag = true;
     } else {
         emailInputLoginFlag = false;
-        console.log('please input email'); ///DEBUG
         // TODO Validation-Message anzeigen
     }
 }
 
 function checkValidUser() {
     let user = getUserByEmail(emailInputLogin);
-    console.log(user); ///DEBUG
-    console.log(passwordInputLogin); ///DEBUG
     // let passwordInput= document.getElementById('passwordInput').value;
     if (user) {
         if (user.pw == passwordInputLogin) validUserFlag = true;
         else {
-            console.log('Passwort falsch'); ///DEBUG
             showInvalidUserVmsgLogin();
         }
     } else {
         validUserFlag= false;
-        console.log('Kein User-Account gefunden'); ///DEBUG
         showInvalidUserVmsgLogin();
     }
 }
@@ -161,6 +134,7 @@ function showInvalidUserVmsgLogin() {
    addUser();
 } */
 
+/*
 function isUserExisting() {
     let emailInput= document.getElementById('emailInput').value;
     let user= getUser(emailInput);
@@ -169,7 +143,9 @@ function isUserExisting() {
     else console.log('User kann angelegt werden'); ///DEBUG
     return false;
 }
+*/
 
+/*
 function loadInputValuesSignUp() {
     nameInput = document.getElementById('nameInput').value;
     emailInput = document.getElementById('emailInput').value;
@@ -177,6 +153,7 @@ function loadInputValuesSignUp() {
     passwordConfirmInput = document.getElementById('confirmPasswordInput').value;
     privacyInput = document.getElementById('privacyCheckbox').checked;
 }
+*/
 
 function getUserByEmail(email) {
     return users.find((userI) => userI.email == email);
@@ -187,7 +164,6 @@ function getUserById(id) {
 }
 
 async function addUser() {
-    console.log('addUser()'); ///DEBUG
     let newId = await getId();
     let path = USERS_PATH + newId;
     let nameInput= document.getElementById('nameInput').value;
@@ -201,10 +177,9 @@ async function addUser() {
     };
     saveData(path, user);
     users.push(user);
-    //TODO Show Toast
-    console.log('addUser(): User wurde angelegt.', user); ///DEBUG
 }
 
+/*
 function resetFlagsSignUp() {
     nameInputFlag = false;
     emailInputFlag = false;
@@ -212,6 +187,7 @@ function resetFlagsSignUp() {
     passwordConfirmFlag = false;
     privacyFlag = false;
 }
+*/
 
 function resetFlagsLogin() {
     emailInputLoginFlag = false;
@@ -226,6 +202,7 @@ function afterSignupHandler() {
 /*## VALIDATION ##*/
 /*################*/
 
+/*
 function checkNameInput() {
     if (nameInput) {
         nameInputFlag = true;
@@ -235,6 +212,7 @@ function checkNameInput() {
         // TODO Validation-Message anzeigen
     }
 }
+*/
 
 /* function checkEmailInput() {
     if (emailInput) {
@@ -303,47 +281,16 @@ function handlePasswordMatchConfirm() {
     }
 }
 
+/*
 function checkPrivacy() {
     privacyFlag = privacyInput;
     if (!privacyFlag) console.log('Please accept the Privacy Policy'); ///DEBUG
 }
+*/
 
-/*###########*/
-/*## DEBUG ##*/
-/*###########*/
-
-function tuEsSignup() {
-    deleteUser(27);
-    deleteUser(29);
-    deleteUser(30);
-
-}
-
-function logFlags() {
-    console.log('nameInputFlag: ' + nameInputFlag); ///DEBUG
-    console.log('emailInputFlag: ' + emailInputFlag); ///DEBUG
-    console.log('emailAvailableFlag: ' + emailAvailableFlag); ///DEBUG    
-    console.log('passwordConfirmFlag: ' + passwordConfirmFlag); ///DEBUG
-    console.log('privacyFlag: ' + privacyFlag); ///DEBUG
-}
-
-function logVars() {
-    console.log('nameInput: ' + nameInput); ///DEBUG
-    console.log('emailInput: ' + emailInput); ///DEBUG                
-    console.log('passwordInput: ' + passwordInput); ///DEBUG    Paul: hier war ein sintax Fehler (paswwordInput)
-    console.log('passwordConfirmInput: ' + passwordConfirmInput); ///DEBUG
-}
-
-function logFlagsLogin() {
-    console.log('emailInputFlagLogin: ' + emailInputLoginFlag); ///DEBUG
-    console.log('validUserFlag: ' + validUserFlag); ///DEBUG
-}
-
-function logVarsLogin() {
-    console.log('emailInputLoginFlag: ' + emailInputLogin); ///DEBUG    
-    console.log('passwordInputLogin: ' + passwordInputLogin); ///DEBUG    
-
-}
+/*######################*/
+/*## PASSWORD MASKING ##*/
+/*######################*/
 
 function supportForConfirmMaskPassword(input, actualValue) {
     const lastChar = input.value.slice(-1);

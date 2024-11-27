@@ -12,7 +12,7 @@ function initForms() {
     graspForms();
     addMainSubmitHandlers();
     addInputHandlers();
-    addFocusHandlers();
+    // addFocusHandlers();
     graspVmsgs();
 }
 
@@ -40,6 +40,7 @@ function addInputHandlers() {
     for (let inputI of inputs) {
         inputI.addEventListener('input', event => {
             let form= document.querySelector(`form:has(#${inputI.id})`);
+            inputI.classList.add(invalidStyleClass); //temp
             validateInput(inputI);
             isFormValidBuiltIn(form.id);
         });
