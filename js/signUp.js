@@ -295,7 +295,7 @@ function checkPrivacy() {
 function supportForConfirmMaskPassword(input, actualValue) {
     const lastChar = input.value.slice(-1);
     if (input.value.length < actualValue.length) {
-        actualValue = actualValue.slice(0, input.value.length);
+        actualValue = actualValue.slice(-1, input.value.length);
     } else {
         actualValue += lastChar;
     }
