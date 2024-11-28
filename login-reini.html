@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <!-- styles -->
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/login-reini.css">
+    <!-- scripts -->
+    <script src="./js/database.js"></script>
+    <script src="./js/multi-page-app.js"></script>
+    <script src="./js/ui.js"></script>
+    <script src="./js/forms.js"></script>
+    <script src="./js/dialogs-toasts.js"></script>
+    <script src="./js/login-reini.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', initIndex);
+    </script>
+    <title>Join | Login</title>
+</head>
+
+<body>
+    <!-- LOGO -->
+    <img id="logo" src="./assets/img/logo-lightBG.svg" alt="join-logo">
+    <div id="loginFormWrapper" class="form-wrapper">
+        <!-- LOGIN FORM -->
+        <form id="loginForm" class="flex-col">
+            <h1 id="headlineLogin" class="formHeadline divider-b-c">Log in</h1>
+            <!-- email input  -->
+            <div class="input-wrapper">
+                <div class="input-elem-wrapper">
+                    <input id="emailInputElemLogin" class="textinput" type="email" placeholder="Email"
+                        data-validationmessageid="emailVmsgLogin" required>
+                    <div class="input-icon-wrapper">
+                        <img class="input-icon" src="./assets/icons/icon-mail.svg" alt="icon-mail">
+                    </div>
+                </div>
+                <p id="emailVmsgLogin" class="validation-message v-hidden">Please enter email Address</p>
+            </div>
+            <!-- input password -->
+            <div class="input-wrapper">
+                <div class="input-elem-wrapper">
+                    <input id="pwInputElemLogin" class="textinput" type="password" placeholder="Password"
+                        data-validationmessageid="pwVmsgLogin">
+                    <div class="input-icon-wrapper">
+                        <img class="input-icon" src="./assets/icons/icon-lock.svg" alt="icon-lock">
+                    </div>
+                </div>
+                <p id="pwVmsgLogin" class="validation-message v-hidden">debug: this text should have been replaced</p>
+            </div>
+            <!-- check remember me -->
+            <div id="rememberMeCTN" class="flex-row d-none">
+                <input id='rememberMeInput' type='checkbox'>
+                <label for='rememberMeInput'>Remember me</label>
+            </div>
+            <!-- buttons  -->
+            <div id="loginButtonCTN" class="flex-col buttonCTN">
+                <button id="loginButton" class="button button-prim" type="submit" disabled>Log in</button>
+                <button id="guestButton" class="button button-sec">Guest Log in</button>
+            </div>
+        </form>
+    </div>
+    <!-- SGINUP FORM -->
+    <form id="signUpForm" class="flex-col d-none">
+
+    </form>
+    <!-- SIGNUP BUTTON CONTAINER -->
+    <div id="signUpButtonCTN" class="flex-row">
+        <p id="signUpCta">Not a Join user?</p>
+        <button id="signupButton" class="button button-prim">Sign up</button>
+    </div>
+    <!-- LEGAL LINKS CONTAINER -->
+    <div id="legalLinksCTN" class="flex-row">
+        <a class="legal-link h-pointer" href="">Privacy Policy</a>
+        <a class="legal-link h-pointer" href="">Legal notice</a>
+    </div>
+</body>
+
+</html>

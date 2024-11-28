@@ -1,0 +1,154 @@
+/*############*/
+/*## LAYOUT ##*/
+/*############*/
+
+body {
+    border: 1px solid blue;
+    height: 100svh;
+    height: 100vh;
+    width: 100vw;
+    max-width: 1440px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 1em;
+    background-color: var(--clr-bg-main);
+}
+
+#logo {
+    align-self: start;
+    height: 5em;
+}
+
+/*** Layout Desktop ***/
+/**********************/
+
+@media (768px < width) {
+    body {
+        justify-content: center;
+    }
+
+    #logo,
+    #signUpButtonCTN,
+    #legalLinksCTN {
+        position: fixed;
+    }
+
+    #logo {
+        top: 1em;
+        left: 1em;
+    }
+
+    #signUpButtonCTN {
+        top: 1em;
+        right: 1em;
+    }
+
+    #legalLinksCTN {
+        bottom: 1em;
+    }
+}
+
+/*#############################*/
+/*## SIGNUP BUTTON CONTAINER ##*/
+/*#############################*/
+
+#signUpButtonCTN {
+    align-items: center;
+    gap: 1em;
+}
+
+/*###########*/
+/*## FORMS ##*/
+/*###########*/
+
+.form-wrapper {
+    align-self: stretch;
+    display: flex;
+    justify-content: center;
+}
+
+#loginForm,
+#signupForm {
+    width: 100%;
+    max-width: 30em;
+    border-radius: 1.7em;
+    padding: 2em 1em;
+    background-color: white;
+    align-items: stretch;
+}
+
+.formHeadline {
+    padding-bottom: 0.3em;
+    margin-bottom: 0.2em;
+    font-size: 2.9em;
+    font-weight: bold;
+}
+
+.input-wrapper {
+    margin-top: 1em;
+}
+
+.textinput {
+    border-radius: 0.6em;
+    font-size: 1.2em;
+    padding: 0.6em 1em;
+}
+
+.validation-message {
+    font-size: 0.8em;
+}
+
+.buttonCTN {
+    margin-top: 2em;
+}
+
+form .button {
+    min-width: 11em;
+}
+
+/*################*/
+/*## LOGIN FORM ##*/
+/*################*/
+
+#loginButtonCTN {
+    align-self: center;
+    gap: 1em;
+}
+
+/*###########################*/
+/*## LEGAL LINKS CONTAINER ##*/
+/*###########################*/
+
+#legalLinksCTN {
+    color: var(--clr-legal-links);
+}
+
+.legal-link:hover {
+    color: var(--clr-turquoise);
+    font-weight: bold;
+}
+
+/*##########*/
+/*## MISC ##*/
+/*##########*/
+
+/* divider bottom center */
+.divider-b-c {
+    position: relative;
+    padding: 0.2em 0;
+    text-align: center;
+}
+
+.divider-b-c::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 3px;
+    width: 2em;
+    border-radius: var(--border-radius-circular);
+    background-color: var(--clr-turquoise);
+}   

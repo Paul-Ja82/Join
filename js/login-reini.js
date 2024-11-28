@@ -1,0 +1,5 @@
+
+function initIndex() {
+    // loadUsers();
+    initMPA();
+}
