@@ -57,7 +57,7 @@
                 <p id="pwVmsgLogin" class="validation-message v-hidden">debug: this text should have been replaced</p>
             </div>
             <!-- check remember me -->
-            <div id="rememberMeCTN" class="flex-row d-none">
+            <div id="rememberMeCTN" class="flex-row checkbox-ctn">
                 <input id='rememberMeInput' type='checkbox'>
                 <label for='rememberMeInput'>Remember me</label>
             </div>
@@ -67,11 +67,71 @@
                 <button id="guestButton" class="button button-sec">Guest Log in</button>
             </div>
         </form>
-    </div>
-    <!-- SGINUP FORM -->
-    <form id="signUpForm" class="flex-col d-none">
+        <!-- SGINUP FORM -->
+        <form id="signUpForm" class="flex-col d-none">
+            <h1 id="headlineSignup" class="formHeadline divider-b-c">Sign up</h1>
+                <!-- name input signup -->
+                <div class="input-wrapper">
+                    <div class="input-elem-wrapper">
+                        <input id="nameInputElemSginup" class="textinput" type="text" placeholder="Name"
+                            data-validationmessageid="nameVmsgSignup" required>
+                        <div class="input-icon-wrapper">
+                            <img class="input-icon" src="./assets/icons/icon-person.svg" alt="icon-mail">
+                        </div>
+                    </div>
+                    <p id="nameVmsgSignup" class="validation-message v-hidden">Please enter Name</p>
+                </div>
+                <!-- email input signup -->
+                <div class="input-wrapper">
+                    <div class="input-elem-wrapper">
+                        <input id="emailInputElemSginup" class="textinput" type="email" placeholder="Email"
+                            data-validationmessageid="emailVmsgSignup" required>
+                        <div class="input-icon-wrapper">
+                            <img class="input-icon" src="./assets/icons/icon-mail.svg" alt="icon-mail">
+                        </div>
+                    </div>
+                    <p id="emailVmsgSignup" class="validation-message v-hidden">Please enter email Address</p>
+                </div>
+                <!-- input password signup -->
+                <div class="input-wrapper">
+                    <div class="input-elem-wrapper">
+                        <input id="pwInputElemSignup" class="textinput" type="password" placeholder="Password"
+                            data-validationmessageid="pwVmsgSignup">
+                        <div class="input-icon-wrapper">
+                            <img class="input-icon" src="./assets/icons/icon-lock.svg" alt="icon-lock">
+                        </div>
+                    </div>
+                    <p id="pwVmsgSignup" class="validation-message v-hidden">debug: this text should have been replaced</p>
+                </div>
+                <!-- input confirm password signup -->
+                <div class="input-wrapper">
+                    <div class="input-elem-wrapper">
+                        <input id="confirmPwInputElemSignup" class="textinput" type="password" placeholder="Password"
+                            data-validationmessageid="confirmPwVmsgSignup">
+                        <div class="input-icon-wrapper">
+                            <img class="input-icon" src="./assets/icons/icon-lock.svg" alt="icon-lock">
+                        </div>
+                    </div>
+                    <p id="confirmPwVmsgSignup" class="validation-message v-hidden">debug: this text should have been replaced</p>
+                </div>
+                <!-- check privacy -->
 
-    </form>
+
+mach da eine checkbox mit svg hin!!
+
+
+
+
+                <div id="privacyCheckboxCTN" class="flex-row checkbox-ctn">
+                    <input id='privacyCheckbox' type='checkbox'>
+                    <label for='privacyCheckbox'>Remember me</label>
+                </div>
+                <!-- buttons signup -->
+                <div id="signupButtonCTN" class="flex-col buttonCTN">
+                    <button id="signupButton" class="button button-prim" type="submit" disabled>Sign Up</button>
+                </div>
+        </form>
+    </div>
     <!-- SIGNUP BUTTON CONTAINER -->
     <div id="signUpButtonCTN" class="flex-row">
         <p id="signUpCta">Not a Join user?</p>
