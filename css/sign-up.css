@@ -11,6 +11,10 @@ body {
     
 }
 
+html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
 .rotate-message {
     display: none;
     font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
@@ -424,11 +428,6 @@ footer {
 
 @media(max-width:1050px) {
 
-    body {
-        padding-bottom: 50px;
-        max-height: calc(100% - 50px);
-    }
-
     .main-frame-div {
         width: 100%;
         max-width: 1440px;
@@ -574,6 +573,30 @@ footer {
     }
 }
 
+@media (max-height: 200px){
+
+    body {
+        padding-top: 0;
+        padding-bottom: 0;
+        height: 200px;
+        overflow: hidden;
+    }
+
+    .main-frame-div {
+        display: none;
+    }
+
+    .rotate-message {
+        color: rgba(41, 171, 226, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
+        padding: 20px;
+    }
+}
+
 @media(max-width:450px) {
     
     .j-logo-img {
@@ -688,213 +711,49 @@ footer {
      }
 }
 
-@media (min-width: 1020px) and (max-height: 800px) {
+
+@media(max-height:870px) and (min-width:1020px) {
+
+    body {
+        overflow: scroll;
+        padding-bottom: 200px;
+    }
 
     .main-frame-div {
-        width: 100%;
-        max-width: 1440px;
-        display: flex;
-        flex-direction: column;
-        position: relative;
+        padding-top: 100px;
+        height: 1024px;
+        max-height:unset;
+        
     }
 
-    .logo-header-div {
-        width: 100%;
-
+    footer {
+        height: 20px;
+        position: unset;
+        margin-top: 90px;
     }
 
-    .j-logo-img {
-        margin-top: 20px;
-        margin-left: 8.5%;
-        margin-bottom: 0px;
-        width: 70px;
-        height: auto;
+}
+
+@media(max-height:780px) and (min-width:1020px) {
+    body {
+        padding-top: 100px;
     }
+}
 
-    .under-frame-div {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    
+@media(max-height:620px) and (min-width:1020px) {
+    body {
+        padding-top: 200px;
     }
-    
-     .sign-up-div{
-       width: 92%;
-       margin-top: 0;
-       max-width: 598px;;
-   }
-
-   .arrow-div {
-       top: 40px;
-       left: 40px;
-   }
-
-   .sign-up-header {
-    margin-top: 30px;
-    margin-bottom: 15px;
-   }
-
-   .divider {
-    width: 10.5%;
-   }
-
-   .name-input-div {
-       width: 91.9%;
-       height: 48px;
-       margin-top: 24px;
-   }
-   
-   .email-input-div {
-       width: 91.9%;
-       height: 48px;
-   }
-   
-   .password-input-div {
-       width: 91.9%;
-       height: 48px;
-   }
-   
-   .confirm-pw-input-div {
-       width: 91.9%;
-       height: 48px;
-       margin-bottom: 0px;
-   }
-
-   .no-match-confirm-message {
-      margin-bottom: 8px;
-   }
-   
-   .accept-priv-box-div{
-       width: 231px;
-       height: 24px;
-       margin-left: 0px;
-       display: flex;
-       justify-content: center;
-   }
-   
-   .sign-up-final-button {
-       width: 180px;
-       height: 51px;
-       margin-top: 20px;
-       font-size: 20px;
-   }
-
-   footer {
-    position: absolute;
-    top: 730px;
- }
-   
 }
 
-@media (min-width: 1020px) and (max-height: 600px) {
-
-    .main-frame-div {
-        width: 100%;
-        max-width: 1440px;
-        display: flex;
-        flex-direction: column;
-        position: relative;
+@media(max-height:400px) and (min-width:1020px) {
+    body {
+        padding-top: 300px;
     }
-
-    .logo-header-div {
-        width: 100%;
-        height: 65px;
-    }
-
-    .j-logo-img {
-        margin-top: 15px;
-        margin-left: 8.5%;
-        margin-bottom: 0px;
-        width: 50px;
-        height: auto;
-    }
-
-    .under-frame-div {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    
-    }
-    
-     .sign-up-div{
-       width: 92%;
-       height: 350px;
-       margin-top: 0;
-       max-width: 598px;
-   }
-
-   .arrow-div {
-       top: 40px;
-       left: 40px;
-   }
-
-   .sign-up-header {
-    margin-top: 10px;
-    margin-bottom: 15px;
-   }
-
-   .divider {
-    width: 10.5%;
-   }
-
-   .name-input-div {
-    width: 91.9%;
-    height: 48px;
-    margin-top: 24px;
-    margin-bottom: 20px;
-}
-
-.email-input-div {
-    width: 91.9%;
-    height: 48px;
-}
-
-.password-input-div {
-    width: 91.9%;
-    height: 48px;
-    margin-bottom: 16px;
-}
-
-.confirm-pw-input-div {
-    width: 91.9%;
-    height: 48px;
-    margin-bottom: 0px;
-}
-
-.no-match-confirm-message {
-    margin-bottom: 8px;
-   }
-
-   
-.accept-priv-box-div{
-    width: 231px;
-    height: 24px;
-    margin-left: 0px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    display: flex;
-    justify-content: center;
-}
-   
-.sign-up-final-button {
-    width: 180px;
-    height: 51px;
-    margin-bottom: 0px;
-    margin-top: 0px;
-    font-size: 20px;
-}
-
-   footer {
-    position: absolute;
-    top: 565px;
-}
-   
 }
    
 
-@media(max-height:915px) {
+@media(max-height:915px) and (max-width:1000px) {
 
     .sign-up-div{
         height: 575px;
@@ -902,12 +761,12 @@ footer {
 
     footer {
         position: absolute;
-        top: 770px;
+        bottom: 16px;
      }
 
 }
 
-@media(max-height:760px) {
+@media(max-height:760px) and (max-width:1000px) {
 
     .sign-up-div{
         height: 545px;
@@ -925,12 +784,12 @@ footer {
 
     footer {
         position: absolute;
-        top: 700px;
+        bottom: 16px;
      }
 
 }
 
-@media(max-height:720px) {
+@media(max-height:720px) and (max-width:1000px) {
 
         .j-logo-img{
             margin-top: 22px;
@@ -1003,7 +862,7 @@ footer {
         }
     }
 
-    @media(max-height:600px) {
+    @media(max-height:600px) and (max-width:1000px) {
 
         .name-input-div {
             width: 91.9%;
