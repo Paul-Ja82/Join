@@ -97,16 +97,16 @@ function colorLogo() {
  */
 function showForgotPasswordMsg() {
     const emailInput = document.getElementById('emailInput');
-    const forgotPassword = document.getElementById('forgotPassword'); // Assumes the element has this ID
+    const forgotPassword = document.getElementById('forgotPassword'); 
 
     if (emailInput && forgotPassword) {
         const emailValue = emailInput.value.trim();
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic regex for email validation
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (emailPattern.test(emailValue)) {
-            forgotPassword.style.opacity = '1'; // Show message if input is a valid email
+            forgotPassword.style.opacity = '1'; 
         } else {
-            forgotPassword.style.opacity = '0'; // Hide message if input is empty or invalid
+            forgotPassword.style.opacity = '0'; 
         }
     }
 }
@@ -182,16 +182,23 @@ function checkUserExist() {
             window.location.href = 'new_password.html' + `?id=${user.id}`; 
         } else {
             showNotRegisteredMsg();
-            console.log('User does not exist.');
-            
         }
     }
 }
 
+/**
+ * Finds a user by their email address.
+ * @param {string} email - The email address to search for.
+ * @returns {Object|undefined} - The user object if found, otherwise undefined.
+ */
 function getUserByEmail(email) {
     return users.find((userI) => userI.email == email);
 }
 
+/**
+ * Displays a message for incorrect email format and highlights the email input field.
+ * Applies a visible error message and adds an error class to the input field.
+ */
 function showIncorrectFormatMsg() {
     let elements = document.querySelectorAll('.incorrect-email-format');
     for (let i = 0; i < elements.length; i++) {
@@ -234,7 +241,7 @@ function supportForProcess(flags, emailInput, passwordInput, errorMessage) {
         let rememberMeInputElem = document.getElementById('rememberCheckbox');
         let rememberMeItem = rememberMeInputElem.checked ? user.id : null;
         loginMPA(user.id, rememberMeItem);
-        if (rememberMeInputElem.checked) localStorage.setItem('loggedInUserName', user.name); ///von reini
+        if (rememberMeInputElem.checked) localStorage.setItem('loggedInUserName', user.name);
         sessionStorage.setItem('loggedInUserName', user.name);
         sessionStorage.setItem('loggedInUserId', user.id);
     } else {
@@ -266,9 +273,8 @@ function processLogin() {
  * @param {HTMLElement} errorMessage - The error message element.
  */
 function handleLoginFailure(emailInput, passwordInput, flags, errorMessage) {
-    console.warn('Kein Login möglich'); ///DEBUG
-    logFlagsLogin(); ///DEBUG
-    logVarsLogin(); ///DEBUG
+    logFlagsLogin();
+    logVarsLogin(); 
 
     handleValidationResult(emailInput, passwordInput, flags, errorMessage);
 }
@@ -279,7 +285,7 @@ function handleLoginFailure(emailInput, passwordInput, flags, errorMessage) {
  * @function login
  */
 function login() {
-    console.log('login()'); ///DEBUG
+    console.log('login()'); 
     initializeLogin();
     processLogin();
 }

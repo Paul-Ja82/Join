@@ -110,7 +110,6 @@ function formatName(name) {
  */
 function ifElseForGreetedName(storedName, greetingText) {
     if (storedName) {
-        console.log('Retrieved Name:', storedName); 
         greetingText = addComma(greetingText);
 
         const formattedName = formatName(storedName);
@@ -123,7 +122,6 @@ function ifElseForGreetedName(storedName, greetingText) {
         if (window.innerWidth < 1280) {
             greetingText += '!';
         }
-        // console.error('No name found in Session Storage.');
     }
     return greetingText;
 }
@@ -150,7 +148,6 @@ async function setGreetedName() {
         greetingElements[i].textContent = greetingText;
     }
 }
-
 
 /**
  * Adds an event listener to handle DOM content loaded event.
@@ -185,10 +182,6 @@ async function getTaskData() {
     tasksAwaitFeedback = [];
     tasksDone = [];
     pushTasksToArray();
-    console.log(tasksTodo);
-    console.log(tasksInProgress);
-    console.log(tasksAwaitFeedback);
-    console.log(tasksDone);
 }
 
 /**
@@ -267,7 +260,6 @@ async function updateTKInBoard() {
     }
 }
 
-
 /**
  * Determines if a task is urgent based on its due date.
  * A task is considered urgent if its due date is within the urgency threshold (3 days) or is already past.
@@ -324,8 +316,6 @@ async function updateUrgentTasks() {
     checkUrgencyInArray(tasksTodo, urgentTasks);
     checkUrgencyInArray(tasksInProgress, urgentTasks);
     checkUrgencyInArray(tasksAwaitFeedback, urgentTasks);
-
-    console.log('Urgent Tasks:', urgentTasks);
 
     return urgentTasks; 
 }

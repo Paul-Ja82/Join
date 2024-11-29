@@ -273,7 +273,7 @@ function handlePasswordMatchConfirm() {
             errorMessage.style.opacity = '1'; 
         }
     } else {
-        passwordConfirmInput.remove('input-error');           ///Paul noch vergleichjen mit log in JS 
+        passwordConfirmInput.remove('input-error');        
 
         if (true) {
             errorMessage.style.opacity = '0'; 

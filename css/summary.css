@@ -4,6 +4,7 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
+    -webkit-tap-highlight-color: transparent;
   }
 
 body {
@@ -12,7 +13,7 @@ body {
     margin: 0;
     font-family: "Inter", sans-serif;
     background-color: rgb(246,247,248,1);
-    overflow: auto;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -89,7 +90,6 @@ a {
     width: 100%;
     height: 100%;
     max-width: 1440px;
-    max-height: 1024px;
     display: flex;
     position: relative;
 
@@ -154,6 +154,7 @@ a {
 .main-div {
     width: 100%;
     display: flex;
+    background-color: aqua;
 }
 
 .tasks-div {
@@ -735,7 +736,6 @@ small {
         width: 100%;
         max-width: 1440px;
         height: 100vh;
-        max-height: 1024px;
         display: flex;
         flex-direction: column-reverse;
         justify-content: start;
@@ -839,6 +839,13 @@ small {
         height: 32px;
     }
 
+    .main-div {
+        width: 100%;
+        height: 559px;
+        overflow: auto;
+        background-color: aqua;
+    }
+
     .amount {
         height: auto; 
     }    
@@ -846,6 +853,7 @@ small {
 }
 
 @media (max-height: 500px) and (max-width: 945px) and (orientation: landscape) {
+
     .landscape-div {
         display: none;
     }
@@ -862,6 +870,7 @@ small {
 }
 
 @media (max-height: 500px) and (max-width: 945px) and (orientation: portrait) {
+    
     .landscape-div {
         display: block;
     }
@@ -1089,7 +1098,7 @@ small {
 
 }
 
-@media(max-height:740px) {
+@media(max-height:740px) and (max-width: 1010px) {
 
     .title-frame-div {
         width: 100%;
