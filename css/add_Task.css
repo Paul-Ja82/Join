@@ -123,6 +123,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding: 18px;
 }
 
 .iconImage {
@@ -147,7 +148,7 @@ body {
 .contentAddTaskContainer {
   margin: 0 80px;
   /*Sabrina: Zum Test vom responsive Menü Overflow hidden eingestellt, da ich noch keine responsive Variante von addTask habe*/
-  overflow: hidden;
+
 }
 
 .overAllFormAddTask * {
@@ -487,7 +488,7 @@ input[type="date"].filled {
   justify-content: space-between;
   gap: 8px;
   height: 60px;
-  margin-bottom: 15px;
+  margin: 15px 0;
 }
 
 .overFormButtonsBoard {
@@ -1086,7 +1087,7 @@ padding: 20px 35px;
   .overheader {
     background-color: #f6f7f8;
         position: sticky;
-        top: 60px;
+        top: 84px;
         right: 0;
         left: 0;
         z-index: 10;
@@ -1221,7 +1222,7 @@ margin: 10px 0 5px 0;
     justify-content: flex-end; 
     position: fixed;
     background-color: #f6f7f8; 
-    bottom: 96px;
+    bottom: 80px;
     font-size: 21px;
     right: 0;
     left: 0;
@@ -1315,7 +1316,6 @@ margin: 10px 0 5px 0;
     width: 100%;
   }
 
-
  }
 
 
@@ -1326,8 +1326,13 @@ Gruß Reini */
 }
 @media(max-width:500px) {
   .overSendButtons {
-    bottom: 84px;
+    bottom: 80px;
   }
+
+.overheader {
+  top: 80px;
+}
+
  }
 
  @media(max-width: 350px) {
