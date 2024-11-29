@@ -16,7 +16,7 @@
 }
 
 #menuContainer {
-    background-color: var(--clr-menu-bg);
+    background-color: var(--clr-menu-bg);   
     color: var(--clr-gray-500);
 }
 

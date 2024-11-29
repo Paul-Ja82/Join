@@ -438,10 +438,7 @@ img#cdHeaderLogo {
 /*#######################*/
 
 @media(min-width: 1010px){
-    /* .menu-nav-item {
-        margin-top: 1.2em;
-    } */
-      .menu-nav-item {
+    .menu-nav-item {
         margin-top: 0;
         padding: 1.7em var(--spacing-left) !important;
     }
