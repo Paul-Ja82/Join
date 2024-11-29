@@ -1,3 +1,7 @@
+/*#######################*/
+/*## CUSTOM PROPERTIES ##*/
+/*#######################*/
+
 #menuContainer {
     --spacing-left: 4em;
 }
@@ -12,7 +16,6 @@
 }
 
 #menuContainer {
-    /* font-size: 1.8em; */
     background-color: var(--clr-menu-bg);
     color: var(--clr-gray-500);
 }
@@ -52,8 +55,6 @@ img.menu-nav-icon {
 /*## DESKTOP ##*/
 /*#############*/
 
-/* @media (768px < width) { */
-/* @media (960px < width) { */
 @media (1010px < width) {
 
     #menuLogo,
@@ -76,16 +77,12 @@ img.menu-nav-icon {
         margin-top: clamp(0rem, -3.706rem + 13.176vh, 7rem);   
     }
 
-    /* max witdh 232px und die links demnach anpassen bei max witdh 232px sind sonst die links verschben (add task link zB)*/
-
     .menu-nav-item {
         flex-direction: row;
         gap: 0.5em;
         padding: 0.5em var(--spacing-left);
-        /* min-height: unset; */
         border-radius: unset;
         justify-content: unset;
-        /* margin-top: 1.2em; */
     }
 
     .menu-nav-item:hover {
@@ -108,26 +105,15 @@ img.menu-nav-icon {
         cursor: pointer;
     }
 
-    .legal-link a {
-        text-decoration: none;
-        color: var(--clr-gray-500);
+    .legal-link:hover {
+        color: #29ABE2;
+        font-weight: bold;
     }
 
 }
 
 @media (max-width: 500px) {
-
-  
-    /* .menu-nav-item {
-        min-height: 0;
-    } */
-    
     .menu-nav-text {
         margin: 0;
     }
-    
-    /*#menuContainer {
-        position: relative;
-        z-index: 10;
-    }*/
 }

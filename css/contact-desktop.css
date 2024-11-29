@@ -14,10 +14,6 @@ TABLE OF CONTENTS
 /*####################*/
 
 @media (1010px < width) {
-    body {
-        /* font-size: clamp(1rem, 0.53rem + 0.744vw, 1.2rem); */
-    }
-
     #contentContainer {
         display: grid;
         grid-template-columns: auto 1fr;
@@ -130,10 +126,6 @@ TABLE OF CONTENTS
 
     :root {
         --padding-inline-cdContentContainer: 2em;
-    }
-
-    #menuNavContainer {
-        height: 80px;
     }
    
     #dialogContact {
