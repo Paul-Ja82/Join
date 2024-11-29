@@ -1,17 +1,10 @@
 const USER_COLOR= '#2A3647';
-const USER_PHONE= '111222333444';
+const USER_PHONE= '';
 
 let itemMarkClass = 'conlist-item-marked';
 let itemHoverClass = 'conlist-item-hover';
 let shownContactInfoId;
 
-// let nameInput;
-// let emailInput;
-// let phoneInput;
-
-// let emailAvailableContactFlag = false;
-
-// let mediaDesktop = window.matchMedia('(768px < width)');
 let mediaDesktop = window.matchMedia('(1010px < width)');
 mediaDesktop.addEventListener('change', mediaChangeHandler);
 
