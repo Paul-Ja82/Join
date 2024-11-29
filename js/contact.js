@@ -28,6 +28,7 @@ async function initContact() {
     mediaChangeHandler();
     generateContactList();
     addListItemClickHandlers();
+    colorForContact= getRandomColorHex();
 }
 
 function addListItemClickHandlers() {
