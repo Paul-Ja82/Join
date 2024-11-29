@@ -11,22 +11,19 @@
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/dialogs-toasts.css">
     <link rel="stylesheet" href="./css/style.css">
-    <!-- <link rel="stylesheet" href="./css/layout.css"> -->
-    <link rel="stylesheet" href="./css/layout-reini.css"> <!-- DEBUG -->
+    <link rel="stylesheet" href="./css/layout-reini.css"> <!-- reini-version -->
     <link rel="stylesheet" href="./css/menu.css">
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/contact.css">
+    <link rel="stylesheet" href="./css/contact-desktop.css">
     <link rel="stylesheet" href="./css/color_pal.css">
     <!-- scripts -->
-    <!-- <script src="./js/database.js"></script> -->
-    <script src="./js/database-reini.js"></script> <!-- DEBUG -->
-    <!-- <script src="./script.js"></script> -->
-    <script src="./script-reini.js"></script> <!-- DEBUG -->
+    <script src="./js/database-reini.js"></script> <!-- reini-version -->
+    <script src="./script-reini.js"></script> <!-- reini-version -->
     <script src="./js/multi-page-app.js"></script>
     <script src="./js/ui.js"></script>
     <script src="./js/dialogs-toasts.js"></script>
-    <!-- <script src="./js/forms.js"></script> -->
-    <script src="./js/forms-reini.js"></script>
+    <script src="./js/forms-reini.js"></script> <!-- reini-version -->
     <script src="./js/contact.js"></script>
     <script src="./js/header.js"></script>
     <script src="./js/color_pal.js"></script>
@@ -115,11 +112,6 @@
                 <div id="cdHeaderDivider"></div>
             </div>
             <div id="CDcontentContainer" class="bg-white">
-                <!-- <div id="cdPersonIcon" class="person-icon">
-                    <p id="cdMonogram">xx</p>
-                    <img id="cdPersonIconAdd" src="./assets/icons/icon-person-white.svg" alt="">
-                </div> -->
-                <!--Test Sabrina Farbpalette:-->
                 <div onclick="openColorPal()" id="cdPersonIcon" class="person-icon">
                     <p id="cdMonogram">xx</p>
                     <img id="cdPersonIconAdd" src="./assets/img/icons8-farbe-64.png" alt="Pinsel">
@@ -174,7 +166,7 @@
 
                 </form>
             </div>
-            <!--Test Sabrina Farbpalette:-->
+            <!-- colorpicker -->
             <div onclick="closeColorPal(event)" id="color_pal_overlay" class="color_pal_overlay">
                 <div onclick="event.stopPropagation()" class="color_palette">
                     <div onclick="event.stopPropagation()" class="color_ctn" id="color_ctn_zero">
@@ -264,10 +256,8 @@
             <p>Contact successfully saved</p>
         </div>
     </div>
-
     
     <!-- MOBILE LANDSCAPE DETECTOR -->
-     
     <div class="rotate-message">
         Please rotate your device back to portrait mode.
     </div>

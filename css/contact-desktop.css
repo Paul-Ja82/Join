@@ -1,0 +1,216 @@
+/* 
+#################
+TABLE OF CONTENTS
+#################
+1.) ## LAYOUT DESKTOP ##
+2.) ## CONTACT LIST DESKTOP##
+3.) ## CONTACT DETAIL DESKTOP##
+4.) ## CONTACT DIALOG DESKTOP ##
+*/
+
+
+/*####################*/
+/*## LAYOUT DESKTOP ##*/
+/*####################*/
+
+@media (1010px < width) {
+    body {
+        /* font-size: clamp(1rem, 0.53rem + 0.744vw, 1.2rem); */
+    }
+
+    #contentContainer {
+        display: grid;
+        grid-template-columns: auto 1fr;
+    }
+}
+
+/*#########################*/
+/*## CONTACT LIST DESKTOP##*/
+/*#########################*/
+
+@media (1010px < width) {
+    #listContainer {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        overflow-y: auto;
+    }
+
+    .rotate-message {
+        display: none;
+        font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
+    }
+
+    #newContactButtonContainer {
+        display: block;
+        position: sticky;
+        top: 0;
+        padding: 1.5em;
+        box-shadow: var(--shadow-top-inset);
+    }
+
+    #newContactButton {
+        border-radius: 0.625em;
+        aspect-ratio: unset;
+    }
+    
+    #newContactButtonText {
+        display: unset;
+    }
+
+    #contactListContainer {
+        padding: 1em;
+        padding-top: 0;
+        max-width: 22em;
+        overflow-y: auto;
+    }
+
+    .conlist-item {
+        padding: 1em 1.5em;
+    }
+
+    .conlist-item-hover:hover {
+        background: var(--clr-conlist-item-bg-hover);
+        color: black;
+    }
+
+    .conlist-item-marked {
+        background-color: var(--clr-conlist-item-bg-marked);
+        color: white;
+    }
+
+}
+
+/*###########################*/
+/*## CONTACT DETAIL DESKTOP##*/
+/*###########################*/
+
+@media (1010px < width) {
+    #detailContainer {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+        overflow: hidden;
+    }
+
+    #closeDetailButton {
+        display: none;
+    }
+
+    #infoContainer {
+        transform: translateX(120%);
+        transition: 
+            transform 0.45s,
+            display 0.45s allow-discrete;
+    }
+
+    #infoContainer.show-info {
+        transform: none;
+    }
+
+    @starting-style {
+        #infoContainer.show-info.show-info {
+            transform: translateX(100%);
+        }
+    }
+
+    #coninfoButtonContainer {
+        display: flex;
+        gap: 1.5em;
+    }
+
+    .coninfo-button {
+        gap: 0.4em;
+    }   
+}
+
+/*############################*/
+/*## CONTACT DIALOG DESKTOP ##*/
+/*############################*/
+
+@media (1010px < width) {
+
+    :root {
+        --padding-inline-cdContentContainer: 2em;
+    }
+
+    #menuNavContainer {
+        height: 80px;
+    }
+   
+    #dialogContact {
+        height: unset;
+        width: unset;
+        flex-direction: row;
+        justify-content: start;
+        max-width: unset;
+    }
+
+    #cdCloseIcon {
+        display: none;
+    }
+    
+    div#cdCloseIconDesktopWrapper {
+        display: unset;
+        position: absolute;
+        top: 2em;
+        right: 2em;
+        z-index: 10;
+        height: 2.2em;
+        aspect-ratio: 1;
+        border-radius: var(--border-radius-circular);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    #cdCloseIconDesktopWrapper:hover {
+        background-color: var(--clr-gray-600);
+    }
+
+    #CDheaderContainer {
+        flex: unset;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 1.5em;
+        justify-content: center;
+        align-items: start;
+        padding: 0;
+        padding-left: 1.5em;
+        padding-right: 3em;
+    }
+
+    img#cdHeaderLogo {
+        height: 3em;
+    }
+
+    #CDcontentContainer {
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+        padding-left: var(--padding-inline-cdContentContainer);
+        flex: unset;
+    }
+
+    #cdPersonIcon {
+        position: static;
+        margin: 0;
+        transform: none;
+        flex: unset;
+    }
+
+    #contactForm {
+        transform: none;
+        padding: 6em var(--padding-inline-cdContentContainer);
+    }
+
+    #contactForm .input-wrapper {
+        min-width: 25em;
+    }
+
+    .cdButtonContainer {
+        justify-content: start;
+        gap: 3em;
+    }
+
+    #cdCancelButton {
+        display: unset;
+    }
+}
