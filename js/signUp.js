@@ -1,14 +1,5 @@
 let users = [];
 
-/*
-let emailInputLogin;
-let passwordInputLogin;
-
-let emailInputLoginFlag = false;
-let validUserFlag = false;
-*/
-
-
 /*##########*/
 /*## INIT ##*/
 /*##########*/
@@ -114,47 +105,6 @@ function showInvalidUserVmsgLogin() {
 /*## SIGN UP ##*/
 /*#############*/
 
-/* function signup() {
-    console.log('signup()'); ///DEBUG
-    console.log(isEmailAvailable()); ///DEBUG
-    // resetFlagsSignUp();
-    // loadInputValuesSignUp();
-    // checkNameInput();
-    // checkEmailInput();
-    // isEmailAvailable();
-    isPasswordConfirm();
-    // checkPrivacy();
-    // let flags = nameInputFlag && emailInputFlag && emailAvailableFlag && passwordConfirmFlag && privacyFlag;
-    if (flags) {
-        addUser();
-        // loadPage('./log_in.html'); //TODO wird in Zukunft Index-Page sein? 
-    } else {
-        console.warn('Kein Signup möglich'); ///DEBUG
-    }
-   addUser();
-} */
-
-/*
-function isUserExisting() {
-    let emailInput= document.getElementById('emailInput').value;
-    let user= getUser(emailInput);
-    console.log(user); ///DEBUG
-    if (user) console.log('Fehler. User existiert'); ///DEBUG
-    else console.log('User kann angelegt werden'); ///DEBUG
-    return false;
-}
-*/
-
-/*
-function loadInputValuesSignUp() {
-    nameInput = document.getElementById('nameInput').value;
-    emailInput = document.getElementById('emailInput').value;
-    passwordInput = document.getElementById('signUpPasswordInput').value;
-    passwordConfirmInput = document.getElementById('confirmPasswordInput').value;
-    privacyInput = document.getElementById('privacyCheckbox').checked;
-}
-*/
-
 function getUserByEmail(email) {
     return users.find((userI) => userI.email == email);
 }
@@ -179,16 +129,6 @@ async function addUser() {
     users.push(user);
 }
 
-/*
-function resetFlagsSignUp() {
-    nameInputFlag = false;
-    emailInputFlag = false;
-    emailAvailableFlag = false;
-    passwordConfirmFlag = false;
-    privacyFlag = false;
-}
-*/
-
 function resetFlagsLogin() {
     emailInputLoginFlag = false;
     validUserFlag = false;
@@ -202,38 +142,6 @@ function afterSignupHandler() {
 /*## VALIDATION ##*/
 /*################*/
 
-/*
-function checkNameInput() {
-    if (nameInput) {
-        nameInputFlag = true;
-    } else {
-        nameInputFlag = false;
-        console.log('please input name'); ///DEBUG
-        // TODO Validation-Message anzeigen
-    }
-}
-*/
-
-/* function checkEmailInput() {
-    if (emailInput) {
-        emailInputFlag = true;
-    } else {
-        emailInputFlag = false;
-        console.log('please input email'); ///DEBUG
-        // TODO Validation-Message anzeigen
-    }
-} */
-
-/*
-function isEmailAvailable() {
-    let user = getUserByEmail(emailInput);
-    if (!user) emailAvailableFlag = true;
-    else {
-        emailAvailableFlag = false;
-        console.log('Ein User mit dieser email-Adresse existiert bereits'); ///DEBUG
-    }
-}
-*/
 async function isEmailAvailable() {
     let emailInput= document.getElementById('emailInput').value;
     let user = await getUserByEmail(emailInput);
@@ -248,15 +156,6 @@ async function isEmailAvailable() {
     }
 }
 
-/* 
-function isPasswordConfirm() {
-    if (passwordInput == passwordConfirmInput) passwordConfirmFlag = true;
-    else {
-        passwordConfirmFlag = false;
-        console.log('Die Passwörter sind nicht gleich'); ///DEBUG
-    }
-} 
-*/
 function isPasswordConfirm() {
     let passwordInput= document.getElementById('signUpPasswordInput').dataset.actualvalue;
     let passwordInputConfirm= document.getElementById('confirmPasswordInput').dataset.actualvalue;
@@ -280,13 +179,6 @@ function handlePasswordMatchConfirm() {
         }
     }
 }
-
-/*
-function checkPrivacy() {
-    privacyFlag = privacyInput;
-    if (!privacyFlag) console.log('Please accept the Privacy Policy'); ///DEBUG
-}
-*/
 
 /*######################*/
 /*## PASSWORD MASKING ##*/

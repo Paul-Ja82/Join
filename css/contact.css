@@ -1,12 +1,24 @@
+/* 
+#################
+TABLE OF CONTENTS
+#################
+1.) ## LAYOUT ##
+2.) ## MENU ##
+3.) ## CONTACT LIST ##
+4.) ## CONTACT DETAIL ##
+5.) ## CONTACT DIALOG ##
+6.) ## CONTACT DIALOG MOBILE SMALL HEIGHT ##
+7.) ## MISC ##
+8.) ## MOBILE LANDSCAPE DETECTOR ##
+9.) ## MENU ASSIMILATION ##
+*/
+
+
 :root {
     --clr-conlist-email: #007CEE;
     --clr-conlist-item-bg-hover: linear-gradient(90deg, rgba(249,249,249,1) 0%, rgba(240,240,240,1) 100%);
     --clr-conlist-item-bg-marked: var(--clr-blue-200);
 }
-
-
-
-
 
 /*############*/
 /*## LAYOUT ##*/
@@ -14,8 +26,6 @@
 
 body {
     background-color: var(--clr-bg-main);
-    /* font-size: clamp(1rem, 0.679rem + 1.709vw, 1.5rem); */
-    /* font-size: clamp(0.9rem, 0.773rem + 0.676vw, 1.2rem); */
 }
 
 header .nav-menu-frame {
@@ -25,18 +35,6 @@ header .nav-menu-frame {
 #contentContainer {
     position: relative;
     overflow-x: hidden;
-}
-
-/* @media (768px < width) { */
-@media (1010px < width) {
-    body {
-        /* font-size: clamp(1rem, 0.53rem + 0.744vw, 1.2rem); */
-    }
-
-    #contentContainer {
-        display: grid;
-        grid-template-columns: auto 1fr;
-    }
 }
 
 /*##########*/
@@ -61,7 +59,7 @@ header .nav-menu-frame {
     background-color: white;
     padding-bottom: 0;
     position: fixed;
-    bottom: 5em;
+    bottom: 5.5em;
     right: 1em;
     z-index: 100;
 }
@@ -79,7 +77,7 @@ header .nav-menu-frame {
 #contactInfoButtonMobile {
     border-radius: var(--border-radius-circular);
     aspect-ratio: 1;
-    padding: 0 1.5em;
+    padding: 0 1.3em;
 }
 
 #contactListContainer {
@@ -125,60 +123,6 @@ header .nav-menu-frame {
     font-weight: bold;
 }
 
-/* @media (768px < width) { */
-@media (1010px < width) {
-    #listContainer {
-        grid-column: 1 / 2;
-        grid-row: 1 / 2;
-        overflow-y: auto;
-    }
-
-    .rotate-message {
-        display: none;
-        font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
-    }
-
-    #newContactButtonContainer {
-        display: block;
-        position: sticky;
-        top: 0;
-        padding: 1.5em;
-        box-shadow: var(--shadow-top-inset);
-    }
-
-    #newContactButton {
-        border-radius: 0.625em;
-        aspect-ratio: unset;
-    }
-    
-    #newContactButtonText {
-        display: unset;
-    }
-
-    #contactListContainer {
-        padding: 1em;
-        padding-top: 0;
-        max-width: 22em;
-        overflow-y: auto;
-    }
-
-    .conlist-item {
-        padding: 1em 1.5em;
-    }
-
-    .conlist-item-hover:hover {
-        background: var(--clr-conlist-item-bg-hover);
-        color: black;
-    }
-
-    .conlist-item-marked {
-        background-color: var(--clr-conlist-item-bg-marked);
-        color: white;
-    }
-
-}
-
-
 /*####################*/
 /*## CONTACT DETAIL ##*/
 /*####################*/
@@ -188,7 +132,6 @@ header .nav-menu-frame {
     min-height: 100%;
     min-width: 100%;
     top: 0;
-    /* font-size: clamp(0.9rem, 0.708rem + 1.026vw, 1.2rem); */
     padding: 2em 1em;
     background-color: var(--clr-bg-main);
     box-shadow: var(--shadow-top-inset);
@@ -269,7 +212,6 @@ p#coninfoName {
 #coninfoEmail,
 #coninfoPhone {
     text-decoration: none;
-    /* display: block; */
 }
 
 .coninfoHeadingH3 {
@@ -281,42 +223,6 @@ p#coninfoName {
     font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
 }
 
-/* @media (768px < width) { */
-@media (1010px < width) {
-    #detailContainer {
-        grid-column: 2 / 3;
-        grid-row: 1 / 2;
-        overflow: hidden;
-    }
-
-    #infoContainer {
-        transform: translateX(120%);
-        transition: 
-            transform 0.45s,
-            display 0.45s allow-discrete;
-    }
-
-    #infoContainer.show-info {
-        transform: none;
-    }
-
-    @starting-style {
-        #infoContainer.show-info.show-info {
-            transform: translateX(100%);
-        }
-    }
-
-    #coninfoButtonContainer {
-        display: flex;
-        gap: 1.5em;
-    }
-
-    .coninfo-button {
-        gap: 0.4em;
-    }
-
-    
-}
 
 /*####################*/
 /*## CONTACT DIALOG ##*/
@@ -427,13 +333,6 @@ img#cdHeaderLogo {
     height: 1em;
 }
 
-/*
-input {
-    border: 1px solid red;
-    padding: 1em;
-}
-*/
-
 #contactForm .validation-message {
     font-size: 0.9em;
 }
@@ -484,100 +383,6 @@ input {
     box-shadow: var(--shadow-button);
 }
 
-/*############################*/
-/*## CONTACT DIALOG DESKTOP ##*/
-/*############################*/
-
-/* @media (768px < width) { */
-@media (1010px < width) {
-
-    :root {
-        --padding-inline-cdContentContainer: 2em;
-    }
-
-    #menuNavContainer {
-        height: 80px;
-    }
-   
-    #dialogContact {
-        height: unset;
-        width: unset;
-        flex-direction: row;
-        justify-content: start;
-        max-width: unset;
-    }
-
-    #cdCloseIcon {
-        display: none;
-    }
-    
-    div#cdCloseIconDesktopWrapper {
-        display: unset;
-        position: absolute;
-        top: 2em;
-        right: 2em;
-        z-index: 10;
-        height: 2.2em;
-        aspect-ratio: 1;
-        border-radius: var(--border-radius-circular);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    #cdCloseIconDesktopWrapper:hover {
-        background-color: var(--clr-gray-600);
-    }
-
-    #CDheaderContainer {
-        flex: unset;
-        border-top-right-radius: 0;
-        border-bottom-left-radius: 1.5em;
-        justify-content: center;
-        align-items: start;
-        padding: 0;
-        padding-left: 1.5em;
-        padding-right: 3em;
-    }
-
-    img#cdHeaderLogo {
-        height: 3em;
-    }
-
-    #CDcontentContainer {
-        flex-direction: row;
-        justify-content: start;
-        align-items: center;
-        padding-left: var(--padding-inline-cdContentContainer);
-        flex: unset;
-    }
-
-    #cdPersonIcon {
-        position: static;
-        margin: 0;
-        transform: none;
-        flex: unset;
-    }
-
-    #contactForm {
-        transform: none;
-        padding: 6em var(--padding-inline-cdContentContainer);
-    }
-
-    #contactForm .input-wrapper {
-        min-width: 25em;
-    }
-
-    .cdButtonContainer {
-        justify-content: start;
-        gap: 3em;
-    }
-
-    #cdCancelButton {
-        display: unset;
-    }
-}
-
 /*########################################*/
 /*## CONTACT DIALOG MOBILE SMALL HEIGHT ##*/
 /*########################################*/
@@ -592,14 +397,6 @@ input {
     }
 }
 
-/*############*/
-/*## TOASTS ##*/
-/*############*/
-
-#newContactToast {
-    /* background-color: cyan; */
-}
-
 /*##########*/
 /*## MISC ##*/
 /*##########*/
@@ -607,9 +404,6 @@ input {
 .mt {
     margin-top: 1em;
 }
-
-
-
 
 /*###############################*/
 /*## MOBILE LANDSCAPE DETECTOR ##*/
@@ -639,49 +433,12 @@ input {
     }
 }
 
-
-
-
-
-
-
-/*###########*/
-/*## DEBUG ##*/
-/*###########*/
-
-.nav-menu-resp-frame {
-    z-index: 10;
-    position: absolute;
-}
-
-
-
-
-.list-item {
-    padding: 0.5em 1em;
-}
-
-/* @media (768px < width) {  */
-@media (1010px < width) { 
-    .list-item:hover {
-        background-color: green;
-    }
-    
-    .list-item-marked {
-        background-color: lightgreen;
-        font-weight: 700;
-    }
-
-    #closeDetailButton {
-        display: none;
-    }
-}
+/*#######################*/
+/*## MENU ASSIMILATION ##*/
+/*#######################*/
 
 @media(min-width: 1010px){
-    /* .menu-nav-item {
-        margin-top: 1.2em;
-    } */
-      .menu-nav-item {
+    .menu-nav-item {
         margin-top: 0;
         padding: 1.7em var(--spacing-left) !important;
     }
