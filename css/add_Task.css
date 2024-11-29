@@ -123,7 +123,6 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-top: 40px;
 }
 
 .iconImage {
@@ -1026,6 +1025,9 @@ input[type="date"].filled {
   .overInputFields {
     flex-direction: column;
     width: unset;
+    margin-bottom: unset;
+    height: 50vh;
+    overflow: auto;
   }
 
 .fillOut {
@@ -1084,7 +1086,7 @@ padding: 20px 35px;
   .overheader {
     background-color: #f6f7f8;
         position: sticky;
-        top: 84px;
+        top: 60px;
         right: 0;
         left: 0;
         z-index: 10;
@@ -1100,6 +1102,8 @@ margin: 10px 0 5px 0;
     justify-content: center;
     width: 100%;
     margin: 0;
+    height: unset;
+    overflow: auto;
   }
 
 .overInputFieldsChangeAddTask {
@@ -1135,13 +1139,7 @@ margin: 10px 0 5px 0;
     display: none;
   }
 
-  .overFormButtons {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 100px;
-    margin-top: 15px;
-  }
+  
 
   
 
