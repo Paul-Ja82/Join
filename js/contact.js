@@ -1,3 +1,20 @@
+/* 
+#################
+TABLE OF CONTENTS
+#################
+01.) ## INIT ##
+02.) ## DATABASE ##
+03.) ## GENERATE CONTACT LIST ##
+04.) ## CONTACT LIST ##
+05.) ## INFO SECTION ##
+06.) ## CONTACT DETAIL ##
+07.) ## ADD CONTACT ##
+08.) ## ADD CONTACT DIALOG ##
+09.) ## EDIT CONTACT ##
+10.) ## DELETE CONTACT ##
+11.) ## MEDIA ##
+*/
+
 const USER_COLOR= '#2A3647';
 const USER_PHONE= '';
 
@@ -93,8 +110,6 @@ function markUserContactItem() {
     listItem.classList.add('userListItem');
 }
 
-
-
 /*##################*/
 /*## CONTACT LIST ##*/
 /*##################*/
@@ -169,7 +184,6 @@ function displayInfoDesktop(event) {
     }
 }
 
-
 /*####################*/
 /*## CONTACT DETAIL ##*/
 /*####################*/
@@ -204,37 +218,9 @@ function hideContactInfoButtonMobile() {
 /*#################*/
 
 function createContactHandler() {
-    // loadInputValuesAddContact();
-    // checkEmailAvailableContact();
     addContact().then(generateContactList);
     showToast('newContactToast', afterToastHandlerCreateContact);
 }
-/* 
-function createContactHandler() {
-    loadInputValuesAddContact();
-    // checkEmailAvailableContact();
-    if (emailAvailableContactFlag) {
-        addContact().then(generateContactList);
-        showToast('newContactToast', afterToastHandlerCreateContact);
-    } else {
-        console.warn('Contact mit dieser mail existiert bereits');
-    }
-} 
-*/
-
-/*
-function loadInputValuesAddContact() {
-    nameInput = document.getElementById('nameInputElem').value;
-    emailInput = document.getElementById('emailInputElem').value;
-    phoneInput = document.getElementById('phoneInputElem').value;
-}
-*/
-
-/* function checkEmailAvailableContact() {
-    let contact = contacts.find(contactI => contactI.email == emailInput);
-    if (contact) emailAvailableContactFlag = false;
-    else return emailAvailableContactFlag = true;
-} */
 
 function isEmailAvailable() {
     let emailInput= document.getElementById('emailInputElem').value;
@@ -259,7 +245,6 @@ async function addContact() {
     let path= CONTACTS_PATH + newContact.id;
     saveData(path, newContact);
     contacts.push(newContact);
-    // showToast(..) 
 }
 
 function afterToastHandlerCreateContact() {
@@ -469,35 +454,4 @@ function mediaChangeHandler() {
         demarkAllElems(itemMarkClass);
     }
     else hideElem('detailContainer');
-}
-
-
-
-
-
-/*###########*/
-/*## DEBUG ##*/
-/*###########*/
-
-function tuEsContact() {
-    let x= 'rgb(100,14,1)';
-    console.log(rgbStringToHex(x)); ///DEBUG
-}
-
-function logDB() {
-    getData('')
-        .then(data => console.log(data));
-}
-
-function logContactsFromDB() {
-    getData(CONTACTS_PATH)
-        .then(cons => {
-            console.log(cons); ///DEBUG
-            console.log(JSON.stringify(cons)); ///DEBUG
-        });
-}
-
-function deleteContactsFromDb() {
-    saveData(CONTACTS_PATH, {});
-    
 }
