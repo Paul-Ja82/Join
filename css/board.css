@@ -24,7 +24,6 @@
 }
 
 html {
-  background-color: #F6F7F8;
   margin: 0;
   padding: 0;
   -webkit-tap-highlight-color: transparent;
@@ -748,13 +747,11 @@ body {
   }
   .menu-nav-item {
     justify-content: center !important;
-}
-
-.menu-nav-text {
-    margin-top: 8px;
-    margin-bottom: 0;
-}
-
+  }
+  .menu-nav-text {
+      margin-top: 8px;
+      margin-bottom: 0;
+  }
   body {
     padding-bottom: 80px;
     max-height: calc(100% - 80px);
@@ -845,7 +842,6 @@ body {
   .menu-nav-item {
     justify-content: center !important;
   }
-
   .menu-nav-text {
       margin-top: 8px !important;
       margin-bottom: 0;
