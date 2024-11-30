@@ -218,8 +218,12 @@ async function getTaskForEdit(pathData='') {
  * @returns {void}
  */
 function keyForAllTasks() {
-    allKeys = [];
-    allKeys = Object.keys(allTasks);
+    if (allTasks.length == 0) {
+        allKeys = [];
+    } else {
+        allKeys = [];
+        allKeys = Object.keys(allTasks);
+    }
 }
 
 /**
