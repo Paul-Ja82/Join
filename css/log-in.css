@@ -8,12 +8,7 @@ body {
     background-color: rgb(246,247,248,1);
     display: flex;
     justify-content: center;
-    align-items: center;
 }
-
-html {
-    -webkit-tap-highlight-color: transparent;
-  }
 
 .rotate-message {
     display: none;
@@ -22,8 +17,6 @@ html {
 
 .main-frame-div {
     width: 100%;
-    height: 100vh;
-    max-height: 1024px;
     max-width: 1440px;
     position: relative;
 }
@@ -35,14 +28,25 @@ html {
 }
 
 ::-webkit-scrollbar {
-    background-color: rgb(246,247,248,1);
     width: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: rgba(41, 171, 226, 1);  
-    border: none;
-}
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #2a4872;
+    background: linear-gradient(180deg, #315e9e, #2a3647);
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #3971c0, #293d58);
+    cursor: pointer;
+  }
 
 :root {
     --logo-color: #2a3647; 
@@ -454,9 +458,10 @@ h3 {
 footer {
     width: 100%;
     height: 35px;
+    gap: 8px;
     position: absolute;
     top: unset;
-    left: 0;
+    right: 0;
     bottom: 16px;
     display: flex;
     justify-content: center;
@@ -488,462 +493,4 @@ footer {
 
 .footer-element-left:hover {
     color: rgba(41, 171, 226, 1);
-}
-
-@media(max-width:1010px) {
-
-    body {
-        padding-bottom: 50px;
-        max-height: calc(100% - 50px);
-    }
-
-    .main-frame-div {
-        max-height: 1024px;
-    }
-
-    .j-logo-img {
-        width: 254px;
-        height: 334.07px;
-        object-fit: contain;
-        object-position: center;
-        opacity: 0; 
-        transition: opacity 0.2s ease; 
-    }
-
-    .start-position {
-        position: absolute;
-        top: 55%;
-        left: 51%;
-        transform: translate(-55%, -51%);
-        opacity: 1; 
-    }
-    
-    .animate-logo {
-        position: absolute;
-        object-fit: contain;
-        top: 55%;
-        left: 51%;
-        animation: logoShrink 1s ease forwards;
-        animation-delay: 0.1s;
-    }
-    
-
-    @keyframes logoShrink {
-        0% {
-            width: 254px;
-            height: 334.07px;
-            transform: translate(-55%, -51%) scale(1);
-        }
-        100% {
-            width: clamp(4rem, 2.891rem + 3.942vw, 6.439rem);
-            height: auto;
-            transform: translate(0, 0) scale(1);
-            top: 37px;
-            left: 8.5%;
-        }
-    }
-
-    .under-frame-div {
-        max-width: 1440px;
-        display: flex;
-        flex-direction: column-reverse;
-        align-items: center;
-    }
-
-    .sign-up-div {
-        width: 100%;
-        height: 60px;
-        margin-top: 50px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .sign-up-under-div {
-        margin-left: 0;
-        margin-top: 0;
-        display: flex;
-        align-items: center;
-        gap: 35px;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s ease;
-    }
-
-    .log-in-div {
-        width: 92%;
-        max-width: 652px;
-        height: 515px;
-        margin-top: 205.5px;
-    }
-
-    .log-in-header {
-        font-size: clamp(2.938rem, 2.54rem + 1.413vw, 3.813rem);
-        margin-top: 35px;
-    }
-
-    .divider {
-        width: 88px;
-        height: 3px;
-        background-color: rgba(41, 171, 226, 1);
-    }
-    
-    .input-main-div {
-        width: 91.9%;
-        height: 152px;
-        margin-top: 25px;
-    }
-    
-    .log-input {
-        width: 100%;
-        height: 48px;
-        padding-top: 6px;
-    }
-
-    ::placeholder {
-        font-size: clamp(1rem, 0.389rem + 3.053vw, 1.25rem);
-    }
-
-    .r-box-input {
-        margin-left: 16px;
-    }
-    
-    .log-in-buttons-div {
-        width: 100%;
-        height: 123px;
-        margin-top: 25px;
-        margin-left: 0px;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        gap: 21px;
-    }
-    
-    .log-in-button {
-        width: 180px;
-        height: 51px;
-        font-size: 16px;
-    }
-
-    .guest-a{
-        text-decoration: none;
-    }
-    
-    .guest-log-in-button {
-        width: 180px;
-        height: 51px;
-        font-size: 16px;
-        text-decoration: none;
-    }
-
-    footer {
-        position: absolute;
-        top: unset;
-        bottom: 8px;
-    }
-    
-}
-
-@media (max-height: 500px) and (max-width: 945px) and (orientation: landscape) {
-
-    .main-frame-div {
-        display: none;
-    }
-    .rotate-message {
-        height: 50vh;
-        color: rgba(41, 171, 226, 1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
-        padding: 20px;
-    }
-}
-
-@media (max-height: 500px) and (max-width: 945px) and (orientation: portrait) {
-    .main-frame-div {
-        display: block;
-    }
-    .rotate-message {
-        display: none;
-    }
-}
-
-@media(max-width:850px) {
-
-    .j-logo-img {
-        width: 205px;
-        height: 270px;
-        object-fit: contain;
-        object-position: center;
-        opacity: 0; 
-        transition: opacity 0.2s ease; 
-    }
-
-    .start-position {
-        position: absolute;
-        top: 55%;
-        left: 51%;
-        transform: translate(-55%, -51%);
-        opacity: 1; 
-    }
-    
-    .animate-logo {
-        position: absolute;
-        object-fit: contain;
-        top: 55%;
-        left: 51%;
-        animation: logoShrink 1s ease forwards;
-        animation-delay: 0.1s;
-    }
-    
-
-    @keyframes logoShrink {
-        0% {
-            width: 205px;
-            height: 270px;
-            transform: translate(-55%, -51%) scale(1);
-        }
-        100% {
-            width: clamp(4rem, 2.891rem + 3.942vw, 6.439rem);
-            height: auto;
-            transform: translate(0, 0) scale(1);
-            top: 37px;
-            left: 8.5%;
-        }
-    }
-
-}
-
-@media(max-width:650px) {
-
-    .j-logo-img {
-        width: 157px;
-        height: 206px;
-        object-fit: contain;
-        object-position: center;
-        opacity: 0; 
-        transition: opacity 0.2s ease; 
-    }
-
-    .start-position {
-        position: absolute;
-        top: 55%;
-        left: 51%;
-        transform: translate(-55%, -51%);
-        opacity: 1; 
-    }
-    
-    .animate-logo {
-        position: absolute;
-        object-fit: contain;
-        top: 55%;
-        left: 51%;
-        animation: logoShrink 1s ease forwards;
-        animation-delay: 0.1s;
-    }
-    
-
-    @keyframes logoShrink {
-        0% {
-            width: 157px;
-            height: 206px;
-            transform: translate(-55%, -51%) scale(1);
-        }
-        100% {
-            width: clamp(4rem, 2.891rem + 3.942vw, 6.439rem);
-            height: auto;
-            transform: translate(0, 0) scale(1);
-            top: 37px;
-            left: 8.5%;
-        }
-    }
-}
-
-@media(max-width:450px) {
-
-    
-    ::placeholder {
-        font-size: clamp(1rem, 0.389rem + 3.053vw, 1.25rem);
-    }
-
-    .sign-up-under-div {
-        gap: clamp(1.25rem, -1.058rem + 11.538vw, 2.188rem);
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s ease;
-    }
-    h3 {
-        font-size: clamp(1rem, 0.389rem + 3.053vw, 1.25rem);
-    }
-
-    .error-input-message {
-        font-size: 10px;
-    }
-    
-    .forgot-password-message {
-        font-size: 10px;
-    }
-
-    .footer-element-left {
-        font-size: clamp(0.875rem, 0.567rem + 1.538vw, 1rem);
-    }
-    
-    .footer-element-right {
-        font-size: clamp(0.875rem, 0.567rem + 1.538vw, 1rem);
-    }
-
-}
-
-@media(max-width:400px) {
-
-    .error-input-message {
-        font-size: 9px;
-    }
-    
-    .forgot-password-message {
-        font-size: 9px;
-    }
-    
-}
-
-@media(max-height:850px) and (min-width:1020px) {
-
-    body {
-        overflow: scroll;
-    }
-
-    footer {
-        height: 20px;
-        position: unset;
-        margin-top: 100px;
-        padding-bottom: 50px;
-    }
-
-}
-
-@media(max-height:900px) and (max-width:1000px) {
-
-    .log-in-div {
-        width: 92%;
-        max-width: 652px;
-        margin-top: 170px;
-    }
-
-    .sign-up-div {
-        margin-top: 50px;
-    }
-
-    footer {
-        height: 20px;
-        position: absolute;
-        top: unset;
-        bottom: 2px;
-    }
-}
-
-@media(max-height:820px) and (max-width:1000px) {
-
-    .log-in-div {
-        width: 92%;
-        max-width: 652px;
-        height: 420px;
-        margin-top: 170px;
-    }
-
-    .log-in-header {
-        font-size: clamp(2.938rem, 2.54rem + 1.413vw, 3.813rem);
-        margin-top: 15px;
-    }
-    
-    .input-main-div {
-        width: 91.9%;
-        height: 110px;
-        margin-top: 15px;
-    }
-    
-    .log-input {
-        width: 100%;
-        height: 38px;
-        padding-top: 6px;
-    }
-
-    .log-in-buttons-div {
-        width: 100%;
-        height: 123px;
-        margin-top: 16px;
-        margin-left: 0px;
-        gap: 8px;
-    }
-
-    .email-input-div {
-        margin-bottom: 2px;  
-    }
-
-    .incorrect-email-format {
-        margin-bottom: 6px;
-    }
-
-    .not-registered-msg {
-        margin-bottom: 6px;
-    }
-
-    .error-input-message {
-        margin-bottom: 8px;
-        opacity: 0;
-    }
-    
-    .forgot-password-message {
-        margin-bottom: 8px;
-        margin-right: 1.5%;
-        opacity: 0;
-    }
-
-    .log-in-button {
-        height: 40px;
-    }
-
-    .guest-a{
-        text-decoration: none;
-    }
-    
-    .guest-log-in-button {
-        height: 38px;
-        text-decoration: none;
-    }
-
-    .sign-up-div {
-        margin-top: 40px;
-    }
-
-    .sign-up-button {
-        height: 40px;
-    }
-
-}
-
-@media(max-height:720px) and (max-width:1000px) {
-
-    .log-in-div {
-        height: 400px;
-        margin-top: 150px;
-    }
-
-    .sign-up-div {
-        margin-top: 20px;
-    }
-}
-
-@media(max-height:660px) and (max-width:1000px) {
-    body {
-        overflow: scroll;
-    }
-
-    footer {
-        height: 20px;
-        position: unset;
-        padding-bottom: 20px;
-        margin-top: 60px;
-    }
 }
