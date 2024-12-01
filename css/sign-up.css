@@ -432,7 +432,7 @@ footer {
 }
 
 .validate-input:invalid {
-    border: 1px solid rgba(255, 129, 144, 1);
+    border: 1px solid rgba(255, 0, 31, 1);
 }
 
 .validate-input:invalid ~ .validation-message {
