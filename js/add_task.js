@@ -4,6 +4,8 @@ let selectedPrio = "";
 let selectedContacts = [];
 let isListOpen = false;
 let hasEventListener = false;
+let contactsChecked = false;
+
 
 /**
  * Initializes the "Add Tasks" functionality by rendering the task form, hiding the contact list, and setting default priority.
@@ -165,14 +167,18 @@ function colorSelectedContacts() {
  */
 function filterContacts() {
   const input = document.getElementById("inputAssignedTo").value.toLowerCase();
+  
   const filteredContacts = filteredContactsForTasks.filter((contact) => {
-    if (typeof contact === "string") {
-      return contact.toLowerCase().includes(input);
+    if (contact && typeof contact.name === "string") {
+      return contact.name.toLowerCase().includes(input);
     }
     return false; 
   });
-  
   let contactsTemplate = createContactsTemplate(filteredContacts);
+
+  const contactListElement = document.getElementById("insertContactList");
+  contactListElement.innerHTML = '';  
+  contactListElement.appendChild(contactsTemplate);
 }
 
 
@@ -189,8 +195,6 @@ function filterContacts() {
 function closeContactList() {
   let templateToRemove = document.getElementById("contactListTemplate");
   let contactList = document.getElementById("insertContactList");
-  console.log(contactList);
-  contactList.removeChild(templateToRemove);
   contactList.classList.add("d-none");
   document.getElementById("arrowDropdown").src =
     "/assets/icons/arrowDropdown.svg";
@@ -246,27 +250,36 @@ function renderAddedPersons() {
 }
 
 /**
- * Toggles the visibility of the contact list, opening or closing it based on its current state.
- *
- * Steps performed:
- * 1. Checks the current state of `isListOpen`:
- *    - If true, calls `closeContactList` to hide the contact list.
- *    - If false, initializes the contact list by calling `checkContacts` with `allContactsForTasks`.
- * 2. Updates the background and visibility of the contact list based on its state.
- * 3. Toggles the value of `isListOpen` to reflect the updated state.
- *
- * @param {Array} filteredContactsForTasks - The list of filtered contacts to display (not used in the current implementation).
+ * Toggles the visibility of a contact list and performs a contact check if opening the list.
+ * 
+ * @param {Array} filteredContactsForTasks - An array of filtered contacts to be potentially used for tasks. (Currently unused in the function)
+ * 
+ * This function checks the state of the contact list (`isListOpen`). If the list is open, it hides the list by adding the `d-none` class.
+ * If the list is closed, it performs a contact check by calling `checkContacts(allContactsForTasks)` and displays the list by removing the `d-none` class.
+ * The `isListOpen` flag is toggled after each operation to track the visibility state of the contact list.
+ * 
+ * @global {boolean} isListOpen - A global variable used to track whether the contact list is currently open or closed.
+ * @global {Array} allContactsForTasks - A global array that contains all available contacts to be checked by `checkContacts`.
+ * 
+ * @example
+ * // Opens or closes the contact list
+ * toggleContactList(filteredContactsForTasks);
  */
 function toggleContactList(filteredContactsForTasks) {
   const inputField = document.getElementById("inputAssignedTo");
-  console.log(isListOpen);
-  if (isListOpen) {
-    closeContactList();
-  } else {
-    checkContacts(allContactsForTasks);
 
+  if (isListOpen) {
+    document.getElementById("insertContactList").classList.add("d-none");
+    document.getElementById("arrowDropdown").src = "assets/icons/arrowDropdown.svg"; 
+  } else {
+    if (!contactsChecked) {
+      checkContacts(allContactsForTasks); 
+      contactsChecked = true; 
+    }
     document.getElementById("insertContactList").classList.remove("d-none");
+    document.getElementById("arrowDropdown").src = "assets/icons/arrowUpDropdown.svg";
   }
+
   isListOpen = !isListOpen;
 }
 
