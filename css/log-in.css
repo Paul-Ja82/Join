@@ -204,7 +204,7 @@ h3 {
 }
 
 .log-input.input-error {
-    border: solid 1px rgba(255, 129, 144, 1);
+    border: solid 1px rgba(255, 0, 31, 1);
 }
 
 .log-input:focus {
