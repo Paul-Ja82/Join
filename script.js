@@ -96,6 +96,10 @@ function supportForMaskPassword(input, actualValue) {
   return actualValue;
 }
 
+/**
+ * Masks the password input fields by replacing their displayed values with masked characters
+ * and storing the actual values in a dataset attribute.
+ */
 function maskPassword() {
   const inputs = [
       document.getElementById("passwordInput"),
@@ -112,6 +116,10 @@ function maskPassword() {
   }
 }
 
+/**
+ * Toggles the visibility of the password-related icons (lock, eye-off, eye-on)
+ * for the specified input fields based on their state.
+ */
 function togglePasswordImg() {
   const inputs = [
       document.getElementById("passwordInput"),
@@ -130,6 +138,10 @@ function togglePasswordImg() {
   }
 }
 
+/**
+ * Reveals the actual password values for the specified input fields by
+ * updating the input's display value and toggling the visibility of the eye icons.
+ */
 function openEyePassword() {
   const inputs = [
       document.getElementById("passwordInput"),
@@ -151,7 +163,10 @@ function openEyePassword() {
   }
 }
 
-
+/**
+ * Hides the actual password values for the specified input fields by
+ * replacing the display value with masked characters and toggling the visibility of the eye icons.
+ */
 function closeEyePassword() {
   const inputs = [
       document.getElementById("passwordInput"),
@@ -173,7 +188,15 @@ function closeEyePassword() {
   }
 }
 
-
+/**
+ * Toggles the visibility of lock and eye icons for password inputs based on the input's content.
+ * If the input contains text, the lock icon is hidden and the eye-off icon is shown.
+ * Otherwise, the lock icon is displayed, and the eye icons are hidden.
+ * @param {HTMLInputElement} input - The password input field.
+ * @param {HTMLElement} lockImg - The lock icon element.
+ * @param {HTMLElement} eyeOffImg - The eye-off icon element.
+ * @param {HTMLElement} eyeOnImg - The eye-on icon element.
+ */
 function eyeLockVariations(input, lockImg, eyeOffImg, eyeOnImg) {
   if (input.value.length > 0) {
       if (lockImg) lockImg.style.display = 'none';
