@@ -1,10 +1,3 @@
-/* Start */
-
-/* Nachher löschen */
-/* body {
-  overflow-x: hidden;
-} */
-
 body {
   height: 100vh;
 }
@@ -41,9 +34,7 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  /*Test Sabrina. Unter ca. 330px geht der Overlay Background mit vw nicht über die Komplette Breite und Höhe. Angaben entfernt, da pos. fixed.*/
-  /* height: 100vh; */
-  /* width: 100vw; */
+
   z-index: 900;
 }
 
@@ -52,10 +43,9 @@ body {
   background-color: white;
   padding: 3% 3%;
   border-radius: 20px;
-  transform: translateX(200vw); /* Startpunkt außerhalb des Bildschirms */
+  transform: translateX(200vw); 
   transition: all 225ms ease-in-out;
   z-index: 999;
-  /*Ergänzung Sabrina:*/
   max-height: 90vh;
   max-width: 90vw;
   margin: 36px;
@@ -123,7 +113,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 18px;
+  padding: 18px 0;
 }
 
 .iconImage {
@@ -132,6 +122,7 @@ body {
 
 .titleAddTask {
   font-weight: 700;
+  margin-bottom: 15px;
 }
 .centerForm {
   align-items: center;
@@ -141,14 +132,10 @@ body {
   transform: translateX(0);
 }
 
-
-
 /* Ende */
 
 .contentAddTaskContainer {
   margin: 0 80px;
-  /*Sabrina: Zum Test vom responsive Menü Overflow hidden eingestellt, da ich noch keine responsive Variante von addTask habe*/
-
 }
 
 .overAllFormAddTask * {
@@ -654,7 +641,7 @@ input[type="date"].filled {
 }
 
 .showCategorys {
-  position: static;
+  position: fixed;
   width: 100%;
   background-color: white;
   border-radius: 0 0 10px 10px;
@@ -1013,12 +1000,14 @@ input[type="date"].filled {
 /* Ende */
 
 @media only screen and (max-width: 1375px) {
-    
-  
   .contentAddTaskContainer {
     margin: 0 40px;
   }
   
+  .showCategorys {
+    position: static;
+  }
+
   .listContacts {
     position: static;
   }
@@ -1031,18 +1020,17 @@ input[type="date"].filled {
     overflow: auto;
   }
 
-.fillOut {
-  width: 100%;
-}
+  .fillOut {
+    width: 100%;
+  }
 
-.createButton {
-  margin-right: 0;
-}
+  .createButton {
+    margin-right: 0;
+  }
 
-.line {
-  display: none;
-}
-
+  .line {
+   display: none;
+  }
 
 }
 

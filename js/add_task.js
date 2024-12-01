@@ -1,22 +1,7 @@
-// const BASE_URL =  "https://join-8e7b1-default-rtdb.europe-west1.firebasedatabase.app/";
 const priorityClasses = ["low", "medium", "urgent"];
 let subtasks = [];
 let selectedPrio = "";
 let selectedContacts = [];
-/*
-let contacts = [
-  "Anna Müller",
-  "Ben Schneider",
-  "Clara Fischer",
-  "David Wagner",
-  "Eva Schmidt",
-  "Felix Braun",
-  "Greta Weber",
-  "Hans Mayer",
-  "Isabel Koch",
-  "Jonas Lehmann",
-];
-*/
 let isListOpen = false;
 let hasEventListener = false;
 
@@ -35,226 +20,6 @@ async function initAddTasks() {
   contactList.classList.add("d-none");
   selectPrio("medium");
 }
-
-
-/*
-function returnAddTaskForm(selectedProcessCategory) {
- 
-  return `
-  <div class="overAllFormAddTask">
-        <div id="insertAddedToTaskConfirmation"></div>
-        <div class="overheader">
-          <h2 class="titleAddTask">Add Task</h2>
-        </div>
-        <form id="formAddTasks" class="formAddTasks">
-          <div class="seperateSendButtons">
-            <div class="overInputFields">
-              <div class="fillOut">
-                <div class="overField">
-                  <label for="title"
-                    >Title<span style="color: #ff8190">*</span></label
-                  >
-                  <input
-                    type="text"
-                    id="title"
-                    class="fieldInput"
-                    placeholder="Enter a Title"
-                  />
-                  <div id="errorTitle" class="errorMessage">
-                    This field is required.
-                  </div>
-                </div>
-                <div class="overField marginTop">
-                  <label for="description">Description</label>
-                  <textarea
-                    type="text"
-                    name="description"
-                    id="description"
-                    placeholder="Enter a Description"
-                  ></textarea>
-                </div>
-                <div class="overField">
-                  <label for="inputAssignedTo">Assigned to</label>
-                  <div id="setBackground" class="overaddAssignedTo">
-                    <div class="overInputAssignedTo">
-                      <input
-                        id="inputAssignedTo"
-                        class="fieldInput inputAssignedTo"
-                        type="text"
-                        onclick="toggleContactList()"
-                        oninput="filterContacts()"
-                        placeholder="Select contacts to assign"
-                      />
-                      <div class="changeSymboles">
-                        <img
-                          id="arrowDropdown"
-                          src="assets/icons/arrowDropdown.svg"
-                          alt=""
-                          onclick="toggleContactList()"
-                        />
-                      </div>
-                    </div>
-                    <ul id="insertContactList" class="listContacts"></ul>
-                  </div>
-                  <div id="showPersons" class="showPersons"></div>
-                </div>
-              </div>
-              <div class="line"></div>
-              <div class="fillOut">
-                <div class="overField">
-                  <label for="date"
-                    >Due date<span style="color: #ff8190">*</span></label
-                  >
-                  <div class="dateWrapper">
-                    <input
-                      type="date"
-                      id="date"
-                      min=""
-                      class="fieldInput dateInput"
-                      onchange="checkDateInput()"
-                    />
-                    <div
-                      class="dateIcon"
-                      onclick="document.getElementById('date').showPicker();"
-                    >
-                      <img
-                        src="/assets/icons/calendarIcon.svg"
-                        alt="Calendar Icon"
-                      />
-                    </div>
-                  </div>
-                  <div id="errorDate" class="errorMessage">
-                    This field is required.
-                  </div>
-                </div>
-                <div class="overField marginTop">
-                  <label>Prio</label>
-                  <div class="overPrioButtons">
-                    <button
-                      id="urgentButton"
-                      class="prioButtons"
-                      onclick="selectPrio('urgent')"
-                      type="button"
-                    >
-                      Urgent<img
-                        id="urgentButtonImg"
-                        src="assets/icons/urgent.svg"
-                        alt=""
-                      />
-                    </button>
-                    <button
-                      id="mediumButton"
-                      class="prioButtons"
-                      onclick="selectPrio('medium')"
-                      type="button"
-                    >
-                      Medium<img
-                        id="mediumButtonImg"
-                        src="assets/icons/medium.svg"
-                        alt=""
-                      />
-                    </button>
-                    <button
-                      id="lowButton"
-                      class="prioButtons"
-                      onclick="selectPrio('low')"
-                      type="button"
-                    >
-                      Low<img
-                        id="lowButtonImg"
-                        src="assets/icons/low.svg"
-                        alt=""
-                      />
-                    </button>
-                  </div>
-                </div>
-                <div class="overField">
-                  <label for="showSelectedCategory"
-                    >Category<span style="color: #ff8190">*</span></label
-                  >
-                  <div class="arrowCategory">
-                    <img
-                      id="categoryDropdown"
-                      class="categoryDropdown"
-                      src="assets/icons/arrowDropdown.svg"
-                      onclick="showMeCategorys()"
-                    />
-                  </div>
-                  <div id="costumSelect" class="costumSelect">
-                    <input
-                      type="text"
-                      id="showSelectedCategory"
-                      class="fieldInput"
-                      readonly
-                      placeholder="Select a task category"
-                      onclick="showMeCategorys()"
-                    />
-                    <div id="showCategorys" class="showCategorys d-none">
-                      <div
-                        class="categoryItem"
-                        onclick="putInput('Technical Task)"
-                      >
-                        Technical Task
-                      </div>
-                      <div
-                        class="categoryItem"
-                        onclick="putInput('User Story')"
-                      >
-                        User Story
-                      </div>
-                    </div>
-                  </div>
-                  <div id="errorCategory" class="errorMessage">
-                    This field is required.
-                  </div>
-                </div>
-                <div class="overField marginTop">
-                  <label for="subtasks">Subtasks</label>
-                  <div class="overAddSubtasks">
-                    <input
-                      type="text"
-                      id="subtasks"
-                      class="fieldInput"
-                      oninput="changeSymbols()"
-                      placeholder="Add new subtask"
-                    />
-                    <div id="symbolsSubtasks" class="changeSymboles">
-                      <img src="assets/icons/plus.svg" alt="" />
-                    </div>
-                  </div>
-                  <ul id="showSubtasks"></ul>
-                </div>
-              </div>
-            </div>
-            <div class="overFormButtons">
-              <div class="requiredInformation">
-                <span style="color: #ff8190">*</span>This field is required
-              </div>
-              <div class="setButtons">
-                <div class="overSendButtons">
-                  <button
-                    class="formButtons clearButton"
-                    type="button"
-                    onclick="reloadPage()"
-                  >
-                    Clear
-                    <div class="iconX"></div>
-                  </button>
-                  <button
-                    class="formButtons createButton"
-                    type="button"
-                    onclick="submitForm('${selectedProcessCategory}')"
-                  >
-                    Create Task <img src="assets/icons/checkWhite.svg" alt="" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-  `;
-}*/
 
 /**
  * Fetches data from the specified path on the server and logs the response in JSON format.
@@ -285,41 +50,26 @@ async function postData(path = "", data = {}) {
   console.log(responseToJson);
 }
 
-/*
-async function saveData() {
-  let taskData = {
-    title: document.getElementById("title").value,
-    description: document.getElementById("description").value,
-    AssignedTo: selectedContacts,
-    dueDate: document.getElementById("date").value,
-    priority: selectedPrio == null ? "medium" : selectedPrio,
-    category: document.getElementById("categoryToSelect").value,
-    subtasks: subtasks,
-    currentStatus: "todo",
-  };
-
-  await postData((path = "/tasks"), (data = taskData));
-  location.reload();
-}*/
-
 /**
- * Renders the contact list in the DOM, displaying filtered contacts and updating UI elements accordingly.
+ * Renders the contact list in the DOM, displaying filtered contacts and updating the UI elements accordingly.
  *
  * Steps performed:
- * 1. Sets a white background for the contact section.
- * 2. Displays the contact list by removing the `d-none` class and clearing its current content.
- * 3. Changes the dropdown arrow icon to an "up" state.
- * 4. If no contacts are provided in `filteredContacts`, displays a message indicating the list is empty.
- * 5. Iterates through the `filteredContacts` array and adds each contact as a list item:
- *    - Includes a checkbox with the contact name.
+ * 1. Displays the contact list by removing the `d-none` class and clearing its current content.
+ * 2. Changes the dropdown arrow icon to an "up" state.
+ * 3. If `filteredContacts` is empty, displays a message indicating the list is empty.
+ * 4. Calls `returnRenderdContacts` to iterate through `filteredContacts` and:
+ *    - Adds each contact as a list item with a checkbox.
  *    - Indicates whether the contact is already selected using `selectedContacts`.
  *    - Displays a profile picture for each contact using `showProfilPicture`.
- * 6. Updates the checkbox icon to a "checked" state for selected contacts.
- * 7. Calls `showPersons` and `colorSelectedContacts` to finalize UI updates for the contact list.
+ *    - Updates the checkbox icon to a "checked" state for selected contacts.
+ * 5. Calls `showPersons` and `colorSelectedContacts` to finalize the UI updates for the contact list.
  *
  * @param {Array} [filteredContacts=contacts] - The array of contacts to render. Defaults to the full `contacts` array.
+ * 
+ * @example
+ * renderContactList(filteredContacts);
+ * // Renders the filtered list of contacts in the UI.
  */
-
 function renderContactList(filteredContacts = contacts) {
   const contactList = document.getElementById("insertContactList");
   contactList.classList.remove("d-none");
@@ -334,6 +84,31 @@ function renderContactList(filteredContacts = contacts) {
     return;
   }
 
+  returnRenderdContacts();
+  showPersons();
+  colorSelectedContacts();
+}
+
+/**
+ * Renders a list of contacts into the DOM and updates their visual state.
+ * 
+ * This function iterates through a list of filtered contacts and dynamically
+ * generates HTML to display each contact within a list. It checks whether each
+ * contact is selected (i.e., present in the `selectedContacts` array) and
+ * updates the corresponding checkbox's state. Additionally, it shows each contact's
+ * profile picture by calling the `showProfilPicture` function and ensures that
+ * selected checkboxes are visually updated.
+ * 
+ * @function returnRenderdContacts
+ * @global
+ * 
+ * @param {Array} filteredContacts - An array of contacts to be rendered. Each contact represents a string or object containing the contact information.
+ * 
+ * @example
+ * returnRenderdContacts();
+ * // Renders the contact list with checkboxes and profile images.
+ */
+function returnRenderdContacts () {
   filteredContacts.forEach((contact, index) => {
     const isSelected = selectedContacts.includes(contact);
     contactList.innerHTML += `
@@ -354,33 +129,7 @@ function renderContactList(filteredContacts = contacts) {
         "assets/icons/checkboxChecked.svg";
     }
   });
-
-  showPersons();
-  colorSelectedContacts();
-
-  // Event Handler für das Schließen der Liste, wenn außerhalb geklickt wird
-  function closeOnClickOutsideContacts(event) {
-    const inputField = document.getElementById("inputAssignedTo");
-    const contactList = document.getElementById("insertContactList");
-    const arrowDrop = document.getElementById("arrowDropdown");
-
-    if (
-      !inputField.contains(event.target) &&
-      !contactList.contains(event.target) &&
-      !arrowDrop.contains(event.target)
-    ) {
-     toggleContactList();
-      document.removeEventListener("click", closeOnClickOutsideContacts); // Entferne den Listener
-    }
-  }
-
-  // Füge den Event Listener hinzu
-  document.addEventListener("click", closeOnClickOutsideContacts);
 }
-
-
-
-
 
 /**
  * Highlights selected contacts in the contact list by adding a specific background class.
@@ -421,8 +170,6 @@ function filterContacts() {
   );
   let contactsTemplate = createContactsTemplate(filteredContacts);
   console.log(contactsTemplate);
-
-  // renderContactList(filteredContacts);
 }
 
 /**
@@ -519,6 +266,24 @@ function toggleContactList(filteredContactsForTasks) {
   isListOpen = !isListOpen;
 }
 
+/**
+ * Sets the minimum selectable date for a date input field to today's date.
+ *
+ * This function retrieves the current date, formats it in `YYYY-MM-DD` format,
+ * and assigns it as the `min` attribute for an input field with the ID `date`.
+ * This ensures that users cannot select a past date in the calendar input.
+ *
+ * Steps performed:
+ * 1. Retrieves the current date using `new Date()`.
+ * 2. Extracts the year, month (adjusting for 0-indexed months), and day.
+ * 3. Formats the date as `YYYY-MM-DD` using string padding to ensure two-digit months and days.
+ * 4. Finds the date input element by its ID (`date`).
+ * 5. If the input element exists, sets its `min` attribute to the formatted date, preventing past dates from being selected.
+ *
+ * @example
+ * prepareCalender();
+ * // The input field with ID "date" now has today's date as the minimum selectable date.
+ */
 function prepareCalender() {
   const today = new Date();
   const year = today.getFullYear();
@@ -559,25 +324,6 @@ function checkDateInput() {
   }
 }
 
-// function showProfilPicture(contact, index) {
-//   let linkProfil = document.getElementById(`profilPerson${index}`);
-//   linkProfil.innerHTML = "";
-//   const initials = getInitials(contact);
-//   const bgColor = avatarColors[index % avatarColors.length];
-//   const svgAvatar = createAvatarSVG(initials, bgColor);
-//   linkProfil.appendChild(svgAvatar);
-// }
-
-// Versuch Sabrina:
-// function showProfilPicture(listPersonId) {
-//   let linkProfil = document.getElementById(`profilPerson${listPersonId}`);
-//   linkProfil.innerHTML = "";
-//   const initials = getInitials(contact);
-//   const bgColor = avatarColors[index % avatarColors.length];
-//   const svgAvatar = createAvatarSVG(initials, bgColor);
-//   linkProfil.appendChild(svgAvatar);
-// }
-
 /**
  * Displays avatars for selected contacts, limiting to a maximum of 5.
  * Clears the avatar container and creates SVG avatars for each contact.
@@ -614,9 +360,21 @@ function showPersons() {
  */
 function createAndAppendSVG(avatarContainer, contact, index) {
   const initials = getInitials(contact);
-  const bgColor = avatarColors[index % avatarColors.length];
+  const bgColor = showTheColorOfContact(contact);
   const svgAvatar = createAvatarSVG(initials, bgColor);
   avatarContainer.appendChild(svgAvatar);
+}
+
+function showTheColorOfContact(contact) {
+  let bgColor = "";
+  for (let key in allContactsForTasks) {
+    console.log(allContactsForTasks[key])
+    if (allContactsForTasks[key].name === contact) {
+      bgColor = allContactsForTasks[key].color;
+      break;
+    }
+  }
+  return bgColor;
 }
 
 /**
@@ -634,8 +392,6 @@ function checkAssignedToContactsLength() {
   moreContactsChecked.innerHTML = `+${moreContactsCount}`;
   return moreContactsChecked
 }
-
-
 
 /**
  * Extracts initials from a given name, considering both single and multi-word names.
@@ -712,7 +468,6 @@ function createAvatarSVG(initials, bgColor) {
 
   svg.appendChild(circle);
   svg.appendChild(text);
-console.log(bgColor);
   return svg;
 }
 
@@ -786,21 +541,52 @@ function saveEditSubtask(index) {
   renderSubtasks();
 }
 
+/**
+ * Dynamically updates the subtask input field icons based on user input.
+ *
+ * This function checks the value of the subtask input field (`#subtasks`) and updates the content of the `#symbolsSubtasks` element.
+ * If the input is empty, a "plus" icon is displayed, allowing the user to add a new subtask.
+ * If there is text input, the icons change to a "close" icon (to clear the input) and a "check" icon (to save the subtask).
+ *
+ * Steps performed:
+ * 1. Clears the current content of the `#symbolsSubtasks` container.
+ * 2. If the subtask input field contains text, the following icons are shown:
+ *    - A "close" icon to clear the input (click triggers the `clearInput()` function).
+ *    - A "check" icon to save the input (click triggers the `saveSubtasks()` function).
+ * 3. If the subtask input field is empty, only a "plus" icon is displayed.
+ *
+ * @function changeSymbols
+ */
 function changeSymbols() {
   let checkInput = document.getElementById("subtasks").value;
-
+  
   document.getElementById("symbolsSubtasks").innerHTML = "";
-  document.getElementById(
-    "symbolsSubtasks"
-  ).innerHTML = `<div class="centerSymbol" onclick="clearInput()"><img src="assets/icons/close.svg"></div><div class="borderEditIcons"></div><div id="subtaskSaver" class="centerSymbol" onclick="saveSubtasks()"><img src="assets/icons/check.svg"></div>`;
+  document.getElementById("symbolsSubtasks").innerHTML = `<div class="centerSymbol" onclick="clearInput()"><img src="assets/icons/close.svg"></div><div class="borderEditIcons"></div><div id="subtaskSaver" class="centerSymbol" onclick="saveSubtasks()"><img src="assets/icons/check.svg"></div>`;
 
   if (checkInput.length <= 0) {
-    document.getElementById(
-      "symbolsSubtasks"
-    ).innerHTML = `<img src="assets/icons/plus.svg" alt="">`;
+    document.getElementById("symbolsSubtasks").innerHTML = `
+      <img src="assets/icons/plus.svg" alt="">`;
   }
+}
 
+/**
+ * Listens for the "Enter" key press in the subtask input field and triggers the save action.
+ *
+ * This function attaches a `keydown` event listener to the subtask input field (`#subtasks`). When the "Enter" key is pressed, 
+ * it prevents the default behavior (which would typically submit a form or add a newline) and programmatically clicks the 
+ * "save" button (with the ID `#subtaskSaver`) to trigger the subtask saving action.
+ *
+ * Steps performed:
+ * 1. Listens for the "Enter" key press in the subtask input field.
+ * 2. When the "Enter" key is pressed:
+ *    - Prevents the default action (e.g., form submission or newline).
+ *    - Simulates a click on the `#subtaskSaver` element to save the subtask.
+ *
+ * @function saveSubtaskOnEnter
+ */
+function saveSubtaskOnEnter() {
   let getInputfieldSubtask = document.getElementById("subtasks");
+
 
   getInputfieldSubtask.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
@@ -858,20 +644,32 @@ function renderSubtasks() {
   }
 }
 
+/**
+ * Initiates the process of editing a subtask by displaying an input field for text modification.
+ *
+ * This function updates the DOM to allow the user to edit the title of an existing subtask. It replaces the subtask's current 
+ * display with an input field pre-filled with the subtask's current title, providing options to save or delete the edit.
+ *
+ * Steps performed:
+ * 1. Retrieves the current title of the subtask from the `subtasks` array using the provided index.
+ * 2. Renders the list of subtasks again by calling `renderSubtasks()`.
+ * 3. Replaces the subtask's display with an editable input field containing the current title of the subtask.
+ * 4. Adds "delete" and "save" icons with corresponding actions (delete the subtask or save the changes).
+ * 5. Adds styling to highlight that the subtask is being edited and makes the input field full-width.
+ * 6. Focuses the cursor at the end of the input field to facilitate text editing.
+ *
+ * @param {number} index - The index of the subtask to be edited in the `subtasks` array.
+ * @function changeText
+ */
 function changeText(index) {
   let changeText = subtasks[index].title;
+  let inputField = document.getElementById(`inputField${index}`);
 
   renderSubtasks();
 
-  document.getElementById(
-    `subtask${index}`
-  ).innerHTML = `<div class="overChangingSubtask"><input id="inputField${index}" class="changingTextInputField" value="${changeText}"><div class="overAllChange editTaskImg"><div class="centerSymbol" onclick="deleteSubtask(${index})" ><img class="editIcons" src="assets/icons/basketIcon.svg"></div><div class="borderEditIcons"></div><div class="centerSymbol" onclick="saveEditSubtask(${index})"><img class="editIcons" src="assets/icons/check.svg"></div></div>`;
+  document.getElementById(`subtask${index}`).innerHTML = `<div class="overChangingSubtask"><input id="inputField${index}" class="changingTextInputField" value="${changeText}"><div class="overAllChange editTaskImg"><div class="centerSymbol" onclick="deleteSubtask(${index})" ><img class="editIcons" src="assets/icons/basketIcon.svg"></div><div class="borderEditIcons"></div><div class="centerSymbol" onclick="saveEditSubtask(${index})"><img class="editIcons" src="assets/icons/check.svg"></div></div>`;
 
-  let inputField = document.getElementById(`inputField${index}`);
-
-  document
-    .getElementById(`subtask${index}`)
-    .classList.add("changeTextSubtasks");
+  document.getElementById(`subtask${index}`).classList.add("changeTextSubtasks");
   inputField.classList.add("fullWidth");
 
   inputField.value = changeText;
@@ -1021,6 +819,18 @@ function putInput(value) {
   closeDropdown();
 }
 
+/**
+ * Displays the category selection dropdown and updates UI elements.
+ * 
+ * This function:
+ * 1. Clears any input using `putInput()`.
+ * 2. Sets up the `onclick` event on the category selection element (`showSelectedCategory`) to close the dropdown when clicked.
+ * 3. Removes the `d-none` class from the category list (`showCategorys`), making it visible.
+ * 4. Changes the dropdown arrow icon to indicate the dropdown is open (`arrowUpDropdown`).
+ * 5. Adds an event listener to close the dropdown if a click occurs outside the dropdown.
+ * 
+ * @function
+ */
 function showMeCategorys() {
   putInput(``);
   document.getElementById("showSelectedCategory").onclick = closeDropdown;
@@ -1028,29 +838,47 @@ function showMeCategorys() {
   document.getElementById("categoryDropdown").onclick = closeDropdown;
   document.getElementById("categoryDropdown").src = "assets/icons/arrowUpDropdown.svg";
 
-  // Event Listener hinzufügen
-  function closeOnClickOutside(event) {
-    const catImage = document.getElementById("categoryDropdown");
-    const dropdown = document.getElementById("showSelectedCategory");
-    const selectBox = document.getElementById("showCategorys");
-
-    if (
-      !dropdown.contains(event.target) &&
-      !selectBox.contains(event.target) &&
-      !catImage.contains(event.target)
-    ) {
-      closeDropdown(); // Schließe das Dropdown
-      document.removeEventListener("click", closeOnClickOutside); // Entferne den Listener manuell
-    }
-  }
-
-  // Füge den Event Listener hinzu, aber nur einmal pro Öffnen
   document.addEventListener("click", closeOnClickOutside);
 }
 
+/**
+ * Closes the category dropdown if a click occurs outside of the dropdown.
+ * 
+ * This function:
+ * 1. Checks if the click event target is outside of the category dropdown (`showSelectedCategory`), the dropdown list (`showCategorys`), or the dropdown arrow (`categoryDropdown`).
+ * 2. If the click is outside, it calls the `closeDropdown()` function to close the dropdown.
+ * 3. Removes the event listener for clicks outside the dropdown after closing it.
+ * 
+ * @param {Event} event - The click event triggered by the user.
+ * @function
+ */
+function closeOnClickOutside(event) {
+  const catImage = document.getElementById("categoryDropdown");
+  const dropdown = document.getElementById("showSelectedCategory");
+  const selectBox = document.getElementById("showCategorys");
+
+  if (
+    !dropdown.contains(event.target) &&
+    !selectBox.contains(event.target) &&
+    !catImage.contains(event.target)
+  ) {
+    closeDropdown();
+    document.removeEventListener("click", closeOnClickOutside); 
+  }
+}
+
+/**
+ * Validates the form fields and submits the form data if all fields are valid.
+ * 
+ * This function checks if the title, due date, and category fields have valid values. 
+ * If any of the fields are invalid, an error message is displayed and the form is not submitted.
+ * If all fields are valid, it proceeds to collect the data and send the task information.
+ * 
+ * @param {string} selectedProcessCategory - The category of the selected process for the task.
+ * @returns {Promise<void>} A promise that resolves when the form submission process is completed.
+ */
 async function submitForm(selectedProcessCategory) {
   let hasError = false;
-
   const title = document.getElementById("title").value.trim();
   const dueDate = document.getElementById("date").value;
   const category = document.getElementById("showSelectedCategory").value;
@@ -1084,9 +912,21 @@ async function submitForm(selectedProcessCategory) {
   }
 
   if (!hasError) {
-    console.log(selectedProcessCategory);
-    await collectDataFromAddTask(selectedProcessCategory, selectedContacts); //senden an loadTasks.js zum hochladen ins Firebase
-    document.getElementById(
+    await collectDataFromAddTask(selectedProcessCategory, selectedContacts); 
+    confirmationOfSendedTask();
+  }
+}
+
+/**
+ * Displays a confirmation message and redirects the user to the board page.
+ * 
+ * This function displays a confirmation message on the page indicating that the task has been successfully added to the board.
+ * After a brief delay of 2 seconds, the user is automatically redirected to the "board.html" page.
+ * 
+ * @returns {void}
+ */
+function confirmationOfSendedTask() {
+ document.getElementById(
       "insertAddedToTaskConfirmation"
     ).innerHTML = `<div class="backgroundInformationForm"><div id="addConfirmation" class="addedToBoard">
      <div class="taskAddedInformation">Task added to board</div>
@@ -1095,10 +935,18 @@ async function submitForm(selectedProcessCategory) {
     setTimeout(() => {
       window.open("board.html", "_self");
     }, 2000);
-  }
-  console.log(selectedProcessCategory);
 }
 
+/**
+ * Checks if the dropdown list is open and toggles its visibility.
+ * 
+ * This function checks if the dropdown list is currently open (`isListOpen` is `true`). 
+ * If the list is open, it calls the `toggleContactList()` function to close it. 
+ * If the list is not open, it does nothing. 
+ * It also stops the event from propagating.
+ * 
+ * @returns {void}
+ */
 function checkIfOpenDropdown() {
 stopPropagation();
   if (isListOpen == true) {

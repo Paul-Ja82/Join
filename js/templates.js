@@ -1,5 +1,3 @@
-/* Für das Ändern der Task im Board */
-
 function returnChangingAddTask(today) {
   return `
 <div class="overAllFormAddTask overAllChangeAddTask">
