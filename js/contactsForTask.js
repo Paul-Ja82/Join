@@ -10,9 +10,7 @@ function checkContacts(allContactsForTasks) {
     const contactsArray = Object.values(allContactsForTasks);
     filteredContactsForTasks = [];
     for (let i = 0; i < contactsArray.length; i++) {
-      if (contactsArray[i] !== null) {
-        filteredContactsForTasks.push(contactsArray[i]);
-      }
+      if (contactsArray[i] !== null) {filteredContactsForTasks.push(contactsArray[i]);}
     }
     let contactListTemplate = createContactsTemplate(filteredContactsForTasks);
     document.getElementById("insertContactList").appendChild(contactListTemplate);

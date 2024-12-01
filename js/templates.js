@@ -1,3 +1,188 @@
+/**
+ * Renders the contact list in the DOM, displaying filtered contacts and updating the UI elements accordingly.
+ *
+ * Steps performed:
+ * 1. Displays the contact list by removing the `d-none` class and clearing its current content.
+ * 2. Changes the dropdown arrow icon to an "up" state.
+ * 3. If `filteredContacts` is empty, displays a message indicating the list is empty.
+ * 4. Calls `returnRenderdContacts` to iterate through `filteredContacts` and:
+ *    - Adds each contact as a list item with a checkbox.
+ *    - Indicates whether the contact is already selected using `selectedContacts`.
+ *    - Displays a profile picture for each contact using `showProfilPicture`.
+ *    - Updates the checkbox icon to a "checked" state for selected contacts.
+ * 5. Calls `showPersons` and `colorSelectedContacts` to finalize the UI updates for the contact list.
+ *
+ * @param {Array} [filteredContacts=contacts] - The array of contacts to render. Defaults to the full `contacts` array.
+ * 
+ * @example
+ * renderContactList(filteredContacts);
+ * // Renders the filtered list of contacts in the UI.
+ */
+function renderContactList(filteredContacts = contacts) {
+  const contactList = document.getElementById("insertContactList");
+  contactList.classList.remove("d-none");
+
+  contactList.innerHTML = "";
+  document.getElementById("arrowDropdown").src =
+    "./assets/icons/arrowUpDropdown.svg";
+
+  if (filteredContacts.length === 0) {
+    contactList.innerHTML =
+      "<li class='emptyListMessage'>Ganz schön leer hier! :(</li>";
+    return;
+  }
+
+  returnRenderdContacts();
+  showPersons();
+  colorSelectedContacts();
+}
+
+/**
+ * Renders a list of contacts into the DOM and updates their visual state.
+ * 
+ * This function iterates through a list of filtered contacts and dynamically
+ * generates HTML to display each contact within a list. It checks whether each
+ * contact is selected (i.e., present in the `selectedContacts` array) and
+ * updates the corresponding checkbox's state. Additionally, it shows each contact's
+ * profile picture by calling the `showProfilPicture` function and ensures that
+ * selected checkboxes are visually updated.
+ * 
+ * @function returnRenderdContacts
+ * @global
+ * 
+ * @param {Array} filteredContacts - An array of contacts to be rendered. Each contact represents a string or object containing the contact information.
+ * 
+ * @example
+ * returnRenderdContacts();
+ * // Renders the contact list with checkboxes and profile images.
+ */
+function returnRenderdContacts () {
+  filteredContacts.forEach((contact, index) => {
+    const isSelected = selectedContacts.includes(contact);
+    contactList.innerHTML += `
+    <li id="listPerson${index}" class="backgroundOnHover" onclick="changeCheckbox(${index})">
+      <div class="profile">
+        <div id="profilPerson${index}" class="profilePerson"></div>    
+        <div class="contactPerson">${contact}</div>
+      </div>
+      <input type="checkbox" value="${contact}" class="contactListCheckbox" 
+        id="checkbox${index}" onchange="renderAddedPersons()" 
+        onclick="event.stopPropagation()" 
+        ${isSelected ? "checked" : ""}>
+      <img id="checkboxId${index}" src="assets/icons/checkbox.svg">
+    </li>`;
+    showProfilPicture(contact, index);
+    if (isSelected) {
+      document.getElementById(`checkboxId${index}`).src =
+        "assets/icons/checkboxChecked.svg";
+    }
+  });
+}
+
+/**
+ * Collects all selected contacts from the checkboxes and updates the `selectedContacts` array.
+ *
+ * Steps performed:
+ * 1. Resets the `selectedContacts` array to an empty state.
+ * 2. Selects all checkbox elements in the document.
+ * 3. Iterates through the checkboxes and adds the `value` of each checked box to the `selectedContacts` array.
+ * 4. Logs the list of selected contacts to the console.
+ * 5. Calls `showPersons` to update the UI with the selected contacts.
+ * 6. Returns the updated `selectedContacts` array.
+ */
+function renderAddedPersons() {
+  selectedContacts = [];
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  checkboxes.forEach((checkbox) => {
+    if (checkbox.checked) {
+      selectedContacts.push(checkbox.value);
+    }
+  });
+  console.log("Ausgewählte Kontakte:", selectedContacts);
+  showPersons();
+  return selectedContacts;
+}
+
+/**
+ * Renders the list of subtasks in the `showSubtasks` element.
+ *
+ * Steps performed:
+ * 1. Clears the content of the `showSubtasks` element.
+ * 2. Iterates through the `subtasks` array:
+ *    - For each subtask, creates an HTML list item with the following:
+ *      - The subtask title.
+ *      - An edit button (pencil icon) for changing the subtask.
+ *      - A delete button (basket icon) for removing the subtask.
+ * 3. Appends each generated list item to the `showSubtasks` element.
+ */
+function renderSubtasks() {
+  document.getElementById("showSubtasks").innerHTML = "";
+  for (let index = 0; index < subtasks.length; index++) {
+    document.getElementById(
+      "showSubtasks"
+    ).innerHTML += `<li id="subtask${index}" class="">
+      <div class="showEntrySubtask" onclick="changeText(${index})">
+        <div class="subtaskText">${subtasks[index].title}</div>
+        <div id="edit${index}" class="edit">
+          <div class="centerSymbol editTask"><img src="assets/icons/pencil.svg"></div>
+          <div class="borderEditIcons"></div>
+          <div class="centerSymbol basket" onclick="deleteSubtask(${index})"><img src="assets/icons/basketIcon.svg"></div>
+        </div>
+      </div>
+    </li>`;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Returns the HTML structure for the task editing form.
+ *
+ * This function generates and returns an HTML string that defines the structure of the task editing form.
+ * The form includes input fields for title, description, due date, priority, category, assigned contacts, and subtasks. 
+ * It also includes buttons and functionality to select a priority, toggle the contact list, and add subtasks. 
+ * The due date field's minimum value is dynamically set based on the provided `today` parameter.
+ *
+ * @param {string} today - The current date in "YYYY-MM-DD" format, used to set the minimum value for the due date input.
+ * @returns {string} The HTML string that represents the task editing form.
+ */
 function returnChangingAddTask(today) {
   return `
 <div class="overAllFormAddTask overAllChangeAddTask">
@@ -148,6 +333,7 @@ function returnChangingAddTask(today) {
                   id="subtasks"
                   class="fieldInput"
                   oninput="changeSymbols()"
+                  onkeydown="handleEnterKey(event)"
                   placeholder="Add new subtask"
                 />
                 <div id="symbolsSubtasks" class="changeSymboles">

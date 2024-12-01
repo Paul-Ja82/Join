@@ -197,7 +197,7 @@ ul {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 120px;
+  margin-bottom: 80px;
   width: 976px;
 }
 
@@ -1159,24 +1159,20 @@ margin: 10px 0 5px 0;
     font-size: 16px;
   }
 
-  /* .listContacts {
-    position: relative;
-  } */
-
   option {
     font-size: 16px;
   }
 
   .showEntrySubtask {
     font-size: 16px;
-    padding: 12px 4px 12px 40px;
+    padding: 8px 4px 8px 40px;
   }
   .subtaskText {
     font-size: 16px;
   }
 
   .overChangingSubtask {
-    padding: 16px 0 16px 4px;
+    padding: 8px 0 8px 4px;
     background: white;
   }
 
@@ -1228,9 +1224,9 @@ margin: 10px 0 5px 0;
     margin: 0;
   }
   
-.fontSizeBoard {
+  .fontSizeBoard {
   font-size: 12px;
-}
+  }
   .profile {
     font-size: 16px;
   }
@@ -1238,9 +1234,6 @@ margin: 10px 0 5px 0;
   .contactPerson {
     font-size: 16px;
   }
-  /* .seperateSendButtons {
-    margin-bottom: 100px;
-  } */
 
   .requiredInformation {
     align-self: flex-start;
@@ -1248,10 +1241,10 @@ margin: 10px 0 5px 0;
     padding-bottom: 200px;
   }
 
-.requiredInformationBoard {
+  .requiredInformationBoard {
   align-self: flex-start;
     font-size: 12px;
-}
+  }
 
   .clearButton {
     border: 1px solid #2a3647;
