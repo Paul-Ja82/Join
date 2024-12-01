@@ -135,7 +135,7 @@ function checkAssignedTo(tasks, i) {
  * @returns {string} A string containing the HTML template for a single contact icon, styled with initials and a background color.
  */
 function createContactsIconsTemplate(tasks, i, j) {
-    let iconsTemplate = ""
+    let iconsTemplate = "";
     let fullName = tasks[i].assigned_to[j];
     let charOneFirstName = "";
     let charOneLastName = "";

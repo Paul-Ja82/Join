@@ -165,12 +165,16 @@ function colorSelectedContacts() {
  */
 function filterContacts() {
   const input = document.getElementById("inputAssignedTo").value.toLowerCase();
-  const filteredContacts = filteredContactsForTasks.filter((contact) =>
-    contact.toLowerCase().includes(input)
-  );
+  const filteredContacts = filteredContactsForTasks.filter((contact) => {
+    if (typeof contact === "string") {
+      return contact.toLowerCase().includes(input);
+    }
+    return false; 
+  });
+  
   let contactsTemplate = createContactsTemplate(filteredContacts);
-  console.log(contactsTemplate);
 }
+
 
 /**
  * Closes the contact list by removing the template, hiding the list, and resetting UI elements.
