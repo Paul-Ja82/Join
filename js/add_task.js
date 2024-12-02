@@ -378,10 +378,6 @@ function renderContactList(filteredContacts = contacts) {
   document.addEventListener("click", closeOnClickOutsideContacts);
 }
 
-
-
-
-
 /**
  * Highlights selected contacts in the contact list by adding a specific background class.
  *
@@ -635,8 +631,6 @@ function checkAssignedToContactsLength() {
   return moreContactsChecked
 }
 
-
-
 /**
  * Extracts initials from a given name, considering both single and multi-word names.
  *
@@ -664,34 +658,26 @@ function getInitials(name) {
 }
 
 /**
- * Creates an SVG avatar with initials and a circular colored background.
- *
- * Steps performed:
- * 1. Defines the SVG namespace.
- * 2. Creates an SVG element with specified dimensions, viewbox, and a CSS class.
- * 3. Creates a circle element:
- *    - Positions it at the center of the SVG (`cx`, `cy`).
- *    - Sets its radius (`r`), fill color (`bgColor`), and white border (`stroke`).
- * 4. Creates a text element:
- *    - Positions it at the center of the circle (`x`, `y`, `dy`) and aligns it horizontally (`text-anchor`).
- *    - Sets the font size, color, and font family.
- *    - Assigns the initials as the text content.
- * 5. Appends the circle and text elements to the SVG.
- * 6. Returns the complete SVG element.
- *
- * @param {string} initials - The initials to display inside the avatar.
- * @param {string} bgColor - The background color for the avatar circle.
- * @returns {SVGElement} The created SVG avatar element.
+ * Creates and returns an SVG element with predefined dimensions and class for the avatar.
+ * @param {string} svgNS - The SVG namespace URI.
+ * @returns {SVGSVGElement} The created SVG element.
  */
-function createAvatarSVG(initials, bgColor) {
-  const svgNS = "http://www.w3.org/2000/svg";
-
+function sizesForCreateAvatar(svgNS) {
   const svg = document.createElementNS(svgNS, "svg");
   svg.setAttribute("width", "42");
   svg.setAttribute("height", "42");
   svg.setAttribute("viewBox", "0 0 44 44");
   svg.setAttribute("class", "contact-avatar-svg");
+  return svg;
+}
 
+/**
+ * Creates and returns a circle element with specified attributes for the avatar background.
+ * @param {string} svgNS - The SVG namespace URI.
+ * @param {string} bgColor - The background color for the circle.
+ * @returns {SVGCircleElement} The created circle element.
+ */
+function circleForCreateAvatar(svgNS, bgColor) {
   const circle = document.createElementNS(svgNS, "circle");
   circle.setAttribute("cx", "22");
   circle.setAttribute("cy", "22");
@@ -699,7 +685,16 @@ function createAvatarSVG(initials, bgColor) {
   circle.setAttribute("fill", bgColor);
   circle.setAttribute("stroke", "#fff");
   circle.setAttribute("stroke-width", "2");
+  return circle;
+}
 
+/**
+ * Creates and returns a text element for the avatar, displaying the provided initials.
+ * @param {string} svgNS - The SVG namespace URI.
+ * @param {string} initials - The initials to display inside the avatar.
+ * @returns {SVGTextElement} The created text element.
+ */
+function textForCreateAvatar(svgNS, initials) {
   const text = document.createElementNS(svgNS, "text");
   text.setAttribute("x", "50%");
   text.setAttribute("y", "50%");
@@ -709,12 +704,30 @@ function createAvatarSVG(initials, bgColor) {
   text.setAttribute("fill", "#fff");
   text.setAttribute("font-family", "Arial, sans-serif");
   text.textContent = initials;
+  return text;
+}
+
+/**
+ * Creates an SVG avatar with a circle background and text initials.
+ * Combines the SVG element, circle background, and text element into a complete avatar.
+ * @param {string} initials - The initials to display inside the avatar.
+ * @param {string} bgColor - The background color for the avatar.
+ * @returns {SVGSVGElement} The complete SVG avatar element.
+ */
+function createAvatarSVG(initials, bgColor) {
+  const svgNS = "http://www.w3.org/2000/svg";
+
+  const svg = sizesForCreateAvatar(svgNS);
+  const circle = circleForCreateAvatar(svgNS, bgColor);
+  const text = textForCreateAvatar(svgNS, initials);
 
   svg.appendChild(circle);
   svg.appendChild(text);
-console.log(bgColor);
+
+  console.log(bgColor);
   return svg;
 }
+
 
 /**
  * Saves a new subtask by retrieving the input value, resetting the input field, and updating the UI.
@@ -858,6 +871,11 @@ function renderSubtasks() {
   }
 }
 
+/**
+ * Allows editing of a specific subtask by rendering an input field in place of the subtask text.
+ * Updates the subtask's HTML and prepares the input field for user interaction.
+ * @param {number} index - The index of the subtask to edit.
+ */
 function changeText(index) {
   let changeText = subtasks[index].title;
 
@@ -1021,6 +1039,10 @@ function putInput(value) {
   closeDropdown();
 }
 
+/**
+ * Displays the category dropdown menu and sets up a click event listener to close it 
+ * when clicking outside of the dropdown or its associated elements.
+ */
 function showMeCategorys() {
   putInput(``);
   document.getElementById("showSelectedCategory").onclick = closeDropdown;
@@ -1028,79 +1050,129 @@ function showMeCategorys() {
   document.getElementById("categoryDropdown").onclick = closeDropdown;
   document.getElementById("categoryDropdown").src = "assets/icons/arrowUpDropdown.svg";
 
-  // Event Listener hinzufügen
-  function closeOnClickOutside(event) {
-    const catImage = document.getElementById("categoryDropdown");
-    const dropdown = document.getElementById("showSelectedCategory");
-    const selectBox = document.getElementById("showCategorys");
-
-    if (
-      !dropdown.contains(event.target) &&
-      !selectBox.contains(event.target) &&
-      !catImage.contains(event.target)
-    ) {
-      closeDropdown(); // Schließe das Dropdown
-      document.removeEventListener("click", closeOnClickOutside); // Entferne den Listener manuell
-    }
-  }
-
-  // Füge den Event Listener hinzu, aber nur einmal pro Öffnen
   document.addEventListener("click", closeOnClickOutside);
 }
 
-async function submitForm(selectedProcessCategory) {
-  let hasError = false;
+/**
+ * Closes the dropdown if a click occurs outside the specified elements, which include
+ * the dropdown button, the dropdown content, and the category image.
+ * @param {Event} event - The click event triggering the check for outside clicks.
+ */
+function closeOnClickOutside(event) {
+  const catImage = document.getElementById("categoryDropdown");
+  const dropdown = document.getElementById("showSelectedCategory");
+  const selectBox = document.getElementById("showCategorys");
 
+  if (
+    !dropdown.contains(event.target) &&
+    !selectBox.contains(event.target) &&
+    !catImage.contains(event.target)
+  ) {
+    closeDropdown(); 
+    document.removeEventListener("click", closeOnClickOutside); 
+  }
+}
+
+/**
+ * Validates the title input field and updates its border and error message visibility.
+ * @returns {boolean} True if there is an error with the title input, otherwise false.
+ */
+function titleVarForSubmit() {
   const title = document.getElementById("title").value.trim();
-  const dueDate = document.getElementById("date").value;
-  const category = document.getElementById("showSelectedCategory").value;
-
   if (title.length === 0) {
     document.getElementById("title").style.border = "1px solid #FF8190";
     document.getElementById("errorTitle").style.display = "block";
-    hasError = true;
+    return true;
   } else {
     document.getElementById("title").style.border = "none";
     document.getElementById("errorTitle").style.display = "none";
+    return false;
   }
+}
 
+/**
+ * Validates the due date input field and updates its border and error message visibility.
+ * @returns {boolean} True if there is an error with the due date input, otherwise false.
+ */
+function dueDateForSubmit() {
+  const dueDate = document.getElementById("date").value;
   if (!dueDate) {
     document.getElementById("date").style.border = "1px solid #FF8190";
     document.getElementById("errorDate").style.display = "block";
-    hasError = true;
+    return true;
   } else {
     document.getElementById("date").style.border = "none";
     document.getElementById("errorDate").style.display = "none";
+    return false;
   }
+}
 
+/**
+ * Validates the category input field and updates its border and error message visibility.
+ * @returns {boolean} True if there is an error with the category input, otherwise false.
+ */
+function categoryForSubmit() {
+  const category = document.getElementById("showSelectedCategory").value;
   if (category.length === 0) {
-    document.getElementById("showSelectedCategory").style.border =
-      "1px solid #FF8190";
+    document.getElementById("showSelectedCategory").style.border = "1px solid #FF8190";
     document.getElementById("errorCategory").style.display = "block";
-    hasError = true;
+    return true;
   } else {
     document.getElementById("showSelectedCategory").style.border = "none";
     document.getElementById("errorCategory").style.display = "none";
+    return false;
   }
+}
 
-  if (!hasError) {
-    console.log(selectedProcessCategory);
-    await collectDataFromAddTask(selectedProcessCategory, selectedContacts); //senden an loadTasks.js zum hochladen ins Firebase
-    document.getElementById(
-      "insertAddedToTaskConfirmation"
-    ).innerHTML = `<div class="backgroundInformationForm"><div id="addConfirmation" class="addedToBoard">
+/**
+ * Handles the submission success logic if there are no errors.
+ * Displays a confirmation message and redirects to the board page.
+ * @param {string} selectedProcessCategory - The selected process category for the task.
+ */
+async function errorHandleForSubmit(selectedProcessCategory) {
+  await collectDataFromAddTask(selectedProcessCategory, selectedContacts);
+  document.getElementById(
+    "insertAddedToTaskConfirmation"
+  ).innerHTML = `<div class="backgroundInformationForm"><div id="addConfirmation" class="addedToBoard">
      <div class="taskAddedInformation">Task added to board</div>
      <img src="assets/icons/boardIcon.svg" alt="" />
      </div></div>`;
-    setTimeout(() => {
-      window.open("board.html", "_self");
-    }, 2000);
-  }
-  console.log(selectedProcessCategory);
+  setTimeout(() => {
+    window.open("board.html", "_self");
+  }, 2000);
 }
 
+/**
+ * Validates the form inputs and submits the task if there are no errors.
+ * @param {string} selectedProcessCategory - The selected process category for the task.
+ */
+async function submitForm(selectedProcessCategory) {
+  let hasError = false;
+
+  if (titleVarForSubmit()) {
+    hasError = true;
+  }
+
+  if (dueDateForSubmit()) {
+    hasError = true;
+  }
+
+  if (categoryForSubmit()) {
+    hasError = true;
+  }
+
+  if (!hasError) {
+    await errorHandleForSubmit(selectedProcessCategory);
+  }
+}
+
+/**
+ * Checks if the dropdown list is open and toggles its state if it is.
+ * Stops the event propagation to prevent unintended behavior.
+ * If the dropdown list is open (`isListOpen` is true), it will close the list by calling `toggleContactList`.
+ */
 function checkIfOpenDropdown() {
-stopPropagation();
+  stopPropagation();
   if (isListOpen == true) {
     toggleContactList();
     return;

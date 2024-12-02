@@ -1,0 +1,720 @@
+@media(max-width:1010px) {
+
+    .main-frame-div {
+        width: 100%;
+        max-width: 1440px;
+        display: flex;
+        justify-content: center;
+        position: relative;
+    }
+
+    .j-logo-img {
+        top: 37px;
+        left: 8.87%;
+        height: auto;
+    }
+    
+     .sign-up-div{
+       width: 92%;
+       max-width: 598px;
+       min-width: unset;
+       height: 595px;
+       margin-top: 165.5px;
+   }
+
+   .arrow-div {
+       top: 40px;
+       left: 40px;
+   }
+
+   .sign-up-header {
+       margin-top: 30px;
+       margin-bottom: 15px;
+   }
+
+   .divider {
+       width: 20.5%;
+   }
+
+   .log-input {
+       height: 50px;
+       width: 100%;
+       padding-top: 6px;
+   }
+
+   .log-input-pass {
+       height: 51px;
+       width: 100%;
+   }
+
+   .log-input-confirm-pass {
+    height: 51px;
+    width: 100%;
+   }
+   
+   .name-input-div {
+       width: 91.9%;
+       height: 50px; 
+       border-radius: 10px;
+       margin-top: 24px;
+   }
+   
+   .email-input-div {
+       width: 91.9%;
+       height: 50px;
+       margin-bottom: 24px;
+   }
+   
+   .password-input-div {
+      width: 91.9%;
+      height: 51px;
+      margin-bottom: 24px;
+   }
+   
+   .confirm-pw-input-div {
+       width: 91.9%;
+       height: 51px;
+       margin-bottom: 0px;
+   }
+
+   .no-match-confirm-message {
+    width: 92%;
+    margin-bottom: 30px;
+    font-size: clamp(0.75rem, 0.732rem + 0.089vw, 0.813rem);
+    color: rgba(255, 129, 144, 1);
+    opacity: 0;
+   }
+   
+   .accept-priv-box-div{
+       width: 231px;
+       height: 24px;
+       margin-left: 0px;
+       display: flex;
+       justify-content: center;
+   }
+   
+   .sign-up-final-button {
+       width: 180px;                 
+       height: 51px;
+       margin-top: 20px;
+       font-size: 16px;
+   }
+   
+   footer {
+      width: 100%;
+      position: absolute;
+      top: unset;
+      bottom: 16px;
+   }   
+}
+
+@media (max-height: 500px) and (max-width: 945px) and (orientation: landscape) {
+    .main-frame-div {
+        display: none;
+    }
+    .rotate-message {
+        height: 90vh;
+        color: rgba(41, 171, 226, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
+        padding: 20px;
+    }
+}
+
+@media (max-height: 500px) and (max-width: 945px) and (orientation: portrait) {
+    .main-frame-div {
+        display: block;
+    }
+    .rotate-message {
+        display: none;
+    }
+}
+
+@media(max-width:450px) {
+    
+    .j-logo-img {
+        width: clamp(3.75rem, 3.139rem + 3.053vw, 4rem);
+        top: 20px;
+        left: 8.6%;
+        height: auto;
+    }
+
+     .sign-up-div{
+       width: 92%;
+       margin-top: vh;
+    }
+
+   .arrow-div {
+       top: 40px;
+       left: 10%;
+    }
+
+   .arrow-Img-a {
+    width: clamp(1rem, 0.18rem + 4.1vw, 1.333rem);
+   }
+
+   .sign-up-header {
+    margin-top: 30px;
+    font-size: clamp(2.313rem, 0.774rem + 7.692vw, 2.938rem);
+   }
+
+   .divider {
+    width: 20.5%;
+   }
+
+   ::placeholder {
+    font-size: clamp(1rem, 0.389rem + 3.053vw, 1.25rem);
+}
+
+   
+   .name-input-div {
+       width: 91.9%;
+       height: 50px;
+       margin-top: 24px;
+   }
+   
+   .email-input-div {
+       width: 91.9%;
+       height: 50px;
+   }
+   
+   .password-input-div {
+       width: 91.9%;
+       height: 51px;
+   }
+   
+   .confirm-pw-input-div {
+       width: 91.9%;
+       height: 51px;
+       margin-bottom: 0px;
+   }
+   
+   .accept-priv-box-div{
+       width: 231px;
+       height: 24px;
+       margin-left: 0px;
+       display: flex;
+       justify-content: center;
+   }
+
+   .acc-priv-box-label {
+    font-size: clamp(0.875rem, 0.567rem + 1.538vw, 1rem);
+   }
+
+   .privacy-policy {
+    font-size: clamp(0.875rem, 0.567rem + 1.538vw, 1rem);
+   }
+   
+   .sign-up-final-button {
+       width: 43%;
+       height: 51px;
+       margin-top: 30px;
+       font-size: 16px;
+   }
+
+   .footer-element-left {
+    font-size: clamp(0.875rem, 0.567rem + 1.538vw, 1rem);
+}
+
+.footer-element-right {
+    font-size: clamp(0.875rem, 0.567rem + 1.538vw, 1rem);
+}
+   
+   
+}
+
+@media(max-width:400px) {
+
+    .arrow-div {
+        width: 28px;
+        height: 28px;
+        top: 37px;
+        left: 10%;
+     }
+}
+
+@media(max-width:350px) {
+
+    .arrow-div {
+        width: 24px;
+        height: 24px;
+        top: 34px;
+        left: 10%;
+     }
+}
+
+@media(min-width:1010px) and (max-height:870px)  {
+
+    .j-logo-img {
+        top: 5vh;
+    }
+
+    .sign-up-div{
+        margin-top: 16vh;
+    }
+
+    footer {
+        height: 20px;
+        bottom: 8px;
+    }
+
+}
+
+@media(min-width:1010px) and (max-height:800px)  {
+
+    .j-logo-img {
+        top: 2vh;
+    }
+
+    .sign-up-div{
+        height: 600px;
+        margin-top: 12vh;
+    }
+
+    footer {
+        height: 20px;
+        bottom: 8px;
+    }
+
+}
+
+@media(min-width:1010px) and (max-height:730px) {
+
+    .sign-up-div{
+        height: 560px;
+        margin-top: 8vh;
+    }
+
+    .arrow-div {
+        top: 40px;
+        left: 40px;
+    }
+
+    .sign-up-header {
+    margin-top: 20px;
+    font-size: 54px;
+   }
+   
+   .name-input-div {
+       height: 50px;
+       margin-top: 16px;
+   }
+   
+   .email-input-div {
+       height: 50px;
+   }
+   
+   .password-input-div {
+       height: 51px;
+   }
+   
+   .confirm-pw-input-div {
+       height: 51px;
+       margin-bottom: 0px;
+   }
+   
+   .sign-up-final-button {
+       height: 51px;
+       margin-top: 20px;
+       font-size: 16px;
+   }
+
+}
+
+@media(min-width:1010px) and (max-height:670px) {
+
+    .sign-up-div{
+        height: 540px;
+        margin-top: 4vh;
+    }
+
+
+    .sign-up-header {
+    margin-top: 20px;
+    font-size: 54px;
+   }
+   
+   .name-input-div {
+       height: 48px;
+       margin-top: 16px;
+   }
+   
+   .email-input-div {
+       height: 48px;
+   }
+   
+   .password-input-div {
+       height: 49px;
+   }
+   
+   .confirm-pw-input-div {
+       height: 49px;
+       margin-bottom: 0px;
+   }
+
+   .no-match-confirm-message {
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+   
+   .sign-up-final-button {
+       height: 49px;
+       margin-top: 20px;
+       font-size: 16px;
+   }
+
+}
+
+@media(min-width:1010px) and (max-height:599px) {
+
+    .sign-up-div{
+        height: 480px;
+        margin-top: 4vh;
+    }
+
+    .arrow-div {
+        top: 20px;
+        left: 40px;
+    }
+
+    .sign-up-header {
+        margin-top: 8px;
+        margin-bottom: 4px;
+        font-size: 45px;
+   }
+   
+   .name-input-div {
+       margin-top: 16px;
+       margin-bottom: 20px;
+   }
+
+   .email-input-div {
+    height: 48px;
+    margin-bottom: 20px;
+  }
+
+  .password-input-div {
+    height: 49px;
+    margin-bottom: 20px;
+}
+   
+   .confirm-pw-input-div {
+       margin-bottom: 0px;
+   }
+
+   .no-match-confirm-message {
+       margin-bottom: 8px;
+}
+
+.log-input {
+    height: 40px;
+}
+
+.log-input-pass {
+    height: 40px;
+}
+
+.log-input-confirm-pass {
+    height: 40px;
+}
+   
+   .sign-up-final-button {
+       height: 49px;
+       margin-top: 16px;
+       font-size: 16px;
+   }
+
+}
+
+@media(min-width:1010px) and (max-height:540px) {
+
+    .sign-up-div{
+        height: 440px;
+        margin-top: 4vh;
+    }
+
+    .arrow-div {
+        top: 20px;
+        left: 20px;
+    }
+
+    .sign-up-header {
+        margin-top: 8px;
+        margin-bottom: 4px;
+        font-size: 45px;
+   }
+   
+   .name-input-div {
+       margin-top: 16px;
+       margin-bottom: 14px;
+   }
+
+   .email-input-div {
+    height: 48px;
+    margin-bottom: 14px;
+  }
+
+  .password-input-div {
+    height: 49px;
+    margin-bottom: 14px;
+}
+   
+   .confirm-pw-input-div {
+       margin-bottom: 0px;
+   }
+
+   .no-match-confirm-message {
+       margin-bottom: 8px;
+}
+
+.log-input {
+    height: 36px;
+}
+
+.log-input-pass {
+    height: 36px;
+}
+
+.log-input-confirm-pass {
+    height: 36px;
+}
+   
+   .sign-up-final-button {
+       height: 40px;
+       margin-top: 16px;
+       font-size: 16px;
+   }
+
+}
+
+@media(min-width:1010px) and (max-height:500px) {
+
+    body {
+        overflow: scroll;
+       }
+
+       .main-frame-div {
+        height: 500px;
+       }
+
+}
+
+@media(max-height:815px) and (max-width:1010px) {
+
+    .sign-up-div{
+        height: 520px;
+        margin-top: 22vh;
+    }
+
+    .arrow-div {
+        top: 35px;
+        left: 40px;
+    }
+
+    .sign-up-header {
+    margin-top: 20px;
+    font-size: 54px;
+   }
+   
+   .name-input-div {
+       height: 46px;
+       margin-top: 16px;
+   }
+   
+   .email-input-div {
+       height: 46px;
+   }
+   
+   .password-input-div {
+       height: 47px;
+   }
+   
+   .confirm-pw-input-div {
+       height: 47px;
+       margin-bottom: 0px;
+   }
+
+   .log-input {
+    height: 36px;
+}
+
+.log-input-pass {
+    height: 42px;
+}
+
+.log-input-confirm-pass {
+    height: 42px;
+}
+
+.no-match-confirm-message {
+    margin-top: 4px;
+    margin-bottom: 8px;
+    opacity: 0;
+}
+   
+   .sign-up-final-button {
+       height: 51px;
+       margin-top: 20px;
+       font-size: 16px;
+   }
+
+    footer {
+        height: 20px;
+        position: absolute;
+        bottom: 16px;
+     }
+
+}
+
+@media(max-height:740px) and (max-width:1010px) {
+
+    .sign-up-div{
+        height: 500px;
+    }
+
+    .arrow-div {
+        top: 30px;
+        left: 40px;
+    }
+
+    .sign-up-header {
+        margin-top: 20px;
+        margin-bottom: 8px;
+        font-size: 48px;
+    }
+
+    .sign-up-final-button {
+        height: 48px;
+        margin-top: 16px;
+        font-size: 16px;
+    }
+}
+
+@media(max-height:710px) and (max-width:1010px) {
+
+        .sign-up-div{
+            height: 465px;
+        }
+
+        .arrow-div {
+            top: 30px;
+            left: 40px;
+        }
+
+        .name-input-div {
+            margin-top: 20px;
+            margin-bottom: 14px;
+        }
+        
+        .email-input-div {
+            margin-bottom: 14px;
+        }
+        
+        .password-input-div {
+            margin-bottom: 14px;
+        }
+        
+        .confirm-pw-input-div {
+            height: 48px;
+            margin-bottom: 0px;
+        }
+
+        .no-match-confirm-message {
+            margin-bottom: 8px;
+           }
+        
+
+        .sign-up-final-button {
+            height: 45px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .footer-element-left {
+            font-size: 14px;;
+        }
+        
+        .footer-element-right {
+            font-size: 14px;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 8px;
+         }
+    }
+
+    @media(max-height:650px) and (max-width:1010px) {
+
+        .j-logo-img {
+            top: 37px;
+            left: 4.87%;
+            height: auto;
+        }
+        
+        .sign-up-div{
+            margin-top: 18vh;
+        }
+    }
+
+    @media(max-height:620px) and (max-width:1010px) {
+        
+        .sign-up-div{
+            margin-top: 14vh;
+        }
+    }
+
+    @media(max-height:580px) and (max-width:1010px) {
+
+        .sign-up-div{
+            margin-top: 8vh;
+        }
+
+    }
+
+    @media(max-height:540px) and (max-width:1010px) {
+
+        .sign-up-div{
+            margin-top: 4vh;
+        }
+
+    }
+
+    @media(max-height:520px) and (max-width:1010px) {
+
+        .sign-up-div{
+            height: 430px;
+            margin-top: 4vh;
+        }
+
+        .sign-up-header {
+            margin-top: 20px;
+            margin-bottom: 8px;
+            font-size: 40px;
+        }
+
+        .name-input-div {
+            margin-top: 8px;
+        }
+    
+        .sign-up-final-button {
+            height: 40px;
+            margin-top: 16px;
+            font-size: 16px;
+        }
+
+    }
+
+    @media(max-height:500px) and (max-width:1010px) {
+
+        body {
+            overflow: scroll;
+           }
+    
+           .main-frame-div {
+            height: 500px;
+           }
+    }

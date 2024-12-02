@@ -6,16 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">
   <title>Join | Legal notice</title>
-  <!-- fonts -->
   <link rel="stylesheet" href="/css/add_Task.css">
-  <!-- styles -->
   <link rel="stylesheet" href="./css/reset.css">
   <link rel="stylesheet" href="./css/layout-reini.css">
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/menu.css">
   <link rel="stylesheet" href="./css/header.css">
   <link rel="stylesheet" href="./css/legal.css">
-  <!-- scrips -->
   <script src="./js/multi-page-app.js"></script>
   <script src="./js/ui.js"></script>
   <script src="./js/header.js"></script>
@@ -26,28 +23,22 @@
 </head>
 
 <body>
-  <!-- HEADER -->
   <header id="headerContainer" class="flex-row" data-include="./header.html">
     <p>shoud be included</p>
   </header>
 
-  <!-- MENU -->
   <div id="menuContainer" data-include="./assets/templates/menu_template.html"></div>
+  <div class="rotate-message">
+    Please rotate your device back to portrait mode.
+  </div>
 
-  <!-- CONTENT -->
   <main id="contentContainer" class="main">
 
-    <div class="rotate-message">
-      Please rotate your device back to portrait mode.
-    </div>
-
+    <div class="text">
     <div class="titleSelection">
       <h2>Legal Notice</h2>
-      <div class="getBack h-pointer" onclick="window.history.back();">
-        <img src="assets/icons/ArrowToLeft.svg" alt="" />
-      </div>
+      <img id="backIcon" class="h-pointer"  src="assets/icons/ArrowToLeft.svg" alt="icon-arrow-left" onclick="window.history.back()">
     </div>
-
     <article>
       <h3 class="imprintTitle">Imprint</h3>
       <ul>
@@ -135,6 +126,7 @@
         Email]. <br><br> Date: July 26, 2023
       </p>
     </article>
+    </div>
   </main>
 
 </body>
