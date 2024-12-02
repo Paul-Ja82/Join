@@ -904,4 +904,7 @@ body {
 
 .menu-nav-item[data-filename="add_task.html"] {
   background-color: unset !important;
+  &:hover {
+    background-color: var(--clr-menu-selected) !important;
+  }
 }
