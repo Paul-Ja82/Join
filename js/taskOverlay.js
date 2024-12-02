@@ -20,6 +20,7 @@ function checkTask(e) {
   e.stopPropagation();
   let container = e.target.closest('[id^="single_task_ctn"]');
   if (container) {
+    console.log(container.id); ///DEBUG
     let clickedSingleID = container.id.slice(15);
     showTask();
     checkIndexOfAllTasks(clickedSingleID, allTasks, allKeys);
@@ -314,6 +315,9 @@ async function changeSubtaskStatus(allTasks, e, labelID) {
  * @returns {Object} The task object that matches the clicked ID, now assigned to `currentTaskInOverlay`.
  */
 function checkIndexOfAllTasks(clickedSingleID, allTasks, allKeys) {
+  console.log(clickedSingleID); ///DEBUG
+  console.log(allTasks); ///DEBUG
+  console.log(allKeys); ///DEBUG
   let keyToOpen;
   for (let i = 0; i < allKeys.length; i++) {
     let key = allKeys[i];
