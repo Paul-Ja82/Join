@@ -122,7 +122,6 @@ function toggleContactList(filteredContactsForTasks) {
     document.getElementById("insertContactList").classList.remove("d-none");
     document.getElementById("arrowDropdown").src = "assets/icons/arrowUpDropdown.svg";
   }
-
   isListOpen = !isListOpen;
 }
 
