@@ -1,8 +1,27 @@
+/**
+ * Opens the task currently being edited and displays its details.
+ *
+ * This function triggers the display of the task's details using `showTask()`. It then 
+ * checks the position of the task being edited within the `allTasks` array by calling 
+ * `checkIndexOfAllTasks`, passing the task's ID, the tasks list, and their corresponding keys.
+ *
+ * @returns {void}
+ */
 function openEditedTask() {
     showTask();
       checkIndexOfAllTasks(currentTaskForEdit, allTasks, allKeys);
 }
 
+/**
+ * Finds the task currently being edited, retrieves its key, and populates the task editing form.
+ *
+ * This function identifies the task that is currently being edited by comparing its `single_ID` 
+ * to the task stored in `currentTaskForEdit`. Once the matching task is found, it extracts the 
+ * necessary details such as assigned contacts, priority image, and subtasks. It then updates 
+ * the form inputs to allow further editing of the task's details.
+ *
+ * @returns {void}
+ */
 function returnChangeAddTask() {
     let keyToOpen;
     console.log(currentTaskForEdit);
@@ -20,6 +39,20 @@ function returnChangeAddTask() {
     fillOutInputChangeAddTask(allTasks, keyToOpen, priorityImg, assignedToContacts, subTasks);
 }
 
+/**
+ * Populates an input form with the details of a selected task.
+ *
+ * This function fills out the input fields (such as title, description, due date, etc.) 
+ * of a task editing form based on the details of a selected task from the `allTasks` object. 
+ * It also updates the priority, category, and the current status of the task. Additionally, 
+ * it triggers the rendering of subtasks associated with the selected task.
+ *
+ * @param {Object} allTasks - The object containing all tasks. Each task has properties like `title`, `description`, `due_date`, `priority`, etc.
+ * @param {string|number} keyToOpen - The key or index to identify which task to access from `allTasks`.
+ * @param {string} priorityImg - The image source for the priority indicator of the task (optional, not directly used in this function).
+ * @param {Array} assignedToContacts - The array of contacts assigned to the task (optional, not directly used in this function).
+ * @param {Array} subTasks - The array of subtasks for the task (optional, not directly used in this function).
+ */
 function fillOutInputChangeAddTask(allTasks, keyToOpen, priorityImg, assignedToContacts, subTasks) {
     document.getElementById("title").value = allTasks[keyToOpen].title;
     document.getElementById("description").value = allTasks[keyToOpen].description;
@@ -32,6 +65,17 @@ function fillOutInputChangeAddTask(allTasks, keyToOpen, priorityImg, assignedToC
     getSubtasksChangeTaskAdded(keyToOpen, allTasks);
 }
 
+/**
+ * Retrieves the subtasks of a specific task and renders them.
+ *
+ * This function accesses a specific task from the `allTasks` object based on
+ * the provided `keyToOpen`. If the task has subtasks, it loops through them,
+ * pushes each subtask into the `subtasks` array, and then triggers the rendering
+ * of the subtasks using the `renderSubtasks` function.
+ *
+ * @param {string|number} keyToOpen - The key or index to identify which task to access from `allTasks`.
+ * @param {Object} allTasks - The object containing all tasks. Each task may have a `subtasks` property, which is an array.
+ */
 function getSubtasksChangeTaskAdded(keyToOpen, allTasks) {
     subtasks = [];
     if (allTasks[keyToOpen].subtasks) {

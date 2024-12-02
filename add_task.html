@@ -16,37 +16,26 @@
   <script src="./js/ui.js"></script>
   <script src="./script.js"></script>
   <script src="./js/multi-page-app.js"></script>
-    <script src="./js/contactsForTask.js"></script>
-    <script src="./js/header.js"></script>
+  <script src="./js/contactsForTask.js"></script>
+  <script src="./js/header.js"></script>
+  <script src="./js/submit_Add_Task.js"></script>
 </head>
-
-  <!-- <body
-    class="designForBody"
-    onload="initAddTasks(); getIdAndDataForAddTask(pathData=''); init();"
-  > -->
   <body
     class="designForBody"
     onload="initAddTasks(); getIdAndDataForAddTask(pathData=''); include().then(initHeaderJs); prepareCalender()"
   >
 
-    <header id="headerContainer" class="flex-row headerAddTask" data-include="./header.html">
-      <p>shoud be included</p>
-    </header>
+    <header id="headerContainer" class="flex-row headerAddTask" data-include="./header.html"><p>shoud be included</p></header>
 
-    <div
-      id="menuContainer" class="menuAddTask"
-      data-include="./assets/templates/menu_template.html"
-    ></div>
-
+    <div id="menuContainer" class="menuAddTask"data-include="./assets/templates/menu_template.html"></div>
     
     <div class="contentAddTaskContainer" id="contentAddTaskContainer"></div>
-    <div class="rotate-message">
-      Please rotate your device back to portrait mode.
-    </div>
+    <div class="rotate-message">Please rotate your device back to portrait mode.</div>
 
-    <script src="js/add_task.js"></script>
     <script src="js/loadTasks.js"></script>
     <script src="js/showTasks.js"></script>
     <script src="js/board.js"></script>
+    <script src="js/design_Add_Task.js"></script>
+    <script src="js/add_task.js"></script>
   </body>
 </html>

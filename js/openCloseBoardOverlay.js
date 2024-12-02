@@ -250,6 +250,7 @@ function renderFormAddTask(selectedProcessCategory, today) {
                     id="subtasks"
                     class="fieldInput"
                     oninput="changeSymbols()"
+                    onkeydown="handleEnterKey(event)"
                     placeholder="Add new subtask"
                   />
                   <div id="symbolsSubtasks" class="changeSymboles">

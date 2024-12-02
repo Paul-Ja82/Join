@@ -123,7 +123,6 @@ function ifElseForGreetedName(storedName, greetingText) {
         if (window.innerWidth < 1280) {
             greetingText += '!';
         }
-        // console.error('No name found in Session Storage.');
     }
     return greetingText;
 }
