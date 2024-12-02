@@ -1,4 +1,4 @@
-    /**
+/**
  * Toggles the visibility of the navigation menu based on screen size and updates the background color of the initials circle.
  */
 function openNavWindowFrame() {
@@ -43,7 +43,6 @@ window.addEventListener('resize', function() {
 async function setGreetedName() { 
     const storedName = sessionStorage.getItem('loggedInUserName');
     if (storedName) {
-        console.log('Retrieved Name:', storedName); 
 
         const greetedNameElements = document.querySelectorAll('#greetedName');
         greetedNameElements.forEach(element => {
@@ -101,8 +100,10 @@ function initHeaderJs() {
     updateUserMonogram();
 }
 
-
-
+/**
+ * Logs the user out by clearing all session and local storage data,
+ * and invoking the logout multi-page application (MPA) handler.
+ */
 function logout() {
     sessionStorage.clear();
     localStorage.clear();
