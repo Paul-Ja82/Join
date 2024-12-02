@@ -6,6 +6,7 @@ let isListOpen = false;
 let hasEventListener = false;
 let contactsChecked = false;
 
+
 /**
  * Initializes the "Add Tasks" functionality by rendering the task form, hiding the contact list, and setting default priority.
  *

@@ -23,12 +23,10 @@ function renderContactList(filteredContacts = contacts) {
   contactList.classList.remove("d-none");
 
   contactList.innerHTML = "";
-  document.getElementById("arrowDropdown").src =
-    "./assets/icons/arrowUpDropdown.svg";
+  document.getElementById("arrowDropdown").src ="./assets/icons/arrowUpDropdown.svg";
 
   if (filteredContacts.length === 0) {
-    contactList.innerHTML =
-      "<li class='emptyListMessage'>Ganz schön leer hier! :(</li>";
+    contactList.innerHTML ="<li class='emptyListMessage'>Ganz schön leer hier! :(</li>";
     return;
   }
 

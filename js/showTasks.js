@@ -109,13 +109,9 @@ function checkAssignedTo(tasks, i) {
         contactsIconsTemplate = "";
     } else {
         if (tasks[i].assigned_to.length >= 5) {
-            for (let j = 0; j < 5 ; j++) {       
-            contactsIconsTemplate += createContactsIconsTemplate(tasks, i, j)
-            }  
-            if (tasks[i].assigned_to.length > 5) {
-                let moreContacts = tasks[i].assigned_to.length - 5;
-                contactsIconsTemplate += `<div class="single_task_single_contact" id="">+${moreContacts}</div>`
-            }
+            for (let j = 0; j < 5 ; j++) {contactsIconsTemplate += createContactsIconsTemplate(tasks, i, j)}  
+            if (tasks[i].assigned_to.length > 5) {let moreContacts = tasks[i].assigned_to.length - 5; 
+                contactsIconsTemplate += `<div class="single_task_single_contact" id="">+${moreContacts}</div>`}
         }
         if (tasks[i].assigned_to.length < 5) {
             for (let j = 0; j < tasks[i].assigned_to.length; j++) {          
