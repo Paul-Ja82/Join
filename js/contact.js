@@ -15,8 +15,8 @@ TABLE OF CONTENTS
 11.) ## MEDIA ##
 */
 
-const USER_COLOR= '#2A3647';
-const USER_PHONE= '';
+const USER_COLOR = '#2A3647';
+const USER_PHONE = '';
 
 let itemMarkClass = 'conlist-item-marked';
 let itemHoverClass = 'conlist-item-hover';
@@ -38,7 +38,7 @@ async function initContact() {
     mediaChangeHandler();
     generateContactList();
     addListItemClickHandlers();
-    colorForContact= getRandomColorHex();
+    colorForContact = getRandomColorHex();
 }
 
 function addListItemClickHandlers() {
@@ -49,12 +49,16 @@ function addListItemClickHandlers() {
 }
 
 async function loadCurrentUserContact() {
-    let userId= window.sessionStorage.getItem('loggedInUserId');
-    currentUser= await getData(USERS_PATH + userId);
+    let userId = window.sessionStorage.getItem('loggedInUserId');
+    currentUser = await getData(USERS_PATH + userId);
+    console.log(currentUser); ///DEBUG
     if (currentUser) {
-        if (!currentUser.color) currentUser.color= USER_COLOR;
-        if (!currentUser.phone) currentUser.phone= USER_PHONE;
-        contacts.push(currentUser);
+        let contact = getContactByEmail(currentUser.email);
+        if (!contact) {
+            if (!currentUser.color) currentUser.color = USER_COLOR;
+            if (!currentUser.phone) currentUser.phone = USER_PHONE;
+            contacts.push(currentUser);
+        }
     }
 }
 
@@ -84,7 +88,7 @@ function generateContactList() {
         content += contactToListItemHTML(contactI, 'conlistItem' + contactI.id);
     }
     contactListContainer.innerHTML = content;
-    if(currentUser) markUserContactItem();
+    if (currentUser) markUserContactItem();
 }
 
 // contact: {email, name, phone, color}
@@ -105,8 +109,8 @@ function contactToListItemHTML(contact, elemId) {
 }
 
 function markUserContactItem() {
-    let elemId= 'conlistItem' + currentUser.id;
-    let listItem= document.getElementById(elemId);
+    let elemId = 'conlistItem' + currentUser.id;
+    let listItem = document.getElementById(elemId);
     listItem.classList.add('userListItem');
 }
 
@@ -116,8 +120,8 @@ function markUserContactItem() {
 
 function listItemClickHandler(event) {
     shownContactInfoId = event.currentTarget.dataset.contactid;
-    let contact= getContactById(shownContactInfoId);
-    colorForContact= contact.color;
+    let contact = getContactById(shownContactInfoId);
+    colorForContact = contact.color;
     if (mediaDesktop.matches) displayInfoDesktop(event);
     else displayInfoMobile(event);
 }
@@ -160,10 +164,10 @@ function displayInfoMobile(event) {
     let contactId = event.currentTarget.dataset.contactid;
     setInfo(contactId);
     showElem('detailContainer');
-    document.getElementById('contentContainer').style.overflowY= 'hidden';
-    document.getElementById('listContainer').style.height= '100%';
-    document.getElementById('contactListContainer').style.overflowY= 'hidden';
-    document.getElementById('contactListContainer').style.height= '100%';
+    document.getElementById('contentContainer').style.overflowY = 'hidden';
+    document.getElementById('listContainer').style.height = '100%';
+    document.getElementById('contactListContainer').style.overflowY = 'hidden';
+    document.getElementById('contactListContainer').style.height = '100%';
     showContactInfoButtonMobile();
 }
 
@@ -192,25 +196,25 @@ function closeDetailButtonHandler() {
     // showElem('listContainer');
     hideElem('detailContainer');
     hideContactInfoButtonMobile();
-    document.getElementById('contentContainer').style.overflowY= '';
-    document.getElementById('listContainer').style.height= '';
-    document.getElementById('contactListContainer').style.overflowY= '';
-    document.getElementById('contactListContainer').style.height= '';
+    document.getElementById('contentContainer').style.overflowY = '';
+    document.getElementById('listContainer').style.height = '';
+    document.getElementById('contactListContainer').style.overflowY = '';
+    document.getElementById('contactListContainer').style.height = '';
 }
 
 function showContactInfoButtonMobile() {
     hideElem('newContactButton');
     showElem('contactInfoButtonMobile');
-    let newContactButtonContainer= document.getElementById('newContactButtonContainer');
-    newContactButtonContainer.style.backgroundColor= 'var(--clr-bg-main)';
+    let newContactButtonContainer = document.getElementById('newContactButtonContainer');
+    newContactButtonContainer.style.backgroundColor = 'var(--clr-bg-main)';
 }
 
 function hideContactInfoButtonMobile() {
     hideElem('contactInfoButtonMobile');
     showElem('newContactButton');
     document.getElementById('newContactButtonContainer').classList.remove('bg-clr-main');
-    let newContactButtonContainer= document.getElementById('newContactButtonContainer');
-    newContactButtonContainer.style.backgroundColor= '';
+    let newContactButtonContainer = document.getElementById('newContactButtonContainer');
+    newContactButtonContainer.style.backgroundColor = '';
 }
 
 /*#################*/
@@ -223,7 +227,7 @@ function createContactHandler() {
 }
 
 function isEmailAvailable() {
-    let emailInput= document.getElementById('emailInputElem').value;
+    let emailInput = document.getElementById('emailInputElem').value;
     let contact = contacts.find(contactI => contactI.email == emailInput);
     if (contact) return false;
     else return true;
@@ -232,9 +236,9 @@ function isEmailAvailable() {
 async function addContact() {
     let newId = await getId();
     let colorHex = colorForContact;
-    let nameInput= document.getElementById('nameInputElem').value;
-    let emailInput= document.getElementById('emailInputElem').value;
-    let phoneInput= document.getElementById('phoneInputElem').value;
+    let nameInput = document.getElementById('nameInputElem').value;
+    let emailInput = document.getElementById('emailInputElem').value;
+    let phoneInput = document.getElementById('phoneInputElem').value;
     let newContact = {
         id: newId,
         name: nameInput,
@@ -242,7 +246,7 @@ async function addContact() {
         phone: phoneInput,
         color: colorHex
     };
-    let path= CONTACTS_PATH + newContact.id;
+    let path = CONTACTS_PATH + newContact.id;
     saveData(path, newContact);
     contacts.push(newContact);
 }
@@ -299,7 +303,7 @@ function setFormAdd() {
 
 function setInputsAdd() {
     let inputEmail = document.getElementById('emailInputElem');
-    inputEmail.disabled= false;
+    inputEmail.disabled = false;
 }
 
 function setButtonsAdd() {
@@ -380,8 +384,8 @@ function submitHandlerEdit() {
 async function editContact() {
     let path = CONTACTS_PATH + shownContactInfoId;
     let contact = getContactById(shownContactInfoId);
-    let nameInput= document.getElementById('nameInputElem').value;
-    let phoneInput= document.getElementById('phoneInputElem').value;
+    let nameInput = document.getElementById('nameInputElem').value;
+    let phoneInput = document.getElementById('phoneInputElem').value;
     contact.name = nameInput;
     contact.phone = phoneInput;
     contact.color = colorForContact;
@@ -390,8 +394,8 @@ async function editContact() {
 
 async function editUserContact() {
     let path = USERS_PATH + shownContactInfoId;
-    let nameInput= document.getElementById('nameInputElem').value;
-    let phoneInput= document.getElementById('phoneInputElem').value;
+    let nameInput = document.getElementById('nameInputElem').value;
+    let phoneInput = document.getElementById('phoneInputElem').value;
     currentUser.name = nameInput;
     currentUser.phone = phoneInput;
     currentUser.color = colorForContact;
@@ -401,13 +405,13 @@ async function editUserContact() {
 }
 
 function setUserInStorages(user) {
-    let userLocal= localStorage.getItem('loggedInUserName');
+    let userLocal = localStorage.getItem('loggedInUserName');
     if (userLocal) localStorage.setItem('loggedInUserName', user.name);
     sessionStorage.setItem('loggedInUserName', user.name);
 }
 
 function isUserContact() {
-    return currentUser ? shownContactInfoId==currentUser.id : false;
+    return currentUser ? shownContactInfoId == currentUser.id : false;
 }
 
 /*####################*/
@@ -422,9 +426,9 @@ function deleteButtonHandler() {
 }
 
 async function deleteContact(contactId) {
-    let contact= await getContactById(contactId);
-    let index= contacts.indexOf(contact);
-    let path= CONTACTS_PATH + contact.id;
+    let contact = await getContactById(contactId);
+    let index = contacts.indexOf(contact);
+    let path = CONTACTS_PATH + contact.id;
     contacts.splice(index, 1);
     await deleteData(path, contact);
 }
