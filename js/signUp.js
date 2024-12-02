@@ -6,6 +6,7 @@ let users = [];
  */
 function initSignup() {
     loadUsers();
+    loadContacts();
     initMPA();
     initForms();
     addValidation('signUpForm', isEmailAvailable, 'emailVmsg', 'You already have an account');
@@ -166,8 +167,23 @@ async function addUser() {
         email: emailInput,
         pw: passwordInput
     };
+    addUserAsContact(user);
     saveData(path, user);
     users.push(user);
+}
+
+async function addUserAsContact(user) {
+    let contact= getContactByEmail(user.email);
+    console.log(contact); ///DEBUG
+    if (!contact) {
+        console.log('user wird in contacts gespeichert'); ///DEBUG
+        let newId= await getId()
+        user.id= newId;
+        user.color= '#D1D1D1';
+        delete user.pw;
+        let path= CONTACTS_PATH + newId;
+        saveData(path, user);
+    }
 }
 
 /**
