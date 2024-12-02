@@ -552,7 +552,7 @@ function returnAddTaskForm(selectedProcessCategory, today) {
                   <button
                     class="formButtons clearButton"
                     type="button"
-                    onclick="reloadPage()"
+                    onclick="location.reload()"
                   >
                     Clear
                     <div class="iconX"></div>
