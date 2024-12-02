@@ -92,6 +92,7 @@ function renderAddedPersons() {
   selectedContacts = [];
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
   checkboxes.forEach((checkbox) => {
+    console.log(checkbox.checked); ///DEBUG
     if (checkbox.checked) {
       selectedContacts.push(checkbox.value);
     }

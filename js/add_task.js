@@ -31,7 +31,7 @@ async function initAddTasks() {
 async function loadData(path = "") {
   let response = await fetch(BASE_URL + path + ".json");
   let responseToJson = await response.json();
-  console.log(responseToJson);
+  // console.log(responseToJson);
 }
 
 
@@ -111,14 +111,15 @@ function closeContactList() {
  * toggleContactList(filteredContactsForTasks);
  */
 function toggleContactList(filteredContactsForTasks) {
+  console.log(isListOpen); ///DEBUG
   if (isListOpen) {
     document.getElementById("insertContactList").classList.add("d-none");
     document.getElementById("arrowDropdown").src = "assets/icons/arrowDropdown.svg"; 
   } else {
     if (!contactsChecked) {
-      checkContacts(allContactsForTasks); 
       contactsChecked = true; 
     }
+    checkContacts(allContactsForTasks);
     document.getElementById("insertContactList").classList.remove("d-none");
     document.getElementById("arrowDropdown").src = "assets/icons/arrowUpDropdown.svg";
   }

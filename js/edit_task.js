@@ -24,8 +24,8 @@ function openEditedTask() {
  */
 function returnChangeAddTask() {
     let keyToOpen;
-    console.log(currentTaskForEdit);
-    console.log(allTasks);
+    // console.log(currentTaskForEdit);
+    // console.log(allTasks);
     for (let i = 0; i < allKeys.length; i++) {
       let key = allKeys[i];
       if (allTasks[key].single_ID == currentTaskForEdit) {

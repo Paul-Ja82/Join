@@ -30,12 +30,14 @@ function colorSelectedContacts() {
  * @param {number} index - The index of the checkbox/contact in the contact list.
  */
 function changeCheckbox(index) {
+    console.log(index); ///DEBUG
     const checkbox = document.getElementById(`checkbox${index}`);
     checkbox.checked = !checkbox.checked;
     document.getElementById(`checkboxId${index}`).src = "assets/icons/checkbox.svg";
   
     if (checkbox.checked) {
-      document.getElementById(`checkboxId${index}`).src = "assets/icons/checkboxChecked.svg";}
+      document.getElementById(`checkboxId${index}`).src = "assets/icons/checkboxChecked.svg";
+    }
     renderAddedPersons();
     colorSelectedContacts();
   }
@@ -92,7 +94,7 @@ function createAndAppendSVG(avatarContainer, contact, index) {
 function showTheColorOfContact(contact) {
     let bgColor = "";
     for (let key in allContactsForTasks) {
-      console.log(allContactsForTasks[key])
+      // console.log(allContactsForTasks[key])
       if (allContactsForTasks[key].name === contact) {
         bgColor = allContactsForTasks[key].color;
         break;
@@ -117,7 +119,7 @@ function showTheColorOfContact(contact) {
  */
 function getInitials(name) {
     const nameParts = name.split(" ");
-    console.log(nameParts);
+    // console.log(nameParts);
     if (nameParts.length == 1) {
       const firstNameInitial = nameParts[0][0].toUpperCase();
       return firstNameInitial;

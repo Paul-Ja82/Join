@@ -68,6 +68,7 @@ function closeTask(e) {
       document.getElementById("backgroundId").classList.add("d-none");
       document.getElementById("dialogBox").style.backgroundColor = "white";
     }, 225);
+    isListOpen= false;
 }
 
 /**
