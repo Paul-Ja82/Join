@@ -1,14 +1,13 @@
-
-/* TU ES
-Markieren von aktuellen MenüEinträgen
-*/
-
 let mediaDesktop = window.matchMedia('(1010px < width)');
 
 /*##########*/
 /*## INIT ##*/
 /*##########*/
 
+/**
+ * Initializes the privacy page by including header functionality, hiding the user menu,
+ * and conditionally hiding the main menu if the user is not logged in.
+ */
 function initPrivacy() {
     include()
         .then(() => {
@@ -19,32 +18,28 @@ function initPrivacy() {
         });
 }
 
+/**
+ * Checks if a user is currently logged in.
+ * @returns {boolean} True if the user is logged in, otherwise false.
+ */
 function isLoggedIn() {
-    console.log('isLoggedIn()'); ///DEBUG
-    console.log(getLoggedIn() ? true : false); ///DEBUG
     return getLoggedIn() ? true : false;
 }
 
+/**
+ * Hides the user menu in the navigation header by adding a CSS class.
+ */
 function hideUserMenu() {
-    let navHeader= document.querySelector('.nav-header');
+    let navHeader = document.querySelector('.nav-header');
     navHeader.classList.add('d-none');
-    // hideElem('nav-header');
 }
 
-/*
+/**
+ * Hides the main menu and adjusts the menu container's minimum width.
+ */
 function hideMenu() {
-    let menuContainer= document.getElementById('menuContainer');
-    // let menuNavContainer= document.getElementById('menuNavContainer');
-    if (mediaDesktop.matches) {
-        hideElem('menuNavContainer');
-        menuContainer.style.minWidth= '30%';
-    }
-    else hideElem('menuContainer');
-}
-*/
-
-function hideMenu() {
-    let menuContainer= document.getElementById('menuContainer');
+    let menuContainer = document.getElementById('menuContainer');
     hideElem('menuNavContainer');
-    menuContainer.style.minWidth= '220px';
+    menuContainer.style.minWidth = '220px';
 }
+
