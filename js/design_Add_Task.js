@@ -30,7 +30,6 @@ function colorSelectedContacts() {
  * @param {number} index - The index of the checkbox/contact in the contact list.
  */
 function changeCheckbox(index) {
-    console.log(index); ///DEBUG
     const checkbox = document.getElementById(`checkbox${index}`);
     checkbox.checked = !checkbox.checked;
     document.getElementById(`checkboxId${index}`).src = "assets/icons/checkbox.svg";

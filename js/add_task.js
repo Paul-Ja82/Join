@@ -110,8 +110,7 @@ function closeContactList() {
  * // Opens or closes the contact list
  * toggleContactList(filteredContactsForTasks);
  */
-function toggleContactList(filteredContactsForTasks) {
-  console.log(isListOpen); ///DEBUG
+function toggleContactList(filteredContactsForTasks) {  
   if (isListOpen) {
     document.getElementById("insertContactList").classList.add("d-none");
     document.getElementById("arrowDropdown").src = "assets/icons/arrowDropdown.svg"; 

@@ -45,7 +45,7 @@ async function collectDataFromAddTask(currentStatus, selectedContacts) {
  */
 async function collectDataFromChangingAddTask() {
     let taskData = {
-        "assigned_to" : "",
+        "assigned_to" : selectedContacts,
         "category" : document.getElementById("showSelectedCategory").value,
         "description" : document.getElementById("description").value,
         "due_date" : document.getElementById("date").value,
@@ -55,6 +55,7 @@ async function collectDataFromChangingAddTask() {
         "currentStatus" : currentStatusofChangingTask,
         "single_ID" : currentTaskForEdit,
     }
+    isListOpen= false;
     await putChangeInTask(path=`${currentKeyToOpen}`, taskData);
     await getIdAndData(pathData='');
     openEditedTask();
@@ -175,7 +176,7 @@ async function putChangeInTask(path="", data={}) {
         },
         body: JSON.stringify(data)
     });
-    let responseToJson = await response.json();
+    // let responseToJson = await response.json();
 }
 
 /**

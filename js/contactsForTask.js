@@ -8,7 +8,6 @@ let filteredContactsForTasks = []
  * @returns {Array} filteredContactsForTasks - An array of contacts excluding null values.
  */
 function checkContacts(allContactsForTasks) {
-  console.log('checkContacts(..)'); ///DEBUG
   const contactsArray = Object.values(allContactsForTasks);
   filteredContactsForTasks = [];
   for (let i = 0; i < contactsArray.length; i++) {
@@ -16,7 +15,7 @@ function checkContacts(allContactsForTasks) {
   }
   let contactListTemplate = createContactsTemplate(filteredContactsForTasks);
   document.getElementById("insertContactList").appendChild(contactListTemplate);
-  console.log('es funktioniert immernoch');
+  // console.log('es funktioniert immernoch');
 }
 
 
