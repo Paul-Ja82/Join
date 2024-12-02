@@ -88,6 +88,8 @@ async function getIdAndData(pathData='') {
     let responseData = await fetch(firebase_URL + pathData + ".json");
     let responseDataToJson = await responseData.json();
     allTasks = responseDataToJson.tasks
+    console.log(responseDataToJson);
+    
     id = responseDataToJson.id;
     allContactsForTasks = responseDataToJson.contacts;
     keyForAllTasks();
