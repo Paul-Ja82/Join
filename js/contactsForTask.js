@@ -38,7 +38,7 @@ function createContactsTemplate(filteredContactsForTasks) {
         let isSelected = '';
         let listPersonId = filteredContactsForTasks[i].id;
         const initials = getInitials(filteredContactsForTasks[i].name);
-        let contact = renderShowContacts();
+        let contact = renderShowContacts(listPersonId, initials, isSelected, i);
         template.innerHTML += contact;
       }
     }
@@ -71,7 +71,7 @@ function createContactsTemplate(filteredContactsForTasks) {
  * @param {boolean} isSelected - Indicates whether the contact is already selected.
  * @param {string} initials - The initials of the contact, derived from their name.
  */
-  function renderShowContacts() {
+  function renderShowContacts(listPersonId, initials, isSelected, i) {
     return `<li id="listPerson${listPersonId}" class="backgroundOnHover" onclick="changeCheckbox(${listPersonId})">
             <div class="profile">
               <div class="initialsImg" id="initialsImg${listPersonId}" style="background-color: ${filteredContactsForTasks[i].color}">
