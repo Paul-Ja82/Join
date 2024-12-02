@@ -1,5 +1,5 @@
-// const firebase_URL = 'https://join-7ae0e-default-rtdb.europe-west1.firebasedatabase.app/'
-const firebase_URL = 'https://join-43c13-default-rtdb.europe-west1.firebasedatabase.app/'
+const firebase_URL = 'https://join-7ae0e-default-rtdb.europe-west1.firebasedatabase.app/'
+// const firebase_URL = 'https://join-43c13-default-rtdb.europe-west1.firebasedatabase.app/'
 
 let allTasks = [];
 let allKeys = [];
