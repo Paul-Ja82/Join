@@ -87,8 +87,9 @@ async function getIdAndDataForAddTask(pathData='') {
 async function getIdAndData(pathData='') {
     let responseData = await fetch(firebase_URL + pathData + ".json");
     let responseDataToJson = await responseData.json();
-    console.log(responseDataToJson);
     allTasks = responseDataToJson.tasks
+    console.log(responseDataToJson);
+    
     id = responseDataToJson.id;
     allContactsForTasks = responseDataToJson.contacts;
     keyForAllTasks();
@@ -218,8 +219,12 @@ async function getTaskForEdit(pathData='') {
  * @returns {void}
  */
 function keyForAllTasks() {
-    allKeys = [];
-    allKeys = Object.keys(allTasks);
+    if (allTasks.length == 0) {
+        allKeys = [];
+    } else {
+        allKeys = [];
+        allKeys = Object.keys(allTasks);
+    }
 }
 
 /**
