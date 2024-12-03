@@ -33,11 +33,29 @@ function returnChangeAddTask() {
       }
     }
     let assignedToContacts = checkAssignedToOverlay(allTasks, keyToOpen);
+    // let assignedToContacts = getAssignedTo(currentTaskForEdit);
+    console.log(assignedToContacts); ///DEBUG
     let priorityImg = checkPriorityImg(allTasks, keyToOpen);
     let subTasks = checkSubtasksOverlay(allTasks, keyToOpen);
     currentKeyToOpen = keyToOpen;
     fillOutInputChangeAddTask(allTasks, keyToOpen, priorityImg, assignedToContacts, subTasks);
 }
+
+function getAssignedTo(single_ID) {
+  let allTasksArray= [];
+  for (let keyI in allTasks) {
+    allTasksArray.push(allTasks[keyI]);
+  }
+  let task= allTasksArray.find((taskI) => taskI.single_ID == single_ID);
+  return task.assigned_to;
+}
+
+async function getContactId(name) {
+  await loadContacts();
+  let contact= contacts.find(contactI => contactI.name == name);
+  return contact.id;
+}
+
 
 /**
  * Populates an input form with the details of a selected task.
@@ -105,7 +123,6 @@ function changeTaskValues(e) {
   document.getElementById("dialogBox").style.boxSizing = "border-box";
   let today = new Date().toISOString().split('T')[0];
   document.getElementById("dialogBox").innerHTML = returnChangingAddTask(today);
-
   returnChangeAddTask();
 }
 
