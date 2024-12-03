@@ -24,8 +24,6 @@ function openEditedTask() {
  */
 function returnChangeAddTask() {
     let keyToOpen;
-    // console.log(currentTaskForEdit);
-    // console.log(allTasks);
     for (let i = 0; i < allKeys.length; i++) {
       let key = allKeys[i];
       if (allTasks[key].single_ID == currentTaskForEdit) {
@@ -34,12 +32,12 @@ function returnChangeAddTask() {
     }
     let assignedToContacts = checkAssignedToOverlay(allTasks, keyToOpen);
     // let assignedToContacts = getAssignedTo(currentTaskForEdit);
-    console.log(assignedToContacts); ///DEBUG
     let priorityImg = checkPriorityImg(allTasks, keyToOpen);
     let subTasks = checkSubtasksOverlay(allTasks, keyToOpen);
     currentKeyToOpen = keyToOpen;
     fillOutInputChangeAddTask(allTasks, keyToOpen, priorityImg, assignedToContacts, subTasks);
 }
+
 
 function getAssignedTo(single_ID) {
   let allTasksArray= [];
@@ -54,6 +52,18 @@ async function getContactId(name) {
   await loadContacts();
   let contact= contacts.find(contactI => contactI.name == name);
   return contact.id;
+}
+
+async function clickAssignedToItems(namesArray) {
+  let elemId;
+  let clickEvent= new Event('click');
+  if (namesArray != 'nobody' ) {
+    for (let nameI of namesArray) {
+      console.log(nameI); ///DEBUG
+      elemId= 'listPerson' + await getContactId(nameI);
+      document.getElementById(elemId).dispatchEvent(clickEvent);
+    }
+  }
 }
 
 

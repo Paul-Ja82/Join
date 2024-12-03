@@ -115,10 +115,10 @@ function toggleContactList(filteredContactsForTasks) {
     document.getElementById("insertContactList").classList.add("d-none");
     document.getElementById("arrowDropdown").src = "assets/icons/arrowDropdown.svg"; 
   } else {
-    if (!contactsChecked) {
-      contactsChecked = true; 
-    }
+    let assignedToContacts= getAssignedTo(currentTaskForEdit);
     checkContacts(allContactsForTasks);
+    console.log(assignedToContacts); ///DEBUG
+    clickAssignedToItems(assignedToContacts);
     document.getElementById("insertContactList").classList.remove("d-none");
     document.getElementById("arrowDropdown").src = "assets/icons/arrowUpDropdown.svg";
   }
