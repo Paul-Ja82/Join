@@ -13,27 +13,35 @@ input.addEventListener('focus', () => {
   dropdown.style.display = 'block';
 });
 
-// Fügt ausgewählte Werte ins Eingabefeld ein
+let thisTaskSelectedContacts = [];
+let thisTaskAssignedToFirebase = [];
+
 dropdown.addEventListener('change', () => {
-  const selectedAssignedTo = Array.from(dropdown.querySelectorAll('input:checked'))
-    .map(checkbox => checkbox.value)
-    // .join(', ');
-//   input.value = selected;
+  const selectedAssignedTo = Array.from(dropdown.querySelectorAll('input:checked')).map(checkbox => checkbox.value);
   console.log(selectedAssignedTo);
-  addInitialsIcon(selectedAssignedTo)
-  styleCheckedName(selectedAssignedTo)
+  thisTaskSelectedContacts = selectedAssignedTo;
+  addInitialsIcon(selectedAssignedTo);
+  styleCheckedName(selectedAssignedTo);
+  console.log(thisTaskSelectedContacts);
+  return thisTaskSelectedContacts
 });
 
+function filterContacts() {
+    const input = document.getElementById("inputAssignedTo").value.toLowerCase();
+    const filteredContacts = filteredContactsForTasks.filter((contact) => {
+      if (contact && typeof contact.name === "string") {return contact.name.toLowerCase().includes(input);}
+      return false;});
+    let contactListTemplate = createContactsTemplateAssignedTo(filteredContacts);
+    console.log(contactListTemplate);
+  }
+
 function addInitialsIcon(selectedAssignedTo) {
-    // console.log(filteredContactsForTasks);
     showPersonCtn.innerHTML = "";
     for (let i = 0; i < selectedAssignedTo.length; i++) {
         let selectedName = selectedAssignedTo[i];
-        // console.log(selectedName);     
         for (let i = 0; i < filteredContactsForTasks.length; i++) {
             if (filteredContactsForTasks[i].name == selectedName) {
                 const initials = getInitials(filteredContactsForTasks[i].name);
-                console.log(filteredContactsForTasks[i].name);
                 showPersonCtn.innerHTML += `
                 <div class="initialsImg" style="background-color:${filteredContactsForTasks[i].color}">
                     ${initials}
@@ -55,7 +63,7 @@ function checkAssignToContacts(allContactsForTasks) {
     const contactsArray = Object.values(allContactsForTasks);
     console.log(contactsArray);
 
-    filteredContactsForTasks = [];
+    // filteredContactsForTasks = [];
     for (let i = 0; i < contactsArray.length; i++) {
         if (contactsArray[i] !== null) {filteredContactsForTasks.push(contactsArray[i]);}
     }
