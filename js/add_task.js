@@ -127,6 +127,37 @@ function toggleContactList(filteredContactsForTasks) {
 }
 
 
+
+function getAssignedTo(single_ID) {
+  let allTasksArray= [];
+  for (let keyI in allTasks) {
+    allTasksArray.push(allTasks[keyI]);
+  }
+  let task= allTasksArray.find((taskI) => taskI.single_ID == single_ID);
+  return task.assigned_to;
+}
+
+async function getContactId(name) {
+  await loadContacts();
+  let contact= contacts.find(contactI => contactI.name == name);
+  return contact.id;
+}
+
+async function clickAssignedToItems(namesArray) {
+  let elemId;
+  let clickEvent= new Event('click');
+  if (namesArray != 'nobody' ) {
+    for (let nameI of namesArray) {
+      console.log(nameI); ///DEBUG
+      elemId= 'listPerson' + await getContactId(nameI);
+      document.getElementById(elemId).dispatchEvent(clickEvent);
+    }
+  }
+}
+
+
+
+
 /**
  * Validates the date input field to ensure a value is selected and applies appropriate styles.
  *
