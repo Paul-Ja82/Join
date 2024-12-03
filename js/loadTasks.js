@@ -44,8 +44,11 @@ async function collectDataFromAddTask(currentStatus, selectedContacts) {
  * *@async
  */
 async function collectDataFromChangingAddTask() {
+    if(selectedContacts.length == 0) {
+        selectedContacts = 'nobody';
+    }
     let taskData = {
-        "assigned_to" : "",
+        "assigned_to" : selectedContacts,
         "category" : document.getElementById("showSelectedCategory").value,
         "description" : document.getElementById("description").value,
         "due_date" : document.getElementById("date").value,
@@ -89,8 +92,6 @@ async function getIdAndData(pathData='') {
     let responseData = await fetch(firebase_URL + pathData + ".json");
     let responseDataToJson = await responseData.json();
     allTasks = responseDataToJson.tasks
-    console.log(responseDataToJson);
-    
     id = responseDataToJson.id;
     allContactsForTasks = responseDataToJson.contacts;
     keyForAllTasks();

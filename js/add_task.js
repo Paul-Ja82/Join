@@ -111,20 +111,53 @@ function closeContactList() {
  * toggleContactList(filteredContactsForTasks);
  */
 function toggleContactList(filteredContactsForTasks) {
+  selectedContacts= 'nobody';
   if (isListOpen) {
     document.getElementById("insertContactList").classList.add("d-none");
     document.getElementById("arrowDropdown").src = "assets/icons/arrowDropdown.svg"; 
   } else {
-    if (!contactsChecked) {
-      checkContacts(allContactsForTasks); 
-      contactsChecked = true; 
+    let assignedToContacts= 'nobody';
+    if (location.pathname != '/add_task.html') {
+      assignedToContacts= getAssignedTo(currentTaskForEdit);
     }
+    checkContacts(allContactsForTasks);
+    clickAssignedToItems(assignedToContacts);
     document.getElementById("insertContactList").classList.remove("d-none");
     document.getElementById("arrowDropdown").src = "assets/icons/arrowUpDropdown.svg";
   }
 
   isListOpen = !isListOpen;
 }
+
+
+
+function getAssignedTo(single_ID) {
+  let allTasksArray= [];
+  for (let keyI in allTasks) {
+    allTasksArray.push(allTasks[keyI]);
+  }
+  let task= allTasksArray.find((taskI) => taskI.single_ID == single_ID);
+  return task.assigned_to;
+}
+
+async function getContactId(name) {
+  await loadContacts();
+  let contact= contacts.find(contactI => contactI.name == name);
+  return contact.id;
+}
+
+async function clickAssignedToItems(namesArray) {
+  let elemId;
+  let clickEvent= new Event('click');
+  if (namesArray != 'nobody' ) {
+    for (let nameI of namesArray) {
+      elemId= 'listPerson' + await getContactId(nameI);
+      document.getElementById(elemId).dispatchEvent(clickEvent);
+    }
+  }
+}
+
+
 
 
 /**
