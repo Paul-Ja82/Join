@@ -185,7 +185,7 @@ function returnChangingAddTask(today) {
 <div class="overAllFormAddTask overAllChangeAddTask">
   <div class="closeButtonChangeAddTask"><div class="overImgCloser"><img onclick="closeChangeTaskValues()" class="imgCloseChangeAddTask" src="assets/icons/close.svg"></div></div>
 <form id="formAddTasks" class="formChangeAddTasks">
-      <div class="seperateSendButtons"><div class="titleSectionChangeAddTask"><h2 class="titleAddTask">Add Task</h2><div class="iconImage"><img onclick="closeDialog()" src="assets/icons/close.svg"></div></div>
+      <div class="seperateSendButtonsChangeAddTask"><div class="titleSectionChangeAddTask"><h2 class="titleAddTask">Add Task</h2><div class="iconImage"><img onclick="closeDialog()" src="assets/icons/close.svg"></div></div>
         <div class="overInputFieldsChangeAddTask">
           <div class="fillOutChangeAddTask">
             <div class="overFieldChangeAddTask">
@@ -248,7 +248,7 @@ function returnChangingAddTask(today) {
               <div class="overPrioButtons">
                 <button
                   id="urgentButton"
-                  class="prioButtons"
+                  class="prioButtonsChangeAddTask"
                   onclick="selectPrio('urgent')"
                   type="button"
                 >
@@ -260,7 +260,7 @@ function returnChangingAddTask(today) {
                 </button>
                 <button
                   id="mediumButton"
-                  class="prioButtons"
+                  class="prioButtonsChangeAddTask"
                   onclick="selectPrio('medium')"
                   type="button"
                 >
@@ -272,7 +272,7 @@ function returnChangingAddTask(today) {
                 </button>
                 <button
                   id="lowButton"
-                  class="prioButtons"
+                  class="prioButtonsChangeAddTask"
                   onclick="selectPrio('low')"
                   type="button"
                 >
@@ -341,9 +341,9 @@ function returnChangingAddTask(today) {
             </div>
           </div>
         </div>
-      </div>
+      </div><div class="overConfirmChangeAddTaskButton"><button onclick="collectDataFromChangingAddTask()" type="button" class="confirmChangeAddTask">Ok<img class="imgCheckChangeAddTask" src="assets/icons/checkWhite.svg" alt="" /></button></div>
     </form>
-    <div class="overConfirmChangeAddTaskButton"><button onclick="collectDataFromChangingAddTask()" type="button" class="confirmChangeAddTask">Ok<img class="imgCheckChangeAddTask" src="assets/icons/checkWhite.svg" alt="" /></button></div>
+    
     </div>
 `;
 }
@@ -532,6 +532,7 @@ function returnAddTaskForm(selectedProcessCategory, today) {
                       id="subtasks"
                       class="fieldInput"
                       oninput="changeSymbols()"
+                      onkeydown="handleEnterKey(event)"
                       placeholder="Add new subtask"
                     />
                     <div id="symbolsSubtasks" class="changeSymboles">

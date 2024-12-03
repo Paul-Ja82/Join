@@ -1,5 +1,22 @@
-body {
-  height: 100vh;
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #2a4872;
+  background: linear-gradient(180deg, #315e9e, #2a3647);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #3971c0, #293d58);
+  cursor: pointer;
 }
 
 .rotate-message {
@@ -46,7 +63,7 @@ body {
   transform: translateX(200vw); 
   transition: all 225ms ease-in-out;
   z-index: 999;
-  max-height: 90vh;
+  max-height: 80vh;
   max-width: 90vw;
   margin: 36px;
 }
@@ -56,7 +73,6 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
   border-radius: 24px;
   padding: 36px 60px;
- 
 }
 
 .d-none {
@@ -193,23 +209,29 @@ ul {
   flex-direction: column;
 }
 
+.seperateSendButtons {
+  height: 80vh;
+  overflow: auto;
+}
+
 .overInputFields {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding-right: 5px;
   margin-bottom: 80px;
   width: 976px;
 }
 
 .overInputFieldsBoard {
   display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      margin-bottom: 5vh;
-      gap: 5%;
-      max-height: 40vh;
-      padding-right: 5px;
-      overflow: auto;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 5vh;
+  gap: 5%;
+  max-height: 40vh;
+  padding-right: 5px;
+  overflow: auto;
 }
 
 .fillOut {
@@ -475,6 +497,7 @@ input[type="date"].filled {
   justify-content: space-between;
   gap: 8px;
   height: 60px;
+  padding-right: 5px;
   margin: 15px 0;
 }
 
@@ -564,7 +587,7 @@ input[type="date"].filled {
 
 .overPrioButtons {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   margin-bottom: 24px;
   width: 100%;
 }
@@ -601,6 +624,24 @@ input[type="date"].filled {
   box-shadow: 0px 4px 4px 0px #00000040;
 }
 
+.prioButtonsChangeAddTask {
+  flex: 1;
+  border: unset;
+  background-color: white;
+  padding: 16px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0px 0px 4px 0px #0000001a;
+}
+
+.prioButtonsChangeAddTask:hover {
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
 .prioButtonsBoard {
   flex: 1;
   border: unset;
@@ -617,6 +658,7 @@ input[type="date"].filled {
 .prioButtonsBoard:hover{
   box-shadow: 0px 4px 4px 0px #00000040;
 }
+
 
 .urgentButton {
   font-weight: 700;
@@ -654,7 +696,6 @@ input[type="date"].filled {
 
 .costumSelect {
   border-radius: 10px 10px 0 0;
-  z-index: 3;
 }
 
 .categoryItem {
@@ -1017,8 +1058,6 @@ input[type="date"].filled {
     flex-direction: column;
     width: unset;
     margin-bottom: unset;
-    height: 50vh;
-    overflow: auto;
   }
 
   .fillOut {
@@ -1051,40 +1090,41 @@ input[type="date"].filled {
       padding: unset !important;
   }
 
-
   .menuAddTask {
     position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
     z-index: 99;
-}
+  }
   
   .headerAddTask {
-    position: sticky;
-      z-index: 99;
-      top: 0;
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    
   }
 
   .testSabrinaAddTaskCtn {
-padding: 20px 35px;
+    padding: 20px 35px;
    }
+
   .contentAddTaskContainer {
     margin: 0 5px;
   }
   
   .overheader {
     background-color: #f6f7f8;
-        position: sticky;
-        top: 84px;
-        right: 0;
-        left: 0;
-        z-index: 10;
+      position: sticky;
+      top: 84px;
+      right: 0;
+      left: 0;
+      z-index: 10;
   }
 
   .titleAddTask {
     font-size: 47px;
-margin: 10px 0 5px 0;
+    margin: 10px 0 5px 0;
   }
 
   .overInputFields {
@@ -1092,21 +1132,16 @@ margin: 10px 0 5px 0;
     justify-content: center;
     width: 100%;
     margin: 0;
+    padding-top: 80px;
     height: unset;
-    overflow: auto;
   }
 
-.overInputFieldsChangeAddTask {
-  height: 60vh;
-  overflow: auto;
-}
-
-.overInputFieldsBoard {
-  flex-direction: column;
-  overflow: auto;
-  padding-right: 10px;
-  margin-bottom: 0;
-}
+  .overInputFieldsBoard {
+    flex-direction: column;
+    overflow: auto;
+    padding-right: 10px;
+    margin-bottom: 0;
+  }
 
   .overField {
     display: flex;
@@ -1129,9 +1164,9 @@ margin: 10px 0 5px 0;
     display: none;
   }
 
-  
-
-  
+  .overPrioButtons {
+    gap: 2px;
+  }
 
   .formButtons {
     padding: 18px 10px;
@@ -1196,6 +1231,11 @@ margin: 10px 0 5px 0;
     font-size: 16px;
   }
 
+  .prioButtonsChangeAddTask {
+    font-size: 14px !important;
+    padding: 10px 5px;
+  }
+
   .prioButtonsBoard {
     font-size: 16px;
     padding: 10px;
@@ -1227,8 +1267,21 @@ margin: 10px 0 5px 0;
   .fontSizeBoard {
   font-size: 12px;
   }
+
   .profile {
     font-size: 16px;
+  }
+
+  .initialsImg {
+    margin-left: 10px;
+  }
+
+  .backgroundOnHover img {
+    padding-right: 10px;
+  }
+
+  .listContacts li {
+    padding: 7px 3px;
   }
 
   .contactPerson {
