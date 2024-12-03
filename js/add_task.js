@@ -94,6 +94,7 @@ function closeContactList() {
 }
 
 
+
 /**
  * Toggles the visibility of a contact list and performs a contact check if opening the list.
  * 
@@ -110,15 +111,18 @@ function closeContactList() {
  * // Opens or closes the contact list
  * toggleContactList(filteredContactsForTasks);
  */
+
 function toggleContactList(filteredContactsForTasks) {
   selectedContacts= 'nobody'; 
   if (isListOpen) {
     document.getElementById("insertContactList").classList.add("d-none");
     document.getElementById("arrowDropdown").src = "assets/icons/arrowDropdown.svg"; 
   } else {
-    let assignedToContacts= getAssignedTo(currentTaskForEdit);
+    let assignedToContacts= 'nobody';
+    if (location.pathname != '/add_task.html') {
+      assignedToContacts= getAssignedTo(currentTaskForEdit);
+    }
     checkContacts(allContactsForTasks);
-    console.log(assignedToContacts); ///DEBUG
     clickAssignedToItems(assignedToContacts);
     document.getElementById("insertContactList").classList.remove("d-none");
     document.getElementById("arrowDropdown").src = "assets/icons/arrowUpDropdown.svg";
