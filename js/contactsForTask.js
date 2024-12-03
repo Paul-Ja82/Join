@@ -15,7 +15,6 @@ function checkContacts(allContactsForTasks) {
     }
     let contactListTemplate = createContactsTemplate(filteredContactsForTasks);
     document.getElementById("insertContactList").appendChild(contactListTemplate);
-    console.log('es funktioniert immernoch');
   }
 
 

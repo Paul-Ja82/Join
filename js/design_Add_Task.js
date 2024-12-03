@@ -92,7 +92,6 @@ function createAndAppendSVG(avatarContainer, contact, index) {
 function showTheColorOfContact(contact) {
     let bgColor = "";
     for (let key in allContactsForTasks) {
-      console.log(allContactsForTasks[key])
       if (allContactsForTasks[key].name === contact) {
         bgColor = allContactsForTasks[key].color;
         break;
@@ -117,7 +116,6 @@ function showTheColorOfContact(contact) {
  */
 function getInitials(name) {
     const nameParts = name.split(" ");
-    console.log(nameParts);
     if (nameParts.length == 1) {
       const firstNameInitial = nameParts[0][0].toUpperCase();
       return firstNameInitial;

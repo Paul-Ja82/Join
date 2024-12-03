@@ -251,7 +251,7 @@ body {
       justify-content: space-between;
       align-items: center;
       & .board_header_headline {
-        font-size: clamp(2.5rem, 1.25rem + 3.333vw, 4.25rem);
+        font-size: clamp(2.938rem, 2.567rem + 1.383vw, 3.813rem);
         font-weight: 700;
       }
       & .add_task_ctn {

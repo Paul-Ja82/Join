@@ -96,7 +96,6 @@ function renderAddedPersons() {
       selectedContacts.push(checkbox.value);
     }
   });
-  console.log("Ausgewählte Kontakte:", selectedContacts);
   showPersons();
   return selectedContacts;
 }

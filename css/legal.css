@@ -58,8 +58,19 @@ h4 {
     margin-right: 10%;
 } 
 
-.h-pointer {
+/* .h-pointer {
     margin-top: 55px;
+} */
+
+@media (1010px < width) {
+  .menu-nav-item {
+      flex-direction: row;
+      gap: 0.5em;
+      /* padding: 0.5em var(--spacing-left); */
+      padding: 1.7em var(--spacing-left) !important;
+      border-radius: unset;
+      justify-content: unset;
+  }
 }
 
 @media(max-width: 1010px) {
