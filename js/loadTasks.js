@@ -44,6 +44,9 @@ async function collectDataFromAddTask(currentStatus, selectedContacts) {
  * *@async
  */
 async function collectDataFromChangingAddTask() {
+    if(selectedContacts.length == 0) {
+        selectedContacts = 'nobody';
+    }
     let taskData = {
         "assigned_to" : selectedContacts,
         "category" : document.getElementById("showSelectedCategory").value,
