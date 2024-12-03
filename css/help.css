@@ -36,6 +36,10 @@
     font-family: "Inter";
   }
   
+  .menu-nav-text {
+    margin-bottom: 0 !important;
+  }
+
   h2 {
     font-size: 61px;
   }
