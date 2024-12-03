@@ -117,7 +117,7 @@ function showTheColorOfContact(contact) {
  */
 function getInitials(name) {
     const nameParts = name.split(" ");
-    console.log(nameParts);
+    // console.log(nameParts);
     if (nameParts.length == 1) {
       const firstNameInitial = nameParts[0][0].toUpperCase();
       return firstNameInitial;
