@@ -1283,6 +1283,12 @@ margin: 10px 0 5px 0;
     }
 }
 
+@media (height < 600px) and (1010px < width) {
+  .menu-nav-item {
+      padding: 0 var(--spacing-left) !important;
+  }
+}
+
 @media (max-height: 500px) and (max-width: 945px) and (orientation: portrait) {
     .contentAddTaskContainer{
         display: block;

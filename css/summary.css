@@ -17,9 +17,13 @@ body {
     justify-content: center;
 }
 
-header {
-    max-width: 1208px;
-    position: fixed;
+.nav-header {
+    height: 96px;
+    align-items: center;
+}
+
+.help-button {
+    margin-top: 0;
 }
 
 .rotate-message {
@@ -28,8 +32,7 @@ header {
 }
 
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 6px;
   }
   
   ::-webkit-scrollbar-track {
@@ -104,7 +107,6 @@ a {
     justify-content: start;
 }
 
-
 .title-and-main-display-resposive  {
     display: block;
 }
@@ -117,7 +119,7 @@ a {
 
 .title-div {
     height: 73px;
-    margin-top: 203px;
+    margin-top: 107px;
     margin-bottom: 58px;
     margin-left: 96px;
     
@@ -158,12 +160,18 @@ a {
 .main-div {
     width: 100%;
     display: flex;
+   
+}
+
+.tasks-div-frame {
+    width: 59.15%;
 }
 
 .tasks-div {
     width: clamp(24.75rem, 17.697rem + 26.367vw, 35rem);
     aspect-ratio: 1 / 0.6364;
     margin-left: clamp(1rem, -2.441rem + 12.862vw, 6rem);
+    margin-right: 2.25%;
     display: flex;
     flex-direction: column;
 }
@@ -708,7 +716,8 @@ small {
 }
 
 .greetings-div {
-    width: 45.85%;
+    width: clamp(18.125rem, -86.875rem + 131.25vw, 31.25rem);
+    margin-left: 2%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -716,13 +725,12 @@ small {
 }
 
 #greetingSummary.greeting {
-    font-size: 47px;
+    font-size: clamp(2.188rem, -3.813rem + 7.5vw, 2.938rem);
     font-weight: 500;
 }
 
 .greeted-name {
-    font-size: 64px;
+    font-size: clamp(2.5rem, -9.5rem + 15vw, 4rem);
     font-weight: 700;
     color: rgba(41, 171, 226, 1);
 }
-

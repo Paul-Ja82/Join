@@ -1,7 +1,42 @@
+@media(max-width:1400px){
+
+    .main-div {
+        position: relative;
+    }
+
+    .greetings-div {
+        height: 100%;
+        position: absolute;
+        right: 20px;
+        margin-left:0;
+    }
+    .tasks-div-frame {
+        width: 60%;
+     }
+}
+
+@media(max-width:1370px){
+
+    .tasks-div-frame {
+        width: 62%;
+     }
+}
+
+@media(max-width:1340px){
+
+    .tasks-div-frame {
+        width: 65%;
+     }
+}
+
 @media(max-width:1280px){
 
     .greetings-div {
        display: none;
+    }
+
+    .tasks-div-frame {
+       width: 100%;
     }
 }
 
@@ -15,6 +50,11 @@
         flex-direction: column-reverse;
         justify-content: start;
         position: relative;
+    }
+
+    .nav-header {
+        height: unset;
+        align-items: center;
     }
 
     .greeting-responsive {
@@ -67,7 +107,7 @@
     .title-div {
         width: 51.86%;
         height: 104px;
-        margin-top: 139px;    
+        margin-top: 43px;    
         margin-left: clamp(1rem, -2.441rem + 12.862vw, 6rem);
         display: flex;
         margin-bottom: 35px;
@@ -151,10 +191,6 @@
 
     .title-frame-div {
         margin-bottom: 36px;
-    }
-
-    .title-div {
-        margin-top: 149px;   
     }
 
     .urgency-divider {
@@ -358,46 +394,135 @@
 
 }
 
-@media(max-height:870px) and (min-width:600px){
+@media (height < 600px) and (1010px < width) {
+    .menu-nav-item {
+        padding: 0 var(--spacing-left) !important;
+    }
+}
 
-    .main-div {
-        width: 100%;
+@media(max-height:910px) and (min-width:1010px){
+    
+    .tasks-div-frame {
         height: 60vh;
-        overflow: scroll;
+        overflow-x: hidden ;
+        overflow-y: scroll;
     }
 
     .tasks-div {
-        height: 562px;
+        height: 590px;
         padding-bottom: 100px;
     }
-
-    .greetings-div {
-        height: 562px;
-    }
 }
 
-@media(max-height:600px) and (min-width:600px) {
+@media(max-height:600px) and (min-width:1010px) {
     
     .tasks-div {
-        padding-bottom: 140px;
+        padding-bottom: 150px;
     }
 }
 
-@media(max-height:500px) and (min-width:600px) {
+@media(max-height:500px) and (min-width:1010px) {
     
     body {
         height: 1024px;
         overflow: scroll;
     }
 
-    .main-div {
+    .tasks-div-frame {
         width: 100%;
         height: 100%;
         overflow: hidden;
     }
+
+    .tasks-div {
+        padding-bottom: 0;
+    }
 }
 
-@media(max-width:1010px) and (max-height:740px) {
+@media(max-height:910px) and (min-width:600px) and (max-width:1010px){
+    
+    .tasks-div-frame {
+        height: 50vh;
+        overflow-x: hidden ;
+        overflow-y: scroll;
+    }
+
+    .tasks-div {
+        height: 500px;
+        padding-bottom: 100px;
+    }
+}
+
+@media(max-height:790px) and (min-width:600px) and (max-width:1010px){
+    
+    .tasks-div-frame {
+        height: 40vh;
+        overflow-x: hidden ;
+        overflow-y: scroll;
+    }
+
+    .tasks-div {
+        height: 400px;
+        padding-bottom: 100px;
+    }
+}
+
+@media(max-height:670px) and (min-width:600px) and (max-width:1010px){
+    
+    .tasks-div-frame {
+        height: 30vh;
+        overflow-x: hidden ;
+        overflow-y: scroll;
+    }
+
+    .tasks-div {
+        height: 400px;
+        padding-bottom: 100px;
+    }
+}
+
+@media(max-height:570px) and (min-width:600px) and (max-width:1010px){
+    
+    .tasks-div-frame {
+        height: 22vh;
+        overflow-x: hidden ;
+        overflow-y: scroll;
+    }
+
+    .tasks-div {
+        height: 400px;
+        padding-bottom: 100px;
+    }
+}
+
+@media(max-height:500px) and (min-width:600px) and (max-width:1010px){
+    
+    body {
+        height: 100vh;
+        overflow: scroll;
+        position: relative;
+    }
+
+    .tasks-div-frame {
+        height: 100vh;
+        overflow-x: hidden ;
+        overflow-y: scroll;
+    }
+
+    .tasks-div {
+       height: 500px;
+    }
+
+    .menu-summary-div {
+        position: static;
+        width: 100%;
+        top: unset;
+        bottom: 0;
+        left: 0;
+    }
+}
+
+@media(max-width:430px) and (max-height:740px) {
 
     .title-frame-div {
         width: 100%;
@@ -409,7 +534,7 @@
     
     .title-div {
         height: 104px;
-        margin-top: 100px;    
+        margin-top: 4px;    
         margin-left: clamp(1rem, -2.441rem + 12.862vw, 6rem);
         display: flex;
         margin-bottom: 0px;

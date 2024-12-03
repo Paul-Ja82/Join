@@ -113,5 +113,11 @@ h4 {
         display: none;
     }
 }
+
+@media (height < 600px) and (1010px < width) {
+  .menu-nav-item {
+      padding: 0 var(--spacing-left) !important;
+  }
+}
   
   
