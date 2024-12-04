@@ -387,6 +387,7 @@ img#cdHeaderLogo {
 /*## CONTACT DIALOG MOBILE SMALL HEIGHT ##*/
 /*########################################*/
 
+/*
 @media (width < 1010px) and (height < 700px) {
     #dialogContact {
         font-size: 0.9em;
@@ -395,6 +396,46 @@ img#cdHeaderLogo {
     #cdPersonIcon {
         font-size: 0.6rem;
     }
+}
+*/
+
+@media (width < 1010px) and (height < 840px) {
+    #dialogContact {
+        font-size: 0.8em;
+        height: unset;
+    }
+
+    #CDheaderContainer {
+        flex-basis: unset;
+        padding: 2em 1em;
+    }
+
+    #CDcontentContainer {
+        flex-basis: unset;
+        padding: 1em 0;
+    }
+
+    div#cdPersonIcon {
+        height: 4.8em;
+        transform: translate(0,-110%);
+        left: unset;
+        right: 2em;
+        margin: 0;
+    }
+
+    p#cdMonogram {
+        font-size: 1.3em;
+    }
+
+    #contactForm {
+        padding: 1em 1em;
+        transform: unset;
+    }
+
+    #contactForm button {
+        margin-top: 0;
+    }
+    
 }
 
 /*##########*/
