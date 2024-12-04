@@ -5,7 +5,8 @@ TABLE OF CONTENTS
 1.) ## LAYOUT DESKTOP ##
 2.) ## CONTACT LIST DESKTOP##
 3.) ## CONTACT DETAIL DESKTOP##
-4.) ## CONTACT DIALOG DESKTOP ##
+4.) ## CONTACT DETAIL SMALL SCREENS ##
+5.) ## CONTACT DIALOG DESKTOP ##
 */
 
 
@@ -123,6 +124,31 @@ TABLE OF CONTENTS
     .coninfo-button {
         gap: 0.4em;
     }   
+}
+
+/*##################################*/
+/*## CONTACT DETAIL SMALL SCREENS ##*/
+/*##################################*/
+
+@media (1010px < width) and (height < 550px) {
+    #menuLogo {
+        display: none;
+    }
+
+    #detailContainer {
+        padding: 1em 1em;
+    }
+
+    #detailHeadline,
+    #infoTagLine,
+    #cdDivider {
+        display: none;
+    }
+    
+    #infoContainer {
+        margin-top: 0;
+    }
+
 }
 
 /*############################*/
