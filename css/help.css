@@ -191,3 +191,8 @@
   
   }
   
+#contentContainer{
+  overflow-y: auto;
+  margin: 0;
+  padding: 1em 1em;
+}
