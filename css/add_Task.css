@@ -1321,34 +1321,35 @@ input[type="date"].filled {
 }
 
 @media (max-height: 500px) and (max-width: 945px) and (orientation: landscape) {
-    .contentAddTaskContainer {
-        display: none;
+  .contentAddTaskContainer {
+    display: none;
     }
-    .rotate-message {
-        height: 60%;
-        color: rgba(41, 171, 226, 1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
-        padding: 20px;
+  .rotate-message {
+    height: 60%;
+    color: rgba(41, 171, 226, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
+    padding: 20px;
     }
 }
 
 @media (height < 600px) and (1010px < width) {
   .menu-nav-item {
-      padding: 0 var(--spacing-left) !important;
+    padding: 0 var(--spacing-left) !important;
   }
 }
 
 @media (max-height: 500px) and (max-width: 945px) and (orientation: portrait) {
-    .contentAddTaskContainer{
-        display: block;
-    }
-    .rotate-message {
-        display: none;
-    }
+  .contentAddTaskContainer{
+    display: block;
+  }
+  
+  .rotate-message {
+    display: none;
+  }
 }
 
 
@@ -1379,7 +1380,7 @@ Gruß Reini */
 
  @media(max-width: 350px) {
   .menu-nav-item {
-      scale: 0.95;
+    scale: 0.95;
   }
 }
 
