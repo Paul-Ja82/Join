@@ -62,6 +62,7 @@ function closeTask(e) {
     //   closeContactList()
     //   isListOpen = !isListOpen;
     // } 
+    currentTaskForEdit= undefined;
     document.getElementById("dialogBox").style.transition = "all 225ms ease-in-out";
     document.getElementById("dialogBox").classList.remove("showIt");
     setTimeout(() => {
@@ -78,6 +79,7 @@ function closeDialog() {
     setTimeout(() => {
       document.getElementById("backgroundId").classList.add("d-none");
     }, 225);
+    currentTaskForEdit= undefined;
 }
 
 /** 

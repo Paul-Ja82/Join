@@ -16,6 +16,7 @@ let id;
  * @returns {number} - The updated task ID after creation.
  */
 async function collectDataFromAddTask(currentStatus, selectedContacts) {
+    console.log('collectDataFromAddTask(..), selectedContacts: ' + selectedContacts); ///DEBUG
     if(selectedContacts.length == 0) {
         selectedContacts = 'nobody';
     }

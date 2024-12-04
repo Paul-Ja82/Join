@@ -117,7 +117,7 @@ function toggleContactList(filteredContactsForTasks) {
     document.getElementById("arrowDropdown").src = "assets/icons/arrowDropdown.svg"; 
   } else {
     let assignedToContacts= 'nobody';
-    if (location.pathname != '/add_task.html') {
+    if (currentTaskForEdit) {
       assignedToContacts= getAssignedTo(currentTaskForEdit);
     }
     checkContacts(allContactsForTasks);

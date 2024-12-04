@@ -116,6 +116,7 @@ function changeTaskValues(e) {
  * 3. After a delay (225ms), hides the background element and sets the dialog box's background color to white.
  */
 function closeChangeTaskValues() {
+  currentTaskForEdit= undefined;
   if (document.getElementById("insertContactList").classList.contains(!"d-none")) {
     console.log('d-none nicht enthalten, Liste geöffnet');
     
