@@ -149,31 +149,6 @@
     
 }
 
-@media (max-height: 500px) and (max-width: 945px) and (orientation: landscape) {
-    .main-frame-div {
-        display: none;
-    }
-    .rotate-message {
-        height: 100vh;
-        color: rgba(41, 171, 226, 1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
-        padding: 20px;
-    }
-}
-
-@media (max-height: 500px) and (max-width: 945px) and (orientation: portrait) {
-    .main-frame-div {
-        display: block;
-    }
-    .rotate-message {
-        display: none;
-    }
-}
-
 @media(max-width:850px) {
 
     .j-logo-img {
@@ -310,7 +285,6 @@
     }
     
 }
-/*and (min-width:600px) ################################################################*/
 
 @media(max-height:890px) and (max-width:1010px) {
 
@@ -570,7 +544,7 @@
 
     .log-in-div {
         height: 300px;
-        margin-top: 21vh;
+        margin-top: 24vh;
     }
  
  
@@ -649,6 +623,15 @@
     height: 34px;
 }
 
+}
+
+@media(max-height:560px) and (max-width:1010px) {
+
+    .log-in-div {
+        height: 300px;
+        margin-top: 23vh;
+    }
+ 
 }
 
 @media(max-height:500px) and (max-width:1010px) {
@@ -843,114 +826,27 @@
        }
 }
 
-/*@media(max-height:850px) and (max-width:500px) {
-
-    .log-in-div {
-        width: 92%;
-        max-width: 652px;
-        margin-top: 170px;
+@media (max-height: 500px) and (max-width: 945px) and (orientation: landscape) {
+    .main-frame-div {
+        display: none;
     }
-
-    .sign-up-div {
-        margin-top: 50px;
-    }
-
-    footer {
-        height: 20px;
-        position: absolute;
-        top: unset;
-        bottom: 2px;
+    .rotate-message {
+        height: 100vh;
+        color: rgba(41, 171, 226, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
+        padding: 20px;
     }
 }
 
-@media(max-height:740px) and (max-width:500px) {
-
-    .log-in-div {
-        width: 92%;
-        max-width: 652px;
-        height: 420px;
-        margin-top: 170px;
+@media (max-height: 500px) and (max-width: 945px) and (orientation: portrait) {
+    .main-frame-div {
+        display: block;
     }
-
-    .log-in-header {
-        font-size: clamp(2.938rem, 2.54rem + 1.413vw, 3.813rem);
-        margin-top: 15px;
-    }
-    
-    .input-main-div {
-        width: 91.9%;
-        height: 110px;
-        margin-top: 15px;
-    }
-    
-    .log-input {
-        width: 100%;
-        height: 38px;
-        padding-top: 6px;
-    }
-
-    .log-in-buttons-div {
-        width: 100%;
-        height: 123px;
-        margin-top: 16px;
-        margin-left: 0px;
-        gap: 8px;
-    }
-
-    .email-input-div {
-        margin-bottom: 2px;  
-    }
-
-    .incorrect-email-format {
-        margin-bottom: 6px;
-    }
-
-    .not-registered-msg {
-        margin-bottom: 6px;
-    }
-
-    .error-input-message {
-        margin-bottom: 8px;
-        opacity: 0;
-    }
-    
-    .forgot-password-message {
-        margin-bottom: 8px;
-        margin-right: 1.5%;
-        opacity: 0;
-    }
-
-    .log-in-button {
-        height: 40px;
-    }
-
-    .guest-a{
-        text-decoration: none;
-    }
-    
-    .guest-log-in-button {
-        height: 38px;
-        text-decoration: none;
-    }
-
-    .sign-up-div {
-        margin-top: 40px;
-    }
-
-    .sign-up-button {
-        height: 40px;
-    }
-
-}
-
-@media(max-height:670px) and (max-width:500px) {
-
-    .log-in-div {
-        height: 400px;
-        margin-top: 150px;
-    }
-
-    .sign-up-div {
-        margin-top: 20px;
+    .rotate-message {
+        display: none;
     }
 }

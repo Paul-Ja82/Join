@@ -10,6 +10,10 @@ body {
     justify-content: center;
 }
 
+html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
 .rotate-message {
     display: none;
     font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
