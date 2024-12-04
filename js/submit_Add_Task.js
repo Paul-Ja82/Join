@@ -43,7 +43,7 @@ async function submitForm(selectedProcessCategory) {
     }
   
     if (!hasError) {
-      await collectDataFromAddTask(selectedProcessCategory, selectedContacts); 
+      await collectDataFromAddTask(selectedProcessCategory, selectedContacts);
       confirmationOfSendedTask();
     }
   }

@@ -341,7 +341,6 @@ function checkIndexOfAllTasks(clickedSingleID, allTasks, allKeys) {
  */
 async function deleteTask(e, keyToDelete) {
   e.stopPropagation();
-  console.log(keyToDelete);
   let pathToDelete = `tasks/${keyToDelete}`;
   await deleteTaskID(pathToDelete);
   closeTask(event)

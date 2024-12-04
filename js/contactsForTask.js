@@ -71,7 +71,7 @@ function createContactsTemplate(filteredContactsForTasks) {
  * @param {string} initials - The initials of the contact, derived from their name.
  */
   function renderShowContacts(listPersonId, initials, isSelected, i) {
-    return `<li id="listPerson${listPersonId}" class="backgroundOnHover" onclick="changeCheckbox(${listPersonId})">
+    return `<li id="listPerson${listPersonId}" class="backgroundOnHover assignedToItemElem" onclick="changeCheckbox(${listPersonId})">
             <div class="profile">
               <div class="initialsImg" id="initialsImg${listPersonId}" style="background-color: ${filteredContactsForTasks[i].color}">
                 ${initials}

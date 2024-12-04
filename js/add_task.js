@@ -111,7 +111,7 @@ function closeContactList() {
  * toggleContactList(filteredContactsForTasks);
  */
 function toggleContactList(filteredContactsForTasks) {
-  selectedContacts= 'nobody';
+  // selectedContacts= 'nobody';
   if (isListOpen) {
     document.getElementById("insertContactList").classList.add("d-none");
     document.getElementById("arrowDropdown").src = "assets/icons/arrowDropdown.svg"; 

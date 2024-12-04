@@ -31,6 +31,7 @@ async function collectDataFromAddTask(currentStatus, selectedContacts) {
         "currentStatus" : currentStatus,
         "single_ID" : id,
     }
+    console.log(taskData); ///DEBUG
     id = Number(id) + 1;
     await putID(path="id", id);
     await postData(path="tasks", taskData);
