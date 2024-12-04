@@ -650,13 +650,16 @@
     @media(max-height:650px) and (max-width:1010px) {
 
         .j-logo-img {
-            top: 37px;
-            left: 4.87%;
-            height: auto;
+            display: none;
         }
         
         .sign-up-div{
             margin-top: 18vh;
+        }
+
+        .arrow-div {
+            top: 30px;
+            left: 10px;
         }
     }
 
@@ -709,6 +712,10 @@
     }
 
     @media(max-height:500px) and (max-width:1010px) {
+
+        .j-logo-img {
+            display: block;
+        }
 
         body {
             overflow: scroll;
