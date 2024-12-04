@@ -154,7 +154,7 @@
         display: none;
     }
     .rotate-message {
-        height: 50vh;
+        height: 100vh;
         color: rgba(41, 171, 226, 1);
         display: flex;
         align-items: center;
@@ -310,20 +310,368 @@
     }
     
 }
+/*and (min-width:600px) ################################################################*/
 
-@media(max-height:850px) and (max-width:1010px) and (min-width:600px) {
+@media(max-height:890px) and (max-width:1010px) {
 
-    body {
-        overflow: auto;
-        height: 850px;
+     .log-in-div {
+        margin-top: 0px;
+        margin-top: 20vh;
     }
-
+    
     footer {
+        height: 20px;
         position: absolute;
         top: unset;
-        bottom: 8px;
+        bottom: 2px;
+    }
+}
+
+@media(max-height:810px) and (max-width:1010px) {
+
+    .log-in-div {
+       height: 480px;
+       margin-top: 22vh;
+   }
+
+.log-in-header {
+    font-size: 56px;
+    margin-bottom: 6px;
+    margin-top: 20px;
+}
+
+.log-input {
+    width: 100%;
+    height: 40px;
+    padding-top: 6px;
+}
+
+.email-input-div {
+    margin-bottom: 2px;  
+}
+
+.incorrect-email-format {
+    margin-bottom: 6px;
+}
+
+
+.error-input-message {
+    margin-bottom: 8px;
+}
+
+.forgot-password-message {
+    margin-bottom: 8px;
+}
+
+.log-in-button {
+    height: 42px;
+}
+
+.guest-log-in-button {
+    height: 40px;
+}
+
+   .sign-up-div {
+       margin-top: 0px;
+       margin-top: 3vh;
+   }
+
+   .sign-up-button-a {
+    height: 40px;
+}
+
+   .sign-up-button {
+    height: 40px;
+}
+}
+
+
+@media(max-height:750px) and (max-width:1010px) {
+
+    .log-in-div {
+        height: 440px;
+        margin-top: 22vh;
+    }
+ 
+ 
+ .log-in-header {
+     font-size: 54px;
+     margin-bottom: 6px;
+     margin-top: 16px;
+ }
+
+ .log-in-buttons-div {
+    margin-top: 20px;
+    gap: 16px;
+}
+
+ .log-in-button {
+    height: 40px;
+}
+
+.guest-log-in-button {
+    height: 38px;
+    text-decoration: none;
+}
+
+}
+
+@media(max-height:700px) and (max-width:1010px) {
+
+    .log-in-div {
+        height: 400px;
+    }
+ 
+ 
+ .log-in-header {
+     font-size: 54px;
+     margin-bottom: 6px;
+     margin-top: 16px;
+ }
+
+.log-input {
+    width: 100%;
+    height: 38px;
+    padding-top: 6px;
+}
+
+.email-input-div {
+    height: 44px;  
+}
+
+.password-input-div {
+    height: 44px;
+    margin-bottom: 6px;
+}
+
+ .log-in-buttons-div {
+    margin-top: 16px;
+    gap: 10px;
+}
+
+.log-in-button {
+    height: 38px;
+}
+
+.guest-log-in-button {
+    height: 36px;
+}
+
+.sign-up-div {
+    margin-top: 0px;
+    margin-top: 2vh;
+}
+
+.sign-up-button {
+    font-size: 16px;
+    height: 38px;
+}
+
+}
+
+@media(max-height:650px) and (max-width:1010px) {
+
+    @keyframes logoShrink {
+        0% {
+            width: 205px;
+            height: 270px;
+            transform: translate(-55%, -51%) scale(1);
+        }
+        100% {
+            width: clamp(4rem, 2.891rem + 3.942vw, 6.439rem);
+            height: auto;
+            transform: translate(0, 0) scale(1);
+            top: 16px;
+            left: 8.5%;
+        }
     }
 
+    .log-in-div {
+        height: 380px;
+        margin-top: 21vh;
+    }
+ 
+ 
+ .log-in-header {
+     font-size: 50px;
+     margin-bottom: 6px;
+     margin-top: 10px;
+ }
+
+ .input-main-div {
+    height: 180px;
+    margin-top: 16px;
+}
+
+.log-input {
+    width: 100%;
+    height: 38px;
+    padding-top: 6px;
+}
+
+.email-input-div {
+    height: 44px;  
+}
+
+.password-input-div {
+    height: 44px;
+    margin-bottom: 6px;
+}
+
+.error-input-message {
+    margin-bottom: 6px;
+}
+
+.forgot-password-message {
+    margin-bottom: 6px;
+}
+
+ .log-in-buttons-div {
+    margin-top: 16px;
+    gap: 10px;
+}
+
+.log-in-button {
+    height: 38px;
+}
+
+.guest-log-in-button {
+    height: 36px;
+}
+
+.sign-up-div {
+    margin-top: 0px;
+    margin-top: 2vh;
+}
+
+.sign-up-button {
+    font-size: 16px;
+    height: 38px;
+}
+
+}
+
+@media(max-height:610px) and (max-width:1010px) {
+
+    @keyframes logoShrink {
+        0% {
+            width: 205px;
+            height: 270px;
+            transform: translate(-55%, -51%) scale(1);
+        }
+        100% {
+            width: clamp(4rem, 2.891rem + 3.942vw, 6.439rem);
+            height: auto;
+            transform: translate(0, 0) scale(1);
+            top: 8px;
+            left: 8.5%;
+        }
+    }
+
+    .log-in-div {
+        height: 300px;
+        margin-top: 21vh;
+    }
+ 
+ 
+ .log-in-header {
+     font-size: 38px;
+     margin-bottom: 6px;
+     margin-top: 4px;
+ }
+
+ .input-main-div {
+    height: 120px;
+    margin-top: 10px;
+}
+
+.log-input {
+    width: 100%;
+    height: 34px;
+    padding-top: 6px;
+}
+
+.email-input-div {
+    height: 34px;  
+    display: flex;
+    align-items: center;
+}
+
+.mail-Img {
+    top: 6px;
+}
+
+.password-input-div {
+    height: 34px;
+    margin-bottom: 4px;
+}
+
+.password-Img {
+    top: 6px;
+}
+
+.password-Img-eye-of {
+    top: 6px;
+}
+
+.password-Img-eye-on {
+    top: 6px;
+}
+
+.error-input-message {
+    margin-bottom: 4px;
+}
+
+.forgot-password-message {
+    margin-bottom: 6px;
+}
+
+ .log-in-buttons-div {
+    margin-top: 6px;
+    gap: 6px;
+}
+
+.log-in-button {
+    height: 34px;
+}
+
+.guest-log-in-button {
+    height: 32px;
+}
+
+.sign-up-div {
+    margin-top: 0px;
+    margin-top: 1vh;
+}
+
+.sign-up-button {
+    font-size: 16px;
+    height: 34px;
+}
+
+}
+
+@media(max-height:500px) and (max-width:1010px) {
+
+    body {
+        height: 500px;
+        overflow: scroll;
+    }
+
+    @keyframes logoShrink {
+        0% {
+            width: 205px;
+            height: 270px;
+            transform: translate(-55%, -51%) scale(1);
+        }
+        100% {
+            width: clamp(4rem, 2.891rem + 3.942vw, 6.439rem);
+            height: auto;
+            transform: translate(0, 0) scale(1);
+            top: 8px;
+            left: 6%;
+        }
+    }
 }
 
 @media(min-width:1010px) and (max-height:850px)  {
@@ -495,7 +843,7 @@
        }
 }
 
-@media(max-height:850px) and (max-width:1010px) {
+/*@media(max-height:850px) and (max-width:500px) {
 
     .log-in-div {
         width: 92%;
@@ -515,7 +863,7 @@
     }
 }
 
-@media(max-height:740px) and (max-width:1010px) {
+@media(max-height:740px) and (max-width:500px) {
 
     .log-in-div {
         width: 92%;
@@ -595,7 +943,7 @@
 
 }
 
-@media(max-height:670px) and (max-width:1010px) {
+@media(max-height:670px) and (max-width:500px) {
 
     .log-in-div {
         height: 400px;
