@@ -43,6 +43,7 @@ TABLE OF CONTENTS
     }
 
     #newContactButtonContainer {
+        background-color: white;
         display: block;
         position: sticky;
         top: 0;
