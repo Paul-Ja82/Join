@@ -20,6 +20,7 @@ let dragAndDropSections = [
  * - Initializes the header JS functionality asynchronously with `include()` and `initHeaderJs()`.
  */
 function initBoard() {
+  initMPA();
   getIdAndData(pathData='');
   preparingElements();
   disableDragImage();
