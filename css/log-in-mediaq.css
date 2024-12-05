@@ -627,7 +627,7 @@
 
     .log-in-div {
         height: 300px;
-        margin-top: 23vh;
+        margin-top: 120px;
     }
  
 }
@@ -641,15 +641,13 @@
 
     @keyframes logoShrink {
         0% {
-            width: 205px;
-            height: 270px;
             transform: translate(-55%, -51%) scale(1);
         }
         100% {
             width: clamp(4rem, 2.891rem + 3.942vw, 6.439rem);
             height: auto;
             transform: translate(0, 0) scale(1);
-            top: 8px;
+            top: 16px;
             left: 6%;
         }
     }
