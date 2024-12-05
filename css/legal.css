@@ -73,6 +73,13 @@ h4 {
   }
 }
 
+@media(max-width: 350px) {
+  .menu-nav-item {
+      scale: 0.95;
+  }
+}
+  
+
 @media(max-width: 1010px) {
 
     #menuContainer{
@@ -131,4 +138,4 @@ h4 {
   }
 }
   
-  
+

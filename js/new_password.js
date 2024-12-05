@@ -33,7 +33,6 @@ function isPasswordConfirm() {
 function loadCurrentUser() {
     let params = new URLSearchParams(document.location.search);
     currentUser = getUserById(params.get('id'));
-    console.log(currentUser); // DEBUG
 }
 
 
