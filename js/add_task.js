@@ -130,7 +130,6 @@ function toggleContactList(filteredContactsForTasks) {
 }
 
 
-
 function getAssignedTo(single_ID) {
   let allTasksArray= [];
   for (let keyI in allTasks) {
@@ -156,8 +155,6 @@ async function clickAssignedToItems(namesArray) {
     }
   }
 }
-
-
 
 
 /**
