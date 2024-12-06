@@ -44,22 +44,48 @@
     }
 }
 
-@media(max-height:940px) and (max-width:1010px) and (min-width:376px){
+@media(max-height:955px) and (max-width:1010px) and (min-width:376px){
 
     .tasks-div-frame {
         width: 100%;
-        height: 52vh;
+        height: 490px;
         overflow-x: hidden ;
         overflow-y: scroll;
     }
 
+    .tasks-div {
+        padding-bottom: 20px;
+    }
+
 }
 
-@media(max-height:880px) and (max-width:1010px) and (min-width:376px){
+@media(max-height:890px) and (max-width:1010px) and (min-width:376px){
 
     .tasks-div-frame {
         width: 100%;
-        height: 46vh;
+        height: 440px;
+        overflow-x: hidden ;
+        overflow-y: scroll;
+    }
+
+    
+}
+
+@media(max-height:850px) and (max-width:1010px) and (min-width:376px){
+
+    .tasks-div-frame {
+        width: 100%;
+        height: 400px;
+        overflow-x: hidden ;
+        overflow-y: scroll;
+    }
+}
+
+@media(max-height:800px) and (max-width:1010px) and (min-width:376px){
+
+    .tasks-div-frame {
+        width: 100%;
+        height: 370px;
         overflow-x: hidden ;
         overflow-y: scroll;
     }
@@ -71,49 +97,71 @@
 
     .tasks-div-frame {
         width: 100%;
-        height: 42vh;
+        height: 330px;
         overflow-x: hidden ;
         overflow-y: scroll;
     }
 }
 
-@media(max-height:710px) and (max-width:1010px) and (min-width:376px) {
+@media(max-height:740px) and (max-width:430px) and (min-width:376px) {
 
     .tasks-div-frame {
         width: 100%;
-        height: 40vh;
+        height: unset;
+        overflow-x: hidden ;
+        overflow-y: hidden;
+    }
+
+}
+
+@media(max-height:730px) and (max-width:1010px) and (min-width:431px) {
+
+    .tasks-div-frame {
+        width: 100%;
+        height: 290px;
         overflow-x: hidden ;
         overflow-y: scroll;
     }
 
 }
 
-@media(max-height:670px) and (max-width:1010px) and (min-width:376px) {
+@media(max-height:700px) and (max-width:1010px) and (min-width:431px) {
 
     .tasks-div-frame {
         width: 100%;
-        height: 38vh;
+        height: 260px;
         overflow-x: hidden ;
         overflow-y: scroll;
     }
 }
 
-@media(max-height:640px) and (max-width:1010px) and (min-width:376px) {
+@media(max-height:670px) and (max-width:1010px) and (min-width:431px) {
 
     .tasks-div-frame {
         width: 100%;
-        height: 33vh;
+        height: 230px;
         overflow-x: hidden ;
         overflow-y: scroll;
     }
 }
 
-
-@media(max-height:575px) and (max-width:1010px) and (min-width:376px) {
+@media(max-height:680px) and (max-width:430px) and (min-width:376px) {
 
     .tasks-div-frame {
         width: 100%;
-        height: 25vh;
+        height: 330px;
+        overflow-x: hidden ;
+        overflow-y: scroll;
+    }
+
+}
+
+
+@media(max-height:640px) and (max-width:1010px) and (min-width:421px) {
+
+    .tasks-div-frame {
+        width: 100%;
+        height: 200px;
         overflow-x: hidden ;
         overflow-y: scroll;
     }
@@ -123,11 +171,77 @@
     }
 }
 
-@media(max-height:520px) and (max-width:1010px) and (min-width:376px) {
+@media(max-height:650px) and (max-width:430px) and (min-width:376px) {
 
     .tasks-div-frame {
         width: 100%;
-        height: 20vh;
+        height: 300px;
+        overflow-x: hidden ;
+        overflow-y: scroll;
+    }
+
+}
+
+@media(max-height:610px) and (max-width:1010px) and (min-width:431px) {
+
+    .tasks-div-frame {
+        width: 100%;
+        height: 170px;
+        overflow-x: hidden ;
+        overflow-y: scroll;
+    }
+
+}
+
+@media(max-height:620px) and (max-width:430px) and (min-width:376px) {
+
+    .tasks-div-frame {
+        width: 100%;
+        height: 270px;
+        overflow-x: hidden ;
+        overflow-y: scroll;
+    }
+
+}
+
+@media(max-height:580px) and (max-width:1010px) and (min-width:431px) {
+
+    .tasks-div-frame {
+        width: 100%;
+        height: 140px;
+        overflow-x: hidden ;
+        overflow-y: scroll;
+    }
+
+}
+
+@media(max-height:590px) and (max-width:430px) and (min-width:376px) {
+
+    .tasks-div-frame {
+        width: 100%;
+        height: 240px;
+        overflow-x: hidden ;
+        overflow-y: scroll;
+    }
+
+}
+
+@media(max-height:550px) and (max-width:1010px) and (min-width:431px) {
+
+    .tasks-div-frame {
+        width: 100%;
+        height: 105px;
+        overflow-x: hidden ;
+        overflow-y: scroll;
+    }
+
+}
+
+@media(max-height:550px) and (max-width:430px) and (min-width:376px) {
+
+    .tasks-div-frame {
+        width: 100%;
+        height: 200px;
         overflow-x: hidden ;
         overflow-y: scroll;
     }
@@ -624,11 +738,11 @@
 
 }
 
-@media(max-height:560px) and (max-width:320px){
+@media(max-height:567px) and (max-width:370px){
     
     .tasks-div-frame {
         width: 100%;
-        height: 40vh;
+        height: 260px;
         overflow-x: hidden ;
         overflow-y: scroll;
     }
@@ -638,11 +752,25 @@
     }
 }
 
-@media(max-height:650px) and (min-width:321px) and (max-width:375px){
+@media(max-height:530px) and (max-width:370px){
+    
+    .tasks-div-frame {
+        width: 100%;
+        height: 230px;
+        overflow-x: hidden ;
+        overflow-y: scroll;
+    }
+
+    .tasks-div {
+        padding-bottom: 50px;
+    }
+}
+
+@media(max-height:650px) and (min-width:371px) and (max-width:375px){
 
     .tasks-div-frame {
         width: 100%;
-        height: 40vh;
+        height: 300px;
         overflow-x: hidden ;
         overflow-y: scroll;
     }
@@ -652,6 +780,61 @@
     }
 }
 
+@media(max-height:620px) and (min-width:371px) and (max-width:375px){
+
+    .tasks-div-frame {
+        width: 100%;
+        height: 270px;
+        overflow-x: hidden ;
+        overflow-y: scroll;
+    }
+
+    .tasks-div {
+        padding-bottom: 50px;
+    }
+}
+
+@media(max-height:590px) and (min-width:371px) and (max-width:375px){
+
+    .tasks-div-frame {
+        width: 100%;
+        height: 240px;
+        overflow-x: hidden ;
+        overflow-y: scroll;
+    }
+
+    .tasks-div {
+        padding-bottom: 50px;
+    }
+}
+
+@media(max-height:560px) and (min-width:371px) and (max-width:375px){
+
+    .tasks-div-frame {
+        width: 100%;
+        height: 210px;
+        overflow-x: hidden ;
+        overflow-y: scroll;
+    }
+
+    .tasks-div {
+        padding-bottom: 50px;
+    }
+}
+
+@media(max-height:525px) and (min-width:371px) and (max-width:375px){
+
+    .tasks-div-frame {
+        width: 100%;
+        height: 190px;
+        overflow-x: hidden ;
+        overflow-y: scroll;
+    }
+
+    .tasks-div {
+        padding-bottom: 50px;
+    }
+}
 @media(max-height:500px) and (max-width:1010px) {
     
     body {
