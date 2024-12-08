@@ -296,6 +296,7 @@ function checkUrgencyInArray(tasks, urgentTasks) {
     if (urgentTasksAmount) {
         urgentTasksAmount.textContent = urgentTasks.length;
     }
+    return urgentTasks
 }
 
 /**

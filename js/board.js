@@ -23,12 +23,18 @@ let dragAndDropSections = [
  * - Disables the default drag image during drag operations with `disableDragImage()`.
  * - Initializes the header JS functionality asynchronously with `include()` and `initHeaderJs()`.
  */
-function initBoard() {
-  initMPA();
-  getIdAndData(pathData='');
+async function initBoard() {
+  await initMPA();
+  await getIdAndData(pathData='');
   preparingElements();
   disableDragImage();
   include().then(initHeaderJs);
+  checkPriorityImgAndText();
+}
+
+function checkPriorityImgAndText() {
+  console.log(allTasks);
+  
 }
 
 /**
