@@ -6,10 +6,14 @@ let currentDraggedElementID;
 let currentDraggedElement;
 let clonedElementForMoving;
 let dragAndDropSections = [
+  "tasks_area_add_task",
   "to_do_tasks",
+  "tasks_area_in_progress",
   "in_progress_tasks",
+  "tasks_area_await_feedback",
   "await_feedback_tasks",
   "done_tasks",
+  "tasks_area_done"
 ];
 
 /**
@@ -180,13 +184,13 @@ async function checkDraggableArea(e) {
 * @returns {string} The new section or "noDropArea" if invalid.
 */
 function checkNewSection(idFromSectionToDrop) {
-  if (idFromSectionToDrop == 'to_do_tasks') {
+  if (idFromSectionToDrop == 'to_do_tasks' || idFromSectionToDrop == 'tasks_area_add_task') {
       newSection = 'todo';
-  } else if (idFromSectionToDrop == 'in_progress_tasks') {
+    } else if (idFromSectionToDrop == 'in_progress_tasks' || idFromSectionToDrop == 'tasks_area_in_progress') {
       newSection = 'inProgress';
-  } else if (idFromSectionToDrop == 'await_feedback_tasks') {
+    } else if (idFromSectionToDrop == 'await_feedback_tasks' || idFromSectionToDrop == 'tasks_area_await_feedback') {
       newSection = 'awaitFeedback';
-  } else if (idFromSectionToDrop == 'done_tasks') {
+    } else if (idFromSectionToDrop == 'done_tasks' || idFromSectionToDrop == 'tasks_area_done') {
       newSection = 'done';
   } else {
       newSection = 'noDropArea';
