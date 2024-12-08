@@ -57,7 +57,9 @@
               </svg>
             </div>
           </div>
-          <div id="tasks_area_add_task" class="tasks_area">
+          <div id="tasks_area_add_task" class="tasks_area"
+          ondrop="checkDraggableArea(event); removeShadow('shadow_move_to_to_do_tasks')"
+          ondragover="allowDrop(event); if (window.innerWidth > 600) showShadow('shadow_move_to_to_do_tasks')">
             <div id="to_do_tasks_nothing" class="task_nothing_todo">
               No tasks To do
             </div>
@@ -79,7 +81,9 @@
               </svg>
             </div>
           </div>
-          <div id="tasks_area_in_progress" class="tasks_area">
+          <div id="tasks_area_in_progress" class="tasks_area"
+          ondrop="checkDraggableArea(event); removeShadow('shadow_move_to_in_progress_tasks')"
+              ondragover="allowDrop(event); if (window.innerWidth > 600) showShadow('shadow_move_to_in_progress_tasks')">
             <div id="in_progress_tasks_nothing" class="task_nothing_todo">
               No tasks To do
             </div>
@@ -102,7 +106,9 @@
               </svg>
             </div>
           </div>
-          <div id="tasks_area_await_feedback" class="tasks_area">
+          <div id="tasks_area_await_feedback" class="tasks_area"
+          ondrop="removeShadow('shadow_move_to_await_feedback_tasks')"
+          ondragover="allowDrop(event); if (window.innerWidth > 600) showShadow('shadow_move_to_await_feedback_tasks')">
             <div id="await_feedback_tasks_nothing" class="task_nothing_todo">
               No tasks To do
             </div>
@@ -119,7 +125,9 @@
           <div class="task_section_header">
             <span>Done</span>
           </div>
-          <div id="tasks_area_done" class="tasks_area">
+          <div id="tasks_area_done" class="tasks_area"
+          ondrop="removeShadow('shadow_move_to_done_tasks')"
+          ondragover="allowDrop(event); if (window.innerWidth > 600) showShadow('shadow_move_to_done_tasks')">
             <div id="done_tasks_nothing" class="task_nothing_todo">No tasks Done</div>
             <div
               ondrop="removeShadow('shadow_move_to_done_tasks')"
