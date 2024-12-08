@@ -136,7 +136,8 @@ function renderSubtasks() {
  */
 function returnChangingAddTask(today) {
   return `
-<div class="overAllFormAddTask overAllChangeAddTask">
+  <div id="backgroundAssignedToInsert" onclick="toggleContactList()"></div>
+  <div class="overAllFormAddTask overAllChangeAddTask">
   <div class="closeButtonChangeAddTask"><div class="overImgCloser"><img onclick="closeChangeTaskValues()" class="imgCloseChangeAddTask" src="assets/icons/close.svg"></div></div>
 <form id="formAddTasks" class="formChangeAddTasks">
       <div class="seperateSendButtonsChangeAddTask"><div class="titleSectionChangeAddTask"><h2 class="titleAddTask">Add Task</h2><div class="iconImage"><img onclick="closeDialog()" src="assets/icons/close.svg"></div></div>

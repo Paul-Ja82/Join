@@ -32,6 +32,11 @@
   z-index: 1000;
 }
 
+.positionContactList {
+position: absolute;
+z-index: 1000;
+}
+
 .rotate-message {
   display: none;
   font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
@@ -1065,6 +1070,11 @@ input[type="date"].filled {
   .listContacts {
     position: static;
   }
+
+  .positionContactList {
+    position: relative;
+    z-index: 1000;
+    }
 
   .overInputFields {
     flex-direction: column;
