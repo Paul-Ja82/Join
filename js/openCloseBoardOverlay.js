@@ -92,6 +92,7 @@ function closeDialog() {
 function renderFormAddTask(selectedProcessCategory, today) {
     // console.log(selectedProcessCategory);
     return `
+    <div id="backgroundAssignedToInsert" onclick="toggleContactList()"></div>
     <div class="overAllFormAddTaskBoard">
     <form id="formAddTasks" class="formAddTasks">
         <div class="seperateSendButtonsBoard"><div class="titleSectionAddTask"><h2 class="titleAddTask">Add Task</h2><div class="iconImage"><img onclick="closeDialog()" src="assets/icons/close.svg"></div></div>
@@ -126,7 +127,7 @@ function renderFormAddTask(selectedProcessCategory, today) {
                   <div class="overInputAssignedTo">
                     <input
                       id="inputAssignedTo"
-                      class="fieldInput inputAssignedTo"
+                      class="fieldInput inputAssignedTo "
                       type="text"
                       onclick="toggleContactList()"
                       oninput="checkContacts()"
@@ -142,7 +143,7 @@ function renderFormAddTask(selectedProcessCategory, today) {
                       />
                     </div>
                   </div>
-                  <div id="insertContactList" class="listContacts"></div>
+                  <div id="insertContactList" class="listContacts positionContactList"></div>
                 </div>
                 <div id="showPersons" class="showPersons"></div>
               </div>

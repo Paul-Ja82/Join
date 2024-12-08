@@ -19,6 +19,24 @@
   cursor: pointer;
 }
 
+.backgroundAssignedTo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+}
+
+.inputAssignedTo {
+  z-index: 1000;
+}
+
+.positionContactList {
+position: absolute;
+z-index: 1000;
+}
+
 .rotate-message {
   display: none;
   font-size: clamp(1rem, 0.446rem + 2.768vw, 2.938rem);
@@ -51,7 +69,6 @@
   right: 0;
   bottom: 0;
   left: 0;
-
   z-index: 900;
 }
 
@@ -716,6 +733,7 @@ input[type="date"].filled {
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
+  z-index: 1000;
 }
 
 .arrowCategory {
@@ -1052,6 +1070,11 @@ input[type="date"].filled {
   .listContacts {
     position: static;
   }
+
+  .positionContactList {
+    position: relative;
+    z-index: 1000;
+    }
 
   .overInputFields {
     flex-direction: column;
