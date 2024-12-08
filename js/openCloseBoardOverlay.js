@@ -43,6 +43,8 @@ async function showDialog(selectedProcessCategory) {
 function showTask() {
     document.getElementById("backgroundId").classList.remove("d-none");
     document.getElementById("dialogBox").style.backgroundColor = "unset";
+    document.getElementById("dialogBox").style.width = "unset";
+
     setTimeout(() => {
       document.getElementById("dialogBox").classList.add("showIt");
     }, 10);
