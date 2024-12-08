@@ -66,13 +66,14 @@ async function postData(path = "", data = {}) {
  */
 function filterContacts() {
   const input = document.getElementById("inputAssignedTo").value.toLowerCase();
-  
+
   const filteredContacts = filteredContactsForTasks.filter((contact) => {
-    if (contact && typeof contact.name === "string") {return contact.name.toLowerCase().includes(input);}
-    return false;});
+    if (contact && typeof contact.name === "string") { return contact.name.toLowerCase().includes(input); }
+    return false;
+  });
   let contactsTemplate = createContactsTemplate(filteredContacts);
   const contactListElement = document.getElementById("insertContactList");
-  contactListElement.innerHTML = '';  
+  contactListElement.innerHTML = '';
   contactListElement.appendChild(contactsTemplate);
 }
 
@@ -111,73 +112,94 @@ function closeContactList() {
  * toggleContactList(filteredContactsForTasks);
  */
 function toggleContactList() {
-  // selectedContacts= 'nobody';
   if (isListOpen) {
     document.getElementById("insertContactList").classList.add("d-none");
-    document.getElementById("arrowDropdown").src = "assets/icons/arrowDropdown.svg"; 
+    document.getElementById("arrowDropdown").src = "assets/icons/arrowDropdown.svg";
   } else {
-    let assignedToContacts= 'nobody';
+    let assignedToContacts = 'nobody';
     if (currentTaskForEdit) {
-      assignedToContacts= getAssignedTo(currentTaskForEdit);
+      assignedToContacts = getAssignedTo(currentTaskForEdit);
     }
     checkContacts();
-    // clickItems(selectedContacts);
     document.getElementById("insertContactList").classList.remove("d-none");
     document.getElementById("arrowDropdown").src = "assets/icons/arrowUpDropdown.svg";
   }
-
   isListOpen = !isListOpen;
 }
 
 
 function getAssignedTo(single_ID) {
-  let allTasksArray= [];
+  let allTasksArray = [];
   for (let keyI in allTasks) {
     allTasksArray.push(allTasks[keyI]);
   }
-  let task= allTasksArray.find((taskI) => taskI.single_ID == single_ID);
+  let task = allTasksArray.find((taskI) => taskI.single_ID == single_ID);
   return task.assigned_to;
 }
 
 async function getContactId(name) {
   await loadContacts();
-  let contact= contacts.find(contactI => contactI.name == name);
+  let contact = contacts.find(contactI => contactI.name == name);
   return contact.id;
 }
 
 async function clickItems(namesArray) {
   let elemId;
-  let clickEvent= new Event('click');
-  if (namesArray != 'nobody' ) {
+  let clickEvent = new Event('click');
+  if (namesArray != 'nobody') {
     for (let nameI of namesArray) {
-      elemId= 'listPerson' + await getContactId(nameI);
+      elemId = 'listPerson' + await getContactId(nameI);
       document.getElementById(elemId).dispatchEvent(clickEvent);
     }
   }
 }
 
 async function markItems(namesArray) {
-  let listElemId;
-  let listItemElem;
-  let checkboxImgElemId;
-  let checkboxImgElem;
   let contactId;
-  let checkboxElemId;
-  let checkboxElem;
-  if (namesArray != 'nobody' ) {
+  if (namesArray != 'nobody') {
     for (let nameI of namesArray) {
-      contactId= await getContactId(nameI);
-      listElemId= 'listPerson' + contactId;
-      listItemElem= document.getElementById(listElemId);
-      checkboxImgElemId= 'checkboxId' + contactId;
-      checkboxImgElem= document.getElementById(checkboxImgElemId);
-      checkboxElemId= 'checkbox' + contactId;
-      checkboxElem= document.getElementById(checkboxElemId);
-      listItemElem.classList.add('backgroundContact');
-      checkboxImgElem.src= './assets/icons/checkboxChecked.svg';
-      checkboxElem.checked= true;
+      contactId = await getContactId(nameI);
+      markItem(contactId);
     }
   }
+}
+
+async function selectItems(namesArray) {
+  let contactId;
+  if (namesArray != 'nobody') {
+    for (let nameI of namesArray) {
+      contactId = await getContactId(nameI);
+      selectItem(contactId);
+    }
+  }
+}
+
+function markItem(contactId) {
+  let listItemElem = document.getElementById('listPerson' + contactId);
+  let checkboxImgElem = document.getElementById('checkboxId' + contactId);
+  if (listItemElem) {
+    listItemElem.classList.add('backgroundContact');
+    checkboxImgElem.src = './assets/icons/checkboxChecked.svg';
+  }
+}
+
+function demarkItem(contactId) {
+  let listItemElem = document.getElementById('listPerson' + contactId);
+  let checkboxImgElem = document.getElementById('checkboxId' + contactId);
+  if(listItemElem) {
+    listItemElem.classList.remove('backgroundContact');
+    checkboxImgElem.src = './assets/icons/checkbox.svg';
+  }
+}
+
+function selectItem(contactId) {
+  let checkboxElem = document.getElementById('checkbox' + contactId);
+  checkboxElem.checked= true;
+}
+
+function deselectItem(contactId) {
+  let checkboxElem = document.getElementById('checkbox' + contactId);
+  checkboxElem.checked= false;
 }
 
 
@@ -194,12 +216,12 @@ async function markItems(namesArray) {
  */
 function checkDateInput() {
   let valueDate = document.getElementById("date");
-  if (valueDate.value === "") {valueDate.classList.add("dateInput");} 
-  else {valueDate.classList.remove("dateInput");}
+  if (valueDate.value === "") { valueDate.classList.add("dateInput"); }
+  else { valueDate.classList.remove("dateInput"); }
 
   const dateInput = document.getElementById("date");
-  if (dateInput.value) {dateInput.classList.add("filled");} 
-  else {dateInput.classList.remove("filled");}
+  if (dateInput.value) { dateInput.classList.add("filled"); }
+  else { dateInput.classList.remove("filled"); }
 }
 
 
@@ -216,10 +238,10 @@ function showPersons() {
   avatarContainer.innerHTML = "";
   if (selectedContacts.length > 5) {
     const contactsToShow = selectedContacts.slice(0, 5);
-    contactsToShow.forEach((contact, index) => {createAndAppendSVG(avatarContainer, contact, index)});
+    contactsToShow.forEach((contact, index) => { createAndAppendSVG(avatarContainer, contact, index) });
     avatarContainer.appendChild(checkAssignedToContactsLength());
   } else if (selectedContacts.length <= 5) {
-    selectedContacts.forEach((contact, index) => {createAndAppendSVG(avatarContainer, contact, index)});
+    selectedContacts.forEach((contact, index) => { createAndAppendSVG(avatarContainer, contact, index) });
   }
 }
 
@@ -307,9 +329,9 @@ function saveEditSubtask(index) {
  */
 function handleEnterKey(event) {
   if (event.key === "Enter") {
-    event.preventDefault(); 
+    event.preventDefault();
     let subtaskSaver = document.getElementById("subtaskSaver");
-    
+
     if (subtaskSaver) {
       subtaskSaver.click();
     }

@@ -58,7 +58,7 @@ function returnRenderdContacts () {
   filteredContacts.forEach((contact, index) => {
     const isSelected = selectedContacts.includes(contact);
     contactList.innerHTML += `
-    <li id="listPerson${index}" class="backgroundOnHover" onclick="changeCheckbox(${index})">
+    <li id="listPerson${index}" class="backgroundOnHover" onclick="contactClickHandler(${index})">
       <div class="profile">
         <div id="profilPerson${index}" class="profilePerson"></div>    
         <div class="contactPerson">${contact}</div>

@@ -29,15 +29,39 @@ function colorSelectedContacts() {
  *
  * @param {number} index - The index of the checkbox/contact in the contact list.
  */
-function changeCheckbox(index) {
-    const checkbox = document.getElementById(`checkbox${index}`);
+function contactClickHandler(contactId) {
+    let checkbox = document.getElementById(`checkbox${contactId}`);
+    let contactName= checkbox.value;
+    let selectedContactsIndex;
+    if (selectedContacts.includes(contactName)) {
+      selectedContactsIndex= selectedContacts.indexOf(contactName);
+      deselectItem(contactId);
+      demarkItem(contactId);
+      selectedContacts.splice(selectedContactsIndex, 1);
+    } else {
+      selectItem(contactId);
+      markItem(contactId);
+      selectedContacts.push(contactName);
+    }
+    // renderAddedPersons();
+    showPersons();
+  }
+/*
+ function contactClickHandler(contactId) {
+    let checkbox = document.getElementById(`checkbox${contactId}`);
+    let contactName= 
     checkbox.checked = !checkbox.checked;
-    if (checkbox.checked) {
-      document.getElementById(`checkboxId${index}`).src = "assets/icons/checkboxChecked.svg";}
+    if (checkbox.checked)
+      document.getElementById(`checkboxId${index}`).src = "assets/icons/checkboxChecked.svg";
+      
+    else {
+
+    }
     // renderAddedPersons();
     showPersons();
     colorSelectedContacts();
-  }
+  } 
+  */
 
 
   /**
