@@ -121,7 +121,7 @@ function toggleContactList() {
       assignedToContacts= getAssignedTo(currentTaskForEdit);
     }
     checkContacts(allContactsForTasks);
-    // clickAssignedToItems(assignedToContacts);
+    // clickAssignedToItems(selectedContacts);
     document.getElementById("insertContactList").classList.remove("d-none");
     document.getElementById("arrowDropdown").src = "assets/icons/arrowUpDropdown.svg";
   }

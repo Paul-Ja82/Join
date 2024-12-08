@@ -33,7 +33,6 @@ function changeCheckbox(index) {
     const checkbox = document.getElementById(`checkbox${index}`);
     checkbox.checked = !checkbox.checked;
     document.getElementById(`checkboxId${index}`).src = "assets/icons/checkbox.svg";
-  
     if (checkbox.checked) {
       document.getElementById(`checkboxId${index}`).src = "assets/icons/checkboxChecked.svg";}
     renderAddedPersons();

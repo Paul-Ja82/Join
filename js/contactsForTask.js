@@ -16,8 +16,8 @@ function checkContacts() {
     }
     console.log(filteredContactsForTasks); ///DEBUG
     let contactListTemplate = createContactsTemplate(filteredContactsForTasks);
-    // document.getElementById("insertContactList").appendChild(contactListTemplate);
     document.getElementById("insertContactList").innerHTML= contactListTemplate.innerHTML;
+    clickAssignedToItems(selectedContacts);
   }
 
 
