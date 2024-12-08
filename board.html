@@ -121,13 +121,13 @@
             </div>
             </div>
         </div>
-        <div id="tasks_area_done" class="tasks_area"
-        ondrop="removeShadow('shadow_move_to_done_tasks')"
-        ondragover="allowDrop(event); if (window.innerWidth > 600) showShadow('shadow_move_to_done_tasks')">
+        <div id="task_section_done" class="task_section">
           <div class="task_section_header">
             <span>Done</span>
           </div>
-          <div id="tasks_area_done" class="tasks_area">
+          <div id="tasks_area_done" class="tasks_area"
+          ondrop="removeShadow('shadow_move_to_done_tasks')"
+          ondragover="allowDrop(event); if (window.innerWidth > 600) showShadow('shadow_move_to_done_tasks')">
             <div id="done_tasks_nothing" class="task_nothing_todo">No tasks Done</div>
             <div
               ondrop="removeShadow('shadow_move_to_done_tasks')"
