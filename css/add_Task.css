@@ -220,6 +220,11 @@ ul {
   border-radius: 50%;
 }
 
+.changeSymbolesAssignedTo img:hover {
+  background-color: #eeeeee;
+  border-radius: 50%;
+}
+
 .formAddTasks {
   display: flex;
   flex-direction: column;
@@ -725,6 +730,17 @@ input[type="date"].filled {
 }
 
 .changeSymboles {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 999;
+}
+.changeSymbolesAssignedTo {
   display: flex;
   gap: 4px;
   align-items: center;

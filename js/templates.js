@@ -265,7 +265,7 @@ function returnChangingAddTask(today) {
                     placeholder="Select contacts to assign"
                     autocomplete="off"
                   />
-                  <div class="changeSymboles">
+                  <div class="changeSymbolesAssignedTo">
                     <img
                       id="arrowDropdown"
                       src="assets/icons/arrowDropdown.svg"
@@ -359,7 +359,7 @@ function returnAddTaskForm(selectedProcessCategory, today) {
                         placeholder="Select contacts to assign"
                         autocomplete="off"
                       />
-                      <div class="changeSymboles">
+                      <div class="changeSymbolesAssignedTo">
                         <img
                           id="arrowDropdown"
                           src="assets/icons/arrowDropdown.svg"
