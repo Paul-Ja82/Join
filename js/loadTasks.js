@@ -16,7 +16,6 @@ let id;
  * @returns {number} - The updated task ID after creation.
  */
 async function collectDataFromAddTask(currentStatus, selectedContacts) {
-    console.log('collectDataFromAddTask(..), selectedContacts: ' + selectedContacts); ///DEBUG
     if(selectedContacts.length == 0) {
         selectedContacts = 'nobody';
     }
@@ -31,7 +30,6 @@ async function collectDataFromAddTask(currentStatus, selectedContacts) {
         "currentStatus" : currentStatus,
         "single_ID" : id,
     }
-    console.log(taskData); ///DEBUG
     id = Number(id) + 1;
     await putID(path="id", id);
     await postData(path="tasks", taskData);
