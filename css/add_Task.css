@@ -683,7 +683,7 @@ input[type="date"].filled {
 }
 
 .showCategorys {
-  position: fixed;
+  position: absolute;
   width: 440px;
   background-color: white;
   border-radius: 0 0 10px 10px;
