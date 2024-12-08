@@ -312,6 +312,7 @@ function returnChangingAddTask(today) {
 function returnAddTaskForm(selectedProcessCategory, today) {
   /*let selectedProcessCategory = selectCat == null ? "medium" : selectCat;*/
   return `
+  <div id="backgroundAssignedToInsert" onclick="toggleContactList()"></div>
   <div id="insertAddedToTaskConfirmation"></div>
   <div class="overAllFormAddTask">
         <div class="overheader">

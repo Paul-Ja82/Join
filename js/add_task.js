@@ -113,6 +113,7 @@ function closeContactList() {
  */
 function toggleContactList() {
   if (isListOpen) {
+    document.getElementById("backgroundAssignedToInsert").classList.remove("backgroundAssignedTo");
     document.getElementById("insertContactList").classList.add("d-none");
     document.getElementById("arrowDropdown").src = "assets/icons/arrowDropdown.svg";
   } else {
@@ -121,6 +122,7 @@ function toggleContactList() {
       assignedToContacts = getAssignedTo(currentTaskForEdit);
     }
     checkContacts();
+    document.getElementById("backgroundAssignedToInsert").classList.add("backgroundAssignedTo");
     document.getElementById("insertContactList").classList.remove("d-none");
     document.getElementById("arrowDropdown").src = "assets/icons/arrowUpDropdown.svg";
   }
