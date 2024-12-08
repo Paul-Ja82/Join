@@ -120,8 +120,8 @@ function toggleContactList() {
     if (currentTaskForEdit) {
       assignedToContacts= getAssignedTo(currentTaskForEdit);
     }
-    checkContacts(allContactsForTasks);
-    // clickAssignedToItems(selectedContacts);
+    checkContacts();
+    // clickItems(selectedContacts);
     document.getElementById("insertContactList").classList.remove("d-none");
     document.getElementById("arrowDropdown").src = "assets/icons/arrowUpDropdown.svg";
   }
@@ -145,13 +145,37 @@ async function getContactId(name) {
   return contact.id;
 }
 
-async function clickAssignedToItems(namesArray) {
+async function clickItems(namesArray) {
   let elemId;
   let clickEvent= new Event('click');
   if (namesArray != 'nobody' ) {
     for (let nameI of namesArray) {
       elemId= 'listPerson' + await getContactId(nameI);
       document.getElementById(elemId).dispatchEvent(clickEvent);
+    }
+  }
+}
+
+async function markItems(namesArray) {
+  let listElemId;
+  let listItemElem;
+  let checkboxImgElemId;
+  let checkboxImgElem;
+  let contactId;
+  let checkboxElemId;
+  let checkboxElem;
+  if (namesArray != 'nobody' ) {
+    for (let nameI of namesArray) {
+      contactId= await getContactId(nameI);
+      listElemId= 'listPerson' + contactId;
+      listItemElem= document.getElementById(listElemId);
+      checkboxImgElemId= 'checkboxId' + contactId;
+      checkboxImgElem= document.getElementById(checkboxImgElemId);
+      checkboxElemId= 'checkbox' + contactId;
+      checkboxElem= document.getElementById(checkboxElemId);
+      listItemElem.classList.add('backgroundContact');
+      checkboxImgElem.src= './assets/icons/checkboxChecked.svg';
+      checkboxElem.checked= true;
     }
   }
 }

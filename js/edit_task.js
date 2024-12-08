@@ -103,8 +103,15 @@ function changeTaskValues(e) {
   document.getElementById("dialogBox").style.boxSizing = "border-box";
   let today = new Date().toISOString().split('T')[0];
   document.getElementById("dialogBox").innerHTML = returnChangingAddTask(today);
-
   returnChangeAddTask();
+  selectedContacts= getTaskById(currentTaskForEdit).assigned_to;
+  showPersons();
+}
+
+function getTaskById(taskId) {
+  let allTasksArray= [];
+  for (let keyI in allTasks) allTasksArray.push(allTasks[keyI]);
+  return allTasksArray.find(taskI => taskI.single_ID == taskId);
 }
 
 /**

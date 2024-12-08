@@ -14,10 +14,10 @@ function checkContacts() {
     for (let i = 0; i < contactsArray.length; i++) {
       if (contactsArray[i].name.toLowerCase().includes(inputElem.value.toLowerCase())) {filteredContactsForTasks.push(contactsArray[i]);}
     }
-    console.log(filteredContactsForTasks); ///DEBUG
     let contactListTemplate = createContactsTemplate(filteredContactsForTasks);
     document.getElementById("insertContactList").innerHTML= contactListTemplate.innerHTML;
-    clickAssignedToItems(selectedContacts);
+    // clickItems(selectedContacts);
+    markItems(selectedContacts);
   }
 
 
