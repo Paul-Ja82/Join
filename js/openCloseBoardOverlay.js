@@ -128,8 +128,9 @@ function renderFormAddTask(selectedProcessCategory, today) {
                       class="fieldInput inputAssignedTo"
                       type="text"
                       onclick="toggleContactList()"
-                      oninput="filterContacts()"
+                      oninput="checkContacts()"
                       placeholder="Select contacts to assign"
+                      autocomplete="off"
                     />
                     <div class="changeSymboles">
                       <img

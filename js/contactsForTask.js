@@ -7,14 +7,17 @@ let filteredContactsForTasks = []
  * @param {Object} allContactsForTasks - An object containing all contacts, where each contact is associated with a task.
  * @returns {Array} filteredContactsForTasks - An array of contacts excluding null values.
  */
-function checkContacts(allContactsForTasks) {
+function checkContacts() {
     const contactsArray = Object.values(allContactsForTasks);
+    let inputElem= document.getElementById('inputAssignedTo');
     filteredContactsForTasks = [];
     for (let i = 0; i < contactsArray.length; i++) {
-      if (contactsArray[i] !== null) {filteredContactsForTasks.push(contactsArray[i]);}
+      if (contactsArray[i].name.toLowerCase().includes(inputElem.value.toLowerCase())) {filteredContactsForTasks.push(contactsArray[i]);}
     }
+    console.log(filteredContactsForTasks); ///DEBUG
     let contactListTemplate = createContactsTemplate(filteredContactsForTasks);
-    document.getElementById("insertContactList").appendChild(contactListTemplate);
+    // document.getElementById("insertContactList").appendChild(contactListTemplate);
+    document.getElementById("insertContactList").innerHTML= contactListTemplate.innerHTML;
   }
 
 
