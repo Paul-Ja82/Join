@@ -541,7 +541,8 @@ body {
           gap: 18px;
           & .task_contact_name_icon {
             width: 42px;
-            height: 42px;
+            /* height: 42px; */
+            aspect-ratio: 1;
             border-radius: 50%;
             font-size: 16px;
             color: white;
