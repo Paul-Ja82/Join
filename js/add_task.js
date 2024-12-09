@@ -153,16 +153,21 @@ function getAssignedTo(single_ID) {
 async function getContactId(name) {
   await loadContacts();
   let contact = contacts.find(contactI => contactI.name == name);
-  return contact.id;
+  if (contact) return contact.id;
+  else return undefined;
 }
 
 async function clickItems(namesArray) {
+  let contactId;
   let elemId;
   let clickEvent = new Event('click');
   if (namesArray != 'nobody') {
     for (let nameI of namesArray) {
-      elemId = 'listPerson' + await getContactId(nameI);
-      document.getElementById(elemId).dispatchEvent(clickEvent);
+      contactId= await getContactId(nameI);
+      if (contactId) {
+        elemId = 'listPerson' + contactId;
+        document.getElementById(elemId).dispatchEvent(clickEvent);
+      }
     }
   }
 }
@@ -216,13 +221,11 @@ function deselectItem(contactId) {
 }
 
 function clickOutsideAssignedToHandler(event) {
-  console.log('clickOutsideAssignedToHandler(event)'); ///DEBUG
   let inputElem= document.getElementById('inputAssignedTo');
   let ddMenuElem= document.getElementById('insertContactList');
   let outsideInputElem= !inputElem.contains(event.target);
   let oustsideDdMenuElem= !ddMenuElem.contains(event.target);
   if (outsideInputElem && oustsideDdMenuElem) {
-    console.log('es wurde außerhalb geklcikt'); ///DEBUG
     toggleContactList();
   }
 }
