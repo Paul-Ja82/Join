@@ -20,8 +20,8 @@ async function initAddTasks() {
   const contactList = document.getElementById("insertContactList");
   contactList.classList.add("d-none");
   selectPrio("medium");
+  document.getElementById('inputAssignedTo').addEventListener('focusin', toggleContactList);
 }
-
 
 /**
  * Fetches data from the specified path on the server and logs the response in JSON format.
@@ -112,10 +112,15 @@ function closeContactList() {
  * toggleContactList(filteredContactsForTasks);
  */
 function toggleContactList() {
+  let inputElem= document.getElementById('inputAssignedTo');
   if (isListOpen) {
+    inputElem.addEventListener('focusin', toggleContactList);
+    window.removeEventListener('click', clickOutsideAssignedToHandler);
     document.getElementById("insertContactList").classList.add("d-none");
     document.getElementById("arrowDropdown").src = "assets/icons/arrowDropdown.svg";
   } else {
+    inputElem.removeEventListener('focusin', toggleContactList);
+    window.addEventListener('click', clickOutsideAssignedToHandler);
     let assignedToContacts = 'nobody';
     if (currentTaskForEdit) {
       assignedToContacts = getAssignedTo(currentTaskForEdit);
@@ -202,6 +207,17 @@ function deselectItem(contactId) {
   checkboxElem.checked= false;
 }
 
+function clickOutsideAssignedToHandler(event) {
+  console.log('clickOutsideAssignedToHandler(event)'); ///DEBUG
+  let inputElem= document.getElementById('inputAssignedTo');
+  let ddMenuElem= document.getElementById('insertContactList');
+  let outsideInputElem= !inputElem.contains(event.target);
+  let oustsideDdMenuElem= !ddMenuElem.contains(event.target);
+  if (outsideInputElem && oustsideDdMenuElem) {
+    console.log('es wurde außerhalb geklcikt'); ///DEBUG
+    toggleContactList();
+  }
+}
 
 /**
  * Validates the date input field to ensure a value is selected and applies appropriate styles.
@@ -419,4 +435,14 @@ function deleteSubtask(index) {
 function putInput(value) {
   document.getElementById("showSelectedCategory").value = value;
   closeDropdown();
+}
+
+/*###########*/
+/*## DEBUG ##*/
+/*###########*/
+
+function tuEsAddTask() {
+  let inputElem= document.getElementById('inputAssignedTo');
+  console.log(document.contains(inputElem)); ///DEBUG
+  console.log(inputElem.contains(document)); ///DEBUG
 }

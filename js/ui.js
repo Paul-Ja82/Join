@@ -192,3 +192,4 @@ function getMonogram(name) {
     return monogram.slice(0, 2);
 }
 
+

@@ -259,10 +259,9 @@ function returnChangingAddTask(today) {
                     id="inputAssignedTo"
                     class="fieldInput inputAssignedTo"
                     type="text"
-                    onclick="toggleContactList()"
-                    oninput="checkContacts()"
                     placeholder="Select contacts to assign"
                     autocomplete="off"
+                    oninput="checkContacts()"
                   />
                   <div class="changeSymboles">
                     <img
@@ -352,10 +351,9 @@ function returnAddTaskForm(selectedProcessCategory, today) {
                         id="inputAssignedTo"
                         class="fieldInput inputAssignedTo"
                         type="text"
-                        onclick="toggleContactList()"
-                        oninput="checkContacts()"
                         placeholder="Select contacts to assign"
                         autocomplete="off"
+                        oninput="checkContacts()"
                       />
                       <div class="changeSymboles">
                         <img

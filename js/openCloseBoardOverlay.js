@@ -120,7 +120,7 @@ function renderFormAddTask(selectedProcessCategory, today) {
                   placeholder="Enter a Description"
                 ></textarea>
               </div>
-              <div class="overField">
+              <div id="assignedToCTN" class="overField">
                 <label for="inputAssignedTo">Assigned to</label>
                 <div id="setBackground" class="overaddAssignedTo">
                   <div class="overInputAssignedTo">
@@ -128,10 +128,9 @@ function renderFormAddTask(selectedProcessCategory, today) {
                       id="inputAssignedTo"
                       class="fieldInput inputAssignedTo"
                       type="text"
-                      onclick="toggleContactList()"
-                      oninput="checkContacts()"
                       placeholder="Select contacts to assign"
                       autocomplete="off"
+                      oninput="checkContacts()"
                     />
                     <div class="changeSymboles">
                       <img
