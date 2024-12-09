@@ -72,12 +72,13 @@ function fillTaskSections(section, tasks) {
         let assignedTocontacts = checkAssignedTo(tasks, i);
        
         let priorityImg = checkPriorityImg(tasks, i);
-        let urgencyDateForTask = checkUrgencyDateForTask(tasks, i);
+        let daysInFuture = checkDaysInFuture(tasks, i);
+        let daysInPast = checkDaysInPast(tasks, i);
         let checkedSubtasks = checkCheckedSubtasks(tasks, i);
         let subtasksLength = checkSubtaskLength(tasks, i)
         let width = calcProcessBarWidth(checkedSubtasks, subtasksLength);
         createTaskHTML(section, tasks, i, assignedTocontacts, priorityImg, width, checkedSubtasks, subtasksLength)
-        newUrgencyImg(urgencyDateForTask, tasks, i)
+        newUrgencyImg(daysInFuture, daysInPast, tasks, i)
     }
     let moveToShadow = createDragAndDropShadow(section)
     nothingTodoOrDone(tasks, section)
@@ -86,9 +87,13 @@ function fillTaskSections(section, tasks) {
     showSubtaskCtn()
 }
 
-function newUrgencyImg(urgencyDateForTask, tasks, i) {
-    if (urgencyDateForTask <= 3 && tasks[i].currentStatus != "done") {
-        console.log(urgencyDateForTask);
+function newUrgencyImg(daysInFuture, daysInPast, tasks, i) {
+    console.log(tasks[i]);
+    console.log(daysInFuture);
+    console.log(daysInPast);
+    if (daysInFuture <= 3 && tasks[i].currentStatus != "done" ||
+        daysInPast <= 0 && tasks[i].currentStatus != "done"
+    ) {
         document.getElementById(`single_task_priority${tasks[i].single_ID}`).innerHTML = "";
         document.getElementById(`single_task_priority${tasks[i].single_ID}`).innerHTML = 
         `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -105,12 +110,27 @@ function newUrgencyImg(urgencyDateForTask, tasks, i) {
     }
 }
 
-function checkUrgencyDateForTask(tasks, i) {
+function checkDaysInFuture(tasks, i) {
     const today = new Date();
     const inputDate = new Date(tasks[i].due_date);
     const diffTime = Math.abs(inputDate - today);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     return diffDays
+}
+
+function checkDaysInPast(tasks, i) {
+    const today = new Date();
+    const inputDate = new Date(tasks[i].due_date);
+
+    // Setze beide Daten auf Mitternacht, um nur das Datum zu vergleichen
+    today.setHours(0, 0, 0, 0);
+    inputDate.setHours(0, 0, 0, 0);
+
+    // Unterschied in Millisekunden
+    const diffTime = inputDate - today;
+
+    // Umrechnung in Tage
+    return Math.round(diffTime / (1000 * 60 * 60 * 24));
 }
 
 /**
