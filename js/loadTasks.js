@@ -210,7 +210,6 @@ async function putNewCheckedStatus(path="", data={}) {
 async function getTaskForEdit(pathData='') {
     let responseData = await fetch(firebase_URL + pathData + ".json");
     let responseDataToJson = await responseData.json();
-    console.log(responseDataToJson);
     return responseDataToJson
 }
 

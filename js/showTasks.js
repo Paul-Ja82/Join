@@ -87,6 +87,14 @@ function fillTaskSections(section, tasks) {
     showSubtaskCtn()
 }
 
+/**
+ * Updates the urgency icon of a task based on its due date and completion status.
+ *
+ * @param {number} daysInFuture - The number of days remaining until the task's due date.
+ * @param {number} daysInPast - The number of days past the task's due date.
+ * @param {Object[]} tasks - The array of task objects.
+ * @param {number} i - The index of the current task in the tasks array.
+ */
 function newUrgencyImg(daysInFuture, daysInPast, tasks, i) {
     if (daysInFuture <= 3 && tasks[i].currentStatus != "done" ||
         daysInPast <= 0 && tasks[i].currentStatus != "done"
@@ -107,6 +115,13 @@ function newUrgencyImg(daysInFuture, daysInPast, tasks, i) {
     }
 }
 
+/**
+ * Calculates the number of days between the current date and the due date of a task.
+ *
+ * @param {Object[]} tasks - The array of task objects.
+ * @param {number} i - The index of the current task in the tasks array.
+ * @returns {number} The number of days between the current date and the due date of the task.
+ */
 function checkDaysInFuture(tasks, i) {
     const today = new Date();
     const inputDate = new Date(tasks[i].due_date);
@@ -115,18 +130,20 @@ function checkDaysInFuture(tasks, i) {
     return diffDays
 }
 
+/**
+ * Calculates the number of days past the current date for the due date of a task.
+ *
+ * @param {Object[]} tasks - The array of task objects.
+ * @param {number} i - The index of the current task in the tasks array.
+ * @returns {number} The number of days past the current date for the task's due date. 
+ *                  A negative value indicates the task is overdue.
+ */
 function checkDaysInPast(tasks, i) {
     const today = new Date();
     const inputDate = new Date(tasks[i].due_date);
-
-    // Setze beide Daten auf Mitternacht, um nur das Datum zu vergleichen
     today.setHours(0, 0, 0, 0);
     inputDate.setHours(0, 0, 0, 0);
-
-    // Unterschied in Millisekunden
     const diffTime = inputDate - today;
-
-    // Umrechnung in Tage
     return Math.round(diffTime / (1000 * 60 * 60 * 24));
 }
 
@@ -362,7 +379,6 @@ function checkTaskCategoryColor(classname) {
         }
     });
 }
-
 
 /**
  * Toggles the visibility of the task progress container based on the number of subtasks.

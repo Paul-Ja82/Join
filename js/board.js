@@ -214,9 +214,7 @@ function checkIdFromSectionToDrop(cursorX, cursorY) {
       let sectionLeft = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().left;
       let sectionRight = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().right;
       let sectionTop = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().top;
-      let sectionBottom = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().bottom;
-      console.log(sectionTop);
-      
+      let sectionBottom = document.getElementById(`${dragAndDropSections[i]}`).getBoundingClientRect().bottom;      
       if ((cursorX > sectionLeft && cursorX < sectionRight) && (cursorY > sectionTop && cursorY < sectionBottom)) {
           idFromSectionToDrop = dragAndDropSections[i];
           break;
