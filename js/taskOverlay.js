@@ -325,14 +325,16 @@ function checkIndexOfAllTasks(clickedSingleID, allTasks, allKeys) {
   let priorityImg = checkPriorityImg(allTasks, keyToOpen);
   let subTasks = checkSubtasksOverlay(allTasks, keyToOpen);
   fillTaskOverlay(allTasks, keyToOpen, priorityImg, assignedToContacts, subTasks);
-  let urgencyDateForTask = checkUrgencyDateForTask(allTasks, keyToOpen);
-  newUrgencyImgTaskOverlay(urgencyDateForTask, allTasks, keyToOpen)
+  let daysInFuture = checkDaysInFuture(allTasks, keyToOpen);
+  let daysInPast = checkDaysInPast(allTasks, keyToOpen);
+  newUrgencyImgTaskOverlay(daysInFuture, daysInPast, allTasks, keyToOpen)
   return (currentTaskInOverlay = allTasks[keyToOpen]);
 }
 
-function newUrgencyImgTaskOverlay(urgencyDateForTask, tasks, i) {
-  if (urgencyDateForTask <= 3 && tasks[i].currentStatus != "done") {
-      console.log(urgencyDateForTask);
+function newUrgencyImgTaskOverlay(daysInFuture, daysInPast, tasks, i) {
+  if (daysInFuture <= 3 && tasks[i].currentStatus != "done" ||
+      daysInPast <= 0 && tasks[i].currentStatus != "done") {
+      console.log(daysInFuture);
       document.getElementById(`single_task_line_priority`).innerHTML = "";
       document.getElementById(`single_task_line_priority`).innerHTML = 
       `
