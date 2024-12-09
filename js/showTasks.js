@@ -88,9 +88,6 @@ function fillTaskSections(section, tasks) {
 }
 
 function newUrgencyImg(daysInFuture, daysInPast, tasks, i) {
-    console.log(tasks[i]);
-    console.log(daysInFuture);
-    console.log(daysInPast);
     if (daysInFuture <= 3 && tasks[i].currentStatus != "done" ||
         daysInPast <= 0 && tasks[i].currentStatus != "done"
     ) {

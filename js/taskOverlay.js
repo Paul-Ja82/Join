@@ -334,7 +334,6 @@ function checkIndexOfAllTasks(clickedSingleID, allTasks, allKeys) {
 function newUrgencyImgTaskOverlay(daysInFuture, daysInPast, tasks, i) {
   if (daysInFuture <= 3 && tasks[i].currentStatus != "done" ||
       daysInPast <= 0 && tasks[i].currentStatus != "done") {
-      console.log(daysInFuture);
       document.getElementById(`single_task_line_priority`).innerHTML = "";
       document.getElementById(`single_task_line_priority`).innerHTML = 
       `

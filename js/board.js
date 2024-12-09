@@ -29,12 +29,6 @@ async function initBoard() {
   preparingElements();
   disableDragImage();
   include().then(initHeaderJs);
-  checkPriorityImgAndText();
-}
-
-function checkPriorityImgAndText() {
-  console.log(allTasks);
-  
 }
 
 /**
