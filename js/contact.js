@@ -470,7 +470,7 @@ function setFormEdit() {
     removeSubmitHandler('contactForm', addContact);
     removeSubmitHandler('contactForm', submitHandlerEdit);
     addSubmitHandler('contactForm', submitHandlerEdit);
-    isFormValidBuiltIn('contactForm');
+    isFormValidBuiltIn('contactForm'); 
 }
 
 /**
@@ -484,7 +484,8 @@ function setInputsEdit() {
     let inputPhone = document.getElementById('phoneInputElem');
     inputName.value = contact.name;
     inputEmail.value = contact.email;
-    inputEmail.disabled = true;
+    if (isUserContact()) inputEmail.disabled= true;
+    else inputEmail.disabled = false;
     inputPhone.value = contact.phone;
 }
 
@@ -521,8 +522,10 @@ async function editContact() {
     let path = CONTACTS_PATH + shownContactInfoId;
     let contact = getContactById(shownContactInfoId);
     let nameInput = document.getElementById('nameInputElem').value;
+    let emailInput= document.getElementById('emailInputElem').value;
     let phoneInput = document.getElementById('phoneInputElem').value;
     contact.name = nameInput;
+    contact.email = emailInput;
     contact.phone = phoneInput;
     contact.color = colorForContact;
     saveData(path, contact);
