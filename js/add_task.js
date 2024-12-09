@@ -114,16 +114,24 @@ function closeContactList() {
 function toggleContactList() {
   let inputElem= document.getElementById('inputAssignedTo');
   if (isListOpen) {
+    //schließen
+    if (currentTaskForEdit) { //edit Task
+      document.getElementById('dialogBox').removeEventListener('click', clickOutsideAssignedToHandler);
+    } else { //add Task
+      window.removeEventListener('click', clickOutsideAssignedToHandler);
+    }
     inputElem.addEventListener('focusin', toggleContactList);
-    window.removeEventListener('click', clickOutsideAssignedToHandler);
     document.getElementById("insertContactList").classList.add("d-none");
     document.getElementById("arrowDropdown").src = "assets/icons/arrowDropdown.svg";
   } else {
+    // öffnen
     inputElem.removeEventListener('focusin', toggleContactList);
-    window.addEventListener('click', clickOutsideAssignedToHandler);
     let assignedToContacts = 'nobody';
-    if (currentTaskForEdit) {
+    if (currentTaskForEdit) { //edit Task
       assignedToContacts = getAssignedTo(currentTaskForEdit);
+      document.getElementById('dialogBox').addEventListener('click', clickOutsideAssignedToHandler);
+    } else { //nur add Task
+      window.addEventListener('click', clickOutsideAssignedToHandler);
     }
     checkContacts();
     document.getElementById("insertContactList").classList.remove("d-none");

@@ -265,6 +265,7 @@ ul {
 .overField label {
   font-size: 24px;
   font-weight: 400;
+  align-self: flex-start;
 }
 
 .overAddSubtasks {

@@ -106,6 +106,7 @@ function changeTaskValues(e) {
   returnChangeAddTask();
   selectedContacts= getTaskById(currentTaskForEdit).assigned_to;
   showPersons();
+  document.getElementById('inputAssignedTo').addEventListener('focusin', toggleContactList);
 }
 
 function getTaskById(taskId) {
