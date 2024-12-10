@@ -357,22 +357,11 @@ function changeSymbols() {
 }
 
 /**
- * Displays a confirmation message and redirects the user to the board page.
- * 
- * This function displays a confirmation message on the page indicating that the task has been successfully added to the board.
- * After a brief delay of 2 seconds, the user is automatically redirected to the "board.html" page.
- * 
- * @returns {void}
+ * Displays a confirmation message for a successfully sent task and redirects to the board page.
+ * @function
  */
 function confirmationOfSendedTask() {
-  document.getElementById("insertAddedToTaskConfirmation").innerHTML = `
-    <div class="backgroundInformationForm">
-      <div id="addConfirmation" class="addedToBoard">
-        <div class="taskAddedInformation">Task added to board</div>
-        <img src="assets/icons/boardIcon.svg" alt="" />
-      </div>
-    </div>
-  `;
+  document.getElementById("insertAddedToTaskConfirmation").innerHTML = getTaskConfirmationHTML();  // von Paul ausgelagert in template 
   setTimeout(() => {
     window.open("board.html", "_self");
   }, 2000);

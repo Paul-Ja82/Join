@@ -20,8 +20,8 @@
  */
 function renderContactList(filteredContacts = contacts) {
   const contactList = document.getElementById("insertContactList");
-  contactList.classList.remove("d-none");
-
+  contactList.classList.remove("d-none");                                     //das muss in die ürsprung datei zürück 
+ 
   contactList.innerHTML = "";
   document.getElementById("arrowDropdown").src ="./assets/icons/arrowUpDropdown.svg";
 
@@ -594,5 +594,21 @@ function getSubtaskEditHTML(changeText, index) {
       >
       <img id="checkboxId${listPersonId}" src="assets/icons/checkbox.svg">
     </li>
+  `;
+}
+
+/**
+ * Returns the HTML string for the task confirmation message.
+ * @function
+ * @returns {string} The HTML string for the confirmation message.            // von Paul ausgelagert von confirmationOfSendedTask() in design_Add_Task.js
+ */
+function getTaskConfirmationHTML() {
+  return `
+    <div class="backgroundInformationForm">                                           
+      <div id="addConfirmation" class="addedToBoard">
+        <div class="taskAddedInformation">Task added to board</div>
+        <img src="assets/icons/boardIcon.svg" alt="" />
+      </div>
+    </div>
   `;
 }
