@@ -30,6 +30,7 @@ function colorSelectedContacts() {
  * @param {number} index - The index of the checkbox/contact in the contact list.
  */
 function contactClickHandler(contactId) {
+    if (selectedContacts == 'nobody') selectedContacts= [];
     let checkbox = document.getElementById(`checkbox${contactId}`);
     let contactName= checkbox.value;
     let selectedContactsIndex;

@@ -262,14 +262,18 @@ function checkDateInput() {
  * @returns {void}
  */
 function showPersons() {
-  const avatarContainer = document.getElementById("showPersons");
-  avatarContainer.innerHTML = "";
-  if (selectedContacts.length > 5) {
-    const contactsToShow = selectedContacts.slice(0, 5);
-    contactsToShow.forEach((contact, index) => { createAndAppendSVG(avatarContainer, contact, index) });
-    avatarContainer.appendChild(checkAssignedToContactsLength());
-  } else if (selectedContacts.length <= 5) {
-    selectedContacts.forEach((contact, index) => { createAndAppendSVG(avatarContainer, contact, index) });
+  console.log('showPersons()'); ///DEBUG
+  console.log(selectedContacts); ///DEBUG
+  if (selectedContacts != 'nobody') {
+    const avatarContainer = document.getElementById("showPersons");
+    avatarContainer.innerHTML = "";
+    if (selectedContacts.length > 5) {
+      const contactsToShow = selectedContacts.slice(0, 5);
+      contactsToShow.forEach((contact, index) => { createAndAppendSVG(avatarContainer, contact, index) });
+      avatarContainer.appendChild(checkAssignedToContactsLength());
+    } else if (selectedContacts.length <= 5) {
+      selectedContacts.forEach((contact, index) => { createAndAppendSVG(avatarContainer, contact, index) });
+    }
   }
 }
 
