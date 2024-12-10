@@ -36,39 +36,36 @@ function renderContactList(filteredContacts = contacts) {
 }
 
 /**
- * Renders a list of contacts into the DOM and updates their visual state.
- * 
- * This function iterates through a list of filtered contacts and dynamically
- * generates HTML to display each contact within a list. It checks whether each
- * contact is selected (i.e., present in the `selectedContacts` array) and
- * updates the corresponding checkbox's state. Additionally, it shows each contact's
- * profile picture by calling the `showProfilPicture` function and ensures that
- * selected checkboxes are visually updated.
- * 
- * @function returnRenderdContacts
- * @global
- * 
- * @param {Array} filteredContacts - An array of contacts to be rendered. Each contact represents a string or object containing the contact information.
- * 
- * @example
- * returnRenderdContacts();
- * // Renders the contact list with checkboxes and profile images.
+ * Returns the HTML string for a contact list item.
+ * @function
+ * @param {string} contact - The contact name.
+ * @param {number} index - The index of the contact in the list.
+ * @param {boolean} isSelected - Whether the contact is selected.          
+ * @returns {string} The HTML string for the contact list item.    // von Paul für returnRenderdContacts() 
  */
-function returnRenderdContacts () {
-  filteredContacts.forEach((contact, index) => {
-    const isSelected = selectedContacts.includes(contact);
-    contactList.innerHTML += `
+function getContactListItemHTML(contact, index, isSelected) {
+  return `
     <li id="listPerson${index}" class="backgroundOnHover" onclick="contactClickHandler(${index})">
       <div class="profile">
         <div id="profilPerson${index}" class="profilePerson"></div>    
         <div class="contactPerson">${contact}</div>
       </div>
-      <input type="checkbox" value="${contact}" class="contactListCheckbox" 
+      <input type="checkbox" value="${contact}" class="contactListCheckbox"       
         id="checkbox${index}" onchange="renderAddedPersons()" 
         onclick="event.stopPropagation()" 
         ${isSelected ? "checked" : ""}>
       <img id="checkboxId${index}" src="assets/icons/checkbox.svg">
     </li>`;
+}
+
+/**
+ * Renders the filtered contacts into the contact list.
+ * @function
+ */
+function returnRenderdContacts() {
+  filteredContacts.forEach((contact, index) => {
+    const isSelected = selectedContacts.includes(contact);
+    contactList.innerHTML += getContactListItemHTML(contact, index, isSelected);     //das muss in die ürsprung datei zürück 
     showProfilPicture(contact, index);
     if (isSelected) {
       document.getElementById(`checkboxId${index}`).src =
@@ -76,6 +73,7 @@ function returnRenderdContacts () {
     }
   });
 }
+
 
 /**
  * Collects all selected contacts from the checkboxes and updates the `selectedContacts` array.
@@ -89,39 +87,44 @@ function returnRenderdContacts () {
  * 6. Returns the updated `selectedContacts` array.
  */
 function renderAddedPersons() {
-  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');   //das muss in die ürsprung datei zürück 
   showPersons();
 }
 
 /**
- * Renders the list of subtasks in the `showSubtasks` element.
- *
- * Steps performed:
- * 1. Clears the content of the `showSubtasks` element.
- * 2. Iterates through the `subtasks` array:
- *    - For each subtask, creates an HTML list item with the following:
- *      - The subtask title.
- *      - An edit button (pencil icon) for changing the subtask.
- *      - A delete button (basket icon) for removing the subtask.
- * 3. Appends each generated list item to the `showSubtasks` element.
+ * Returns the HTML string for a subtask item.
+ * @function
+ * @param {string} title - The title of the subtask.
+ * @param {number} index - The index of the subtask.
+ * @returns {string} The HTML string for the subtask item.   // von Paul für renderSubtasks()
+ */
+function getSubtaskHTML(title, index) {
+  return `
+    <li id="subtask${index}" class="">
+      <div class="showEntrySubtask" onclick="changeText(${index})">
+        <div class="subtaskText">${title}</div>
+        <div id="edit${index}" class="edit">
+          <div class="centerSymbol editTask"><img src="assets/icons/pencil.svg"></div>
+          <div class="borderEditIcons"></div>
+          <div class="centerSymbol basket" onclick="deleteSubtask(${index})">
+            <img src="assets/icons/basketIcon.svg">
+          </div>
+        </div>
+      </div>
+    </li>`;
+}
+
+/**
+ * Renders the subtasks into the subtask list.
+ * @function
  */
 function renderSubtasks() {
   document.getElementById("showSubtasks").innerHTML = "";
   for (let index = 0; index < subtasks.length; index++) {
-    document.getElementById(
-      "showSubtasks"
-    ).innerHTML += `<li id="subtask${index}" class="">
-      <div class="showEntrySubtask" onclick="changeText(${index})">
-        <div class="subtaskText">${subtasks[index].title}</div>
-        <div id="edit${index}" class="edit">
-          <div class="centerSymbol editTask"><img src="assets/icons/pencil.svg"></div>
-          <div class="borderEditIcons"></div>
-          <div class="centerSymbol basket" onclick="deleteSubtask(${index})"><img src="assets/icons/basketIcon.svg"></div>
-        </div>
-      </div>
-    </li>`;
+    document.getElementById("showSubtasks").innerHTML += getSubtaskHTML(subtasks[index].title, index);   //das muss in die ürsprung datei zürück 
   }
 }
+
 
 /**
  * Returns the HTML structure for the task editing form.
@@ -532,7 +535,7 @@ function returnAddTaskForm(selectedProcessCategory, today) {
  * @function
  * @param {string} changeText - The current text of the subtask.
  * @param {number} index - The index of the subtask.
- * @returns {string} The HTML string for the subtask edit UI.
+ * @returns {string} The HTML string for the subtask edit UI.    //// von Paul für changeText(index) in add_tasks.js 
  */
 function getSubtaskEditHTML(changeText, index) {
   return `
