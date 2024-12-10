@@ -1,18 +1,7 @@
-
-// Firebase-URL von Sabrina
 const BASE_URL = "https://join-7ae0e-default-rtdb.europe-west1.firebasedatabase.app/";
-
-// Firebase-URL von Reini
-// const BASE_URL = "https://join-43c13-default-rtdb.europe-west1.firebasedatabase.app/";
-
 const USERS_PATH = 'users/';
 const CONTACTS_PATH= 'contacts/';
 const NEXT_ID_PATH = 'nextId/';
-
-
-/*#####################*/
-/*## GET / SAVE DATA ##*/
-/*#####################*/
 
 async function saveData(path, data, method = 'PUT') {
     return fetch(BASE_URL + path + '.json', {
@@ -25,8 +14,6 @@ async function saveData(path, data, method = 'PUT') {
         .then((res) => res.json);
 }
 
-
-// params: {key: value, key: value, ...}
 async function getData(path, params = {}) {
     let pathMod = BASE_URL + path + '.json?';
     for (let key in params) {
@@ -36,7 +23,6 @@ async function getData(path, params = {}) {
         .then((res) => res.json())
         .catch(() => console.log('fehler beim Daten holen'));
 }
-
 
 async function getId() {
     let nextId = await getData(NEXT_ID_PATH);
@@ -51,8 +37,3 @@ async function deleteData(path) {
     })
         .catch(() => console.warn('fehler beim löschen'))
 }
-
-/*###########*/
-/*## DEBUG ##*/
-/*###########*/
-
