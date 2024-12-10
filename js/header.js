@@ -3,10 +3,8 @@
  */
 function openNavWindowFrame() {
     const isSmallScreen = window.innerWidth <= 960;
-
     const navMenuFrame = document.querySelector(isSmallScreen ? '.nav-menu-resp-frame' : '.nav-menu-frame');
     const initialsCircle = document.getElementById('navCircle'); 
-
     if (navMenuFrame.style.display === 'none' || navMenuFrame.style.display === '') {
         navMenuFrame.style.display = 'block'; 
         initialsCircle.style.backgroundColor = 'rgba(12, 46, 98, 0.12)'; 
@@ -43,7 +41,6 @@ window.addEventListener('resize', function() {
 async function setGreetedName() { 
     const storedName = sessionStorage.getItem('loggedInUserName');
     if (storedName) {
-
         const greetedNameElements = document.querySelectorAll('#greetedName');
         greetedNameElements.forEach(element => {
             element.textContent = storedName;
@@ -64,7 +61,6 @@ function getMonogramHeader(name) {
             monogram += words[i][0]; 
         }
     }
-
     return monogram.toUpperCase(); 
 }
 
@@ -78,9 +74,7 @@ async function updateUserMonogram() {
     if (localStorage.getItem('loggedInUserName')) {
         storedName = localStorage.getItem('loggedInUserName');
     } else storedName = sessionStorage.getItem('loggedInUserName');
-
     const navCircleElement = document.getElementById('navCircle');
-
     if (navCircleElement) {
         if (storedName) {
             const monogram = getMonogramHeader(storedName);

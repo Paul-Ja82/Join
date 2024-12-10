@@ -134,7 +134,6 @@ function maskPassword() {
       document.getElementById("passwordInput"),
       document.getElementById("signUpPasswordInput")
   ];
-
   for (let i = 0; i < inputs.length; i++) {
       const input = inputs[i];
       if (input) {
@@ -154,14 +153,12 @@ function togglePasswordImg() {
       document.getElementById("passwordInput"),
       document.getElementById("signUpPasswordInput"),
   ];
-
   for (let i = 0; i < inputs.length; i++) {
       let input = inputs[i];
       if (input) {
           let lockImg = input.parentElement.querySelector('.password-Img');
           let eyeOffImg = input.parentElement.querySelector('.password-Img-eye-of');
           let eyeOnImg = input.parentElement.querySelector('.password-Img-eye-on');
-
           eyeLockVariations(input, lockImg, eyeOffImg, eyeOnImg);
       }
   }
@@ -176,7 +173,6 @@ function openEyePassword() {
       document.getElementById("passwordInput"),
       document.getElementById("signUpPasswordInput")
   ];
-
   for (let i = 0; i < inputs.length; i++) {
       let input = inputs[i];
       if (input) {
@@ -201,13 +197,11 @@ function closeEyePassword() {
       document.getElementById("passwordInput"),
       document.getElementById("signUpPasswordInput")
   ];
-
   for (let i = 0; i < inputs.length; i++) {
       let input = inputs[i];
       if (input) {
           let eyeOffImg = input.parentElement.querySelector('.password-Img-eye-of');
           let eyeOnImg = input.parentElement.querySelector('.password-Img-eye-on');
-
           if (eyeOffImg && eyeOnImg) {
               eyeOffImg.style.display = 'block';
               eyeOnImg.style.display = 'none'; 
@@ -265,11 +259,9 @@ function deleteUser(userId) {
 function toggleDisplay() {
   const userMsgFrame = document.querySelector('.user-msg-frame');
   const mainFrameDiv = document.querySelector('.main-frame-div');
-
   if (userMsgFrame) {
     userMsgFrame.style.display = 'none';
   }
-
   if (mainFrameDiv) {
     mainFrameDiv.style.display = 'block';
   }

@@ -1,7 +1,3 @@
-/*#############*/
-/*## INCLUDE ##*/
-/*#############*/
-
 /**
  * Dynamically includes HTML content into elements with a `data-include` attribute.
  * Fetches the content from the URL specified in the `data-include` attribute and injects it into the element.
@@ -15,11 +11,6 @@ async function include() {
         containerI.innerHTML = content;
     }
 }
-
-
-/*##########################*/
-/*## SHOW / HIDE ELEMENTS ##*/
-/*##########################*/
 
 /**
  * Displays an element by removing the 'd-none' class.
@@ -38,11 +29,6 @@ function hideElem(elemId) {
     let elem = document.getElementById(elemId);
     elem.classList.add('d-none');
 }
-
-
-/*############*/
-/*## COLORS ##*/
-/*############*/
 
 /**
  * Generates a random color in hexadecimal format.
@@ -113,11 +99,6 @@ function rgbStringToHex(rgbString) {
     return '#' + rComp + gComp + bComp;
 }
 
-
-/*###################*/
-/*## MARK ELEMENTS ##*/
-/*###################*/
-
 /**
  * Adds a specified class to an element and optionally executes additional functions.
  * @param {string} elemId - The ID of the element to mark.
@@ -171,11 +152,6 @@ function isMarked(elemId, className) {
     let elem = document.getElementById(elemId);
     return elem.classList.contains(className);
 }
-
-
-/*##########*/
-/*## MISC ##*/
-/*##########*/
 
 /**
  * Generates a monogram (two initials) from a given name.

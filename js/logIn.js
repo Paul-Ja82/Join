@@ -36,7 +36,6 @@ function showDivsDelayed() {
     const logIn = document.querySelector(".log-in-div");
     const signUpDiv = document.querySelector(".sign-up-under-div");
     const footer = document.querySelector("footer");
-
     setTimeout(() => {
         logIn.style.opacity = "1";
         logIn.style.visibility = "visible";
@@ -56,12 +55,9 @@ function showDivsDelayed() {
  */
 function colorBody() {
     const screenWidth = window.innerWidth;
-
     if (screenWidth <= 1010) {
         const body = document.body;
-
         body.style.backgroundColor = "rgba(9, 25, 49, 1)";
-
         setTimeout(() => {
             body.style.backgroundColor = "rgb(246,247,248,1)";
         }, 700);
@@ -77,10 +73,8 @@ function colorBody() {
  */
 function colorLogo() {
     const screenWidth = window.innerWidth;
-
     if (screenWidth <= 1010) {
         document.documentElement.style.setProperty('--logo-color', '#ffffff');
-
         setTimeout(() => {
             document.documentElement.style.setProperty('--logo-color', '#2a3647');
         }, 700);
@@ -94,11 +88,9 @@ function colorLogo() {
 function showForgotPasswordMsg() {
     const emailInput = document.getElementById('emailInput');
     const forgotPassword = document.getElementById('forgotPassword'); 
-
     if (emailInput && forgotPassword) {
         const emailValue = emailInput.value.trim();
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
         if (emailPattern.test(emailValue)) {
             forgotPassword.style.opacity = '1'; 
         } else {
@@ -117,7 +109,6 @@ function showIncorrectFormatMsg() {
     for (let i = 0; i < elements.length; i++) {
         elements[i].style.opacity = '1';
     }
-
     let emailInput = document.getElementById('emailInput');
     if (emailInput) {
         emailInput.classList.add('input-error');
@@ -132,11 +123,9 @@ function showIncorrectFormatMsg() {
 function ablePasswordInput() {
     let emailInput = document.getElementById('emailInput');
     let passwordInput = document.getElementById('passwordInput');
-
     if (emailInput) {
         let emailValue = emailInput.value.trim();
         let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
-
         if (emailPattern.test(emailValue) && emailValue.length > 0) {
             passwordInput.disabled = false; 
         } else {
@@ -155,7 +144,6 @@ function showNotRegisteredMsg() {
     for (let i = 0; i < elements.length; i++) {
         elements[i].style.opacity = '1';
     }
-
     const emailInput = document.getElementById('emailInput');
     if (emailInput) {
         emailInput.classList.add('input-error'); 
@@ -171,7 +159,6 @@ function checkUserExist() {
     if (emailInput) {
         const emailValue = emailInput.value.trim();
         const user = getUserByEmail(emailValue);
-
         if (user) {
             // window.location.href = 'new_password.html'; 
             window.location.href = 'new_password.html' + `?id=${user.id}`; 
@@ -199,7 +186,6 @@ function showIncorrectFormatMsg() {
     for (let i = 0; i < elements.length; i++) {
         elements[i].style.opacity = '1';
     }
-
     let emailInput = document.getElementById('emailInput');
     if (emailInput) {
         emailInput.classList.add('input-error');
@@ -254,7 +240,6 @@ function processLogin() {
     let emailInput = document.getElementById('emailInput');
     let passwordInput = document.getElementById('passwordInput');
     let errorMessage = document.querySelector('.error-input-message');
-
     supportForProcess(flags, emailInput, passwordInput, errorMessage);
 }
 
@@ -270,7 +255,6 @@ function processLogin() {
 function handleLoginFailure(emailInput, passwordInput, flags, errorMessage) {
     logFlagsLogin();
     logVarsLogin(); 
-
     handleValidationResult(emailInput, passwordInput, flags, errorMessage);
 }
 
@@ -294,18 +278,15 @@ function login() {
  * @param {HTMLElement} errorMessage - The error message element.
  */
 function handleValidationResult(emailInput, passwordInput, isValidUser, errorMessage) {
-    
     if (!isValidUser) {
         emailInput.classList.add('input-error');
         passwordInput.classList.add('input-error');
-
         if (errorMessage) {
             errorMessage.style.opacity = '1'; 
         }
     } else {
         emailInput.classList.remove('input-error');
         passwordInput.classList.remove('input-error');
-
         if (errorMessage) {
             errorMessage.style.opacity = '0'; 
         }
@@ -323,7 +304,6 @@ function removeInputError() {
     const errorMessage = document.querySelector('.error-input-message');
     const incorrectMessage = document.querySelector('.incorrect-email-format');
     const notRegisteredMessage = document.querySelector('.not-registered-msg');
-
     emailInput.classList.remove('input-error');
     passwordInput.classList.remove('input-error');
     passwordInput.disabled = false;

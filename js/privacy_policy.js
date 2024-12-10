@@ -1,9 +1,5 @@
 let mediaDesktop = window.matchMedia('(1010px < width)');
 
-/*##########*/
-/*## INIT ##*/
-/*##########*/
-
 /**
  * Initializes the privacy page by including header functionality, hiding the user menu,
  * and conditionally hiding the main menu if the user is not logged in.

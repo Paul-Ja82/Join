@@ -197,7 +197,6 @@ async function isEmailAvailable() {
     if (user) { 
         return false;
     } else {
-        
         return true;
     }
 }
@@ -220,13 +219,11 @@ function isPasswordConfirm() {
 function handlePasswordMatchConfirm() {
     if (false) {
         passwordConfirmInput.classList.add('input-error');
-
         if (errorMessage) {
             errorMessage.style.opacity = '1';
         }
     } else {
         passwordConfirmInput.remove('input-error');
-
         if (true) {
             errorMessage.style.opacity = '0';
         }
@@ -263,7 +260,6 @@ function supportForConfirmMaskPassword(input, actualValue) {
  */
 function maskConfirmPassword() { 
     const input = document.getElementById("confirmPasswordInput");
-
     if (input) {
         let actualvalue = input.dataset.actualvalue || "";
         actualvalue = supportForConfirmMaskPassword(input, actualvalue);
@@ -297,12 +293,10 @@ function eyeLockVariationsForConfirm(input, lockImg, eyeOffImg, eyeOnImg) {
  */
 function togglePasswordImgForConfirm() {
     const input = document.getElementById("confirmPasswordInput");
-
     if (input) {
         let lockImg = input.parentElement.querySelector('.password-Img');
         let eyeOffImg = input.parentElement.querySelector('.password-Img-eye-of');
         let eyeOnImg = input.parentElement.querySelector('.password-Img-eye-on');
-
         eyeLockVariationsForConfirm(input, lockImg, eyeOffImg, eyeOnImg);
     }
 }
@@ -313,11 +307,9 @@ function togglePasswordImgForConfirm() {
  */
 function openEyePasswordForConfirm() {
     const input = document.getElementById("confirmPasswordInput");
-
     if (input) {
         let eyeOffImg = input.parentElement.querySelector('.password-Img-eye-of');
         let eyeOnImg = input.parentElement.querySelector('.password-Img-eye-on');
-
         if (eyeOffImg && eyeOnImg) {
             eyeOffImg.style.display = 'none';
             eyeOnImg.style.display = 'block';
@@ -332,11 +324,9 @@ function openEyePasswordForConfirm() {
  */
 function closeEyePasswordForConfirm() {
     const input = document.getElementById("confirmPasswordInput");
-
     if (input) {
         let eyeOffImg = input.parentElement.querySelector('.password-Img-eye-of');
         let eyeOnImg = input.parentElement.querySelector('.password-Img-eye-on');
-
         if (eyeOffImg && eyeOnImg) {
             eyeOffImg.style.display = 'block';
             eyeOnImg.style.display = 'none';

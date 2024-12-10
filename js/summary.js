@@ -20,7 +20,6 @@ function toggleGreetingsDisplay() {
         if (!sessionStorage.getItem('greetingShown')) {
             const greetingsFrame = document.querySelector('.greetings-frame-responsive');
             const titleAndMainDisplay = document.querySelector('.title-and-main-display-resposive');
-
             if (greetingsFrame && titleAndMainDisplay) {
                 greetingsFrame.style.display = 'block';
                 titleAndMainDisplay.style.display = 'none';
@@ -110,10 +109,8 @@ function formatName(name) {
 function ifElseForGreetedName(storedName, greetingText) {
     if (storedName) {
         greetingText = addComma(greetingText);
-
         const formattedName = formatName(storedName);
         const greetedNameElements = document.querySelectorAll('#greetedName');
-
         for (let i = 0; i < greetedNameElements.length; i++) {
             greetedNameElements[i].textContent = formattedName;
         }
@@ -139,9 +136,7 @@ async function setGreetedName() {
     } else storedName = sessionStorage.getItem('loggedInUserName');
     const currentHour = new Date().getHours();
     let greetingText = ifElseForSetGreeting(currentHour);
-
     greetingText = ifElseForGreetedName(storedName, greetingText);
-
     const greetingElements = document.querySelectorAll('#greetingSummary');
     for (let i = 0; i < greetingElements.length; i++) {
         greetingElements[i].textContent = greetingText;
@@ -156,7 +151,6 @@ async function setGreetedName() {
  */
 document.addEventListener("DOMContentLoaded", function () {
     let amountElements = document.querySelectorAll('.amount');
-
     for (let i = 0; i < amountElements.length; i++) {
         let element = amountElements[i];
         let value = Number(element.textContent);
@@ -290,7 +284,6 @@ function checkUrgencyInArray(tasks, urgentTasks) {
             urgentTasks.push(tasks[i]);
         }
     }
-
     let urgentTasksAmount = document.getElementById('urgencyAmount');
     if (urgentTasksAmount) {
         urgentTasksAmount.textContent = urgentTasks.length;
@@ -308,15 +301,12 @@ function checkUrgencyInArray(tasks, urgentTasks) {
  */
 async function updateUrgentTasks() {
     let urgentTasks = [];
-
     await updateTkToDo(); 
     await updateTkInProgress();
     await updateTkAwaitFeedback();  
-
     checkUrgencyInArray(tasksTodo, urgentTasks);
     checkUrgencyInArray(tasksInProgress, urgentTasks);
     checkUrgencyInArray(tasksAwaitFeedback, urgentTasks);
-
     return urgentTasks; 
 }
 
@@ -331,7 +321,6 @@ function findOldestTask(urgentTasks) {
     if (urgentTasks.length === 0) {
         return null;
     }
-
     return urgentTasks.reduce(function(oldest, currentTask) {
         let oldestDate = new Date(oldest.due_date);
         let currentDate = new Date(currentTask.due_date);
@@ -412,7 +401,6 @@ function displayDeadline(oldestTask) {
     let dueDateObject = new Date(oldestTask.due_date);
     let options = { year: 'numeric', month: 'long', day: 'numeric' }; 
     let formattedDate = dueDateObject.toLocaleDateString('en-US', options);
-
     updateDeadlineDateElement(deadlineDateElement, formattedDate, oldestTask.due_date);
     updateDeadlineMessageElement(deadlineMsgElement, dueDateObject);
 }
