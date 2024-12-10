@@ -63,7 +63,6 @@ async function postData(path = "", data = {}) {
  */
 function filterContacts() {
   const input = document.getElementById("inputAssignedTo").value.toLowerCase();
-
   const filteredContacts = filteredContactsForTasks.filter((contact) => {
     if (contact && typeof contact.name === "string") { return contact.name.toLowerCase().includes(input); }
     return false;
@@ -93,8 +92,6 @@ function closeContactList() {
 /**
  * Toggles the visibility of a contact list and performs a contact check if opening the list.
  * 
- * @param {Array} filteredContactsForTasks - An array of filtered contacts to be potentially used for tasks. (Currently unused in the function)
- * 
  * This function checks the state of the contact list (`isListOpen`). If the list is open, it hides the list by adding the `d-none` class.
  * If the list is closed, it performs a contact check by calling `checkContacts(allContactsForTasks)` and displays the list by removing the `d-none` class.
  * The `isListOpen` flag is toggled after each operation to track the visibility state of the contact list.
@@ -107,32 +104,39 @@ function closeContactList() {
  * toggleContactList(filteredContactsForTasks);
  */
 function toggleContactList() {
-  let inputElem= document.getElementById('inputAssignedTo');
   if (isListOpen) {
-    //schließen
-    if (currentTaskForEdit) { //edit Task
-      document.getElementById('dialogBox').removeEventListener('click', clickOutsideAssignedToHandler);
-    } else { //add Task
-      window.removeEventListener('click', clickOutsideAssignedToHandler);
-    }
-    inputElem.addEventListener('focusin', toggleContactList);
-    document.getElementById("insertContactList").classList.add("d-none");
-    document.getElementById("arrowDropdown").src = "assets/icons/arrowDropdown.svg";
+    toggleContactListClose();
   } else {
-    // öffnen
-    inputElem.removeEventListener('focusin', toggleContactList);
-    let assignedToContacts = 'nobody';
-    if (currentTaskForEdit) { //edit Task
-      if(currentTaskForEdit != -1) assignedToContacts = getAssignedTo(currentTaskForEdit);
-      document.getElementById('dialogBox').addEventListener('click', clickOutsideAssignedToHandler);
-    } else { //nur add Task
-      window.addEventListener('click', clickOutsideAssignedToHandler);
-    }
-    checkContacts();
-    document.getElementById("insertContactList").classList.remove("d-none");
-    document.getElementById("arrowDropdown").src = "assets/icons/arrowUpDropdown.svg";
+    toggleContactListOpen();
   }
   isListOpen = !isListOpen;
+}
+
+function toggleContactListClose() {
+  let inputElem= document.getElementById('inputAssignedTo');
+  if (currentTaskForEdit) {
+    document.getElementById('dialogBox').removeEventListener('click', clickOutsideAssignedToHandler);
+  } else {
+    window.removeEventListener('click', clickOutsideAssignedToHandler);
+  }
+  inputElem.addEventListener('focusin', toggleContactList);
+  document.getElementById("insertContactList").classList.add("d-none");
+  document.getElementById("arrowDropdown").src = "assets/icons/arrowDropdown.svg";
+}
+
+function toggleContactListOpen() {
+  let inputElem= document.getElementById('inputAssignedTo');
+  inputElem.removeEventListener('focusin', toggleContactList);
+  let assignedToContacts = 'nobody';
+  if (currentTaskForEdit) {
+    if(currentTaskForEdit != -1) assignedToContacts = getAssignedTo(currentTaskForEdit);
+    document.getElementById('dialogBox').addEventListener('click', clickOutsideAssignedToHandler);
+  } else {
+    window.addEventListener('click', clickOutsideAssignedToHandler);
+  }
+  checkContacts();
+  document.getElementById("insertContactList").classList.remove("d-none");
+  document.getElementById("arrowDropdown").src = "assets/icons/arrowUpDropdown.svg";
 }
 
 function getAssignedTo(single_ID) {
@@ -239,7 +243,6 @@ function checkDateInput() {
   let valueDate = document.getElementById("date");
   if (valueDate.value === "") { valueDate.classList.add("dateInput"); }
   else { valueDate.classList.remove("dateInput"); }
-
   const dateInput = document.getElementById("date");
   if (dateInput.value) { dateInput.classList.add("filled"); }
   else { dateInput.classList.remove("filled"); }
@@ -316,7 +319,6 @@ function pushTextSubtask(textSubtask) {
     title: textSubtask,
     checked: false,
   };
-
   subtasks.push(newSubtask);
 }
 
@@ -348,7 +350,6 @@ function handleEnterKey(event) {
   if (event.key === "Enter") {
     event.preventDefault();
     let subtaskSaver = document.getElementById("subtaskSaver");
-
     if (subtaskSaver) {
       subtaskSaver.click();
     }
@@ -378,13 +379,10 @@ function clearInput() {
  */
 function changeText(index) {
   let changeText = subtasks[index].title;
-
   renderSubtasks();
-
   document.getElementById(`subtask${index}`).innerHTML = `<div class="overChangingSubtask"><input id="inputField${index}" class="changingTextInputField" value="${changeText}"><div class="overAllChange editTaskImg"><div class="centerSymbol" onclick="deleteSubtask(${index})" ><img class="editIcons" src="assets/icons/basketIcon.svg"></div><div class="borderEditIcons"></div><div class="centerSymbol" onclick="saveEditSubtask(${index})"><img class="editIcons" src="assets/icons/check.svg"></div></div>`;
   document.getElementById(`subtask${index}`).classList.add("changeTextSubtasks");
   document.getElementById(`inputField${index}`).classList.add("fullWidth");
-
   document.getElementById(`inputField${index}`).value = changeText;
   focusAtEnd(document.getElementById(`inputField${index}`));
 }
