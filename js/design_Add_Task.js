@@ -124,35 +124,31 @@ function getInitials(name) {
       const lastNameInitial = nameParts[1][0].toUpperCase();
       return firstNameInitial + lastNameInitial;
     }
-  }
+}
 
 /**
- * Creates an SVG avatar with initials and a circular colored background.
- *
- * Steps performed:
- * 1. Defines the SVG namespace.
- * 2. Creates an SVG element with specified dimensions, viewbox, and a CSS class.
- * 3. Creates a circle element:
- *    - Positions it at the center of the SVG (`cx`, `cy`).
- *    - Sets its radius (`r`), fill color (`bgColor`), and white border (`stroke`).
- * 4. Creates a text element:
- *    - Positions it at the center of the circle (`x`, `y`, `dy`) and aligns it horizontally (`text-anchor`).
- *    - Sets the font size, color, and font family.
- *    - Assigns the initials as the text content.
- * 5. Appends the circle and text elements to the SVG.
- * 6. Returns the complete SVG element.
- *
- * @param {string} initials - The initials to display inside the avatar.
- * @param {string} bgColor - The background color for the avatar circle.
- * @returns {SVGElement} The created SVG avatar element.
+ * Creates an SVG element with predefined attributes for an avatar.
+ * @function
+ * @param {string} svgNS - The SVG namespace.
+ * @returns {SVGElement} The configured SVG element.
  */
-function createAvatarSVG(initials, bgColor) {
-  const svgNS = "http://www.w3.org/2000/svg";
+function createBaseSVG(svgNS) {
   const svg = document.createElementNS(svgNS, "svg");
   svg.setAttribute("width", "42");
   svg.setAttribute("height", "42");
   svg.setAttribute("viewBox", "0 0 44 44");
   svg.setAttribute("class", "contact-avatar-svg");
+  return svg;
+}
+
+/**
+ * Creates a circle element for the avatar SVG with predefined attributes.
+ * @function
+ * @param {string} svgNS - The SVG namespace.
+ * @param {string} bgColor - The background color of the circle.
+ * @returns {SVGCircleElement} The configured circle element.
+ */
+function createAvatarCircle(svgNS, bgColor) {
   const circle = document.createElementNS(svgNS, "circle");
   circle.setAttribute("cx", "22");
   circle.setAttribute("cy", "22");
@@ -160,6 +156,17 @@ function createAvatarSVG(initials, bgColor) {
   circle.setAttribute("fill", bgColor);
   circle.setAttribute("stroke", "#fff");
   circle.setAttribute("stroke-width", "2");
+  return circle;
+}
+
+/**
+ * Creates a text element for the avatar SVG with predefined attributes.
+ * @function
+ * @param {string} svgNS - The SVG namespace.
+ * @param {string} initials - The initials to display in the avatar.
+ * @returns {SVGTextElement} The configured text element.
+ */
+function createAvatarText(svgNS, initials) {
   const text = document.createElementNS(svgNS, "text");
   text.setAttribute("x", "50%");
   text.setAttribute("y", "50%");
@@ -169,6 +176,21 @@ function createAvatarSVG(initials, bgColor) {
   text.setAttribute("fill", "#fff");
   text.setAttribute("font-family", "Arial, sans-serif");
   text.textContent = initials;
+  return text;
+}
+
+/**
+ * Creates an avatar SVG with a background color and initials.
+ * @function
+ * @param {string} initials - The initials to display in the avatar.
+ * @param {string} bgColor - The background color of the avatar.
+ * @returns {SVGElement} The completed SVG avatar element.
+ */
+function createAvatarSVG(initials, bgColor) {
+  const svgNS = "http://www.w3.org/2000/svg";
+  const svg = createBaseSVG(svgNS);
+  const circle = createAvatarCircle(svgNS, bgColor);
+  const text = createAvatarText(svgNS, initials);
   svg.appendChild(circle);
   svg.appendChild(text);
   return svg;
