@@ -1391,3 +1391,7 @@ Gruß Reini */
     overflow: hidden;
   }
 } */
+
+#formAddTasks label {
+  align-self: flex-start;
+}
