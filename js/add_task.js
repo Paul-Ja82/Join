@@ -6,7 +6,6 @@ let isListOpen = false;
 let hasEventListener = false;
 let contactsChecked = false;
 
-
 /**
  * Initializes the "Add Tasks" functionality by rendering the task form, hiding the contact list, and setting default priority.
  *
@@ -34,7 +33,6 @@ async function loadData(path = "") {
   console.log(responseToJson);
 }
 
-
 /**
  * Sends data to the specified path on the server using a POST request and logs the server's JSON response.
  *
@@ -51,7 +49,6 @@ async function postData(path = "", data = {}) {
   });
   let responseToJson = await response.json();
 }
-
 
 /**
  * Filters the contact list based on user input and logs the resulting filtered template.
@@ -77,7 +74,6 @@ function filterContacts() {
   contactListElement.appendChild(contactsTemplate);
 }
 
-
 /**
  * Closes the contact list by removing the template, hiding the list, and resetting UI elements.
  *
@@ -93,7 +89,6 @@ function closeContactList() {
   contactList.classList.add("d-none");
   document.getElementById("arrowDropdown").src = "/assets/icons/arrowDropdown.svg";
 }
-
 
 /**
  * Toggles the visibility of a contact list and performs a contact check if opening the list.
@@ -139,7 +134,6 @@ function toggleContactList() {
   }
   isListOpen = !isListOpen;
 }
-
 
 function getAssignedTo(single_ID) {
   let allTasksArray = [];
@@ -251,7 +245,6 @@ function checkDateInput() {
   else { dateInput.classList.remove("filled"); }
 }
 
-
 /**
  * Displays avatars for selected contacts, limiting to a maximum of 5.
  * Clears the avatar container and creates SVG avatars for each contact.
@@ -274,7 +267,6 @@ function showPersons() {
   }
 }
 
-
 /**
  * Creates a div element indicating the number of additional selected contacts beyond the first five.
  * The element displays the count in the format "+X" where X is the number of extra contacts.
@@ -290,7 +282,6 @@ function checkAssignedToContactsLength() {
   moreContactsChecked.innerHTML = `+${moreContactsCount}`;
   return moreContactsChecked
 }
-
 
 /**
  * Saves a new subtask by retrieving the input value, resetting the input field, and updating the UI.
@@ -309,7 +300,6 @@ function saveSubtasks() {
   document.getElementById("symbolsSubtasks").innerHTML = `<img src="assets/icons/plus.svg" alt="" />`;
   renderSubtasks();
 }
-
 
 /**
  * Adds a new subtask to the `subtasks` array.
@@ -330,7 +320,6 @@ function pushTextSubtask(textSubtask) {
   subtasks.push(newSubtask);
 }
 
-
 /**
  * Updates the title of an existing subtask in the `subtasks` array and re-renders the subtasks.
  *
@@ -346,7 +335,6 @@ function saveEditSubtask(index) {
   subtasks[index].title = changedSubtask;
   renderSubtasks();
 }
-
 
 /**
  * Handles the "Enter" key press event for the input field.
@@ -367,7 +355,6 @@ function handleEnterKey(event) {
   }
 }
 
-
 /**
  * Clears the subtask input field and resets the subtask symbol to its default "+" icon.
  *
@@ -379,7 +366,6 @@ function clearInput() {
   document.getElementById("subtasks").value = "";
   document.getElementById("symbolsSubtasks").innerHTML = `<img src="assets/icons/plus.svg" alt="">`;
 }
-
 
 /**
  * Changes the text of a subtask by replacing its content with an input field
@@ -403,7 +389,6 @@ function changeText(index) {
   focusAtEnd(document.getElementById(`inputField${index}`));
 }
 
-
 /**
  * Sets the focus on the specified input field and moves the cursor to the end of its content.
  *
@@ -420,7 +405,6 @@ function focusAtEnd(inputField) {
   inputField.setSelectionRange(textLength, textLength);
 }
 
-
 /**
  * Deletes a subtask from the `subtasks` array at the specified index and re-renders the subtask list.
  *
@@ -435,7 +419,6 @@ function deleteSubtask(index) {
   renderSubtasks();
 }
 
-
 /**
  * Updates the input field with a selected category value and closes the dropdown menu.
  *
@@ -448,13 +431,4 @@ function deleteSubtask(index) {
 function putInput(value) {
   document.getElementById("showSelectedCategory").value = value;
   closeDropdown();
-}
-
-/*###########*/
-/*## DEBUG ##*/
-/*###########*/
-
-function tuEsAddTask() {
-  if(-1) console.log('wahr'); ///DEBUG
-  else console.log('falsch'); ///DEBUG
 }
