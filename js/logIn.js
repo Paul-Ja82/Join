@@ -25,10 +25,6 @@ function animateLogo() {
     }, 500);
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    
-});
-
 /**
  * Delays the display of elements on the page by changing their opacity and visibility properties.
  * The function targets elements with the classes `log-in-div`, `sign-up-under-div`, and the `footer` element,
@@ -110,7 +106,6 @@ function showForgotPasswordMsg() {
         }
     }
 }
-
 
 /**
  * Displays a message indicating incorrect email format by setting the opacity
@@ -285,7 +280,6 @@ function handleLoginFailure(emailInput, passwordInput, flags, errorMessage) {
  * @function login
  */
 function login() {
-    console.log('login()'); 
     initializeLogin();
     processLogin();
 }
@@ -317,6 +311,7 @@ function handleValidationResult(emailInput, passwordInput, isValidUser, errorMes
         }
     }
 }
+
 /**
  * Removes input error states and restores the enabled state of the password input field.
  * This function removes the 'input-error' class from the email and password input fields,
