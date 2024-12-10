@@ -8,7 +8,6 @@ let contactsChecked = false;
 
 /**
  * Initializes the "Add Tasks" functionality by rendering the task form, hiding the contact list, and setting default priority.
- *
  * Steps performed:
  * 1. Replaces the content of the `contentAddTaskContainer` element with the add-task form using `returnAddTaskForm`.
  * 2. Hides the contact list by adding the `d-none` class to the `insertContactList` element.
@@ -24,7 +23,6 @@ async function initAddTasks() {
 
 /**
  * Fetches data from the specified path on the server and logs the response in JSON format.
- *
  * @param {string} [path=""] - The path appended to the base URL for fetching the data.
  */
 async function loadData(path = "") {
@@ -35,7 +33,6 @@ async function loadData(path = "") {
 
 /**
  * Sends data to the specified path on the server using a POST request and logs the server's JSON response.
- *
  * @param {string} [path=""] - The path appended to the base URL where the data is to be sent.
  * @param {Object} [data={}] - The data to be sent in the request body.
  */
@@ -51,105 +48,37 @@ async function postData(path = "", data = {}) {
 }
 
 /**
- * Filters the contact list based on user input and logs the resulting filtered template.
- *
+ * Renders the contact list in the DOM, displaying filtered contacts and updating the UI elements accordingly.
  * Steps performed:
- * 1. Retrieves the value entered in the `inputAssignedTo` input field and converts it to lowercase.
- * 2. Filters the `filteredContactsForTasks` array to include only contacts that match the input value (case-insensitive).
- * 3. Generates the filtered contacts template using `createContactsTemplate`.
- * 4. Logs the resulting contacts template to the console.
- *
- * Note: The `renderContactList` function can be used to update the UI with the filtered contacts but is currently commented out.
- */
-function filterContacts() {
-  const input = document.getElementById("inputAssignedTo").value.toLowerCase();
-  const filteredContacts = filteredContactsForTasks.filter((contact) => {
-    if (contact && typeof contact.name === "string") { return contact.name.toLowerCase().includes(input); }
-    return false;
-  });
-  let contactsTemplate = createContactsTemplate(filteredContacts);
-  const contactListElement = document.getElementById("insertContactList");
-  contactListElement.innerHTML = '';
-  contactListElement.appendChild(contactsTemplate);
-}
-
-/**
- * Closes the contact list by removing the template, hiding the list, and resetting UI elements.
- *
- * Steps performed:
- * 1. Retrieves the template element (`contactListTemplate`) and the contact list container (`insertContactList`).
- * 2. Removes the template from the contact list container.
- * 3. Hides the contact list by adding the `d-none` class.
- * 4. Changes the dropdown arrow icon to the "down" state.
- * 5. Removes the white background applied to the contact section.
- */
-function closeContactList() {
-  let contactList = document.getElementById("insertContactList");
-  contactList.classList.add("d-none");
-  document.getElementById("arrowDropdown").src = "/assets/icons/arrowDropdown.svg";
-}
-
-/**
- * Toggles the visibility of a contact list and performs a contact check if opening the list.
- * 
- * This function checks the state of the contact list (`isListOpen`). If the list is open, it hides the list by adding the `d-none` class.
- * If the list is closed, it performs a contact check by calling `checkContacts(allContactsForTasks)` and displays the list by removing the `d-none` class.
- * The `isListOpen` flag is toggled after each operation to track the visibility state of the contact list.
- * 
- * @global {boolean} isListOpen - A global variable used to track whether the contact list is currently open or closed.
- * @global {Array} allContactsForTasks - A global array that contains all available contacts to be checked by `checkContacts`.
- * 
+ * 1. Displays the contact list by removing the `d-none` class and clearing its current content.
+ * 2. Changes the dropdown arrow icon to an "up" state.
+ * 3. If `filteredContacts` is empty, displays a message indicating the list is empty.
+ * 4. Calls `returnRenderdContacts` to iterate through `filteredContacts` and:
+ *    - Adds each contact as a list item with a checkbox.
+ *    - Indicates whether the contact is already selected using `selectedContacts`.
+ *    - Displays a profile picture for each contact using `showProfilPicture`.
+ *    - Updates the checkbox icon to a "checked" state for selected contacts.
+ * 5. Calls `showPersons` and `colorSelectedContacts` to finalize the UI updates for the contact list.
+ * @param {Array} [filteredContacts=contacts] - The array of contacts to render. Defaults to the full `contacts` array.
  * @example
- * // Opens or closes the contact list
- * toggleContactList(filteredContactsForTasks);
+ * showContactList(filteredContacts);
  */
-function toggleContactList() {
-  if (isListOpen) {
-    toggleContactListClose();
-  } else {
-    toggleContactListOpen();
+function showContactList(filteredContacts = contacts) {
+  const contactList = document.getElementById("insertContactList");
+  contactList.classList.remove("d-none");                                  
+  contactList.innerHTML = "";
+  document.getElementById("arrowDropdown").src ="./assets/icons/arrowUpDropdown.svg";
+  if (filteredContacts.length === 0) {
+    contactList.innerHTML ="<li class='emptyListMessage'>Ganz schön leer hier! :(</li>";
+    return;
   }
-  isListOpen = !isListOpen;
-}
-
-/**
- * Closes the contact list and resets related event listeners and UI elements.
- * @function
- */
-function toggleContactListClose() {
-  let inputElem = document.getElementById('inputAssignedTo');
-  if (currentTaskForEdit) {
-    document.getElementById('dialogBox').removeEventListener('click', clickOutsideAssignedToHandler);
-  } else {
-    window.removeEventListener('click', clickOutsideAssignedToHandler);
-  }
-  inputElem.addEventListener('focusin', toggleContactList);
-  document.getElementById("insertContactList").classList.add("d-none");
-  document.getElementById("arrowDropdown").src = "assets/icons/arrowDropdown.svg";
-}
-
-/**
- * Opens the contact list, sets up event listeners, and updates UI elements.
- * @function
- */
-function toggleContactListOpen() {
-  let inputElem = document.getElementById('inputAssignedTo');
-  inputElem.removeEventListener('focusin', toggleContactList);
-  let assignedToContacts = 'nobody';
-  if (currentTaskForEdit) {
-    if (currentTaskForEdit != -1) assignedToContacts = getAssignedTo(currentTaskForEdit);
-    document.getElementById('dialogBox').addEventListener('click', clickOutsideAssignedToHandler);
-  } else {
-    window.addEventListener('click', clickOutsideAssignedToHandler);
-  }
-  checkContacts();
-  document.getElementById("insertContactList").classList.remove("d-none");
-  document.getElementById("arrowDropdown").src = "assets/icons/arrowUpDropdown.svg";
+  returnRenderdContacts();
+  showPersons();
+  colorSelectedContacts();
 }
 
 /**
  * Retrieves the assigned contacts for a specific task by its ID.
- * @function
  * @param {number|string} single_ID - The ID of the task.
  * @returns {Array} The list of assigned contacts.
  */
@@ -164,8 +93,6 @@ function getAssignedTo(single_ID) {
 
 /**
  * Retrieves the contact ID based on the contact's name.
- * @async
- * @function
  * @param {string} name - The name of the contact.
  * @returns {number|undefined} The ID of the contact or undefined if not found.
  */
@@ -178,8 +105,6 @@ async function getContactId(name) {
 
 /**
  * Simulates click events for the items in the names array.
- * @async
- * @function
  * @param {Array} namesArray - Array of contact names.
  */
 async function clickItems(namesArray) {
@@ -199,8 +124,6 @@ async function clickItems(namesArray) {
 
 /**
  * Marks items in the names array by updating their UI elements.
- * @async
- * @function
  * @param {Array} namesArray - Array of contact names.
  */
 async function markItems(namesArray) {
@@ -215,8 +138,6 @@ async function markItems(namesArray) {
 
 /**
  * Selects items in the names array by updating their selection state.
- * @async
- * @function
  * @param {Array} namesArray - Array of contact names.
  */
 async function selectItems(namesArray) {
@@ -231,7 +152,6 @@ async function selectItems(namesArray) {
 
 /**
  * Marks a specific item by its contact ID, updating its appearance.
- * @function
  * @param {number|string} contactId - The ID of the contact to mark.
  */
 function markItem(contactId) {
@@ -245,7 +165,6 @@ function markItem(contactId) {
 
 /**
  * Demarks a specific item by its contact ID, resetting its appearance.
- * @function
  * @param {number|string} contactId - The ID of the contact to demark.
  */
 function demarkItem(contactId) {
@@ -259,7 +178,6 @@ function demarkItem(contactId) {
 
 /**
  * Selects a specific item by its contact ID, marking it as checked.
- * @function
  * @param {number|string} contactId - The ID of the contact to select.
  */
 function selectItem(contactId) {
@@ -269,7 +187,6 @@ function selectItem(contactId) {
 
 /**
  * Deselects a specific item by its contact ID, marking it as unchecked.
- * @function
  * @param {number|string} contactId - The ID of the contact to deselect.
  */
 function deselectItem(contactId) {
@@ -279,7 +196,6 @@ function deselectItem(contactId) {
 
 /**
  * Handles clicks outside the assigned-to input or dropdown menu and toggles the contact list.
- * @function
  * @param {Event} event - The click event.
  */
 function clickOutsideAssignedToHandler(event) {
@@ -294,7 +210,6 @@ function clickOutsideAssignedToHandler(event) {
 
 /**
  * Validates the date input field to ensure a value is selected and applies appropriate styles.
- *
  * Steps performed:
  * 1. Retrieves the date input element by its ID (`date`).
  * 2. Checks if the input field is empty:
@@ -316,9 +231,6 @@ function checkDateInput() {
  * Displays avatars for selected contacts, limiting to a maximum of 5.
  * Clears the avatar container and creates SVG avatars for each contact.
  * If more than 5 contacts are selected, it appends a visual indicator.
- *
- * @function showPersons
- * @returns {void}
  */
 function showPersons() {
   if (selectedContacts != 'nobody') {
@@ -337,8 +249,6 @@ function showPersons() {
 /**
  * Creates a div element indicating the number of additional selected contacts beyond the first five.
  * The element displays the count in the format "+X" where X is the number of extra contacts.
- *
- * @function checkAssignedToContactsLength
  * @returns {HTMLDivElement} - A div element displaying the number of extra contacts.
  */
 function checkAssignedToContactsLength() {
@@ -352,7 +262,6 @@ function checkAssignedToContactsLength() {
 
 /**
  * Saves a new subtask by retrieving the input value, resetting the input field, and updating the UI.
- *
  * Steps performed:
  * 1. Retrieves the value from the subtask input field (`subtasks`) and logs it to the console.
  * 2. Passes the subtask text to `pushTextSubtask` to add it to the subtask collection.
@@ -370,12 +279,10 @@ function saveSubtasks() {
 
 /**
  * Adds a new subtask to the `subtasks` array.
- *
  * Steps performed:
  * 1. Creates a new subtask object with the provided `textSubtask` as the title and `checked` set to `false`.
  * 2. Pushes the new subtask object into the global `subtasks` array.
  * 3. Logs the newly created subtask and the updated `subtasks` array to the console.
- *
  * @param {string} textSubtask - The title of the subtask to be added.
  */
 function pushTextSubtask(textSubtask) {
@@ -388,12 +295,10 @@ function pushTextSubtask(textSubtask) {
 
 /**
  * Updates the title of an existing subtask in the `subtasks` array and re-renders the subtasks.
- *
  * Steps performed:
  * 1. Retrieves the updated subtask title from the input field corresponding to the provided index.
  * 2. Updates the `title` property of the subtask at the given index in the `subtasks` array.
  * 3. Calls `renderSubtasks` to reflect the changes in the UI.
- *
  * @param {number} index - The index of the subtask to be updated in the `subtasks` array.
  */
 function saveEditSubtask(index) {
@@ -407,7 +312,6 @@ function saveEditSubtask(index) {
  * When the "Enter" key is pressed, it prevents the default action
  * (e.g., form submission) and triggers a click event on the element
  * with the ID "subtaskSaver" if it exists.
- *
  * @param {KeyboardEvent} event - The keyboard event triggered when a key is pressed.
  */
 function handleEnterKey(event) {
@@ -422,7 +326,6 @@ function handleEnterKey(event) {
 
 /**
  * Clears the subtask input field and resets the subtask symbol to its default "+" icon.
- *
  * Steps performed:
  * 1. Sets the value of the subtask input field (`subtasks`) to an empty string.
  * 2. Updates the `symbolsSubtasks` element to display a "+" icon.
@@ -434,7 +337,6 @@ function clearInput() {
 
 /**
  * Changes the text of a subtask, renders its editing interface, and sets focus.
- * @function
  * @param {number} index - The index of the subtask to edit.
  */
 function changeText(index) {
@@ -449,12 +351,10 @@ function changeText(index) {
 
 /**
  * Sets the focus on the specified input field and moves the cursor to the end of its content.
- *
  * Steps performed:
  * 1. Calls the `focus` method on the input field to bring it into focus.
  * 2. Calculates the length of the input field's current value.
  * 3. Sets the cursor position to the end of the text using `setSelectionRange`.
- *
  * @param {HTMLElement} inputField - The input field to focus and adjust the cursor position.
  */
 function focusAtEnd(inputField) {
@@ -465,11 +365,9 @@ function focusAtEnd(inputField) {
 
 /**
  * Deletes a subtask from the `subtasks` array at the specified index and re-renders the subtask list.
- *
  * Steps performed:
  * 1. Removes the subtask at the given index from the `subtasks` array using `splice`.
  * 2. Calls `renderSubtasks` to update the displayed list of subtasks.
- *
  * @param {number} index - The index of the subtask to be deleted.
  */
 function deleteSubtask(index) {
@@ -479,11 +377,9 @@ function deleteSubtask(index) {
 
 /**
  * Updates the input field with a selected category value and closes the dropdown menu.
- *
  * Steps performed:
  * 1. Sets the value of the `showSelectedCategory` input field to the provided `value`.
  * 2. Calls `closeDropdown` to close the dropdown menu and reset its UI.
- *
  * @param {string} value - The selected category value to set in the input field.
  */
 function putInput(value) {

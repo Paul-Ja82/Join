@@ -1,47 +1,9 @@
 /**
- * Renders the contact list in the DOM, displaying filtered contacts and updating the UI elements accordingly.
- *
- * Steps performed:
- * 1. Displays the contact list by removing the `d-none` class and clearing its current content.
- * 2. Changes the dropdown arrow icon to an "up" state.
- * 3. If `filteredContacts` is empty, displays a message indicating the list is empty.
- * 4. Calls `returnRenderdContacts` to iterate through `filteredContacts` and:
- *    - Adds each contact as a list item with a checkbox.
- *    - Indicates whether the contact is already selected using `selectedContacts`.
- *    - Displays a profile picture for each contact using `showProfilPicture`.
- *    - Updates the checkbox icon to a "checked" state for selected contacts.
- * 5. Calls `showPersons` and `colorSelectedContacts` to finalize the UI updates for the contact list.
- *
- * @param {Array} [filteredContacts=contacts] - The array of contacts to render. Defaults to the full `contacts` array.
- * 
- * @example
- * renderContactList(filteredContacts);
- * // Renders the filtered list of contacts in the UI.
- */
-function renderContactList(filteredContacts = contacts) {
-  const contactList = document.getElementById("insertContactList");
-  contactList.classList.remove("d-none");                                     //das muss in die ürsprung datei zürück 
- 
-  contactList.innerHTML = "";
-  document.getElementById("arrowDropdown").src ="./assets/icons/arrowUpDropdown.svg";
-
-  if (filteredContacts.length === 0) {
-    contactList.innerHTML ="<li class='emptyListMessage'>Ganz schön leer hier! :(</li>";
-    return;
-  }
-
-  returnRenderdContacts();
-  showPersons();
-  colorSelectedContacts();
-}
-
-/**
  * Returns the HTML string for a contact list item.
- * @function
  * @param {string} contact - The contact name.
  * @param {number} index - The index of the contact in the list.
  * @param {boolean} isSelected - Whether the contact is selected.          
- * @returns {string} The HTML string for the contact list item.    // von Paul für returnRenderdContacts() 
+ * @returns {string} The HTML string for the contact list item. 
  */
 function getContactListItemHTML(contact, index, isSelected) {
   return `
@@ -59,25 +21,7 @@ function getContactListItemHTML(contact, index, isSelected) {
 }
 
 /**
- * Renders the filtered contacts into the contact list.
- * @function
- */
-function returnRenderdContacts() {
-  filteredContacts.forEach((contact, index) => {
-    const isSelected = selectedContacts.includes(contact);
-    contactList.innerHTML += getContactListItemHTML(contact, index, isSelected);     //das muss in die ürsprung datei zürück 
-    showProfilPicture(contact, index);
-    if (isSelected) {
-      document.getElementById(`checkboxId${index}`).src =
-        "assets/icons/checkboxChecked.svg";
-    }
-  });
-}
-
-
-/**
  * Collects all selected contacts from the checkboxes and updates the `selectedContacts` array.
- *
  * Steps performed:
  * 1. Resets the `selectedContacts` array to an empty state.
  * 2. Selects all checkbox elements in the document.
@@ -87,7 +31,7 @@ function returnRenderdContacts() {
  * 6. Returns the updated `selectedContacts` array.
  */
 function renderAddedPersons() {
-  const checkboxes = document.querySelectorAll('input[type="checkbox"]');   //das muss in die ürsprung datei zürück 
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]'); 
   showPersons();
 }
 
@@ -96,7 +40,7 @@ function renderAddedPersons() {
  * @function
  * @param {string} title - The title of the subtask.
  * @param {number} index - The index of the subtask.
- * @returns {string} The HTML string for the subtask item.   // von Paul für renderSubtasks()
+ * @returns {string} The HTML string for the subtask item.  
  */
 function getSubtaskHTML(title, index) {
   return `
@@ -121,10 +65,9 @@ function getSubtaskHTML(title, index) {
 function renderSubtasks() {
   document.getElementById("showSubtasks").innerHTML = "";
   for (let index = 0; index < subtasks.length; index++) {
-    document.getElementById("showSubtasks").innerHTML += getSubtaskHTML(subtasks[index].title, index);   //das muss in die ürsprung datei zürück 
+    document.getElementById("showSubtasks").innerHTML += getSubtaskHTML(subtasks[index].title, index); 
   }
 }
-
 
 /**
  * Returns the HTML structure for the task editing form.
@@ -307,7 +250,6 @@ function returnChangingAddTask(today) {
 
 /**
  * Returns the HTML structure for the "Add Task" form with a pre-selected process category.
- *
  * @param {string} selectedProcessCategory - The selected process category for the task (default: "medium" if not provided).
  * @returns {string} The HTML string representing the form for adding a task.
  */
@@ -532,10 +474,9 @@ function returnAddTaskForm(selectedProcessCategory, today) {
 
 /**
  * Returns the HTML string for editing a subtask.
- * @function
  * @param {string} changeText - The current text of the subtask.
  * @param {number} index - The index of the subtask.
- * @returns {string} The HTML string for the subtask edit UI.    //// von Paul für changeText(index) in add_tasks.js 
+ * @returns {string} The HTML string for the subtask edit UI.    
  */
 function getSubtaskEditHTML(changeText, index) {
   return `
@@ -555,23 +496,18 @@ function getSubtaskEditHTML(changeText, index) {
 
  /**
  * Renders a list item for each contact in the filtered contacts array.
- * Each list item includes the contact's profile, name, initials with a colored background,      // Von Paul aus contactsForTasks 
+ * Each list item includes the contact's profile, name, initials with a colored background,     
  * and a checkbox to select/deselect the contact. The checkbox state is pre-filled based on 
  * whether the contact is already selected.
- *
- * @function renderShowContacts
  * @returns {string} - A string of HTML that represents the contact list item.
- * 
  * @description
  * This function dynamically creates a list item (`<li>`) for each contact in the `filteredContactsForTasks` array.
  * The list item includes:
  *  - A profile section with the contact's initials and name.
  *  - A background color for the initials, taken from the contact's data.
  *  - A checkbox that allows users to select/deselect the contact, with its checked state reflecting if the contact is already selected.
- * 
  * The checkbox also has event handlers to prevent event bubbling (`event.stopPropagation()`), and to trigger other functions such as `renderAddedPersons()`.
  * Additionally, an icon for the checkbox is added at the end of the list item.
- * 
  * @param {number} listPersonId - The unique ID for each contact in the list.
  * @param {Object[]} filteredContactsForTasks - Array of contact objects filtered based on the task.
  * @param {boolean} isSelected - Indicates whether the contact is already selected.
@@ -599,8 +535,7 @@ function getSubtaskEditHTML(changeText, index) {
 
 /**
  * Returns the HTML string for the task confirmation message.
- * @function
- * @returns {string} The HTML string for the confirmation message.            // von Paul ausgelagert von confirmationOfSendedTask() in design_Add_Task.js
+ * @returns {string} The HTML string for the confirmation message.         
  */
 function getTaskConfirmationHTML() {
   return `
