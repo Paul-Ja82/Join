@@ -74,7 +74,6 @@ function loginSU() {
     }
 }
 
-
 /**
  * Logs in a guest user by setting the logged-in status and redirecting to the start page.
  */
@@ -120,7 +119,6 @@ function checkValidUser() {
         showInvalidUserVmsgLogin();
     }
 }
-
 
 /**
  * Displays the invalid user validation message for the login process.
