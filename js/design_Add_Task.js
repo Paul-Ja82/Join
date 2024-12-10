@@ -355,21 +355,3 @@ function confirmationOfSendedTask() {
     window.open("board.html", "_self");
   }, 2000);
 }
-
-/**
-* Checks if the dropdown list is open and toggles its visibility.
-* 
-* This function checks if the dropdown list is currently open (`isListOpen` is `true`). 
-* If the list is open, it calls the `toggleContactList()` function to close it. 
-* If the list is not open, it does nothing. 
-* It also stops the event from propagating.
-* 
-* @returns {void}
-*/
-function checkIfOpenDropdown() {
-stopPropagation();
-  if (isListOpen == true) {
-    toggleContactList();
-    return;
-  }
-}
