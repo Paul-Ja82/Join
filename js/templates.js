@@ -526,3 +526,26 @@ function returnAddTaskForm(selectedProcessCategory, today) {
       </div>
   `;
 }
+
+/**
+ * Returns the HTML string for editing a subtask.
+ * @function
+ * @param {string} changeText - The current text of the subtask.
+ * @param {number} index - The index of the subtask.
+ * @returns {string} The HTML string for the subtask edit UI.
+ */
+function getSubtaskEditHTML(changeText, index) {
+  return `
+    <div class="overChangingSubtask">
+      <input id="inputField${index}" class="changingTextInputField" value="${changeText}">
+      <div class="overAllChange editTaskImg">
+        <div class="centerSymbol" onclick="deleteSubtask(${index})">
+          <img class="editIcons" src="assets/icons/basketIcon.svg">
+        </div>
+        <div class="borderEditIcons"></div>
+        <div class="centerSymbol" onclick="saveEditSubtask(${index})">
+          <img class="editIcons" src="assets/icons/check.svg">
+        </div>
+      </div>
+    </div>`;
+}

@@ -292,7 +292,6 @@ function clickOutsideAssignedToHandler(event) {
   }
 }
 
-
 /**
  * Validates the date input field to ensure a value is selected and applies appropriate styles.
  *
@@ -434,18 +433,14 @@ function clearInput() {
 }
 
 /**
- * Changes the text of a subtask by replacing its content with an input field
- * that allows editing the title of the subtask. The input field is populated
- * with the current subtask title. It also provides options to save or delete 
- * the edited subtask.
- *
- * @param {number} index - The index of the subtask in the `subtasks` array
- *                          that is being edited.
+ * Changes the text of a subtask, renders its editing interface, and sets focus.
+ * @function
+ * @param {number} index - The index of the subtask to edit.
  */
 function changeText(index) {
   let changeText = subtasks[index].title;
   renderSubtasks();
-  document.getElementById(`subtask${index}`).innerHTML = `<div class="overChangingSubtask"><input id="inputField${index}" class="changingTextInputField" value="${changeText}"><div class="overAllChange editTaskImg"><div class="centerSymbol" onclick="deleteSubtask(${index})" ><img class="editIcons" src="assets/icons/basketIcon.svg"></div><div class="borderEditIcons"></div><div class="centerSymbol" onclick="saveEditSubtask(${index})"><img class="editIcons" src="assets/icons/check.svg"></div></div>`;
+  document.getElementById(`subtask${index}`).innerHTML = getSubtaskEditHTML(changeText, index);
   document.getElementById(`subtask${index}`).classList.add("changeTextSubtasks");
   document.getElementById(`inputField${index}`).classList.add("fullWidth");
   document.getElementById(`inputField${index}`).value = changeText;
