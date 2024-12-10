@@ -8,6 +8,7 @@ let currentUser;
 async function initJoin() {
   initMPA();
   initDialog();
+  await loadCurrentUser(); ///DEBUG
   await loadContacts();
 }
 
@@ -71,7 +72,9 @@ function getPersonIcon(id) {}
  * @function
  */
 function sortContactsByName() {
-  contacts.sort((contactI, contactJ) => contactI.name.localeCompare(contactJ.name));
+  if (contacts.length > 1) {
+    contacts.sort((contactI, contactJ) => contactI.name.localeCompare(contactJ.name));
+  }
 }
 
 /**
