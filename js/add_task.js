@@ -112,8 +112,12 @@ function toggleContactList() {
   isListOpen = !isListOpen;
 }
 
+/**
+ * Closes the contact list and resets related event listeners and UI elements.
+ * @function
+ */
 function toggleContactListClose() {
-  let inputElem= document.getElementById('inputAssignedTo');
+  let inputElem = document.getElementById('inputAssignedTo');
   if (currentTaskForEdit) {
     document.getElementById('dialogBox').removeEventListener('click', clickOutsideAssignedToHandler);
   } else {
@@ -124,12 +128,16 @@ function toggleContactListClose() {
   document.getElementById("arrowDropdown").src = "assets/icons/arrowDropdown.svg";
 }
 
+/**
+ * Opens the contact list, sets up event listeners, and updates UI elements.
+ * @function
+ */
 function toggleContactListOpen() {
-  let inputElem= document.getElementById('inputAssignedTo');
+  let inputElem = document.getElementById('inputAssignedTo');
   inputElem.removeEventListener('focusin', toggleContactList);
   let assignedToContacts = 'nobody';
   if (currentTaskForEdit) {
-    if(currentTaskForEdit != -1) assignedToContacts = getAssignedTo(currentTaskForEdit);
+    if (currentTaskForEdit != -1) assignedToContacts = getAssignedTo(currentTaskForEdit);
     document.getElementById('dialogBox').addEventListener('click', clickOutsideAssignedToHandler);
   } else {
     window.addEventListener('click', clickOutsideAssignedToHandler);
@@ -139,6 +147,12 @@ function toggleContactListOpen() {
   document.getElementById("arrowDropdown").src = "assets/icons/arrowUpDropdown.svg";
 }
 
+/**
+ * Retrieves the assigned contacts for a specific task by its ID.
+ * @function
+ * @param {number|string} single_ID - The ID of the task.
+ * @returns {Array} The list of assigned contacts.
+ */
 function getAssignedTo(single_ID) {
   let allTasksArray = [];
   for (let keyI in allTasks) {
@@ -148,6 +162,13 @@ function getAssignedTo(single_ID) {
   return task.assigned_to;
 }
 
+/**
+ * Retrieves the contact ID based on the contact's name.
+ * @async
+ * @function
+ * @param {string} name - The name of the contact.
+ * @returns {number|undefined} The ID of the contact or undefined if not found.
+ */
 async function getContactId(name) {
   await loadContacts();
   let contact = contacts.find(contactI => contactI.name == name);
@@ -155,13 +176,19 @@ async function getContactId(name) {
   else return undefined;
 }
 
+/**
+ * Simulates click events for the items in the names array.
+ * @async
+ * @function
+ * @param {Array} namesArray - Array of contact names.
+ */
 async function clickItems(namesArray) {
   let contactId;
   let elemId;
   let clickEvent = new Event('click');
   if (namesArray != 'nobody') {
     for (let nameI of namesArray) {
-      contactId= await getContactId(nameI);
+      contactId = await getContactId(nameI);
       if (contactId) {
         elemId = 'listPerson' + contactId;
         document.getElementById(elemId).dispatchEvent(clickEvent);
@@ -170,6 +197,12 @@ async function clickItems(namesArray) {
   }
 }
 
+/**
+ * Marks items in the names array by updating their UI elements.
+ * @async
+ * @function
+ * @param {Array} namesArray - Array of contact names.
+ */
 async function markItems(namesArray) {
   let contactId;
   if (namesArray != 'nobody') {
@@ -180,6 +213,12 @@ async function markItems(namesArray) {
   }
 }
 
+/**
+ * Selects items in the names array by updating their selection state.
+ * @async
+ * @function
+ * @param {Array} namesArray - Array of contact names.
+ */
 async function selectItems(namesArray) {
   let contactId;
   if (namesArray != 'nobody') {
@@ -190,6 +229,11 @@ async function selectItems(namesArray) {
   }
 }
 
+/**
+ * Marks a specific item by its contact ID, updating its appearance.
+ * @function
+ * @param {number|string} contactId - The ID of the contact to mark.
+ */
 function markItem(contactId) {
   let listItemElem = document.getElementById('listPerson' + contactId);
   let checkboxImgElem = document.getElementById('checkboxId' + contactId);
@@ -199,34 +243,55 @@ function markItem(contactId) {
   }
 }
 
+/**
+ * Demarks a specific item by its contact ID, resetting its appearance.
+ * @function
+ * @param {number|string} contactId - The ID of the contact to demark.
+ */
 function demarkItem(contactId) {
   let listItemElem = document.getElementById('listPerson' + contactId);
   let checkboxImgElem = document.getElementById('checkboxId' + contactId);
-  if(listItemElem) {
+  if (listItemElem) {
     listItemElem.classList.remove('backgroundContact');
     checkboxImgElem.src = './assets/icons/checkbox.svg';
   }
 }
 
+/**
+ * Selects a specific item by its contact ID, marking it as checked.
+ * @function
+ * @param {number|string} contactId - The ID of the contact to select.
+ */
 function selectItem(contactId) {
   let checkboxElem = document.getElementById('checkbox' + contactId);
-  checkboxElem.checked= true;
+  checkboxElem.checked = true;
 }
 
+/**
+ * Deselects a specific item by its contact ID, marking it as unchecked.
+ * @function
+ * @param {number|string} contactId - The ID of the contact to deselect.
+ */
 function deselectItem(contactId) {
   let checkboxElem = document.getElementById('checkbox' + contactId);
-  checkboxElem.checked= false;
+  checkboxElem.checked = false;
 }
 
+/**
+ * Handles clicks outside the assigned-to input or dropdown menu and toggles the contact list.
+ * @function
+ * @param {Event} event - The click event.
+ */
 function clickOutsideAssignedToHandler(event) {
-  let inputElem= document.getElementById('inputAssignedTo');
-  let ddMenuElem= document.getElementById('insertContactList');
-  let outsideInputElem= !inputElem.contains(event.target);
-  let oustsideDdMenuElem= !ddMenuElem.contains(event.target);
-  if (outsideInputElem && oustsideDdMenuElem) {
+  let inputElem = document.getElementById('inputAssignedTo');
+  let ddMenuElem = document.getElementById('insertContactList');
+  let outsideInputElem = !inputElem.contains(event.target);
+  let outsideDdMenuElem = !ddMenuElem.contains(event.target);
+  if (outsideInputElem && outsideDdMenuElem) {
     toggleContactList();
   }
 }
+
 
 /**
  * Validates the date input field to ensure a value is selected and applies appropriate styles.
