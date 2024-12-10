@@ -386,3 +386,13 @@ function putInput(value) {
   document.getElementById("showSelectedCategory").value = value;
   closeDropdown();
 }
+
+/**
+ * Renders the subtasks into the subtask list.
+ */
+function renderSubtasks() {
+  document.getElementById("showSubtasks").innerHTML = "";
+  for (let index = 0; index < subtasks.length; index++) {
+    document.getElementById("showSubtasks").innerHTML += getSubtaskHTML(subtasks[index].title, index); 
+  }
+}

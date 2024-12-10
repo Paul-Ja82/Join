@@ -21,21 +21,6 @@ function getContactListItemHTML(contact, index, isSelected) {
 }
 
 /**
- * Collects all selected contacts from the checkboxes and updates the `selectedContacts` array.
- * Steps performed:
- * 1. Resets the `selectedContacts` array to an empty state.
- * 2. Selects all checkbox elements in the document.
- * 3. Iterates through the checkboxes and adds the `value` of each checked box to the `selectedContacts` array.
- * 4. Logs the list of selected contacts to the console.
- * 5. Calls `showPersons` to update the UI with the selected contacts.
- * 6. Returns the updated `selectedContacts` array.
- */
-function renderAddedPersons() {
-  const checkboxes = document.querySelectorAll('input[type="checkbox"]'); 
-  showPersons();
-}
-
-/**
  * Returns the HTML string for a subtask item.
  * @function
  * @param {string} title - The title of the subtask.
@@ -56,17 +41,6 @@ function getSubtaskHTML(title, index) {
         </div>
       </div>
     </li>`;
-}
-
-/**
- * Renders the subtasks into the subtask list.
- * @function
- */
-function renderSubtasks() {
-  document.getElementById("showSubtasks").innerHTML = "";
-  for (let index = 0; index < subtasks.length; index++) {
-    document.getElementById("showSubtasks").innerHTML += getSubtaskHTML(subtasks[index].title, index); 
-  }
 }
 
 /**
