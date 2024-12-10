@@ -73,7 +73,7 @@ function generateContactList() {
     contactListContainer.innerHTML = content;
     if (currentUser) markUserContactItem();
 }
-// contact: {email, name, phone, color}
+
 /**
  * Generates the HTML for a contact list item with the provided contact data and element ID.
  * @param {Object} contact - The contact object containing details like name, email, and color.
