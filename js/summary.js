@@ -24,7 +24,6 @@ function toggleGreetingsDisplay() {
             if (greetingsFrame && titleAndMainDisplay) {
                 greetingsFrame.style.display = 'block';
                 titleAndMainDisplay.style.display = 'none';
-
                 setTimeout(() => {
                     greetingsFrame.style.display = 'none';
                     titleAndMainDisplay.style.display = 'block';
@@ -400,7 +399,6 @@ function updateDeadlineMessageElement(deadlineMsgElement, dueDate) {
 function displayDeadline(oldestTask) {
     let deadlineDateElement = document.getElementById('deadlineDate');
     let deadlineMsgElement = document.getElementById('deadlineMsg');
-
     if (!oldestTask) {
         if (deadlineDateElement) {
             deadlineDateElement.textContent = "No deadlines";
@@ -411,7 +409,6 @@ function displayDeadline(oldestTask) {
         }
         return;
     }
-
     let dueDateObject = new Date(oldestTask.due_date);
     let options = { year: 'numeric', month: 'long', day: 'numeric' }; 
     let formattedDate = dueDateObject.toLocaleDateString('en-US', options);
