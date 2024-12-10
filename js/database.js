@@ -1,6 +1,7 @@
 const BASE_URL = "https://join-7ae0e-default-rtdb.europe-west1.firebasedatabase.app/";
 const USERS_PATH = 'users/';
 const CONTACTS_PATH= 'contacts/';
+const NEXT_ID_PATH = 'nextId/';
 
 async function saveData(path, data, method = 'PUT') {
     return fetch(BASE_URL + path + '.json', {
