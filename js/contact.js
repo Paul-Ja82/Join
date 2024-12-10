@@ -1,34 +1,11 @@
-/* 
-#################
-TABLE OF CONTENTS
-#################
-01.) ## INIT ##
-02.) ## DATABASE ##
-03.) ## GENERATE CONTACT LIST ##
-04.) ## CONTACT LIST ##
-05.) ## INFO SECTION ##
-06.) ## CONTACT DETAIL ##
-07.) ## ADD CONTACT ##
-08.) ## ADD CONTACT DIALOG ##
-09.) ## EDIT CONTACT ##
-10.) ## DELETE CONTACT ##
-11.) ## MEDIA ##
-*/
-
 const USER_COLOR= '#2A3647';
 const USER_PHONE= '';
-
 let itemMarkClass = 'conlist-item-marked';
 let itemHoverClass = 'conlist-item-hover';
 let shownContactInfoId;
-
 let mediaDesktop = window.matchMedia('(1010px < width)');
+
 mediaDesktop.addEventListener('change', mediaChangeHandler);
-
-
-/*##########*/
-/*## INIT ##*/
-/*##########*/
 
 /**
  * Initializes the contact page by loading user data, setting up forms, and generating the contact list.
@@ -69,22 +46,12 @@ async function loadCurrentUserContact() {
     }
 }
 
-
-/*##############*/
-/*## DATABASE ##*/
-/*##############*/
-
 /**
  * Saves the current contacts data to the specified storage path.
  */
 function saveContacts() {
     saveData(CONTACTS_PATH, contacts);
 }
-
-
-/*###########################*/
-/*## GENERATE CONTACT LIST ##*/
-/*###########################*/
 
 /**
  * Generates the contact list by sorting contacts alphabetically, grouping them by initial letters, 
@@ -138,11 +105,6 @@ function markUserContactItem() {
     listItem.classList.add('userListItem');
 }
 
-
-/*##################*/
-/*## CONTACT LIST ##*/
-/*##################*/
-
 /**
  * Handles the click event for a contact list item, retrieves the contact's details,
  * sets the contact's color, and displays the contact info based on the current media query.
@@ -165,11 +127,6 @@ function addHoverClassAllListItems() {
         itemI.classList.add(itemHoverClass);
     }
 }
-
-
-/*##################*/
-/*## INFO SECTION ##*/
-/*##################*/
 
 /**
  * Displays the contact information by setting the contact details and showing the info container.
@@ -242,11 +199,6 @@ function displayInfoDesktop(event) {
     }
 }
 
-
-/*####################*/
-/*## CONTACT DETAIL ##*/
-/*####################*/
-
 /**
  * Handles the close button action for the detail view, hiding the detail container 
  * and resetting the layout to its default state.
@@ -275,11 +227,6 @@ function hideContactInfoButtonMobile() {
     hideElem('contactInfoButtonMobile');
     showElem('newContactButton');
 }
-
-
-/*#################*/
-/*## ADD CONTACT ##*/
-/*#################*/
 
 /**
  * Handles the creation of a new contact by adding the contact, updating the contact list,
@@ -331,11 +278,6 @@ function afterToastHandlerCreateContact() {
     addListItemClickHandlers();
     closeDialog();
 }
-
-
-/*########################*/
-/*## ADD CONTACT DIALOG ##*/
-/*########################*/
 
 /**
  * Handles the action of opening the add contact dialog by clearing the form,
@@ -414,11 +356,6 @@ function setButtonsAdd() {
     hideElem('cdDeleteButton');
     showElem('cdCancelButton');
 }
-
-
-/*##################*/
-/*## EDIT CONTACT ##*/
-/*##################*/
 
 /**
  * Handles the edit contact button action by setting up the edit contact dialog,
@@ -500,7 +437,6 @@ function setButtonsEdit() {
     hideElem('cdCancelButton');
 }
 
-
 /**
  * Handles the submission of the edit contact form, determining whether the edited contact
  * is the current user or another contact and processing the appropriate update.
@@ -566,11 +502,6 @@ function isUserContact() {
     return currentUser ? shownContactInfoId == currentUser.id : false;
 }
 
-
-/*####################*/
-/*## DELETE CONTACT ##*/
-/*####################*/
-
 /**
  * Handles the delete button action by deleting the selected contact
  * and showing a confirmation toast after the deletion.
@@ -616,11 +547,6 @@ async function afterToastHandlerDeleteContact() {
 async function afterToastHandlerEditContact() {
     await afterToastHandlerDeleteContact();
 }
-
-
-/*###########*/
-/*## MEDIA ##*/
-/*###########*/
 
 /**
  * Handles changes in media queries by adjusting the layout for desktop or mobile views.
