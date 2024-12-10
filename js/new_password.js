@@ -1,9 +1,3 @@
-// let currentUser;
-
-/*##########*/
-/*## INIT ##*/
-/*##########*/
-
 /**
  * Initializes the new password setup by loading user data, configuring forms,
  * and adding validation and submit handlers.
@@ -34,11 +28,6 @@ function loadCurrentUser() {
     let params = new URLSearchParams(document.location.search);
     currentUser = getUserById(params.get('id'));
 }
-
-
-/*#####################*/
-/*## UPDATE PASSWORD ##*/
-/*#####################*/
 
 /**
  * Updates the user's password by saving the new password to the specified storage path.
