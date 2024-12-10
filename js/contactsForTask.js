@@ -1,6 +1,5 @@
 let filteredContactsForTasks = []
 
-
 /**
  * Filters out null values from the provided contacts and appends a generated contact list template to the DOM.
  *
@@ -19,7 +18,6 @@ function checkContacts() {
     markItems(selectedContacts);
   }
 
-
 /**
  * Creates a contact list template based on the provided filtered contacts.
  * If the filtered contact list is empty, a message will be displayed. 
@@ -31,7 +29,6 @@ function checkContacts() {
 function createContactsTemplate(filteredContactsForTasks) {
     let template = document.createElement("ul");
     template.id = "contactListTemplate";
-    
     if (filteredContactsForTasks.length === 0) {
       template.innerHTML = `<li class='emptyListMessage'>Ganz schön leer hier! :(</li>`;
     } else {
@@ -43,10 +40,8 @@ function createContactsTemplate(filteredContactsForTasks) {
         template.innerHTML += contact;
       }
     }
-    
     return template;
   }
-
 
   /**
  * Renders a list item for each contact in the filtered contacts array.
@@ -73,19 +68,21 @@ function createContactsTemplate(filteredContactsForTasks) {
  * @param {string} initials - The initials of the contact, derived from their name.
  */
   function renderShowContacts(listPersonId, initials, isSelected, i) {
-    return `<li id="listPerson${listPersonId}" class="backgroundOnHover assignedToItemElem" onclick="contactClickHandler(${listPersonId})">
-            <div class="profile">
-              <div class="initialsImg" id="initialsImg${listPersonId}" style="background-color: ${filteredContactsForTasks[i].color}">
-                ${initials}
-              </div>
-              <div id="profilPerson${listPersonId}" class="profilePerson"></div>    
-              <div class="contactPerson">${filteredContactsForTasks[i].name}</div>
-            </div>
-            <input type="checkbox" value="${filteredContactsForTasks[i].name}" class="contactListCheckbox" 
-              id="checkbox${filteredContactsForTasks[i].id}" onchange="renderAddedPersons()" 
-              onclick="event.stopPropagation()" 
-              ${isSelected ? "checked" : ""}
-            >
-            <img id="checkboxId${listPersonId}" src="assets/icons/checkbox.svg">
-          </li>`;
+    return `
+      <li id="listPerson${listPersonId}" class="backgroundOnHover assignedToItemElem" onclick="contactClickHandler(${listPersonId})">
+        <div class="profile">
+          <div class="initialsImg" id="initialsImg${listPersonId}" style="background-color: ${filteredContactsForTasks[i].color}">
+            ${initials}
+          </div>
+          <div id="profilPerson${listPersonId}" class="profilePerson"></div>    
+          <div class="contactPerson">${filteredContactsForTasks[i].name}</div>
+        </div>
+        <input type="checkbox" value="${filteredContactsForTasks[i].name}" class="contactListCheckbox" 
+          id="checkbox${filteredContactsForTasks[i].id}" onchange="renderAddedPersons()" 
+          onclick="event.stopPropagation()" 
+          ${isSelected ? "checked" : ""}
+        >
+        <img id="checkboxId${listPersonId}" src="assets/icons/checkbox.svg">
+      </li>
+    `;
   }
