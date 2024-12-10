@@ -8,15 +8,13 @@
  * 4. Logs a success message to the console when a contact is successfully highlighted.
  */
 function colorSelectedContacts() {
-    const selectedPersons = document.querySelectorAll(".contactListCheckbox");
-  
-    selectedPersons.forEach((person) => {
-      person.parentNode.classList.remove("backgroundContact");
-      if (person.checked) {person.parentNode.classList.add("backgroundContact");
-      }
-    });
-  }
-
+  const selectedPersons = document.querySelectorAll(".contactListCheckbox");
+  selectedPersons.forEach((person) => {
+    person.parentNode.classList.remove("backgroundContact");
+    if (person.checked) {person.parentNode.classList.add("backgroundContact");
+    }
+  });
+}
 
 /**
  * Toggles the state of a checkbox in the contact list and updates the associated UI elements.
@@ -30,42 +28,24 @@ function colorSelectedContacts() {
  * @param {number} index - The index of the checkbox/contact in the contact list.
  */
 function contactClickHandler(contactId) {
-    if (selectedContacts == 'nobody') selectedContacts= [];
-    let checkbox = document.getElementById(`checkbox${contactId}`);
-    let contactName= checkbox.value;
-    let selectedContactsIndex;
-    if (selectedContacts.includes(contactName)) {
-      selectedContactsIndex= selectedContacts.indexOf(contactName);
-      deselectItem(contactId);
-      demarkItem(contactId);
-      selectedContacts.splice(selectedContactsIndex, 1);
-    } else {
-      selectItem(contactId);
-      markItem(contactId);
-      selectedContacts.push(contactName);
-    }
-    // renderAddedPersons();
-    showPersons();
+  if (selectedContacts == 'nobody') selectedContacts= [];
+  let checkbox = document.getElementById(`checkbox${contactId}`);
+  let contactName= checkbox.value;
+  let selectedContactsIndex;
+  if (selectedContacts.includes(contactName)) {
+    selectedContactsIndex= selectedContacts.indexOf(contactName);
+    deselectItem(contactId);
+    demarkItem(contactId);
+    selectedContacts.splice(selectedContactsIndex, 1);
+  } else {
+    selectItem(contactId);
+    markItem(contactId);
+    selectedContacts.push(contactName);
   }
-/*
- function contactClickHandler(contactId) {
-    let checkbox = document.getElementById(`checkbox${contactId}`);
-    let contactName= 
-    checkbox.checked = !checkbox.checked;
-    if (checkbox.checked)
-      document.getElementById(`checkboxId${index}`).src = "assets/icons/checkboxChecked.svg";
-      
-    else {
+  showPersons();
+}
 
-    }
-    // renderAddedPersons();
-    showPersons();
-    colorSelectedContacts();
-  } 
-  */
-
-
-  /**
+/**
  * Sets the minimum selectable date for a date input field to today's date.
  *
  * This function retrieves the current date, formats it in `YYYY-MM-DD` format,
@@ -84,18 +64,16 @@ function contactClickHandler(contactId) {
  * // The input field with ID "date" now has today's date as the minimum selectable date.
  */
 function prepareCalender() {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, "0"); // Monate sind 0-indexiert
-    const day = String(today.getDate()).padStart(2, "0");
-    const formattedDate = `${year}-${month}-${day}`; 
-  
-    const dateInput = document.getElementById("date");
-    if (dateInput) {dateInput.min = formattedDate;}
-  }
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0"); // Monate sind 0-indexiert
+  const day = String(today.getDate()).padStart(2, "0");
+  const formattedDate = `${year}-${month}-${day}`; 
+  const dateInput = document.getElementById("date");
+  if (dateInput) {dateInput.min = formattedDate;}
+}
 
-
-  /**
+/**
  * Creates an SVG avatar with the contact's initials and appends it to the specified container.
  * The background color of the avatar is determined based on the contact's index.
  *
@@ -106,24 +84,22 @@ function prepareCalender() {
  * @returns {void}
  */
 function createAndAppendSVG(avatarContainer, contact, index) {
-    const initials = getInitials(contact);
-    const bgColor = showTheColorOfContact(contact);
-    const svgAvatar = createAvatarSVG(initials, bgColor);
-    avatarContainer.appendChild(svgAvatar);
-  }
-
+  const initials = getInitials(contact);
+  const bgColor = showTheColorOfContact(contact);
+  const svgAvatar = createAvatarSVG(initials, bgColor);
+  avatarContainer.appendChild(svgAvatar);
+}
 
 function showTheColorOfContact(contact) {
-    let bgColor = "";
-    for (let key in allContactsForTasks) {
-      if (allContactsForTasks[key].name === contact) {
-        bgColor = allContactsForTasks[key].color;
-        break;
-      }
+  let bgColor = "";
+  for (let key in allContactsForTasks) {
+    if (allContactsForTasks[key].name === contact) {
+      bgColor = allContactsForTasks[key].color;
+      break;
     }
-    return bgColor;
   }
-
+  return bgColor;
+}
 
 /**
  * Extracts initials from a given name, considering both single and multi-word names.
@@ -150,8 +126,7 @@ function getInitials(name) {
     }
   }
 
-
-  /**
+/**
  * Creates an SVG avatar with initials and a circular colored background.
  *
  * Steps performed:
@@ -172,39 +147,34 @@ function getInitials(name) {
  * @returns {SVGElement} The created SVG avatar element.
  */
 function createAvatarSVG(initials, bgColor) {
-    const svgNS = "http://www.w3.org/2000/svg";
-  
-    const svg = document.createElementNS(svgNS, "svg");
-    svg.setAttribute("width", "42");
-    svg.setAttribute("height", "42");
-    svg.setAttribute("viewBox", "0 0 44 44");
-    svg.setAttribute("class", "contact-avatar-svg");
-  
-    const circle = document.createElementNS(svgNS, "circle");
-    circle.setAttribute("cx", "22");
-    circle.setAttribute("cy", "22");
-    circle.setAttribute("r", "20");
-    circle.setAttribute("fill", bgColor);
-    circle.setAttribute("stroke", "#fff");
-    circle.setAttribute("stroke-width", "2");
-  
-    const text = document.createElementNS(svgNS, "text");
-    text.setAttribute("x", "50%");
-    text.setAttribute("y", "50%");
-    text.setAttribute("dy", ".35em");
-    text.setAttribute("text-anchor", "middle");
-    text.setAttribute("font-size", "12");
-    text.setAttribute("fill", "#fff");
-    text.setAttribute("font-family", "Arial, sans-serif");
-    text.textContent = initials;
-  
-    svg.appendChild(circle);
-    svg.appendChild(text);
-    return svg;
-  }
+  const svgNS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(svgNS, "svg");
+  svg.setAttribute("width", "42");
+  svg.setAttribute("height", "42");
+  svg.setAttribute("viewBox", "0 0 44 44");
+  svg.setAttribute("class", "contact-avatar-svg");
+  const circle = document.createElementNS(svgNS, "circle");
+  circle.setAttribute("cx", "22");
+  circle.setAttribute("cy", "22");
+  circle.setAttribute("r", "20");
+  circle.setAttribute("fill", bgColor);
+  circle.setAttribute("stroke", "#fff");
+  circle.setAttribute("stroke-width", "2");
+  const text = document.createElementNS(svgNS, "text");
+  text.setAttribute("x", "50%");
+  text.setAttribute("y", "50%");
+  text.setAttribute("dy", ".35em");
+  text.setAttribute("text-anchor", "middle");
+  text.setAttribute("font-size", "12");
+  text.setAttribute("fill", "#fff");
+  text.setAttribute("font-family", "Arial, sans-serif");
+  text.textContent = initials;
+  svg.appendChild(circle);
+  svg.appendChild(text);
+  return svg;
+}
 
-
-  /**
+/**
  * Selects the priority for a task and updates the UI to reflect the selection.
  *
  * Steps performed:
@@ -218,69 +188,64 @@ function createAvatarSVG(initials, bgColor) {
  * @param {string} priority - The selected priority ("low", "medium", or "urgent").
  */
 function selectPrio(priority) {
-    selectedPrio = priority;
-    priorityClasses.forEach((prio) => {
-      document.getElementById(`${prio}Button`).classList.remove(`${prio}Button`);
-      document.getElementById(`${prio}ButtonImg`).src = `assets/icons/${prio}.svg`;
-    });
-  
-    if (priority === "low") {lowPrio(priority);} 
-    else if (priority === "medium") {mediumPrio(priority);} 
-    else if (priority === "urgent") {urgentPrio(priority);}
-  }
-  
+  selectedPrio = priority;
+  priorityClasses.forEach((prio) => {
+    document.getElementById(`${prio}Button`).classList.remove(`${prio}Button`);
+    document.getElementById(`${prio}ButtonImg`).src = `assets/icons/${prio}.svg`;
+  });
+  if (priority === "low") {lowPrio(priority);} 
+  else if (priority === "medium") {mediumPrio(priority);} 
+  else if (priority === "urgent") {urgentPrio(priority);}
+}
 
-  /**
-   * Applies the styles and icon for the "low" priority selection.
-   *
-   * Steps performed:
-   * 1. Constructs the button ID for the "low" priority based on the provided `priority` string.
-   * 2. Adds the `lowButton` class to the button element to apply the selected styles.
-   * 3. Updates the button's icon to a white "low" priority icon.
-   *
-   * @param {string} priority - The priority level ("low").
-   */
-  function lowPrio(priority) {
-    let button = `${priority}Button`;
-    document.getElementById(button).classList.add(`${priority}Button`);
-    document.getElementById(`${button}Img`).src = "assets/icons/lowWhite.svg";
-  }
+/**
+ * Applies the styles and icon for the "low" priority selection.
+ *
+ * Steps performed:
+ * 1. Constructs the button ID for the "low" priority based on the provided `priority` string.
+ * 2. Adds the `lowButton` class to the button element to apply the selected styles.
+ * 3. Updates the button's icon to a white "low" priority icon.
+ *
+ * @param {string} priority - The priority level ("low").
+ */
+function lowPrio(priority) {
+  let button = `${priority}Button`;
+  document.getElementById(button).classList.add(`${priority}Button`);
+  document.getElementById(`${button}Img`).src = "assets/icons/lowWhite.svg";
+}
   
+/**
+ * Applies the styles and icon for the "medium" priority selection.
+ *
+ * Steps performed:
+ * 1. Constructs the button ID for the "medium" priority based on the provided `priority` string.
+ * 2. Adds the `mediumButton` class to the button element to apply the selected styles.
+ * 3. Updates the button's icon to a white "medium" priority icon.
+ *
+ * @param {string} priority - The priority level ("medium").
+ */
+function mediumPrio(priority) {
+  let button = `${priority}Button`;
+  document.getElementById(button).classList.add(`${priority}Button`);
+  document.getElementById(`${button}Img`).src = "assets/icons/mediumWhite.svg";
+}  
 
-  /**
-   * Applies the styles and icon for the "medium" priority selection.
-   *
-   * Steps performed:
-   * 1. Constructs the button ID for the "medium" priority based on the provided `priority` string.
-   * 2. Adds the `mediumButton` class to the button element to apply the selected styles.
-   * 3. Updates the button's icon to a white "medium" priority icon.
-   *
-   * @param {string} priority - The priority level ("medium").
-   */
-  function mediumPrio(priority) {
-    let button = `${priority}Button`;
-    document.getElementById(button).classList.add(`${priority}Button`);
-    document.getElementById(`${button}Img`).src = "assets/icons/mediumWhite.svg";
-  }
+/**
+ * Applies the styles and icon for the "urgent" priority selection.
+ *
+ * Steps performed:
+ * 1. Constructs the button ID for the "urgent" priority based on the provided `priority` string.
+ * 2. Adds the `urgentButton` class to the button element to apply the selected styles.
+ * 3. Updates the button's icon to a white "urgent" priority icon.
+ *
+ * @param {string} priority - The priority level ("urgent").
+ */
+function urgentPrio(priority) {
+  let button = `${priority}Button`;
+  document.getElementById(button).classList.add(`${priority}Button`);
+  document.getElementById(`${button}Img`).src = "assets/icons/upWhite.svg";
+}
   
-
-  /**
-   * Applies the styles and icon for the "urgent" priority selection.
-   *
-   * Steps performed:
-   * 1. Constructs the button ID for the "urgent" priority based on the provided `priority` string.
-   * 2. Adds the `urgentButton` class to the button element to apply the selected styles.
-   * 3. Updates the button's icon to a white "urgent" priority icon.
-   *
-   * @param {string} priority - The priority level ("urgent").
-   */
-  function urgentPrio(priority) {
-    let button = `${priority}Button`;
-    document.getElementById(button).classList.add(`${priority}Button`);
-    document.getElementById(`${button}Img`).src = "assets/icons/upWhite.svg";
-  }
-  
-
 /**
  * Displays the category selection dropdown and updates UI elements.
  * 
@@ -294,15 +259,13 @@ function selectPrio(priority) {
  * @function
  */
 function showMeCategorys() {
-    putInput(``);
-    document.getElementById("showSelectedCategory").onclick = closeDropdown;
-    document.getElementById("showCategorys").classList.remove("d-none");
-    document.getElementById("categoryDropdown").onclick = closeDropdown;
-    document.getElementById("categoryDropdown").src = "assets/icons/arrowUpDropdown.svg";
-  
-    document.addEventListener("click", closeOnClickOutside);
-  }
-
+  putInput(``);
+  document.getElementById("showSelectedCategory").onclick = closeDropdown;
+  document.getElementById("showCategorys").classList.remove("d-none");
+  document.getElementById("categoryDropdown").onclick = closeDropdown;
+  document.getElementById("categoryDropdown").src = "assets/icons/arrowUpDropdown.svg";
+  document.addEventListener("click", closeOnClickOutside);
+}
 
 /**
  * Closes the category dropdown menu and resets its UI elements.
@@ -314,15 +277,13 @@ function showMeCategorys() {
  * 4. Updates the dropdown arrow icon to the "down" state.
  */
 function closeDropdown() {
-    document.getElementById("showSelectedCategory").onclick = showMeCategorys;
-    document.getElementById("categoryDropdown").onclick = showMeCategorys;
-    document.getElementById("showCategorys").classList.add("d-none");
-  
-    document.getElementById("categoryDropdown").src = "assets/icons/arrowDropdown.svg";
-  }
-  
+  document.getElementById("showSelectedCategory").onclick = showMeCategorys;
+  document.getElementById("categoryDropdown").onclick = showMeCategorys;
+  document.getElementById("showCategorys").classList.add("d-none");
+  document.getElementById("categoryDropdown").src = "assets/icons/arrowDropdown.svg";
+}
 
-  /**
+/**
  * Closes the category dropdown if a click occurs outside of the dropdown.
  * 
  * This function:
@@ -334,20 +295,18 @@ function closeDropdown() {
  * @function
  */
 function closeOnClickOutside(event) {
-    const catImage = document.getElementById("categoryDropdown");
-    const dropdown = document.getElementById("showSelectedCategory");
-    const selectBox = document.getElementById("showCategorys");
-  
-    if (
-      !dropdown.contains(event.target) &&
-      !selectBox.contains(event.target) &&
-      !catImage.contains(event.target)
-    ) {
-      closeDropdown();
-      document.removeEventListener("click", closeOnClickOutside); 
-    }
+  const catImage = document.getElementById("categoryDropdown");
+  const dropdown = document.getElementById("showSelectedCategory");
+  const selectBox = document.getElementById("showCategorys");
+  if (
+    !dropdown.contains(event.target) &&
+    !selectBox.contains(event.target) &&
+    !catImage.contains(event.target)
+  ) {
+    closeDropdown();
+    document.removeEventListener("click", closeOnClickOutside); 
   }
-
+}
 
 /**
  * Dynamically updates the subtask input field icons based on user input.
@@ -365,20 +324,17 @@ function closeOnClickOutside(event) {
  *
  * @function changeSymbols
  */
-  function changeSymbols() {
-    let checkInput = document.getElementById("subtasks").value;
-    
-    document.getElementById("symbolsSubtasks").innerHTML = "";
-    document.getElementById("symbolsSubtasks").innerHTML = `<div class="centerSymbol" onclick="clearInput()"><img src="assets/icons/close.svg"></div><div class="borderEditIcons"></div><div id="subtaskSaver" class="centerSymbol" onclick="saveSubtasks()"><img src="assets/icons/check.svg"></div>`;
-  
-    if (checkInput.length <= 0) {
-      document.getElementById("symbolsSubtasks").innerHTML = `
-        <img src="assets/icons/plus.svg" alt="">`;
-    }
+function changeSymbols() {
+  let checkInput = document.getElementById("subtasks").value;
+  document.getElementById("symbolsSubtasks").innerHTML = "";
+  document.getElementById("symbolsSubtasks").innerHTML = `<div class="centerSymbol" onclick="clearInput()"><img src="assets/icons/close.svg"></div><div class="borderEditIcons"></div><div id="subtaskSaver" class="centerSymbol" onclick="saveSubtasks()"><img src="assets/icons/check.svg"></div>`;
+  if (checkInput.length <= 0) {
+    document.getElementById("symbolsSubtasks").innerHTML = `
+      <img src="assets/icons/plus.svg" alt="">`;
   }
+}
 
-
-  /**
+/**
  * Displays a confirmation message and redirects the user to the board page.
  * 
  * This function displays a confirmation message on the page indicating that the task has been successfully added to the board.
@@ -387,32 +343,33 @@ function closeOnClickOutside(event) {
  * @returns {void}
  */
 function confirmationOfSendedTask() {
-    document.getElementById(
-         "insertAddedToTaskConfirmation"
-       ).innerHTML = `<div class="backgroundInformationForm"><div id="addConfirmation" class="addedToBoard">
+  document.getElementById("insertAddedToTaskConfirmation").innerHTML = `
+    <div class="backgroundInformationForm">
+      <div id="addConfirmation" class="addedToBoard">
         <div class="taskAddedInformation">Task added to board</div>
         <img src="assets/icons/boardIcon.svg" alt="" />
-        </div></div>`;
-       setTimeout(() => {
-         window.open("board.html", "_self");
-       }, 2000);
-   }
-   
+      </div>
+    </div>
+  `;
+  setTimeout(() => {
+    window.open("board.html", "_self");
+  }, 2000);
+}
 
-   /**
-    * Checks if the dropdown list is open and toggles its visibility.
-    * 
-    * This function checks if the dropdown list is currently open (`isListOpen` is `true`). 
-    * If the list is open, it calls the `toggleContactList()` function to close it. 
-    * If the list is not open, it does nothing. 
-    * It also stops the event from propagating.
-    * 
-    * @returns {void}
-    */
-   function checkIfOpenDropdown() {
-   stopPropagation();
-     if (isListOpen == true) {
-       toggleContactList();
-       return;
-     }
-   }
+/**
+* Checks if the dropdown list is open and toggles its visibility.
+* 
+* This function checks if the dropdown list is currently open (`isListOpen` is `true`). 
+* If the list is open, it calls the `toggleContactList()` function to close it. 
+* If the list is not open, it does nothing. 
+* It also stops the event from propagating.
+* 
+* @returns {void}
+*/
+function checkIfOpenDropdown() {
+stopPropagation();
+  if (isListOpen == true) {
+    toggleContactList();
+    return;
+  }
+}
