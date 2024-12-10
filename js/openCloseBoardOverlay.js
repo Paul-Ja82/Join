@@ -19,6 +19,8 @@
  * @param {string} selectedProcessCategory - The category for the process that is pre-selected in the add-task form.
  */
 async function showDialog(selectedProcessCategory) {
+    selectedContacts= [];
+    currentTaskForEdit= -1;
     if (window.innerWidth < 400) {
       window.open("add_task.html", "_self");
     } else {
@@ -34,6 +36,7 @@ async function showDialog(selectedProcessCategory) {
       const contactList = document.getElementById("insertContactList");
       contactList.classList.add("d-none");
     }
+    document.getElementById('inputAssignedTo').addEventListener('focusin', toggleContactList);
 }
 
 /**

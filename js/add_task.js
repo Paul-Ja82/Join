@@ -112,6 +112,7 @@ function closeContactList() {
  * toggleContactList(filteredContactsForTasks);
  */
 function toggleContactList() {
+  console.log('toggleContactList()'); ///DEBUG
   let inputElem= document.getElementById('inputAssignedTo');
   if (isListOpen) {
     //schließen
@@ -128,7 +129,7 @@ function toggleContactList() {
     inputElem.removeEventListener('focusin', toggleContactList);
     let assignedToContacts = 'nobody';
     if (currentTaskForEdit) { //edit Task
-      assignedToContacts = getAssignedTo(currentTaskForEdit);
+      if(currentTaskForEdit != -1) assignedToContacts = getAssignedTo(currentTaskForEdit);
       document.getElementById('dialogBox').addEventListener('click', clickOutsideAssignedToHandler);
     } else { //nur add Task
       window.addEventListener('click', clickOutsideAssignedToHandler);
@@ -453,7 +454,6 @@ function putInput(value) {
 /*###########*/
 
 function tuEsAddTask() {
-  let inputElem= document.getElementById('inputAssignedTo');
-  console.log(document.contains(inputElem)); ///DEBUG
-  console.log(inputElem.contains(document)); ///DEBUG
+  if(-1) console.log('wahr'); ///DEBUG
+  else console.log('falsch'); ///DEBUG
 }
