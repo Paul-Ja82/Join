@@ -309,7 +309,7 @@ ul {
 .overField textarea::-webkit-resizer {
   width: 20px;
   height: 19px;
-  background-image: url("/assets/icons/textareaResizer.svg");
+  background-image: url("../assets/icons/textareaResizer.svg");
   background-size: contain;
   background-repeat: no-repeat;
   transform: translate(-20px, -19px);
@@ -549,7 +549,7 @@ input[type="date"].filled {
 }
 
 .clearButton:active .iconX {
-  background-image: url("/assets/icons/close.svg");
+  background-image: url("../assets/icons/close.svg");
 }
 
 .clearButton:active {
@@ -559,7 +559,7 @@ input[type="date"].filled {
 }
 
 .iconX {
-  background-image: url("/assets/icons/close.svg");
+  background-image: url("../assets/icons/close.svg");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

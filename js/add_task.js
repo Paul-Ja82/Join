@@ -112,7 +112,6 @@ function closeContactList() {
  * toggleContactList(filteredContactsForTasks);
  */
 function toggleContactList() {
-  console.log('toggleContactList()'); ///DEBUG
   let inputElem= document.getElementById('inputAssignedTo');
   if (isListOpen) {
     //schließen
@@ -262,8 +261,6 @@ function checkDateInput() {
  * @returns {void}
  */
 function showPersons() {
-  console.log('showPersons()'); ///DEBUG
-  console.log(selectedContacts); ///DEBUG
   if (selectedContacts != 'nobody') {
     const avatarContainer = document.getElementById("showPersons");
     avatarContainer.innerHTML = "";

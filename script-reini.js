@@ -63,7 +63,6 @@ function getFirstLetter(text) {
 
 function getNextASCIIchar(text) {
   let char= getFirstLetter(text).toUpperCase();
-  console.log(char); ///DEBUG
   return String.fromCharCode(char.charCodeAt(0) + 1).toUpperCase();
 }
 
