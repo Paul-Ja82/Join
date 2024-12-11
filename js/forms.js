@@ -1,12 +1,7 @@
 let validations = [];
 let submitHandlers = [];
 let defaultVsmgs= [];
-
 let invalidStyleClass= 'validate-input';
-
-/*##########*/
-/*## INIT ##*/
-/*##########*/
 
 /**
  * Initializes forms by setting up form tracking, adding submit and input event handlers,
@@ -60,7 +55,7 @@ function addInputHandlers() {
 /**
  * Adds focus event handlers to all input elements, triggering the addition of invalid styles on focus.
  */
-function addFocusHandlers() {
+function addFocusHandlers() { 
     let inputs = document.querySelectorAll('input');
     for (let inputI of inputs) {
         inputI.addEventListener('focus', addInvalidStyles);
@@ -99,11 +94,6 @@ function addInvalidStyles() {
     }
     removeFocusHandlers();
 }
-
-
-/*############*/
-/*## SUBMIT ##*/
-/*############*/
 
 /**
  * Handles the main submit event for a form, preventing default submission,
@@ -172,11 +162,6 @@ function isFormValidBuiltIn(formId) {
     return isFormValidBuiltIn;
 }
 
-
-/*#################*/
-/*## VALIDATIONS ##*/
-/*#################*/
-
 /**
  * Adds a custom validation function to a specified form, along with its validation message.
  * @param {string} formId - The ID of the form to which the validation is added.
@@ -237,11 +222,6 @@ async function validate(validation) {
     }
 }
 
-
-/*########*/
-/*## UI ##*/
-/*########*/
-
 /**
  * Displays a validation message by updating the element's content and removing its hidden state.
  * @param {string} elemId - The ID of the element where the validation message will be displayed.
@@ -277,6 +257,13 @@ function enableButton(buttonId) {
 function disableButton(buttonId) {
     let button = document.getElementById(buttonId);
     button.disabled = true;
+}
+
+function resetForm(formId) {
+    let inputs= document.querySelectorAll(`#${formId} .${invalidStyleClass}`);
+    for (let inputI of inputs) {
+        inputI.classList.remove(invalidStyleClass);
+    }
 }
 
 /**

@@ -8,7 +8,7 @@ let currentUser;
 async function initJoin() {
   initMPA();
   initDialog();
-  await loadCurrentUser(); ///DEBUG
+  await loadCurrentUser();
   await loadContacts();
 }
 
