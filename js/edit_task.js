@@ -126,12 +126,10 @@ function getTaskById(taskId) {
 function closeChangeTaskValues() {
   currentTaskForEdit= undefined;
   if (document.getElementById("insertContactList").classList.contains(!"d-none")) {
-    console.log('d-none nicht enthalten, Liste geöffnet');
-    
+    console.log('d-none nicht enthalten, Liste geöffnet');    
     closeContactList()
   isListOpen = !isListOpen;
   }
-
   document.getElementById("dialogBox").style.cssText = "";
   document.getElementById("dialogBox").classList.remove("showIt");
   setTimeout(() => {
