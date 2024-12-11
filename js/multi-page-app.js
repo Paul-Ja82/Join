@@ -1,19 +1,12 @@
-
 const LOGGEDIN_SESSIONSTORAGE_KEY= 'loggedIn';
 const REMEMBERME_LOCALSTORAGE_KEY= 'loggedInUserName';
-
 const INDEXPAGE_URLS= ['./log_in.html', './sign_up.html'];
 const STARTPAGE_URL= './summary_user.html';
 const FAVICON_DARK_BG_URL= './assets/img/logo-darkBG.svg';
-
 const SUMMARY_URL= './summary_user.html';
 const ADDTASK_URL= './add_task.html';
 const BOARD_URL= './board.html';
 const CONTACT_URL= './contact.html';
-
-/*##########*/
-/*## INIT ##*/
-/*##########*/
 
 /**
  * Initializes the multi-page application (MPA) by setting the favicon and determining
@@ -62,11 +55,6 @@ function isIndexPage() {
     }
     return indexFilenames.includes(currentFilename);
 }
-
-
-/*##################*/
-/*## USER LOGGING ##*/
-/*##################*/
 
 /**
  * Logs the user in by setting the logged-in and remember-me status,
@@ -117,11 +105,6 @@ function clearLoggedIn() {
     sessionStorage.removeItem(LOGGEDIN_SESSIONSTORAGE_KEY);
 }
 
-
-/*#################*/
-/*## REMEMBER ME ##*/
-/*#################*/
-
 /**
  * Sets the remember-me status in local storage.
  * @param {string|Object} item - The item to store for remember-me functionality.
@@ -149,11 +132,6 @@ function clearRememberMe() {
     localStorage.removeItem(REMEMBERME_LOCALSTORAGE_KEY);
 }
 
-
-/*#############*/
-/*## FAVICON ##*/
-/*#############*/
-
 /**
  * Sets the favicon of the document to the specified source.
  * @param {string} src - The URL of the favicon to set.
@@ -177,11 +155,6 @@ function isDarkMode() {
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
 }
 
-
-/*################*/
-/*## NAVIGATION ##*/
-/*################*/
-
 /**
  * Redirects the browser to the specified URL.
  * @param {string} url - The URL to navigate to.
@@ -189,11 +162,6 @@ function isDarkMode() {
 function loadPage(url) {
     window.location.href = url;
 }
-
-
-/*##########*/
-/*## MISC ##*/
-/*##########*/
 
 /**
  * Checks if the given item is an object.
@@ -231,5 +199,3 @@ function getFilenameFromURL(url) {
     let splitSlash = url.split('/');
     return splitSlash.pop().split('?')[0];
 }
-
-
