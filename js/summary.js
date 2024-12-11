@@ -8,12 +8,7 @@ function initSummary() {
 }
 
 /**
- * Toggles the display of greeting elements based on the window width.
- * If the window width is less than or equal to 1280 pixels, the greetings frame is shown for 2 seconds,
- * after which it is hidden, and the main display is shown.
- * The greetings frame is shown only once per session using sessionStorage to track if it has been displayed.
- *
- * @function toggleGreetingsDisplay
+ * Toggles greeting display on small screens and ensures it shows only once per session.
  */
 function toggleGreetingsDisplay() {
     if (window.innerWidth <= 1280) {
@@ -97,14 +92,10 @@ function formatName(name) {
 }
 
 /**
- * Updates the greeting text and displays the formatted name if a stored name exists.
- * Adds a comma to the greeting text if a name is found; otherwise, appends an exclamation mark if
- * the window width is less than 1280 pixels.
- *
- * @function ifElseForGreetedName
- * @param {string|null} storedName - The stored name retrieved from session storage.
+ * Updates the greeting text based on the stored name and screen width.
+ * @param {string|null} storedName - The stored name from session storage.
  * @param {string} greetingText - The current greeting text.
- * @returns {string} - The modified greeting text.
+ * @returns {string} Modified greeting text.
  */
 function ifElseForGreetedName(storedName, greetingText) {
     if (storedName) {

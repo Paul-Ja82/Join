@@ -464,23 +464,12 @@ function getSubtaskEditHTML(changeText, index) {
 }
 
  /**
- * Renders a list item for each contact in the filtered contacts array.
- * Each list item includes the contact's profile, name, initials with a colored background,     
- * and a checkbox to select/deselect the contact. The checkbox state is pre-filled based on 
- * whether the contact is already selected.
- * @returns {string} - A string of HTML that represents the contact list item.
- * @description
- * This function dynamically creates a list item (`<li>`) for each contact in the `filteredContactsForTasks` array.
- * The list item includes:
- *  - A profile section with the contact's initials and name.
- *  - A background color for the initials, taken from the contact's data.
- *  - A checkbox that allows users to select/deselect the contact, with its checked state reflecting if the contact is already selected.
- * The checkbox also has event handlers to prevent event bubbling (`event.stopPropagation()`), and to trigger other functions such as `renderAddedPersons()`.
- * Additionally, an icon for the checkbox is added at the end of the list item.
- * @param {number} listPersonId - The unique ID for each contact in the list.
- * @param {Object[]} filteredContactsForTasks - Array of contact objects filtered based on the task.
- * @param {boolean} isSelected - Indicates whether the contact is already selected.
- * @param {string} initials - The initials of the contact, derived from their name.
+ * Renders a list item for each contact with profile, initials, and a checkbox.
+ * @param {number} listPersonId - Unique ID of the contact.
+ * @param {Object[]} filteredContactsForTasks - Filtered contact objects.
+ * @param {boolean} isSelected - Whether the contact is selected.
+ * @param {string} initials - Contact initials from their name.
+ * @returns {string} HTML string for the contact list item.
  */
  function renderShowContacts(listPersonId, initials, isSelected, i) {
   return `

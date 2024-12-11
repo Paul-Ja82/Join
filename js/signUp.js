@@ -34,12 +34,11 @@ function preventDefaultSignUp() {
 }
 
 /**
- * Handles the result of validation for user login inputs.
- * Adds or removes error classes on the email and password input elements based on validation status.
- * @param {HTMLElement} emailInput - The email input element to validate.
- * @param {HTMLElement} passwordInput - The password input element to validate.
- * @param {boolean} isValidUser - Indicates whether the user is valid.
- * @param {string} errorMessage - The error message to display if validation fails.
+ * Adds or removes error classes on inputs based on validation status.
+ * @param {HTMLElement} emailInput - Email input element.
+ * @param {HTMLElement} passwordInput - Password input element.
+ * @param {boolean} isValidUser - Validation status.
+ * @param {string} errorMessage - Error message for invalid input.
  */
 function handleValidationResult(emailInput, passwordInput, isValidUser, errorMessage) {
     if (!isValidUser) {
@@ -231,11 +230,10 @@ function handlePasswordMatchConfirm() {
 }
 
 /**
- * Provides support for masking the confirmation password input field.
- * Updates the actual value and adjusts the displayed value based on user input and the visibility state of the password.
- * @param {HTMLInputElement} input - The password input element.
- * @param {string} actualValue - The actual value of the password without masking.
- * @returns {string} The updated actual value of the password.
+ * Handles masking and updating the confirmation password input field.
+ * @param {HTMLInputElement} input - Password input element.
+ * @param {string} actualValue - Unmasked password value.
+ * @returns {string} Updated unmasked password value.
  */
 function supportForConfirmMaskPassword(input, actualValue) {
     const lastChar = input.value.slice(-1);
@@ -250,7 +248,6 @@ function supportForConfirmMaskPassword(input, actualValue) {
     } else {
         input.value = '✶'.repeat(actualValue.length);
     }
-
     return actualValue;
 }
 
@@ -268,12 +265,11 @@ function maskConfirmPassword() {
 }
 
 /**
- * Toggles the display of lock and eye icons for the confirm password field based on the input's content.
- * Manages the visibility of lock, eye-off, and eye-on icons according to the state of the password field.
- * @param {HTMLInputElement} input - The confirm password input element.
- * @param {HTMLElement} lockImg - The lock icon element.
- * @param {HTMLElement} eyeOffImg - The eye-off icon element.
- * @param {HTMLElement} eyeOnImg - The eye-on icon element.
+ * Toggles lock and eye icons for the confirm password field based on input content.
+ * @param {HTMLInputElement} input - Confirm password input element.
+ * @param {HTMLElement} lockImg - Lock icon element.
+ * @param {HTMLElement} eyeOffImg - Eye-off icon element.
+ * @param {HTMLElement} eyeOnImg - Eye-on icon element.
  */
 function eyeLockVariationsForConfirm(input, lockImg, eyeOffImg, eyeOnImg) {
     if (input.value.length > 0) {

@@ -17,11 +17,7 @@ let dragAndDropSections = [
 ];
 
 /**
- * Initializes the board by performing necessary setup tasks.
- * - Retrieves data and element IDs using `getIdAndData()`.
- * - Prepares the elements on the board with `preparingElements()`.
- * - Disables the default drag image during drag operations with `disableDragImage()`.
- * - Initializes the header JS functionality asynchronously with `include()` and `initHeaderJs()`.
+ * Initializes the board by setting up data, elements, drag behavior, and header functionality.
  */
 async function initBoard() {
   await initMPA();
@@ -43,9 +39,7 @@ function preparingElements() {
 }
 
 /**
- * Disables the default drag image when dragging an element.
- * Listens for the 'dragstart' event and prevents the default drag image
- * from being displayed by setting a transparent image as the drag image.
+ * Disables the default drag image by setting a transparent image.
  */
 function disableDragImage() {
   document.addEventListener('dragstart', function(event) {
@@ -137,15 +131,7 @@ function endDragging() {
 
 /**
  * Handles the drop operation for a dragged element.
- * 
- * Steps:
- * 1. Gets cursor position (X, Y) from the drag event.
- * 2. Finds the target section ID using `checkIdFromSectionToDrop`.
- * 3. Validates the drop area and updates tasks:
- *    - Invalid: Ends dragging, removes shadows, refreshes data (`getIdAndData`).
- *    - Valid: Moves task (`moveTo`), ends dragging, updates view (`getFilter`).
- * 
- * @param {DragEvent} e - The drag event with cursor data.
+ * @param {DragEvent} e - The drag event.
  */
 async function checkDraggableArea(e) {
   let cursorX = e.clientX;
@@ -164,19 +150,10 @@ async function checkDraggableArea(e) {
 }
 
 /**
-* Determines the new section based on the ID of the section where the task is dropped.
-* 
-* Mapping of section IDs to their corresponding new section values:
-* - "to_do_tasks" -> "todo"
-* - "in_progress_tasks" -> "inProgress"
-* - "await_feedback_tasks" -> "awaitFeedback"
-* - "done_tasks" -> "done"
-* 
-* If the section ID does not match any of the above, returns "noDropArea".
-* 
-* @param {string} idFromSectionToDrop - The ID of the section where the task is dropped.
-* @returns {string} The new section or "noDropArea" if invalid.
-*/
+ * Determines the new section based on the drop area ID.
+ * @param {string} idFromSectionToDrop - ID of the drop area.
+ * @returns {string} The new section or "noDropArea" if invalid.
+ */
 function checkNewSection(idFromSectionToDrop) {
   if (idFromSectionToDrop == 'to_do_tasks' || idFromSectionToDrop == 'tasks_area_add_task') {
       newSection = 'todo';
@@ -193,15 +170,11 @@ function checkNewSection(idFromSectionToDrop) {
 }
 
 /**
-* Determines the ID of the section under the cursor during the drag operation.
-* 
-* Iterates through all predefined drag-and-drop sections and checks if the cursor is within the boundaries of each section.
-* If the cursor is within a section, returns the corresponding section ID; otherwise, returns "noDropArea".
-* 
-* @param {number} cursorX - The X-coordinate of the cursor.
-* @param {number} cursorY - The Y-coordinate of the cursor.
-* @returns {string} The ID of the section under the cursor or "noDropArea" if none.
-*/
+ * Determines the section ID under the cursor during drag.
+ * @param {number} cursorX - Cursor X-coordinate.
+ * @param {number} cursorY - Cursor Y-coordinate.
+ * @returns {string} Section ID or "noDropArea" if none.
+ */
 function checkIdFromSectionToDrop(cursorX, cursorY) {
   let idFromSectionToDrop = 'noDropArea';
   for (let i = 0; i < dragAndDropSections.length; i++) {
@@ -254,15 +227,8 @@ function removeShadow(id) {
 }
 
 /**
- * Moves a task to a new section by updating its status in the database or data source.
- * 
- * Steps performed:
- * 1. Determines the unique key or path of the dragged task using `checkIndexOfTaskToMove`.
- * 2. Constructs the path for updating the task's status.
- * 3. Calls `putNewSection` to update the task's section in the data source.
- * 4. Refreshes the data by calling `getIdAndData` to ensure UI consistency.
- * 
- * @param {string} newSection - The target section where the task should be moved.
+ * Moves a task to a new section by updating its status.
+ * @param {string} newSection - Target section for the task.
  */
 async function moveTo(newSection) {
   let keyForPath = checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys);
@@ -272,17 +238,11 @@ async function moveTo(newSection) {
 }
 
 /**
- * Finds the key corresponding to a task to be moved based on its ID.
- * 
- * Steps performed:
- * 1. Extracts the numeric ID from the `currentDraggedElementID`.
- * 2. Iterates through the list of all keys to find the task whose `single_ID` matches the extracted ID.
- * 3. Returns the key of the task for updating its category.
- * 
- * @param {string} currentDraggedElementID - The ID of the currently dragged element.
- * @param {Object} allTasks - An object containing all tasks, keyed by unique IDs.
- * @param {Array} allKeys - An array of all task keys in the `allTasks` object.
- * @returns {string|undefined} The key of the task to change category, or undefined if not found.
+ * Finds the key of a task to move based on its ID.
+ * @param {string} currentDraggedElementID - ID of the dragged task.
+ * @param {Object} allTasks - All tasks mapped by keys.
+ * @param {Array} allKeys - Keys of all tasks.
+ * @returns {string|undefined} Key of the task to move.
  */
 function checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys) {
   let id = currentDraggedElementID.slice(15);
@@ -297,18 +257,11 @@ function checkIndexOfTaskToMove(currentDraggedElementID, allTasks, allKeys) {
 }
 
 /**
-* Toggles the visibility of the menu for moving a task and adjusts the task's appearance.
-* 
-* Steps performed:
-* 1. Stops event propagation to prevent unintended actions.
-* 2. Toggles the visibility of the menu element associated with the given `single_ID`.
-* 3. Applies a grayscale filter to the task container when the menu is visible; removes it when hidden.
-* 4. Calls `enableCurrentSection` to enable or highlight the section corresponding to the task's current status.
-* 
-* @param {Event} e - The event object triggered by the user interaction.
-* @param {number} single_ID - The unique ID of the task.
-* @param {string} currentStatus - The current status/category of the task.
-*/
+ * Toggles the move menu for a task and adjusts its appearance.
+ * @param {Event} e - Event object.
+ * @param {number} single_ID - Unique ID of the task.
+ * @param {string} currentStatus - Current status of the task.
+ */
 function openCloseMenuMovingTask(e, single_ID, currentStatus) {
   e.stopPropagation();
   single_ID = single_ID;
@@ -326,11 +279,9 @@ function openCloseMenuMovingTask(e, single_ID, currentStatus) {
 }
 
 /**
- * Highlights the current section of a task in the move menu by changing its text color.
- * Resets the color of all other sections to black and sets the current section to light gray.
- * 
- * @param {string} currentStatus - The current status/category of the task.
- * @param {number} single_ID - The unique ID of the task.
+ * Highlights the current section of a task in the move menu.
+ * @param {string} currentStatus - Current task status.
+ * @param {number} single_ID - Task unique ID.
  */
 function enableCurrentSection(currentStatus, single_ID) {
   let moveToID = `move_${single_ID}_to_${currentStatus}`;
@@ -342,13 +293,11 @@ function enableCurrentSection(currentStatus, single_ID) {
 }
 
 /**
- * Finds the key corresponding to a task to be moved based on its ID.
- * Iterates through all keys in the `allTasks` object and returns the key of the matching task.
- * 
- * @param {Object} allTasks - An object containing all tasks, keyed by unique IDs.
- * @param {Array} allKeys - An array of all task keys in the `allTasks` object.
- * @param {number} id - The unique ID of the task.
- * @returns {string|undefined} The key of the task to change section, or undefined if not found.
+ * Finds the key of a task to move based on its ID.
+ * @param {Object} allTasks - All tasks keyed by IDs.
+ * @param {Array} allKeys - Keys of all tasks.
+ * @param {number} id - Task unique ID.
+ * @returns {string|undefined} Key of the task.
  */
 function checkKeyToMove(allTasks, allKeys, id) {
   let keytoChangeSection;
@@ -361,16 +310,9 @@ function checkKeyToMove(allTasks, allKeys, id) {
 }
 
 /**
- * Moves a task to a new section using the menu option.
- * 
- * Steps performed:
- * 1. Finds the key of the task to be moved using `checkKeyToMove`.
- * 2. Constructs the path to update the task's current status in the data source.
- * 3. Updates the task's status to the new section using `putNewSection`.
- * 4. Refreshes task data by calling `getIdAndData` to ensure the UI reflects the changes.
- * 
- * @param {number} id - The unique ID of the task to be moved.
- * @param {string} toSection - The target section where the task should be moved.
+ * Moves a task to a new section using the menu.
+ * @param {number} id - Task unique ID.
+ * @param {string} toSection - Target section.
  */
 async function moveTaskWithMenu(id, toSection) {
   let keytoChangeSection = checkKeyToMove(allTasks, allKeys, id);

@@ -6,40 +6,24 @@ let filteredTasksAwaitFeedback = [];
 let filteredTasksDone = [];
 
 /**
- * Retrieves the value from the task name input field and applies a filter to the tasks based on that value.
- * The filtered tasks are then pushed to appropriate arrays and displayed in different sections.
- * 
- * This function performs the following tasks:
- * 1. Gets the filter input value from the task name input field.
- * 2. Filters the tasks based on the input value.
- * 3. Checks the length of the filtered tasks and updates the display accordingly.
- * 4. Distributes the filtered tasks into different sections (To Do, In Progress, Await Feedback, Done).
- * 
+ * Filters tasks based on input value and displays them in respective sections.
  */
 function getFilter() {
     let filterInput = document.getElementById('name_of_task_input').value;
-    filterTasks(allTasks, allKeys, filterInput)
-    checkFilteredTaskLength(filteredTasks)
-    pushFilteredTasksToArray()
-    fillTaskSections("to_do_tasks", filteredTasksTodo)
-    fillTaskSections("in_progress_tasks", filteredTasksInProgress)
-    fillTaskSections("await_feedback_tasks", filteredTasksAwaitFeedback)
-    fillTaskSections("done_tasks", filteredTasksDone)
+    filterTasks(allTasks, allKeys, filterInput);
+    checkFilteredTaskLength(filteredTasks);
+    pushFilteredTasksToArray();
+    fillTaskSections("to_do_tasks", filteredTasksTodo);
+    fillTaskSections("in_progress_tasks", filteredTasksInProgress);
+    fillTaskSections("await_feedback_tasks", filteredTasksAwaitFeedback);
+    fillTaskSections("done_tasks", filteredTasksDone);
 }
 
 /**
- * Filters tasks based on the provided filter string, checking both the title and description of each task.
- * The tasks and their corresponding keys are stored in filtered arrays if they match the filter criteria.
- * 
- * This function performs the following tasks:
- * 1. Iterates through all tasks using the provided keys.
- * 2. For each task, it checks if the title or description contains the filter string (case-insensitive).
- * 3. Adds matching tasks and their keys to the filtered arrays.
- * 4. Calls `clearFilteredArrays()` to clear the global arrays after filtering.
- * 
- * @param {Array} allTasks - The array of all tasks.
- * @param {Array} allKeys - The array of keys corresponding to the tasks.
- * @param {string} filter - The string used to filter tasks based on their title or description.
+ * Filters tasks by title or description matching the filter string.
+ * @param {Array} allTasks - Array of all tasks.
+ * @param {Array} allKeys - Keys corresponding to tasks.
+ * @param {string} filter - Filter string to match.
  */
 function filterTasks(allTasks, allKeys, filter) {
     filteredTasks = [];
@@ -55,14 +39,11 @@ function filterTasks(allTasks, allKeys, filter) {
             }
         }
     }
-    clearFilteredArrays()
+    clearFilteredArrays();
 }
 
 /**
- * Clears the filtered task arrays by resetting them to empty arrays.
- * This is typically called after filtering tasks to reset the arrays holding the filtered tasks
- * for different task statuses (Todo, In Progress, Await Feedback, Done).
- * 
+ * Resets the filtered task arrays for different statuses.
  */
 function clearFilteredArrays() {
     filteredTasksTodo = [];
@@ -72,11 +53,8 @@ function clearFilteredArrays() {
 }
 
 /**
- * Checks the length of the filtered tasks array and updates the task input field based on whether tasks are found or not.
- * If no tasks are found, the input field is cleared, and a "No results found" message is displayed with a red border.
- * After a timeout, the filter is re-applied. If tasks are found, the placeholder text is reset.
- * 
- * @param {Array} filteredTasks - The array of filtered tasks based on user input.
+ * Checks filtered task length and updates the input field if no results are found.
+ * @param {Array} filteredTasks - Array of filtered tasks.
  */
 function checkFilteredTaskLength(filteredTasks) {
     if (filteredTasks.length == 0) {
@@ -86,8 +64,8 @@ function checkFilteredTaskLength(filteredTasks) {
         document.getElementById("name_of_task_input").style.setProperty("--placeholder-color", "#8d1414");
         setTimeout(() => {
             targetElement.style.boxShadow = 'none';
-            getFilter()
-        }, 2000)
+            getFilter();
+        }, 2000);
     } else {
         document.getElementById("name_of_task_input").placeholder = "Find Task";
         document.getElementById("name_of_task_input").style.setProperty("--placeholder-color", "lightgray");

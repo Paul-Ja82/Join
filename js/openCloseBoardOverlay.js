@@ -1,33 +1,16 @@
 /**
- * Displays a dialog for adding a task or navigates to a new page depending on the screen width.
- * 
- * Functionality:
- * - If the screen width is less than 400 pixels, it redirects the user to `add_task.html`.
- * - Otherwise, it shows a dialog box for adding a task with a smooth animation and initializes the form.
- * 
- * Steps performed:
- * 1. Check if the window width is less than 400 pixels:
- *    - Redirect to `add_task.html` in the current window (`_self`).
- * 2. If the screen is wider:
- *    - Remove the `d-none` class from the background to make it visible.
- *    - Add the `showIt` class to the dialog box with a slight delay for animation.
- *    - Render the add-task form inside the dialog box using the selected process category.
- *    - Set the priority to "medium" by default using `selectPrio()`.
- *    - Fetch and initialize task-related data asynchronously using `getIdAndDataForAddTask()`.
- *    - Hide the contact list by adding the `d-none` class to the `insertContactList` element.
- * 
- * @param {string} selectedProcessCategory - The category for the process that is pre-selected in the add-task form.
+ * Shows an add-task dialog or navigates to `add_task.html` based on screen width.
+ * @param {string} selectedProcessCategory - Pre-selected category for the add-task form.
  */
 async function showDialog(selectedProcessCategory) {
-    selectedContacts= [];
-    currentTaskForEdit= -1;
-    if (window.innerWidth < 400) {
+  selectedContacts = [];
+  currentTaskForEdit = -1;
+  if (window.innerWidth < 400) {
       window.open("add_task.html", "_self");
-    } else {
+  } else {
       document.getElementById("backgroundId").classList.remove("d-none");
       setTimeout(() => {
-        document.getElementById("dialogBox").classList.add("showIt");
-        // document.getElementById("dialogBox").classList.add("testSabrinaAddTaskCtn");
+          document.getElementById("dialogBox").classList.add("showIt");
       }, 10);
       let today = new Date().toISOString().split('T')[0];
       document.getElementById("dialogBox").innerHTML = renderFormAddTask(selectedProcessCategory, today);
@@ -35,8 +18,8 @@ async function showDialog(selectedProcessCategory) {
       await getIdAndDataForAddTask((pathData = ""));
       const contactList = document.getElementById("insertContactList");
       contactList.classList.add("d-none");
-    }
-    document.getElementById('inputAssignedTo').addEventListener('focusin', toggleContactList);
+  }
+  document.getElementById('inputAssignedTo').addEventListener('focusin', toggleContactList);
 }
 
 /**
@@ -60,12 +43,6 @@ function showTask() {
  * @param {Event} e - The event object passed from the calling action (not utilized in this function).
  */
 function closeTask(e) {
-    // e.stopPropagation()
-  
-    // if (document.getElementById("insertContactList").classList.contains("d-none")) {
-    //   closeContactList()
-    //   isListOpen = !isListOpen;
-    // } 
     currentTaskForEdit= undefined;
     document.getElementById("dialogBox").style.transition = "all 225ms ease-in-out";
     document.getElementById("dialogBox").classList.remove("showIt");
@@ -93,7 +70,6 @@ function closeDialog() {
  * @returns {string} The HTML string for the add-task form, ready to be inserted into the DOM.
  */
 function renderFormAddTask(selectedProcessCategory, today) {
-    // console.log(selectedProcessCategory);
     return `
     <div class="overAllFormAddTaskBoard">
     <form id="formAddTasks" class="formAddTasks">

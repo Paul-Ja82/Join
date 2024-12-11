@@ -3,6 +3,13 @@ const USERS_PATH = 'users/';
 const CONTACTS_PATH= 'contacts/';
 const NEXT_ID_PATH = 'nextId/';
 
+/**
+ * Saves data to the specified path using the given method.
+ * @param {string} path - The API path.
+ * @param {Object} data - The data to save.
+ * @param {string} [method='PUT'] - HTTP method to use.
+ * @returns {Promise} API response.
+ */
 async function saveData(path, data, method = 'PUT') {
     return fetch(BASE_URL + path + '.json', {
         'method': method,
@@ -14,6 +21,12 @@ async function saveData(path, data, method = 'PUT') {
         .then((res) => res.json);
 }
 
+/**
+ * Fetches data from the specified path with optional query parameters.
+ * @param {string} path - The API path.
+ * @param {Object} [params={}] - Query parameters.
+ * @returns {Promise} API response data.
+ */
 async function getData(path, params = {}) {
     let pathMod = BASE_URL + path + '.json?';
     for (let key in params) {
@@ -24,6 +37,10 @@ async function getData(path, params = {}) {
         .catch(() => console.log('fehler beim Daten holen'));
 }
 
+/**
+ * Generates and saves the next available ID.
+ * @returns {Promise<number>} The next ID.
+ */
 async function getId() {
     let nextId = await getData(NEXT_ID_PATH);
     nextId++;
@@ -31,6 +48,11 @@ async function getId() {
     return nextId;
 }
 
+/**
+ * Deletes data at the specified path.
+ * @param {string} path - The API path.
+ * @returns {Promise} API response.
+ */
 async function deleteData(path) {
     return fetch(BASE_URL + path + '.json', {
         method: 'DELETE'

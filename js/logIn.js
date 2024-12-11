@@ -1,9 +1,5 @@
 /**
- * Initializes the login functionality by performing the necessary setup steps.
- * 
- * Steps performed:
- * 1. Calls `loadUsers()` to load user data (e.g., from a server or local storage).
- * 2. Calls `initMPA()` to initialize the Multi-Page Application (MPA) functionality.
+ * Initializes login functionality by loading users and setting up the MPA.
  */
 function initLogin() {
     loadUsers();
@@ -11,26 +7,16 @@ function initLogin() {
 }
 
 /**
- * Animates the logo element by adding CSS classes to control its position and animation.
- * The function selects an element with the class `j-logo-img` and adds a `start-position` class immediately.
- * After a 500ms delay, it adds an `animate-logo` class to trigger further animations.
- *
- * @function animateLogo
+ * Animates the logo with position and animation classes.
  */
 function animateLogo() {
     const logo = document.querySelector(".j-logo-img");
     logo.classList.add("start-position");
-    setTimeout(function() {
-        logo.classList.add("animate-logo");
-    }, 500);
+    setTimeout(() => logo.classList.add("animate-logo"), 500);
 }
 
 /**
- * Delays the display of elements on the page by changing their opacity and visibility properties.
- * The function targets elements with the classes `log-in-div`, `sign-up-under-div`, and the `footer` element,
- * making them fully visible after a delay of 900 milliseconds.
- *
- * @function showDivsDelayed
+ * Delays the visibility and opacity changes of page elements.
  */
 function showDivsDelayed() {
     const logIn = document.querySelector(".log-in-div");
@@ -47,22 +33,17 @@ function showDivsDelayed() {
 }
 
 /**
- * Changes the background color of the body element based on screen width.
- * If the screen width is less than or equal to 950 pixels, it changes the body's background color to a dark color,
- * then reverts it back to a light color after a 700ms delay.
- *
- * @function colorBody
+ * Changes the body's background color based on screen width.
  */
 function colorBody() {
     const screenWidth = window.innerWidth;
     if (screenWidth <= 1010) {
         const body = document.body;
         body.style.backgroundColor = "rgba(9, 25, 49, 1)";
-        setTimeout(() => {
-            body.style.backgroundColor = "rgb(246,247,248,1)";
-        }, 700);
+        setTimeout(() => body.style.backgroundColor = "rgb(246,247,248,1)", 700);
     }
 }
+
 
 /**
  * Changes the custom CSS property `--logo-color` based on screen width.
@@ -205,15 +186,11 @@ function initializeLogin() {
 }
 
 /**
- * Handles the main processing of the login flow.
- * If flags are valid, retrieves the user and logs in.
- * Otherwise, handles login failure.
- *
- * @function supportForProcess
- * @param {boolean} flags - Indicates whether the login input and user data are valid.
- * @param {HTMLInputElement} emailInput - The email input element.
- * @param {HTMLInputElement} passwordInput - The password input element.
- * @param {HTMLElement} errorMessage - The error message element.
+ * Processes the login flow: retrieves user and logs in if valid, otherwise handles failure.
+ * @param {boolean} flags - Validity of login input and user data.
+ * @param {HTMLInputElement} emailInput - Email input element.
+ * @param {HTMLInputElement} passwordInput - Password input element.
+ * @param {HTMLElement} errorMessage - Error message element.
  */
 function supportForProcess(flags, emailInput, passwordInput, errorMessage) {
     if (flags) {
