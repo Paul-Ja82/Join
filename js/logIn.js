@@ -317,17 +317,3 @@ function removeInputError() {
         notRegisteredMessage.style.opacity = '0'; 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
