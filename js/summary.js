@@ -435,9 +435,3 @@ async function updateAllTasksInSummary() {
     updateUrgentTasks();
     updateDeadline();
 }
-
-
-
-
-
-
