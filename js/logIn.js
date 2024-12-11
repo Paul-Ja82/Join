@@ -160,7 +160,6 @@ function checkUserExist() {
         const emailValue = emailInput.value.trim();
         const user = getUserByEmail(emailValue);
         if (user) {
-            // window.location.href = 'new_password.html'; 
             window.location.href = 'new_password.html' + `?id=${user.id}`; 
         } else {
             showNotRegisteredMsg();

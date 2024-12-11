@@ -44,16 +44,11 @@ function getSubtaskHTML(title, index) {
 }
 
 /**
- * Returns the HTML structure for the task editing form.
- *
- * This function generates and returns an HTML string that defines the structure of the task editing form.
- * The form includes input fields for title, description, due date, priority, category, assigned contacts, and subtasks. 
- * It also includes buttons and functionality to select a priority, toggle the contact list, and add subtasks. 
- * The due date field's minimum value is dynamically set based on the provided `today` parameter.
- *
- * @param {string} today - The current date in "YYYY-MM-DD" format, used to set the minimum value for the due date input.
- * @returns {string} The HTML string that represents the task editing form.
+ * Generates the HTML structure for the task editing form.
+ * @param {string} today - Current date in "YYYY-MM-DD" format for the due date minimum.
+ * @returns {string} HTML string for the task editing form.
  */
+
 function returnChangingAddTask(today) {
   return `
 <div class="overAllFormAddTask overAllChangeAddTask">

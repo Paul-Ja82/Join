@@ -7,11 +7,7 @@ let hasEventListener = false;
 let contactsChecked = false;
 
 /**
- * Initializes the "Add Tasks" functionality by rendering the task form, hiding the contact list, and setting default priority.
- * Steps performed:
- * 1. Replaces the content of the `contentAddTaskContainer` element with the add-task form using `returnAddTaskForm`.
- * 2. Hides the contact list by adding the `d-none` class to the `insertContactList` element.
- * 3. Sets the default priority of the task to "medium" using `selectPrio`.
+ * Initializes the Add Tasks functionality by rendering the form, hiding the contact list, and setting default priority.
  */
 async function initAddTasks() {
   document.getElementById("contentAddTaskContainer").innerHTML = returnAddTaskForm("todo");
@@ -20,6 +16,7 @@ async function initAddTasks() {
   selectPrio("medium");
   document.getElementById('inputAssignedTo').addEventListener('focusin', toggleContactList);
 }
+
 
 /**
  * Fetches data from the specified path on the server and logs the response in JSON format.
@@ -48,34 +45,23 @@ async function postData(path = "", data = {}) {
 }
 
 /**
- * Renders the contact list in the DOM, displaying filtered contacts and updating the UI elements accordingly.
- * Steps performed:
- * 1. Displays the contact list by removing the `d-none` class and clearing its current content.
- * 2. Changes the dropdown arrow icon to an "up" state.
- * 3. If `filteredContacts` is empty, displays a message indicating the list is empty.
- * 4. Calls `returnRenderdContacts` to iterate through `filteredContacts` and:
- *    - Adds each contact as a list item with a checkbox.
- *    - Indicates whether the contact is already selected using `selectedContacts`.
- *    - Displays a profile picture for each contact using `showProfilPicture`.
- *    - Updates the checkbox icon to a "checked" state for selected contacts.
- * 5. Calls `showPersons` and `colorSelectedContacts` to finalize the UI updates for the contact list.
- * @param {Array} [filteredContacts=contacts] - The array of contacts to render. Defaults to the full `contacts` array.
- * @example
- * showContactList(filteredContacts);
+ * Displays the contact list, updates the dropdown icon, and handles rendering or showing appropriate messages.
+ * @param {Array} filteredContacts - List of filtered contacts to display (defaults to all contacts).
  */
 function showContactList(filteredContacts = contacts) {
   const contactList = document.getElementById("insertContactList");
-  contactList.classList.remove("d-none");                                  
+  contactList.classList.remove("d-none");
   contactList.innerHTML = "";
-  document.getElementById("arrowDropdown").src ="./assets/icons/arrowUpDropdown.svg";
+  document.getElementById("arrowDropdown").src = "./assets/icons/arrowUpDropdown.svg";
   if (filteredContacts.length === 0) {
-    contactList.innerHTML ="<li class='emptyListMessage'>Ganz schön leer hier! :(</li>";
+    contactList.innerHTML = "<li class='emptyListMessage'>Ganz schön leer hier! :(</li>";
     return;
   }
   returnRenderdContacts();
   showPersons();
   colorSelectedContacts();
 }
+
 
 /**
  * Retrieves the assigned contacts for a specific task by its ID.
@@ -209,14 +195,7 @@ function clickOutsideAssignedToHandler(event) {
 }
 
 /**
- * Validates the date input field to ensure a value is selected and applies appropriate styles.
- * Steps performed:
- * 1. Retrieves the date input element by its ID (`date`).
- * 2. Checks if the input field is empty:
- *    - If empty, adds the `dateInput` class to indicate an invalid state.
- *    - If not empty, removes the `dateInput` class.
- * 3. Adds the `filled` class if a date is selected to change the text color to black.
- * 4. Removes the `filled` class if the field is empty, reverting the text color to gray.
+ * Checks the date input field and updates its classes based on whether it is filled or empty.
  */
 function checkDateInput() {
   let valueDate = document.getElementById("date");
@@ -226,6 +205,7 @@ function checkDateInput() {
   if (dateInput.value) { dateInput.classList.add("filled"); }
   else { dateInput.classList.remove("filled"); }
 }
+
 
 /**
  * Displays avatars for selected contacts, limiting to a maximum of 5.
@@ -261,45 +241,29 @@ function checkAssignedToContactsLength() {
 }
 
 /**
- * Saves a new subtask by retrieving the input value, resetting the input field, and updating the UI.
- * Steps performed:
- * 1. Retrieves the value from the subtask input field (`subtasks`) and logs it to the console.
- * 2. Passes the subtask text to `pushTextSubtask` to add it to the subtask collection.
- * 3. Clears the input field by setting its value to an empty string.
- * 4. Resets the subtask symbols area to display a default "+" icon.
- * 5. Calls `renderSubtasks` to update the UI with the new list of subtasks.
- */
+* Saves the subtask, clears the input field, updates the icon, and renders the subtasks.
+*/
 function saveSubtasks() {
-  let textSubtask = document.getElementById("subtasks").value;
-  pushTextSubtask(textSubtask);
-  document.getElementById("subtasks").value = "";
-  document.getElementById("symbolsSubtasks").innerHTML = `<img src="assets/icons/plus.svg" alt="" />`;
-  renderSubtasks();
+ let textSubtask = document.getElementById("subtasks").value;
+ pushTextSubtask(textSubtask);
+ document.getElementById("subtasks").value = "";
+ document.getElementById("symbolsSubtasks").innerHTML = `<img src="assets/icons/plus.svg" alt="" />`;
+ renderSubtasks();
 }
 
+
 /**
- * Adds a new subtask to the `subtasks` array.
- * Steps performed:
- * 1. Creates a new subtask object with the provided `textSubtask` as the title and `checked` set to `false`.
- * 2. Pushes the new subtask object into the global `subtasks` array.
- * 3. Logs the newly created subtask and the updated `subtasks` array to the console.
- * @param {string} textSubtask - The title of the subtask to be added.
+ * Adds a new subtask to the `subtasks` array with the provided title.
+ * @param {string} textSubtask - The title of the subtask to add.
  */
 function pushTextSubtask(textSubtask) {
-  const newSubtask = {
-    title: textSubtask,
-    checked: false,
-  };
+  const newSubtask = { title: textSubtask, checked: false };
   subtasks.push(newSubtask);
 }
 
 /**
- * Updates the title of an existing subtask in the `subtasks` array and re-renders the subtasks.
- * Steps performed:
- * 1. Retrieves the updated subtask title from the input field corresponding to the provided index.
- * 2. Updates the `title` property of the subtask at the given index in the `subtasks` array.
- * 3. Calls `renderSubtasks` to reflect the changes in the UI.
- * @param {number} index - The index of the subtask to be updated in the `subtasks` array.
+ * Updates the title of a subtask in the `subtasks` array by index.
+ * @param {number} index - The index of the subtask to update.
  */
 function saveEditSubtask(index) {
   let changedSubtask = document.getElementById(`inputField${index}`).value;
@@ -308,27 +272,19 @@ function saveEditSubtask(index) {
 }
 
 /**
- * Handles the "Enter" key press event for the input field.
- * When the "Enter" key is pressed, it prevents the default action
- * (e.g., form submission) and triggers a click event on the element
- * with the ID "subtaskSaver" if it exists.
- * @param {KeyboardEvent} event - The keyboard event triggered when a key is pressed.
+ * Handles the "Enter" key press for the subtask input field.
+ * @param {KeyboardEvent} event - The keyboard event triggered.
  */
 function handleEnterKey(event) {
   if (event.key === "Enter") {
     event.preventDefault();
     let subtaskSaver = document.getElementById("subtaskSaver");
-    if (subtaskSaver) {
-      subtaskSaver.click();
-    }
+    if (subtaskSaver) subtaskSaver.click();
   }
 }
 
 /**
- * Clears the subtask input field and resets the subtask symbol to its default "+" icon.
- * Steps performed:
- * 1. Sets the value of the subtask input field (`subtasks`) to an empty string.
- * 2. Updates the `symbolsSubtasks` element to display a "+" icon.
+ * Clears the subtask input field and resets the symbol to a "+" icon.
  */
 function clearInput() {
   document.getElementById("subtasks").value = "";
@@ -350,12 +306,8 @@ function changeText(index) {
 }
 
 /**
- * Sets the focus on the specified input field and moves the cursor to the end of its content.
- * Steps performed:
- * 1. Calls the `focus` method on the input field to bring it into focus.
- * 2. Calculates the length of the input field's current value.
- * 3. Sets the cursor position to the end of the text using `setSelectionRange`.
- * @param {HTMLElement} inputField - The input field to focus and adjust the cursor position.
+ * Focuses the input field and sets the cursor to the end of its content.
+ * @param {HTMLElement} inputField - The input field to focus.
  */
 function focusAtEnd(inputField) {
   inputField.focus();
@@ -364,11 +316,8 @@ function focusAtEnd(inputField) {
 }
 
 /**
- * Deletes a subtask from the `subtasks` array at the specified index and re-renders the subtask list.
- * Steps performed:
- * 1. Removes the subtask at the given index from the `subtasks` array using `splice`.
- * 2. Calls `renderSubtasks` to update the displayed list of subtasks.
- * @param {number} index - The index of the subtask to be deleted.
+ * Deletes a subtask from the `subtasks` array by index and re-renders the list.
+ * @param {number} index - The index of the subtask to delete.
  */
 function deleteSubtask(index) {
   subtasks.splice(index, 1);
@@ -376,16 +325,14 @@ function deleteSubtask(index) {
 }
 
 /**
- * Updates the input field with a selected category value and closes the dropdown menu.
- * Steps performed:
- * 1. Sets the value of the `showSelectedCategory` input field to the provided `value`.
- * 2. Calls `closeDropdown` to close the dropdown menu and reset its UI.
- * @param {string} value - The selected category value to set in the input field.
+ * Updates the input field with a selected category and closes the dropdown.
+ * @param {string} value - The selected category value.
  */
 function putInput(value) {
   document.getElementById("showSelectedCategory").value = value;
   closeDropdown();
 }
+
 
 /**
  * Renders the subtasks into the subtask list.

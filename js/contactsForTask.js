@@ -18,12 +18,11 @@ function checkContacts() {
   }
 
 /**
- * Creates a contact list template based on the provided filtered contacts.
- * If the filtered contact list is empty, a message will be displayed. 
- * For each contact, a list item is created with a checkbox and profile information.
- * @param {Array} filteredContactsForTasks - An array of contacts to be displayed in the list.
- * @returns {HTMLUListElement} The generated unordered list (ul) element containing the contact list.
+ * Generates a contact list template from filtered contacts.
+ * @param {Array} filteredContactsForTasks - Array of contacts to display.
+ * @returns {HTMLUListElement} Unordered list element with contact items or a message if empty.
  */
+
 function createContactsTemplate(filteredContactsForTasks) {
     let template = document.createElement("ul");
     template.id = "contactListTemplate";
@@ -57,52 +56,34 @@ function returnRenderdContacts() {
 }
 
 /**
- * Filters the contact list based on user input and logs the resulting filtered template.
- * Steps performed:
- * 1. Retrieves the value entered in the `inputAssignedTo` input field and converts it to lowercase.
- * 2. Filters the `filteredContactsForTasks` array to include only contacts that match the input value (case-insensitive).
- * 3. Generates the filtered contacts template using `createContactsTemplate`.
- * 4. Logs the resulting contacts template to the console.
- *
- * Note: The `showContactList` function can be used to update the UI with the filtered contacts but is currently commented out.
+ * Filters contacts based on input text, updates the contact list, and renders the filtered results.
  */
 function filterContacts() {
-  const input = document.getElementById("inputAssignedTo").value.toLowerCase();
+  const input = document.getElementById("inputAssignedTo").value.toLowerCase(); 
   const filteredContacts = filteredContactsForTasks.filter((contact) => {
-    if (contact && typeof contact.name === "string") { return contact.name.toLowerCase().includes(input); }
+    if (contact && typeof contact.name === "string") {
+      return contact.name.toLowerCase().includes(input); 
+    }
     return false;
   });
-  let contactsTemplate = createContactsTemplate(filteredContacts);
+  let contactsTemplate = createContactsTemplate(filteredContacts); 
   const contactListElement = document.getElementById("insertContactList");
-  contactListElement.innerHTML = '';
-  contactListElement.appendChild(contactsTemplate);
+  contactListElement.innerHTML = ''; 
+  contactListElement.appendChild(contactsTemplate); 
 }
 
 /**
- * Closes the contact list by removing the template, hiding the list, and resetting UI elements.
- * Steps performed:
- * 1. Retrieves the template element (`contactListTemplate`) and the contact list container (`insertContactList`).
- * 2. Removes the template from the contact list container.
- * 3. Hides the contact list by adding the `d-none` class.
- * 4. Changes the dropdown arrow icon to the "down" state.
- * 5. Removes the white background applied to the contact section.
+ * Closes the contact list by hiding the element and updating the dropdown arrow icon.
  */
 function closeContactList() {
   let contactList = document.getElementById("insertContactList");
-  contactList.classList.add("d-none");
+  contactList.classList.add("d-none"); 
   document.getElementById("arrowDropdown").src = "/assets/icons/arrowDropdown.svg";
 }
 
 /**
- * Toggles the visibility of a contact list and performs a contact check if opening the list.
- * This function checks the state of the contact list (`isListOpen`). If the list is open, it hides the list by adding the `d-none` class.
- * If the list is closed, it performs a contact check by calling `checkContacts(allContactsForTasks)` and displays the list by removing the `d-none` class.
- * The `isListOpen` flag is toggled after each operation to track the visibility state of the contact list.
- * @global {boolean} isListOpen - A global variable used to track whether the contact list is currently open or closed.
- * @global {Array} allContactsForTasks - A global array that contains all available contacts to be checked by `checkContacts`.
- * @example
- * // Opens or closes the contact list
- * toggleContactList(filteredContactsForTasks);
+ * Toggles the contact list open or closed by calling the appropriate function
+ * and updating the state variable `isListOpen`.
  */
 function toggleContactList() {
   if (isListOpen) {
@@ -145,18 +126,10 @@ function toggleContactListOpen() {
   document.getElementById("insertContactList").classList.remove("d-none");
   document.getElementById("arrowDropdown").src = "assets/icons/arrowUpDropdown.svg";
 }
-
 /**
- * Collects all selected contacts from the checkboxes and updates the `selectedContacts` array.
- * Steps performed:
- * 1. Resets the `selectedContacts` array to an empty state.
- * 2. Selects all checkbox elements in the document.
- * 3. Iterates through the checkboxes and adds the `value` of each checked box to the `selectedContacts` array.
- * 4. Logs the list of selected contacts to the console.
- * 5. Calls `showPersons` to update the UI with the selected contacts.
- * 6. Returns the updated `selectedContacts` array.
+ * Renders the added persons by selecting all checkboxes and calling `showPersons`.
  */
 function renderAddedPersons() {
   const checkboxes = document.querySelectorAll('input[type="checkbox"]'); 
-  showPersons();
+  showPersons(); 
 }
