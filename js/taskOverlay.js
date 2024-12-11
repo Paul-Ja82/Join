@@ -6,15 +6,13 @@ let currentKeyToOpen;
 let currentStatusofChangingTask;
 
 /**
- * Handles the task selection process when a task is clicked.
- * - Prevents the event from propagating further.
- * - Identifies the container associated with the clicked task.
- * - Extracts the ID of the clicked task.
- * - Displays the task details.
- * - Checks the index of the clicked task within the list of all tasks.
- * - Sets the clicked task as the current task for editing.
+ * Handles task selection on click.
+ * - Stops event propagation.
+ * - Identifies the task container and extracts its ID.
+ * - Displays task details and finds its index in the task list.
+ * - Sets the task as the current one for editing.
  * 
- * @param {Event} e - The event object triggered by the click action.
+ * @param {Event} e - The click event object.
  */
 function checkTask(e) {
   e.stopPropagation();
@@ -147,10 +145,6 @@ function checkAssignedToOverlay(allTasks, keyToOpen) {
  * 
  * @param {string} fullName - The full name of a person.
  * @returns {string} The initials of the name in uppercase.
- * 
- * @example
- * checkInitials("John Doe"); // Returns "JD"
- * checkInitials("Alice"); // Returns "A"
  */
 function checkInitials(fullName) {
   let charOneFirstName = "";
@@ -331,6 +325,17 @@ function checkIndexOfAllTasks(clickedSingleID, allTasks, allKeys) {
   return (currentTaskInOverlay = allTasks[keyToOpen]);
 }
 
+/**
+ * Updates the task overlay to display an urgency indicator if certain conditions are met.
+ * 
+ * This function checks whether a task is due soon (within 3 days) or overdue (in the past)
+ * and updates the task overlay with an "urgent" label and an SVG icon if the task is not marked as "done".
+ * 
+ * @param {number} daysInFuture - Number of days until the task's due date.
+ * @param {number} daysInPast - Number of days since the task's due date (negative if not overdue).
+ * @param {Array} tasks - Array of task objects.
+ * @param {number} i - Index of the current task in the `tasks` array.
+ */
 function newUrgencyImgTaskOverlay(daysInFuture, daysInPast, tasks, i) {
   if (daysInFuture <= 3 && tasks[i].currentStatus != "done" ||
       daysInPast <= 0 && tasks[i].currentStatus != "done") {

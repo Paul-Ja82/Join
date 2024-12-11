@@ -136,22 +136,16 @@ function endDragging() {
 }
 
 /**
- * Checks whether the dragged element is over a valid drop area and handles the drop operation.
+ * Handles the drop operation for a dragged element.
  * 
- * Steps performed:
- * 1. Gets the current cursor position (X, Y) from the drag event.
- * 2. Determines the ID of the section where the cursor is located using `checkIdFromSectionToDrop`.
- * 3. Identifies the new section for the task based on the ID using `checkNewSection`.
- * 4. If the new section is not a valid drop area:
- *    - Ends the dragging process.
- *    - Removes any drag shadows.
- *    - Retrieves and refreshes task data using `getIdAndData`.
- * 5. If the new section is valid:
- *    - Moves the task to the new section using `moveTo`.
- *    - Ends the dragging process.
- *    - Filters tasks to reflect the changes using `getFilter`.
+ * Steps:
+ * 1. Gets cursor position (X, Y) from the drag event.
+ * 2. Finds the target section ID using `checkIdFromSectionToDrop`.
+ * 3. Validates the drop area and updates tasks:
+ *    - Invalid: Ends dragging, removes shadows, refreshes data (`getIdAndData`).
+ *    - Valid: Moves task (`moveTo`), ends dragging, updates view (`getFilter`).
  * 
- * @param {DragEvent} e - The drag event object containing cursor position data.
+ * @param {DragEvent} e - The drag event with cursor data.
  */
 async function checkDraggableArea(e) {
   let cursorX = e.clientX;
