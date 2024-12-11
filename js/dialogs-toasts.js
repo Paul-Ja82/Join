@@ -1,11 +1,3 @@
-
-/*############*/
-/*## TOASTS ##*/
-/*############*/
-
-/*** Init ***/
-/************/
-
 /**
  * Initializes toast functionality by adding transition end event handlers to toast elements.
  */
@@ -41,10 +33,6 @@ function endTransitionHandler(event) {
     }
 }
 
-
-/*** Show / Hide ***/
-/*******************/
-
 /**
  * Displays a toast notification for a specified duration and executes an optional callback function after hiding the toast.
  * @param {string} elemId - The ID of the toast element to display.
@@ -70,10 +58,6 @@ function hideToast(toastElem) {
     toastElem.classList.remove('show-toast');
 }
 
-
-/*** Misc ***/
-/************/
-
 /**
  * Retrieves the value of a CSS variable from the root element.
  * @param {string} key - The CSS variable name (e.g., '--variable-name').
@@ -97,14 +81,6 @@ function getMsValue(text) {
     if (unit == 's') return number * 1000;
     else return number;
 }
-
-
-/*#############*/
-/*## DIALOGS ##*/
-/*#############*/
-
-/*** Init ***/
-/************/
 
 /**
  * Initializes dialog functionality by adding background click handlers to all dialogs.
@@ -139,10 +115,6 @@ function addDialogBgClickHandler(dialogId) {
         }
     });
 }
-
-
-/*** Show / Hide ***/
-/*******************/
 
 /**
  * Opens a dialog by showing the dialog background, hiding all other dialogs, and displaying the specified dialog element.
